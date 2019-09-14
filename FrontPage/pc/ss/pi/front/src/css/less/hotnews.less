@@ -1,0 +1,226 @@
+ .main-box {
+  height: auto;
+}
+.news-list-wrapper a:hover{
+  text-decoration: underline;
+}
+/**  头部轮播部分 **/
+.main-box .banner {
+  height: 450px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  .slider-container{
+    height: 450px;
+    .swiper-wraper{
+      height: 100%;
+    }
+  }
+  .swiper-box{
+    height: 450px;
+    li{
+      height: 100%;
+      img{
+        height: 100%;
+      }
+    }
+  }
+  .banner-left {
+    height: 100%;
+    width: 780px;
+  }
+  .banner-left img {
+    height: 500px;
+    width:100%;
+  }
+  .banner-right {
+    width: 405px;
+    height:100%;
+    .img-describe {
+      color: #666;
+      height:450px;
+      overflow: hidden;
+      font-size: 16px;
+      padding: 0 24px;
+      box-sizing: border-box;
+      h2 {
+        font-size: 24px;
+        color: #333;
+        margin-top: 50px;
+        height: 62px;
+        overflow: hidden;
+      }
+      .title-detiles {
+        border-bottom: 1px solid #e6e6e6;
+        margin-bottom:30px;
+        height: auto;
+        max-height: 255px;
+        overflow: hidden;
+        padding:20px 0;
+        box-sizing: border-box;
+        p{
+          font-size: 16px;
+          color: #666;
+          height: 155px;
+          overflow: hidden;
+          line-height: 30px;
+          box-sizing: border-box;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 7;
+          margin-bottom:30px;
+        }
+      }
+      .more{
+        height:50px;
+        border-bottom:none;
+      }
+      .more:hover {
+        font-size: 16px;
+        color: #6eb10c;
+      }
+    }
+  }
+}
+/**   热点部分的css  ***/
+.hotnews .main-content > div {
+  height: 240px;
+  padding: 40px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.hotnews .main-content .img-box, .hotnews .main-content .news-box {
+  display: inline-block;
+}
+
+.hotnews .main-content .img-box {
+  width: 240px;
+}
+
+.hotnews .main-content .img-box img {
+  width: 100%;
+  height: 100%;
+}
+
+.hotnews .main-content .news-box {
+  width: 960px;
+  color: #000;
+  padding-left: 30px;
+  box-sizing: border-box;
+  .news-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+  }
+  .news-content {
+    line-height: 28px;
+    margin: 15px 0;
+    color: #666;
+    font-size: 16px;
+    height:60px;
+    overflow: hidden;
+  }
+  .news-time {
+    margin-top: 10px;
+    height: 20px;
+    color: #999;
+  }
+}
+
+.midimg {
+  min-height: 204px;
+  width:1200px;
+  padding: 40px 0;
+  box-sizing: border-box;
+  a{
+    display: block;
+    min-height: 124px;
+    width:100%;
+    img {
+      width: 1200px;
+      min-height: 124px;
+    }
+  }
+}
+
+
+/***  下面四个部分的css ****/
+.other .img-box img {
+  width: 100%;
+  height: 100%;
+}
+
+.other > div {
+  width: 580px;
+}
+
+.other .img-box, .other .news-box {
+  display: inline-block;
+  width: 300px;
+  height: 280px;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.other .top-box, .other .bottom-box {
+  width: 100%;
+  height: 248px;
+}
+
+.other .news-box {
+  width: 280px;
+  color: #000;
+  padding-left: 30px;
+  box-sizing: border-box;
+  .news-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333333;
+  }
+  .news-content {
+    line-height: 28px;
+    margin: 15px 0;
+    color: #666;
+    font-size: 16px;
+    overflow: hidden;
+  }
+  .news-time {
+    margin-top: 10px;
+    height: 20px;
+    color: #999;
+  }
+}
+
+.news-list-wrapper .news-list p {
+  height: 59px;
+  line-height: 59px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.news-list-wrapper .news-list p i {
+  font-size: 12px;
+  color: #b3b3b3;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.news-list-wrapper .news-list span {
+  width: 560px;
+  color: #333333;
+  vertical-align: middle;
+  height:100%;
+  display: inline-block;
+}
+
+.news-list-wrapper .news-list span a{
+  display: inline-block;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+
+      <div class="position w100 cf">
+        <ul id="CurrentLocation">
+
+        </ul>
+    </div>
+    <div class="wraper-connent detiles-wraper cf">
+      <div class="detiles-wraper-l other">
+          <div id="contactUs"></div>
+          <script id="contactUsSrc" type="text/x-handlebars-template">
+          <div class="news-title">
+              <h1>{{contactUsData.title}}</h1>
+              <div class="news-title-info">
+                <span>日期：</span>
+                <span id="newsDate">{{contactUsData.releaseDate}}</span>
+                <span>作者：</span>
+                <span id="newsAuthor">{{contactUsData.author}}</span>
+                <!--<span>来源：</span>
+                <span id="newsResouce">{{contactUsData.origin}}</span>-->
+                <span>点击：</span>
+                <span id="newsClick">{{contactUsData.views}}</span>
+              </div>
+            </div>
+            <div class="news-text">{{{contactUsData.txt}}}
+                <!-- <p>绿色有机晚熟芒果之乡门户网站运营中心：华坪县尚农农业科技开发投资有限责任公司</p>
+                <p>公司地址：云南省丽江市华坪县中心镇柳溪社区1组</p>
+                <p>邮政编码：674899</p>
+                <p>联系电话：0888-6121708</p>
+                <p>电子邮箱：hpxsngs@163.com</p> -->
+            </div>
+          </script>
+      </div>
+
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/other.js' ></script>
+</body>

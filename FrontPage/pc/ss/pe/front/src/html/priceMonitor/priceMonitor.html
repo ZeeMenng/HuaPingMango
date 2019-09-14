@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../img/logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/commonn.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/priceMonitor.css"/>
+    <link rel="stylesheet" href="../../css/less/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../css/font/iconfont.css"/>
+
+</head>
+<body data-num="2">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <!-- <ul id="CurrentLocation">
+                <li>首页</li>
+                <li> > 价格监测</li>
+            </ul> -->
+        </div>
+
+        <div class="wraper-content clearfix">
+            <div class="price-trend">
+                <p class="pStyle"><span>价格走势</span></p>
+                <div class="trendNum" id="trendNum"></div>
+            </div>
+            <div class="priceMarketChg clearfix">
+                <div class="price-market">
+                    <p class="pStyle"><span>价格行情</span> <i class="title-unit fr">（单位：元/公斤）</i></p>
+                    <div class="tableList">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>市场</th>
+                                <th>产品</th>
+                                <th>价格</th>
+                                <th>对比</th>
+                            </tr>
+                            </thead>
+                            <script id="tplScr" type="text/x-handlebars-template">
+                                {{#each data}}
+                                <tr class="{{clssName @index}}">
+                                    <td title="{{start_time}}">{{start_time}}</td>
+                                    <td title="{{name}}">{{name}}</td>
+                                    <td>{{strainsText}}</td>
+                                    <td>{{averagePriceUnit}}</td>
+                                    <td class="react-percent">
+                                        <span class="react-item" data-num="{{averagePriceUnit}}"></span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </script>
+                            <tbody id="tempHtml">
+                            <!-- <tr>
+                                <td>2017-3-10</td>
+                                <td>华坪县批发市场</td>
+                                <td>象牙芒</td>
+                                <td>6</td>
+                                <td class="react-percent"><span class="react-item" data-num="6"></span></td>
+                            </tr>
+                            <tr class="even">
+                                <td>2017-3-10</td>
+                                <td>华坪县批发市场</td>
+                                <td>象牙芒</td>
+                                <td>19</td>
+                                <td class="react-percent"><span class="react-item"  data-num="19"></span></td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="page" class="paginations">
+                    </div>
+                </div>
+
+                <div class="price-chg clearfix">
+                    <p class="pStyle"><span>城市涨跌幅</span> <i class="title-unit fr">2018-3</i></p>
+                    <div class="tab-btn comparison fr" id='comparison'>
+                        <span data-index="1" class='active'>环比</span>
+                        <span data-index="2">同比</span>
+                    </div>
+                    <div class="chgNum" id="chgNum"></div>
+                </div>
+            </div>
+            <div class="breedPirce">
+                <p class="pStyle"><span>各品种价格</span></p>
+                <div class="breedNum" id="breedNum"></div>
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/echarts.min.js'></script>
+<script src="../../js/common/jquery.pagination.js"></script>
+<script src='../../js/priceMonitor.js'></script>
+
+</body>

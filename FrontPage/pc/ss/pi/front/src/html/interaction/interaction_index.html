@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon" />
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/less/interaction.css">
+</head>
+
+<body data-num="4">
+    <!-- @@include= ../../components/header.html-->
+    <!-- @@include= ../../components/menu.html-->
+    <div class="main-wrap">
+        <div class="main-box">
+            <div class="position w100">
+                <ul id="CurrentLocation">
+                    <!-- <li>您的位置：</li>
+                    <li><a href="../index/index.html">首页</a>></li>
+                    <li><a href="./interaction_index.html">互动</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="inter-bananer">
+            <img src="../../img/inter-bananer.jpg" alt="">
+            <div class="num-span">
+            </div>
+        </div>
+        <div class="main-box cf">
+            <div class="wraper-inter fl">
+                <div class="main-tltles cf">
+                    <a href="specialist.html?channel_id=4d2382021c09499680c00032ec230197&relation_id=010401">
+                        <div class="fl bBorder">
+                            <i class="iconfont icon-note"></i>
+                            <span>专家</span>
+                        </div>
+                    </a>
+                </div>
+                <ul class="profresser" id="speciaList">
+                    <script id="speciaListSrc" type="text/x-handlebars-template">
+                    {{#each speciaListData}}
+                    <li class="cf">
+                        {{#if icon}}
+                            <img class="fl" src="{{icon}}" alt="">
+                        {{else}}
+                            <img class="fl" src="../../img/zwtp.gif" alt="">
+                        {{/if}}
+                        <div class="detail fl">
+                            <h3>{{userName}}</h2>
+                                <!-- <div class="sub-title">华坪县农业局副局长</div> -->
+                                {{#substr 80 introduction}}
+                                <p class="detail-mess">{{introduction}}</p>
+                                {{/substr}}
+                                <span class="detail-text">
+                                <a href="specialist-detiles.html?channel_id=4d2382021c09499680c00032ec230197&id={{id}}" style="white-space:nowrap;">【详情】</a>
+                                </span>
+                        </div>
+                    </li>
+                    {{/each}}
+                    </script>
+                </ul>
+            </div>
+            <div class="wraper-inter wraper-inter2 fr">
+                <div class="main-tltles cf">
+                            <a href="inter-list.html?channel_id=4d2382021c09499680c00032ec230197&relation_id=010402">
+                                <div class="fl bBorder">
+                                    <i class="iconfont icon-note"></i>
+                                    <span>回应</span>
+                                </div>
+                            </a>
+                    <a href="ask-experts.html?channel_id=4d2382021c09499680c00032ec230197" class="question fr">我要问专家</a>
+                </div>
+                <ul class="responses" id="interList"></ul>
+                <script id="interListSrc" type="text/x-handlebars-template">
+                    {{#each interListData}}
+                    <li class="cf">
+                        <a class="skip-box" href="./inter-list-detiles.html?channel_id=4d2382021c09499680c00032ec230197&id={{id}}">
+                            {{#if imagePath}}
+                                {{#showFirst imagePath}}
+                                    <img class="fl" src="{{this}}" alt="">
+                                {{/showFirst}}
+                            {{else}}
+                                <img class="fl" src="../../img/zwtp.gif" alt="">
+                            {{/if}}
+                            <div class="res-detail fl">
+                                <h3 class="res-title">{{title}}？</h3>
+                                <div class="sub-title">
+                                    <span class="res-time">{{addTime}}</span>
+                                    <!-- <span class="res-time">{{nickName}}</span> -->
+                                    <span class="res-name">网友：{{nickName}}</span>
+                                </div>
+                                <div class="res-mess">
+                                    {{#substr 50 reqContent}}
+                                        <p>{{reqContent}}</p>
+                                    {{/substr}}
+                                    <span><a href="inter-list-detiles.html?channel_id=4d2382021c09499680c00032ec230197&id={{id}}" style="white-space:nowrap;">【详情】</a></span>
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                    <!-- <li class="cf">
+                           <a href="./inter-list-detiles.html">
+                               <img class="fl" src="../../img/res-img.jpg" alt="">
+                               <div class="res-detail fl">
+                                   <h3 class="res-title">请问专家，这是什么病？怎么引起的？怎么防治？</h3>
+                                   <div class="sub-title">
+                                       <span class="res-time">2017-10-12</span>
+                                       <span class="res-time">12:38:09</span>
+                                       <span class="res-name">网友：贵妃果农</span>
+                                   </div>
+                                   <p class="res-mess">李朝刚专家：您好！这是蓟马危害幼果引起的，建议用烯啶虫胺配合菊酯类防治。这是蓟马危害幼果引起的，建虫胺配合菊...</p>
+                               </div>
+                           </a>
+                       </li> -->
+                </script>
+            </div>
+        </div>
+        <div class="wraper">
+            <div class="main-tltles">
+                <a href="messageBorde.html?channel_id=4d2382021c09499680c00032ec230197&relation_id= 010403">
+                    <div class="fl bBorder">
+                        <i class="iconfont icon-note"></i>
+                        <span>留言</span>
+                    </div>
+                </a>
+                <a href="./leave-mess.html?channel_id=4d2382021c09499680c00032ec230197" class="question fr">我要留建言</a>
+            </div>
+            <!-- <ul class="leave-mess">
+                <li>
+                    <h3 class="leave-title">请问专家，这是什么病？怎么引起的？怎么防治？</h3>
+                    <div class="sub-title">
+                        <span class="leave-time">2017-10-12</span>
+                        <span class="leave-time">12:38:09</span>
+                        <span class="leave-name">网友：贵妃果农</span>
+                    </div>
+                    <p class="leave-explain">目前兴泉镇芒果种植面积达12042亩，挂果面积5470亩，但实现产值C仅637万元，因此我们的果农很苦恼，希望县里能到兴泉镇实地开展一次芒果种植科技培训，让果农掌握更多的种植技术，促进兴泉镇芒果产业提质增效，谢谢！...</p>
+                    <p class="leave-reply"></p>
+                </li>
+                <li>
+                    <h3 class="leave-title">请问专家，这是什么病？怎么引起的？怎么防治？</h3>
+                    <div class="sub-title">
+                        <span class="leave-time">2017-10-12</span>
+                        <span class="leave-time">12:38:09</span>
+                        <span class="leave-name">网友：贵妃果农</span>
+                    </div>
+                    <p class="leave-explain">目前兴泉镇芒果种植面积达12042亩，挂果面积5470亩，但实现产值C仅637万元，因此我们的果农很苦恼，希望县里能到兴泉镇实地开展一次芒果种植科技培训，让果农掌握更多的种植技术，促进兴泉镇芒果产业提质增效，谢谢！...</p>
+                    <p class="leave-reply">“网站小芒”回复：谢谢你！我们会做的更好</p>
+                </li>
+            </ul> -->
+            <ul class="leave-mess" id='msgList'></ul>
+            <script id="msgListSrc" type="text/x-handlebars-template">
+                    {{#each msgListData}}
+                    <li>
+                        <!-- <a class="skip-box" href="inter-list-detiles.html?id={{id}}"> -->
+                            <h3 class="leave-title">{{title}}</h3>
+                            <div class="sub-title">
+                                <span class="leave-time">{{addTime}}</span>
+                                <!-- <span class="leave-time">12:38:09</span> -->
+                                <span class="leave-name">网友：{{nickName}}</span>
+                            </div>
+                            <p class="leave-explain">{{reqContent}}</p>
+                            <p class="leave-reply">{{resContent}}</p>
+                        <!-- </a> -->
+                    </li>
+                    {{/each}}
+                </script>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-tltles">
+                <div class="fl bBorder-none">
+                    <i class="iconfont icon-note"></i>
+                    <span>友情链接</span>
+                </div>
+            </div>
+            <div class="blogroll-info clearfix">
+                <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+            </div>
+        </div>
+    </div>
+    <!--@@include= ../../components/footer.html-->
+    <script src="../../js/interaction.js"></script>
+</body>

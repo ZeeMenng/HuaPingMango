@@ -1,0 +1,182 @@
+.data-tab{
+  height: 36px;
+  line-height: 26px;
+  border-bottom: 1px solid #e6e6e6;
+  margin:10px 0 40px 0;
+  li{
+    float: left;
+    font-size: 20px;
+    color: #666666;
+    width: 160px;
+    cursor: pointer;
+    a{
+      display: inline-block;
+      width: 160px;
+      cursor: pointer;
+    }
+  }
+  li.active{
+    position: relative;
+    color:#3f8e00;
+    a{
+      color:#3f8e00;
+    }
+  }
+  li.active:after{
+    content: '';
+    position: absolute;
+    display: inline-block;
+    background: #3f8e00;
+    height:4px;
+    width:56px;
+    left:12px;
+    bottom: -12px;
+  };
+}
+.datacon{
+  height:630px;
+  position: relative;
+  .data{
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+    color: #000;
+    .d-left{
+      width:230px;
+      height:100%;
+      float: left;
+      padding-bottom: 10px;
+      border:1px solid #e6e6e6;
+      overflow-y: scroll;
+      // ul{
+      //   li{
+      //     line-height: 50px;
+      //     font-size: 16px;
+      //     text-align: left;
+      //     padding-left: 0px;
+      //     color: #666666;
+      //     cursor: pointer;
+      //   }
+      //   span{
+      //     display: block;
+      //     width: 100%;
+      //     overflow:hidden;
+      //     text-overflow:ellipsis;
+      //     white-space:nowrap;
+      //     padding-left: 30px;
+      //   }
+      //   .iconfont{
+      //     line-height: 50px;
+      //     font-size: 20px;
+      //     padding-right: 5px;
+      //     color: #cbcbcb;
+      //   }
+      // }
+    }
+    .d-right{
+      width:950px;
+      height:100%;
+      float: right;
+      position:relative;
+      .produceType{
+        position: absolute;
+        right:0;
+        top:0;
+      }
+      .date-select{
+        color:#707070;
+        height: 80px;
+        vertical-align: middle;
+        p{
+          display: inline-block;
+        }
+        input{
+          width: 180px;
+          display: inline-block;
+          border:1px solid #bae08a;
+          border-radius: 5px;
+        }
+        span{
+          width: 110px;
+          height: 34px;
+          text-align: center;
+          line-height: 34px;
+          display: inline-block;
+          background: #ffbf21;
+          border-radius: 17px;
+          cursor: pointer;
+          color: #fffbf2;
+          margin-left: 40px;
+        }
+      }
+    }
+    .produceNum{
+      width:950px;
+      height:530px;
+    }
+  }
+}
+//  覆盖zTree样式
+.ztree li span.button.ico_close,
+	.ztree li span.button.ico_open{
+		display: none;
+	}
+	.ztree li ul.line{
+		background: none;
+	}
+	.ztree li span.button.bottom_docu,
+	.ztree li span.button.ico_docu,
+	.ztree li span.button.center_docu{
+		visibility: hidden;
+	}
+	.ztree li span.button.center_close,
+	.ztree li span.button.center_open,
+	.ztree li a,
+	.ztree li span.button.roots_open,
+	.ztree li span.button.roots_close,
+	.ztree li span.button.bottom_open,
+  .ztree li span.button.bottom_close,
+  .ztree li span.button.noline_close,
+  .ztree li span.button.noline_open,
+	.ztree li span{
+    font-size: 16px;
+		line-height: 40px;
+    height: 40px;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .ztree li span{
+    display: inline-block;
+    width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ztree li a.curSelectedNode{
+    color: #3f8e00;
+    font-weight: bolder;
+    line-height: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+  }
+	.ztree li span.button.bottom_open,
+	.ztree li span.button.ico_open,
+  .ztree li span.button.center_open,
+  .ztree li span.button.noline_open,
+	.ztree li span.button.roots_open{
+		width: 40px;
+		background: url(../../img/arrow-icon-01.png) no-repeat center;
+  }
+	.ztree li span.button.bottom_close,
+	.ztree li span.button.ico_close,
+  .ztree li span.button.center_close,
+  .ztree li span.button.noline_close,
+	.ztree li span.button.roots_close{
+		width: 40px;
+		background: url(../../img/arrow-icon-04.png) no-repeat center;
+	}

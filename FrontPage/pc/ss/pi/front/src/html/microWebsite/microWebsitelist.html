@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/microWebsite.css" rel="stylesheet">
+</head>
+<body data-num="3">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <ul id="CurrentLocation"></ul>
+        </div>
+        <div class="wraper">
+                    <ul class="company-list clearfix" id="EnterpriseList"></ul>
+                    <script id="EnterpriseListSrc" type="text/x-handlebars-template">
+                        {{#each EnterpriseListData}}
+                            <li class="{{className2 @index}}">
+                                <a href="microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}">
+                                    <div class='company-img'>
+                                        {{#if path}}
+                                        <img src="{{path}}" alt=""> {{else}}
+                                        <img src="../../img/zwtp.gif" alt=""> {{/if}}
+                                    </div>
+                                    <div class='company-msg'>
+                                        <h1>
+                                            {{#substr 30 enterpriseName}}
+                                                {{enterpriseName}}
+                                            {{/substr}}
+                                        </h1>
+                                        <p>
+                                            {{#substr 60 description}}
+                                                {{description}}</div>
+                                            {{/substr}}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/each}}
+                    </script>
+<!--                 <li>
+                    <div class='company-img'><img src="../../img/company1.png" alt=""></div>
+                    <div class='company-msg'>
+                        <h1>丽江华坪金芒果生态开发有限公司</h1>
+                        <p>丽江华坪金芒果生态开发有限责任公司成立于2009年，是集芒果种植、深加工、销售、物流配送于一体...</p>
+                    </div>
+                </li>
+                <li class='mrt0'>
+                    <div class='company-img'><img src="../../img/company2.png" alt=""></div>
+                    <div class='company-msg'>
+                        <h1>丽江华坪金芒果生态开发有限公司</h1>
+                        <p>丽江华坪金芒果生态开发有限责任公司成立于2009年，是集芒果种植、深加工、销售、物流配送于一体...</p>
+                    </div>
+                </li> -->
+            <div id="page" class="pagination"></div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/jquery.pagination.js'></script>
+<script src='../../js/microWebsite.js'></script>
+</body>

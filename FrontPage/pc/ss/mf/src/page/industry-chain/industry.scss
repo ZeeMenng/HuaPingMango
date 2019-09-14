@@ -1,0 +1,96 @@
+.disasterWarp .right-item {
+    flex: 1;
+    position: relative;
+    padding: 0.60rem 0 0 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-top:0.4rem;
+    .factorExplain {
+        position: absolute;
+        right: 0.4rem;
+        top: 0.2rem;
+        font-size: 0.14rem;
+        color: #72f0fc;
+        cursor: pointer;
+    }
+    .echartsExplain {
+        color: #46ebff;
+        font-size: 0.14rem;
+        height: 0.4rem;
+        position: relative;
+        .factorType {
+            color: #fff;
+            font-size: 0.16rem;
+            display: inline-block;
+            padding-top: 0.05rem;
+            box-sizing: border-box;
+        }
+    }
+    .echartsWarp {
+        flex: 1;
+    }
+}
+.disasterWarp .AdisasterTable {
+    height: 2.1rem;
+    overflow:hidden;
+    width: 4rem;
+    font-size: 0.16rem;
+    .ant-carousel .slick-list{
+        overflow: visible;
+    }
+    .TableRow {
+        height: 0.8rem;
+        display:flex;
+        flex-direction: row;
+        background: #3658bb;
+        margin-bottom: 4px;
+        .iconfont.icon-ganhan{
+             color: #FC933F;
+        }
+        .iconfont.icon-shuangdongyujing{
+             color: #E8F516;
+        }
+        .iconfont.icon-baoyu{
+             color: #0EDFFE;
+        }
+        .iconfont.icon-dafeng{
+             color: #46ED7D;
+        }
+    }
+    .TableRow:hover{
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+        border-radius: 4px;
+        transform: scale(1.05);
+    }
+    .TableRow span {
+        box-sizing: border-box;
+        color: #a5edff;
+        align-items: center;
+        padding: 0.05rem;
+        display:inline-block;
+        width:46%;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        &:first-child{
+            width:0.3rem;
+            padding: 0.05rem;
+        }
+        &:nth-child(4){
+            padding-left:0.4rem;
+        }
+    }
+    .TableRow .iconfont {
+        color: #72f0fc;
+        margin-right: 0.05rem;
+        display:inline-block;
+        width:0.05rem;
+    }
+    .TableRow .disastersType {
+        color: #e2b03d;
+    }
+}
+.predictionLine .my-chart{
+    height:203px!important;
+}

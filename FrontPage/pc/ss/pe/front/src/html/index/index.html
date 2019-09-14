@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../img/logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/commonn.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/font/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/less/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../css/less/index.css"/>
+    <link rel="stylesheet" href="../../js/swiper/idangerous.swiper2.7.6.css">
+</head>
+<body data-num="0">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="slider-play">
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="banner"></div>
+        <!-- <script id="bannerSrc" type="text/x-handlebars-template">
+                {{#if data}}
+                    {{#each data.resourcePathArray}}
+                        <div class="swiper-slide">
+                            <a href="###">
+                                <img width="100%" height="500" src="{{this}}" title="{{title}}" alt="">
+                            </a>
+                        </div>
+                    {{/each}}
+                {{else}}
+                   <div class="swiper-slide red-slide">
+                        <img width="100%" height="500" src="../../img/banner02.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide orange-slide">
+                        <img width="100%" height="500" src="../../img/banner03.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide green-slide">
+                        <img width="100%" height="500" src="../../img/banner01.jpg" alt="">
+                    </div>
+                {{/if}}
+        </script> -->
+            <!-- <div class="swiper-wrapper" id="banner">
+                <div class="swiper-slide red-slide">
+                    <img width="100%"  height="500" src="../../img/banner02.jpg" alt="">
+                </div>
+                <div class="swiper-slide orange-slide">
+                    <img width="100%"  height="500" src="../../img/banner03.jpg" alt="">
+                </div>
+                <div class="swiper-slide green-slide">
+                    <img width="100%"  height="500" src="../../img/banner01.jpg" alt="">
+                </div>
+            </div> -->
+        <div class="pagination"></div>
+    </div>
+</div>
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="wraper wraper-blogroll">
+            <!-- 数据资源 -->
+            <div class="every-box">
+                <div class="top-title">
+                    <span>数据资源</span>
+                </div>
+                <div class="data-content cf">
+                    <div class="item item-first">
+                        <a href="../dataResource/dataResource.html">
+                            <div class="item-bg"></div>
+                            <span class="item-title">
+                                生产数据
+                            </span>
+                            <ul class="item-list">
+                                <li>华坪县芒果生产数据</li>
+                                <li>攀枝花芒果生产数据</li>
+                                <li>全国芒果生产数据</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <div class="item item-second">
+                        <a href="../dataResource/dataResource.1.html">
+                            <div class="item-bg"></div>
+                            <span class="item-title">产值数据</span>
+                            <ul class="item-list">
+                                <li>华坪县芒果产值数据</li>
+                                <li>全国芒果产值数据</li>
+                                <li>印度芒果产值数据</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <div class="item item-three">
+                        <a href="../dataResource/dataResource.2.html">
+                            <div class="item-bg"></div>
+                            <span class="item-title">价格数据</span>
+                            <ul class="item-list">
+                                <li>华坪县芒果价格数据</li>
+                                <li>全国芒果批发市场价格数据</li>
+                                <li>全国芒果电商价格数据</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <div class="item item-last">
+                        <a href="../dataResource/dataResource.3.html">
+                            <div class="item-bg"></div>
+                            <span class="item-title">贸易数据</span>
+                            <ul class="item-list">
+                                <li>中国芒果进出口数据</li>
+                                <li>印度芒果进出口数据</li>
+                                <li>泰国芒果进出口数据</li>
+                            </ul>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 数说华芒 -->
+            <div class="every-box">
+                <div class="top-title">
+                    <span>数说华芒</span>
+                </div>
+                <script id="tpl" type="text/x-handlebars-template">
+                    <p class="detail-mess">{{lastYear}}年，华坪县芒果种植面积{{unitMu info.areaSum}}万亩，比{{theYearBeforeLast}}年增加{{unitMu info.subtractAreaSum}}万亩，增长{{info.areaSumProportion}}%；
+                        挂果面积{{unitMu info.fruitAreaSum}}万亩，比{{theYearBeforeLast}}年增加{{unitMu info.subtractFruitAreaSum}}万亩，增长{{info.fruitAreaSumProportion}}%；
+                        芒果产量{{unit7 info.productSum}}万吨，比{{theYearBeforeLast}}年增加{{unit7 info.subtractProductSum}}万吨，增长{{info.productSumProportion}}%；
+                        芒果产值{{unit8 info.outputSum}}亿元，比{{theYearBeforeLast}}年增加{{unit8 info.subtractOutputSum}}亿元，增长{{info.outputSumProportion}}%。</p>
+                    <div class="tendency-item fl">
+                        <div class="tendency-item-index">
+                            <div class="tendency-item-circle">
+                                <span class="tendency-num">{{unitMu info.areaSum}}</span>
+                                <span class="tendency-unit">万亩</span>
+                            </div>
+                            <span class="tendency-title">种植面积</span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data">
+                                <span class="arrow-num">{{unitMu info.subtractAreaSum}}</span>
+                                <span class="arrow-unit">万亩</span>
+                            </div>
+                            <div class="arrow-up"></div>
+                            <span class="arrow-title">
+                                比{{theYearBeforeLast}}年增加
+                            </span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data green">
+                                <span class="arrow-num">{{info.areaSumProportion}}%</span>
+                                <span class="arrow-unit"></span>
+                            </div>
+                            <div class="arrow-down bar-up"></div>
+                            <span class="arrow-title">
+                                增加
+                            </span>
+                        </div>
+                    </div>
+                    <div class="tendency-item tendency-item-no fl">
+                        <div class="tendency-item-index">
+                            <div class="tendency-item-circle">
+                                <span class="tendency-num">{{unitMu info.fruitAreaSum}}</span>
+                                <span class="tendency-unit">万亩</span>
+                            </div>
+                            <span class="tendency-title">挂果面积</span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data">
+                                <span class="arrow-num">{{unitMu info.subtractFruitAreaSum}}</span>
+                                <span class="arrow-unit">万亩</span>
+                            </div>
+                            <div class="arrow-up"></div>
+                            <span class="arrow-title">
+                                比{{theYearBeforeLast}}年增加
+                            </span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data green">
+                                <span class="arrow-num">{{info.fruitAreaSumProportion}}%</span>
+                                <span class="arrow-unit"></span>
+                            </div>
+                            <div class="arrow-down bar-up"></div>
+                            <span class="arrow-title">
+                                增加
+                            </span>
+                        </div>
+                    </div>
+                    <div class="tendency-item fl">
+                        <div class="tendency-item-index">
+                            <div class="tendency-item-circle">
+                                <span class="tendency-num">{{unit7 info.productSum}}</span>
+                                <span class="tendency-unit">万吨</span>
+                            </div>
+                            <span class="tendency-title">产量</span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data">
+                                <span class="arrow-num">{{unit7 info.subtractProductSum}}</span>
+                                <span class="arrow-unit">万吨</span>
+                            </div>
+                            <div class="arrow-up"></div>
+                            <span class="arrow-title">
+                                比{{theYearBeforeLast}}年增加
+                            </span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data green">
+                                <span class="arrow-num">{{info.productSumProportion}}%</span>
+                                <span class="arrow-unit"></span>
+                            </div>
+                            <div class="arrow-up bar-up"></div>
+                            <span class="arrow-title">
+                                增长
+                            </span>
+                        </div>
+                    </div>
+                    <div class="tendency-item tendency-item-no fl">
+                        <div class="tendency-item-index">
+                            <div class="tendency-item-circle">
+                                <span class="tendency-num">{{unit8 info.outputSum}}</span>
+                                <span class="tendency-unit">亿元</span>
+                            </div>
+                            <span class="tendency-title">产值</span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data">
+                                <span class="arrow-num">{{unit8 info.subtractOutputSum}}</span>
+                                <span class="arrow-unit">亿元</span>
+                            </div>
+                            <div class="arrow-up"></div>
+                            <span class="arrow-title">
+                                比{{theYearBeforeLast}}年增加
+                            </span>
+                        </div>
+                        <div class="tendency-item-index">
+                            <div class="arrow-data green">
+                                <span class="arrow-num">{{info.outputSumProportion}}%</span>
+                                <span class="arrow-unit"></span>
+                            </div>
+                            <div class="arrow-up bar-up"></div>
+                            <span class="arrow-title">
+                                增长
+                            </span>
+                        </div>
+                    </div>
+                </script>
+                <div id="tendency">
+                    <!-- <p class="detail-mess">2017年，华坪县芒果种植面积20.3万亩，比2016年增加1.1万亩，增长5.7%；挂果面积12.86万亩，比2016年增加1.54万亩，增长13.6%；芒果产量10.21万吨，比2016年增加1.21万吨，增长13.4%；芒果产值9.12亿元，比2016年增加1.62亿元，增长21.6%。</p> -->
+                    <!-- <div class="tendency cf">
+                        <div class="tendency-item fl">
+                            <div class="tendency-item-index">
+                                <div class="tendency-item-circle">
+                                    <span class="tendency-num">20.3</span>
+                                    <span class="tendency-unit">万亩</span>
+                                </div>
+                                <span class="tendency-title">种植面积</span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-up"></div>
+                                <span class="arrow-title">
+                                    比2016年增加
+                                </span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data green">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down bar-up"></div>
+                                <span class="arrow-title">
+                                    增加
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tendency-item tendency-item-no fl">
+                            <div class="tendency-item-index">
+                                <div class="tendency-item-circle">
+                                    <span class="tendency-num">20.3</span>
+                                    <span class="tendency-unit">万亩</span>
+                                </div>
+                                <span class="tendency-title">种植面积</span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-up"></div>
+                                <span class="arrow-title">
+                                    比2016年增加
+                                </span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data green">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down bar-up"></div>
+                                <span class="arrow-title">
+                                    增加
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tendency-item fl">
+                            <div class="tendency-item-index">
+                                <div class="tendency-item-circle">
+                                    <span class="tendency-num">20.3</span>
+                                    <span class="tendency-unit">万亩</span>
+                                </div>
+                                <span class="tendency-title">种植面积</span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down"></div>
+                                <span class="arrow-title">
+                                    比2016年减少
+                                </span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data green">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down bar-down"></div>
+                                <span class="arrow-title">
+                                    减少
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tendency-item tendency-item-no fl">
+                            <div class="tendency-item-index">
+                                <div class="tendency-item-circle">
+                                    <span class="tendency-num">20.3</span>
+                                    <span class="tendency-unit">万亩</span>
+                                </div>
+                                <span class="tendency-title">种植面积</span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down"></div>
+                                <span class="arrow-title">
+                                    比2016年减少
+                                </span>
+                            </div>
+                            <div class="tendency-item-index">
+                                <div class="arrow-data green">
+                                    <span class="arrow-num">1.5</span>
+                                    <span class="arrow-unit">万亩</span>
+                                </div>
+                                <div class="arrow-down bar-down"></div>
+                                <span class="arrow-title">
+                                    减少
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="second-col cf">
+                <!-- 价格行情 -->
+                <div class="every-box every-box-wid">
+                    <div class="top-title cf">
+                        <span>价格行情</span>
+                        <i class="title-unit fr">（单位元/公斤）</i>
+                    </div>
+                    <div class="tableList">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>市场</th>
+                                    <th>产品</th>
+                                    <th>价格</th>
+                                    <th>对比</th>
+                                </tr>
+                            </thead>
+                            <script id="tplScr" type="text/x-handlebars-template">
+                                {{#each data}}
+                                <tr class="{{clssName @index}}">
+                                    <td title="{{start_time}}">{{start_time}}</td>
+                                    <td title="{{name}}">{{name}}</td>
+                                    <td>{{strainsText}}</td>
+                                    <td>{{averagePriceUnit}}</td>
+                                    <td class="react-percent">
+                                        <span class="react-item" data-num="{{averagePriceUnit}}"></span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </script>
+                            <tbody id="tempHtml">
+                                <!-- <tr>
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>6</td>
+                                    <td class="react-percent"><span class="react-item" data-num="6"></span></td>
+                                </tr>
+                                <tr class="even">
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>27</td>
+                                    <td class="react-percent"><span class="react-item" data-num="27"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>17</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="17"></span></td>
+                                </tr>
+                                <tr class="even">
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>6.5</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="6.5"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>3</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="3"></span></td>
+                                </tr>
+                                <tr class="even">
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>14</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="14"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>20</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="20"></span></td>
+                                </tr>
+                                <tr class="even">
+                                    <td>2017-3-10</td>
+                                    <td>华坪县批发市场</td>
+                                    <td>象牙芒</td>
+                                    <td>19</td>
+                                    <td class="react-percent"><span class="react-item"  data-num="19"></span></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="page" class="paginations">
+                    </div>
+                </div>
+                <!-- 芒果分布 -->
+                <div class="every-box every-box-wid no-right">
+                    <div class="top-title">
+                        <span>芒果分布</span>
+                    </div>
+                    <div id="chinaMap" style="width: 100%;height: 450px;white-space: normal;"></div>
+                </div>
+                <!-- 鸟瞰华坪 -->
+                <div class="every-box">
+                    <div class="top-title">
+                        <span>鸟瞰华坪</span>
+                    </div>
+                    <div class="slider-play1">
+                        <div class="swiper-container1">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                            <div class="swiper-wrapper" id="viewBird">
+                               <!-- <div class="swiper-slide img-cover">
+                                   <img src="../../img/img1.png" alt="图片">
+                                   <span class="opacity-cover">
+                                        333华坪县荣将果子山万亩优质晚熟生态芒果示范园基地全景图
+                                   </span>
+                               </div> -->
+                            </div>
+                            <script id="viewBirdSrc" type="text/x-handlebars-template">
+                                {{#each viewBirdData}}
+                                <div class="swiper-slide img-cover" data-path="{{path}}">
+                                    <div class="panorama">
+                                        {{#if path}}
+                                            <img src="{{path}}" alt="图片">
+                                            <span class="opacity-cover">{{title}}</span>
+                                        {{else}}
+                                            <img src="../../img/zwtp.gif" alt="">
+                                        {{/if}}
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <!-- 应用专题 -->
+                <div class="every-box no-right">
+                    <div class="top-title">
+                        <span>应用专题</span>
+                    </div>
+                    <div class="chart-container no-top cf">
+                        <div class="mychart1"></div>
+                        <div class="mychart2 no-right"></div>
+                        <div class="mychart3"></div>
+                        <div class="mychart4 no-right"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 友情链接 -->
+            <div class="every-box">
+                <div class="top-title">
+                    <span>友情链接</span>
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src="../../js/common/jquery.pagination.js"></script>
+<script src="../../js/swiper/idangerous.swiper2.7.6.min.js"></script>
+<script src="../../js/common/handlebars-v4.0.5.js"></script>
+<script src="../../js/PSV/three.min.js"></script>
+<script src="../../js/PSV/photo-sphere-viewer.min.js"></script>
+<script src="../../js/common/echarts.min.js"></script>
+<script src="../../js/common/china.js"></script>
+<script src='../../js/common/world.js'></script>
+<script src="../../js/common/jquery.pagination.js"></script>
+<script src="../../js/echart-components/bar.js"></script>
+<script src="../../js/echart-components/line.js"></script>
+<script src="../../js/echart-components/barLine.js"></script>
+<script src="../../js/echart-components/chinaMap.js"></script>
+<script src="../../js/echart-components/worldMap.js"></script>
+<script src="../../js/index.js"></script>
+</body>

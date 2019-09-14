@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon" />
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../js/layui/css/modules/layer/default/layer.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/less/listDetails.css">
+    <link rel="stylesheet" href="../../js/swiper/idangerous.swiper2.7.6.css">
+</head>
+
+<body data-num="4">
+    <!-- @@include= ../../components/header.html-->
+    <!-- @@include= ../../components/menu.html-->
+    <div class="main-wrap">
+
+        <div class="position w100 cf">
+            <ul id="CurrentLocation">
+                <!-- <li>您的位置：</li>
+                <li>
+                    <a href="../index/index.html">首页</a>></li>
+                <li>
+                    <a href="./interaction_index.html">互动</a>>
+                </li>
+                <li>
+                    <a href="./interaction_index.html">回应栏</a>
+                </li> -->
+            </ul>
+        </div>
+        <div class="wraper-connent detiles-wraper cf">
+            <div class="detiles-wraper-l fl">
+                <div class="responses" id="interDetiles"></div>
+                <script id="interDetilesSrc" type="text/x-handlebars-template">
+                    {{#showFirst interDetilesData}}
+                        <ul>
+                            <li class="cf">
+                                <div class="res-detail fl">
+                                    <h3 class="res-title">{{title}}？</h3>
+                                    <div class="sub-title">
+                                        <span class="res-time">{{addTime}}</span>
+                                        <!-- <span class="res-time">{{nickName}}</span> -->
+                                        <span class="res-name">网友：{{nickName}}</span>
+                                    </div>
+                                    <p class="res-mess">{{reqContent}}</p>
+                                    <div class="img-list clearfix layer-photos-demo" id="layer-photos-demo">
+                                        {{#if imagePath}}
+                                            {{#each imagePath}}
+                                                <img layer-src="{{this}}"  src="{{this}}" alt="">
+                                            {{/each}}
+                                        {{else}}
+                                            <img class="fl" src="../../img/zwtp.gif" alt="">
+                                        {{/if}}
+                                    </div>
+                                    <p class="res-mess">{{resContent}}</p>
+
+                                </div>
+                            </li>
+                        <!-- <li class="cf">
+                                <img class="fl" src="../../img/res-img.jpg" alt="">
+                                <div class="res-detail fl">
+                                    <h3 class="res-title">请问专家，这是什么病？怎么引起的？怎么防治？</h3>
+                                    <div class="sub-title">
+                                        <span class="res-time">2017-10-12</span>
+                                        <span class="res-time">12:38:09</span>
+                                        <span class="res-name">网友：贵妃果农</span>
+                                    </div>
+                                    <p class="res-mess">李朝刚专家：您好！这是蓟马危害幼果引起的，建议用烯啶虫胺配合菊酯类防治。这是蓟马危害幼果引起的，建虫胺配合菊...</p>
+                                </div>
+                            </li> -->
+                        </ul>
+                        {{/showFirst}}
+                    </script>
+                     <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-dengpao"></i>
+                            <span>更多互动</span>
+                        </div>
+                    </div>
+                    <div class="more-responses">
+                        <ul id="MoreResponses"></ul>
+                        <script id="MoreResponsesSrc" type="text/x-handlebars-template">
+                            {{#each MoreResponsesData}}
+                                <li><a href="./inter-list-detiles.html?channel_id={{id}}">{{title}}</a></li>
+                            {{/each}}
+                        </script>
+                    </div>
+                    <div class="wraper wraper-blogroll">
+                        <div class="main-box">
+                            <div class="main-tltles">
+                                <div class="fl bBorder-none">
+                                    <i class="iconfont icon-note"></i>
+                                    <span>友情链接</span>
+                                </div>
+                                <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                            </div>
+                            <div class="blogroll-info clearfix">
+                                <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                                <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                                <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                                <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="detiles-wraper-r fl">
+                    <div class="connent-l connent-l1 titleClick">
+                        <div class="main-tltles">
+                            <div class="bBorder fl listClick1">
+                                <i class="iconfont icon-note"></i>
+                                <a class="tab-a tab-b" href="../list/list.html?channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101">热点</a>
+                            </div>
+                            <a href="../list/list.html?channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr more">更多 ></a>
+                        </div>
+                        <div class="sever-market-banner">
+                            <div class="market-banner sh-market">
+                                <div class="swiper-container swiper-container1">
+                                    <div class="swiper-wrapper" id="hotNew"></div>
+                                    <script id="hotNewSrc" type="text/x-handlebars-template">
+                                            {{#if data}}
+                                                {{#each data}}
+                                                    <div class="swiper-slide">
+                                                        <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                                            {{#if img_path}}
+                                                                <img src="{{img_path}}" alt="">
+                                                                <i class="iconfont icon-bofang video-play"></i>
+                                                            {{else}}
+                                                            <img src="../../img/zwtp.gif" alt="">
+                                                            {{/if}}
+                                                            <p class="over-ellipsis">{{title}}</p>
+                                                        </a>
+                                                    </div>
+                                                {{/each}}
+                                            {{else}}
+                                                <div class="noData">暂无数据</div>
+                                            {{/if}}
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="connent-l connent-l2 titleClick">
+                        <div class="main-tltles">
+                            <div class="bBorder fl listClick">
+                                <i class="iconfont icon-note"></i>
+                                <a href="../list/list.html?channel_id=f6399d07963955cd9f130a36b83e8409&relation_id=0102" class="tab-a tab-c">服务</a>
+                            </div>
+                            <a href="../list/list.html?channel_id=f6399d07963955cd9f130a36b83e8409&relation_id=0102" class="fr more">更多 ></a>
+                        </div>
+                        <div class="say-market-banner">
+                            <div class="market-banner sh-market">
+                            <div class="swiper-container swiper-container2">
+                                <div class="swiper-wrapper" id="serve"></div>
+                                    <script id="serveSrc" type="text/x-handlebars-template">
+                                    {{#if serveData}}
+                                        {{#each serveData}}
+                                            <div class="swiper-slide">
+                                                <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                                    {{#if img_path}}
+                                                        <img src="{{img_path}}" alt="">
+                                                        <i class="iconfont icon-bofang video-play"></i>
+                                                    {{else}}
+                                                    <img src="../../img/zwtp.gif" alt="">
+                                                    {{/if}}
+                                                    <p class="over-ellipsis">{{title}}</p>
+                                                </a>
+                                            </div>
+                                        {{/each}}
+                                    {{else}}
+                                        <div class="noData">暂无数据</div>
+                                    {{/if}}
+                                    </script>
+                                     <!-- <div class="paginationswiper"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="connent-l connent-l4 referrals-wrap" style="margin-bottom:30px;">
+                    <div class="main-tltles cf">
+                        <div href="###" class="bBorder-none fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>推介</span>
+                        </div>
+                    </div>
+
+                    <div class="market-banner cf">
+                        <div class="tj tj-l fl" id="MicroSiteList"></div>
+                        <script id="MicroSiteListSrc" type="text/x-handlebars-template">
+                            {{#each MicroSiteListData}}
+                            <div class="tj-title">
+                                <div class="line"></div>
+                                <h2 class="tj-context">
+                                    <a href="../microWebsite/microWebsitelist.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}" class="bBorder fl">企业微网站</a>
+                                </h2>
+                            </div>
+                            <div class="tj-img">
+                                <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}&relation_id=01030501" class="skip-box">
+                                    <img src="{{path}}" alt="">
+                                </a>
+                            </div>
+                            <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}&relation_id=01030501" class="tj-name"
+                                title="{{enterpriseName}}">{{enterpriseName}}</a>
+                            <div class="tj-info">
+                                {{#substr 40 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                            </div>
+                            {{/each}}
+                        </script>
+                        <div class="tj tj-r fr" id="MangoMallList"></div>
+                        <script id="MangoMallListSrc" type="text/x-handlebars-template">
+                            {{#each MangoMallListData}}
+                            <div class="tj-title">
+                                <div class="line"></div>
+                                <h2 class="tj-context">
+                                    <a href="../mangoEcshop/mangoEcshop.html?channel_id=7e08ff47f4634674843ed10f71254d45" class="bBorder fl">芒果微商城</a>
+                                </h2>
+                            </div>
+                            <div class="tj-img">
+                                <a href="{{mallInterlinkage}}" target="_blank" class="skip-box">
+                                    {{#if path}}
+                                    <img src="{{path}}" alt=""> {{else}}
+                                    <img src="../../img/zwtp.gif" alt=""> {{/if}}
+                                </a>
+                            </div>
+                            <a href="{{mallInterlinkage}}" target="_blank" class="tj-name" title="{{name}}">{{name}}</a>
+                            <div class="tj-weight">总重量：
+                                <span id="weight">{{weight}}千克</span>
+                            </div>
+                            <div class="tj-price">售价：
+                                <span id="price">￥{{sellingPrice}}</span>
+                            </div>
+                            <div class="tj-price">品牌：
+                                <span>{{brand}}</span>
+                            </div>
+                            {{/each}}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--@@include= ../../components/footer.html-->
+    <script src="../../js/swiper/idangerous.swiper2.7.6.min.js"></script>
+    <script src='../../js/common/jquery.pagination.js'></script>
+    <script src='../../js/layui/lay/modules/layer.js'></script>
+    <script src='../../js/inter-list.js'></script>
+</body>

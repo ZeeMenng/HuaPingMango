@@ -1,0 +1,360 @@
+body{
+    min-width: 1400px;
+}
+.header{
+    height: 133px;
+    width: 100%;
+    background: url(./header-bg.png) no-repeat center;
+    background-size:100% 100%;
+    .header-container{
+        width: 1400px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .admin{
+        position: absolute;
+        right: 0;
+        top: 24px;
+    }
+    span,a{
+        display: inline-block;
+        height: 30px;
+        vertical-align: top;
+        line-height: 30px;
+        color: #fff;
+        font-size: 14px;
+    }
+    .user,.loginOut{
+        margin-left: 25px;
+    }
+    .loginOut a:hover{
+        color: #eee;
+    }
+    .iconUserName,.iconLoginOut{
+        width: 24px;
+    }
+    .iconUserName{
+        background: url(./user.png) no-repeat center;
+    }
+    .iconLoginOut{
+        background: url(./login-out.png) no-repeat center;
+    }
+    ul{
+        padding-top: 82px;
+        padding-left: 240px;
+    }
+    li{
+        float: left;
+        margin: 0 10px;
+        text-align: center;
+        a{
+            width: 128px;
+            font-size: 18px;
+            color: #fff;
+            height: 31px;
+            line-height: 33px;
+            border: 1px solid #bad2fe;
+            border-radius: 20px;
+            &.active{
+                color: #fff000;
+                border-color: #fff000;
+            }
+        }
+    }
+}
+
+.mainBox{
+    width: 1400px;
+    margin: 30px auto;
+    position: relative;
+    &>div{
+        width: calc(100% - 220px);
+        float: right;
+        min-height: calc(100vh - 60px);
+    }
+}
+//  页脚
+.footer{
+    height: 45px;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    text-align: center;
+    line-height: 14px;
+    color: #777;
+    font-size: 12px;
+    p{
+        margin: 5px 0;
+    }
+}
+//  左侧菜单
+.leftBar{
+    width: 200px;
+    border: 1px solid #bbd9f6;
+    border-radius:5px;
+    padding-bottom:50px;
+
+    &>li{
+        min-height:50px;
+        line-height:50px;
+    }
+    li a{
+            display:inline-block;
+            width:100%;
+            height:100%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            color: #666666;
+            font-weight: bold;
+            padding-left:36px;
+            border-bottom:1px solid #b4d1f0;
+            border-image:  linear-gradient( to right,#fff,#b4d1f0,#fff) 1 1;
+            text-decoration: none;
+        }
+    &>li.active{
+        &>a{
+          background:#008ef2;
+          color:#fff;
+          text-decoration: none;
+        }
+
+    }
+    &>li>ul{
+        display: none;
+    }
+    &>li.active>ul{
+        display: block;
+        height:auto;
+        background: #ecf6ff;
+        li{
+            height:50px;
+        }
+        a.active, a:hover{
+            color:#4395f7;
+        }
+        a.active:before,a:hover:before{
+            color:#4395f7;
+            background: #4395f7;
+        }
+        a:active:before{
+            height: 5px;
+            width: 5px;
+        }
+        li a{
+            display:inline-block;
+            width:100%;
+            height:100%;
+            padding-left:56px;
+        }
+        li a:before{
+            display: inline-block;
+            content: '';
+            height: 4px;
+            width:4px;
+            margin-right: 12px;
+            border-radius: 4px;
+            background: #666666;
+            vertical-align: middle;
+        }
+    }
+}
+
+//直报数据左侧菜单的样式
+.leftBar{
+    &>li{
+        vertical-align:middle;
+    }
+    &>li>a:hover{
+        background: #008ef2;
+        color: #fff;
+    }
+    &>li{
+        a:before{
+            content:'';
+            vertical-align: -5px;
+            margin-right: 6px;
+            display:inline-block;
+            height:22px;
+            width:22px;
+            background:url(../../static/img/leftbar-icon.png) no-repeat;
+        }
+        //  直报数据
+        .mainData:before{
+            background-position:  0 0;
+        }
+        .areaData:before{
+            background-position:  0 -22px;
+        }
+
+        .environmentData:before{
+            background-position:  0 -44px;
+        }
+
+        .authenticationData:before{
+            background-position:  0 -66px;
+        }
+
+        .productionData:before{
+            background-position:  0 -88px;
+        }
+
+        .processData:before{
+            background-position:  0 -110px;
+        }
+
+        .sellData:before{
+            background-position:  0 -132px;
+        }
+
+        .industryData:before{
+            background-position:  0 -154px;
+        }
+
+        .monitorData:before{
+            background-position:  0 -176px;
+        }
+
+        .tradeData:before{
+            background-position:  0 -198px;
+        }
+
+        .priceData:before{
+            background-position:  0 -220px;
+        }
+
+        .disasterData:before{
+            background-position:  0 -242px;
+        }
+        .costData:before{
+            background-position:  0 -264px;
+        }
+        //  指标上报
+        .dataForm:before{
+            background-position:  0 -286px;
+        }
+        .dataAudit:before{
+            background-position:  0 -308px;
+        }
+        .dataTemplate:before{
+            background-position:  0 -330px;
+        }
+        .targetManagement:before{
+            background-position:  0 -352px;
+        }
+        //  数据资源
+        .resourceManagement:before{
+            background-position:  0 -374px;
+        }
+        .serverManagement:before{
+            background-position:  0 -396px;
+        }
+        //  舆情数据
+        .dataMaintaining:before{
+            background-position:  0 -418px;
+        }
+        .themeManager:before{
+            background-position:  0 -440px;
+        }
+        .acquisitionRules:before{
+            background-position:  0 -462px;
+        }
+        .dataManager:before{
+            background-position:  0 -484px;
+        }
+        //  视图数据
+        .documentData:before{
+            background-position:  0 -506px;
+        }
+        .pictureData:before{
+            background-position:  0 -528px;
+        }
+        .videoData:before{
+            background-position:  0 -550px;
+        }
+        &.active,&:hover{
+            //  直报数据
+            .mainData:before{
+                background-position:  -22px 0;
+            }
+            .areaData:before{
+                background-position:  -22px -22px;
+            }
+            .environmentData:before{
+                background-position:  -22px -44px;
+            }
+            .authenticationData:before{
+                background-position:  -22px -66px;
+            }
+            .productionData:before{
+                background-position:  -22px -88px;
+            }
+            .processData:before{
+                background-position:  -22px -110px;
+            }
+            .sellData:before{
+                background-position:  -22px -132px;
+            }
+            .industryData:before{
+                background-position:  -22px -154px;
+            }
+            .monitorData:before{
+                background-position:  -22px -176px;
+            }
+            .tradeData:before{
+                background-position:  -22px -198px;
+            }
+            .priceData:before{
+                background-position:  -22px -220px;
+            }
+            .disasterData:before{
+                background-position:  -22px -242px;
+            }
+            .costData:before{
+                background-position:  -22px -264px;
+            }
+            //  指标上报
+            .dataForm:before{
+                background-position:  -22px -286px;
+            }
+            .dataAudit:before{
+                background-position:  -22px -308px;
+            }
+            .dataTemplate:before{
+                background-position:  -22px -330px;
+            }
+            .targetManagement:before{
+                background-position:  -22px -352px;
+            }
+            //  数据资源
+            .resourceManagement:before{
+                background-position:  -22px -374px;
+            }
+            .serverManagement:before{
+                background-position:  -22px -396px;
+            }
+            //  舆情数据
+            .dataMaintaining:before{
+                background-position:  -22px -418px;
+            }
+            .themeManager:before{
+                background-position:  -22px -440px;
+            }
+            .acquisitionRules:before{
+                background-position:  -22px -462px;
+            }
+            .dataManager:before{
+                background-position:  -22px -484px;
+            }
+            //  视图数据
+            .documentData:before{
+                background-position:  -22px -506px;
+            }
+            .pictureData:before{
+                background-position:  -22px -528px;
+            }
+            .videoData:before{
+                background-position:  -22px -550px;
+            }
+        }
+    }
+}

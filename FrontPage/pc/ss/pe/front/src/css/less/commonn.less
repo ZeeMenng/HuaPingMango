@@ -1,0 +1,627 @@
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+input,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+textarea,
+article,
+aside,
+audio,
+canvas,
+figure,
+footer,
+header,
+mark,
+menu,
+nav,
+section,
+time,
+video {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+blockquote {
+    display: block;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+strong,
+em,
+i {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ins {
+    text-decoration: underline;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+mark {
+    background: none;
+}
+
+input::-ms-clear {
+    display: none !important;
+}
+
+body {
+    font: 12px/1.5, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", "Droid Sans Fallback", SimSun, sans-serif;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #1c9adc;
+}
+
+.fl {
+    float: left !important;
+}
+
+.fr {
+    float: right !important;
+}
+
+.tl {
+    text-align: left !important;
+}
+
+.tr {
+    text-align: right !important;
+}
+
+.tc {
+    text-align: center !important;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.cf:before,
+.cf:after {
+    display: table;
+    content: " ";
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    color: #fff;
+    background-color: #fff;
+}
+
+pre {
+    white-space: pre-wrap!important;
+}
+
+.main-box {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    .wraper-content{
+            min-height: 540px;
+        }
+    .w100 {
+        width: 100%;
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+.header {
+    width: 100%;
+    height: 170px;
+    background: #fafafa url(../../img/head_bg.png) no-repeat center 52px;
+    .detail {
+        height: 52px;
+        width: 1200px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    .line {
+        width: 100%;
+        height: 0px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+    .detail>ul {
+        display: inline-block;
+        height: 100%;
+        text-align: right;
+    }
+    .detail>ul li {
+        display: inline-block;
+        line-height: 52px;
+    }
+    a {
+        color: #666666;
+        height: 14px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        font-size: 22px;
+    }
+    a:hover,
+    a.active {
+        color: #8ac03c;
+    }
+    .last-child {
+        border-left: 2px solid #999;
+        padding: 0 0 0 10px;
+    }
+    .hd_box {
+        height: 118px;
+        overflow: hidden;
+        img {
+            margin-top: 18px;
+        }
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 186px;
+    margin-top: 20px\9;
+    background: #6eb10c;
+    text-align: center;
+    .foot-detile {
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .foot-detile-info {
+        padding: 46px 0 26px 0;
+        a {
+            color: #fff;
+            font-size: 16px;
+            padding: 0 15px;
+            border-right: 1px solid #fff;
+            &.noBorder {
+                border-right: none;
+            }
+        }
+    }
+}
+
+.menu {
+    background: #6eb10c;
+    height: 56px;
+    line-height: 56px;
+    ul {
+        width: 100%;
+        li {
+            float: left;
+            width: 140px;
+            height: 24px;
+            line-height: 24px;
+            margin-top: 16px;
+            text-align: center;
+            border-right: 1px solid #3b9f13;
+            font-size: 22px;
+            cursor: pointer;
+            a {
+                color: #fffcff;
+                text-decoration: none;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                &:hover {
+                    color: #fff!important;
+                }
+            }
+        }
+        li:hover,
+        .active {
+            width: 141px;
+            height: 56px;
+            line-height: 56px;
+            border: none;
+            margin-top: 0;
+            border-right: none;
+            transition: background .2s, color .2s;
+            background: #3e6800;
+            a {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.main-wrap {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 699px;
+    .banner {
+        height: 320px;
+        border: solid 1px #d2d2d2;
+        margin: 20px 0;
+    }
+}
+
+.main-tltles {
+    height: 44px;
+    line-height: 40px;
+    border-bottom: 3px solid #e6e6e6;
+    clear: both;
+    .bBorder {
+        height: 44px;
+        position: absolute;
+        border-bottom: 3px solid #6eb10c;
+        &:hover {
+            border-bottom: 3px solid #025194;
+        }
+        &:hover span,
+        &:hover .iconfont {
+            color: #025194;
+        }
+    }
+    .bBorder-none {
+        height: 44px;
+        position: absolute;
+        border-bottom: 3px solid #6eb10c;
+    }
+    a.tab-a {
+        color: #6eb10c;
+        font-size: 24px;
+    }
+    span,
+    .iconfont {
+        color: #6eb10c;
+        font-size: 24px;
+    }
+    a {
+        color: #999999;
+        font-size: 14px;
+        &:hover {
+            text-decoration: none;
+            color: #1c9adc;
+        }
+    }
+    b {
+        font-weight: normal;
+        color: #20af33;
+        opacity: 0.3;
+        font-size: 16px;
+        position: relative;
+        top: -3px;
+    }
+}
+
+.main-tltles1 {
+    .bBorder {
+        border-bottom: 3px solid #6eb10c;
+        &:hover {
+            border-bottom: 3px solid #6eb10c;
+        }
+        &:hover span,
+        &:hover .iconfont {
+            color: #6eb10c;
+        }
+    }
+}
+
+
+.hideData {
+    display: none;
+}
+
+/* 友情链接 */
+
+.wraper-blogroll {
+    margin: 60px 0;
+    .blogroll-info {
+        padding-top: 30px;
+        width: 100%;
+        margin-left: -7px;
+        a {
+            padding: 0 7px;
+            float: left;
+            color: #666666;
+            border-right: 1px solid #666666;
+            font-size: 16px;
+            cursor: pointer;
+            &.noBorder {
+                border-right: none;
+            }
+        }
+    }
+}
+
+a.skip-box {
+    display: inline-block;
+    width: 100%!important;
+    height: 100%!important;
+    cursor: pointer;
+    &:hover {
+        text-decoration: none;
+        color: #025194;
+    }
+}
+
+a:hover {
+    color: #025194 !important;
+}
+
+.aboder {
+    display: inline-block;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.aboder:hover {
+    opacity: 0.7;
+}
+
+
+//视听上面的播放符号样式
+.skip-box {
+    position: relative;
+    z-index: 8;
+}
+
+.video-play {
+    position: absolute;
+    font-size: 56px!important;
+    height: 56px;
+    width: 56px;
+    top: 50%;
+    left: 50%;
+    margin: -28px 0 0 -28px;
+    z-index: 9;
+    color: #fff;
+    &:hover {
+        opacity: 0.7;
+        color: #b3b3b3;
+    }
+}
+
+.detiles-more a {
+    white-space: nowrap;
+}
+
+.over-ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+//弹窗的样式
+
+/* 弹窗 (background) */
+
+.modal {
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    /* 固定定位 */
+    z-index: 1000;
+    /* 设置在顶层 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+/* 弹窗内容 */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 300px;
+    height: 100px;
+    position: relative;
+    p {
+        height: 100%;
+        line-height: 100px;
+        text-align: center;
+    }
+}
+
+
+
+
+
+/* 关闭按钮 */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 当前位置 */
+.position {
+  border: none;
+  height: 40px;
+  line-height: 40px;
+  li {
+    float: left;
+    color: #686868;
+    font-size: 18px;
+    a {
+      color: #686868;
+      font-size: 18px;
+      padding: 0 5px;
+      box-sizing: border-box;
+    }
+    a.active, a:hover {
+      color: #6eb10c;;
+    }
+  }
+}
+//  title小标题
+.every-box{
+    margin-top: 60px;
+    .top-title{
+    border-bottom: 1px solid #e6e6e6;
+    span{
+        margin: 10px 0;
+        display: inline-block ;
+        padding-left: 12px;
+        line-height: 22px;
+        font-size: 20px;
+        font-weight: bold;
+        border-left: 4px solid #509900;
+        color: #509900;
+    }
+    }
+}
+
+//tab切换的button
+.tab-btn{
+    width:150px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #b5de82;
+    border-radius: 15px;
+    overflow: hidden;
+    span{
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        height: 100%;
+        color: #959595;
+        float: left;
+        cursor: pointer;
+    }
+    span.active{
+        background: #74be08;
+        color: #fff;
+    }
+}
+.noData{
+    height: 100%;
+    font-size: 24px;
+    line-height: 500px;
+    text-align: center;
+    color: #666666;
+}
+.other .noData{
+    height:50px;
+    line-height:50px;
+    margin: -20px 0 20px 0;
+}

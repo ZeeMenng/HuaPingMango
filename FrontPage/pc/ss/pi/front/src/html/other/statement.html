@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+
+      <div class="position w100 cf">
+        <ul id="CurrentLocation">
+
+        </ul>
+    </div>
+    <div class="wraper-connent detiles-wraper cf">
+      <div class="detiles-wraper-l other">
+        <div id="statement"></div>
+            <script id="statementSrc" type="text/x-handlebars-template">
+          <div class="news-title">
+
+              <h1>{{statementData.title}}</h1>
+              <div class="news-title-info">
+                <span>日期：</span>
+                <span id="newsDate">{{statementData.releaseDate}}</span>
+                <span>作者：</span>
+                <span id="newsAuthor">{{statementData.author}}</span>
+                <!--<span>来源：</span>
+                <span id="newsResouce">{{statementData.origin}}</span>-->
+                <span>点击：</span>
+                <span id="newsClick">{{statementData.views}}</span>
+              </div>
+            </div>
+            <div class="news-text">{{{statementData.txt}}}
+                <!-- <p class="small-title">版权声明</p>
+                <p>绿色有机晚熟芒果之乡门户网站网页所涉及的任何资料（包括但不限于文字报导、图片、数据、声音、录像、图表、域名、软件、程序、版面设计、专栏目录与名称、内容分类标准）的版权均属绿色有机晚熟芒果之乡门户网站和资料提供者所有。未经许可，任何人不得引用、复制、转载、摘编或以其他任何方式非法使用绿色有机晚熟芒果之乡门户网站的上述内容。对于有上述行为者，本网将保留追究其法律责任的权利。</p>
+
+                <p class="small-title">免责声明</p>
+
+                <p>1、凡本网注明“来源：绿色有机晚熟芒果之乡门户网站”或带有绿色有机晚熟芒果之乡门户网站LOGO、水印的所有文字、图片和音频视频稿件，版权均属绿色有机晚熟芒果之乡门户网站所有，任何媒体、网站或单位和个人未经绿色有机晚熟芒果之乡门户网站授权不得转载、链接、转贴或以其他方式复制发表。已经绿色有机晚熟芒果之乡门户网站授权的媒体、网站，在下载使用时必须注明“稿件来源：绿色有机晚熟芒果之乡门户网站”，否则，本网将依法追究其法律责任。</p>
+                <p>2、凡本网没有注明“来源：绿色有机晚熟芒果之乡门户网站”或带有绿色有机晚熟芒果之乡门户网站LOGO、水印的所有文字、图片和音频视频稿件，均为转载自其它媒体，转载目的在于传递更多信息，并不代表本网观点。如其他媒体、网站或个人从本网下载使用，必须保留本网注明的“稿件来源”，并自负版权等法律责任。如擅自篡改为“稿件来源：绿色有机晚熟芒果之乡门户网站”，本网将依法追究责任。</p>
+                <p>3、擅自使用绿色有机晚熟芒果之乡门户网站名义转载不规范来源的信息、版权不明的资讯，或盗用绿色有机晚熟芒果之乡门户网站名义发布信息，本网将依法追究其法律责任。</p>
+
+                <p class='explain'>本网站之声明以及其修改权、更新权及最终解释权均属绿色有机晚熟芒果之乡门户网站所有。</p> -->
+            </div>
+          </script>
+      </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/other.js' ></script>
+</body>

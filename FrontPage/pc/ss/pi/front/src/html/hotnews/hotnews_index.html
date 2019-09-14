@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/hotnews.css" rel="stylesheet">
+</head>
+<body data-num="1">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <ul id="CurrentLocation">
+                <!-- <li>您的位置：</li>
+                <li><a href="../index/index.html">首页</a>></li>
+                <li><a href="./hotnews_index.html">热点</a></li> -->
+            </ul>
+        </div>
+        <div class="banner w100">
+            <!--<ul class="swiper-box swiper-banner" id="Banner">
+                <script id="BannerSrc" type="text/x-handlebars-template">
+                    {{#each bannerData}}
+                    {{#if img_path}}
+                    <li data-url="{{addOne @index}}">
+                        <div class="banner-left fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box"><img src="{{img_path}}" alt=""></a>
+                        </div>
+                        <div class="banner-right fr">
+                            <div class="img-describe">
+                                <h2><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">{{title}}</a></h2>
+                                <p>{{description}}</p>
+                                <div class="more"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">查看更多 ></a></div>
+                            </div>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li data-url="{{addOne @index}}">
+                        <div class="banner-left fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box"><img src="../../img/img-13.png" alt=""></a>
+                        </div>
+                        <div class="banner-right fr">
+                            <div class="img-describe">
+                                <h2><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">{{title}}</a></h2>
+                                <p>{{description}}</p>
+                                <div class="more"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">查看更多 ></a></div>
+                            </div>
+                        </div>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </script>
+                &lt;!&ndash;<li data-url="0">
+                    <div class="banner-left fl">
+                        <a href="../detiles/detiles.html" class="skip-box"><img src="../../img/img-13.png" alt=""></a>
+                    </div>
+                    <div class="banner-right fr">
+                        <div class="img-describe">
+                            <h2><a href="../detiles/detiles.html" class="skip-box">河北滦县：现代农业让农民“冬 闲”变“冬忙”</a></h2>
+                            <p>入冬以来，河北省北部农村地区进入传统的“冬闲”时节。河北滦县通过“公司+基地+农户”等方式发展现代农业，帮助农民冬季生产增收。</p>
+                            <div class="more"><a href="../detiles/detiles.html" class="skip-box">查看更多 ></a></div>
+                        </div>
+                    </div>
+                </li>
+                <li data-url="1">
+                    <div class="banner-left fl">
+                        <a href="../detiles/detiles.html" class="skip-box"><img src="../../img/img-15.png" alt=""></a>
+                    </div>
+                    <div class="banner-right fr">
+                        <div class="img-describe">
+                            <h2><a href="../detiles/detiles.html" class="skip-box">河北滦县：现代农业让农民“冬 闲”变“冬忙”</a></h2>
+                            <p>入冬以来，河北省北部农村地区进入传统的“冬闲”时节。河北滦县通过“公司+基地+农户”等方式发展现代农业，帮助农民冬季生产增收。</p>
+                            <div class="more"><a href="../detiles/detiles.html" class="skip-box">查看更多 ></a></div>
+                        </div>
+                    </div>
+
+                </li>
+                <li data-url="2">
+                    <div class="banner-left fl">
+                        <a href="../detiles/detiles.html" class="skip-box"><img src="../../img/img-13.png" alt=""></a>
+                    </div>
+                    <div class="banner-right fr">
+                        <div class="img-describe">
+                            <h2><a href="../detiles/detiles.html" class="skip-box">河北滦县：现代农业让农民“冬 闲”变“冬忙”</a></h2>
+                            <p>入冬以来，河北省北部农村地区进入传统的“冬闲”时节。河北滦县通过“公司+基地+农户”等方式发展现代农业，帮助农民冬季生产增收。</p>
+                            <div class="more"><a href="../detiles/detiles.html" class="skip-box">查看更多 ></a></div>
+                        </div>
+                    </div>
+
+                </li>
+                <li data-url="3">
+                    <div class="banner-left fl">
+                        <a href="../detiles/detiles.html" class="skip-box"><img src="../../img/img-16.png" alt=""></a>
+                    </div>
+                    <div class="banner-right fr">
+                        <div class="img-describe">
+                            <h2><a href="../detiles/detiles.html" class="skip-box">河北滦县：现代农业让农民“冬 闲”变“冬忙”</a></h2>
+                            <p>入冬以来，河北省北部农村地区进入传统的“冬闲”时节。河北滦县通过“公司+基地+农户”等方式发展现代农业，帮助农民冬季生产增收。</p>
+                            <div class="more"><a href="../detiles/detiles.html" class="skip-box">查看更多 ></a></div>
+                        </div>
+                    </div>
+
+                </li>
+                <li data-url="4">
+                    <div class="banner-left fl">
+                        <a href="../detiles/detiles.html" class="skip-box"><img src="../../img/img-17.png" alt=""></a>
+                    </div>
+                    <div class="banner-right fr">
+                        <div class="img-describe">
+                            <h2><a href="../detiles/detiles.html" class="skip-box">河北滦县：现代农业让农民“冬 闲”变“冬忙”</a></h2>
+                            <p>入冬以来，河北省北部农村地区进入传统的“冬闲”时节。河北滦县通过“公司+基地+农户”等方式发展现代农业，帮助农民冬季生产增收。</p>
+                            <div class="more"><a href="../detiles/detiles.html" class="skip-box">查看更多 ></a></div>
+                        </div>
+                    </div>
+
+                </li>&ndash;&gt;
+            </ul>
+
+            <div class="swiper controller-banner">
+                <ul>
+                    <li class="active"><i class="iconfont icon-dian-copy-copy"></i></li>
+                    <li><i class="iconfont icon-dian-copy-copy"></i></li>
+                    <li><i class="iconfont icon-dian-copy-copy"></i></li>
+                    <li><i class="iconfont icon-dian-copy-copy"></i></li>
+                    <li><i class="iconfont icon-dian-copy-copy"></i></li>
+                </ul>
+            </div>-->
+
+            <!--
+                        <li data-url="{{addOne @index}}">
+                            <div class="banner-left fl">
+                                <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box"><img src="{{img_path}}" alt=""></a>
+                            </div>
+                            <div class="banner-right fr">
+                                <div class="img-describe">
+                                    <h2><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">{{title}}</a></h2>
+                                    <p>{{description}}</p>
+                                    <div class="more"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">查看更多 ></a></div>
+                                </div>
+                            </div>
+                        </li>-->
+
+            <div class="slider-container">
+                <div class="swiper-wraper">
+                    <ul class="swiper-box swiper-banner" id="swiper-banner">
+                        <!--<li data-url="{{addOne @index}}">
+                            <div class="banner-left fl">
+                                <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box"><img src="{{img_path}}" alt=""></a>
+                            </div>
+                            <div class="banner-right fr">
+                                <div class="img-describe">
+                                    <h2><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">{{title}}</a></h2>
+                                    <p>{{description}}</p>
+                                    <div class="more"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">查看更多 ></a></div>
+                                </div>
+                            </div>
+                        </li>-->
+                    </ul>
+                    <ul class="controller-banner" id="controller-banner">
+                        <li class="iconfont icon-dian-copy-copy active"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                    </ul>
+                    <span class="swiper-click swiper-left"><</span>
+                    <span class="swiper-click swiper-right">></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="main-box hotnews">
+            <div class="main-tltles">
+                <a class="bBorder-none fl" style="cursor:default;">
+                    <i class="iconfont icon-dengpao"></i>
+                    <span>头条</span>
+                </a>
+                <a href="../list/list.html?channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多 ></a>
+            </div>
+            <div class="main-content clearfix" id="Headline">
+                <div class="top-box">
+                    <script id="HeadlineSrc" type="text/x-handlebars-template">
+                        {{#each HeadlineData}}
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?type_id=096bbfd1f15685395f0d5b4bd516e640&channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fl">
+                            <div class="news-title">
+                                <a href="../detiles/detiles.html?type_id=096bbfd1f15685395f0d5b4bd516e640&channel_id={{channel_id}}&id={{content_id}}" class="">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 80 description}}
+                                    <p>{{description}}</p>
+                                {{/substr}}
+                                <span><a href="../detiles/detiles.html?type_id=096bbfd1f15685395f0d5b4bd516e640&channel_id={{channel_id}}&id={{content_id}}" class="">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="main-box midimg"><img src="../../img/img-9.png" alt=""></div>
+        <div class="main-box other clearfix">
+            <div class="left-box fl" id="Watch">
+                <script id="WatchSrc" type="text/x-handlebars-template">
+                    {{#each WatchData}}
+                    <div class="main-tltles">
+                        <a class="bBorder fl" href="../list/list.html?type_id=954effd987455f4a12c647c09779915f&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101">
+                            <i class="iconfont icon-note"></i>
+                            <span>视</span>
+                        </a>
+                        <a href="../list/list.html?type_id=954effd987455f4a12c647c09779915f&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多 ></a>
+                    </div>
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?type_id=954effd987455f4a12c647c09779915f&channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a href="../detiles/detiles.html?type_id=954effd987455f4a12c647c09779915f&channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more"><a href="../detiles/detiles.html?type_id=954effd987455f4a12c647c09779915f&channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+            </div>
+            <div class="right-box fr" id="Listen">
+                <script id="ListenSrc" type="text/x-handlebars-template">
+                    {{#each ListenData}}
+                    {{#if img_path}}
+                    <div class="main-tltles">
+                        <a class="bBorder fl" href="../list/list.html?type_id=d9ebd8db0dfce217ad73ca2118fd09dc&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101">
+                            <i class="iconfont icon-note"></i>
+                            <span>听</span>
+                        </a>
+                        <a href="../list/list.html?type_id=d9ebd8db0dfce217ad73ca2118fd09dc&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多 ></a>
+                    </div>
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?type_id=d9ebd8db0dfce217ad73ca2118fd09dc&channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a href="../detiles/detiles.html?type_id=d9ebd8db0dfce217ad73ca2118fd09dc&channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                    <p>{{description}}</p>
+                                {{/substr}}
+                                <span><a href="../detiles/detiles.html?type_id=d9ebd8db0dfce217ad73ca2118fd09dc&channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+            </div>
+            <div class="left-box fl" id="Picture">
+                <script id="PictureSrc" type="text/x-handlebars-template">
+                    {{#each PictureData}}
+                    <div class="main-tltles">
+                        <a class="bBorder fl" href="../list/list.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101">
+                            <i class="iconfont icon-note"></i>
+                            <span>图</span>
+                        </a>
+                        <a href="../list/list.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多 ></a>
+                    </div>
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id={{channel_id}}&id={{content_id}}" class="skip-box"><img src="{{img_path}}" alt=""></a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a href="../detiles/detiles.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span><a href="../detiles/detiles.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+            </div>
+            <div class="right-box fr">
+                <div class="main-tltles">
+                    <a class="bBorder fl" href="../list/list.html?type_id=5e0399a53bce096c0eab56e7a3671f18&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101">
+                        <i class="iconfont icon-note"></i>
+                        <span>说</span>
+                    </a>
+                    <a href="../list/list.html?type_id=5e0399a53bce096c0eab56e7a3671f18&channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多 ></a>
+                </div>
+                <div class="top-box clearfix news-list-wrapper">
+                    <div class="news-list" id="Say">
+                        <script id="SaySrc" type="text/x-handlebars-template">
+                            {{#each SayData}}
+                            {{#if description}}
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../detiles/detiles.html?type_id=778a3e846ce7fff470256b308dff02db&channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                            </p>
+                            {{else}}
+                            <p>
+                                <!--<i class="iconfont icon-jiantou"></i>
+                                <span><a href="../detiles/detiles.html?id={{content_id}}">没有数据</a></span>-->
+                                <span>暂无数据</span>
+                            </p>
+                            {{/if}}
+                            {{/each}}
+                        </script>
+                        <!--
+                           <p>
+                               <i class="iconfont icon-jiantou"></i>
+                               <span><a href="../detiles/detiles.html">适龄芒果控梢促花技术详解控梢促花技术详解控梢促花技术详解超出省略号省略号</a></span>
+                           </p>
+                           <p>
+                               <i class="iconfont icon-jiantou"></i>
+                               <span><a href="../detiles/detiles.html">怎么样施肥，芒果能高产？</a></span>
+                           </p>
+                           <p>
+                               <i class="iconfont icon-jiantou"></i>
+                               <span><a href="../detiles/detiles.html">适龄芒果控梢促花技术详解</a></span>
+                           </p>
+                           <p>
+                               <i class="iconfont icon-jiantou"></i>
+                               <span><a href="../detiles/detiles.html">怎么样施肥，芒果能高产？适龄芒果控梢促花技术详解</a></span>
+                           </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/hotnews.js'></script>
+</body>

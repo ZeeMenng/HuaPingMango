@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+
+    <div class="position w100 cf">
+        <ul id="CurrentLocation"></ul>
+    </div>
+    <div class="wraper-connent detiles-wraper cf">
+        <div class="detiles-wraper-l fl">
+
+            <div id="detiles"></div>
+              <script id="detilesSrc" type="text/x-handlebars-template">
+                <div class="news-title">
+                  <h1>华坪芒果的有机发展之路</h1>
+                  <div class="news-title-info">
+                    <span>日期：</span>
+                    <span id="newsDate">{{detilesData.release_date}}</span>
+                    <span>作者：</span>
+                    <span id="newsAuthor">{{detilesData.author}}</span>
+                    <!--<span>来源：</span>
+                    <span id="newsResouce">{{detilesData.origin}}</span>-->
+                    <span>点击：</span>
+                    <span id="newsClick">{{detilesData.views}}</span>
+                  </div>
+                </div>
+                <div class="video-box"><img src="../../img/headlineVedio.jpg" alt=""></div>
+              </script>
+
+
+            <div id="demand" class='information'>
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>相关资讯</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <ul class="information-list">
+                    <li><a href="###">云南华坪县1.5万亩晚熟芒果获有机产品认证</a></li>
+                    <li><a href="###">云南华坪县1.5万亩晚熟芒果获有机产品认证</a></li>
+                    <li><a href="###">云南华坪县1.5万亩晚熟芒果获有机产品认证</a></li>
+                    <li><a href="###">云南华坪县1.5万亩晚熟芒果获有机产品认证</a></li>
+                    <li><a href="###">云南华坪县1.5万亩晚熟芒果获有机产品认证</a></li>
+                </ul>
+            </div>
+            <!-- <script id="demandSrc" type="text/x-handlebars-template">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>相关资讯</span>
+                    </div>
+                    <a href="../list/list.html" class="fr">更多 ></a>
+                </div>
+                {{#each demandList}}
+                <div class="list-box clearfix">
+                    <p>
+                        <i class="iconfont icon-jiantou"></i>
+                        <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                    </p>
+                </div>
+                {{/each}}
+            </script> -->
+        </div>
+        <div class="detiles-wraper-r fl">
+            <div class="connent-l connent-l1 titleClick">
+                <div class="main-tltles">
+                    <div class="bBorder fl listClick1">
+                        <i class="iconfont icon-note"></i>
+                        <a class="tab-a tab-b" id="seeHref">视</a> <b>|</b> <a id="hearHref" class="tab-a tab-b">听</a>
+                    </div>
+                    <a id='videoHref' class="fr more">更多 ></a>
+                </div>
+                <div class="sever-market-banner">
+                    <div class="market-banner-item active" id="serve">
+                        <script id="serveSrc" type="text/x-handlebars-template">
+                            <div class="market-banner">
+                                <a href="../detiles/detiles.html?channel_id={{serveData.channel_id}}&id={{serveData.content_id}}" class="skip-box">
+                                    {{#if serveData.img_path}}
+                                        <img src="{{serveData.img_path}}" alt="">
+                                        <i class="iconfont icon-bofang video-play"></i>
+                                    {{else}}
+                                    <img src="../../img/zwtp.gif" alt="">
+                                    {{/if}}
+                                    <p class="over-ellipsis">{{serveData.title}}</p>
+                                </a>
+                            </div>
+                        </script>
+                    </div>
+                    <div class="market-banner-item" id="hear">
+                        <script id="hearSrc" type="text/x-handlebars-template">
+                            <div class="market-banner">
+                                <a href="../detiles/detiles.html?channel_id={{hearData.channel_id}}&id={{hearData.content_id}}" class="skip-box">
+                                    {{#if hearData.img_path}}
+                                    <img src="{{hearData.img_path}}" alt="">
+                                    <span class="video-play"><i class="iconfont icon-bofang video-play"></i></span>
+                                    {{else}}
+                                    <img src="../../img/zwtp.gif" alt="">
+                                    {{/if}}
+                                    <p class="over-ellipsis">{{hearData.title}}</p>
+                                </a>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="connent-l connent-l2 titleClick">
+                <div class="main-tltles">
+                    <div class="bBorder fl listClick">
+                        <i class="iconfont icon-note"></i>
+                        <a id="imageHref" class="tab-a tab-c">图</a> <b>|</b> <a id="sayHref" class="tab-a  tab-c">说</a>
+                    </div>
+                    <a id='wordHref' class="fr more">更多 ></a>
+                </div>
+                <div class="img-market-banner">
+                </div>
+                <div class="say-market-banner">
+                    <div class="market-banner market-banner-say active" id="image">
+                        <script id="imageSrc" type="text/x-handlebars-template">
+                            <a href="../detiles/detiles.html?channel_id={{imageData.channel_id}}&id={{imageData.content_id}}" class="skip-box">
+                                {{#if imageData.img_path}}
+                                <img src="{{imageData.img_path}}" alt="">
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <p class="over-ellipsis">{{imageData.title}}</p>
+                            </a>
+                        </script>
+                    </div>
+                    <div class="market-banner market-banner-say" id="say">
+                        <script id="saySrc" type="text/x-handlebars-template">
+                            <a href="../detiles/detiles.html?channel_id={{sayData.channel_id}}&id={{sayData.content_id}}" class="skip-box">
+                                {{#if sayData.img_path}}
+                                <img src="{{sayData.img_path}}" alt="">
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <p class="over-ellipsis">{{sayData.title}}</p>
+                            </a>
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+            <div class="connent-l connent-l4 referrals-wrap">
+                <div class="main-tltles cf">
+                    <div href="###" class="bBorder-none fl">
+                        <i class="iconfont icon-note"></i>
+                        <span>推介</span>
+                    </div>
+                </div>
+
+                <div class="market-banner cf">
+                    <div class="tj tj-l fl" id="MicroSiteList"></div>
+                    <script id="MicroSiteListSrc" type="text/x-handlebars-template">
+                        {{#each MicroSiteListData}}
+                        <div class="tj-title">
+                            <div class="line"></div>
+                            <h2 class="tj-context">
+                                <a href="../microWebsite/microWebsitelist.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}" class="bBorder fl">企业微网站</a>
+                            </h2>
+                        </div>
+                        <div class="tj-img">
+                            <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}&relation_id=01030501" class="skip-box">
+                                <img src="{{path}}" alt="">
+                            </a>
+                        </div>
+                        <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}&relation_id=01030501" class="tj-name"
+                            title="{{enterpriseName}}">{{enterpriseName}}</a>
+                        <div class="tj-info">
+                            {{#substr 40 description}}
+                            <p>{{description}}</p>
+                            {{/substr}}
+                        </div>
+                        {{/each}}
+                    </script>
+                    <div class="tj tj-r fr" id="MangoMallList"></div>
+                    <script id="MangoMallListSrc" type="text/x-handlebars-template">
+                        {{#each MangoMallListData}}
+                        <div class="tj-title">
+                            <div class="line"></div>
+                            <h2 class="tj-context">
+                                <a href="../mangoEcshop/mangoEcshop.html?channel_id=7e08ff47f4634674843ed10f71254d45" class="bBorder fl">芒果微商城</a>
+                            </h2>
+                        </div>
+                        <div class="tj-img">
+                            <a href="{{mallInterlinkage}}" target="_blank" class="skip-box">
+                                {{#if path}}
+                                <img src="{{path}}" alt=""> {{else}}
+                                <img src="../../img/zwtp.gif" alt=""> {{/if}}
+                            </a>
+                        </div>
+                        <a href="{{mallInterlinkage}}" target="_blank" class="tj-name" title="{{name}}">{{name}}</a>
+                            <div class="tj-weight">总重量：
+                                <span id="weight">{{weight}}千克</span>
+                            </div>
+                            <div class="tj-price">售价：
+                                <span id="price">￥{{sellingPrice}}</span>
+                            </div>
+                            <div class="tj-price">品牌：
+                                <span>{{brand}}</span>
+                            </div>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/jquery.pagination.js'></script>
+<script src='../../js/list.js'></script>
+<script src='../../js/headlineDetiles.js'></script>
+</body>

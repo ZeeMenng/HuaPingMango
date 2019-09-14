@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../img/logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/commonn.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/pagination.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/font/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/mangoMap.css"/>
+    <style>
+        #page b{
+            display: none;
+        }
+        /* #page .prev,#page .next,#search,#{
+            display: none;
+        } */
+    </style>
+</head>
+<body data-num="3">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <!-- <ul id="CurrentLocation">
+                <li>首页</li>
+                <li> > 芒果地图</li>
+            </ul> -->
+        </div>
+        <div class="wraper-content">
+            <ul class="map-tab" id='tab'>
+                <li class='active'>芒果主产区分布</li>
+                <li>芒果批发市场分布</li>
+                <li>芒果电商分布</li>
+                <li>芒果相关企业分布</li>
+            </ul>
+            <div class="baidu-map" id="BaiduMap"></div>
+            <div class="company-list">
+                <h3 class="list-title">企业列表 <i class="iconfont icon-chahao fr" onclick="clickBtn()"></i></h3>
+                <ul class="item-list" id="CompanyList"></ul>
+                <!-- <script id="CompanySrc" type="text/x-handlebars-template">
+                    {{#if data.index}}
+                        {{#each data.data}}
+                            <li>
+                                <h3>{{enterpriseName}}</h3>
+                                <p><span>统一社会信用代码：</span><span>{{societyId}}</span></p>
+                                <p><span>注册资金：</span><span>{{registerCapital}}</span></p>
+                                <p><span>经营范围：</span><span>{{businessScope}}</span></p>
+                                <p><span>地址：</span><span>{{address}}</span></p>
+                                <p><span>电话：</span><span>{{tel}}</span></p>
+                            </li>
+                        {{/each}}
+                    {{else}}
+                        {{#each data.data}}
+                            <li>
+                                <h3>{{onlineName}}</h3>
+                                <p><span>地址：</span><span>{{address}}</span></p>
+                                <p><span>电话：</span><span>{{tel}}</span></p>
+                            </li>
+                        {{/each}}
+                    {{/if}}
+                </script> -->
+                <div id="page" class="paginations">
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Bd55XdcjoedHhlwaLoGGeIGKxA3EneDV"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="../../js/common/jquery.pagination.js"></script>
+<script type="text/javascript" src='../../js/mangoMap.js'></script>
+</body>

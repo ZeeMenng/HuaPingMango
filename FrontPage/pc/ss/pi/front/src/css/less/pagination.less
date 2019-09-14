@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* paginations */
+.pagination{font-size:16px;padding-right: 3px; padding-left: 3px; padding-bottom: 3px; margin: 12px; padding-top: 12px; text-align: center;margin:0 auto;}
+.pagination a{text-decoration:none;border:solid 1px #999;color:#999;border-radius: 5px;}
+.pagination a,.pagination span{display:inline-block;padding:5px 10px;margin-right:8px;margin-bottom:5px;}
+.pagination .current{background:#6eb10c;color:#fff;border:solid 1px #999;border-radius: 5px;}
+.pagination .current.prev, .pagination .current.next{color:#999;border-color:#999;background:#fff; display: none;}
+
+.pagination a.next,.paginations .prev,.pagination .end{
+	display: none;
+}
+.pagination .current.home,.pagination .current.end,.pagination .home,.pagination .end{
+	display: inline-block;
+	border-radius: 5px;
+}
+.pagination b{
+	color: #999;
+	font-weight: normal;
+	&.pr10{
+		padding-right: 10px;
+	}
+}
+#pagevalue{
+	height: 32px;
+	line-height: 32px;
+	display: inline-block;
+	padding: 0 10px;
+	border:solid 1px #999;
+	border-radius: 5px;
+	margin: 0 8px;
+	color: #999;
+}
+#totleNum{
+	margin: 0 10px;
+	display: inline-block;
+}

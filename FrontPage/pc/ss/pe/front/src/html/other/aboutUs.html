@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+
+      <div class="position w100 cf">
+        <ul id="CurrentLocation">
+
+        </ul>
+    </div>
+    <div class="wraper-connent detiles-wraper cf">
+      <div class="detiles-wraper-l other">
+        <div id="aboutUs"></div>
+        <script id="aboutUsSrc" type="text/x-handlebars-template">
+          <div class="news-title">
+              <h1>{{aboutUsData.title}}</h1>
+              <div class="news-title-info">
+                <span>日期：</span>
+                <span id="newsDate">{{aboutUsData.releaseDate}}</span>
+                <span>作者：</span>
+                <span id="newsAuthor">{{aboutUsData.author}}</span>
+                <!--<span>来源：</span>
+                <span id="newsResouce">{{aboutUsData.origin}}</span>-->
+                <span>点击：</span>
+                <span id="newsClick">{{aboutUsData.views}}</span>
+              </div>
+            </div>
+
+            <div class="news-text">{{{aboutUsData.txt}}}
+                <!-- <p>绿色有机晚熟芒果之乡门户网站（www.hpmg.com）——是芒果产业最权威的信息发布平台，由华坪县尚农农业科技开发投资有限责任公司主办。
+华坪县尚农农业科技开发投资有限责任公司通过实施“121工程”，建设1个体系-芒果产业数据监测采集体系，2个大平台-芒果质量安全追溯服务平台、芒果产业监测预警大数据平台，1个门户网站-华坪芒果产业信息服务门户，从而实现以下目标：</p>
+                <p class="small-title">1、建立数据监测体系，服务政府监管</p>
+                <p>建立芒果全产业链数据监测体系，采集华坪及全国主产主销区芒果产业数据资源，为政府产业监管、服务提供数据支持，利用大数据带动当地的芒果产业发展，将华坪县芒果大数据打造成为农产品单品种大数据示范应用。</p>
+                <p class="small-title">2、实现产品质量追溯，提升品牌影响力</p>
+                <p>建立芒果质量安全溯源服务平台，面向政府、产业企业提供芒果产品的标准化生产服务、质量安全溯源服务，实现华坪芒果来源去向可追溯，提高芒果标准化生产及质量安全水平，提升华坪芒果品牌知名度。</p>
+                <p class="small-title">3、 建设产业信息门户，提供权威数据服务</p>
+                <p>通过对芒果全产业链数据挖掘、分析，服务政府及产业用户，指导华坪芒果果农的种植、销售、企业的加工、贸易，逐步将华坪打造为国内芒果产业的权威信息发布平台。</p>
+                <p>绿色有机晚熟芒果之乡门户网站定位为：立足华坪，做国内权威的芒果产业信息服务平台。本网站为芒果种植企业、加工企业、销售企业、农民合作社、家庭农场、种植大户、农产品批发市场等用户群体，提供信息服务和数据服务。本网站设有热点、服务、市场、溯源、互动、数据、报告、可视化、VR等频道，具备发布资讯信息、技术服务、专家咨询、互动回应、数据发布、价格监测、数据分析等功能。欢迎广大公众对本网站建设积极献计献策，提出宝贵意见和建议。</p> -->
+
+            </div>
+          </script>
+      </div>
+
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/other.js' ></script>
+</body>

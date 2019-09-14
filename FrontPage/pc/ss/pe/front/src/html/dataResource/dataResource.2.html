@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../img/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="../../css/less/commonn.css" />
+    <link rel="stylesheet" href="../../js/z-tree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" type="text/css" href="../../css/less/dataResource.css" />
+    <link rel="stylesheet" href="../../js/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../../css/font/iconfont.css" />
+
+</head>
+
+<body data-num="1">
+    <!-- @@include= ../../components/header.html-->
+    <!-- @@include= ../../components/menu.html-->
+    <div class="main-wrap">
+        <div class="main-box">
+            <div class="position w100">
+                <ul id="CurrentLocation">
+                </ul>
+            </div>
+            <div class="wraper-content clearfix">
+                <ul class="data-tab clearfix" id='data-tab'>
+                    <li><a href="./dataResource.html">生产数据</a></li>
+                    <li><a href="./dataResource.1.html">产值数据</a></li>
+                    <li class='active'><a href="./dataResource.2.html">价格数据</a></li>
+                    <li><a href="./dataResource.3.html">贸易数据</a></li>
+                </ul>
+                <div class="datacon">
+                    <div class="data" style="display:block;">
+                        <div class="d-left">
+                            <ul id="treeDemo" class="ztree">
+                            </ul>
+                        </div>
+                        <div class="d-right">
+                            <div class="date-select">
+                                <p>时间：</p>
+                                <input type="text" class="layui-input" id="priceDate">
+                            </div>
+                            <div class="produceNum" id="produceLine"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wraper wraper-blogroll">
+                <div class="main-box">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>友情链接</span>
+                        </div>
+                        <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                    </div>
+                    <div class="blogroll-info clearfix">
+                        <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                        <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                        <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                        <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--@@include= ../../components/footer.html-->
+    <script src="../../js/z-tree/js/jquery.ztree.core.min.js"></script>
+    <script src="../../js/common/echarts.min.js"></script>
+    <script src="../../js/layui/layui.all.js"></script>
+    <script src="../../js/echart-components/dataLine.js"></script>
+    <script src='../../js/dataResource.2.js'></script>
+</body>

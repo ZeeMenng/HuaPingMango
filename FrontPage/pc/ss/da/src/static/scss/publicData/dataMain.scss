@@ -1,0 +1,250 @@
+.dataMain{
+  .screenData{
+    padding:10px 20px;
+    background: #f1f6ff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    label{
+      color: #999!important;
+      font-size: 14px;
+      width: 90px;
+      text-align: right;
+      display: inline-block;
+    }
+    .classify{
+      height:30px;
+      margin: 25px 0;
+      line-height: 30px;
+      display: flex;
+      flex-wrap:wrap;
+      position: relative;
+      .classify-1{
+        flex: 0 0 23%;
+      }
+      .classify-2{
+        flex: 0 0 77%;
+      }
+      &.classify-4{
+        .item{
+          flex: 0 0 25%;
+        }
+      }
+      button{
+        width:92px;
+        height:30px;
+        line-height: 30px;
+        text-align: center;
+        color: #746f6c;
+        border:none;
+        border-radius: 5px;
+      }
+      select{
+        margin-right: 45px;
+      }
+      .ulData{
+        display: flex;
+        flex-wrap:wrap;
+      }
+      .mediaType{
+        li{
+          padding: 0 15px;
+          cursor: pointer;
+          position: relative;
+          &.active{
+            color: #3163e8;
+            font-weight: bold;
+          }
+        }
+      }
+      .ant-radio-group{
+        margin:0 120px 0 0;
+      }
+      .radioCss{
+        margin:0 0 0 25px;
+      }
+      .keyword-box{
+        display: inline-block;
+        position: relative;
+        width: 787px;
+        &>div{
+          margin: 0 20px;
+          height: 30px;
+          position: relative;
+          overflow: hidden;
+          width: 747px;
+        }
+        .anticon{
+           position: absolute;
+           color: #3199f2;
+           cursor: pointer;
+           line-height: 30px;
+           font-weight: bolder;
+           &.anticon-right{
+            right: 0;
+           }
+           &.anticon-left{
+            left: 0;
+           }
+        }
+      }
+      .keyword{
+        position: absolute;
+        left: 0;
+        &.keywordss{
+          li{
+            margin: 0 20px 0 0 ;
+            cursor: auto;
+          }
+        }
+        li{
+          width:63px;
+          height:30px;
+          float: left;
+          cursor: pointer;
+          background: #e2eefe;
+          border: 1px solid #b0ccfb;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 5px;
+          margin: 0 15px;
+        }
+      }
+      .time-btn{
+        background: #f9bf75;
+        border:1px solid #f08c02;
+        margin-right: 20px;
+      }
+      .about-btn{
+        background: #a6d1fe;
+        border:1px solid #82acff;
+      }
+      .search{
+        display: inline-block;
+        width:96px;
+        height:30px;
+        border-radius: 20px;
+        text-align: center;
+        border: 1px solid #96cffa;
+        color: #3163e8;
+        position: absolute;
+      }
+      .typeSearch{
+        right:0;
+      }
+    }
+  }
+  .btn-type{
+    .ant-btn{
+      margin: 0px 0px 20px 0;
+      border: 1px solid #96cffa;
+      color: #3199f2;
+      a{
+        text-decoration: none;
+        margin-left: 5px;
+      }
+    }
+  }
+  .ant-table-body .anticon{
+    cursor: pointer;
+    color: #538fff;
+    font-size: 16px;
+    &:hover{
+      color: #f00;
+    }
+  }
+  .ant-table-thead > tr th, .ant-table-tbody > tr td{
+    text-align: center;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+.ql-editor{
+  min-height: 300px;
+}
+
+.dataMain .screenData .ant-radio-wrapper{
+  text-align: left;
+}
+
+.modal-cover {
+  li{
+    margin-bottom: 30px;
+    label{
+      display: inline-block;
+      width: 120px;
+      text-align: right;
+      &.blue{
+        color: #3163e8;
+      }
+    }
+    &.positionLi{
+      position: relative;
+    }
+    &.halfLi{
+      width: 50%;
+      display: inline-block;
+    }
+    .ant-radio-wrapper{
+      text-align: left;
+      span{
+        color: #3199f2;
+      }
+    }
+    p{
+      position: absolute;
+      left: 122px;
+      font-size: 12px;
+      color:rgb(157,157,157);
+    }
+  }
+}
+
+.ant-modal-content {
+  .ant-modal-header{
+    background: rgb(0,148,248);
+  }
+  .ant-modal-title{
+    color:rgba(255,255,255,1);
+    font-size: 18px;
+  }
+  .ant-modal-close-x{
+    color:rgba(255,255,255,1);
+    &:hover{
+      color:rgba(255,255,255,.8);
+    }
+  }
+}
+.ant-select-selection .ant-select-arrow{
+    color: #4888ff;
+}
+.publicData-form{
+  li{
+    margin: 30px 0;
+  }
+  label{
+    width: 20%;
+    color: #999;
+    display: inline-block;
+    text-align: right;
+    &.ant-checkbox-wrapper{
+      width: 100%;
+    }
+  }
+  .ant-radio-wrapper{
+    text-align: left;
+  }
+}
+
+.mediaType-2{
+  li{
+    text-align: center;
+  }
+}
+.forData.priceDataAdd .form-search.form-aduit li{
+    flex: 0 0 30%;
+    &:last-child{
+        flex: 0 0 100%;
+    }
+}

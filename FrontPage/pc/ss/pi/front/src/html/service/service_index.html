@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/service.css" rel="stylesheet">
+</head>
+<body data-num="2">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap service">
+    <div class="main-box">
+        <div class="position w100">
+            <ul id="CurrentLocation">
+            </ul>
+        </div>
+       <!--  <div class="banner w100">
+
+            <div class="slider-container">
+                <div class="swiper-wraper">
+                    <ul class="swiper-box swiper-banner" id="swiper-banner"></ul>
+                    <ul class="controller-banner" id="controller-banner">
+                        <li class="iconfont icon-dian-copy-copy active"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                    </ul>
+                    <span class="swiper-click swiper-left"><</span>
+                    <span class="swiper-click swiper-right">></span>
+                </div>
+            </div>
+        </div> -->
+        <div class="main-box policy">
+            <div class="main-tltles">
+                <a class="bBorder fl"
+                   href="../list/list.html?channel_id=b8cd038d85c616e5c63d207339c2a07f&relation_id=010201">
+                    <i class="iconfont icon-dengpao"></i>
+                    <span>政策</span>
+                </a>
+                <a href="../list/list.html?channel_id=b8cd038d85c616e5c63d207339c2a07f&relation_id=010201" class="fr">更多
+                    ></a>
+            </div>
+            <div class="main-content clearfix">
+                <div class="con-left">
+                    <div class="policy-box" id="Insurance">
+                        <!--<div class="news-title blue">
+                            <i class="bao"></i>
+                            <span>芒果保险</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进万亩有机晚熟芒果示范区建省略号部分</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪县开办芒果保险业务</a></span>
+                            </p>
+                        </div>-->
+                        <script id="InsuranceSrc" type="text/x-handlebars-template">
+                            <div class="news-title blue">
+                                <a href="../list/list.html?channel_id=1244c13a8d23b7bec4f7af216ad4c351&relation_id=01020101"
+                                   class="aboder">
+                                    <i class="bao"></i>
+                                    <span>芒果保险</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each InsuranceData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+                    <div class="policy-box" id="Financing">
+                        <!--<div class="news-title gold">
+                            <i class="rongzi"></i>
+                            <span>贷款融资</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进万亩有机晚熟芒果示范区建省略号部分</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪县开办芒果保险业务</a></span>
+                            </p>
+                        </div>-->
+                        <script id="FinancingSrc" type="text/x-handlebars-template">
+                            <div class="news-title gold">
+                                <a href="../list/list.html?channel_id=4cf9f045f84fb07a62c9196d0e6bd858&relation_id=01020104"
+                                   class="aboder">
+                                    <i class="rongzi"></i>
+                                    <span>贷款融资</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each FinancingData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+
+                </div>
+                <div class="con-middle">
+                    <div class="policy-box" id="Subsidy">
+                        <!--<div class="news-title green">
+                            <i class="butie"></i>
+                            <span>财政补贴</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进万亩有机晚熟芒果示范区建省略号部分</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪芒果产品首次走出国门</a></span>
+                            </p>
+                        </div>-->
+                        <script id="SubsidySrc" type="text/x-handlebars-template">
+                            <div class="news-title green">
+                                <a href="../list/list.html?channel_id=ae7d9b90fd2895816096fe815ec958b0&relation_id=01020102"
+                                   class="aboder">
+                                    <i class="butie"></i>
+                                    <span>财政补贴</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each SubsidyData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+                    <div class="policy-box" id="Doctrine">
+                        <!--<div class="news-title blue">
+                            <i class="sanpin"></i>
+                            <span>三品一标</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进万亩有机晚熟芒果示范区建省略号部分</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪县开办芒果保险业务</a></span>
+                            </p>
+                        </div>-->
+                        <script id="DoctrineSrc" type="text/x-handlebars-template">
+                            <div class="news-title blue">
+                                <a href="../list/list.html?channel_id=64e618ae9121cca7fda2e4cb60489041&relation_id=01020105"
+                                   class="aboder">
+                                    <i class="sanpin"></i>
+                                    <span>三品一标</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each DoctrineData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+                </div>
+
+                <div class="con-right">
+                    <div class="policy-box" id="Poverty">
+                        <!--<div class="news-title orange">
+                            <i class="fupin"></i>
+                            <span>产品扶贫</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进有机晚熟芒果示范区工作</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪果农探索水泥灌注芒果架提高芒果品省略号部分</a></span>
+                            </p>
+                        </div>-->
+                        <script id="PovertySrc" type="text/x-handlebars-template">
+                            <div class="news-title orange">
+                                <a href="../list/list.html?channel_id=a027bd637de73eacf3c11c3afeea38b9&relation_id=01020103"
+                                   class="aboder">
+                                    <i class="fupin"></i>
+                                    <span>产业扶贫</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each PovertyData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+                    <div class="policy-box" id="Rule">
+                        <!--<div class="news-title pink">
+                            <i class="guize"></i>
+                            <span>认证规则</span>
+                        </div>
+                        <div class="news-list">
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪积极推进万亩有机晚熟芒果示范区建区省略号部分</a></span>
+                            </p>
+                            <p>
+                                <i class="iconfont icon-jiantou"></i>
+                                <span><a href="../list/list.html">华坪县开办芒果保险业务</a></span>
+                            </p>
+                        </div>
+                    </div>-->
+                        <script id="RuleSrc" type="text/x-handlebars-template">
+                            <div class="news-title pink">
+                                <a href="../list/list.html?channel_id=66e177223f98b51fa3306d82b274fdc0&relation_id=01020106"
+                                   class="aboder">
+                                    <i class="guize"></i>
+                                    <span>认证规则</span>
+                                </a>
+                            </div>
+                            <div class="news-list">
+                                {{#each RuleData}}
+                                {{#if title}}
+                                <p>
+                                    <i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a></span>
+                                </p>
+                                {{else}}
+                                <p>
+                                    <!--<i class="iconfont icon-jiantou"></i>
+                                    <span><a href="../list/list.html?id={{content_id}}">{{description}}</a></span>-->
+                                    <span>暂无数据</span>
+                                </p>
+                                {{/if}}
+                                {{/each}}
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-box headline" id="Headline">
+            <script id="HeadlineSrc" type="text/x-handlebars-template">
+                <div class="main-tltles">
+                    <a class="bBorder fl"
+                       href="../list/list.html?channel_id=90cb31e180b0f1579f59db9a7629fde6&relation_id=010206">
+                        <i class="iconfont icon-dengpao"></i>
+                        <span>种植</span>
+                    </a>
+                    <a href="../list/list.html?channel_id=90cb31e180b0f1579f59db9a7629fde6&relation_id=010206"
+                       class="fr">更多 ></a>
+                </div>
+                <div class="main-content clearfix">
+                    <!--<div class="top-box">
+                        <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-1.png" alt=""></a></div>
+                        <div class="news-box fl">
+                            <div class="news-title"><a href="../detiles/detiles.html">适龄芒果控梢促花技术</a></div>
+                            <div class="news-content">适龄芒果树不开花结果，是生产中较常见的现象。这与栽培管理和气候条件有很大关系。如偏施氮肥，会导致植物体内源激素增加，使营养生长处于活跃状态，影响成花；冬季高温、多温气候，有利于根系的活动，吸取大量的养分和水分供应地上部分营养生长，为冬梢抽生创造有利条件。芒果树抽冬梢也会影响成花。为使适龄芒果树...<span><a href="../detiles/detiles.html">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>2017-10-31</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-box">
+                        <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-2.png" alt=""></a></div>
+                        <div class="news-box fl">
+                            <div class="news-title"><a href="../detiles/detiles.html">芒果落花落果的原因及其防治</a></div>
+                            <div class="news-content">一、芒果落花落果的原因：1、芒果花期和幼果期遇到低温阴雨天气(温度低于l1．5℃)且持续时间长，则落花落果严重。花穗受害枯死，出现大量畸形果，败育果，容易造成自然脱落。2、危害芒果的虫害有扁喙叶蝉，使受害部位坏死，造成落花落果。横纹尾夜蛾吸取花叶、嫩梢汁液引起枯梢穗。病害有炭疽病和白粉病...<span><a href="../detiles/detiles.html">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>2017-10-31</span>
+                            </div>
+                        </div>
+                    </div>-->
+                    {{#each HeadlineData}}
+                    <div class="top-box">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fl">
+                            <div class="news-title">
+                                <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 100 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more">
+                                    <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a>
+                                </span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </script>
+        </div>
+        <div class="main-box other clearfix">
+            <div class="left-box fl" id="Process">
+                <!--
+                <div class="main-tltles">
+                    <a class="bBorder fl" href="../list/list.html">
+                        <i class="iconfont icon-note"></i>
+                        <span>加工</span>
+                    </a>
+                    <a href="../list/list.html" class="fr">更多 ></a>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-4.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术及工艺流程</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-3.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+            -->
+
+                <script id="ProcessSrc" type="text/x-handlebars-template">
+                    <div class="main-tltles">
+                        <a class="bBorder fl" href="../list/list.html?channel_id=2b6e1eb98ed2027292f244d49952979a&relation_id=010202">
+                            <i class="iconfont icon-note"></i>
+                            <span>加工</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=2b6e1eb98ed2027292f244d49952979a&relation_id=010202"
+                           class="fr">更多 ></a>
+                    </div>
+                    {{#each ProcessData}}
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+
+
+            </div>
+            <div class="right-box fr" id="Train">
+                <!--
+                <div class="main-tltles">
+                    <a class="bBorder fl" href="../list/list.html">
+                        <i class="iconfont icon-note"></i>
+                        <span>培训</span>
+                    </a>
+                    <a href="../list/list.html" class="fr">更多 ></a>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-29.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">有机芒果种植栽培新技术培训</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-30.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果树嫁接技术培训</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+            -->
+                <script id="TrainSrc" type="text/x-handlebars-template">
+                    <div class="main-tltles">
+                        <a class="bBorder fl" href="../list/list.html?channel_id=afad9c378053afeb54db93993eb40c60&relation_id=010203">
+                            <i class="iconfont icon-note"></i>
+                            <span>培训</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=afad9c378053afeb54db93993eb40c60&relation_id=010203" class="fr">更多 ></a>
+                    </div>
+                    {{#each TrainData}}
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a
+                                    href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more"><a
+                                        href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+
+            </div>
+            <div class="left-box fl" id="Pests">
+                <!--
+                <div class="main-tltles">
+                    <a class="bBorder fl" href="../list/list.html">
+                        <i class="iconfont icon-note"></i>
+                        <span>病虫</span>
+                    </a>
+                    <a href="../list/list.html" class="fr">更多 ></a>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-5.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术及工艺流程</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-28.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术及工艺流程</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+            -->
+                <script id="PestsSrc" type="text/x-handlebars-template">
+                    <div class="main-tltles">
+                        <a class="bBorder fl"
+                           href="../list/list.html?channel_id=1da6e5de08b7eabeb97bff0ad7384c7c&relation_id=010204">
+                            <i class="iconfont icon-note"></i>
+                            <span>病虫</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=1da6e5de08b7eabeb97bff0ad7384c7c&relation_id=010204"
+                           class="fr">更多 ></a>
+                    </div>
+                    {{#each PestsData}}
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more"><a
+                                        href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </script>
+            </div>
+            <div class="right-box fr" id="Weather">
+                <!--
+                <div class="main-tltles">
+                    <a class="bBorder fl" href="../list/list.html">
+                        <i class="iconfont icon-note"></i>
+                        <span>气象</span>
+                    </a>
+                    <a href="../list/list.html" class="fr">更多 ></a>
+                </div>
+                <div class="top-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-6.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术及工艺流程</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-box clearfix">
+                    <div class="img-box fl"><a href="../detiles/detiles.html"><img src="../../img/img-7.png" alt=""></a></div>
+                    <div class="news-box fr">
+                        <div class="news-title"><a href="../detiles/detiles.html">芒果的加工技术及工艺流程</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架提高华坪县果农探索水泥灌注芒果...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-31</span>
+                        </div>
+                    </div>
+                </div>
+            -->
+                <script id="WeatherSrc" type="text/x-handlebars-template">
+                    <div class="main-tltles">
+                        <a class="bBorder fl"
+                           href="../list/list.html?channel_id=ae64d31600ff9b2398bee723fe928245&relation_id=010205">
+                            <i class="iconfont icon-note"></i>
+                            <span>气象</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=ae64d31600ff9b2398bee723fe928245&relation_id=010205"
+                           class="fr">更多 ></a>
+                    </div>
+                    {{#each WeatherData}}
+                    <div class="top-box clearfix">
+                        <div class="img-box fl">
+                            <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="skip-box">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                            </a>
+                        </div>
+                        <div class="news-box fr">
+                            <div class="news-title"><a
+                                    href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                            </div>
+                            <div class="news-content">
+                                {{#substr 20 description}}
+                                <p>{{description}}</p>
+                                {{/substr}}
+                                <span class="detiles-more"><a
+                                        href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a></span>
+                            </div>
+                            <div class="news-time">
+                                <i class="iconfont icon-zhongbiao"></i>
+                                <span>{{release_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{/each}}
+                </script>
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                    <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/service.js'></script>
+</body>

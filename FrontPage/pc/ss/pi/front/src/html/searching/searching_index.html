@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/searching.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box clearfix searching">
+        <div class="main-left fl">
+            <div class="left-nav">
+                <h2>栏目</h2>
+                <ul class="programa-list">
+                    <li data-num="all" class="active">全部<span> > </span></li>
+                    <li data-num="0101">热点<span> > </span></li>
+                    <li data-num="0102">服务<span> > </span></li>
+                    <li data-num="0103">市场<span> > </span></li>
+                    <!--<li data-num="dd7bb191cc357bdf6a72c1e5c3f0ced5">溯源<span> > </span></li>
+                    <li data-num="9b879659459acb5df1f987fd47a68eb0">互动<span> > </span></li>-->
+                </ul>
+                <h2>时间</h2>
+                <ul class="time-list">
+                    <li data-time="all" class="tine active">全部<span> > </span></li>
+                    <li class="tine" data-time="day">一天内<span> > </span></li>
+                    <li class="tine" data-time="week">一周内<span> > </span></li>
+                    <li class="tine" data-time="month">一月内<span> > </span></li>
+                    <li class="tine" data-time="year">一年内<span> > </span></li>
+                    <!--<li>指定日期<span> > </span><input type="text" class="demo-input" placeholder="请选择日期" id="test1"></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="main-right fr clearfix">
+            <div class="main-box main1">
+               <!--<div class="search-top clearfix">
+                    <div class="search fl">
+                        <input type="text" placeholder="请输入关键词" id="keyword">
+                        <span class="keyword-list"><i class="iconfont icon-sousuo"></i></span>
+                    </div>
+                     &lt;!&ndash;<div class="sort-type fr clearfix">
+                        排序方式：
+                        <span class="active">相关程序</span>
+                        <span>发布时间</span>
+                    </div>&ndash;&gt;
+                </div>-->
+                <div class="search-bottom">
+                    <span class="record-num"></span>条记录
+                </div>
+            </div>
+            <div id="list"></div>
+                <!-- <div class="main-box main-list">
+                    <div class="news-box">
+                        <i class="iconfont icon-dian-copy-copy list-style"></i>
+                        <div class="news-title"><a href="../detiles/detiles.html">种植一亩芒果脱贫一户农家</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架 提高芒果品质华坪县果农探索水泥灌注芒果架 提高芒果品质产量华坪芒果产品量华坪芒果产品首次走出国门，面向世界，华坪县果农探索水泥灌注芒果提高芒果品质产量...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-13 18:30:10</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-box main-list">
+                    <div class="news-box">
+                        <i class="iconfont icon-dian-copy-copy list-style"></i>
+                        <div class="news-title"><a href="../detiles/detiles.html">种植一亩芒果脱贫一户农家</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架 提高芒果品质华坪县果农探索水泥灌注芒果架 提高芒果品质产量华坪芒果产品量华坪芒果产品首次走出国门，面向世界，华坪县果农探索水泥灌注芒果提高芒果品质产量...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-13 18:30:10</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-box main-list">
+                    <div class="news-box">
+                        <i class="iconfont icon-dian-copy-copy list-style"></i>
+                        <div class="news-title"><a href="../detiles/detiles.html">种植一亩芒果脱贫一户农家</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架 提高芒果品质华坪县果农探索水泥灌注芒果架 提高芒果品质产量华坪芒果产品量华坪芒果产品首次走出国门，面向世界，华坪县果农探索水泥灌注芒果提高芒果品质产量...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-13 18:30:10</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-box main-list">
+                    <div class="news-box">
+                        <i class="iconfont icon-dian-copy-copy list-style"></i>
+                        <div class="news-title"><a href="../detiles/detiles.html">种植一亩芒果脱贫一户农家</a></div>
+                        <div class="news-content">华坪县果农探索水泥灌注芒果架 提高芒果品质华坪县果农探索水泥灌注芒果架 提高芒果品质产量华坪芒果产品量华坪芒果产品首次走出国门，面向世界，华坪县果农探索水泥灌注芒果提高芒果品质产量...
+                            <span><a href="../detiles/detiles.html">【详情】</a></span>
+                        </div>
+                        <div class="news-time">
+                            <i class="iconfont icon-zhongbiao"></i>
+                            <span>2017-10-13 18:30:10</span>
+                        </div>
+                    </div>
+
+                </div> -->
+                <script id="searchPageSrc" type="text/x-handlebars-template">
+                    {{#each searchPageData}}
+                        <div class="main-box main-list cf">
+                            <div class="news-box">
+                                <i class="iconfont icon-dian-copy-copy list-style"></i>
+                                <div class="news-title">
+                                    <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">{{title}}</a>
+                                </div>
+                                <div class="news-content">
+                                    {{#substr 100 description}}
+                                        <p>{{description}}</p>
+                                    {{/substr}}
+                                    <span>
+                                        <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">【详情】</a>
+                                    </span>
+                                </div>
+                                <div class="news-time">
+                                    <i class="iconfont icon-zhongbiao"></i>
+                                    <span>{{release_date}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </script>
+
+
+            <div class="main-box main-page">
+                <div id="page" class="pagination"></div>
+            </div>
+            <!--<div class="main-box main-search">
+                <div class="main-search-title">相关搜索</div>
+                <div class="main-search-list">
+                    <ul>
+                        <li><a href="###">华坪芒果</a></li>
+                        <li><a href="###">有机芒果</a></li>
+                        <li><a href="###">华坪芒果文化节</a></li>
+                        <li><a href="###">华坪县芒果大数据项目</a></li>
+                        <li><a href="###">华坪晚熟芒果</a></li>
+                    </ul>
+                </div>
+
+            </div>-->
+            <div class="wraper wraper-blogroll">
+                <div class="main-box">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>友情链接</span>
+                        </div>
+                        <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                    </div>
+                    <div class="blogroll-info clearfix">
+                        <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                        <a href="http://wap.lijiang.cn/"  target="_blank">丽江网</a>
+                        <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                        <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/jquery.pagination.js'></script>
+<!-- DateUtil 时间处理工具，可选择使用-->
+<!--<script type="text/javascript" src='../../js/laydate/laydate.js'></script>-->
+
+<script src='../../js/searching.js'></script>
+</body>

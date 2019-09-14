@@ -1,0 +1,81 @@
+.homePageStyle{
+
+  position: absolute;
+  width: 17.4rem;
+  top: 1.15rem;
+  left: 1.8rem;
+  padding-right: 0.4rem;
+  box-sizing: border-box;
+  .chart-title-wrap {
+    height: 0.4rem;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0.2rem;
+  }
+  .conLeft{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height:457px;
+    margin-bottom: 20px;
+    .actualityStyle, .monitor{
+      flex:1;
+      width:850px;
+      height: 457px;
+      background-image: url("./big-border.png");
+      -webkit-background-size: 100% 100%;
+      background-size: 100% 100%;
+      flex: 1;
+      position: relative;
+    }
+    .actualityStyle{
+      display: flex;
+      flex-direction: column;
+      .echarts-wrap{
+        flex:1;
+      }
+        .select-type1{
+          position: absolute;
+          top:23px;
+          right:3.6rem;
+          color: #fff;
+          font-size: 16px;
+        }
+        .select-type2{
+          position: absolute;
+          top:23px;
+          right:1.5rem;
+          color: #fff;
+          font-size: 16px;
+        }
+    }
+    .monitor{
+      margin-left: 20px;
+
+
+    }
+  }
+  .conRight{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height:457px;
+   .process,.predictionStyle{
+     position: relative;
+      flex:1;
+      width:850px;
+      height: 457px;
+      background-image: url("./big-border.png");
+      -webkit-background-size: 100% 100%;
+      background-size: 100% 100%;
+    }
+    .process{
+      position: relative;
+      margin-left: 20px;
+    }
+  }
+
+}

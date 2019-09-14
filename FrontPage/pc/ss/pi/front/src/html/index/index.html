@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon" />
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+</head>
+
+<body data-num="0" class='index-page'>
+    <!-- @@include= ../../components/header.html-->
+    <!-- @@include= ../../components/menu.html-->
+    <div class="main-wrap">
+
+
+        <div class="wraper">
+            <div class="title-containeer">
+                <!--<div class="title-warp">
+                <h2 class="banner-title">华坪创建国家有机产品认证示范县通过专家评审</h2>
+                <h4 class="banner-info">
+                  <span>1.5万亩芒果获有机认证</span>
+                  <span>首个电子商务协会成立</span>
+                  <span class="noBorder">华坪举办首届跨境电商峰会</span>
+                </h4>
+            </div>-->
+            </div>
+            <div class="slider-container">
+                <div class="swiper-wraper banner">
+                    <ul class="swiper-box swiper-banner" id="swiper-banner">
+                        <!-- <li data-url="0">
+                      <a href="../detiles/detiles.html" class="skip-box">
+                        <img src="../../img/video7.jpg" alt="">
+                        <div class="swiper-banner-title">华坪县2017年有机晚熟芒果文化节开幕1</div>
+                      </a>
+                    </li>
+                    <li data-url="1">
+                      <a href="../detiles/detiles.html" class="skip-box">
+                        <img src="../../img/video8.jpg" alt="">
+                        <div class="swiper-banner-title">华坪县2017年有机晚熟芒果文化节开幕2</div>
+                      </a>
+                    </li>
+                    <li data-url="2">
+                      <a href="../detiles/detiles.html" class="skip-box">
+                        <img src="../../img/video1.jpg" alt="">
+                        <div class="swiper-banner-title">华坪县2017年有机晚熟芒果文化节开幕3</div>
+                      </a>
+                    </li> -->
+                    </ul>
+                    <ul class="controller-banner" id="controller-banner">
+                        <li class="iconfont icon-dian-copy-copy active"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                    </ul>
+                    <span class="swiper-click swiper-left">
+                        <</span> <span class="swiper-click swiper-right">>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper-connent clearfix">
+            <div class="wraper-connent-item wraper-connent-l fl">
+                <div class="connent-l connent-l1">
+                    <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="bBorder fl">
+                            <i class="iconfont icon-dengpao"></i>
+                            <span>热点 </span>
+                        </a>
+                        <a href="../list/list.html?channel_id=6b8e0f738daed0e79952eba26faa82dc&relation_id=0101" class="fr">更多
+                            ></a>
+                    </div>
+                    <ul id="hotNew">
+                        <script id="hotNewSrc" type="text/x-handlebars-template">
+                            {{#each hotList}}
+                        <li class="cf"><span class="fl">{{addOne  @index}}、</span><a title="{{title}}" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl">
+                            {{#substr 20 title}}
+                                {{title}}
+                            {{/substr}}
+                        </a></li>
+                        {{/each}}
+                    </script>
+                    </ul>
+                </div>
+                <div class="connent-l connent-l2 clearfix" id="market">
+                    <script id="marketSrc" type="text/x-handlebars-template">
+                        <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=f05ceea60e43ceea731284802e3f12f6&relation_id=010302" class="bBorder fl" id="market-href">
+                            <i class="iconfont icon-hangqingtu"></i>
+                            <span>行情</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=f05ceea60e43ceea731284802e3f12f6&relation_id=010302" class="fr">更多 ></a>
+                    </div>
+                    <!--<div class="market-banner">
+                      <img src="../../img/market.jpg" alt="">
+                      <p>11月华坪晚熟芒果价格突破15元/斤</p>
+                    </div>-->
+                    <div class="market-banner cf">
+                        {{#each marketList}}
+                        {{#eq @index 0}}
+                        <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl market-img-warp">
+                            {{#if img_path}}
+                            {{#other type_id}}
+                            <img src="{{img_path}}" alt="">
+                            <i class="iconfont icon-bofang video-play"></i>
+                            {{else}}
+                            <img src="{{img_path}}" alt="">
+                            {{/other}}
+                            {{else}}
+                            <img src="../../img/zwtp.gif" alt="">
+                            {{/if}}
+                            <p class="over-ellipsis">{{title}}</p>
+                        </a>
+                        {{/eq}}
+                        {{/each}}
+                    </div>
+                    <ul class="market-detiles">
+                        {{#each marketList}}
+                        <li class="{{ifShow @index}} cf"><span class="iconfont icon-jiantou fl"></span><a title="{{title}}" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl">
+                            {{#substr 20 title}}
+                                {{title}}
+                            {{/substr}}
+                            </a>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+                </script>
+                </div>
+                <div class="connent-l connent-l3 clearfix">
+                    <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=e35a1ae2b0d5b3b2bc4a974126353027&relation_id=010303"
+                            class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>供求</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=e35a1ae2b0d5b3b2bc4a974126353027&relation_id=010303"
+                            class="fr">更多 ></a>
+                    </div>
+                    <ul class="market-detiles allWidth" id="demand">
+                        <script id="demandSrc" type="text/x-handlebars-template">
+                            {{#each demandList}}
+                        {{#if title}}
+                        <li><a title="{{title}}" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}"><span></span>
+                            {{#substr 20 title}}
+                                {{title}}
+                            {{/substr}}
+                        </a></li>
+                        {{else}}
+                        <li><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}"><span></span>没有数据</a></li>
+                        {{/if}}
+                        {{/each}}
+                    </script>
+                    </ul>
+                </div>
+                <div class="connent-l connent-l4">
+                    <div class="main-tltles">
+                        <div class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <a href="../list/list.html?channel_id=3b8f6e987d853f93c899d82c32216c3e&type_id=954effd987455f4a12c647c09779915f&relation_id=01"
+                                class="tab-a active">视</a> <b>|</b> <a href="../list/list.html?channel_id=3b8f6e987d853f93c899d82c32216c3e&type_id=d9ebd8db0dfce217ad73ca2118fd09dc&relation_id=01"
+                                class="tab-a">听</a> <b>|</b> <a href="../list/list.html?channel_id=3b8f6e987d853f93c899d82c32216c3e&type_id=778a3e846ce7fff470256b308dff02db&relation_id=01"
+                                class="tab-a">图</a> <b>|</b> <a href="../list/list.html?channel_id=3b8f6e987d853f93c899d82c32216c3e&type_id=5e0399a53bce096c0eab56e7a3671f18&relation_id=01"
+                                class="tab-a">说</a>
+                        </div>
+                        <a href="../list/list.html?channel_id=3b8f6e987d853f93c899d82c32216c3e&relation_id=01" class="fr">更多
+                            ></a>
+                    </div>
+                    <div class="market-banner-wrapper">
+                        <div class="market-banner market-bannera active" id="see">
+                            <script id="seeSrc" type="text/x-handlebars-template">
+                                {{#each hotList}}
+                            <a data-urlid="{{content_id}}" data-types="" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">
+                                {{#if img_path}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                 <img src="../../img/zwtp.gif" alt="">
+                                 {{/if}}
+                                <span class="over-ellipsis">{{title}}</span>
+                            </a>
+                            {{/each}}
+                        </script>
+                        </div>
+                        <div class="market-banner market-bannera" id="hear">
+                            <script id="hearSrc" type="text/x-handlebars-template">
+                                {{#each hotList}}
+                            <a data-urlid="{{content_id}}" data-types="" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">
+                                {{#if img_path}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <span class="over-ellipsis">{{title}}</span>
+                            </a>
+                            {{/each}}
+                        </script>
+                        </div>
+                        <div class="market-banner market-bannera" id="image">
+                            <script id="imageSrc" type="text/x-handlebars-template">
+                                {{#each hotList}}
+                            {{#if img_path}}
+                            <a data-urlid="{{content_id}}" data-types="" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">
+                                <img src="{{img_path}}" alt="">
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <span>{{title}}</span>
+                            </a>
+                            {{/each}}
+                        </script>
+                        </div>
+                        <div class="market-banner market-bannera" id="say">
+                            <script id="saySrc" type="text/x-handlebars-template">
+                                {{#each hotList}}
+                            <a data-urlid="{{content_id}}" data-types="" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">
+                                {{#if img_path}}
+                                <img src="{{img_path}}" alt="">
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <span class="over-ellipsis">{{title}}</span>
+                            </a>
+                            {{/each}}
+                        </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wraper-connent-item wraper-connent-c fl">
+                <!-- 服务 -->
+                <div class="connent-l connent-l1" id="serve">
+                    <script id="serveSrc" type="text/x-handlebars-template">
+                        <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=f6399d07963955cd9f130a36b83e8409&relation_id=0102" class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>服务</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=f6399d07963955cd9f130a36b83e8409&relation_id=0102" class="fr">更多 ></a>
+                    </div>
+                    <div>
+                        <div class="market-banner server-banner cf">
+                            {{#each ServeList}}
+                            {{#eq @index 0}}
+                            <a title="{{title}}" href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl">
+                                {{#if img_path}}
+                                {{#other type_id}}
+                                <img src="{{img_path}}" alt="">
+                                <i class="iconfont icon-bofang video-play"></i>
+                                {{else}}
+                                <img src="{{img_path}}" alt="">
+                                {{/other}}
+                                {{else}}
+                                <img src="../../img/zwtp.gif" alt="">
+                                {{/if}}
+                                <p class="over-ellipsis">{{title}}</p>
+                            </a>
+                            {{/eq}}
+                            {{/each}}
+                        </div>
+
+                        <ul class="market-detiles cf">
+                            {{#each ServeList}}
+                            <li class="{{ifShow @index}} cf"><span class="iconfont icon-jiantou fl"></span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+
+                    </div>
+                </script>
+                </div>
+                <div class="connent-l connent-l2" id="policy">
+                    <script id="policySrc" type="text/x-handlebars-template">
+                        <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=b8cd038d85c616e5c63d207339c2a07f&relation_id=010201" class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>政策</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=b8cd038d85c616e5c63d207339c2a07f&relation_id=010201" class="fr">更多 ></a>
+                    </div>
+                    <div class="policy policyt clearfix">
+                        <a href="../list/list.html?channel_id=1244c13a8d23b7bec4f7af216ad4c351&relation_id=01020101" class="policy-items policy-items1 fl">
+                            <p class="iconfonts iconfonts1"></p>
+                            <p>芒果保险</p>
+                        </a>
+                        <a href="../list/list.html?channel_id=ae7d9b90fd2895816096fe815ec958b0&relation_id=01020102" class="policy-items policy-items2 fl">
+                            <p class="iconfonts iconfonts2"></p>
+                            <p>财政补贴</p>
+                        </a>
+                        <a href="../list/list.html?channel_id=a027bd637de73eacf3c11c3afeea38b9&relation_id=01020103" class="policy-items policy-items3 fl">
+                            <p class="iconfonts iconfonts3"></p>
+                            <p>产业扶贫</p>
+                        </a>
+                    </div>
+                    <div class="policy policyb clearfix">
+                        <a href="../list/list.html?channel_id=4cf9f045f84fb07a62c9196d0e6bd858&relation_id=01020104" class="policy-items policy-items4 fl">
+                            <p class="iconfonts iconfonts4"></p>
+                            <p>贷款融资</p>
+                        </a>
+                        <a href="../list/list.html?channel_id=64e618ae9121cca7fda2e4cb60489041&relation_id=01020105" class="policy-items policy-items5 fl">
+                            <p class="iconfonts iconfonts5"></p>
+                            <p>三品一标</p>
+                        </a>
+                        <a href="../list/list.html?channel_id=66e177223f98b51fa3306d82b274fdc0&relation_id=01020106" class="policy-items policy-items6 fl">
+                            <p class="iconfonts iconfonts6"></p>
+                            <p>认证规则</p>
+                        </a>
+                    </div>
+                </script>
+                </div>
+                <div class="connent-l connent-l3 cf">
+                    <div class="main-tltles">
+                        <a target="_blank" href="http://192.168.200.193:60080/cos/sy/index.html?channel_id=dd7bb191cc357bdf6a72c1e5c3f0ced5"
+                            class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>溯源</span>
+                        </a>
+                    </div>
+                    <div class="search" id="searchCode">
+                        <input type="text" id="codeWord" value="请输入20位溯源码">
+                        <span class="search-button"><i class="iconfont icon-sousuo"></i></span>
+                    </div>
+                    <!-- 弹窗 -->
+                    <div id="myModalIndex" class="modal">
+                        <!-- 弹窗内容 -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p style="color: #000;">请输入20位溯源码</p>
+                        </div>
+                    </div>
+
+                    <div class="selectResult" id="syCodeMessage">
+                        <p>企业：生产企业名称</p>
+                        <p>基地：生产基地名称</p>
+                        <p>
+                            <span>品种：品种名称</span>
+                            <span>采收时间：采收时间</span>
+                        </p>
+                        <p>
+                            <span>联系人：联系人姓名</span>
+                            <span>电话：联系电话</span>
+                        </p>
+                    </div>
+                    <!-- <div class="no-result fl">
+                    暂无查询结果
+                </div> -->
+                </div>
+                <div class="connent-l connent-l4 cf">
+                    <div class="main-tltles">
+                        <i class="iconfont icon-note"></i>
+                        <span>推介</span>
+                    </div>
+                    <div class="market-banner cf index-tj">
+                        <div class="tj tj-l fl" id="MicroSiteList"></div>
+                        <script id="MicroSiteListSrc" type="text/x-handlebars-template">
+                            {{#each MicroSiteListData}}
+                        <div class="tj-title">
+                                <div class="line"></div>
+                                <h2 class="tj-context">
+                                    <a href="../microWebsite/microWebsitelist.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}" class="bBorder fl">企业微网站 </a>
+                                </h2>
+                        </div>
+                        <div class="tj-img">
+                            <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}">
+                                <img src="{{path}}" alt="">
+                            </a>
+                        </div>
+                        <a href="../microWebsite/microWebsite.html?channel_id=dde558fd9baf441090be1f840b63d8f1&id={{id}}" class="tj-name" title="{{title}}">
+                            {{enterpriseName}}
+                        </a>
+                        <div class="tj-info">
+                            {{#substr 40 description}}
+                                <p>{{description}}</p>
+                            {{/substr}}
+                        </div>
+                        {{/each}}
+                    </script>
+                        <div class="tj tj-r fr" id="MangoMallList"></div>
+                        <script id="MangoMallListSrc" type="text/x-handlebars-template">
+                            {{#each MangoMallListData}}
+                        <div class="tj-title">
+                            <div class="line"></div>
+                            <h2 class="tj-context">
+                                <a href="../mangoEcshop/mangoEcshop.html?channel_id=7e08ff47f4634674843ed10f71254d45" class="bBorder fl">芒果微商城</a>
+                            </h2>
+                        </div>
+                        <div class="tj-img">
+                            <a href="{{mallInterlinkage}}" target="_blank" class="skip-box">
+                                {{#if path}}
+                                <img src="{{path}}" alt=""> {{else}}
+                                <img src="../../img/zwtp.gif" alt=""> {{/if}}
+                            </a>
+                        </div>
+                        <a href="{{mallInterlinkage}}" target="_blank" class="tj-name" title="{{name}}">{{name}}</a>
+                        <div class="tj-weight">总重量：
+                            <span id="weight">{{weight}}千克</span>
+                        </div>
+                        <div class="tj-price">售价：
+                            <span id="price">￥{{sellingPrice}}</span>
+                        </div>
+                        </div>
+                        <div class="tj-price">品牌：
+                            <span>{{brand}}</span>
+                        </div>
+                        {{/each}}
+                    </script>
+                    </div>
+                </div>
+            </div>
+            <div class="wraper-connent-item wraper-connent-r fr">
+                <div class="connent-l connent-l1" style="position:relative;">
+                    <div class="main-tltles bBorder">
+                        <i class="iconfont icon-note"></i>
+                        <span>121</span>
+                    </div>
+                    <div style="position: absolute;" class="chooseHtml">
+                        <p><a class="qyd" target="_blank">企业端</a></p>
+                        <p><a class="xfd" target="_blank">消费端</a></p>
+                        <p><a class="zfd" target="_blank">政府端</a></p>
+                        <p><a class="yyd" target="_blank">运营端</a></p>
+                    </div>
+                    <div class="echart">
+                        <span>中国芒乡--丽江华坪芒果大数据平台</span>
+                        <a target="_blank" class="l1">
+                            <img src="../../img/l1.png" alt="">
+                        </a>
+                        <a href="index.html" class="r1">
+                            <img src="../../img/r1.png" alt="">
+                        </a>
+                        <a href="###" class="l2">
+                            <img src="../../img/l2.png" alt="">
+                        </a>
+                        <a href="###" class="r2" target="_blank">
+                            <img src="../../img/r2.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="connent-l connent-l2" id="brand"></div>
+                <script id="brandSrc" type="text/x-handlebars-template">
+                    <div class="main-tltles">
+                        <a href="../list/list.html?channel_id=061f1ee79c1ae60be0a089227de9af7d&relation_id=010304" class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>品牌</span>
+                        </a>
+                        <a href="../list/list.html?channel_id=061f1ee79c1ae60be0a089227de9af7d&relation_id=010304" class="fr">更多 ></a>
+                    </div>
+                    <div class="swiper-wraper">
+                        <ul class="swiper-box brand">
+                            {{#each brandList}}
+                            <li data-url="{{@index}}">
+                                <a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}">
+                                    {{#if img_path}}
+                                    {{#other type_id}}
+                                    <img src="{{img_path}}" alt="">
+                                    <i class="iconfont icon-bofang video-play"></i>
+                                    {{else}}
+                                    <img src="{{img_path}}" alt="">
+                                    {{/other}}
+                                    {{else}}
+                                    <img src="../../img/zwtp.gif" alt="">
+                                    {{/if}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        <ul class="controller-brand" id="swipe-brand">
+                            <li class="iconfont icon-dian-copy-copy active"></li>
+                            <li class="iconfont icon-dian-copy-copy"></li>
+                            <li class="iconfont icon-dian-copy-copy"></li>
+                        </ul>
+
+                    </div>
+                    <div class="swiper-text">
+                        {{#each brandList}}
+                        {{#eq @index 0}}
+                        <p class="cf" style="font-size:18px;"><span class="iconfont icon-jiantou fl"></span><a href="../detiles/detiles.html?channel_id={{channel_id}}&id={{content_id}}" class="fl">{{title}}</a></p>
+                        {{/eq}}
+                        {{/each}}
+                    </div>
+                </script>
+
+                <div class="connent-l connent-l3 cf">
+                    <div class="main-tltles main-tltles1 cf">
+                        <div class="bBorder fl">
+                            <i class="iconfont icon-note"></i>
+                            <span>互动</span>
+                        </div>
+                    </div>
+                    <ul class="specialist-wrapper">
+                        <li class="specialist cf">
+                            <a href="../interaction/ask-experts.html?channel_id=de0522c544a67233a87078141f3b2b0f">
+                                <div class="interact-img interact-img1 fl">
+                                </div>
+                                <div class="interact fl">
+                                    <p class="interact-name">问专家</p>
+                                    <p class="interact-more">专家顾问团为您解答芒果种植问题></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message cf">
+                            <a href="../interaction/leave-mess.html?channel_id=14bd3f445bd0f210f13bd18b4033bc15">
+                                <div class="interact-img interact-img2 fl">
+
+                                </div>
+                                <div class="interact fl">
+                                    <p class="interact-name">留建言</p>
+                                    <p class="interact-more">如果您有任何意见或建议，留言吧></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="respond cf">
+                            <a href="../interaction/inter-list.html?channel_id=de0522c544a67233a87078141f3b2b0f">
+                                <div class="interact-img interact-img3 fl">
+                                </div>
+                                <div class="interact fl">
+                                    <p class="interact-name">最新回应</p>
+                                    <p class="interact-more">快来围观农业专家解答的芒果种植问题吧></p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="boardMsg cf">
+                            <a href="../interaction/messageBorde.html?channel_id=14bd3f445bd0f210f13bd18b4033bc15">
+                                <div class="interact-img interact-img2 fl">
+                                </div>
+                                <div class="interact fl">
+                                    <p class="interact-name">留言板</p>
+                                    <p class="interact-more">快来围观网友的热心留言吧></p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="main-box">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>友情链接</span>
+                    </div>
+                </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--@@include= ../../components/footer.html-->
+    <script src='../../js/index.js'></script>
+</body>

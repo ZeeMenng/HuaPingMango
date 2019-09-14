@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/mangoEcshop.css" rel="stylesheet">
+</head>
+<body>
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+    <div class="main-wrap">
+        <div class="main-box market">
+            <div class="position w100">
+                <ul id="CurrentLocation"></ul>
+            </div>
+            <div class="wraper-content">
+                <ul class="data-tab" id='data-tab'>
+                    <li class='active'>全部</li>
+                    <li>鲜果</li>
+                    <li>加工品</li>
+                </ul>
+                <div class="m-term">
+                    <span class="t-groom active">综合排序</span>
+                    <div class='price'>
+                       <span class="t-price low">单价从低到高</span>
+                       <span class="t-price">单价从高到低</span>
+                    </div>
+                    <input type="text" name="minPrice" value="" placeholder="最低价">一
+                    <input type="text" name="maxPrice" value="" placeholder="最高价">                    
+                    <span class="search-button">搜索</span>
+                </div>
+                    <ul class="product-list clearfix" id="MangoMake"></ul>
+                    <script id="MangoMakeSrc" type="text/x-handlebars-template">
+                        {{#each MangoMakeData}}
+                        <li class="goods-details">
+                            <a href="{{mallInterlinkage}}" target="_blank">
+                                <div class="img-box"><img src="{{path}}" alt=""></div>
+                                <div class='img-msg'>
+                                    <h1>{{name}}</h1>
+                                    <p>总重量：<span>{{weight}}</span>千克</p>
+                                    <p>售价：<span>￥{{sellingPrice}}</span></p>
+                                    <p>品牌：<span>{{brand}}</span></p>
+                                </div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </script>
+                    <!-- <li>
+                        <div class='img-box'><img src="../../img/product1.png" alt=""></div>
+                        <div class='img-msg'>
+                            <h1>精品特价芒果</h1>
+                            <p><span>总重量：</span>500千克</p>
+                            <p><span>售价：</span>500千克</p>
+                            <p><span>品牌：</span>500千克</p>
+                        </div>
+                    </li> -->
+                <div id="page" class="pagination"></div>
+            </div>
+            <div class="wraper wraper-blogroll">
+                <div class="main-box">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>友情链接</span>
+                        </div>
+                        <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                    </div>
+                    <div class="blogroll-info clearfix">
+                        <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                        <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                        <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                        <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/jquery.pagination.js'></script>
+<script src='../../js/mangoEcshop.js'></script>
+</body>
+</html>

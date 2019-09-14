@@ -1,0 +1,109 @@
+.wraper-content{
+  .pStyle{
+    border-bottom: 1px solid #e6e6e6;
+    .title-unit{
+      color: #a0a0a0;
+      font-size: 14px;
+      line-height: 40px;
+    }
+    span{
+      margin: 10px 0;
+      display: inline-block ;
+      padding-left: 12px;
+      line-height: 22px;
+      font-size: 20px;
+      font-weight: bold;
+      border-left: 4px solid #509900;
+      color: #509900;
+    }
+  }
+
+  .price-trend{
+    height:650px;
+
+    .trendNum{
+      width:100%;
+      height:550px;
+      margin-top:30px;
+    }
+  }
+  .priceMarketChg{
+    width:100%;
+    .price-market{
+      width:590px;
+      float: left;
+
+    }
+    .price-chg{
+      width:590px;
+      float: right;
+      .chgNum{
+        width:100%;
+        height:441px;
+        margin-top:48px;
+      }
+    }
+  }
+  .breedPirce{
+    height:640px;
+    margin-top:60px;
+    .breedNum{
+      height:570px;
+      margin-top: 30px;
+    }
+  }
+  .comparison {
+    margin-top: 15px;
+  }
+}
+.tableList{
+  margin-top: 40px;
+
+  table{
+    width: 100%;
+    color: #333;
+    table-layout:fixed;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  th{
+    background: #f2f2f2;
+  }
+  tr,td{
+    cursor: pointer;
+    line-height: 40px;
+    border: 1px solid #f2f2f2;
+  }
+  td{
+    padding: 0 5px;
+    max-width: 30px!important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  tr.even{
+    background: #fafff2;
+  }
+  tbody tr:hover{
+    background: #6eb10c;
+    color: #fff;
+    border-color: #6eb10c;
+    td{
+      border-color: #6eb10c;
+    }
+    .react-item{
+      background: #fff;
+    }
+  }
+  .react-percent{
+    width: 110px;
+    padding: 0 10px;
+    text-align: left;
+    .react-item{
+      display: inline-block;
+      background: linear-gradient(to right,#a4db5f,#81cb26);
+      border-radius: 10px;
+      height: 8px;
+    }
+  }
+}

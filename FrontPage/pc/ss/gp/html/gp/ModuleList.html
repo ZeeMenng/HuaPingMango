@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-cn">
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<!--#include file="/pc/ss/gp/html/cl/Header.html"-->
+<!--#include file="/pc/ss/gp/html/cl/HeaderZTree.html"-->
+<script src="../../js/gp/Module.js" type="text/javascript"></script>
+<script src="../../js/co/CommonEdit.js" type="text/javascript"></script>
+<script src="../../js/gp/Domain.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var ajaxParamBoolean = {
+			url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_CASCADE
+		};
+
+		// 初始化是否级联单选按钮组
+		var radioParam = {
+			containerId : "cascadeContainerDiv",
+			name : "cascadeTypeCodeRadio",
+			textField : "text",
+			valueField : "code"
+		};
+
+		initRadioList(radioParam, ajaxParamBoolean);
+
+		//暂时默认全部级联，禁用其它选项
+		$("input[name='cascadeTypeCodeRadio'][value=0]").attr("checked", true);
+		$("input[name='cascadeTypeCodeRadio'][value!=0]").attr("disabled", true);
+		$("input[name='cascadeTypeCodeRadio'][value!=0]").parent().addClass("mt-radio-disabled");
+
+		var jsonData = {
+			"entityRelated" : {
+
+			},
+			"orderList" : [ {
+				"columnName" : "name",
+				"isASC" : true
+			} ]
+		};
+		// 树形结构begin
+		var setting = {
+			view : {
+				addHoverDom : addHoverDom,
+				removeHoverDom : removeHoverDom,
+				selectedMulti : true,
+				dblClickExpand : false
+			},
+			edit : {
+				enable : true,
+				editNameSelectAll : true,
+				showRemoveBtn : showRemoveBtn,
+				showRenameBtn : showRenameBtn
+			},
+			data : {
+				simpleData : {
+					enable : true,
+					idKey : "id",
+					pIdKey : "fartherId"
+				}
+			},
+			callback : {
+				beforeDrag : beforeDrag,
+				//beforeEditName : beforeEditName,
+				beforeRemove : beforeRemove,
+				beforeRename : beforeRename,
+				onDrop : onDrop,
+				onRemove : onRemove,
+				onRename : onRename,
+				beforeDrop : beforeDrop
+			}
+		};
+		var ajaxParamter = {
+			"url" : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
+			"async" : true,
+			"type" : "GET",
+			"success" : function(resultData) {
+				var zNodes = [ {
+					id : 1,
+					fartherId : 0,
+					name : "",
+					open : false
+				} ];
+				if (resultData.data != null && resultData.data.length != 0)
+					zNodes = resultData.data;
+				$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
+				var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+
+				var nodeList = moduleTree.getNodes();
+				$.each(nodeList, function(index, value) {
+					var ajaxParamter = {
+						"url" : RU_GPMODULE_GETLISTBYDOMAINID + value.id,
+						"async" : true,
+						"type" : "GET",
+						"success" : function(resultData) {
+							if (resultData.totalCount != 0)
+								moduleTree.addNodes(value, -1, resultData.data);
+						}
+					};
+					universalAjax(ajaxParamter);
+				});
+				fuzzySearch("ulModuleTree", '#ztree_search', null, true); // 初始化模糊搜索方法
+			}
+		};
+		universalAjax(ajaxParamter);
+
+	});
+</script>
+<style type="text/css">
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
+</style>
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-wrapper">
+	<!--#include file="/pc/ss/gp/html/cl/Top.html"-->
+	<div class="page-container page-content-wrapper">
+		<!--#include file="/pc/ss/gp/html/cl/Menu.html"-->
+		<div class="page-content">
+			<div class="row">
+				<div class="col-md-12 page-bar page-bar-height  portlet ">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a id="navbarIndexA" href="">主页</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>功能模块管理</li>
+					</ul>
+				</div>
+				<div class="portlet light bordered">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="portlet box red">
+								<div class="portlet-title">
+									<div class="caption">
+										<i class="icon-layers"></i>
+										<span class="caption-subject font-white sbold uppercase">功能模块管理</span>
+									</div>
+								</div>
+								<div class="form-body portlet-body">
+									<form action="#" id="formEdit" class="form-horizontal">
+										<div class="form-body">
+
+											<div class="form-group">
+												<div class="element-group left">
+													<label class="control-label col-md-2" for="treeContainer"> 搜索功能模块 </label>
+													<div class="col-md-8">
+														<div class="form-group">
+															<div class="col-md-12">
+																<div class="input-icon right">
+																	<!-- <i class="fa fa-search fa-spin font-blue"></i> -->
+																	<i class="fa fa-search"></i>
+																	<input type="text" id="ztree_search" value="" class="form-control" placeholder="输入关键词进行搜索，可多选……" autocomplete="off" />
+																</div>
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="element-group left">
+													<label class="control-label col-md-2" for="">更新级联菜单</label>
+													<div class="col-md-8">
+														<div class="mt-radio-inline" id="cascadeContainerDiv"></div>
+														<ul id="ulModuleTree" class="ztree"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-hidden">
+												<input type="hidden" name="hiddenOrgIds" id="hiddenOrgIds">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<!--#include file="/pc/ss/gp/html/cl/Footer.html"-->
+</body>
+</html>

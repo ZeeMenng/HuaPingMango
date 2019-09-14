@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$USER_HOME$/Desktop/FrontPage">
+      <excludeFolder url="file://$USER_HOME$/Desktop/FrontPage" />
+    </content>
+    <content url="file://$USER_HOME$/Desktop/front" />
+    <content url="file://$MODULE_DIR$/../../Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/pc/ss/mf/build" />
+      <excludeFolder url="file://$MODULE_DIR$/pc/ss/mf/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <content url="file://$MODULE_DIR$/pc/ss/mf/node_modules" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,203 @@
+import React, { Component } from "react";
+import '../../static/scss/forData/mainData.scss';
+// import locale from 'antd/lib/date-picker/locale/zh_CN';
+import * as api from "../api/api-forData";
+import { Select, message, Input, Button } from 'antd';
+const Option = Select.Option;
+
+export default class PlantingIndexAduit extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isAdd: props.match.params.id,                //  地址栏传参判断是新增：1 || 修改
+            // dataTimeTypeText:"全部",                    //  时间维度名称
+            // sourceChannelTypeText:"全部",               //  来源渠道默认名称
+            // areaLatitudeTypeText: "全部",               //  区域维度名称
+            // startTime:"",                               //  数据日期
+            // dataSources: "",                            //  数据来源
+            // name: "",                               //  名
+            // regionName:"",                              //  区域名称
+            auditStatusCode: 1,                          //审核结果
+            auditStatusText: '通过',
+            // auditerSuggestion:"",                        //  审核意见
+            // altitude:"",                                //  海拔
+            // averageTemperature:""                       //  平均气温
+        }
+    }
+    //  渲染数据
+    initInput = (id) => {
+        console.log(id)
+        let prId = id.split('-')[0];
+        api.plantingIndxOne.send({ id: prId }).then(res => {
+            console.log(res)
+            if (res.isSuccess) {
+                let v = res.data;
+                this.setState({
+                    name: v.name,
+                    altitude: v.altitude,
+                    averageTemperature: v.averageTemperature,
+                    regionId: v.daCommonField.regionId,
+                    regionName: v.daCommonField.regionName,
+                    startTime: v.daCommonField.startTime,
+                    areaLatitudeTypeCode: v.daCommonField.areaLatitudeTypeCode,
+                    // areaLatitudeTypeText:v.daCommonField.areaLatitudeTypeText,
+                    sourceChannelTypeCode: v.daCommonField.sourceChannelTypeCode,
+                    // sourceChannelTypeText:v.daCommonField.sourceChannelTypeText,
+                    dataSources: v.daCommonField.dataSources,
+                    dataTimeTypeCode: v.daCommonField.dataTimeTypeCode,
+                    // dataTimeTypeText:v.daCommonField.dataTimeTypeText
+                }, () => console.log(this.state))
+            } else {
+                message.error('信息初始化失败！')
+            }
+        })
+    }
+    //  保存方法
+    formSaveFn = () => {
+        const {
+            isAdd,
+            auditStatusCode,
+            auditStatusText,
+            auditerSuggestion
+        } = this.state
+        let id = isAdd.split('-');
+        let params = {
+            "entity": {
+                "daCommonField": {
+                    "auditStatusCode": auditStatusCode,
+                    "auditStatusText": auditStatusText,
+                    "auditerSuggestion": auditerSuggestion,
+                    "id": id[1]
+                }
+            },
+            "idList": [
+                id[0]
+            ]
+        }
+        api.altitudeAudit.send(params).then(res => {
+            console.log(res)
+            if (res.isSuccess) {
+                message.success('上报成功！')
+                //   返回上一页
+                this.goBackPage()
+            }
+        })
+    }
+    componentDidMount() {
+        //  初始化数据
+        this.initInput(this.state.isAdd)
+    }
+    //  返回上一页
+    goBackPage = () => {
+        this.props.history.go(-1)
+    }
+    //  下拉获取值通用方法
+    handleSelect = (e, option) => {
+        console.log(e, option)
+        let type = option.props.typename;
+        let code = option.props.codenum;
+        let text = option.props.children;
+        this.setState({
+            [type]: text,
+            [code]: e
+        }, () => {
+            // console.log(this.state[type],this.state[code])
+        })
+    }
+    //  input监听
+    inputHandle = (e) => {
+        // console.log(e.target.getAttribute('data-type'))
+        let type = e.target.getAttribute('data-type')
+        this.setState({
+            [type]: e.target.value
+        }, () => {
+            //  console.log(this.state[type])
+        })
+    }
+    render() {
+        const {
+            dataTimeTypeText,                   //  时间维度名称
+            sourceChannelTypeText,              //  来源渠道默认名称x
+            areaLatitudeTypeText,               //  区域维度名称
+            startTime,                               //  数据日期
+            dataSources,                            //  数据来源
+            name,                                   //   名x
+            regionName,                              //  区域名称
+        } = this.state
+        return (
+            <div className="forData">
+                <ul className="form-search form-aduit clearfix">
+                    <li>
+                        <label htmlFor="">时间维度：</label>
+                        <span>{dataTimeTypeText}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">数据日期：</label>
+                        <span>{startTime}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">来源渠道：</label>
+                        <span>{sourceChannelTypeText}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">数据来源：</label>
+                        <span>{dataSources}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">区域维度：</label>
+                        <span>{areaLatitudeTypeText}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">地理区域：</label>
+                        <span>{regionName}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">名称：</label>
+                        <span>{name}</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">指标名称：</label>
+                        <span>年</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">最适宜区域：</label>
+                        <span>年</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">适宜区：</label>
+                        <span>年</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">次适宜区：</label>
+                        <span>年</span>
+                    </li>
+                    <li>
+                        <label htmlFor="">不适宜区：</label>
+                        <span>年</span>
+                    </li>
+                    <li className="item-line">
+                    </li>
+                    <li className="item">
+                        <label htmlFor="">审核人：</label>
+                        <Input style={{ width: '65%' }} defaultValue="" />
+                    </li>
+                    <li className="item">
+                        <label htmlFor="">审核意见：</label>
+                        <Input onChange={this.inputHandle} data-type="auditerSuggestion" style={{ width: '65%' }} defaultValue="" />
+                    </li>
+                    <li className="item">
+                        <label htmlFor="">审核结果：</label>
+                        <Select onChange={this.handleSelect} defaultValue="1" style={{ width: '65%' }} >
+                            <Option codenum={'auditStatusCode'} typename={'auditStatusText'} value="1">通过</Option>
+                            <Option codenum={'auditStatusCode'} typename={'auditStatusText'} value="2">不通过</Option>
+                        </Select>
+                    </li>
+                    <li>
+                        <Button onClick={this.formSaveFn} type="primary">上报</Button>
+                        <Button onClick={this.goBackPage}>取消</Button>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+}

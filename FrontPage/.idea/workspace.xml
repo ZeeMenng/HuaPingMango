@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="dc1b9525-d91b-4ed7-aa66-aa301eb376fb" name="Default" comment="优化操作日志列表。">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/pc/global/js/constant/Constant.js" afterPath="$PROJECT_DIR$/pc/global/js/constant/Constant.js" />
+      <change beforePath="$PROJECT_DIR$/pc/global/js/constant/Interface.js" afterPath="$PROJECT_DIR$/pc/global/js/constant/Interface.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/cl/Header.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/cl/Header.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/gp/UserAdd.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/gp/UserAdd.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/gp/UserEdit.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/gp/UserEdit.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingAdd.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingAdd.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingEdit.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingEdit.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/pi/ProductRecommendAdd.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/pi/ProductRecommendAdd.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/html/pi/ProductRecommendEdit.html" afterPath="$PROJECT_DIR$/pc/ss/gp/html/pi/ProductRecommendEdit.html" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/js/co/Common.js" afterPath="$PROJECT_DIR$/pc/ss/gp/js/co/Common.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/js/gp/User.js" afterPath="$PROJECT_DIR$/pc/ss/gp/js/gp/User.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/js/pi/Advertising.js" afterPath="$PROJECT_DIR$/pc/ss/gp/js/pi/Advertising.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/gp/js/pi/ProductRecommend.js" afterPath="$PROJECT_DIR$/pc/ss/gp/js/pi/ProductRecommend.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/mf/build/static/js/ipConfig.js" afterPath="$PROJECT_DIR$/pc/ss/mf/build/static/js/ipConfig.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/pe/front/dist/js/common/common.js" afterPath="$PROJECT_DIR$/pc/ss/pe/front/dist/js/common/common.js" />
+      <change beforePath="$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common.js" afterPath="$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common.js" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="FrontPage" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="Common.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/co/Common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1736">
+              <caret line="56" column="38" lean-forward="false" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+              <folding>
+                <marker date="1534139661349" expanded="true" signature="13088:13099" ph="..." />
+                <marker date="1534139661349" expanded="true" signature="13329:13340" ph="..." />
+                <marker date="1534139661349" expanded="true" signature="13983:13999" ph="..." />
+                <marker date="1534139661349" expanded="true" signature="18758:18772" ph="..." />
+                <marker date="1534139661349" expanded="true" signature="19460:19466" ph=" " />
+                <marker date="1534139661349" expanded="true" signature="19466:19472" ph=" " />
+                <marker date="1534139661349" expanded="true" signature="20279:20285" ph=" " />
+                <marker date="1534139661349" expanded="true" signature="20285:20291" ph=" " />
+                <marker date="1534139661349" expanded="true" signature="57954:57989" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdvertisingAdd.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingAdd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3410">
+              <caret line="110" column="37" lean-forward="false" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContentEdit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/ContentEdit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5580">
+              <caret line="180" column="12" lean-forward="false" selection-start-line="180" selection-start-column="12" selection-end-line="180" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detiles.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/html/detiles/detiles.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2697">
+              <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listDetails.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/css/less/listDetails.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="41" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/global/js/constant/Constant.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="35" column="16" lean-forward="false" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Interface.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pc/global/js/constant/Interface.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1612">
+              <caret line="1113" column="30" lean-forward="false" selection-start-line="1113" selection-start-column="30" selection-end-line="1113" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-fileinput.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5/theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4495">
+              <caret line="162" column="34" lean-forward="false" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContentAdd.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/ContentAdd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <element signature="n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#7;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#8;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>universal</find>
+      <find>新增</find>
+      <find>date</find>
+      <find>layer</find>
+      <find>imgTitleImage</find>
+      <find>delete</find>
+      <find>gpresou</find>
+      <find>resouceId</find>
+      <find>textR</find>
+      <find>DE</find>
+      <find>textRe</find>
+      <find>广告</find>
+      <find>应用领域</find>
+      <find>&lt;select</find>
+      <find>hiddenResourceId</find>
+      <find>hiddenResource</find>
+      <find>hidden</find>
+      <find>hiddenResouceId</find>
+      <find>disabled</find>
+      <find>hiddenResourcePath</find>
+      <find>initEdit</find>
+      <find>hidd</find>
+      <find>hiddenResouce</find>
+      <find>endWi</find>
+      <find>endwi</find>
+      <find>endsW</find>
+      <find>detiles-img</find>
+      <find>initLink</find>
+      <find>DOMAIN_ID_WP</find>
+      <find>domainI</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>../../</replace>
+      <replace>查看所有</replace>
+      <replace>10000000).toFixed(2)</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\global\js\constant</dir>
+      <dir>E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\mf</dir>
+      <dir>E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/in/index.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/cl/Header.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/in/Index.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/in/Index.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/ControlAdd.html" />
+        <option value="$USER_HOME$/Desktop/FrontPage/gulpfile.js" />
+        <option value="$USER_HOME$/Desktop/FrontPage/package.json" />
+        <option value="$USER_HOME$/Desktop/FrontPage/pc/ss/gp/html/cl/Top.html" />
+        <option value="$USER_HOME$/Desktop/FrontPage/pc/ss/gp/js/co/Common.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/component/visual-team/bar/CusomForeast.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/component/visual-team/bar/ManggoValue.js" />
+        <option value="$PROJECT_DIR$/pp/mf/产业链全景.html" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/component/visual-team/d3/CircleBig.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/page/market-price/PriceSurvey.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/component/visual-team/d3/MarketSale.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/component/visual-team/pie/MangoPieType.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/page/market-sale/MarketSale.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/page/api/api-market-sale.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/page/industry-chain/IndustryChain.js" />
+        <option value="$PROJECT_DIR$/pc/ss/mf/src/page/import-export/ImportExport.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/Interface.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/cl/Top.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/User.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/Menu.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/Token.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/css/Common.css" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/TokenDetail.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/ModuleDetail.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/MenuDetail.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/UserDetail.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/lo/Login.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/lo/Login.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/jquery-validation/js/jquery.validate.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/uploadimage/plugin.js" />
+        <option value="$PROJECT_DIR$/pc/global/js/constant/Interface.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/pi/Content.js" />
+        <option value="$PROJECT_DIR$/pc/ss/pi/front/src/html/index/index.html" />
+        <option value="$PROJECT_DIR$/pc/ss/pi/front/src/js/common/common.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/pi/ContentAdd.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/config.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/PageList.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/Page.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/gp/Resource.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/pi/ContentEdit.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/gp/ResourceList.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingAdd.html" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingEdit.html" />
+        <option value="$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/pi/Advertising.js" />
+        <option value="$PROJECT_DIR$/pc/global/js/constant/Constant.js" />
+        <option value="$PROJECT_DIR$/pc/ss/gp/js/co/Common.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/pc/ss/pi/front/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="global" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="global" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="global" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="constant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="ss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="gp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="gp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontPage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontPage" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="FrontPage" type="462c0819:PsiDirectoryNode" />
+              <item name="pc" type="462c0819:PsiDirectoryNode" />
+              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="gp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="co" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/FrontPage" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/JAVA/JavaProject/HuaPingMango/代码/Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5/theme/assets/pages/scripts/components-date-time-pickers.js&#10;insert&#9;null&#9;null" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/Desktop/front/node_modules/gulp" />
+    <property name="javascript.nodejs.core.library.configured.version" value="6.10.0" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\assets\global\plugins" />
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\assets\global\plugins\ckeditor\plugins" />
+      <recent name="C:\Users\ZeeMenng\Desktop\FrontPage\pc" />
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc" />
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\js\lo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\assets\global\plugins\ckeditor\plugins" />
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\js\co" />
+      <recent name="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\pc\ss\gp\html\lo" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.Monitoring and Forecasting">
+    <configuration name="Monitoring and Forecasting" type="JavascriptDebugType" factoryName="JavaScript Debug" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:3000/">
+      <mapping url="webpack:///src" local-file="$PROJECT_DIR$/pc/ss/mf/src" />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" node-parameters=" --expose_debug_as=v8debug -- " path-to-js-file="start.js" working-dir="$PROJECT_DIR$/pc/ss/mf">
+      <envs>
+        <env name="NODE_ENV" value="development" />
+      </envs>
+    </configuration>
+    <configuration default="true" type="ReactNative" factoryName="React Native">
+      <working-dir value="$PROJECT_DIR$/pc/ss/mf" />
+      <node-interpreter value="project" />
+      <react-native value="" />
+      <platform value="ANDROID" />
+      <envs />
+      <browser value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration name="default" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile>$USER_HOME$/Desktop/front/gulpfile.js</gulpfile>
+      <tasks>
+        <task>default</task>
+      </tasks>
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile>$USER_HOME$/Desktop/front/gulpfile.js</gulpfile>
+      <tasks>
+        <task>dev</task>
+      </tasks>
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration name="index-html" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile>$USER_HOME$/Desktop/front/gulpfile.js</gulpfile>
+      <tasks>
+        <task>index-html</task>
+      </tasks>
+      <arguments />
+      <envs />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Monitoring and Forecasting" />
+      <item index="1" class="java.lang.String" itemvalue="Gulp.js.dev" />
+      <item index="2" class="java.lang.String" itemvalue="Gulp.js.index-html" />
+      <item index="3" class="java.lang.String" itemvalue="Gulp.js.default" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Gulp.js.dev" />
+        <item index="1" class="java.lang.String" itemvalue="Gulp.js.default" />
+        <item index="2" class="java.lang.String" itemvalue="Gulp.js.index-html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\ZeeMenng\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage" />
+          <option name="myCopyRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage" />
+          <option name="myCopyRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage\dr" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage" />
+          <option name="myCopyRoot" value="E:\JAVA\JavaProject\HuaPingMango\代码\PC\FrontPage" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc1b9525-d91b-4ed7-aa66-aa301eb376fb" name="Default" comment="" />
+      <created>1516079187887</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516079187887</updated>
+      <workItem from="1516079190565" duration="2534000" />
+      <workItem from="1516085345919" duration="37000" />
+      <workItem from="1516090280680" duration="3351000" />
+      <workItem from="1516270787743" duration="233000" />
+      <workItem from="1516271041759" duration="102000" />
+      <workItem from="1516271160087" duration="566000" />
+      <workItem from="1516271743663" duration="33000" />
+      <workItem from="1516286891782" duration="2216000" />
+      <workItem from="1516290183027" duration="2366000" />
+      <workItem from="1516293259623" duration="2926000" />
+      <workItem from="1516296486242" duration="16287000" />
+      <workItem from="1516331471602" duration="1338000" />
+      <workItem from="1516437421060" duration="17531000" />
+      <workItem from="1516518694740" duration="2606000" />
+      <workItem from="1516761232283" duration="11883000" />
+      <workItem from="1516895304224" duration="371000" />
+      <workItem from="1516895820840" duration="12015000" />
+      <workItem from="1516909571433" duration="428000" />
+      <workItem from="1516930216622" duration="929000" />
+      <workItem from="1516933480445" duration="793000" />
+      <workItem from="1516935981728" duration="17552000" />
+      <workItem from="1516978226634" duration="13437000" />
+      <workItem from="1517047326660" duration="13171000" />
+      <workItem from="1517221216119" duration="489000" />
+      <workItem from="1517283660625" duration="12617000" />
+      <workItem from="1517378776341" duration="9999000" />
+      <workItem from="1517510981128" duration="8432000" />
+      <workItem from="1517520348205" duration="225000" />
+      <workItem from="1517563833047" duration="14108000" />
+      <workItem from="1517821116719" duration="4962000" />
+      <workItem from="1518053749521" duration="1788000" />
+      <workItem from="1519463443296" duration="7492000" />
+      <workItem from="1519723592904" duration="592000" />
+      <workItem from="1519900435069" duration="5324000" />
+      <workItem from="1520848452619" duration="1780000" />
+      <workItem from="1521611841181" duration="3391000" />
+      <workItem from="1521684226197" duration="1793000" />
+      <workItem from="1524989368610" duration="4175000" />
+      <workItem from="1525268246708" duration="3332000" />
+      <workItem from="1527060511428" duration="1221000" />
+      <workItem from="1527228006176" duration="1876000" />
+      <workItem from="1527372869678" duration="240000" />
+      <workItem from="1528255419245" duration="10646000" />
+      <workItem from="1528446169035" duration="27456000" />
+      <workItem from="1528482005728" duration="1288000" />
+      <workItem from="1528684139502" duration="6854000" />
+      <workItem from="1529305828827" duration="460000" />
+      <workItem from="1529306379349" duration="2617000" />
+      <workItem from="1529371064582" duration="3771000" />
+      <workItem from="1529489228027" duration="1972000" />
+      <workItem from="1529544681079" duration="11141000" />
+      <workItem from="1529628618482" duration="2961000" />
+      <workItem from="1529646398866" duration="5728000" />
+      <workItem from="1529821197174" duration="10099000" />
+      <workItem from="1529992488594" duration="17529000" />
+      <workItem from="1530080409047" duration="14767000" />
+      <workItem from="1530191924069" duration="4161000" />
+      <workItem from="1530520430944" duration="5254000" />
+      <workItem from="1530526393479" duration="7241000" />
+      <workItem from="1530583393201" duration="12494000" />
+      <workItem from="1530616660467" duration="8640000" />
+      <workItem from="1530708299202" duration="1566000" />
+      <workItem from="1530756128707" duration="2931000" />
+      <workItem from="1530790219370" duration="4228000" />
+      <workItem from="1530794865440" duration="4125000" />
+      <workItem from="1530882122090" duration="7087000" />
+      <workItem from="1531205884772" duration="3844000" />
+      <workItem from="1532099838616" duration="14930000" />
+      <workItem from="1532311291361" duration="12968000" />
+      <workItem from="1533266418715" duration="2814000" />
+      <workItem from="1534126558620" duration="3783000" />
+      <workItem from="1547018897571" duration="41000" />
+    </task>
+    <task id="LOCAL-00001" summary="加入首页，和初版未成型的添加页面。">
+      <created>1516327840953</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1516327840953</updated>
+    </task>
+    <task id="LOCAL-00002" summary="加入首页，和初版未成型的添加页面。">
+      <created>1516328141813</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1516328141813</updated>
+    </task>
+    <task id="LOCAL-00003" summary="导出表格部分做通用处理。">
+      <created>1516330998879</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1516330998879</updated>
+    </task>
+    <task id="LOCAL-00004" summary="前端返回给后端的排序字段，还是用驼峰式的别名。">
+      <created>1516331932827</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1516331932827</updated>
+    </task>
+    <task id="LOCAL-00005" summary="导出表格部分做通用处理。">
+      <created>1516332086589</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1516332086589</updated>
+    </task>
+    <task id="LOCAL-00006" summary="导出表格部分做通用处理。">
+      <created>1516332095932</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1516332095932</updated>
+    </task>
+    <task id="LOCAL-00007" summary="加入登录页，新增功能优化更改。">
+      <created>1516784405857</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1516784405857</updated>
+    </task>
+    <task id="LOCAL-00008" summary="优化操作日志列表。">
+      <created>1517218986167</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1517218986167</updated>
+    </task>
+    <task id="LOCAL-00009" summary="优化操作日志列表。">
+      <created>1517219082918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1517219082918</updated>
+    </task>
+    <task id="LOCAL-00010" summary="优化操作日志列表。">
+      <created>1517219120848</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1517219120848</updated>
+    </task>
+    <task id="LOCAL-00011" summary="完善列表功能。">
+      <created>1517294492844</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1517294492845</updated>
+    </task>
+    <task id="LOCAL-00012" summary="文章发布页优化。">
+      <created>1517298578985</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1517298578985</updated>
+    </task>
+    <task id="LOCAL-00013" summary="文章发布CKEditor的校验。">
+      <created>1517302737407</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1517302737407</updated>
+    </task>
+    <task id="LOCAL-00014" summary="优化新增修改页面的初始化方法。">
+      <created>1517389506984</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1517389506984</updated>
+    </task>
+    <task id="LOCAL-00015" summary="加入日期插件。">
+      <created>1517389652888</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1517389652888</updated>
+    </task>
+    <task id="LOCAL-00016" summary="优化修改动作，返回查询的数据。">
+      <created>1517390440145</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1517390440145</updated>
+    </task>
+    <task id="LOCAL-00017" summary="删除无用日期插件">
+      <created>1517391208947</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1517391208947</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="419937000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="260" y="20" width="1400" height="980" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2801161" sideWeight="0.48826292" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298122" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50586855" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298122" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2421875" sideWeight="0.5117371" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43896714" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25625" sideWeight="0.5070422" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32685715" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="加入首页，和初版未成型的添加页面。" />
+    <MESSAGE value="前端返回给后端的排序字段，还是用驼峰式的别名。" />
+    <MESSAGE value="导出表格部分做通用处理。" />
+    <MESSAGE value="加入登录页，新增功能优化更改。" />
+    <MESSAGE value="优化操作日志表。" />
+    <MESSAGE value="优化操作日志列表。" />
+    <MESSAGE value="完善列表功能。" />
+    <MESSAGE value="文章发布页优化。" />
+    <MESSAGE value="文章发布CKEditor的校验。" />
+    <MESSAGE value="优化新增修改页面的初始化方法。" />
+    <MESSAGE value="加入日期插件。" />
+    <MESSAGE value="优化修改动作，返回查询的数据。" />
+    <MESSAGE value="删除无用日期插件" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无用日期插件" />
+    <option name="CHANGE_BROWSER_SETTINGS">
+      <map>
+        <entry key="svn">
+          <value>
+            <ChangeBrowserSettings>
+              <option name="DATE_BEFORE" />
+              <option name="DATE_AFTER" />
+            </ChangeBrowserSettings>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pc/ss/gp/js/co/Common.js</url>
+          <line>1118</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="12" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/gp/ControlAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5/theme/assets/global/plugins/ckeditor/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="124">
+            <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5/theme/assets/global/plugins/ckeditor/ckeditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="2" column="60" lean-forward="false" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/clipboard/dev/dnd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/widgetselection/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/lineutils/dev/dnd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/notification/lang/az.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/notificationaggregator/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/filetools/dev/uploaddebugger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/uploadwidget/dev/cors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/CHANGES.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/ckeditor_4.9.2_7c81359fc348/ckeditor/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/LICENSE.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="868">
+            <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/build-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/uploadimage/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="44" column="42" lean-forward="false" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/clipboard/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="1621" column="4" lean-forward="false" selection-start-line="1621" selection-start-column="4" selection-end-line="1621" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/ContentList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/html/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/dist/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/js/common/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2945">
+          <caret line="95" column="34" lean-forward="false" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common-db6f083c2a.js" />
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor4/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/ckeditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="666" column="54" lean-forward="false" selection-start-line="666" selection-start-column="54" selection-end-line="666" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/video/docs/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/plugins/html5video/lang/de.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/gp/TokenList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/co/CommonAdd.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/gp/Token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1829">
+          <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/pi/Content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2108">
+          <caret line="68" column="17" lean-forward="false" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/ckeditor/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/gp/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4557">
+          <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/gp/PageList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/gp/ResourceList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/global/js/constant/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/gp/Resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2356">
+          <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/ContentAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#8;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/assets/global/plugins/bootstrap-fileinput-4.4.8/js/fileinput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="2378" column="60" lean-forward="true" selection-start-line="2378" selection-start-column="60" selection-end-line="2378" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Metronic/metronic-v4.75/metronic-475/metronic_v4.7.5/theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4495">
+          <caret line="162" column="34" lean-forward="false" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/dist/js/common/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="41" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/pi/Advertising.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="252" column="42" lean-forward="false" selection-start-line="252" selection-start-column="42" selection-end-line="252" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/ContentEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5580">
+          <caret line="180" column="12" lean-forward="false" selection-start-line="180" selection-start-column="12" selection-end-line="180" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/css/less/listDetails.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/pi/front/src/html/detiles/detiles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2697">
+          <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/html/pi/AdvertisingAdd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3410">
+          <caret line="110" column="37" lean-forward="false" selection-start-line="110" selection-start-column="37" selection-end-line="110" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/ss/gp/js/co/Common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1736">
+          <caret line="56" column="38" lean-forward="false" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+          <folding>
+            <marker date="1534139661349" expanded="true" signature="13088:13099" ph="..." />
+            <marker date="1534139661349" expanded="true" signature="13329:13340" ph="..." />
+            <marker date="1534139661349" expanded="true" signature="13983:13999" ph="..." />
+            <marker date="1534139661349" expanded="true" signature="18758:18772" ph="..." />
+            <marker date="1534139661349" expanded="true" signature="19460:19466" ph=" " />
+            <marker date="1534139661349" expanded="true" signature="19466:19472" ph=" " />
+            <marker date="1534139661349" expanded="true" signature="20279:20285" ph=" " />
+            <marker date="1534139661349" expanded="true" signature="20285:20291" ph=" " />
+            <marker date="1534139661349" expanded="true" signature="57954:57989" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/global/js/constant/Constant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="35" column="16" lean-forward="false" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pc/global/js/constant/Interface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1612">
+          <caret line="1113" column="30" lean-forward="false" selection-start-line="1113" selection-start-column="30" selection-end-line="1113" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

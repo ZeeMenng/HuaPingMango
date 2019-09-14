@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon" />
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/less/interaction.css">
+</head>
+
+<body data-num="4">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <ul id="CurrentLocation">
+                <!-- <li>您的位置：</li>
+                <li>
+                    <a href="../index/index.html">首页</a>></li>
+                <li>
+                    <a href="./interaction_index.html">互动</a>>
+                </li>
+                <li>
+                    <a href="./interaction_index.html">问专家</a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="wraper">
+        <p class="notice">为了您的问题能够得到及时有效处理和回应，请填写真实信息。我们将严格保护您的个人隐私</p>
+        <form  id="fileForm"  class="layui-form" action=""  enctype="multipart/form-data">
+            <ul>
+                <li>
+                    <span class="layui-title"><i class="required">*</i>网名：</span>
+                    <div class="form-inline-block">
+                        <input name="nickName"  lay-verify="required" class="layui-input" type="text"/>
+                    </div>
+                </li>
+                <li>
+                    <span class="layui-title"><i class="required">*</i>姓名：</span>
+                    <div class="form-inline-block">
+                        <input name="realName" lay-verify="required" class="layui-input" type="text"/>
+                    </div>
+                </li>
+                <li>
+                    <span class="layui-title"><i class="required">*</i>职业：</span>
+                    <div class="form-inline-block">
+                        <!-- <select name="">
+                            <option value="1">工人</option>
+                            <option value="2">医生</option>
+                            <option value="3">在校大学生</option>
+                            <option value="4">执法人员</option>
+                        </select> -->
+                        <input name="job" lay-verify="required" class="layui-input" type="text"/>
+                    </div>
+                </li>
+                <li>
+                    <span class="layui-title"><i class="required">*</i>电话：</span>
+                    <div class="form-inline-block"><input name="phone" lay-verify="required|phone" class="layui-input" type="text"/></div>
+                </li>
+                <li>
+                    <span class="layui-title">邮箱：</span>
+                    <div class="form-inline-block"><input name="email" class="email" lay-verify="emailTrue" class="layui-input" type="text"/></div>
+                </li>
+                <li>
+                    <span class="layui-title">地址：</span>
+                    <div class="form-inline-block" style="position: relative;"><input id="city-picker" class="form-control" readonly type="text" value="" data-toggle="city-picker"></div>
+                </li>
+                <li>
+                    <span class="layui-title"></span>
+                    <div class="form-inline-block"><textarea name="regionName" placeholder="请填写详情地址" name="" id="" cols="30" rows="10"></textarea></div>
+                </li>
+                <li>
+                        <span class="layui-title">
+                            <i class="required">*</i>标题：
+                        </span>
+                    <div class="form-inline-block">
+                        <input name="title" lay-verify="required" class="layui-input" type="text" />
+                    </div>
+                </li>
+                <li>
+                        <span class="layui-title">
+                            <i class="required">*</i>内容：
+                        </span>
+                    <div class="form-inline-block">
+                        <textarea name="reqContent" cols="30" rows="10"></textarea>
+                    </div>
+                </li>
+                <li>
+                        <span class="layui-title">
+                            <i class="required"></i>图片：
+                        </span>
+                    <div class="form-inline-block clearfix">
+                        <ul class="picList clearfix fl">
+                            <!-- <li><span class="delpic">x</span><img width="98" height="121" src="../../img/company4.png"/></li>
+                            <li><span class="delpic">x</span><img width="98" height="121" src="../../img/company4.png"/></li>
+                            <li><span class="delpic">x</span><img width="98" height="121" src="../../img/company4.png"/></li> -->
+                        </ul>
+                        <div class="uplode fl">
+                            <span>上传图片</span>
+                            <input class="fileBtn" name="file" type="file" />
+                        </div>
+                    </div>
+                </li>
+                <li>
+                        <span class="layui-title">
+                            <i class="required">*</i>验证码：
+                        </span>
+                    <div class="form-inline-block">
+                        <input  lay-verify="required" class="layui-input" type="text" id="code_input"/> <div id="v_container" style="width: 180px;margin-left:18px;height: 40px;border:1px solid #ccc;"></div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class="submit-container">
+                <button class="layui-btn submit-btn" lay-submit="" type="button" lay-filter="demo1"  id="submit-btn">提交</button>
+                <button type="reset" class="reset-btn">重置信息</button>
+            </div>
+        </form>
+    </div>
+    <div class="wraper wraper-blogroll">
+        <div class="main-tltles">
+            <div class="fl bBorder-none">
+                <i class="iconfont icon-note"></i>
+                <span>友情链接</span>
+            </div>
+        </div>
+        <div class="blogroll-info clearfix">
+            <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+            <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+            <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+            <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src="../../js/layui/layui.js"></script>
+<script src="../../js/jquery-form.js"></script>
+<script src="../../js//common/city-picker.data.js"></script>
+<script src="../../js//common/city-picker.js"></script>
+<script src="../../js/common/gVerify.js"></script>
+<script src="../../js/leave-mess.js"></script>
+</body>

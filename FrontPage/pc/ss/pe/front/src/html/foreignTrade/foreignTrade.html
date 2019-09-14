@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../img/logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/commonn.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/font/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/less/foreignTrade.css"/>
+    <link rel="stylesheet" href="../../js/layui/css/layui.css"  media="all"/>
+</head>
+<body data-num="4">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box">
+        <div class="position w100">
+            <!-- <ul id="CurrentLocation">
+                <li>首页</li>
+                <li> > 对外贸易</li>
+            </ul> -->
+        </div>
+        <div class="wraper-content clearfix">
+            <div class="tradeNations">
+                <div class="every-box clearfix">
+                    <div class="top-title">
+                        <span>贸易国家</span>
+                    </div>
+                    
+                </div>
+                <div class="select-warp">
+                     <div class="tab-btn tradeNationsType" id='tradeNationsType'>
+                        <span class='active'>进口</span>
+                        <span>出口</span>
+                    </div>
+                    <div class="tab-btn" id='tradeNationsNum'>
+                        <span class='active'>按金额</span>
+                        <span>按数量</span>
+                    </div>
+                    <div class="date-select">
+                        <p>时间：</p>
+                        <input type="text" class="layui-input" id="startWorld"> 
+                        <!-- <span><i class="icon iconfont icon-sousuo"></i>查询</span> -->      
+                    </div>
+                </div>
+                
+                <div class="echarts-wraper" id='content'>
+                    <div class="nationsBar" id='nationsBar'></div>
+                    <div class="nationsMap" id='nationsMap'></div>
+                </div>
+            </div>
+            <div class="trade-bottom">
+               <div class="tradeScale fl">
+                    <div class="every-box clearfix">
+                        <div class="top-title">
+                            <span>贸易规模</span>
+                        </div> 
+                    </div>
+                    <div class="select-warp">
+                        <div class="tab-btn tradeScaleType" id='tradeScaleType'>
+                            <span class='active'>进口</span>
+                            <span>出口</span>
+                        </div>
+                        <div class="tab-btn" id='tradeScaleNum'>
+                            <span class='active'>按金额</span>
+                            <span>按数量</span>
+                        </div>
+                        <div class="date-select">
+                            <p>时间：</p>
+                            <input type="text" class="layui-input" id="startScale"> 
+                           <!--  <span><i class="icon iconfont icon-sousuo"></i>查询</span>  -->     
+                        </div>
+                    </div>
+                    <div class="echarts-wraper" id='tradeScaleBar'></div>
+                </div>
+               <div class="tradePrice fr">
+                    <div class="every-box clearfix">
+                        <div class="top-title">
+                            <span>进出口价格</span>
+                        </div>
+                    </div>
+                    <div class="select-warp">
+                        <div class="tab-btn tradePriceType" id='tradePriceType'>
+                            <span class='active' data-value='1'>进口</span>
+                            <span>出口</span>
+                        </div>
+                        <div class="date-select">
+                            <p>时间：</p>
+                            <input type="text" class="layui-input" id="startPrice"> 
+                            <!-- <span><i class="icon iconfont icon-sousuo"></i>查询</span> -->      
+                        </div>
+                    </div>
+                    <div class="echarts-wraper" id='tradePriceLine'></div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper wraper-blogroll">
+            <div class="every-box">
+                <div class="top-title">
+                    <span>友情链接</span>
+                 </div>
+                <div class="blogroll-info clearfix">
+                    <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                    <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                    <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                    <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+ <script type="text/javascript" src='../../js/common/echarts.min.js'></script>
+ <script src="../../js/layui/layui.all.js"></script>
+ <script type="text/javascript" src='../../js/common/world.js'></script>
+ <script type="text/javascript" src='../../js/foreignTrade.js'></script>
+
+
+
+</body>

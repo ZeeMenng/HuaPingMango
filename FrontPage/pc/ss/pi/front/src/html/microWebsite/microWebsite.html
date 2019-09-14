@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>芒果之乡</title>
+    <link rel="Shortcut Icon" href="../../img/logo.ico" type="image/x-icon"/>
+    <link type="text/css" href="../../css/less/commonn.css" rel="stylesheet">
+    <link type="text/css" href="../../css/font/iconfont.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/index.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/pagination.css" rel="stylesheet">
+    <link type="text/css" href="../../css/less/microWebsite.css" rel="stylesheet">
+</head>
+<body data-num="3">
+<!-- @@include= ../../components/header.html-->
+<!-- @@include= ../../components/menu.html-->
+<div class="main-wrap">
+    <div class="main-box market">
+        <div class="position w100">
+            <ul id="CurrentLocation"></ul>
+        </div>
+        <div class="wraper">
+            <div class="slider-container">
+                <div class="swiper-wraper">
+                    <ul class="swiper-box swiper-banner" id="swiper-banner">
+                        <!-- <li data-url="0">
+                          <a href="../detiles/detiles.html" class="skip-box">
+                            <img src="../../img/video7.jpg" alt="">
+                          </a>
+                        </li>-->
+                    </ul>
+                    <ul class="controller-banner" id="controller-banner">
+                        <li class="iconfont icon-dian-copy-copy active"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                        <li class="iconfont icon-dian-copy-copy"></li>
+                    </ul>
+                    <span class="swiper-click swiper-left"><</span>
+                    <span class="swiper-click swiper-right">></span>
+                </div>
+            </div>
+            <div class="company-introduce">
+                <div class="main-tltles">
+                    <div class="fl bBorder-none">
+                        <i class="iconfont icon-note"></i>
+                        <span>企业简介</span>
+                    </div>
+                </div>
+                <div id="Enterprise"></div>
+                 <script id="EnterpriseSrc" type="text/x-handlebars-template">
+                    <div class="company-text">{{EnterpriseData.description}}</div>
+                    <ul class="company-img">
+                        {{#each EnterpriseData.paths}}
+                            <li>
+                                <img src="{{this}}" alt="">
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <ul class="company-msg">
+                        <li><span>公司地址：</span>{{EnterpriseData.address}}</li>
+                        <!-- <li><span>固定电话：</span>{{EnterpriseData.landlineTelephone}}</li> -->
+                        <li><span>联系人：</span>{{EnterpriseData.linkMan}}</li>
+                        <li><span>联系方式：</span>{{EnterpriseData.linkmanMobile}}</li>
+                        <li><span>电子邮箱：</span>{{EnterpriseData.email}}</li>
+                        <!-- <li><span>邮政编码：</span>{{EnterpriseData.zipCode}}</li>
+                        <li><span>传真号码：</span>{{EnterpriseData.telautogram}}</li> -->
+                    </ul>
+                </script>
+                <div class="register-introduce">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>工商信息</span>
+                        </div>
+                    </div>
+                    <div class="register-table">
+                        <table class='tbody' cellspacing="0" cellpadding="0" id="CommerceInfo"></table>
+                        <script id="CommerceInfoSrc" type="text/x-handlebars-template">
+                            <tr>
+                                <th>统一社会信用代码</th>
+                                <td>{{CommerceInfoData.societyCreditId}}</td>
+                                <th>组织机构代码</th>
+                                <td>{{CommerceInfoData.organizationCode}}</td>
+                            </tr>
+                            <tr>
+                                <th>注册号</th>
+                                <td>{{CommerceInfoData.registrationMark}}</td>
+                                <th>经营状态</th>
+                                <td>{{CommerceInfoData.manageStatus}}</td>
+                            </tr>
+                            <tr>
+                                <th>所属行业</th>
+                                <td>{{CommerceInfoData.tradeText}}</td>
+                                <th>成立日期</th>
+                                <td>{{CommerceInfoData.establishDate}}</td>
+                            </tr>
+                            <tr>
+                                <th>公司类型</th>
+                                <td>{{CommerceInfoData.enterpriseTypeText}}</td>
+                                <th>营业期限</th>
+                                <td>{{CommerceInfoData.businessDuetime}}</td>
+                            </tr>
+                            <tr>
+                                <th>法定代表人</th>
+                                <td>{{CommerceInfoData.corporationName}}</td>
+                                <th>发照日期</th>
+                                <td>{{CommerceInfoData.establishDate}}</td>
+                            </tr>
+                            <tr>
+                                <th>注册资本</th>
+                                    <td>{{CommerceInfoData.registeredCapital}}万元</td>
+                                <th>登记机关</th>
+                                <td>{{CommerceInfoData.registryOffice}}</td>
+                            </tr>
+                            <tr>
+                                <th>企业地址</th>
+                                <td colspan="3">{{CommerceInfoData.address}}</td>
+                            </tr>
+                            <tr>
+                                <th>经营范围</th>
+                                <td colspan="3">{{CommerceInfoData.businessScope}}</td>
+                            </tr>
+                        </script>
+                    </div>
+                </div>
+                <div class="video-introduce">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>视频介绍</span>
+                        </div>
+                        <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                    </div>
+                    <div class="video-show" id="VideoInfo"></div>
+                    <script id="VideoInfoSrc" type="text/x-handlebars-template">
+                        <video controls="controls" src="{{VideoInfoData.path}}" style="width:100%">&nbsp;</video>
+                    </script>
+                </div>
+                <div class="product-introduce">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>产品推介</span>
+                        </div>
+                    </div>
+                    <ul class="product-list clearfix" id="MangoMallLists"></ul>
+                    <script id="MangoMallListsSrc" type="text/x-handlebars-template">
+                        {{#each MangoMallListsData}}
+                            {{#if path}}
+                                <li class="{{className4 @index}}">
+                                    <a href="{{mallInterlinkage}}" target="_blank">
+                                        <div class='img-box'>
+                                            <img src="{{path}}" alt="">
+                                        </div>
+                                        <div class='img-msg'>
+                                            <h1>{{name}}</h1>
+                                            <p><span>总重量：</span>{{weight}}千克</p>
+                                            <p><span>售价：</span>¥{{sellingPrice}}</p>
+                                            <p><span>品牌：</span>{{brand}}</p>
+                                        </div>
+                                    </a>
+                                </li>                                
+                            {{/if}}
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+            <div class="wraper wraper-blogroll">
+                <div class="main-box">
+                    <div class="main-tltles">
+                        <div class="fl bBorder-none">
+                            <i class="iconfont icon-note"></i>
+                            <span>友情链接</span>
+                        </div>
+                        <!--<a href="../list/list.html" class="fr">更多 ></a>-->
+                    </div>
+                    <div class="blogroll-info clearfix">
+                        <a href="http://www.huaping.gov.cn/" target="_blank">华坪网</a>
+                        <a href="http://wap.lijiang.cn/" target="_blank">丽江网</a>
+                        <a href="http://www.ynagri.gov.cn/" target="_blank">云南农业信息网</a>
+                        <a href="http://www.agri.cn/" class="noBorder" target="_blank">中国农业信息网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--@@include= ../../components/footer.html-->
+<script src='../../js/common/jquery.pagination.js'></script>
+<script src='../../js/microWebsite.js'></script>
+</body>

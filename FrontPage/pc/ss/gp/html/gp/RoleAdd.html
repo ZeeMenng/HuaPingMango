@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-cn">
+<head>
+<!--#include file="/pc/ss/gp/html/cl/Header.html"-->
+<link href="../../../../global/plugins/ztree/demo.css" rel="stylesheet" type="text/css" />
+<link href="../../../../global/plugins/ztree/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+<script src="../../../../global/plugins/ztree/jquery.ztree.core.min.js" type="text/javascript"></script>
+<script src="../../../../global/plugins/ztree/jquery.ztree.excheck.min.js" type="text/javascript"></script>
+<script src="../../js/gp/Role.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var pageParam = {
+			formId : "formAdd",
+			validateRules : {
+				selectDomainId : {
+					required : true
+				},
+				textName : {
+					required : true
+				},
+				hiddenModuleIds : {
+					required : true
+				},
+			}
+		};
+		var ajaxParam = {
+			url : RU_GPROLE_ADD,
+			submitData : {}
+		};
+		initAddPage(pageParam, ajaxParam);
+
+		$("#selectDomainId").change(function() {
+			initTreeNodes($(this).val());
+		});
+
+	});
+</script>
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-wrapper">
+	<!--#include file="/pc/ss/gp/html/cl/Top.html"-->
+	<div class="page-container page-content-wrapper">
+		<!--#include file="/pc/ss/gp/html/cl/Menu.html"-->
+		<div class="page-content">
+			<div class="row">
+				<div class="col-md-12 page-bar page-bar-height  portlet ">
+					<ul class="page-breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a id="navbarIndexA" href="">主页</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+							<a id="navbarListA" href=""> 系统角色管理</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>新增系统角色</li>
+					</ul>
+				</div>
+				<div class="portlet light bordered">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="portlet box red">
+								<div class="portlet-title">
+									<div class="caption">
+										<i class="fa fa-plus"></i>
+										<span class="caption-subject font-white sbold uppercase">新增系统角色</span>
+									</div>
+								</div>
+								<div class="form-body portlet-body">
+									<form action="#" id="formAdd" class="form-horizontal">
+										<div class="form-body">
+											<div class="form-group">
+												<div class="element-group left">
+													<label for="selectDomainId" class="control-label col-md-2">
+														应用领域
+														<span class="required" aria-required="true"> * </span>
+													</label>
+													<div class="col-md-3">
+														<select id="selectDomainId" name="selectDomainId" class="form-control">
+															<option value=""></option>
+														</select>
+													</div>
+												</div>
+												<div class="element-group right">
+													<label class="control-label col-md-2" for="textName">
+														角色名称
+														<span class="required" aria-required="true"> * </span>
+													</label>
+													<div class="col-md-3">
+														<input id="textName" name="textName" type="text" data-required="1" class="form-control" />
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="element-group left">
+													<label class="control-label col-md-2" for="treeContainer">
+														功能权限
+														<span class="required" aria-required="true"> * </span>
+													</label>
+													<div class="col-md-8">
+														<ul id="treeContainer" class="ztree"></ul>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="element-group left">
+													<label for="selectContentType" class="control-label col-md-2"> </label>
+													<div class="form-hidden">
+														<input type="hidden" name="hiddenModuleIds" id="hiddenModuleIds">
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="element-group left">
+													<label class="control-label col-md-2" for="textRemark">备注字段 </label>
+													<div class="col-md-8">
+														<textarea id="textareaRemark" name="textareaRemark" class="form-control" rows="3"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-actions">
+											<button id="buttonSubmit" type="submit" class="btn red-mint">提交</button>
+											<button id="buttonBack" type="button" class="btn red-mint">返回</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/pc/ss/gp/html/cl/Footer.html"-->
+</body>
+</html>
