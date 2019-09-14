@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentThemeSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="theme_name" property="themeName" jdbcType="VARCHAR" />
+              <result column="key_name" property="keyName" jdbcType="VARCHAR" />
+              <result column="exclude_name" property="excludeName" jdbcType="VARCHAR" />
+              <result column="rule_id" property="ruleId" jdbcType="VARCHAR" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="status_code" property="statusCode" jdbcType="TINYINT" />
+              <result column="status_text" property="statusText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,theme_name,key_name,exclude_name,rule_id,remark,add_user_id,add_time,status_code,status_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+    insert into da_sentiment_theme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="themeName != null and themeName != '' " >
+              theme_name,
+          </if>
+      
+          <if test="keyName != null and keyName != '' " >
+              key_name,
+          </if>
+      
+          <if test="excludeName != null and excludeName != '' " >
+              exclude_name,
+          </if>
+      
+          <if test="ruleId != null and ruleId != '' " >
+              rule_id,
+          </if>
+      
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="statusCode != null " >
+              status_code,
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              status_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="themeName != null and themeName != '' " >
+              #{themeName,jdbcType=VARCHAR},
+          </if>
+          <if test="keyName != null and keyName != '' " >
+              #{keyName,jdbcType=VARCHAR},
+          </if>
+          <if test="excludeName != null and excludeName != '' " >
+              #{excludeName,jdbcType=VARCHAR},
+          </if>
+          <if test="ruleId != null and ruleId != '' " >
+              #{ruleId,jdbcType=VARCHAR},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="statusCode != null " >
+              #{statusCode,jdbcType=TINYINT},
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              #{statusText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sentiment_theme
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentTheme" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSentimentTheme.id,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.themeName,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.keyName,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.excludeName,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.ruleId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.remark,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.addUserId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentTheme.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daSentimentTheme.statusCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentTheme.statusText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sentiment_theme
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sentiment_theme
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+    update da_sentiment_theme
+    <set >
+                  <if test="themeName != null  and themeName != '' " >
+                     theme_name = #{themeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="keyName != null  and keyName != '' " >
+                     key_name = #{keyName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="excludeName != null  and excludeName != '' " >
+                     exclude_name = #{excludeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="ruleId != null  and ruleId != '' " >
+                     rule_id = #{ruleId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="statusCode != null ">
+                     status_code = #{statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="statusText != null  and statusText != '' " >
+                     status_text = #{statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_sentiment_theme
+    <set >
+                  <if test="t.themeName != null  and t.themeName != '' " >
+                     theme_name = #{t.themeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keyName != null  and t.keyName != '' " >
+                     key_name = #{t.keyName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.excludeName != null  and t.excludeName != '' " >
+                     exclude_name = #{t.excludeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.ruleId != null  and t.ruleId != '' " >
+                     rule_id = #{t.ruleId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.statusCode != null ">
+                     status_code = #{t.statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.statusText != null  and t.statusText != '' " >
+                     status_text = #{t.statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sentiment_theme
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sentiment_theme where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.excludeName != null and EntityRelated.excludeName != '' ">
+ 				and  exclude_name LIKE CONCAT('%',#{EntityRelated.excludeName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.keyName != null and EntityRelated.keyName != '' ">
+ 				and  key_name LIKE CONCAT('%',#{EntityRelated.keyName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.ruleId != null and EntityRelated.ruleId != '' ">
+				and rule_id = #{EntityRelated.ruleId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.statusCode != null">
+				and status_code = #{EntityRelated.statusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.statusText != null and EntityRelated.statusText != '' ">
+ 				and  status_text LIKE CONCAT('%',#{EntityRelated.statusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.themeName != null and EntityRelated.themeName != '' ">
+ 				and  theme_name LIKE CONCAT('%',#{EntityRelated.themeName,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

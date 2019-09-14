@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaIndustryStatisticsSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="grow_area" property="growArea" jdbcType="NUMERIC" />
+              <result column="grow_area_code" property="growAreaCode" jdbcType="TINYINT" />
+              <result column="grow_area_text" property="growAreaText" jdbcType="VARCHAR" />
+              <result column="grow_area_unit" property="growAreaUnit" jdbcType="NUMERIC" />
+              <result column="grow_household" property="growHousehold" jdbcType="NUMERIC" />
+              <result column="organic_area" property="organicArea" jdbcType="NUMERIC" />
+              <result column="organic_area_code" property="organicAreaCode" jdbcType="TINYINT" />
+              <result column="organic_area_text" property="organicAreaText" jdbcType="VARCHAR" />
+              <result column="organic_area_unit" property="organicAreaUnit" jdbcType="NUMERIC" />
+              <result column="output" property="output" jdbcType="NUMERIC" />
+              <result column="output_total_code" property="outputTotalCode" jdbcType="TINYINT" />
+              <result column="output_total_text" property="outputTotalText" jdbcType="VARCHAR" />
+              <result column="output_total_unit" property="outputTotalUnit" jdbcType="NUMERIC" />
+              <result column="output_per" property="outputPer" jdbcType="NUMERIC" />
+              <result column="output_per_total_code" property="outputPerTotalCode" jdbcType="TINYINT" />
+              <result column="output_per_total_text" property="outputPerTotalText" jdbcType="VARCHAR" />
+              <result column="output_per_total_unit" property="outputPerTotalUnit" jdbcType="NUMERIC" />
+              <result column="output_value" property="outputValue" jdbcType="NUMERIC" />
+              <result column="output_value_code" property="outputValueCode" jdbcType="TINYINT" />
+              <result column="output_value_text" property="outputValueText" jdbcType="VARCHAR" />
+              <result column="output_value_unit" property="outputValueUnit" jdbcType="NUMERIC" />
+              <result column="wholesale_sales" property="wholesaleSales" jdbcType="NUMERIC" />
+              <result column="wholesale_sales_code" property="wholesaleSalesCode" jdbcType="TINYINT" />
+              <result column="wholesale_sales_text" property="wholesaleSalesText" jdbcType="VARCHAR" />
+              <result column="wholesale_sales_unit" property="wholesaleSalesUnit" jdbcType="NUMERIC" />
+              <result column="online_sales" property="onlineSales" jdbcType="NUMERIC" />
+              <result column="online_sales_code" property="onlineSalesCode" jdbcType="TINYINT" />
+              <result column="online_sales_text" property="onlineSalesText" jdbcType="VARCHAR" />
+              <result column="online_sales_unit" property="onlineSalesUnit" jdbcType="NUMERIC" />
+              <result column="online_saleamount" property="onlineSaleamount" jdbcType="NUMERIC" />
+              <result column="online_saleamount_code" property="onlineSaleamountCode" jdbcType="TINYINT" />
+              <result column="online_saleamount_text" property="onlineSaleamountText" jdbcType="VARCHAR" />
+              <result column="online_saleamountl_unit" property="onlineSaleamountlUnit" jdbcType="NUMERIC" />
+              <result column="fruithanging_area" property="fruithangingArea" jdbcType="NUMERIC" />
+              <result column="fruithanging_area_code" property="fruithangingAreaCode" jdbcType="TINYINT" />
+              <result column="fruithanging_area_text" property="fruithangingAreaText" jdbcType="VARCHAR" />
+              <result column="fruithanging_area_unit" property="fruithangingAreaUnit" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,grow_area,grow_area_code,grow_area_text,grow_area_unit,grow_household,organic_area,organic_area_code,organic_area_text,organic_area_unit,output,output_total_code,output_total_text,output_total_unit,output_per,output_per_total_code,output_per_total_text,output_per_total_unit,output_value,output_value_code,output_value_text,output_value_unit,wholesale_sales,wholesale_sales_code,wholesale_sales_text,wholesale_sales_unit,online_sales,online_sales_code,online_sales_text,online_sales_unit,online_saleamount,online_saleamount_code,online_saleamount_text,online_saleamountl_unit,fruithanging_area,fruithanging_area_code,fruithanging_area_text,fruithanging_area_unit
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+    insert into da_industry_statistics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="growArea != null " >
+              grow_area,
+          </if>
+          <if test="growAreaCode != null " >
+              grow_area_code,
+          </if>
+          <if test="growAreaText != null and growAreaText != '' " >
+              grow_area_text,
+          </if>
+      
+          <if test="growAreaUnit != null " >
+              grow_area_unit,
+          </if>
+          <if test="growHousehold != null " >
+              grow_household,
+          </if>
+          <if test="organicArea != null " >
+              organic_area,
+          </if>
+          <if test="organicAreaCode != null " >
+              organic_area_code,
+          </if>
+          <if test="organicAreaText != null and organicAreaText != '' " >
+              organic_area_text,
+          </if>
+      
+          <if test="organicAreaUnit != null " >
+              organic_area_unit,
+          </if>
+          <if test="output != null " >
+              output,
+          </if>
+          <if test="outputTotalCode != null " >
+              output_total_code,
+          </if>
+          <if test="outputTotalText != null and outputTotalText != '' " >
+              output_total_text,
+          </if>
+      
+          <if test="outputTotalUnit != null " >
+              output_total_unit,
+          </if>
+          <if test="outputPer != null " >
+              output_per,
+          </if>
+          <if test="outputPerTotalCode != null " >
+              output_per_total_code,
+          </if>
+          <if test="outputPerTotalText != null and outputPerTotalText != '' " >
+              output_per_total_text,
+          </if>
+      
+          <if test="outputPerTotalUnit != null " >
+              output_per_total_unit,
+          </if>
+          <if test="outputValue != null " >
+              output_value,
+          </if>
+          <if test="outputValueCode != null " >
+              output_value_code,
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              output_value_text,
+          </if>
+      
+          <if test="outputValueUnit != null " >
+              output_value_unit,
+          </if>
+          <if test="wholesaleSales != null " >
+              wholesale_sales,
+          </if>
+          <if test="wholesaleSalesCode != null " >
+              wholesale_sales_code,
+          </if>
+          <if test="wholesaleSalesText != null and wholesaleSalesText != '' " >
+              wholesale_sales_text,
+          </if>
+      
+          <if test="wholesaleSalesUnit != null " >
+              wholesale_sales_unit,
+          </if>
+          <if test="onlineSales != null " >
+              online_sales,
+          </if>
+          <if test="onlineSalesCode != null " >
+              online_sales_code,
+          </if>
+          <if test="onlineSalesText != null and onlineSalesText != '' " >
+              online_sales_text,
+          </if>
+      
+          <if test="onlineSalesUnit != null " >
+              online_sales_unit,
+          </if>
+          <if test="onlineSaleamount != null " >
+              online_saleamount,
+          </if>
+          <if test="onlineSaleamountCode != null " >
+              online_saleamount_code,
+          </if>
+          <if test="onlineSaleamountText != null and onlineSaleamountText != '' " >
+              online_saleamount_text,
+          </if>
+      
+          <if test="onlineSaleamountlUnit != null " >
+              online_saleamountl_unit,
+          </if>
+          <if test="fruithangingArea != null " >
+              fruithanging_area,
+          </if>
+          <if test="fruithangingAreaCode != null " >
+              fruithanging_area_code,
+          </if>
+          <if test="fruithangingAreaText != null and fruithangingAreaText != '' " >
+              fruithanging_area_text,
+          </if>
+      
+          <if test="fruithangingAreaUnit != null " >
+              fruithanging_area_unit,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="growArea != null " >
+              #{growArea,jdbcType=NUMERIC},
+          </if>
+          <if test="growAreaCode != null " >
+              #{growAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="growAreaText != null and growAreaText != '' " >
+              #{growAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="growAreaUnit != null " >
+              #{growAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="growHousehold != null " >
+              #{growHousehold,jdbcType=NUMERIC},
+          </if>
+          <if test="organicArea != null " >
+              #{organicArea,jdbcType=NUMERIC},
+          </if>
+          <if test="organicAreaCode != null " >
+              #{organicAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="organicAreaText != null and organicAreaText != '' " >
+              #{organicAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="organicAreaUnit != null " >
+              #{organicAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="output != null " >
+              #{output,jdbcType=NUMERIC},
+          </if>
+          <if test="outputTotalCode != null " >
+              #{outputTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="outputTotalText != null and outputTotalText != '' " >
+              #{outputTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="outputTotalUnit != null " >
+              #{outputTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="outputPer != null " >
+              #{outputPer,jdbcType=NUMERIC},
+          </if>
+          <if test="outputPerTotalCode != null " >
+              #{outputPerTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="outputPerTotalText != null and outputPerTotalText != '' " >
+              #{outputPerTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="outputPerTotalUnit != null " >
+              #{outputPerTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="outputValue != null " >
+              #{outputValue,jdbcType=NUMERIC},
+          </if>
+          <if test="outputValueCode != null " >
+              #{outputValueCode,jdbcType=TINYINT},
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              #{outputValueText,jdbcType=VARCHAR},
+          </if>
+          <if test="outputValueUnit != null " >
+              #{outputValueUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="wholesaleSales != null " >
+              #{wholesaleSales,jdbcType=NUMERIC},
+          </if>
+          <if test="wholesaleSalesCode != null " >
+              #{wholesaleSalesCode,jdbcType=TINYINT},
+          </if>
+          <if test="wholesaleSalesText != null and wholesaleSalesText != '' " >
+              #{wholesaleSalesText,jdbcType=VARCHAR},
+          </if>
+          <if test="wholesaleSalesUnit != null " >
+              #{wholesaleSalesUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="onlineSales != null " >
+              #{onlineSales,jdbcType=NUMERIC},
+          </if>
+          <if test="onlineSalesCode != null " >
+              #{onlineSalesCode,jdbcType=TINYINT},
+          </if>
+          <if test="onlineSalesText != null and onlineSalesText != '' " >
+              #{onlineSalesText,jdbcType=VARCHAR},
+          </if>
+          <if test="onlineSalesUnit != null " >
+              #{onlineSalesUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="onlineSaleamount != null " >
+              #{onlineSaleamount,jdbcType=NUMERIC},
+          </if>
+          <if test="onlineSaleamountCode != null " >
+              #{onlineSaleamountCode,jdbcType=TINYINT},
+          </if>
+          <if test="onlineSaleamountText != null and onlineSaleamountText != '' " >
+              #{onlineSaleamountText,jdbcType=VARCHAR},
+          </if>
+          <if test="onlineSaleamountlUnit != null " >
+              #{onlineSaleamountlUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="fruithangingArea != null " >
+              #{fruithangingArea,jdbcType=NUMERIC},
+          </if>
+          <if test="fruithangingAreaCode != null " >
+              #{fruithangingAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="fruithangingAreaText != null and fruithangingAreaText != '' " >
+              #{fruithangingAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="fruithangingAreaUnit != null " >
+              #{fruithangingAreaUnit,jdbcType=NUMERIC},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_industry_statistics
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIndustryStatistics" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daIndustryStatistics.id,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.name,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.growArea,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.growAreaCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.growAreaText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.growAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.growHousehold,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.organicArea,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.organicAreaCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.organicAreaText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.organicAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.output,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.outputTotalCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.outputTotalText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.outputTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.outputPer,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.outputPerTotalCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.outputPerTotalText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.outputPerTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.outputValue,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.outputValueCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.outputValueText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.outputValueUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.wholesaleSales,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.wholesaleSalesCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.wholesaleSalesText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.wholesaleSalesUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.onlineSales,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.onlineSalesCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.onlineSalesText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.onlineSalesUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.onlineSaleamount,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.onlineSaleamountCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.onlineSaleamountText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.onlineSaleamountlUnit,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.fruithangingArea,jdbcType=NUMERIC},
+
+      
+          #{daIndustryStatistics.fruithangingAreaCode,jdbcType=TINYINT},
+
+      
+          #{daIndustryStatistics.fruithangingAreaText,jdbcType=VARCHAR},
+
+      
+          #{daIndustryStatistics.fruithangingAreaUnit,jdbcType=NUMERIC},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_industry_statistics
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_industry_statistics
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+    update da_industry_statistics
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="growArea != null ">
+                     grow_area = #{growArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="growAreaCode != null ">
+                     grow_area_code = #{growAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="growAreaText != null  and growAreaText != '' " >
+                     grow_area_text = #{growAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="growAreaUnit != null ">
+                     grow_area_unit = #{growAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="growHousehold != null ">
+                     grow_household = #{growHousehold,jdbcType=NUMERIC},
+                  </if>
+                  <if test="organicArea != null ">
+                     organic_area = #{organicArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="organicAreaCode != null ">
+                     organic_area_code = #{organicAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="organicAreaText != null  and organicAreaText != '' " >
+                     organic_area_text = #{organicAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organicAreaUnit != null ">
+                     organic_area_unit = #{organicAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="output != null ">
+                     output = #{output,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputTotalCode != null ">
+                     output_total_code = #{outputTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="outputTotalText != null  and outputTotalText != '' " >
+                     output_total_text = #{outputTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="outputTotalUnit != null ">
+                     output_total_unit = #{outputTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputPer != null ">
+                     output_per = #{outputPer,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputPerTotalCode != null ">
+                     output_per_total_code = #{outputPerTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="outputPerTotalText != null  and outputPerTotalText != '' " >
+                     output_per_total_text = #{outputPerTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="outputPerTotalUnit != null ">
+                     output_per_total_unit = #{outputPerTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputValue != null ">
+                     output_value = #{outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputValueCode != null ">
+                     output_value_code = #{outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="outputValueText != null  and outputValueText != '' " >
+                     output_value_text = #{outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="outputValueUnit != null ">
+                     output_value_unit = #{outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="wholesaleSales != null ">
+                     wholesale_sales = #{wholesaleSales,jdbcType=NUMERIC},
+                  </if>
+                  <if test="wholesaleSalesCode != null ">
+                     wholesale_sales_code = #{wholesaleSalesCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="wholesaleSalesText != null  and wholesaleSalesText != '' " >
+                     wholesale_sales_text = #{wholesaleSalesText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="wholesaleSalesUnit != null ">
+                     wholesale_sales_unit = #{wholesaleSalesUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="onlineSales != null ">
+                     online_sales = #{onlineSales,jdbcType=NUMERIC},
+                  </if>
+                  <if test="onlineSalesCode != null ">
+                     online_sales_code = #{onlineSalesCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="onlineSalesText != null  and onlineSalesText != '' " >
+                     online_sales_text = #{onlineSalesText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="onlineSalesUnit != null ">
+                     online_sales_unit = #{onlineSalesUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="onlineSaleamount != null ">
+                     online_saleamount = #{onlineSaleamount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="onlineSaleamountCode != null ">
+                     online_saleamount_code = #{onlineSaleamountCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="onlineSaleamountText != null  and onlineSaleamountText != '' " >
+                     online_saleamount_text = #{onlineSaleamountText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="onlineSaleamountlUnit != null ">
+                     online_saleamountl_unit = #{onlineSaleamountlUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fruithangingArea != null ">
+                     fruithanging_area = #{fruithangingArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fruithangingAreaCode != null ">
+                     fruithanging_area_code = #{fruithangingAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="fruithangingAreaText != null  and fruithangingAreaText != '' " >
+                     fruithanging_area_text = #{fruithangingAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fruithangingAreaUnit != null ">
+                     fruithanging_area_unit = #{fruithangingAreaUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_industry_statistics
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growArea != null ">
+                     grow_area = #{t.growArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.growAreaCode != null ">
+                     grow_area_code = #{t.growAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.growAreaText != null  and t.growAreaText != '' " >
+                     grow_area_text = #{t.growAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growAreaUnit != null ">
+                     grow_area_unit = #{t.growAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.growHousehold != null ">
+                     grow_household = #{t.growHousehold,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicArea != null ">
+                     organic_area = #{t.organicArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicAreaCode != null ">
+                     organic_area_code = #{t.organicAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organicAreaText != null  and t.organicAreaText != '' " >
+                     organic_area_text = #{t.organicAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicAreaUnit != null ">
+                     organic_area_unit = #{t.organicAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.output != null ">
+                     output = #{t.output,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputTotalCode != null ">
+                     output_total_code = #{t.outputTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputTotalText != null  and t.outputTotalText != '' " >
+                     output_total_text = #{t.outputTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputTotalUnit != null ">
+                     output_total_unit = #{t.outputTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputPer != null ">
+                     output_per = #{t.outputPer,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputPerTotalCode != null ">
+                     output_per_total_code = #{t.outputPerTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputPerTotalText != null  and t.outputPerTotalText != '' " >
+                     output_per_total_text = #{t.outputPerTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputPerTotalUnit != null ">
+                     output_per_total_unit = #{t.outputPerTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValue != null ">
+                     output_value = #{t.outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValueCode != null ">
+                     output_value_code = #{t.outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputValueText != null  and t.outputValueText != '' " >
+                     output_value_text = #{t.outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputValueUnit != null ">
+                     output_value_unit = #{t.outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.wholesaleSales != null ">
+                     wholesale_sales = #{t.wholesaleSales,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.wholesaleSalesCode != null ">
+                     wholesale_sales_code = #{t.wholesaleSalesCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.wholesaleSalesText != null  and t.wholesaleSalesText != '' " >
+                     wholesale_sales_text = #{t.wholesaleSalesText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.wholesaleSalesUnit != null ">
+                     wholesale_sales_unit = #{t.wholesaleSalesUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.onlineSales != null ">
+                     online_sales = #{t.onlineSales,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.onlineSalesCode != null ">
+                     online_sales_code = #{t.onlineSalesCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.onlineSalesText != null  and t.onlineSalesText != '' " >
+                     online_sales_text = #{t.onlineSalesText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.onlineSalesUnit != null ">
+                     online_sales_unit = #{t.onlineSalesUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.onlineSaleamount != null ">
+                     online_saleamount = #{t.onlineSaleamount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.onlineSaleamountCode != null ">
+                     online_saleamount_code = #{t.onlineSaleamountCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.onlineSaleamountText != null  and t.onlineSaleamountText != '' " >
+                     online_saleamount_text = #{t.onlineSaleamountText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.onlineSaleamountlUnit != null ">
+                     online_saleamountl_unit = #{t.onlineSaleamountlUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruithangingArea != null ">
+                     fruithanging_area = #{t.fruithangingArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruithangingAreaCode != null ">
+                     fruithanging_area_code = #{t.fruithangingAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.fruithangingAreaText != null  and t.fruithangingAreaText != '' " >
+                     fruithanging_area_text = #{t.fruithangingAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fruithangingAreaUnit != null ">
+                     fruithanging_area_unit = #{t.fruithangingAreaUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_industry_statistics
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_industry_statistics where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fruithangingAreaCode != null">
+				and fruithanging_area_code = #{EntityRelated.fruithangingAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.fruithangingAreaText != null and EntityRelated.fruithangingAreaText != '' ">
+ 				and  fruithanging_area_text LIKE CONCAT('%',#{EntityRelated.fruithangingAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.growAreaCode != null">
+				and grow_area_code = #{EntityRelated.growAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.growAreaText != null and EntityRelated.growAreaText != '' ">
+ 				and  grow_area_text LIKE CONCAT('%',#{EntityRelated.growAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.onlineSaleamountCode != null">
+				and online_saleamount_code = #{EntityRelated.onlineSaleamountCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.onlineSaleamountText != null and EntityRelated.onlineSaleamountText != '' ">
+ 				and  online_saleamount_text LIKE CONCAT('%',#{EntityRelated.onlineSaleamountText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.onlineSalesCode != null">
+				and online_sales_code = #{EntityRelated.onlineSalesCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.onlineSalesText != null and EntityRelated.onlineSalesText != '' ">
+ 				and  online_sales_text LIKE CONCAT('%',#{EntityRelated.onlineSalesText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.organicAreaCode != null">
+				and organic_area_code = #{EntityRelated.organicAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.organicAreaText != null and EntityRelated.organicAreaText != '' ">
+ 				and  organic_area_text LIKE CONCAT('%',#{EntityRelated.organicAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.outputPerTotalCode != null">
+				and output_per_total_code = #{EntityRelated.outputPerTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.outputPerTotalText != null and EntityRelated.outputPerTotalText != '' ">
+ 				and  output_per_total_text LIKE CONCAT('%',#{EntityRelated.outputPerTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.outputTotalCode != null">
+				and output_total_code = #{EntityRelated.outputTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.outputTotalText != null and EntityRelated.outputTotalText != '' ">
+ 				and  output_total_text LIKE CONCAT('%',#{EntityRelated.outputTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.outputValueCode != null">
+				and output_value_code = #{EntityRelated.outputValueCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.outputValueText != null and EntityRelated.outputValueText != '' ">
+ 				and  output_value_text LIKE CONCAT('%',#{EntityRelated.outputValueText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.wholesaleSalesCode != null">
+				and wholesale_sales_code = #{EntityRelated.wholesaleSalesCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.wholesaleSalesText != null and EntityRelated.wholesaleSalesText != '' ">
+ 				and  wholesale_sales_text LIKE CONCAT('%',#{EntityRelated.wholesaleSalesText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

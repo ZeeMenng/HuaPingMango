@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.mf.IMfInputTypeUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfInputType" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="issue" property="issue" jdbcType="VARCHAR" />
+              <result column="quality_threshold" property="qualityThreshold" jdbcType="INTEGER" />
+              <result column="type_input" property="typeInput" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,issue,quality_threshold,type_input
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfInputType" >
+    insert into mf_input_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="issue != null and issue != '' " >
+              issue,
+          </if>
+      
+          <if test="qualityThreshold != null " >
+              quality_threshold,
+          </if>
+          <if test="typeInput != null " >
+              type_input,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="issue != null and issue != '' " >
+              #{issue,jdbcType=VARCHAR},
+          </if>
+          <if test="qualityThreshold != null " >
+              #{qualityThreshold,jdbcType=INTEGER},
+          </if>
+          <if test="typeInput != null " >
+              #{typeInput,jdbcType=TINYINT},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_input_type
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfInputType" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfInputType.id,jdbcType=VARCHAR},
+
+      
+          #{mfInputType.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{mfInputType.issue,jdbcType=VARCHAR},
+
+      
+          #{mfInputType.qualityThreshold,jdbcType=INTEGER},
+
+      
+          #{mfInputType.typeInput,jdbcType=TINYINT},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_input_type
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_input_type
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfInputType" >
+    update mf_input_type
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="issue != null  and issue != '' " >
+                     issue = #{issue,jdbcType=VARCHAR},
+                  </if>
+                  <if test="qualityThreshold != null ">
+                     quality_threshold = #{qualityThreshold,jdbcType=INTEGER},
+                  </if>
+                  <if test="typeInput != null ">
+                     type_input = #{typeInput,jdbcType=TINYINT},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update mf_input_type
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.issue != null  and t.issue != '' " >
+                     issue = #{t.issue,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qualityThreshold != null ">
+                     quality_threshold = #{t.qualityThreshold,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.typeInput != null ">
+                     type_input = #{t.typeInput,jdbcType=TINYINT},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update mf_input_type
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="mfInputType" index="index">
+                  <if test="mfInputType.commonFieldId != null and mfInputType.commonFieldId  != '' " >
+                     when id=#{mfInputType.id} then #{mfInputType.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="issue =case" suffix="end,">
+              <foreach collection="list" item="mfInputType" index="index">
+                  <if test="mfInputType.issue != null and mfInputType.issue  != '' " >
+                     when id=#{mfInputType.id} then #{mfInputType.issue,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="quality_threshold =case" suffix="end,">
+              <foreach collection="list" item="mfInputType" index="index">
+                  <if test="mfInputType.qualityThreshold != null " >
+                     when id=#{mfInputType.id} then #{mfInputType.qualityThreshold,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="type_input =case" suffix="end,">
+              <foreach collection="list" item="mfInputType" index="index">
+                  <if test="mfInputType.typeInput != null " >
+                     when id=#{mfInputType.id} then #{mfInputType.typeInput,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{mfInputType.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into mf_input_type
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="issue  != null and issue  != '' " >
+              issue,
+          </if>
+          <if test="qualityThreshold  != null " >
+              quality_threshold,
+          </if>
+          <if test="typeInput  != null " >
+              type_input,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="mfInputType" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{mfInputType.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{mfInputType.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.issue  != null  and t.issue != '' " >
+                     #{mfInputType.issue ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qualityThreshold != null ">
+                    #{mfInputType.qualityThreshold,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.typeInput != null ">
+                    #{mfInputType.typeInput,jdbcType=TINYINT},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_input_type
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_input_type where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.issue != null and EntityRelated.issue != '' ">
+ 				and  issue LIKE CONCAT('%',#{EntityRelated.issue,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

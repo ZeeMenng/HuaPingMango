@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPirChannelUserUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirChannelUser" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,channel_id,user_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirChannelUser" >
+    insert into pir_channel_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="userId != null and userId != '' " >
+              user_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="userId != null and userId != '' " >
+              #{userId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pir_channel_user
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirChannelUser" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{pirChannelUser.id,jdbcType=VARCHAR},
+
+      
+          #{pirChannelUser.channelId,jdbcType=VARCHAR},
+
+      
+          #{pirChannelUser.userId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pir_channel_user
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pir_channel_user
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirChannelUser" >
+    update pir_channel_user
+    <set >
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pir_channel_user
+    <set >
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pir_channel_user
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="channel_id =case" suffix="end,">
+              <foreach collection="list" item="pirChannelUser" index="index">
+                  <if test="pirChannelUser.channelId != null and pirChannelUser.channelId  != '' " >
+                     when id=#{pirChannelUser.id} then #{pirChannelUser.channelId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="user_id =case" suffix="end,">
+              <foreach collection="list" item="pirChannelUser" index="index">
+                  <if test="pirChannelUser.userId != null and pirChannelUser.userId  != '' " >
+                     when id=#{pirChannelUser.id} then #{pirChannelUser.userId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{pirChannelUser.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pir_channel_user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="channelId  != null and channelId  != '' " >
+              channel_id,
+          </if>
+          <if test="userId  != null and userId  != '' " >
+              user_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="pirChannelUser" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{pirChannelUser.id ,jdbcType=VARCHAR},
+                  <if test="t.channelId  != null  and t.channelId != '' " >
+                     #{pirChannelUser.channelId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId  != null  and t.userId != '' " >
+                     #{pirChannelUser.userId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pir_channel_user
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pir_channel_user where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
+				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

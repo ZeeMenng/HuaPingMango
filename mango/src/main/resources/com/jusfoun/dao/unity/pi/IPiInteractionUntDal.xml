@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPiInteractionUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiInteraction" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="interaction_type" property="interactionType" jdbcType="TINYINT" />
+              <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+              <result column="real_name" property="realName" jdbcType="VARCHAR" />
+              <result column="job" property="job" jdbcType="VARCHAR" />
+              <result column="phone" property="phone" jdbcType="VARCHAR" />
+              <result column="email" property="email" jdbcType="VARCHAR" />
+              <result column="qq" property="qq" jdbcType="VARCHAR" />
+              <result column="region_id" property="regionId" jdbcType="VARCHAR" />
+              <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="req_content" property="reqContent" jdbcType="VARCHAR" />
+              <result column="res_user_id" property="resUserId" jdbcType="VARCHAR" />
+              <result column="res_content" property="resContent" jdbcType="VARCHAR" />
+              <result column="audit_status_code" property="auditStatusCode" jdbcType="TINYINT" />
+              <result column="audit_status_text" property="auditStatusText" jdbcType="VARCHAR" />
+              <result column="auditer_suggestion" property="auditerSuggestion" jdbcType="VARCHAR" />
+              <result column="auditer_user_id" property="auditerUserId" jdbcType="VARCHAR" />
+              <result column="auditer_time" property="auditerTime" jdbcType="TIMESTAMP" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,interaction_type,nick_name,real_name,job,phone,email,qq,region_id,region_name,title,req_content,res_user_id,res_content,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id,auditer_time,add_time,update_time,remark
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+    insert into pi_interaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="interactionType != null " >
+              interaction_type,
+          </if>
+          <if test="nickName != null and nickName != '' " >
+              nick_name,
+          </if>
+      
+          <if test="realName != null and realName != '' " >
+              real_name,
+          </if>
+      
+          <if test="job != null and job != '' " >
+              job,
+          </if>
+      
+          <if test="phone != null and phone != '' " >
+              phone,
+          </if>
+      
+          <if test="email != null and email != '' " >
+              email,
+          </if>
+      
+          <if test="qq != null and qq != '' " >
+              qq,
+          </if>
+      
+          <if test="regionId != null and regionId != '' " >
+              region_id,
+          </if>
+      
+          <if test="regionName != null and regionName != '' " >
+              region_name,
+          </if>
+      
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="reqContent != null and reqContent != '' " >
+              req_content,
+          </if>
+      
+          <if test="resUserId != null and resUserId != '' " >
+              res_user_id,
+          </if>
+      
+          <if test="resContent != null and resContent != '' " >
+              res_content,
+          </if>
+      
+          <if test="auditStatusCode != null " >
+              audit_status_code,
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              audit_status_text,
+          </if>
+      
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              auditer_suggestion,
+          </if>
+      
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              auditer_user_id,
+          </if>
+      
+          <if test="auditerTime != null " >
+              auditer_time,
+          </if>
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="interactionType != null " >
+              #{interactionType,jdbcType=TINYINT},
+          </if>
+          <if test="nickName != null and nickName != '' " >
+              #{nickName,jdbcType=VARCHAR},
+          </if>
+          <if test="realName != null and realName != '' " >
+              #{realName,jdbcType=VARCHAR},
+          </if>
+          <if test="job != null and job != '' " >
+              #{job,jdbcType=VARCHAR},
+          </if>
+          <if test="phone != null and phone != '' " >
+              #{phone,jdbcType=VARCHAR},
+          </if>
+          <if test="email != null and email != '' " >
+              #{email,jdbcType=VARCHAR},
+          </if>
+          <if test="qq != null and qq != '' " >
+              #{qq,jdbcType=VARCHAR},
+          </if>
+          <if test="regionId != null and regionId != '' " >
+              #{regionId,jdbcType=VARCHAR},
+          </if>
+          <if test="regionName != null and regionName != '' " >
+              #{regionName,jdbcType=VARCHAR},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="reqContent != null and reqContent != '' " >
+              #{reqContent,jdbcType=VARCHAR},
+          </if>
+          <if test="resUserId != null and resUserId != '' " >
+              #{resUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="resContent != null and resContent != '' " >
+              #{resContent,jdbcType=VARCHAR},
+          </if>
+          <if test="auditStatusCode != null " >
+              #{auditStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              #{auditStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              #{auditerSuggestion,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              #{auditerUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerTime != null " >
+              #{auditerTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_interaction
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piInteraction" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piInteraction.id,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.interactionType,jdbcType=TINYINT},
+
+      
+          #{piInteraction.nickName,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.realName,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.job,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.phone,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.email,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.qq,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.regionId,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.regionName,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.title,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.reqContent,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.resUserId,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.resContent,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.auditStatusCode,jdbcType=TINYINT},
+
+      
+          #{piInteraction.auditStatusText,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.auditerSuggestion,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.auditerUserId,jdbcType=VARCHAR},
+
+      
+          #{piInteraction.auditerTime,jdbcType=TIMESTAMP},
+
+      
+          #{piInteraction.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{piInteraction.updateTime,jdbcType=TIMESTAMP},
+
+      
+          #{piInteraction.remark,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_interaction
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_interaction
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+    update pi_interaction
+    <set >
+                  <if test="interactionType != null ">
+                     interaction_type = #{interactionType,jdbcType=TINYINT},
+                  </if>
+                  <if test="nickName != null  and nickName != '' " >
+                     nick_name = #{nickName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="realName != null  and realName != '' " >
+                     real_name = #{realName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="job != null  and job != '' " >
+                     job = #{job,jdbcType=VARCHAR},
+                  </if>
+                  <if test="phone != null  and phone != '' " >
+                     phone = #{phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="email != null  and email != '' " >
+                     email = #{email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="qq != null  and qq != '' " >
+                     qq = #{qq,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionId != null  and regionId != '' " >
+                     region_id = #{regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionName != null  and regionName != '' " >
+                     region_name = #{regionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="reqContent != null  and reqContent != '' " >
+                     req_content = #{reqContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="resUserId != null  and resUserId != '' " >
+                     res_user_id = #{resUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="resContent != null  and resContent != '' " >
+                     res_content = #{resContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditStatusCode != null ">
+                     audit_status_code = #{auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="auditStatusText != null  and auditStatusText != '' " >
+                     audit_status_text = #{auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerSuggestion != null  and auditerSuggestion != '' " >
+                     auditer_suggestion = #{auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerUserId != null  and auditerUserId != '' " >
+                     auditer_user_id = #{auditerUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerTime != null ">
+                     auditer_time = #{auditerTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pi_interaction
+    <set >
+                  <if test="t.interactionType != null ">
+                     interaction_type = #{t.interactionType,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.nickName != null  and t.nickName != '' " >
+                     nick_name = #{t.nickName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.realName != null  and t.realName != '' " >
+                     real_name = #{t.realName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.job != null  and t.job != '' " >
+                     job = #{t.job,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone != null  and t.phone != '' " >
+                     phone = #{t.phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.email != null  and t.email != '' " >
+                     email = #{t.email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qq != null  and t.qq != '' " >
+                     qq = #{t.qq,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionId != null  and t.regionId != '' " >
+                     region_id = #{t.regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionName != null  and t.regionName != '' " >
+                     region_name = #{t.regionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.reqContent != null  and t.reqContent != '' " >
+                     req_content = #{t.reqContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resUserId != null  and t.resUserId != '' " >
+                     res_user_id = #{t.resUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resContent != null  and t.resContent != '' " >
+                     res_content = #{t.resContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditStatusCode != null ">
+                     audit_status_code = #{t.auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.auditStatusText != null  and t.auditStatusText != '' " >
+                     audit_status_text = #{t.auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerSuggestion != null  and t.auditerSuggestion != '' " >
+                     auditer_suggestion = #{t.auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerUserId != null  and t.auditerUserId != '' " >
+                     auditer_user_id = #{t.auditerUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerTime != null ">
+                     auditer_time = #{t.auditerTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pi_interaction
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="interaction_type =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.interactionType != null " >
+                     when id=#{piInteraction.id} then #{piInteraction.interactionType,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="nick_name =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.nickName != null and piInteraction.nickName  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.nickName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="real_name =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.realName != null and piInteraction.realName  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.realName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="job =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.job != null and piInteraction.job  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.job,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="phone =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.phone != null and piInteraction.phone  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.phone,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="email =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.email != null and piInteraction.email  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.email,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="qq =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.qq != null and piInteraction.qq  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.qq,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_id =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.regionId != null and piInteraction.regionId  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.regionId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_name =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.regionName != null and piInteraction.regionName  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.regionName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.title != null and piInteraction.title  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.title,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="req_content =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.reqContent != null and piInteraction.reqContent  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.reqContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="res_user_id =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.resUserId != null and piInteraction.resUserId  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.resUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="res_content =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.resContent != null and piInteraction.resContent  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.resContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="audit_status_code =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.auditStatusCode != null " >
+                     when id=#{piInteraction.id} then #{piInteraction.auditStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="audit_status_text =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.auditStatusText != null and piInteraction.auditStatusText  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.auditStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="auditer_suggestion =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.auditerSuggestion != null and piInteraction.auditerSuggestion  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.auditerSuggestion,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="auditer_user_id =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.auditerUserId != null and piInteraction.auditerUserId  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.auditerUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="auditer_time =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.auditerTime != null " >
+                     when id=#{piInteraction.id} then #{piInteraction.auditerTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.addTime != null " >
+                     when id=#{piInteraction.id} then #{piInteraction.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_time =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.updateTime != null " >
+                     when id=#{piInteraction.id} then #{piInteraction.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="piInteraction" index="index">
+                  <if test="piInteraction.remark != null and piInteraction.remark  != '' " >
+                     when id=#{piInteraction.id} then #{piInteraction.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{piInteraction.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pi_interaction
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="interactionType  != null " >
+              interaction_type,
+          </if>
+          <if test="nickName  != null and nickName  != '' " >
+              nick_name,
+          </if>
+          <if test="realName  != null and realName  != '' " >
+              real_name,
+          </if>
+          <if test="job  != null and job  != '' " >
+              job,
+          </if>
+          <if test="phone  != null and phone  != '' " >
+              phone,
+          </if>
+          <if test="email  != null and email  != '' " >
+              email,
+          </if>
+          <if test="qq  != null and qq  != '' " >
+              qq,
+          </if>
+          <if test="regionId  != null and regionId  != '' " >
+              region_id,
+          </if>
+          <if test="regionName  != null and regionName  != '' " >
+              region_name,
+          </if>
+          <if test="title  != null and title  != '' " >
+              title,
+          </if>
+          <if test="reqContent  != null and reqContent  != '' " >
+              req_content,
+          </if>
+          <if test="resUserId  != null and resUserId  != '' " >
+              res_user_id,
+          </if>
+          <if test="resContent  != null and resContent  != '' " >
+              res_content,
+          </if>
+          <if test="auditStatusCode  != null " >
+              audit_status_code,
+          </if>
+          <if test="auditStatusText  != null and auditStatusText  != '' " >
+              audit_status_text,
+          </if>
+          <if test="auditerSuggestion  != null and auditerSuggestion  != '' " >
+              auditer_suggestion,
+          </if>
+          <if test="auditerUserId  != null and auditerUserId  != '' " >
+              auditer_user_id,
+          </if>
+          <if test="auditerTime  != null " >
+              auditer_time,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="updateTime  != null " >
+              update_time,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="piInteraction" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{piInteraction.id ,jdbcType=VARCHAR},
+                  <if test="t.interactionType != null ">
+                    #{piInteraction.interactionType,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.nickName  != null  and t.nickName != '' " >
+                     #{piInteraction.nickName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.realName  != null  and t.realName != '' " >
+                     #{piInteraction.realName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.job  != null  and t.job != '' " >
+                     #{piInteraction.job ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone  != null  and t.phone != '' " >
+                     #{piInteraction.phone ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.email  != null  and t.email != '' " >
+                     #{piInteraction.email ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qq  != null  and t.qq != '' " >
+                     #{piInteraction.qq ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionId  != null  and t.regionId != '' " >
+                     #{piInteraction.regionId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionName  != null  and t.regionName != '' " >
+                     #{piInteraction.regionName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title  != null  and t.title != '' " >
+                     #{piInteraction.title ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.reqContent  != null  and t.reqContent != '' " >
+                     #{piInteraction.reqContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resUserId  != null  and t.resUserId != '' " >
+                     #{piInteraction.resUserId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resContent  != null  and t.resContent != '' " >
+                     #{piInteraction.resContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditStatusCode != null ">
+                    #{piInteraction.auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.auditStatusText  != null  and t.auditStatusText != '' " >
+                     #{piInteraction.auditStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerSuggestion  != null  and t.auditerSuggestion != '' " >
+                     #{piInteraction.auditerSuggestion ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerUserId  != null  and t.auditerUserId != '' " >
+                     #{piInteraction.auditerUserId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerTime != null ">
+                    #{piInteraction.auditerTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{piInteraction.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                    #{piInteraction.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{piInteraction.remark ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_interaction
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_interaction where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.auditStatusCode != null">
+				and audit_status_code = #{EntityRelated.auditStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.auditStatusText != null and EntityRelated.auditStatusText != '' ">
+ 				and  audit_status_text LIKE CONCAT('%',#{EntityRelated.auditStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.auditerSuggestion != null and EntityRelated.auditerSuggestion != '' ">
+ 				and  auditer_suggestion LIKE CONCAT('%',#{EntityRelated.auditerSuggestion,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginAuditerTime != null ">
+				<![CDATA[ AND  unix_timestamp(auditer_time)>=unix_timestamp(#{EntityRelated.beginAuditerTime})]]> 
+		</if>
+		<if test="EntityRelated.endAuditerTime != null ">
+				<![CDATA[ AND  unix_timestamp(auditer_time)<unix_timestamp(#{EntityRelated.endAuditerTime})]]> 
+		</if>
+		<if test="EntityRelated.auditerUserId != null and EntityRelated.auditerUserId != '' ">
+				and auditer_user_id = #{EntityRelated.auditerUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.email != null and EntityRelated.email != '' ">
+ 				and  email LIKE CONCAT('%',#{EntityRelated.email,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.job != null and EntityRelated.job != '' ">
+ 				and  job LIKE CONCAT('%',#{EntityRelated.job,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.nickName != null and EntityRelated.nickName != '' ">
+ 				and  nick_name LIKE CONCAT('%',#{EntityRelated.nickName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.phone != null and EntityRelated.phone != '' ">
+ 				and  phone LIKE CONCAT('%',#{EntityRelated.phone,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.qq != null and EntityRelated.qq != '' ">
+ 				and  qq LIKE CONCAT('%',#{EntityRelated.qq,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.realName != null and EntityRelated.realName != '' ">
+ 				and  real_name LIKE CONCAT('%',#{EntityRelated.realName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionId != null and EntityRelated.regionId != '' ">
+				and region_id = #{EntityRelated.regionId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.regionName != null and EntityRelated.regionName != '' ">
+ 				and  region_name LIKE CONCAT('%',#{EntityRelated.regionName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.reqContent != null and EntityRelated.reqContent != '' ">
+ 				and  req_content LIKE CONCAT('%',#{EntityRelated.reqContent,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.resContent != null and EntityRelated.resContent != '' ">
+ 				and  res_content LIKE CONCAT('%',#{EntityRelated.resContent,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.resUserId != null and EntityRelated.resUserId != '' ">
+				and res_user_id = #{EntityRelated.resUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

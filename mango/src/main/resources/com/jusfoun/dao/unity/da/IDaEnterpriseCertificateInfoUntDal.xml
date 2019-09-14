@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseCertificateInfoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="cer_name" property="cerName" jdbcType="VARCHAR" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="order_by" property="orderBy" jdbcType="VARCHAR" />
+              <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+              <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+              <result column="organ" property="organ" jdbcType="VARCHAR" />
+              <result column="content" property="content" jdbcType="VARCHAR" />
+              <result column="certificate_status_code" property="certificateStatusCode" jdbcType="TINYINT" />
+              <result column="certificate_status_text" property="certificateStatusText" jdbcType="VARCHAR" />
+              <result column="certificate_type_code" property="certificateTypeCode" jdbcType="TINYINT" />
+              <result column="certificate_type_text" property="certificateTypeText" jdbcType="VARCHAR" />
+              <result column="publicity_time" property="publicityTime" jdbcType="TIMESTAMP" />
+              <result column="detail" property="detail" jdbcType="VARCHAR" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+              <result column="file_no" property="fileNo" jdbcType="VARCHAR" />
+              <result column="file_resource_id" property="fileResourceId" jdbcType="VARCHAR" />
+              <result column="file_resource_path" property="fileResourcePath" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,cer_name,enterprise_id,enterprise_name,order_by,start_date,end_date,organ,content,certificate_status_code,certificate_status_text,certificate_type_code,certificate_type_text,publicity_time,detail,datasource_code,remark,created_time,file_no,file_resource_id,file_resource_path
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+    insert into da_enterprise_certificate_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="cerName != null and cerName != '' " >
+              cer_name,
+          </if>
+      
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="orderBy != null and orderBy != '' " >
+              order_by,
+          </if>
+      
+          <if test="startDate != null " >
+              start_date,
+          </if>
+          <if test="endDate != null " >
+              end_date,
+          </if>
+          <if test="organ != null and organ != '' " >
+              organ,
+          </if>
+      
+          <if test="content != null and content != '' " >
+              content,
+          </if>
+      
+          <if test="certificateStatusCode != null " >
+              certificate_status_code,
+          </if>
+          <if test="certificateStatusText != null and certificateStatusText != '' " >
+              certificate_status_text,
+          </if>
+      
+          <if test="certificateTypeCode != null " >
+              certificate_type_code,
+          </if>
+          <if test="certificateTypeText != null and certificateTypeText != '' " >
+              certificate_type_text,
+          </if>
+      
+          <if test="publicityTime != null " >
+              publicity_time,
+          </if>
+          <if test="detail != null and detail != '' " >
+              detail,
+          </if>
+      
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+          <if test="fileNo != null and fileNo != '' " >
+              file_no,
+          </if>
+      
+          <if test="fileResourceId != null and fileResourceId != '' " >
+              file_resource_id,
+          </if>
+      
+          <if test="fileResourcePath != null and fileResourcePath != '' " >
+              file_resource_path,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="cerName != null and cerName != '' " >
+              #{cerName,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="orderBy != null and orderBy != '' " >
+              #{orderBy,jdbcType=VARCHAR},
+          </if>
+          <if test="startDate != null " >
+              #{startDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="endDate != null " >
+              #{endDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="organ != null and organ != '' " >
+              #{organ,jdbcType=VARCHAR},
+          </if>
+          <if test="content != null and content != '' " >
+              #{content,jdbcType=VARCHAR},
+          </if>
+          <if test="certificateStatusCode != null " >
+              #{certificateStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="certificateStatusText != null and certificateStatusText != '' " >
+              #{certificateStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="certificateTypeCode != null " >
+              #{certificateTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="certificateTypeText != null and certificateTypeText != '' " >
+              #{certificateTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="publicityTime != null " >
+              #{publicityTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="detail != null and detail != '' " >
+              #{detail,jdbcType=VARCHAR},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="fileNo != null and fileNo != '' " >
+              #{fileNo,jdbcType=VARCHAR},
+          </if>
+          <if test="fileResourceId != null and fileResourceId != '' " >
+              #{fileResourceId,jdbcType=VARCHAR},
+          </if>
+          <if test="fileResourcePath != null and fileResourcePath != '' " >
+              #{fileResourcePath,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_certificate_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseCertificateInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseCertificateInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.cerName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.enterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.orderBy,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.startDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseCertificateInfo.endDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseCertificateInfo.organ,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.content,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.certificateStatusCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseCertificateInfo.certificateStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.certificateTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseCertificateInfo.certificateTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.publicityTime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseCertificateInfo.detail,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseCertificateInfo.remark,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.createdTime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseCertificateInfo.fileNo,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.fileResourceId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseCertificateInfo.fileResourcePath,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_certificate_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_certificate_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+    update da_enterprise_certificate_info
+    <set >
+                  <if test="cerName != null  and cerName != '' " >
+                     cer_name = #{cerName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="orderBy != null  and orderBy != '' " >
+                     order_by = #{orderBy,jdbcType=VARCHAR},
+                  </if>
+                  <if test="startDate != null ">
+                     start_date = #{startDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="endDate != null ">
+                     end_date = #{endDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="organ != null  and organ != '' " >
+                     organ = #{organ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="content != null  and content != '' " >
+                     content = #{content,jdbcType=VARCHAR},
+                  </if>
+                  <if test="certificateStatusCode != null ">
+                     certificate_status_code = #{certificateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="certificateStatusText != null  and certificateStatusText != '' " >
+                     certificate_status_text = #{certificateStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="certificateTypeCode != null ">
+                     certificate_type_code = #{certificateTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="certificateTypeText != null  and certificateTypeText != '' " >
+                     certificate_type_text = #{certificateTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="publicityTime != null ">
+                     publicity_time = #{publicityTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="detail != null  and detail != '' " >
+                     detail = #{detail,jdbcType=VARCHAR},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="fileNo != null  and fileNo != '' " >
+                     file_no = #{fileNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fileResourceId != null  and fileResourceId != '' " >
+                     file_resource_id = #{fileResourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fileResourcePath != null  and fileResourcePath != '' " >
+                     file_resource_path = #{fileResourcePath,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_certificate_info
+    <set >
+                  <if test="t.cerName != null  and t.cerName != '' " >
+                     cer_name = #{t.cerName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.orderBy != null  and t.orderBy != '' " >
+                     order_by = #{t.orderBy,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.startDate != null ">
+                     start_date = #{t.startDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.endDate != null ">
+                     end_date = #{t.endDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.organ != null  and t.organ != '' " >
+                     organ = #{t.organ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.content != null  and t.content != '' " >
+                     content = #{t.content,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.certificateStatusCode != null ">
+                     certificate_status_code = #{t.certificateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.certificateStatusText != null  and t.certificateStatusText != '' " >
+                     certificate_status_text = #{t.certificateStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.certificateTypeCode != null ">
+                     certificate_type_code = #{t.certificateTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.certificateTypeText != null  and t.certificateTypeText != '' " >
+                     certificate_type_text = #{t.certificateTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.publicityTime != null ">
+                     publicity_time = #{t.publicityTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.detail != null  and t.detail != '' " >
+                     detail = #{t.detail,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.fileNo != null  and t.fileNo != '' " >
+                     file_no = #{t.fileNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fileResourceId != null  and t.fileResourceId != '' " >
+                     file_resource_id = #{t.fileResourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fileResourcePath != null  and t.fileResourcePath != '' " >
+                     file_resource_path = #{t.fileResourcePath,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_enterprise_certificate_info
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="cer_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.cerName != null and daEnterpriseCertificateInfo.cerName  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.cerName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.enterpriseId != null and daEnterpriseCertificateInfo.enterpriseId  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.enterpriseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.enterpriseName != null and daEnterpriseCertificateInfo.enterpriseName  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.enterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="order_by =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.orderBy != null and daEnterpriseCertificateInfo.orderBy  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.orderBy,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="start_date =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.startDate != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.startDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="end_date =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.endDate != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.endDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organ =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.organ != null and daEnterpriseCertificateInfo.organ  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.organ,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.content != null and daEnterpriseCertificateInfo.content  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.content,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="certificate_status_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.certificateStatusCode != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.certificateStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="certificate_status_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.certificateStatusText != null and daEnterpriseCertificateInfo.certificateStatusText  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.certificateStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="certificate_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.certificateTypeCode != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.certificateTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="certificate_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.certificateTypeText != null and daEnterpriseCertificateInfo.certificateTypeText  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.certificateTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="publicity_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.publicityTime != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.publicityTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="detail =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.detail != null and daEnterpriseCertificateInfo.detail  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.detail,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.datasourceCode != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.datasourceCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.remark != null and daEnterpriseCertificateInfo.remark  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="created_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.createdTime != null " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.createdTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="file_no =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.fileNo != null and daEnterpriseCertificateInfo.fileNo  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.fileNo,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="file_resource_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.fileResourceId != null and daEnterpriseCertificateInfo.fileResourceId  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.fileResourceId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="file_resource_path =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseCertificateInfo" index="index">
+                  <if test="daEnterpriseCertificateInfo.fileResourcePath != null and daEnterpriseCertificateInfo.fileResourcePath  != '' " >
+                     when id=#{daEnterpriseCertificateInfo.id} then #{daEnterpriseCertificateInfo.fileResourcePath,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daEnterpriseCertificateInfo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_enterprise_certificate_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="cerName  != null and cerName  != '' " >
+              cer_name,
+          </if>
+          <if test="enterpriseId  != null and enterpriseId  != '' " >
+              enterprise_id,
+          </if>
+          <if test="enterpriseName  != null and enterpriseName  != '' " >
+              enterprise_name,
+          </if>
+          <if test="orderBy  != null and orderBy  != '' " >
+              order_by,
+          </if>
+          <if test="startDate  != null " >
+              start_date,
+          </if>
+          <if test="endDate  != null " >
+              end_date,
+          </if>
+          <if test="organ  != null and organ  != '' " >
+              organ,
+          </if>
+          <if test="content  != null and content  != '' " >
+              content,
+          </if>
+          <if test="certificateStatusCode  != null " >
+              certificate_status_code,
+          </if>
+          <if test="certificateStatusText  != null and certificateStatusText  != '' " >
+              certificate_status_text,
+          </if>
+          <if test="certificateTypeCode  != null " >
+              certificate_type_code,
+          </if>
+          <if test="certificateTypeText  != null and certificateTypeText  != '' " >
+              certificate_type_text,
+          </if>
+          <if test="publicityTime  != null " >
+              publicity_time,
+          </if>
+          <if test="detail  != null and detail  != '' " >
+              detail,
+          </if>
+          <if test="datasourceCode  != null " >
+              datasource_code,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="createdTime  != null " >
+              created_time,
+          </if>
+          <if test="fileNo  != null and fileNo  != '' " >
+              file_no,
+          </if>
+          <if test="fileResourceId  != null and fileResourceId  != '' " >
+              file_resource_id,
+          </if>
+          <if test="fileResourcePath  != null and fileResourcePath  != '' " >
+              file_resource_path,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daEnterpriseCertificateInfo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daEnterpriseCertificateInfo.id ,jdbcType=VARCHAR},
+                  <if test="t.cerName  != null  and t.cerName != '' " >
+                     #{daEnterpriseCertificateInfo.cerName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                     #{daEnterpriseCertificateInfo.enterpriseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                     #{daEnterpriseCertificateInfo.enterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.orderBy  != null  and t.orderBy != '' " >
+                     #{daEnterpriseCertificateInfo.orderBy ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.startDate != null ">
+                    #{daEnterpriseCertificateInfo.startDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.endDate != null ">
+                    #{daEnterpriseCertificateInfo.endDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.organ  != null  and t.organ != '' " >
+                     #{daEnterpriseCertificateInfo.organ ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.content  != null  and t.content != '' " >
+                     #{daEnterpriseCertificateInfo.content ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.certificateStatusCode != null ">
+                    #{daEnterpriseCertificateInfo.certificateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.certificateStatusText  != null  and t.certificateStatusText != '' " >
+                     #{daEnterpriseCertificateInfo.certificateStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.certificateTypeCode != null ">
+                    #{daEnterpriseCertificateInfo.certificateTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.certificateTypeText  != null  and t.certificateTypeText != '' " >
+                     #{daEnterpriseCertificateInfo.certificateTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.publicityTime != null ">
+                    #{daEnterpriseCertificateInfo.publicityTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.detail  != null  and t.detail != '' " >
+                     #{daEnterpriseCertificateInfo.detail ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                    #{daEnterpriseCertificateInfo.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daEnterpriseCertificateInfo.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                    #{daEnterpriseCertificateInfo.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.fileNo  != null  and t.fileNo != '' " >
+                     #{daEnterpriseCertificateInfo.fileNo ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fileResourceId  != null  and t.fileResourceId != '' " >
+                     #{daEnterpriseCertificateInfo.fileResourceId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fileResourcePath  != null  and t.fileResourcePath != '' " >
+                     #{daEnterpriseCertificateInfo.fileResourcePath ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_certificate_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_certificate_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.cerName != null and EntityRelated.cerName != '' ">
+ 				and  cer_name LIKE CONCAT('%',#{EntityRelated.cerName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.certificateStatusCode != null">
+				and certificate_status_code = #{EntityRelated.certificateStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.certificateStatusText != null and EntityRelated.certificateStatusText != '' ">
+ 				and  certificate_status_text LIKE CONCAT('%',#{EntityRelated.certificateStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.certificateTypeCode != null">
+				and certificate_type_code = #{EntityRelated.certificateTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.certificateTypeText != null and EntityRelated.certificateTypeText != '' ">
+ 				and  certificate_type_text LIKE CONCAT('%',#{EntityRelated.certificateTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.content != null and EntityRelated.content != '' ">
+ 				and  content LIKE CONCAT('%',#{EntityRelated.content,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.detail != null and EntityRelated.detail != '' ">
+ 				and  detail LIKE CONCAT('%',#{EntityRelated.detail,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginEndDate != null ">
+				<![CDATA[ AND  unix_timestamp(end_date)>=unix_timestamp(#{EntityRelated.beginEndDate})]]> 
+		</if>
+		<if test="EntityRelated.endEndDate != null ">
+				<![CDATA[ AND  unix_timestamp(end_date)<unix_timestamp(#{EntityRelated.endEndDate})]]> 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fileNo != null and EntityRelated.fileNo != '' ">
+ 				and  file_no LIKE CONCAT('%',#{EntityRelated.fileNo,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fileResourceId != null and EntityRelated.fileResourceId != '' ">
+				and file_resource_id = #{EntityRelated.fileResourceId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.fileResourcePath != null and EntityRelated.fileResourcePath != '' ">
+ 				and  file_resource_path LIKE CONCAT('%',#{EntityRelated.fileResourcePath,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.orderBy != null and EntityRelated.orderBy != '' ">
+ 				and  order_by LIKE CONCAT('%',#{EntityRelated.orderBy,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.organ != null and EntityRelated.organ != '' ">
+ 				and  organ LIKE CONCAT('%',#{EntityRelated.organ,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginPublicityTime != null ">
+				<![CDATA[ AND  unix_timestamp(publicity_time)>=unix_timestamp(#{EntityRelated.beginPublicityTime})]]> 
+		</if>
+		<if test="EntityRelated.endPublicityTime != null ">
+				<![CDATA[ AND  unix_timestamp(publicity_time)<unix_timestamp(#{EntityRelated.endPublicityTime})]]> 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginStartDate != null ">
+				<![CDATA[ AND  unix_timestamp(start_date)>=unix_timestamp(#{EntityRelated.beginStartDate})]]> 
+		</if>
+		<if test="EntityRelated.endStartDate != null ">
+				<![CDATA[ AND  unix_timestamp(start_date)<unix_timestamp(#{EntityRelated.endStartDate})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

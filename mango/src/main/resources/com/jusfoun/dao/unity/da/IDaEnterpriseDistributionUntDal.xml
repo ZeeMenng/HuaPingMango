@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseDistributionUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseDistribution" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+              <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+              <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+              <result column="region_text" property="regionText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,longitude,latitude,region_code,region_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseDistribution" >
+    insert into da_enterprise_distribution
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="longitude != null and longitude != '' " >
+              longitude,
+          </if>
+      
+          <if test="latitude != null and latitude != '' " >
+              latitude,
+          </if>
+      
+          <if test="regionCode != null and regionCode != '' " >
+              region_code,
+          </if>
+      
+          <if test="regionText != null and regionText != '' " >
+              region_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="longitude != null and longitude != '' " >
+              #{longitude,jdbcType=VARCHAR},
+          </if>
+          <if test="latitude != null and latitude != '' " >
+              #{latitude,jdbcType=VARCHAR},
+          </if>
+          <if test="regionCode != null and regionCode != '' " >
+              #{regionCode,jdbcType=VARCHAR},
+          </if>
+          <if test="regionText != null and regionText != '' " >
+              #{regionText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_distribution
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseDistribution" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseDistribution.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.name,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.longitude,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.latitude,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.regionCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseDistribution.regionText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_distribution
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_distribution
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseDistribution" >
+    update da_enterprise_distribution
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="longitude != null  and longitude != '' " >
+                     longitude = #{longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="latitude != null  and latitude != '' " >
+                     latitude = #{latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionCode != null  and regionCode != '' " >
+                     region_code = #{regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionText != null  and regionText != '' " >
+                     region_text = #{regionText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_distribution
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.longitude != null  and t.longitude != '' " >
+                     longitude = #{t.longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.latitude != null  and t.latitude != '' " >
+                     latitude = #{t.latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode != null  and t.regionCode != '' " >
+                     region_code = #{t.regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText != null  and t.regionText != '' " >
+                     region_text = #{t.regionText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_distribution
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_distribution where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.latitude != null and EntityRelated.latitude != '' ">
+ 				and  latitude LIKE CONCAT('%',#{EntityRelated.latitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.longitude != null and EntityRelated.longitude != '' ">
+ 				and  longitude LIKE CONCAT('%',#{EntityRelated.longitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionCode != null">
+				and region_code = #{EntityRelated.regionCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.regionText != null and EntityRelated.regionText != '' ">
+ 				and  region_text LIKE CONCAT('%',#{EntityRelated.regionText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

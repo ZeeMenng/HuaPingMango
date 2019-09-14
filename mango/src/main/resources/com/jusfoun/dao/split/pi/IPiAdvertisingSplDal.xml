@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiAdvertisingSplDal">
+
+	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAdvertising">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+		<result column="domain_id" property="domainId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="resouce_id" property="resouceId" jdbcType="VARCHAR" />
+		<result column="resource_path" property="resourcePath" jdbcType="VARCHAR" />
+		<result column="width" property="width" jdbcType="INTEGER" />
+		<result column="height" property="height" jdbcType="INTEGER" />
+		<result column="target_code" property="targetCode" jdbcType="TINYINT" />
+		<result column="space_code" property="spaceCode" jdbcType="TINYINT" />
+		<result column="category_code" property="categoryCode" jdbcType="TINYINT" />
+		<result column="weight" property="weight" jdbcType="INTEGER" />
+		<result column="display_count" property="displayCount" jdbcType="BIGINT" />
+		<result column="click_count" property="clickCount" jdbcType="BIGINT" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="is_enabled_code" property="isEnabledCode" jdbcType="TINYINT" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,serial_no,domain_id,name,title,resouce_id,resource_path,width,height,target_code,space_code,category_code,weight,display_count,click_count,start_time,end_time,remark,is_enabled_code
+	</sql>
+
+	<insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising">
+		insert into pi_advertising
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				id,
+			</if>
+
+			<if test="serialNo != null and serialNo != '' ">
+				serial_no,
+			</if>
+
+			<if test="domainId != null and domainId != '' ">
+				domain_id,
+			</if>
+
+			<if test="name != null and name != '' ">
+				name,
+			</if>
+
+			<if test="title != null and title != '' ">
+				title,
+			</if>
+
+			<if test="resouceId != null and resouceId != '' ">
+				resouce_id,
+			</if>
+
+			<if test="resourcePath != null and resourcePath != '' ">
+				resource_path,
+			</if>
+
+			<if test="width != null ">
+				width,
+			</if>
+			<if test="height != null ">
+				height,
+			</if>
+			<if test="targetCode != null ">
+				target_code,
+			</if>
+			<if test="spaceCode != null ">
+				space_code,
+			</if>
+			<if test="categoryCode != null ">
+				category_code,
+			</if>
+			<if test="weight != null ">
+				weight,
+			</if>
+			<if test="displayCount != null ">
+				display_count,
+			</if>
+			<if test="clickCount != null ">
+				click_count,
+			</if>
+			<if test="startTime != null ">
+				start_time,
+			</if>
+			<if test="endTime != null ">
+				end_time,
+			</if>
+			<if test="remark != null and remark != '' ">
+				remark,
+			</if>
+
+			<if test="isEnabledCode != null ">
+				is_enabled_code,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="serialNo != null and serialNo != '' ">
+				#{serialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="domainId != null and domainId != '' ">
+				#{domainId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null and name != '' ">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null and title != '' ">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="resouceId != null and resouceId != '' ">
+				#{resouceId,jdbcType=VARCHAR},
+			</if>
+			<if test="resourcePath != null and resourcePath != '' ">
+				#{resourcePath,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null ">
+				#{width,jdbcType=INTEGER},
+			</if>
+			<if test="height != null ">
+				#{height,jdbcType=INTEGER},
+			</if>
+			<if test="targetCode != null ">
+				#{targetCode,jdbcType=TINYINT},
+			</if>
+			<if test="spaceCode != null ">
+				#{spaceCode,jdbcType=TINYINT},
+			</if>
+			<if test="categoryCode != null ">
+				#{categoryCode,jdbcType=TINYINT},
+			</if>
+			<if test="weight != null ">
+				#{weight,jdbcType=INTEGER},
+			</if>
+			<if test="displayCount != null ">
+				#{displayCount,jdbcType=BIGINT},
+			</if>
+			<if test="clickCount != null ">
+				#{clickCount,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null ">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null ">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null and remark != '' ">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="isEnabledCode != null ">
+				#{isEnabledCode,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="addList" parameterType="list">
+		insert into pi_advertising
+		<trim prefix="(" suffix=")">
+			<include refid="Base_Column_List" />
+		</trim>
+		values
+		<foreach collection="list" item="piAdvertising" index="index" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+
+
+				#{piAdvertising.id,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.serialNo,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.domainId,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.name,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.title,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.resouceId,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.resourcePath,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.width,jdbcType=INTEGER},
+
+
+				#{piAdvertising.height,jdbcType=INTEGER},
+
+
+				#{piAdvertising.targetCode,jdbcType=TINYINT},
+
+
+				#{piAdvertising.spaceCode,jdbcType=TINYINT},
+
+
+				#{piAdvertising.categoryCode,jdbcType=TINYINT},
+
+
+				#{piAdvertising.weight,jdbcType=INTEGER},
+
+
+				#{piAdvertising.displayCount,jdbcType=BIGINT},
+
+
+				#{piAdvertising.clickCount,jdbcType=BIGINT},
+
+
+				#{piAdvertising.startTime,jdbcType=TIMESTAMP},
+
+
+				#{piAdvertising.endTime,jdbcType=TIMESTAMP},
+
+
+				#{piAdvertising.remark,jdbcType=VARCHAR},
+
+
+				#{piAdvertising.isEnabledCode,jdbcType=TINYINT},
+
+
+			</trim>
+		</foreach>
+	</insert>
+
+
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from pi_advertising
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_advertising
+		where id in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising">
+		update pi_advertising
+		<set>
+			<if test="serialNo != null  and serialNo != '' ">
+				serial_no = #{serialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="domainId != null  and domainId != '' ">
+				domain_id = #{domainId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null  and name != '' ">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null  and title != '' ">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="resouceId != null  and resouceId != '' ">
+				resouce_id = #{resouceId,jdbcType=VARCHAR},
+			</if>
+			<if test="resourcePath != null  and resourcePath != '' ">
+				resource_path = #{resourcePath,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null ">
+				width = #{width,jdbcType=INTEGER},
+			</if>
+			<if test="height != null ">
+				height = #{height,jdbcType=INTEGER},
+			</if>
+			<if test="targetCode != null ">
+				target_code = #{targetCode,jdbcType=TINYINT},
+			</if>
+			<if test="spaceCode != null ">
+				space_code = #{spaceCode,jdbcType=TINYINT},
+			</if>
+			<if test="categoryCode != null ">
+				category_code = #{categoryCode,jdbcType=TINYINT},
+			</if>
+			<if test="weight != null ">
+				weight = #{weight,jdbcType=INTEGER},
+			</if>
+			<if test="displayCount != null ">
+				display_count = #{displayCount,jdbcType=BIGINT},
+			</if>
+			<if test="clickCount != null ">
+				click_count = #{clickCount,jdbcType=BIGINT},
+			</if>
+			<if test="startTime != null ">
+				start_time = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null ">
+				end_time = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null  and remark != '' ">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="isEnabledCode != null ">
+				is_enabled_code = #{isEnabledCode,jdbcType=TINYINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateList">
+		update pi_advertising
+		<set>
+			<if test="t.serialNo != null  and t.serialNo != '' ">
+				serial_no = #{t.serialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="t.domainId != null  and t.domainId != '' ">
+				domain_id = #{t.domainId,jdbcType=VARCHAR},
+			</if>
+			<if test="t.name != null  and t.name != '' ">
+				name = #{t.name,jdbcType=VARCHAR},
+			</if>
+			<if test="t.title != null  and t.title != '' ">
+				title = #{t.title,jdbcType=VARCHAR},
+			</if>
+			<if test="t.resouceId != null  and t.resouceId != '' ">
+				resouce_id = #{t.resouceId,jdbcType=VARCHAR},
+			</if>
+			<if test="t.resourcePath != null  and t.resourcePath != '' ">
+				resource_path = #{t.resourcePath,jdbcType=VARCHAR},
+			</if>
+			<if test="t.width != null ">
+				width = #{t.width,jdbcType=INTEGER},
+			</if>
+			<if test="t.height != null ">
+				height = #{t.height,jdbcType=INTEGER},
+			</if>
+			<if test="t.targetCode != null ">
+				target_code = #{t.targetCode,jdbcType=TINYINT},
+			</if>
+			<if test="t.spaceCode != null ">
+				space_code = #{t.spaceCode,jdbcType=TINYINT},
+			</if>
+			<if test="t.categoryCode != null ">
+				category_code = #{t.categoryCode,jdbcType=TINYINT},
+			</if>
+			<if test="t.weight != null ">
+				weight = #{t.weight,jdbcType=INTEGER},
+			</if>
+			<if test="t.displayCount != null ">
+				display_count = #{t.displayCount,jdbcType=BIGINT},
+			</if>
+			<if test="t.clickCount != null ">
+				click_count = #{t.clickCount,jdbcType=BIGINT},
+			</if>
+			<if test="t.startTime != null ">
+				start_time = #{t.startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="t.endTime != null ">
+				end_time = #{t.endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="t.remark != null  and t.remark != '' ">
+				remark = #{t.remark,jdbcType=VARCHAR},
+			</if>
+			<if test="t.isEnabledCode != null ">
+				is_enabled_code = #{t.isEnabledCode,jdbcType=TINYINT},
+			</if>
+		</set>
+
+		where id in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</update>
+
+	<select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from pi_advertising
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="getModelBySpace" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pi_advertising
+		where domain_id = #{0,jdbcType=VARCHAR} and space_code=#{1,jdbcType=TINYINT};
+	</select>
+
+
+
+	<select id="getList" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from pi_advertising where 1 = 1
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.categoryCode != null">
+			and category_code = #{EntityRelated.categoryCode,jdbcType=TINYINT}
+		</if>
+		<if test="EntityRelated.domainId != null and EntityRelated.domainId != '' ">
+			and domain_id = #{EntityRelated.domainId,jdbcType=VARCHAR}
+		</if>
+		<if test="EntityRelated.beginEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)>=unix_timestamp(#{EntityRelated.beginEndTime})]]>
+		</if>
+		<if test="EntityRelated.endEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)<unix_timestamp(#{EntityRelated.endEndTime})]]>
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id = #{EntityRelated.id,jdbcType=VARCHAR}
+		</if>
+		<if test="EntityRelated.isEnabledCode != null">
+			and is_enabled_code = #{EntityRelated.isEnabledCode,jdbcType=TINYINT}
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+			and name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+			and remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="EntityRelated.resouceId != null and EntityRelated.resouceId != '' ">
+			and resouce_id = #{EntityRelated.resouceId,jdbcType=VARCHAR}
+		</if>
+		<if test="EntityRelated.resourcePath != null and EntityRelated.resourcePath != '' ">
+			and resource_path LIKE CONCAT('%',#{EntityRelated.resourcePath,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="EntityRelated.serialNo != null and EntityRelated.serialNo != '' ">
+			and serial_no LIKE CONCAT('%',#{EntityRelated.serialNo,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="EntityRelated.spaceCode != null">
+			and space_code = #{EntityRelated.spaceCode,jdbcType=TINYINT}
+		</if>
+		<if test="EntityRelated.beginStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)>=unix_timestamp(#{EntityRelated.beginStartTime})]]>
+		</if>
+		<if test="EntityRelated.endStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)<unix_timestamp(#{EntityRelated.endStartTime})]]>
+		</if>
+		<if test="EntityRelated.targetCode != null">
+			and target_code = #{EntityRelated.targetCode,jdbcType=TINYINT}
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+			and title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%')
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+	</select>
+
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+	<cache />
+</mapper>

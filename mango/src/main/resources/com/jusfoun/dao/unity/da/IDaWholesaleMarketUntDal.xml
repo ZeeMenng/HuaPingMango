@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaWholesaleMarketUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaWholesaleMarket" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="content" property="content" jdbcType="VARCHAR" />
+              <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+              <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+              <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+              <result column="region_text" property="regionText" jdbcType="VARCHAR" />
+              <result column="cover_area" property="coverArea" jdbcType="VARCHAR" />
+              <result column="merchants_num" property="merchantsNum" jdbcType="VARCHAR" />
+              <result column="stalls_num" property="stallsNum" jdbcType="VARCHAR" />
+              <result column="days_volume" property="daysVolume" jdbcType="VARCHAR" />
+              <result column="years_amount" property="yearsAmount" jdbcType="VARCHAR" />
+              <result column="tel" property="tel" jdbcType="VARCHAR" />
+              <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,content,longitude,latitude,region_code,region_text,cover_area,merchants_num,stalls_num,days_volume,years_amount,tel,address
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaWholesaleMarket" >
+    insert into da_wholesale_market
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="content != null and content != '' " >
+              content,
+          </if>
+      
+          <if test="longitude != null and longitude != '' " >
+              longitude,
+          </if>
+      
+          <if test="latitude != null and latitude != '' " >
+              latitude,
+          </if>
+      
+          <if test="regionCode != null and regionCode != '' " >
+              region_code,
+          </if>
+      
+          <if test="regionText != null and regionText != '' " >
+              region_text,
+          </if>
+      
+          <if test="coverArea != null and coverArea != '' " >
+              cover_area,
+          </if>
+      
+          <if test="merchantsNum != null and merchantsNum != '' " >
+              merchants_num,
+          </if>
+      
+          <if test="stallsNum != null and stallsNum != '' " >
+              stalls_num,
+          </if>
+      
+          <if test="daysVolume != null and daysVolume != '' " >
+              days_volume,
+          </if>
+      
+          <if test="yearsAmount != null and yearsAmount != '' " >
+              years_amount,
+          </if>
+      
+          <if test="tel != null and tel != '' " >
+              tel,
+          </if>
+      
+          <if test="address != null and address != '' " >
+              address,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="content != null and content != '' " >
+              #{content,jdbcType=VARCHAR},
+          </if>
+          <if test="longitude != null and longitude != '' " >
+              #{longitude,jdbcType=VARCHAR},
+          </if>
+          <if test="latitude != null and latitude != '' " >
+              #{latitude,jdbcType=VARCHAR},
+          </if>
+          <if test="regionCode != null and regionCode != '' " >
+              #{regionCode,jdbcType=VARCHAR},
+          </if>
+          <if test="regionText != null and regionText != '' " >
+              #{regionText,jdbcType=VARCHAR},
+          </if>
+          <if test="coverArea != null and coverArea != '' " >
+              #{coverArea,jdbcType=VARCHAR},
+          </if>
+          <if test="merchantsNum != null and merchantsNum != '' " >
+              #{merchantsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="stallsNum != null and stallsNum != '' " >
+              #{stallsNum,jdbcType=VARCHAR},
+          </if>
+          <if test="daysVolume != null and daysVolume != '' " >
+              #{daysVolume,jdbcType=VARCHAR},
+          </if>
+          <if test="yearsAmount != null and yearsAmount != '' " >
+              #{yearsAmount,jdbcType=VARCHAR},
+          </if>
+          <if test="tel != null and tel != '' " >
+              #{tel,jdbcType=VARCHAR},
+          </if>
+          <if test="address != null and address != '' " >
+              #{address,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_wholesale_market
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daWholesaleMarket" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daWholesaleMarket.id,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.name,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.content,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.longitude,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.latitude,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.regionCode,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.regionText,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.coverArea,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.merchantsNum,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.stallsNum,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.daysVolume,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.yearsAmount,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.tel,jdbcType=VARCHAR},
+
+      
+          #{daWholesaleMarket.address,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_wholesale_market
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_wholesale_market
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaWholesaleMarket" >
+    update da_wholesale_market
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="content != null  and content != '' " >
+                     content = #{content,jdbcType=VARCHAR},
+                  </if>
+                  <if test="longitude != null  and longitude != '' " >
+                     longitude = #{longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="latitude != null  and latitude != '' " >
+                     latitude = #{latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionCode != null  and regionCode != '' " >
+                     region_code = #{regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionText != null  and regionText != '' " >
+                     region_text = #{regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="coverArea != null  and coverArea != '' " >
+                     cover_area = #{coverArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="merchantsNum != null  and merchantsNum != '' " >
+                     merchants_num = #{merchantsNum,jdbcType=VARCHAR},
+                  </if>
+                  <if test="stallsNum != null  and stallsNum != '' " >
+                     stalls_num = #{stallsNum,jdbcType=VARCHAR},
+                  </if>
+                  <if test="daysVolume != null  and daysVolume != '' " >
+                     days_volume = #{daysVolume,jdbcType=VARCHAR},
+                  </if>
+                  <if test="yearsAmount != null  and yearsAmount != '' " >
+                     years_amount = #{yearsAmount,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tel != null  and tel != '' " >
+                     tel = #{tel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_wholesale_market
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.content != null  and t.content != '' " >
+                     content = #{t.content,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.longitude != null  and t.longitude != '' " >
+                     longitude = #{t.longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.latitude != null  and t.latitude != '' " >
+                     latitude = #{t.latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode != null  and t.regionCode != '' " >
+                     region_code = #{t.regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText != null  and t.regionText != '' " >
+                     region_text = #{t.regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.coverArea != null  and t.coverArea != '' " >
+                     cover_area = #{t.coverArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.merchantsNum != null  and t.merchantsNum != '' " >
+                     merchants_num = #{t.merchantsNum,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.stallsNum != null  and t.stallsNum != '' " >
+                     stalls_num = #{t.stallsNum,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.daysVolume != null  and t.daysVolume != '' " >
+                     days_volume = #{t.daysVolume,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.yearsAmount != null  and t.yearsAmount != '' " >
+                     years_amount = #{t.yearsAmount,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tel != null  and t.tel != '' " >
+                     tel = #{t.tel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_wholesale_market
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.commonFieldId != null and daWholesaleMarket.commonFieldId  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.name != null and daWholesaleMarket.name  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.content != null and daWholesaleMarket.content  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.content,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="longitude =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.longitude != null and daWholesaleMarket.longitude  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.longitude,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="latitude =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.latitude != null and daWholesaleMarket.latitude  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.latitude,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_code =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.regionCode != null and daWholesaleMarket.regionCode  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.regionCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_text =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.regionText != null and daWholesaleMarket.regionText  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.regionText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="cover_area =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.coverArea != null and daWholesaleMarket.coverArea  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.coverArea,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="merchants_num =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.merchantsNum != null and daWholesaleMarket.merchantsNum  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.merchantsNum,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="stalls_num =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.stallsNum != null and daWholesaleMarket.stallsNum  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.stallsNum,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="days_volume =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.daysVolume != null and daWholesaleMarket.daysVolume  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.daysVolume,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="years_amount =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.yearsAmount != null and daWholesaleMarket.yearsAmount  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.yearsAmount,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tel =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.tel != null and daWholesaleMarket.tel  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.tel,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="address =case" suffix="end,">
+              <foreach collection="list" item="daWholesaleMarket" index="index">
+                  <if test="daWholesaleMarket.address != null and daWholesaleMarket.address  != '' " >
+                     when id=#{daWholesaleMarket.id} then #{daWholesaleMarket.address,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daWholesaleMarket.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_wholesale_market
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="content  != null and content  != '' " >
+              content,
+          </if>
+          <if test="longitude  != null and longitude  != '' " >
+              longitude,
+          </if>
+          <if test="latitude  != null and latitude  != '' " >
+              latitude,
+          </if>
+          <if test="regionCode  != null and regionCode  != '' " >
+              region_code,
+          </if>
+          <if test="regionText  != null and regionText  != '' " >
+              region_text,
+          </if>
+          <if test="coverArea  != null and coverArea  != '' " >
+              cover_area,
+          </if>
+          <if test="merchantsNum  != null and merchantsNum  != '' " >
+              merchants_num,
+          </if>
+          <if test="stallsNum  != null and stallsNum  != '' " >
+              stalls_num,
+          </if>
+          <if test="daysVolume  != null and daysVolume  != '' " >
+              days_volume,
+          </if>
+          <if test="yearsAmount  != null and yearsAmount  != '' " >
+              years_amount,
+          </if>
+          <if test="tel  != null and tel  != '' " >
+              tel,
+          </if>
+          <if test="address  != null and address  != '' " >
+              address,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daWholesaleMarket" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daWholesaleMarket.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daWholesaleMarket.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{daWholesaleMarket.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.content  != null  and t.content != '' " >
+                     #{daWholesaleMarket.content ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.longitude  != null  and t.longitude != '' " >
+                     #{daWholesaleMarket.longitude ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.latitude  != null  and t.latitude != '' " >
+                     #{daWholesaleMarket.latitude ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                     #{daWholesaleMarket.regionCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText  != null  and t.regionText != '' " >
+                     #{daWholesaleMarket.regionText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.coverArea  != null  and t.coverArea != '' " >
+                     #{daWholesaleMarket.coverArea ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.merchantsNum  != null  and t.merchantsNum != '' " >
+                     #{daWholesaleMarket.merchantsNum ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.stallsNum  != null  and t.stallsNum != '' " >
+                     #{daWholesaleMarket.stallsNum ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.daysVolume  != null  and t.daysVolume != '' " >
+                     #{daWholesaleMarket.daysVolume ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.yearsAmount  != null  and t.yearsAmount != '' " >
+                     #{daWholesaleMarket.yearsAmount ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tel  != null  and t.tel != '' " >
+                     #{daWholesaleMarket.tel ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.address  != null  and t.address != '' " >
+                     #{daWholesaleMarket.address ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_wholesale_market
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_wholesale_market where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.address != null and EntityRelated.address != '' ">
+ 				and  address LIKE CONCAT('%',#{EntityRelated.address,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.content != null and EntityRelated.content != '' ">
+ 				and  content LIKE CONCAT('%',#{EntityRelated.content,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.coverArea != null and EntityRelated.coverArea != '' ">
+ 				and  cover_area LIKE CONCAT('%',#{EntityRelated.coverArea,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.daysVolume != null and EntityRelated.daysVolume != '' ">
+ 				and  days_volume LIKE CONCAT('%',#{EntityRelated.daysVolume,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.latitude != null and EntityRelated.latitude != '' ">
+ 				and  latitude LIKE CONCAT('%',#{EntityRelated.latitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.longitude != null and EntityRelated.longitude != '' ">
+ 				and  longitude LIKE CONCAT('%',#{EntityRelated.longitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.merchantsNum != null and EntityRelated.merchantsNum != '' ">
+ 				and  merchants_num LIKE CONCAT('%',#{EntityRelated.merchantsNum,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionCode != null">
+				and region_code = #{EntityRelated.regionCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.regionText != null and EntityRelated.regionText != '' ">
+ 				and  region_text LIKE CONCAT('%',#{EntityRelated.regionText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.stallsNum != null and EntityRelated.stallsNum != '' ">
+ 				and  stalls_num LIKE CONCAT('%',#{EntityRelated.stallsNum,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tel != null and EntityRelated.tel != '' ">
+ 				and  tel LIKE CONCAT('%',#{EntityRelated.tel,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.yearsAmount != null and EntityRelated.yearsAmount != '' ">
+ 				and  years_amount LIKE CONCAT('%',#{EntityRelated.yearsAmount,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiContentCountSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentCount" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+              <result column="views" property="views" jdbcType="INTEGER" />
+              <result column="views_month" property="viewsMonth" jdbcType="INTEGER" />
+              <result column="views_week" property="viewsWeek" jdbcType="INTEGER" />
+              <result column="views_day" property="viewsDay" jdbcType="INTEGER" />
+              <result column="comments" property="comments" jdbcType="INTEGER" />
+              <result column="comments_month" property="commentsMonth" jdbcType="INTEGER" />
+              <result column="comments_week" property="commentsWeek" jdbcType="INTEGER" />
+              <result column="comments_day" property="commentsDay" jdbcType="INTEGER" />
+              <result column="downloads" property="downloads" jdbcType="INTEGER" />
+              <result column="downloads_month" property="downloadsMonth" jdbcType="INTEGER" />
+              <result column="downloads_week" property="downloadsWeek" jdbcType="INTEGER" />
+              <result column="downloads_day" property="downloadsDay" jdbcType="INTEGER" />
+              <result column="ups" property="ups" jdbcType="INTEGER" />
+              <result column="ups_month" property="upsMonth" jdbcType="INTEGER" />
+              <result column="ups_week" property="upsWeek" jdbcType="INTEGER" />
+              <result column="ups_day" property="upsDay" jdbcType="INTEGER" />
+              <result column="downs" property="downs" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,content_id,views,views_month,views_week,views_day,comments,comments_month,comments_week,comments_day,downloads,downloads_month,downloads_week,downloads_day,ups,ups_month,ups_week,ups_day,downs
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentCount" >
+    insert into pi_content_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+          <if test="views != null " >
+              views,
+          </if>
+          <if test="viewsMonth != null " >
+              views_month,
+          </if>
+          <if test="viewsWeek != null " >
+              views_week,
+          </if>
+          <if test="viewsDay != null " >
+              views_day,
+          </if>
+          <if test="comments != null " >
+              comments,
+          </if>
+          <if test="commentsMonth != null " >
+              comments_month,
+          </if>
+          <if test="commentsWeek != null " >
+              comments_week,
+          </if>
+          <if test="commentsDay != null " >
+              comments_day,
+          </if>
+          <if test="downloads != null " >
+              downloads,
+          </if>
+          <if test="downloadsMonth != null " >
+              downloads_month,
+          </if>
+          <if test="downloadsWeek != null " >
+              downloads_week,
+          </if>
+          <if test="downloadsDay != null " >
+              downloads_day,
+          </if>
+          <if test="ups != null " >
+              ups,
+          </if>
+          <if test="upsMonth != null " >
+              ups_month,
+          </if>
+          <if test="upsWeek != null " >
+              ups_week,
+          </if>
+          <if test="upsDay != null " >
+              ups_day,
+          </if>
+          <if test="downs != null " >
+              downs,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+          <if test="views != null " >
+              #{views,jdbcType=INTEGER},
+          </if>
+          <if test="viewsMonth != null " >
+              #{viewsMonth,jdbcType=INTEGER},
+          </if>
+          <if test="viewsWeek != null " >
+              #{viewsWeek,jdbcType=INTEGER},
+          </if>
+          <if test="viewsDay != null " >
+              #{viewsDay,jdbcType=INTEGER},
+          </if>
+          <if test="comments != null " >
+              #{comments,jdbcType=INTEGER},
+          </if>
+          <if test="commentsMonth != null " >
+              #{commentsMonth,jdbcType=INTEGER},
+          </if>
+          <if test="commentsWeek != null " >
+              #{commentsWeek,jdbcType=INTEGER},
+          </if>
+          <if test="commentsDay != null " >
+              #{commentsDay,jdbcType=INTEGER},
+          </if>
+          <if test="downloads != null " >
+              #{downloads,jdbcType=INTEGER},
+          </if>
+          <if test="downloadsMonth != null " >
+              #{downloadsMonth,jdbcType=INTEGER},
+          </if>
+          <if test="downloadsWeek != null " >
+              #{downloadsWeek,jdbcType=INTEGER},
+          </if>
+          <if test="downloadsDay != null " >
+              #{downloadsDay,jdbcType=INTEGER},
+          </if>
+          <if test="ups != null " >
+              #{ups,jdbcType=INTEGER},
+          </if>
+          <if test="upsMonth != null " >
+              #{upsMonth,jdbcType=INTEGER},
+          </if>
+          <if test="upsWeek != null " >
+              #{upsWeek,jdbcType=INTEGER},
+          </if>
+          <if test="upsDay != null " >
+              #{upsDay,jdbcType=INTEGER},
+          </if>
+          <if test="downs != null " >
+              #{downs,jdbcType=INTEGER},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_content_count
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentCount" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piContentCount.id,jdbcType=VARCHAR},
+
+      
+          #{piContentCount.contentId,jdbcType=VARCHAR},
+
+      
+          #{piContentCount.views,jdbcType=INTEGER},
+
+      
+          #{piContentCount.viewsMonth,jdbcType=INTEGER},
+
+      
+          #{piContentCount.viewsWeek,jdbcType=INTEGER},
+
+      
+          #{piContentCount.viewsDay,jdbcType=INTEGER},
+
+      
+          #{piContentCount.comments,jdbcType=INTEGER},
+
+      
+          #{piContentCount.commentsMonth,jdbcType=INTEGER},
+
+      
+          #{piContentCount.commentsWeek,jdbcType=INTEGER},
+
+      
+          #{piContentCount.commentsDay,jdbcType=INTEGER},
+
+      
+          #{piContentCount.downloads,jdbcType=INTEGER},
+
+      
+          #{piContentCount.downloadsMonth,jdbcType=INTEGER},
+
+      
+          #{piContentCount.downloadsWeek,jdbcType=INTEGER},
+
+      
+          #{piContentCount.downloadsDay,jdbcType=INTEGER},
+
+      
+          #{piContentCount.ups,jdbcType=INTEGER},
+
+      
+          #{piContentCount.upsMonth,jdbcType=INTEGER},
+
+      
+          #{piContentCount.upsWeek,jdbcType=INTEGER},
+
+      
+          #{piContentCount.upsDay,jdbcType=INTEGER},
+
+      
+          #{piContentCount.downs,jdbcType=INTEGER},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_content_count
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_content_count
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentCount" >
+    update pi_content_count
+    <set >
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="views != null ">
+                     views = #{views,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsMonth != null ">
+                     views_month = #{viewsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsWeek != null ">
+                     views_week = #{viewsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsDay != null ">
+                     views_day = #{viewsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="comments != null ">
+                     comments = #{comments,jdbcType=INTEGER},
+                  </if>
+                  <if test="commentsMonth != null ">
+                     comments_month = #{commentsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="commentsWeek != null ">
+                     comments_week = #{commentsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="commentsDay != null ">
+                     comments_day = #{commentsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="downloads != null ">
+                     downloads = #{downloads,jdbcType=INTEGER},
+                  </if>
+                  <if test="downloadsMonth != null ">
+                     downloads_month = #{downloadsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="downloadsWeek != null ">
+                     downloads_week = #{downloadsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="downloadsDay != null ">
+                     downloads_day = #{downloadsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="ups != null ">
+                     ups = #{ups,jdbcType=INTEGER},
+                  </if>
+                  <if test="upsMonth != null ">
+                     ups_month = #{upsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="upsWeek != null ">
+                     ups_week = #{upsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="upsDay != null ">
+                     ups_day = #{upsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="downs != null ">
+                     downs = #{downs,jdbcType=INTEGER},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_content_count
+    <set >
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.views != null ">
+                     views = #{t.views,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsMonth != null ">
+                     views_month = #{t.viewsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsWeek != null ">
+                     views_week = #{t.viewsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsDay != null ">
+                     views_day = #{t.viewsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.comments != null ">
+                     comments = #{t.comments,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.commentsMonth != null ">
+                     comments_month = #{t.commentsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.commentsWeek != null ">
+                     comments_week = #{t.commentsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.commentsDay != null ">
+                     comments_day = #{t.commentsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.downloads != null ">
+                     downloads = #{t.downloads,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.downloadsMonth != null ">
+                     downloads_month = #{t.downloadsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.downloadsWeek != null ">
+                     downloads_week = #{t.downloadsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.downloadsDay != null ">
+                     downloads_day = #{t.downloadsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.ups != null ">
+                     ups = #{t.ups,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.upsMonth != null ">
+                     ups_month = #{t.upsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.upsWeek != null ">
+                     ups_week = #{t.upsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.upsDay != null ">
+                     ups_day = #{t.upsDay,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.downs != null ">
+                     downs = #{t.downs,jdbcType=INTEGER},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_content_count
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_content_count where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

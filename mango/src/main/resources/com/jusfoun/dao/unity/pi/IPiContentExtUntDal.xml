@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPiContentExtUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentExt" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="short_title" property="shortTitle" jdbcType="VARCHAR" />
+              <result column="author" property="author" jdbcType="VARCHAR" />
+              <result column="origin" property="origin" jdbcType="VARCHAR" />
+              <result column="origin_url" property="originUrl" jdbcType="VARCHAR" />
+              <result column="description" property="description" jdbcType="VARCHAR" />
+              <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+              <result column="media_path" property="mediaPath" jdbcType="VARCHAR" />
+              <result column="media_type" property="mediaType" jdbcType="VARCHAR" />
+              <result column="title_color" property="titleColor" jdbcType="VARCHAR" />
+              <result column="is_bold" property="isBold" jdbcType="TINYINT" />
+              <result column="title_img" property="titleImg" jdbcType="VARCHAR" />
+              <result column="content_img" property="contentImg" jdbcType="VARCHAR" />
+              <result column="type_img" property="typeImg" jdbcType="VARCHAR" />
+              <result column="link" property="link" jdbcType="VARCHAR" />
+              <result column="tpl_content" property="tplContent" jdbcType="VARCHAR" />
+              <result column="need_regenerate" property="needRegenerate" jdbcType="TINYINT" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,content_id,title,short_title,author,origin,origin_url,description,release_date,media_path,media_type,title_color,is_bold,title_img,content_img,type_img,link,tpl_content,need_regenerate,add_time,add_user_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentExt" >
+    insert into pi_content_ext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="shortTitle != null and shortTitle != '' " >
+              short_title,
+          </if>
+      
+          <if test="author != null and author != '' " >
+              author,
+          </if>
+      
+          <if test="origin != null and origin != '' " >
+              origin,
+          </if>
+      
+          <if test="originUrl != null and originUrl != '' " >
+              origin_url,
+          </if>
+      
+          <if test="description != null and description != '' " >
+              description,
+          </if>
+      
+          <if test="releaseDate != null " >
+              release_date,
+          </if>
+          <if test="mediaPath != null and mediaPath != '' " >
+              media_path,
+          </if>
+      
+          <if test="mediaType != null and mediaType != '' " >
+              media_type,
+          </if>
+      
+          <if test="titleColor != null and titleColor != '' " >
+              title_color,
+          </if>
+      
+          <if test="isBold != null " >
+              is_bold,
+          </if>
+          <if test="titleImg != null and titleImg != '' " >
+              title_img,
+          </if>
+      
+          <if test="contentImg != null and contentImg != '' " >
+              content_img,
+          </if>
+      
+          <if test="typeImg != null and typeImg != '' " >
+              type_img,
+          </if>
+      
+          <if test="link != null and link != '' " >
+              link,
+          </if>
+      
+          <if test="tplContent != null and tplContent != '' " >
+              tpl_content,
+          </if>
+      
+          <if test="needRegenerate != null " >
+              need_regenerate,
+          </if>
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="shortTitle != null and shortTitle != '' " >
+              #{shortTitle,jdbcType=VARCHAR},
+          </if>
+          <if test="author != null and author != '' " >
+              #{author,jdbcType=VARCHAR},
+          </if>
+          <if test="origin != null and origin != '' " >
+              #{origin,jdbcType=VARCHAR},
+          </if>
+          <if test="originUrl != null and originUrl != '' " >
+              #{originUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="description != null and description != '' " >
+              #{description,jdbcType=VARCHAR},
+          </if>
+          <if test="releaseDate != null " >
+              #{releaseDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="mediaPath != null and mediaPath != '' " >
+              #{mediaPath,jdbcType=VARCHAR},
+          </if>
+          <if test="mediaType != null and mediaType != '' " >
+              #{mediaType,jdbcType=VARCHAR},
+          </if>
+          <if test="titleColor != null and titleColor != '' " >
+              #{titleColor,jdbcType=VARCHAR},
+          </if>
+          <if test="isBold != null " >
+              #{isBold,jdbcType=TINYINT},
+          </if>
+          <if test="titleImg != null and titleImg != '' " >
+              #{titleImg,jdbcType=VARCHAR},
+          </if>
+          <if test="contentImg != null and contentImg != '' " >
+              #{contentImg,jdbcType=VARCHAR},
+          </if>
+          <if test="typeImg != null and typeImg != '' " >
+              #{typeImg,jdbcType=VARCHAR},
+          </if>
+          <if test="link != null and link != '' " >
+              #{link,jdbcType=VARCHAR},
+          </if>
+          <if test="tplContent != null and tplContent != '' " >
+              #{tplContent,jdbcType=VARCHAR},
+          </if>
+          <if test="needRegenerate != null " >
+              #{needRegenerate,jdbcType=TINYINT},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_content_ext
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentExt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piContentExt.id,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.contentId,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.title,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.shortTitle,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.author,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.origin,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.originUrl,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.description,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.releaseDate,jdbcType=TIMESTAMP},
+
+      
+          #{piContentExt.mediaPath,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.mediaType,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.titleColor,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.isBold,jdbcType=TINYINT},
+
+      
+          #{piContentExt.titleImg,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.contentImg,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.typeImg,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.link,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.tplContent,jdbcType=VARCHAR},
+
+      
+          #{piContentExt.needRegenerate,jdbcType=TINYINT},
+
+      
+          #{piContentExt.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{piContentExt.addUserId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_content_ext
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_content_ext
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentExt" >
+    update pi_content_ext
+    <set >
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="shortTitle != null  and shortTitle != '' " >
+                     short_title = #{shortTitle,jdbcType=VARCHAR},
+                  </if>
+                  <if test="author != null  and author != '' " >
+                     author = #{author,jdbcType=VARCHAR},
+                  </if>
+                  <if test="origin != null  and origin != '' " >
+                     origin = #{origin,jdbcType=VARCHAR},
+                  </if>
+                  <if test="originUrl != null  and originUrl != '' " >
+                     origin_url = #{originUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="description != null  and description != '' " >
+                     description = #{description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="releaseDate != null ">
+                     release_date = #{releaseDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="mediaPath != null  and mediaPath != '' " >
+                     media_path = #{mediaPath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mediaType != null  and mediaType != '' " >
+                     media_type = #{mediaType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="titleColor != null  and titleColor != '' " >
+                     title_color = #{titleColor,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isBold != null ">
+                     is_bold = #{isBold,jdbcType=TINYINT},
+                  </if>
+                  <if test="titleImg != null  and titleImg != '' " >
+                     title_img = #{titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentImg != null  and contentImg != '' " >
+                     content_img = #{contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="typeImg != null  and typeImg != '' " >
+                     type_img = #{typeImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="link != null  and link != '' " >
+                     link = #{link,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tplContent != null  and tplContent != '' " >
+                     tpl_content = #{tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="needRegenerate != null ">
+                     need_regenerate = #{needRegenerate,jdbcType=TINYINT},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pi_content_ext
+    <set >
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.shortTitle != null  and t.shortTitle != '' " >
+                     short_title = #{t.shortTitle,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.author != null  and t.author != '' " >
+                     author = #{t.author,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.origin != null  and t.origin != '' " >
+                     origin = #{t.origin,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.originUrl != null  and t.originUrl != '' " >
+                     origin_url = #{t.originUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description != null  and t.description != '' " >
+                     description = #{t.description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.releaseDate != null ">
+                     release_date = #{t.releaseDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.mediaPath != null  and t.mediaPath != '' " >
+                     media_path = #{t.mediaPath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaType != null  and t.mediaType != '' " >
+                     media_type = #{t.mediaType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleColor != null  and t.titleColor != '' " >
+                     title_color = #{t.titleColor,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isBold != null ">
+                     is_bold = #{t.isBold,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.titleImg != null  and t.titleImg != '' " >
+                     title_img = #{t.titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentImg != null  and t.contentImg != '' " >
+                     content_img = #{t.contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.typeImg != null  and t.typeImg != '' " >
+                     type_img = #{t.typeImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.link != null  and t.link != '' " >
+                     link = #{t.link,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplContent != null  and t.tplContent != '' " >
+                     tpl_content = #{t.tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.needRegenerate != null ">
+                     need_regenerate = #{t.needRegenerate,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pi_content_ext
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="content_id =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.contentId != null and piContentExt.contentId  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.contentId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.title != null and piContentExt.title  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.title,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="short_title =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.shortTitle != null and piContentExt.shortTitle  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.shortTitle,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="author =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.author != null and piContentExt.author  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.author,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="origin =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.origin != null and piContentExt.origin  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.origin,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="origin_url =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.originUrl != null and piContentExt.originUrl  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.originUrl,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="description =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.description != null and piContentExt.description  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.description,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="release_date =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.releaseDate != null " >
+                     when id=#{piContentExt.id} then #{piContentExt.releaseDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="media_path =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.mediaPath != null and piContentExt.mediaPath  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.mediaPath,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="media_type =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.mediaType != null and piContentExt.mediaType  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.mediaType,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title_color =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.titleColor != null and piContentExt.titleColor  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.titleColor,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_bold =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.isBold != null " >
+                     when id=#{piContentExt.id} then #{piContentExt.isBold,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title_img =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.titleImg != null and piContentExt.titleImg  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.titleImg,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_img =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.contentImg != null and piContentExt.contentImg  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.contentImg,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="type_img =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.typeImg != null and piContentExt.typeImg  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.typeImg,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="link =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.link != null and piContentExt.link  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.link,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tpl_content =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.tplContent != null and piContentExt.tplContent  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.tplContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="need_regenerate =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.needRegenerate != null " >
+                     when id=#{piContentExt.id} then #{piContentExt.needRegenerate,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.addTime != null " >
+                     when id=#{piContentExt.id} then #{piContentExt.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_user_id =case" suffix="end,">
+              <foreach collection="list" item="piContentExt" index="index">
+                  <if test="piContentExt.addUserId != null and piContentExt.addUserId  != '' " >
+                     when id=#{piContentExt.id} then #{piContentExt.addUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{piContentExt.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pi_content_ext
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="contentId  != null and contentId  != '' " >
+              content_id,
+          </if>
+          <if test="title  != null and title  != '' " >
+              title,
+          </if>
+          <if test="shortTitle  != null and shortTitle  != '' " >
+              short_title,
+          </if>
+          <if test="author  != null and author  != '' " >
+              author,
+          </if>
+          <if test="origin  != null and origin  != '' " >
+              origin,
+          </if>
+          <if test="originUrl  != null and originUrl  != '' " >
+              origin_url,
+          </if>
+          <if test="description  != null and description  != '' " >
+              description,
+          </if>
+          <if test="releaseDate  != null " >
+              release_date,
+          </if>
+          <if test="mediaPath  != null and mediaPath  != '' " >
+              media_path,
+          </if>
+          <if test="mediaType  != null and mediaType  != '' " >
+              media_type,
+          </if>
+          <if test="titleColor  != null and titleColor  != '' " >
+              title_color,
+          </if>
+          <if test="isBold  != null " >
+              is_bold,
+          </if>
+          <if test="titleImg  != null and titleImg  != '' " >
+              title_img,
+          </if>
+          <if test="contentImg  != null and contentImg  != '' " >
+              content_img,
+          </if>
+          <if test="typeImg  != null and typeImg  != '' " >
+              type_img,
+          </if>
+          <if test="link  != null and link  != '' " >
+              link,
+          </if>
+          <if test="tplContent  != null and tplContent  != '' " >
+              tpl_content,
+          </if>
+          <if test="needRegenerate  != null " >
+              need_regenerate,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="addUserId  != null and addUserId  != '' " >
+              add_user_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="piContentExt" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{piContentExt.id ,jdbcType=VARCHAR},
+                  <if test="t.contentId  != null  and t.contentId != '' " >
+                     #{piContentExt.contentId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title  != null  and t.title != '' " >
+                     #{piContentExt.title ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.shortTitle  != null  and t.shortTitle != '' " >
+                     #{piContentExt.shortTitle ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.author  != null  and t.author != '' " >
+                     #{piContentExt.author ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.origin  != null  and t.origin != '' " >
+                     #{piContentExt.origin ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.originUrl  != null  and t.originUrl != '' " >
+                     #{piContentExt.originUrl ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description  != null  and t.description != '' " >
+                     #{piContentExt.description ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.releaseDate != null ">
+                    #{piContentExt.releaseDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.mediaPath  != null  and t.mediaPath != '' " >
+                     #{piContentExt.mediaPath ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaType  != null  and t.mediaType != '' " >
+                     #{piContentExt.mediaType ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleColor  != null  and t.titleColor != '' " >
+                     #{piContentExt.titleColor ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isBold != null ">
+                    #{piContentExt.isBold,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.titleImg  != null  and t.titleImg != '' " >
+                     #{piContentExt.titleImg ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentImg  != null  and t.contentImg != '' " >
+                     #{piContentExt.contentImg ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.typeImg  != null  and t.typeImg != '' " >
+                     #{piContentExt.typeImg ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.link  != null  and t.link != '' " >
+                     #{piContentExt.link ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplContent  != null  and t.tplContent != '' " >
+                     #{piContentExt.tplContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.needRegenerate != null ">
+                    #{piContentExt.needRegenerate,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{piContentExt.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addUserId  != null  and t.addUserId != '' " >
+                     #{piContentExt.addUserId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_content_ext
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_content_ext where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.author != null and EntityRelated.author != '' ">
+ 				and  author LIKE CONCAT('%',#{EntityRelated.author,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.contentImg != null and EntityRelated.contentImg != '' ">
+ 				and  content_img LIKE CONCAT('%',#{EntityRelated.contentImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.description != null and EntityRelated.description != '' ">
+ 				and  description LIKE CONCAT('%',#{EntityRelated.description,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.link != null and EntityRelated.link != '' ">
+ 				and  link LIKE CONCAT('%',#{EntityRelated.link,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mediaPath != null and EntityRelated.mediaPath != '' ">
+ 				and  media_path LIKE CONCAT('%',#{EntityRelated.mediaPath,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mediaType != null and EntityRelated.mediaType != '' ">
+ 				and  media_type LIKE CONCAT('%',#{EntityRelated.mediaType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.origin != null and EntityRelated.origin != '' ">
+ 				and  origin LIKE CONCAT('%',#{EntityRelated.origin,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.originUrl != null and EntityRelated.originUrl != '' ">
+ 				and  origin_url LIKE CONCAT('%',#{EntityRelated.originUrl,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginReleaseDate != null ">
+				<![CDATA[ AND  unix_timestamp(release_date)>=unix_timestamp(#{EntityRelated.beginReleaseDate})]]> 
+		</if>
+		<if test="EntityRelated.endReleaseDate != null ">
+				<![CDATA[ AND  unix_timestamp(release_date)<unix_timestamp(#{EntityRelated.endReleaseDate})]]> 
+		</if>
+		<if test="EntityRelated.shortTitle != null and EntityRelated.shortTitle != '' ">
+ 				and  short_title LIKE CONCAT('%',#{EntityRelated.shortTitle,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.titleColor != null and EntityRelated.titleColor != '' ">
+ 				and  title_color LIKE CONCAT('%',#{EntityRelated.titleColor,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.titleImg != null and EntityRelated.titleImg != '' ">
+ 				and  title_img LIKE CONCAT('%',#{EntityRelated.titleImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tplContent != null and EntityRelated.tplContent != '' ">
+ 				and  tpl_content LIKE CONCAT('%',#{EntityRelated.tplContent,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.typeImg != null and EntityRelated.typeImg != '' ">
+ 				and  type_img LIKE CONCAT('%',#{EntityRelated.typeImg,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

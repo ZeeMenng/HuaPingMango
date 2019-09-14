@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+</head>
+<body>
+<div id="myDiv"><h2>测试</h2></div>
+<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+/**
+ * 	
+	{
+  "cropFruitArea": 0,//作物挂果面积
+  "cropFruitAreaCode": 0,//作物挂果面积单位code
+  "cropFruitAreaText": "string",//作物挂果面积单位文本
+  "cropGraftArea": 0,//作物嫁接面积
+  "cropGraftAreaCode": 0,//作物嫁接面积code
+  "cropGraftAreaText": "string",//作物嫁接面积文本
+  "cropTotalArea": 0,//作物总面积
+  "cropTotalAreaCode": 0,//作物总面积单位code
+  "cropTotalAreaText": "string",//作物总面积单位文本
+  "cropTypeCode": 0,//作物种类code
+  "cropTypeText": "string",//作物种类文本
+  "daCommonField": {
+	  "areaLatitudeTypeCode": 0,//区域维度id
+	    "areaLatitudeTypeText": "string",//区域维度名称
+		"startTime": "2018-07-25 00:00:00",//数据日期
+	    "dataSources": "string",//数据来源
+	    "dataTimeTypeCode": 0,//时间维度id
+	    "dataTimeTypeText": "string",//时间维度名称
+	    "regionId": "string",//地理区域id
+	    "regionName": "string",//地理区域名称
+		"sourceChannelTypeCode": 0,//来源渠道id
+	    "sourceChannelTypeText": "string",//来源渠道名称
+  },
+  "developVariety": "string",//拟发展品种
+  "growArea": 0,//海拔1500米以下准备种植品种面积
+  "growAreaCode": 0,//海拔1500米以下准备种植品种面积单位code
+  "growAreaText": "string",//海拔1500米以下准备种植品种面积单位文本
+  "landArea": 0,//海拔1500米以下土地面积
+  "landAreaCode": 0,//海拔1500米以下土地面积单位code
+  "landAreaText": "string",//海拔1500米以下土地面积单位文本
+  "name": "string",//数据主体名称
+  "ngraftedTreeArea": 0,//未嫁接大树面积
+  "ngraftedTreeAreaCode": 0,//未嫁接大树面积code
+  "ngraftedTreeAreaText": "string",//未嫁接大树面积文本
+  "ngraftedYoungtreeArea": 0,//未嫁接幼树面积
+  "ngraftedYoungtreeAreaCode": 0,//未嫁接幼树面积code
+  "ngraftedYoungtreeAreaText": "string",//未嫁接幼树面积文本
+  "strainsCode": 0,//作物品种code
+  "strainsText": "string"//作物品种文本
+}
+ */
+$(document).ready(function(){
+  $("#btn_call").click(function(){
+	// 查询内容列表
+	  var ajaxParam = {
+				url : "http://localhost:60011/mango/extend/swagger/da/daIndustryBasicinfo/getListByJsonData",
+				submitData : {
+					"entityRelated":{"dataTimeTypeCode":"","sourceChannelTypeCode":"","dataSources":"","regionId":"","startDate":"","endDate":"","startTime":"","endTime":"","name":""},//dataTimeTypeCode:时间维度，sourceChannelTypeCode：来源渠道，dataSources：数据来源，regionId:地区区域id,startDate:数据日期开始时间，endDate:数据日期结束时间，startTime：采集时间开始时间,endTime采集时间结束时间,name：名称
+				
+					"page" : {
+						"pageIndex" : 1,
+						"pageSize" : 10
+					}
+				}
+			};
+			/**
+			[  {
+	
+	"areaLatitudeTypeCode": 8,
+	"addTime": "2018-07-19 13:52:23",//数据日期
+	"addUserId": "111",
+	"auditStatusCode": 1,
+	"regionName": "",//地理区域
+	"areaLatitudeTypeText": "企业个体",//区域维度
+	"sourceChannelTypeText": "政府人员采集",//来源渠道
+	"auditerUserId": "审核人",
+	"regionId": "",
+	"dataTimeTypeText": "年",//数据采集维度
+	"sourceChannelTypeCode": 3,
+	"startTime": "2017-01-01 01:01:01",//采集日期
+	"auditerSuggestion": "通过",//审核状态
+	"endTime": "2017-12-31 01:01:01",
+	"auditerTime": null,
+	"auditStatusText": "审核通过",
+	"dataTimeTypeCode": 1,
+	"name": "华坪县富三种植场",//名称
+	"dataSources": "农业局产业办"//数据来源
+	"cropTotalAreaUnit":"11"//作物总面积
+}]
+	**/
+	  var submitDataString = JSON.stringify(ajaxParam.submitData);
+	  //Ajax调用处理
+      var html = $.ajax({
+         type: "GET",
+         url: ajaxParam.url,
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         data:  "jsonData="+submitDataString,
+         async: false
+      }).responseText;
+      $("#myDiv").html('<h2>'+html+'</h2>');
+  });
+});
+</script>
+</html>

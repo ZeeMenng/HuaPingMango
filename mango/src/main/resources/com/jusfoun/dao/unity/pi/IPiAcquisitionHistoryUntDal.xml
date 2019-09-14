@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPiAcquisitionHistoryUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+              <id column="id" property="id" jdbcType="INTEGER" />
+              <result column="acquisition_id" property="acquisitionId" jdbcType="VARCHAR" />
+              <result column="channel_url" property="channelUrl" jdbcType="VARCHAR" />
+              <result column="content_url" property="contentUrl" jdbcType="VARCHAR" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="description" property="description" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,acquisition_id,channel_url,content_url,title,description,content_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+    insert into pi_acquisition_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null " >
+              id,
+          </if>
+          <if test="acquisitionId != null and acquisitionId != '' " >
+              acquisition_id,
+          </if>
+      
+          <if test="channelUrl != null and channelUrl != '' " >
+              channel_url,
+          </if>
+      
+          <if test="contentUrl != null and contentUrl != '' " >
+              content_url,
+          </if>
+      
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="description != null and description != '' " >
+              description,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null " >
+              #{id,jdbcType=INTEGER},
+          </if>
+          <if test="acquisitionId != null and acquisitionId != '' " >
+              #{acquisitionId,jdbcType=VARCHAR},
+          </if>
+          <if test="channelUrl != null and channelUrl != '' " >
+              #{channelUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="contentUrl != null and contentUrl != '' " >
+              #{contentUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="description != null and description != '' " >
+              #{description,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_acquisition_history
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piAcquisitionHistory" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piAcquisitionHistory.id,jdbcType=INTEGER},
+
+      
+          #{piAcquisitionHistory.acquisitionId,jdbcType=VARCHAR},
+
+      
+          #{piAcquisitionHistory.channelUrl,jdbcType=VARCHAR},
+
+      
+          #{piAcquisitionHistory.contentUrl,jdbcType=VARCHAR},
+
+      
+          #{piAcquisitionHistory.title,jdbcType=VARCHAR},
+
+      
+          #{piAcquisitionHistory.description,jdbcType=VARCHAR},
+
+      
+          #{piAcquisitionHistory.contentId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_acquisition_history
+                 where  id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_acquisition_history
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+    update pi_acquisition_history
+    <set >
+                  <if test="acquisitionId != null  and acquisitionId != '' " >
+                     acquisition_id = #{acquisitionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="channelUrl != null  and channelUrl != '' " >
+                     channel_url = #{channelUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentUrl != null  and contentUrl != '' " >
+                     content_url = #{contentUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="description != null  and description != '' " >
+                     description = #{description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=INTEGER}
+  </update>
+  
+<update id="updateList">
+    update pi_acquisition_history
+    <set >
+                  <if test="t.acquisitionId != null  and t.acquisitionId != '' " >
+                     acquisition_id = #{t.acquisitionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelUrl != null  and t.channelUrl != '' " >
+                     channel_url = #{t.channelUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentUrl != null  and t.contentUrl != '' " >
+                     content_url = #{t.contentUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description != null  and t.description != '' " >
+                     description = #{t.description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pi_acquisition_history
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="acquisition_id =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.acquisitionId != null and piAcquisitionHistory.acquisitionId  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.acquisitionId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="channel_url =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.channelUrl != null and piAcquisitionHistory.channelUrl  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.channelUrl,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_url =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.contentUrl != null and piAcquisitionHistory.contentUrl  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.contentUrl,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.title != null and piAcquisitionHistory.title  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.title,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="description =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.description != null and piAcquisitionHistory.description  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.description,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_id =case" suffix="end,">
+              <foreach collection="list" item="piAcquisitionHistory" index="index">
+                  <if test="piAcquisitionHistory.contentId != null and piAcquisitionHistory.contentId  != '' " >
+                     when id=#{piAcquisitionHistory.id} then #{piAcquisitionHistory.contentId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{piAcquisitionHistory.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pi_acquisition_history
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="acquisitionId  != null and acquisitionId  != '' " >
+              acquisition_id,
+          </if>
+          <if test="channelUrl  != null and channelUrl  != '' " >
+              channel_url,
+          </if>
+          <if test="contentUrl  != null and contentUrl  != '' " >
+              content_url,
+          </if>
+          <if test="title  != null and title  != '' " >
+              title,
+          </if>
+          <if test="description  != null and description  != '' " >
+              description,
+          </if>
+          <if test="contentId  != null and contentId  != '' " >
+              content_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="piAcquisitionHistory" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{piAcquisitionHistory.id ,jdbcType=INTEGER},
+                  <if test="t.acquisitionId  != null  and t.acquisitionId != '' " >
+                     #{piAcquisitionHistory.acquisitionId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelUrl  != null  and t.channelUrl != '' " >
+                     #{piAcquisitionHistory.channelUrl ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentUrl  != null  and t.contentUrl != '' " >
+                     #{piAcquisitionHistory.contentUrl ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title  != null  and t.title != '' " >
+                     #{piAcquisitionHistory.title ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description  != null  and t.description != '' " >
+                     #{piAcquisitionHistory.description ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentId  != null  and t.contentId != '' " >
+                     #{piAcquisitionHistory.contentId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_acquisition_history
+           where  id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_acquisition_history where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.acquisitionId != null and EntityRelated.acquisitionId != '' ">
+				and acquisition_id = #{EntityRelated.acquisitionId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.channelUrl != null and EntityRelated.channelUrl != '' ">
+ 				and  channel_url LIKE CONCAT('%',#{EntityRelated.channelUrl,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.contentUrl != null and EntityRelated.contentUrl != '' ">
+ 				and  content_url LIKE CONCAT('%',#{EntityRelated.contentUrl,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.description != null and EntityRelated.description != '' ">
+ 				and  description LIKE CONCAT('%',#{EntityRelated.description,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

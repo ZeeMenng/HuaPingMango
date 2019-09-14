@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaSentimentArticleUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
+              <result column="article_name" property="articleName" jdbcType="VARCHAR" />
+              <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+              <result column="article_txt_id" property="articleTxtId" jdbcType="VARCHAR" />
+              <result column="thread_starter" property="threadStarter" jdbcType="VARCHAR" />
+              <result column="url" property="url" jdbcType="VARCHAR" />
+              <result column="media_type_code" property="mediaTypeCode" jdbcType="TINYINT" />
+              <result column="media_type_text" property="mediaTypeText" jdbcType="VARCHAR" />
+              <result column="sentiment_type_code" property="sentimentTypeCode" jdbcType="TINYINT" />
+              <result column="sentiment_type_text" property="sentimentTypeText" jdbcType="VARCHAR" />
+              <result column="view_count" property="viewCount" jdbcType="INTEGER" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="datasource_text" property="datasourceText" jdbcType="VARCHAR" />
+              <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_status_code" property="updateStatusCode" jdbcType="TINYINT" />
+              <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,theme_id,article_name,publish_time,article_txt_id,thread_starter,url,media_type_code,media_type_text,sentiment_type_code,sentiment_type_text,view_count,datasource_code,datasource_text,serial_number,remark,add_time,update_status_code,update_user_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+    insert into da_sentiment_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="themeId != null and themeId != '' " >
+              theme_id,
+          </if>
+      
+          <if test="articleName != null and articleName != '' " >
+              article_name,
+          </if>
+      
+          <if test="publishTime != null " >
+              publish_time,
+          </if>
+          <if test="articleTxtId != null and articleTxtId != '' " >
+              article_txt_id,
+          </if>
+      
+          <if test="threadStarter != null and threadStarter != '' " >
+              thread_starter,
+          </if>
+      
+          <if test="url != null and url != '' " >
+              url,
+          </if>
+      
+          <if test="mediaTypeCode != null " >
+              media_type_code,
+          </if>
+          <if test="mediaTypeText != null and mediaTypeText != '' " >
+              media_type_text,
+          </if>
+      
+          <if test="sentimentTypeCode != null " >
+              sentiment_type_code,
+          </if>
+          <if test="sentimentTypeText != null and sentimentTypeText != '' " >
+              sentiment_type_text,
+          </if>
+      
+          <if test="viewCount != null " >
+              view_count,
+          </if>
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="datasourceText != null and datasourceText != '' " >
+              datasource_text,
+          </if>
+      
+          <if test="serialNumber != null and serialNumber != '' " >
+              serial_number,
+          </if>
+      
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateStatusCode != null " >
+              update_status_code,
+          </if>
+          <if test="updateUserId != null and updateUserId != '' " >
+              update_user_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="themeId != null and themeId != '' " >
+              #{themeId,jdbcType=VARCHAR},
+          </if>
+          <if test="articleName != null and articleName != '' " >
+              #{articleName,jdbcType=VARCHAR},
+          </if>
+          <if test="publishTime != null " >
+              #{publishTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="articleTxtId != null and articleTxtId != '' " >
+              #{articleTxtId,jdbcType=VARCHAR},
+          </if>
+          <if test="threadStarter != null and threadStarter != '' " >
+              #{threadStarter,jdbcType=VARCHAR},
+          </if>
+          <if test="url != null and url != '' " >
+              #{url,jdbcType=VARCHAR},
+          </if>
+          <if test="mediaTypeCode != null " >
+              #{mediaTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="mediaTypeText != null and mediaTypeText != '' " >
+              #{mediaTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="sentimentTypeCode != null " >
+              #{sentimentTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="sentimentTypeText != null and sentimentTypeText != '' " >
+              #{sentimentTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="viewCount != null " >
+              #{viewCount,jdbcType=INTEGER},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="datasourceText != null and datasourceText != '' " >
+              #{datasourceText,jdbcType=VARCHAR},
+          </if>
+          <if test="serialNumber != null and serialNumber != '' " >
+              #{serialNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateStatusCode != null " >
+              #{updateStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="updateUserId != null and updateUserId != '' " >
+              #{updateUserId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sentiment_article
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentArticle" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSentimentArticle.id,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.themeId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.articleName,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP},
+
+      
+          #{daSentimentArticle.articleTxtId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.threadStarter,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.url,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentArticle.mediaTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentArticle.sentimentTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.viewCount,jdbcType=INTEGER},
+
+      
+          #{daSentimentArticle.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentArticle.datasourceText,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.serialNumber,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.remark,jdbcType=VARCHAR},
+
+      
+          #{daSentimentArticle.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentArticle.updateUserId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sentiment_article
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sentiment_article
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+    update da_sentiment_article
+    <set >
+                  <if test="themeId != null  and themeId != '' " >
+                     theme_id = #{themeId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="articleName != null  and articleName != '' " >
+                     article_name = #{articleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="publishTime != null ">
+                     publish_time = #{publishTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="articleTxtId != null  and articleTxtId != '' " >
+                     article_txt_id = #{articleTxtId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="threadStarter != null  and threadStarter != '' " >
+                     thread_starter = #{threadStarter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="url != null  and url != '' " >
+                     url = #{url,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mediaTypeCode != null ">
+                     media_type_code = #{mediaTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="mediaTypeText != null  and mediaTypeText != '' " >
+                     media_type_text = #{mediaTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sentimentTypeCode != null ">
+                     sentiment_type_code = #{sentimentTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="sentimentTypeText != null  and sentimentTypeText != '' " >
+                     sentiment_type_text = #{sentimentTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewCount != null ">
+                     view_count = #{viewCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="datasourceText != null  and datasourceText != '' " >
+                     datasource_text = #{datasourceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="serialNumber != null  and serialNumber != '' " >
+                     serial_number = #{serialNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateStatusCode != null ">
+                     update_status_code = #{updateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="updateUserId != null  and updateUserId != '' " >
+                     update_user_id = #{updateUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_sentiment_article
+    <set >
+                  <if test="t.themeId != null  and t.themeId != '' " >
+                     theme_id = #{t.themeId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.articleName != null  and t.articleName != '' " >
+                     article_name = #{t.articleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.publishTime != null ">
+                     publish_time = #{t.publishTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.articleTxtId != null  and t.articleTxtId != '' " >
+                     article_txt_id = #{t.articleTxtId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.threadStarter != null  and t.threadStarter != '' " >
+                     thread_starter = #{t.threadStarter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.url != null  and t.url != '' " >
+                     url = #{t.url,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaTypeCode != null ">
+                     media_type_code = #{t.mediaTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.mediaTypeText != null  and t.mediaTypeText != '' " >
+                     media_type_text = #{t.mediaTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sentimentTypeCode != null ">
+                     sentiment_type_code = #{t.sentimentTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.sentimentTypeText != null  and t.sentimentTypeText != '' " >
+                     sentiment_type_text = #{t.sentimentTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewCount != null ">
+                     view_count = #{t.viewCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.datasourceText != null  and t.datasourceText != '' " >
+                     datasource_text = #{t.datasourceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNumber != null  and t.serialNumber != '' " >
+                     serial_number = #{t.serialNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateStatusCode != null ">
+                     update_status_code = #{t.updateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.updateUserId != null  and t.updateUserId != '' " >
+                     update_user_id = #{t.updateUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_sentiment_article
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="theme_id =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.themeId != null and daSentimentArticle.themeId  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.themeId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="article_name =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.articleName != null and daSentimentArticle.articleName  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.articleName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="publish_time =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.publishTime != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="article_txt_id =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.articleTxtId != null and daSentimentArticle.articleTxtId  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.articleTxtId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="thread_starter =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.threadStarter != null and daSentimentArticle.threadStarter  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.threadStarter,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="url =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.url != null and daSentimentArticle.url  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.url,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="media_type_code =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.mediaTypeCode != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="media_type_text =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.mediaTypeText != null and daSentimentArticle.mediaTypeText  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.mediaTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sentiment_type_code =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.sentimentTypeCode != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sentiment_type_text =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.sentimentTypeText != null and daSentimentArticle.sentimentTypeText  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.sentimentTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="view_count =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.viewCount != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.viewCount,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_code =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.datasourceCode != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.datasourceCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_text =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.datasourceText != null and daSentimentArticle.datasourceText  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.datasourceText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="serial_number =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.serialNumber != null and daSentimentArticle.serialNumber  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.serialNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.remark != null and daSentimentArticle.remark  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.addTime != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_status_code =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.updateStatusCode != null " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_user_id =case" suffix="end,">
+              <foreach collection="list" item="daSentimentArticle" index="index">
+                  <if test="daSentimentArticle.updateUserId != null and daSentimentArticle.updateUserId  != '' " >
+                     when id=#{daSentimentArticle.id} then #{daSentimentArticle.updateUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daSentimentArticle.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_sentiment_article
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="themeId  != null and themeId  != '' " >
+              theme_id,
+          </if>
+          <if test="articleName  != null and articleName  != '' " >
+              article_name,
+          </if>
+          <if test="publishTime  != null " >
+              publish_time,
+          </if>
+          <if test="articleTxtId  != null and articleTxtId  != '' " >
+              article_txt_id,
+          </if>
+          <if test="threadStarter  != null and threadStarter  != '' " >
+              thread_starter,
+          </if>
+          <if test="url  != null and url  != '' " >
+              url,
+          </if>
+          <if test="mediaTypeCode  != null " >
+              media_type_code,
+          </if>
+          <if test="mediaTypeText  != null and mediaTypeText  != '' " >
+              media_type_text,
+          </if>
+          <if test="sentimentTypeCode  != null " >
+              sentiment_type_code,
+          </if>
+          <if test="sentimentTypeText  != null and sentimentTypeText  != '' " >
+              sentiment_type_text,
+          </if>
+          <if test="viewCount  != null " >
+              view_count,
+          </if>
+          <if test="datasourceCode  != null " >
+              datasource_code,
+          </if>
+          <if test="datasourceText  != null and datasourceText  != '' " >
+              datasource_text,
+          </if>
+          <if test="serialNumber  != null and serialNumber  != '' " >
+              serial_number,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="updateStatusCode  != null " >
+              update_status_code,
+          </if>
+          <if test="updateUserId  != null and updateUserId  != '' " >
+              update_user_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daSentimentArticle" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daSentimentArticle.id ,jdbcType=VARCHAR},
+                  <if test="t.themeId  != null  and t.themeId != '' " >
+                     #{daSentimentArticle.themeId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.articleName  != null  and t.articleName != '' " >
+                     #{daSentimentArticle.articleName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.publishTime != null ">
+                    #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.articleTxtId  != null  and t.articleTxtId != '' " >
+                     #{daSentimentArticle.articleTxtId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.threadStarter  != null  and t.threadStarter != '' " >
+                     #{daSentimentArticle.threadStarter ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.url  != null  and t.url != '' " >
+                     #{daSentimentArticle.url ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaTypeCode != null ">
+                    #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.mediaTypeText  != null  and t.mediaTypeText != '' " >
+                     #{daSentimentArticle.mediaTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sentimentTypeCode != null ">
+                    #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.sentimentTypeText  != null  and t.sentimentTypeText != '' " >
+                     #{daSentimentArticle.sentimentTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewCount != null ">
+                    #{daSentimentArticle.viewCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                    #{daSentimentArticle.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.datasourceText  != null  and t.datasourceText != '' " >
+                     #{daSentimentArticle.datasourceText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNumber  != null  and t.serialNumber != '' " >
+                     #{daSentimentArticle.serialNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daSentimentArticle.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{daSentimentArticle.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateStatusCode != null ">
+                    #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.updateUserId  != null  and t.updateUserId != '' " >
+                     #{daSentimentArticle.updateUserId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sentiment_article
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sentiment_article where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.articleName != null and EntityRelated.articleName != '' ">
+ 				and  article_name LIKE CONCAT('%',#{EntityRelated.articleName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.articleTxtId != null and EntityRelated.articleTxtId != '' ">
+				and article_txt_id = #{EntityRelated.articleTxtId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.datasourceText != null and EntityRelated.datasourceText != '' ">
+ 				and  datasource_text LIKE CONCAT('%',#{EntityRelated.datasourceText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.mediaTypeCode != null">
+				and media_type_code = #{EntityRelated.mediaTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.mediaTypeText != null and EntityRelated.mediaTypeText != '' ">
+ 				and  media_type_text LIKE CONCAT('%',#{EntityRelated.mediaTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginPublishTime != null ">
+				<![CDATA[ AND  unix_timestamp(publish_time)>=unix_timestamp(#{EntityRelated.beginPublishTime})]]> 
+		</if>
+		<if test="EntityRelated.endPublishTime != null ">
+				<![CDATA[ AND  unix_timestamp(publish_time)<unix_timestamp(#{EntityRelated.endPublishTime})]]> 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sentimentTypeCode != null">
+				and sentiment_type_code = #{EntityRelated.sentimentTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.sentimentTypeText != null and EntityRelated.sentimentTypeText != '' ">
+ 				and  sentiment_type_text LIKE CONCAT('%',#{EntityRelated.sentimentTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.serialNumber != null and EntityRelated.serialNumber != '' ">
+ 				and  serial_number LIKE CONCAT('%',#{EntityRelated.serialNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.themeId != null and EntityRelated.themeId != '' ">
+				and theme_id = #{EntityRelated.themeId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.threadStarter != null and EntityRelated.threadStarter != '' ">
+ 				and  thread_starter LIKE CONCAT('%',#{EntityRelated.threadStarter,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.updateStatusCode != null">
+				and update_status_code = #{EntityRelated.updateStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.updateUserId != null and EntityRelated.updateUserId != '' ">
+				and update_user_id = #{EntityRelated.updateUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.url != null and EntityRelated.url != '' ">
+ 				and  url LIKE CONCAT('%',#{EntityRelated.url,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

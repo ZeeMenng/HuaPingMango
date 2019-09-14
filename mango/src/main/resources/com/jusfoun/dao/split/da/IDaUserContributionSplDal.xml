@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaUserContributionSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaUserContribution" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="price_times" property="priceTimes" jdbcType="INTEGER" />
+              <result column="price_num" property="priceNum" jdbcType="INTEGER" />
+              <result column="yield_times" property="yieldTimes" jdbcType="INTEGER" />
+              <result column="yield_num" property="yieldNum" jdbcType="INTEGER" />
+              <result column="farm_oper_times" property="farmOperTimes" jdbcType="INTEGER" />
+              <result column="farm_oper_num" property="farmOperNum" jdbcType="INTEGER" />
+              <result column="user_id" property="userId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,price_times,price_num,yield_times,yield_num,farm_oper_times,farm_oper_num,user_id,add_time,update_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+    insert into da_user_contribution
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="priceTimes != null " >
+              price_times,
+          </if>
+          <if test="priceNum != null " >
+              price_num,
+          </if>
+          <if test="yieldTimes != null " >
+              yield_times,
+          </if>
+          <if test="yieldNum != null " >
+              yield_num,
+          </if>
+          <if test="farmOperTimes != null " >
+              farm_oper_times,
+          </if>
+          <if test="farmOperNum != null " >
+              farm_oper_num,
+          </if>
+          <if test="userId != null and userId != '' " >
+              user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="priceTimes != null " >
+              #{priceTimes,jdbcType=INTEGER},
+          </if>
+          <if test="priceNum != null " >
+              #{priceNum,jdbcType=INTEGER},
+          </if>
+          <if test="yieldTimes != null " >
+              #{yieldTimes,jdbcType=INTEGER},
+          </if>
+          <if test="yieldNum != null " >
+              #{yieldNum,jdbcType=INTEGER},
+          </if>
+          <if test="farmOperTimes != null " >
+              #{farmOperTimes,jdbcType=INTEGER},
+          </if>
+          <if test="farmOperNum != null " >
+              #{farmOperNum,jdbcType=INTEGER},
+          </if>
+          <if test="userId != null and userId != '' " >
+              #{userId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_user_contribution
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daUserContribution" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daUserContribution.id,jdbcType=VARCHAR},
+
+      
+          #{daUserContribution.priceTimes,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.priceNum,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.yieldTimes,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.yieldNum,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.farmOperTimes,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.farmOperNum,jdbcType=INTEGER},
+
+      
+          #{daUserContribution.userId,jdbcType=VARCHAR},
+
+      
+          #{daUserContribution.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daUserContribution.updateTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_user_contribution
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_user_contribution
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+    update da_user_contribution
+    <set >
+                  <if test="priceTimes != null ">
+                     price_times = #{priceTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="priceNum != null ">
+                     price_num = #{priceNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="yieldTimes != null ">
+                     yield_times = #{yieldTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="yieldNum != null ">
+                     yield_num = #{yieldNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="farmOperTimes != null ">
+                     farm_oper_times = #{farmOperTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="farmOperNum != null ">
+                     farm_oper_num = #{farmOperNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_user_contribution
+    <set >
+                  <if test="t.priceTimes != null ">
+                     price_times = #{t.priceTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.priceNum != null ">
+                     price_num = #{t.priceNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.yieldTimes != null ">
+                     yield_times = #{t.yieldTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.yieldNum != null ">
+                     yield_num = #{t.yieldNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.farmOperTimes != null ">
+                     farm_oper_times = #{t.farmOperTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.farmOperNum != null ">
+                     farm_oper_num = #{t.farmOperNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_user_contribution
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_user_contribution where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
+				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

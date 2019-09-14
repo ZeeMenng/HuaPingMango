@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseLitigationInfoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseLitigationInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="execution_name" property="executionName" jdbcType="VARCHAR" />
+              <result column="reference_number" property="referenceNumber" jdbcType="VARCHAR" />
+              <result column="filing_time" property="filingTime" jdbcType="TIMESTAMP" />
+              <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+              <result column="execution_court" property="executionCourt" jdbcType="VARCHAR" />
+              <result column="execution_object" property="executionObject" jdbcType="VARCHAR" />
+              <result column="law_state" property="lawState" jdbcType="VARCHAR" />
+              <result column="year" property="year" jdbcType="INTEGER" />
+              <result column="litigation_content" property="litigationContent" jdbcType="VARCHAR" />
+              <result column="litigation_url" property="litigationUrl" jdbcType="VARCHAR" />
+              <result column="accuser" property="accuser" jdbcType="VARCHAR" />
+              <result column="defendant" property="defendant" jdbcType="VARCHAR" />
+              <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+              <result column="region_text" property="regionText" jdbcType="VARCHAR" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,enterprise_id,enterprise_name,execution_name,reference_number,filing_time,card_id,execution_court,execution_object,law_state,year,litigation_content,litigation_url,accuser,defendant,region_code,region_text,datasource_code,remark,created_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLitigationInfo" >
+    insert into da_enterprise_litigation_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="executionName != null and executionName != '' " >
+              execution_name,
+          </if>
+      
+          <if test="referenceNumber != null and referenceNumber != '' " >
+              reference_number,
+          </if>
+      
+          <if test="filingTime != null " >
+              filing_time,
+          </if>
+          <if test="cardId != null and cardId != '' " >
+              card_id,
+          </if>
+      
+          <if test="executionCourt != null and executionCourt != '' " >
+              execution_court,
+          </if>
+      
+          <if test="executionObject != null and executionObject != '' " >
+              execution_object,
+          </if>
+      
+          <if test="lawState != null and lawState != '' " >
+              law_state,
+          </if>
+      
+          <if test="year != null " >
+              year,
+          </if>
+          <if test="litigationContent != null and litigationContent != '' " >
+              litigation_content,
+          </if>
+      
+          <if test="litigationUrl != null and litigationUrl != '' " >
+              litigation_url,
+          </if>
+      
+          <if test="accuser != null and accuser != '' " >
+              accuser,
+          </if>
+      
+          <if test="defendant != null and defendant != '' " >
+              defendant,
+          </if>
+      
+          <if test="regionCode != null and regionCode != '' " >
+              region_code,
+          </if>
+      
+          <if test="regionText != null and regionText != '' " >
+              region_text,
+          </if>
+      
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="executionName != null and executionName != '' " >
+              #{executionName,jdbcType=VARCHAR},
+          </if>
+          <if test="referenceNumber != null and referenceNumber != '' " >
+              #{referenceNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="filingTime != null " >
+              #{filingTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="cardId != null and cardId != '' " >
+              #{cardId,jdbcType=VARCHAR},
+          </if>
+          <if test="executionCourt != null and executionCourt != '' " >
+              #{executionCourt,jdbcType=VARCHAR},
+          </if>
+          <if test="executionObject != null and executionObject != '' " >
+              #{executionObject,jdbcType=VARCHAR},
+          </if>
+          <if test="lawState != null and lawState != '' " >
+              #{lawState,jdbcType=VARCHAR},
+          </if>
+          <if test="year != null " >
+              #{year,jdbcType=INTEGER},
+          </if>
+          <if test="litigationContent != null and litigationContent != '' " >
+              #{litigationContent,jdbcType=VARCHAR},
+          </if>
+          <if test="litigationUrl != null and litigationUrl != '' " >
+              #{litigationUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="accuser != null and accuser != '' " >
+              #{accuser,jdbcType=VARCHAR},
+          </if>
+          <if test="defendant != null and defendant != '' " >
+              #{defendant,jdbcType=VARCHAR},
+          </if>
+          <if test="regionCode != null and regionCode != '' " >
+              #{regionCode,jdbcType=VARCHAR},
+          </if>
+          <if test="regionText != null and regionText != '' " >
+              #{regionText,jdbcType=VARCHAR},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_litigation_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseLitigationInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseLitigationInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.enterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.executionName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.referenceNumber,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.filingTime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseLitigationInfo.cardId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.executionCourt,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.executionObject,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.lawState,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.year,jdbcType=INTEGER},
+
+      
+          #{daEnterpriseLitigationInfo.litigationContent,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.litigationUrl,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.accuser,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.defendant,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.regionCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.regionText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseLitigationInfo.remark,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLitigationInfo.createdTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_litigation_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_litigation_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLitigationInfo" >
+    update da_enterprise_litigation_info
+    <set >
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="executionName != null  and executionName != '' " >
+                     execution_name = #{executionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="referenceNumber != null  and referenceNumber != '' " >
+                     reference_number = #{referenceNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="filingTime != null ">
+                     filing_time = #{filingTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="cardId != null  and cardId != '' " >
+                     card_id = #{cardId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="executionCourt != null  and executionCourt != '' " >
+                     execution_court = #{executionCourt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="executionObject != null  and executionObject != '' " >
+                     execution_object = #{executionObject,jdbcType=VARCHAR},
+                  </if>
+                  <if test="lawState != null  and lawState != '' " >
+                     law_state = #{lawState,jdbcType=VARCHAR},
+                  </if>
+                  <if test="year != null ">
+                     year = #{year,jdbcType=INTEGER},
+                  </if>
+                  <if test="litigationContent != null  and litigationContent != '' " >
+                     litigation_content = #{litigationContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="litigationUrl != null  and litigationUrl != '' " >
+                     litigation_url = #{litigationUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="accuser != null  and accuser != '' " >
+                     accuser = #{accuser,jdbcType=VARCHAR},
+                  </if>
+                  <if test="defendant != null  and defendant != '' " >
+                     defendant = #{defendant,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionCode != null  and regionCode != '' " >
+                     region_code = #{regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionText != null  and regionText != '' " >
+                     region_text = #{regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_litigation_info
+    <set >
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionName != null  and t.executionName != '' " >
+                     execution_name = #{t.executionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.referenceNumber != null  and t.referenceNumber != '' " >
+                     reference_number = #{t.referenceNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.filingTime != null ">
+                     filing_time = #{t.filingTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.cardId != null  and t.cardId != '' " >
+                     card_id = #{t.cardId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionCourt != null  and t.executionCourt != '' " >
+                     execution_court = #{t.executionCourt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionObject != null  and t.executionObject != '' " >
+                     execution_object = #{t.executionObject,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lawState != null  and t.lawState != '' " >
+                     law_state = #{t.lawState,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.year != null ">
+                     year = #{t.year,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.litigationContent != null  and t.litigationContent != '' " >
+                     litigation_content = #{t.litigationContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.litigationUrl != null  and t.litigationUrl != '' " >
+                     litigation_url = #{t.litigationUrl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.accuser != null  and t.accuser != '' " >
+                     accuser = #{t.accuser,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.defendant != null  and t.defendant != '' " >
+                     defendant = #{t.defendant,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode != null  and t.regionCode != '' " >
+                     region_code = #{t.regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText != null  and t.regionText != '' " >
+                     region_text = #{t.regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_enterprise_litigation_info
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="enterprise_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.enterpriseId != null and daEnterpriseLitigationInfo.enterpriseId  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.enterpriseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.enterpriseName != null and daEnterpriseLitigationInfo.enterpriseName  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.enterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="execution_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.executionName != null and daEnterpriseLitigationInfo.executionName  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.executionName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="reference_number =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.referenceNumber != null and daEnterpriseLitigationInfo.referenceNumber  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.referenceNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="filing_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.filingTime != null " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.filingTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="card_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.cardId != null and daEnterpriseLitigationInfo.cardId  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.cardId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="execution_court =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.executionCourt != null and daEnterpriseLitigationInfo.executionCourt  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.executionCourt,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="execution_object =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.executionObject != null and daEnterpriseLitigationInfo.executionObject  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.executionObject,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="law_state =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.lawState != null and daEnterpriseLitigationInfo.lawState  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.lawState,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="year =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.year != null " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.year,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="litigation_content =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.litigationContent != null and daEnterpriseLitigationInfo.litigationContent  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.litigationContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="litigation_url =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.litigationUrl != null and daEnterpriseLitigationInfo.litigationUrl  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.litigationUrl,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="accuser =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.accuser != null and daEnterpriseLitigationInfo.accuser  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.accuser,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="defendant =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.defendant != null and daEnterpriseLitigationInfo.defendant  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.defendant,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.regionCode != null and daEnterpriseLitigationInfo.regionCode  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.regionCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.regionText != null and daEnterpriseLitigationInfo.regionText  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.regionText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.datasourceCode != null " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.datasourceCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.remark != null and daEnterpriseLitigationInfo.remark  != '' " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="created_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseLitigationInfo" index="index">
+                  <if test="daEnterpriseLitigationInfo.createdTime != null " >
+                     when id=#{daEnterpriseLitigationInfo.id} then #{daEnterpriseLitigationInfo.createdTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daEnterpriseLitigationInfo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_enterprise_litigation_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="enterpriseId  != null and enterpriseId  != '' " >
+              enterprise_id,
+          </if>
+          <if test="enterpriseName  != null and enterpriseName  != '' " >
+              enterprise_name,
+          </if>
+          <if test="executionName  != null and executionName  != '' " >
+              execution_name,
+          </if>
+          <if test="referenceNumber  != null and referenceNumber  != '' " >
+              reference_number,
+          </if>
+          <if test="filingTime  != null " >
+              filing_time,
+          </if>
+          <if test="cardId  != null and cardId  != '' " >
+              card_id,
+          </if>
+          <if test="executionCourt  != null and executionCourt  != '' " >
+              execution_court,
+          </if>
+          <if test="executionObject  != null and executionObject  != '' " >
+              execution_object,
+          </if>
+          <if test="lawState  != null and lawState  != '' " >
+              law_state,
+          </if>
+          <if test="year  != null " >
+              year,
+          </if>
+          <if test="litigationContent  != null and litigationContent  != '' " >
+              litigation_content,
+          </if>
+          <if test="litigationUrl  != null and litigationUrl  != '' " >
+              litigation_url,
+          </if>
+          <if test="accuser  != null and accuser  != '' " >
+              accuser,
+          </if>
+          <if test="defendant  != null and defendant  != '' " >
+              defendant,
+          </if>
+          <if test="regionCode  != null and regionCode  != '' " >
+              region_code,
+          </if>
+          <if test="regionText  != null and regionText  != '' " >
+              region_text,
+          </if>
+          <if test="datasourceCode  != null " >
+              datasource_code,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="createdTime  != null " >
+              created_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daEnterpriseLitigationInfo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daEnterpriseLitigationInfo.id ,jdbcType=VARCHAR},
+                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                     #{daEnterpriseLitigationInfo.enterpriseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                     #{daEnterpriseLitigationInfo.enterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionName  != null  and t.executionName != '' " >
+                     #{daEnterpriseLitigationInfo.executionName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.referenceNumber  != null  and t.referenceNumber != '' " >
+                     #{daEnterpriseLitigationInfo.referenceNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.filingTime != null ">
+                    #{daEnterpriseLitigationInfo.filingTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.cardId  != null  and t.cardId != '' " >
+                     #{daEnterpriseLitigationInfo.cardId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionCourt  != null  and t.executionCourt != '' " >
+                     #{daEnterpriseLitigationInfo.executionCourt ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.executionObject  != null  and t.executionObject != '' " >
+                     #{daEnterpriseLitigationInfo.executionObject ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lawState  != null  and t.lawState != '' " >
+                     #{daEnterpriseLitigationInfo.lawState ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.year != null ">
+                    #{daEnterpriseLitigationInfo.year,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.litigationContent  != null  and t.litigationContent != '' " >
+                     #{daEnterpriseLitigationInfo.litigationContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.litigationUrl  != null  and t.litigationUrl != '' " >
+                     #{daEnterpriseLitigationInfo.litigationUrl ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.accuser  != null  and t.accuser != '' " >
+                     #{daEnterpriseLitigationInfo.accuser ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.defendant  != null  and t.defendant != '' " >
+                     #{daEnterpriseLitigationInfo.defendant ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                     #{daEnterpriseLitigationInfo.regionCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText  != null  and t.regionText != '' " >
+                     #{daEnterpriseLitigationInfo.regionText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                    #{daEnterpriseLitigationInfo.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daEnterpriseLitigationInfo.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                    #{daEnterpriseLitigationInfo.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_litigation_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_litigation_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.accuser != null and EntityRelated.accuser != '' ">
+ 				and  accuser LIKE CONCAT('%',#{EntityRelated.accuser,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.cardId != null and EntityRelated.cardId != '' ">
+				and card_id = #{EntityRelated.cardId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.defendant != null and EntityRelated.defendant != '' ">
+ 				and  defendant LIKE CONCAT('%',#{EntityRelated.defendant,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.executionCourt != null and EntityRelated.executionCourt != '' ">
+ 				and  execution_court LIKE CONCAT('%',#{EntityRelated.executionCourt,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.executionName != null and EntityRelated.executionName != '' ">
+ 				and  execution_name LIKE CONCAT('%',#{EntityRelated.executionName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.executionObject != null and EntityRelated.executionObject != '' ">
+ 				and  execution_object LIKE CONCAT('%',#{EntityRelated.executionObject,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginFilingTime != null ">
+				<![CDATA[ AND  unix_timestamp(filing_time)>=unix_timestamp(#{EntityRelated.beginFilingTime})]]> 
+		</if>
+		<if test="EntityRelated.endFilingTime != null ">
+				<![CDATA[ AND  unix_timestamp(filing_time)<unix_timestamp(#{EntityRelated.endFilingTime})]]> 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.lawState != null and EntityRelated.lawState != '' ">
+ 				and  law_state LIKE CONCAT('%',#{EntityRelated.lawState,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.litigationContent != null and EntityRelated.litigationContent != '' ">
+ 				and  litigation_content LIKE CONCAT('%',#{EntityRelated.litigationContent,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.litigationUrl != null and EntityRelated.litigationUrl != '' ">
+ 				and  litigation_url LIKE CONCAT('%',#{EntityRelated.litigationUrl,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.referenceNumber != null and EntityRelated.referenceNumber != '' ">
+ 				and  reference_number LIKE CONCAT('%',#{EntityRelated.referenceNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionCode != null">
+				and region_code = #{EntityRelated.regionCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.regionText != null and EntityRelated.regionText != '' ">
+ 				and  region_text LIKE CONCAT('%',#{EntityRelated.regionText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

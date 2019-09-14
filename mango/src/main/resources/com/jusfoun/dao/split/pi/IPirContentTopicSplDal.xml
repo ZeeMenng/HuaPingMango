@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPirContentTopicSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentTopic" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+              <result column="topic_id" property="topicId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,content_id,topic_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentTopic" >
+    insert into pir_content_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+          <if test="topicId != null and topicId != '' " >
+              topic_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+          <if test="topicId != null and topicId != '' " >
+              #{topicId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pir_content_topic
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirContentTopic" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{pirContentTopic.id,jdbcType=VARCHAR},
+
+      
+          #{pirContentTopic.contentId,jdbcType=VARCHAR},
+
+      
+          #{pirContentTopic.topicId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pir_content_topic
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pir_content_topic
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentTopic" >
+    update pir_content_topic
+    <set >
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="topicId != null  and topicId != '' " >
+                     topic_id = #{topicId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pir_content_topic
+    <set >
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.topicId != null  and t.topicId != '' " >
+                     topic_id = #{t.topicId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pir_content_topic
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pir_content_topic where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.topicId != null and EntityRelated.topicId != '' ">
+				and topic_id = #{EntityRelated.topicId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

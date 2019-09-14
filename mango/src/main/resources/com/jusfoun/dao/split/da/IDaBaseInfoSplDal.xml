@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaBaseInfoSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaBaseInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="base_code" property="baseCode" jdbcType="VARCHAR" />
+              <result column="base_name" property="baseName" jdbcType="VARCHAR" />
+              <result column="address" property="address" jdbcType="VARCHAR" />
+              <result column="base_longitude" property="baseLongitude" jdbcType="VARCHAR" />
+              <result column="base_latitude" property="baseLatitude" jdbcType="VARCHAR" />
+              <result column="base_area" property="baseArea" jdbcType="NUMERIC" />
+              <result column="base_area_unit" property="baseAreaUnit" jdbcType="TINYINT" />
+              <result column="area_unit" property="areaUnit" jdbcType="NUMERIC" />
+              <result column="base_type_code" property="baseTypeCode" jdbcType="TINYINT" />
+              <result column="base_type_text" property="baseTypeText" jdbcType="VARCHAR" />
+              <result column="owner" property="owner" jdbcType="VARCHAR" />
+              <result column="identification_type_code" property="identificationTypeCode" jdbcType="TINYINT" />
+              <result column="identification_type_text" property="identificationTypeText" jdbcType="VARCHAR" />
+              <result column="peasant_count" property="peasantCount" jdbcType="NUMERIC" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,base_code,base_name,address,base_longitude,base_latitude,base_area,base_area_unit,area_unit,base_type_code,base_type_text,owner,identification_type_code,identification_type_text,peasant_count,enterprise_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaBaseInfo" >
+    insert into da_base_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="baseCode != null and baseCode != '' " >
+              base_code,
+          </if>
+      
+          <if test="baseName != null and baseName != '' " >
+              base_name,
+          </if>
+      
+          <if test="address != null and address != '' " >
+              address,
+          </if>
+      
+          <if test="baseLongitude != null and baseLongitude != '' " >
+              base_longitude,
+          </if>
+      
+          <if test="baseLatitude != null and baseLatitude != '' " >
+              base_latitude,
+          </if>
+      
+          <if test="baseArea != null " >
+              base_area,
+          </if>
+          <if test="baseAreaUnit != null " >
+              base_area_unit,
+          </if>
+          <if test="areaUnit != null " >
+              area_unit,
+          </if>
+          <if test="baseTypeCode != null " >
+              base_type_code,
+          </if>
+          <if test="baseTypeText != null and baseTypeText != '' " >
+              base_type_text,
+          </if>
+      
+          <if test="owner != null and owner != '' " >
+              owner,
+          </if>
+      
+          <if test="identificationTypeCode != null " >
+              identification_type_code,
+          </if>
+          <if test="identificationTypeText != null and identificationTypeText != '' " >
+              identification_type_text,
+          </if>
+      
+          <if test="peasantCount != null " >
+              peasant_count,
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="baseCode != null and baseCode != '' " >
+              #{baseCode,jdbcType=VARCHAR},
+          </if>
+          <if test="baseName != null and baseName != '' " >
+              #{baseName,jdbcType=VARCHAR},
+          </if>
+          <if test="address != null and address != '' " >
+              #{address,jdbcType=VARCHAR},
+          </if>
+          <if test="baseLongitude != null and baseLongitude != '' " >
+              #{baseLongitude,jdbcType=VARCHAR},
+          </if>
+          <if test="baseLatitude != null and baseLatitude != '' " >
+              #{baseLatitude,jdbcType=VARCHAR},
+          </if>
+          <if test="baseArea != null " >
+              #{baseArea,jdbcType=NUMERIC},
+          </if>
+          <if test="baseAreaUnit != null " >
+              #{baseAreaUnit,jdbcType=TINYINT},
+          </if>
+          <if test="areaUnit != null " >
+              #{areaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="baseTypeCode != null " >
+              #{baseTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="baseTypeText != null and baseTypeText != '' " >
+              #{baseTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="owner != null and owner != '' " >
+              #{owner,jdbcType=VARCHAR},
+          </if>
+          <if test="identificationTypeCode != null " >
+              #{identificationTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="identificationTypeText != null and identificationTypeText != '' " >
+              #{identificationTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="peasantCount != null " >
+              #{peasantCount,jdbcType=NUMERIC},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_base_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daBaseInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daBaseInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.name,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.baseCode,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.baseName,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.address,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.baseLongitude,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.baseLatitude,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.baseArea,jdbcType=NUMERIC},
+
+      
+          #{daBaseInfo.baseAreaUnit,jdbcType=TINYINT},
+
+      
+          #{daBaseInfo.areaUnit,jdbcType=NUMERIC},
+
+      
+          #{daBaseInfo.baseTypeCode,jdbcType=TINYINT},
+
+      
+          #{daBaseInfo.baseTypeText,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.owner,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.identificationTypeCode,jdbcType=TINYINT},
+
+      
+          #{daBaseInfo.identificationTypeText,jdbcType=VARCHAR},
+
+      
+          #{daBaseInfo.peasantCount,jdbcType=NUMERIC},
+
+      
+          #{daBaseInfo.enterpriseId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_base_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_base_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaBaseInfo" >
+    update da_base_info
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseCode != null  and baseCode != '' " >
+                     base_code = #{baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseName != null  and baseName != '' " >
+                     base_name = #{baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseLongitude != null  and baseLongitude != '' " >
+                     base_longitude = #{baseLongitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseLatitude != null  and baseLatitude != '' " >
+                     base_latitude = #{baseLatitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseArea != null ">
+                     base_area = #{baseArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="baseAreaUnit != null ">
+                     base_area_unit = #{baseAreaUnit,jdbcType=TINYINT},
+                  </if>
+                  <if test="areaUnit != null ">
+                     area_unit = #{areaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="baseTypeCode != null ">
+                     base_type_code = #{baseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="baseTypeText != null  and baseTypeText != '' " >
+                     base_type_text = #{baseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="owner != null  and owner != '' " >
+                     owner = #{owner,jdbcType=VARCHAR},
+                  </if>
+                  <if test="identificationTypeCode != null ">
+                     identification_type_code = #{identificationTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="identificationTypeText != null  and identificationTypeText != '' " >
+                     identification_type_text = #{identificationTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="peasantCount != null ">
+                     peasant_count = #{peasantCount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_base_info
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseCode != null  and t.baseCode != '' " >
+                     base_code = #{t.baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseName != null  and t.baseName != '' " >
+                     base_name = #{t.baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseLongitude != null  and t.baseLongitude != '' " >
+                     base_longitude = #{t.baseLongitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseLatitude != null  and t.baseLatitude != '' " >
+                     base_latitude = #{t.baseLatitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseArea != null ">
+                     base_area = #{t.baseArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.baseAreaUnit != null ">
+                     base_area_unit = #{t.baseAreaUnit,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.areaUnit != null ">
+                     area_unit = #{t.areaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.baseTypeCode != null ">
+                     base_type_code = #{t.baseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.baseTypeText != null  and t.baseTypeText != '' " >
+                     base_type_text = #{t.baseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.owner != null  and t.owner != '' " >
+                     owner = #{t.owner,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.identificationTypeCode != null ">
+                     identification_type_code = #{t.identificationTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.identificationTypeText != null  and t.identificationTypeText != '' " >
+                     identification_type_text = #{t.identificationTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.peasantCount != null ">
+                     peasant_count = #{t.peasantCount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_base_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_base_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.address != null and EntityRelated.address != '' ">
+ 				and  address LIKE CONCAT('%',#{EntityRelated.address,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.baseCode != null">
+				and base_code = #{EntityRelated.baseCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.baseLatitude != null and EntityRelated.baseLatitude != '' ">
+ 				and  base_latitude LIKE CONCAT('%',#{EntityRelated.baseLatitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.baseLongitude != null and EntityRelated.baseLongitude != '' ">
+ 				and  base_longitude LIKE CONCAT('%',#{EntityRelated.baseLongitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.baseName != null and EntityRelated.baseName != '' ">
+ 				and  base_name LIKE CONCAT('%',#{EntityRelated.baseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.baseTypeCode != null">
+				and base_type_code = #{EntityRelated.baseTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.baseTypeText != null and EntityRelated.baseTypeText != '' ">
+ 				and  base_type_text LIKE CONCAT('%',#{EntityRelated.baseTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.identificationTypeCode != null">
+				and identification_type_code = #{EntityRelated.identificationTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.identificationTypeText != null and EntityRelated.identificationTypeText != '' ">
+ 				and  identification_type_text LIKE CONCAT('%',#{EntityRelated.identificationTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.owner != null and EntityRelated.owner != '' ">
+ 				and  owner LIKE CONCAT('%',#{EntityRelated.owner,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

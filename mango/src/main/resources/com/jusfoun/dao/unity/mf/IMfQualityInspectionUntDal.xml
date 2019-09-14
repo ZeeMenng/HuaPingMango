@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.mf.IMfQualityInspectionUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfQualityInspection" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="organic_area" property="organicArea" jdbcType="NUMERIC" />
+              <result column="organic_area_code" property="organicAreaCode" jdbcType="TINYINT" />
+              <result column="organic_area_text" property="organicAreaText" jdbcType="VARCHAR" />
+              <result column="organic_area_unit" property="organicAreaUnit" jdbcType="NUMERIC" />
+              <result column="inspection" property="inspection" jdbcType="INTEGER" />
+              <result column="inspection_qualified" property="inspectionQualified" jdbcType="VARCHAR" />
+              <result column="issue_times" property="issueTimes" jdbcType="INTEGER" />
+              <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+              <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+              <result column="lng" property="lng" jdbcType="VARCHAR" />
+              <result column="lat" property="lat" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,organic_area,organic_area_code,organic_area_text,organic_area_unit,inspection,inspection_qualified,issue_times,area_code,area_name,lng,lat
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfQualityInspection" >
+    insert into mf_quality_inspection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="organicArea != null " >
+              organic_area,
+          </if>
+          <if test="organicAreaCode != null " >
+              organic_area_code,
+          </if>
+          <if test="organicAreaText != null and organicAreaText != '' " >
+              organic_area_text,
+          </if>
+      
+          <if test="organicAreaUnit != null " >
+              organic_area_unit,
+          </if>
+          <if test="inspection != null " >
+              inspection,
+          </if>
+          <if test="inspectionQualified != null and inspectionQualified != '' " >
+              inspection_qualified,
+          </if>
+      
+          <if test="issueTimes != null " >
+              issue_times,
+          </if>
+          <if test="areaCode != null and areaCode != '' " >
+              area_code,
+          </if>
+      
+          <if test="areaName != null and areaName != '' " >
+              area_name,
+          </if>
+      
+          <if test="lng != null and lng != '' " >
+              lng,
+          </if>
+      
+          <if test="lat != null and lat != '' " >
+              lat,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="organicArea != null " >
+              #{organicArea,jdbcType=NUMERIC},
+          </if>
+          <if test="organicAreaCode != null " >
+              #{organicAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="organicAreaText != null and organicAreaText != '' " >
+              #{organicAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="organicAreaUnit != null " >
+              #{organicAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="inspection != null " >
+              #{inspection,jdbcType=INTEGER},
+          </if>
+          <if test="inspectionQualified != null and inspectionQualified != '' " >
+              #{inspectionQualified,jdbcType=VARCHAR},
+          </if>
+          <if test="issueTimes != null " >
+              #{issueTimes,jdbcType=INTEGER},
+          </if>
+          <if test="areaCode != null and areaCode != '' " >
+              #{areaCode,jdbcType=VARCHAR},
+          </if>
+          <if test="areaName != null and areaName != '' " >
+              #{areaName,jdbcType=VARCHAR},
+          </if>
+          <if test="lng != null and lng != '' " >
+              #{lng,jdbcType=VARCHAR},
+          </if>
+          <if test="lat != null and lat != '' " >
+              #{lat,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_quality_inspection
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfQualityInspection" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfQualityInspection.id,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.organicArea,jdbcType=NUMERIC},
+
+      
+          #{mfQualityInspection.organicAreaCode,jdbcType=TINYINT},
+
+      
+          #{mfQualityInspection.organicAreaText,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.organicAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{mfQualityInspection.inspection,jdbcType=INTEGER},
+
+      
+          #{mfQualityInspection.inspectionQualified,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.issueTimes,jdbcType=INTEGER},
+
+      
+          #{mfQualityInspection.areaCode,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.areaName,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.lng,jdbcType=VARCHAR},
+
+      
+          #{mfQualityInspection.lat,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_quality_inspection
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_quality_inspection
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfQualityInspection" >
+    update mf_quality_inspection
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organicArea != null ">
+                     organic_area = #{organicArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="organicAreaCode != null ">
+                     organic_area_code = #{organicAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="organicAreaText != null  and organicAreaText != '' " >
+                     organic_area_text = #{organicAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organicAreaUnit != null ">
+                     organic_area_unit = #{organicAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="inspection != null ">
+                     inspection = #{inspection,jdbcType=INTEGER},
+                  </if>
+                  <if test="inspectionQualified != null  and inspectionQualified != '' " >
+                     inspection_qualified = #{inspectionQualified,jdbcType=VARCHAR},
+                  </if>
+                  <if test="issueTimes != null ">
+                     issue_times = #{issueTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="areaCode != null  and areaCode != '' " >
+                     area_code = #{areaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="areaName != null  and areaName != '' " >
+                     area_name = #{areaName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="lng != null  and lng != '' " >
+                     lng = #{lng,jdbcType=VARCHAR},
+                  </if>
+                  <if test="lat != null  and lat != '' " >
+                     lat = #{lat,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update mf_quality_inspection
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicArea != null ">
+                     organic_area = #{t.organicArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicAreaCode != null ">
+                     organic_area_code = #{t.organicAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organicAreaText != null  and t.organicAreaText != '' " >
+                     organic_area_text = #{t.organicAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicAreaUnit != null ">
+                     organic_area_unit = #{t.organicAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.inspection != null ">
+                     inspection = #{t.inspection,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.inspectionQualified != null  and t.inspectionQualified != '' " >
+                     inspection_qualified = #{t.inspectionQualified,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.issueTimes != null ">
+                     issue_times = #{t.issueTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.areaCode != null  and t.areaCode != '' " >
+                     area_code = #{t.areaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.areaName != null  and t.areaName != '' " >
+                     area_name = #{t.areaName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lng != null  and t.lng != '' " >
+                     lng = #{t.lng,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lat != null  and t.lat != '' " >
+                     lat = #{t.lat,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update mf_quality_inspection
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.commonFieldId != null and mfQualityInspection.commonFieldId  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_area =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.organicArea != null " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.organicArea,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_area_code =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.organicAreaCode != null " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.organicAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_area_text =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.organicAreaText != null and mfQualityInspection.organicAreaText  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.organicAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_area_unit =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.organicAreaUnit != null " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.organicAreaUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="inspection =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.inspection != null " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.inspection,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="inspection_qualified =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.inspectionQualified != null and mfQualityInspection.inspectionQualified  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.inspectionQualified,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="issue_times =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.issueTimes != null " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.issueTimes,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="area_code =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.areaCode != null and mfQualityInspection.areaCode  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.areaCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="area_name =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.areaName != null and mfQualityInspection.areaName  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.areaName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="lng =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.lng != null and mfQualityInspection.lng  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.lng,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="lat =case" suffix="end,">
+              <foreach collection="list" item="mfQualityInspection" index="index">
+                  <if test="mfQualityInspection.lat != null and mfQualityInspection.lat  != '' " >
+                     when id=#{mfQualityInspection.id} then #{mfQualityInspection.lat,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{mfQualityInspection.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into mf_quality_inspection
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="organicArea  != null " >
+              organic_area,
+          </if>
+          <if test="organicAreaCode  != null " >
+              organic_area_code,
+          </if>
+          <if test="organicAreaText  != null and organicAreaText  != '' " >
+              organic_area_text,
+          </if>
+          <if test="organicAreaUnit  != null " >
+              organic_area_unit,
+          </if>
+          <if test="inspection  != null " >
+              inspection,
+          </if>
+          <if test="inspectionQualified  != null and inspectionQualified  != '' " >
+              inspection_qualified,
+          </if>
+          <if test="issueTimes  != null " >
+              issue_times,
+          </if>
+          <if test="areaCode  != null and areaCode  != '' " >
+              area_code,
+          </if>
+          <if test="areaName  != null and areaName  != '' " >
+              area_name,
+          </if>
+          <if test="lng  != null and lng  != '' " >
+              lng,
+          </if>
+          <if test="lat  != null and lat  != '' " >
+              lat,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="mfQualityInspection" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{mfQualityInspection.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{mfQualityInspection.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicArea != null ">
+                    #{mfQualityInspection.organicArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicAreaCode != null ">
+                    #{mfQualityInspection.organicAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organicAreaText  != null  and t.organicAreaText != '' " >
+                     #{mfQualityInspection.organicAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicAreaUnit != null ">
+                    #{mfQualityInspection.organicAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.inspection != null ">
+                    #{mfQualityInspection.inspection,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.inspectionQualified  != null  and t.inspectionQualified != '' " >
+                     #{mfQualityInspection.inspectionQualified ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.issueTimes != null ">
+                    #{mfQualityInspection.issueTimes,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.areaCode  != null  and t.areaCode != '' " >
+                     #{mfQualityInspection.areaCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.areaName  != null  and t.areaName != '' " >
+                     #{mfQualityInspection.areaName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lng  != null  and t.lng != '' " >
+                     #{mfQualityInspection.lng ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lat  != null  and t.lat != '' " >
+                     #{mfQualityInspection.lat ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_quality_inspection
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_quality_inspection where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.areaCode != null">
+				and area_code = #{EntityRelated.areaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.areaName != null and EntityRelated.areaName != '' ">
+ 				and  area_name LIKE CONCAT('%',#{EntityRelated.areaName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.inspectionQualified != null and EntityRelated.inspectionQualified != '' ">
+ 				and  inspection_qualified LIKE CONCAT('%',#{EntityRelated.inspectionQualified,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.lat != null and EntityRelated.lat != '' ">
+ 				and  lat LIKE CONCAT('%',#{EntityRelated.lat,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.lng != null and EntityRelated.lng != '' ">
+ 				and  lng LIKE CONCAT('%',#{EntityRelated.lng,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.organicAreaCode != null">
+				and organic_area_code = #{EntityRelated.organicAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.organicAreaText != null and EntityRelated.organicAreaText != '' ">
+ 				and  organic_area_text LIKE CONCAT('%',#{EntityRelated.organicAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaCheckTestingSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCheckTesting" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="sample_name" property="sampleName" jdbcType="VARCHAR" />
+              <result column="sample_no" property="sampleNo" jdbcType="VARCHAR" />
+              <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+              <result column="check_result" property="checkResult" jdbcType="VARCHAR" />
+              <result column="check_personnel" property="checkPersonnel" jdbcType="VARCHAR" />
+              <result column="check_org" property="checkOrg" jdbcType="VARCHAR" />
+              <result column="check_project" property="checkProject" jdbcType="VARCHAR" />
+              <result column="check_project_code" property="checkProjectCode" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,crop_type_code,crop_type_text,strains_code,strains_text,sample_name,sample_no,check_date,check_result,check_personnel,check_org,check_project,check_project_code
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCheckTesting" >
+    insert into da_check_testing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="sampleName != null and sampleName != '' " >
+              sample_name,
+          </if>
+      
+          <if test="sampleNo != null and sampleNo != '' " >
+              sample_no,
+          </if>
+      
+          <if test="checkDate != null " >
+              check_date,
+          </if>
+          <if test="checkResult != null and checkResult != '' " >
+              check_result,
+          </if>
+      
+          <if test="checkPersonnel != null and checkPersonnel != '' " >
+              check_personnel,
+          </if>
+      
+          <if test="checkOrg != null and checkOrg != '' " >
+              check_org,
+          </if>
+      
+          <if test="checkProject != null and checkProject != '' " >
+              check_project,
+          </if>
+          <if test="checkProjectCode != null and checkProjectCode != '' " >
+              check_project_code,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="sampleName != null and sampleName != '' " >
+              #{sampleName,jdbcType=VARCHAR},
+          </if>
+          <if test="sampleNo != null and sampleNo != '' " >
+              #{sampleNo,jdbcType=VARCHAR},
+          </if>
+          <if test="checkDate != null " >
+              #{checkDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="checkResult != null and checkResult != '' " >
+              #{checkResult,jdbcType=VARCHAR},
+          </if>
+          <if test="checkPersonnel != null and checkPersonnel != '' " >
+              #{checkPersonnel,jdbcType=VARCHAR},
+          </if>
+          <if test="checkOrg != null and checkOrg != '' " >
+              #{checkOrg,jdbcType=VARCHAR},
+          </if>
+          <if test="checkProject != null and checkProject != '' " >
+              #{checkProject,jdbcType=VARCHAR},
+          </if>
+          <if test="checkProjectCode != null and checkProjectCode != '' " >
+              #{checkProjectCode,jdbcType=TINYINT},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_check_testing
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCheckTesting" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daCheckTesting.id,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daCheckTesting.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daCheckTesting.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.sampleName,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.sampleNo,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.checkDate,jdbcType=TIMESTAMP},
+
+      
+          #{daCheckTesting.checkResult,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.checkPersonnel,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.checkOrg,jdbcType=VARCHAR},
+
+      
+          #{daCheckTesting.checkProject,jdbcType=VARCHAR},
+          
+          
+          #{daCheckTesting.checkProjectCode,jdbcType=TINYINT},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_check_testing
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_check_testing
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCheckTesting" >
+    update da_check_testing
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sampleName != null  and sampleName != '' " >
+                     sample_name = #{sampleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sampleNo != null  and sampleNo != '' " >
+                     sample_no = #{sampleNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkDate != null ">
+                     check_date = #{checkDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="checkResult != null  and checkResult != '' " >
+                     check_result = #{checkResult,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkPersonnel != null  and checkPersonnel != '' " >
+                     check_personnel = #{checkPersonnel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkOrg != null  and checkOrg != '' " >
+                     check_org = #{checkOrg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkProject != null  and checkProject != '' " >
+                     check_project = #{checkProject,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkProjectCode != null  and checkProjectCode != '' " >
+                     check_project_code = #{checkProjectCode,jdbcType=TINYINT},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_check_testing
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sampleName != null  and t.sampleName != '' " >
+                     sample_name = #{t.sampleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sampleNo != null  and t.sampleNo != '' " >
+                     sample_no = #{t.sampleNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.checkDate != null ">
+                     check_date = #{t.checkDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.checkResult != null  and t.checkResult != '' " >
+                     check_result = #{t.checkResult,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.checkPersonnel != null  and t.checkPersonnel != '' " >
+                     check_personnel = #{t.checkPersonnel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.checkOrg != null  and t.checkOrg != '' " >
+                     check_org = #{t.checkOrg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.checkProject != null  and t.checkProject != '' " >
+                     check_project = #{t.checkProject,jdbcType=VARCHAR},
+                  </if>
+                  <if test="checkProjectCode != null  and checkProjectCode != '' " >
+                     check_project_code = #{t.checkProjectCode,jdbcType=TINYINT},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_check_testing
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_check_testing where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginCheckDate != null ">
+				<![CDATA[ AND  unix_timestamp(check_date)>=unix_timestamp(#{EntityRelated.beginCheckDate})]]> 
+		</if>
+		<if test="EntityRelated.endCheckDate != null ">
+				<![CDATA[ AND  unix_timestamp(check_date)<unix_timestamp(#{EntityRelated.endCheckDate})]]> 
+		</if>
+		<if test="EntityRelated.checkOrg != null and EntityRelated.checkOrg != '' ">
+ 				and  check_org LIKE CONCAT('%',#{EntityRelated.checkOrg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.checkPersonnel != null and EntityRelated.checkPersonnel != '' ">
+ 				and  check_personnel LIKE CONCAT('%',#{EntityRelated.checkPersonnel,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.checkProject != null and EntityRelated.checkProject != '' ">
+ 				and  check_project LIKE CONCAT('%',#{EntityRelated.checkProject,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.checkProjectCode != null and EntityRelated.checkProjectCode != '' ">
+ 				and  check_project_code = #{EntityRelated.checkProjectCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.checkResult != null and EntityRelated.checkResult != '' ">
+ 				and  check_result LIKE CONCAT('%',#{EntityRelated.checkResult,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.sampleName != null and EntityRelated.sampleName != '' ">
+ 				and  sample_name LIKE CONCAT('%',#{EntityRelated.sampleName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sampleNo != null and EntityRelated.sampleNo != '' ">
+ 				and  sample_no LIKE CONCAT('%',#{EntityRelated.sampleNo,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

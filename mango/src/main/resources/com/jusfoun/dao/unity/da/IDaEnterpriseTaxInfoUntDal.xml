@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseTaxInfoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="tax_code" property="taxCode" jdbcType="VARCHAR" />
+              <result column="tax_organ" property="taxOrgan" jdbcType="VARCHAR" />
+              <result column="tax_person_status_code" property="taxPersonStatusCode" jdbcType="TINYINT" />
+              <result column="tax_person_status_text" property="taxPersonStatusText" jdbcType="VARCHAR" />
+              <result column="tax_status_code" property="taxStatusCode" jdbcType="TINYINT" />
+              <result column="tax_status_text" property="taxStatusText" jdbcType="VARCHAR" />
+              <result column="tax_money" property="taxMoney" jdbcType="NUMERIC" />
+              <result column="tax_time" property="taxTime" jdbcType="TIMESTAMP" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,enterprise_id,enterprise_name,tax_code,tax_organ,tax_person_status_code,tax_person_status_text,tax_status_code,tax_status_text,tax_money,tax_time,datasource_code,remark,created_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+    insert into da_enterprise_tax_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="taxCode != null and taxCode != '' " >
+              tax_code,
+          </if>
+      
+          <if test="taxOrgan != null and taxOrgan != '' " >
+              tax_organ,
+          </if>
+      
+          <if test="taxPersonStatusCode != null " >
+              tax_person_status_code,
+          </if>
+          <if test="taxPersonStatusText != null and taxPersonStatusText != '' " >
+              tax_person_status_text,
+          </if>
+      
+          <if test="taxStatusCode != null " >
+              tax_status_code,
+          </if>
+          <if test="taxStatusText != null and taxStatusText != '' " >
+              tax_status_text,
+          </if>
+      
+          <if test="taxMoney != null " >
+              tax_money,
+          </if>
+          <if test="taxTime != null " >
+              tax_time,
+          </if>
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="taxCode != null and taxCode != '' " >
+              #{taxCode,jdbcType=VARCHAR},
+          </if>
+          <if test="taxOrgan != null and taxOrgan != '' " >
+              #{taxOrgan,jdbcType=VARCHAR},
+          </if>
+          <if test="taxPersonStatusCode != null " >
+              #{taxPersonStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="taxPersonStatusText != null and taxPersonStatusText != '' " >
+              #{taxPersonStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="taxStatusCode != null " >
+              #{taxStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="taxStatusText != null and taxStatusText != '' " >
+              #{taxStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="taxMoney != null " >
+              #{taxMoney,jdbcType=NUMERIC},
+          </if>
+          <if test="taxTime != null " >
+              #{taxTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_tax_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseTaxInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseTaxInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.enterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.taxCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.taxOrgan,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseTaxInfo.taxPersonStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseTaxInfo.taxStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC},
+
+      
+          #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseTaxInfo.remark,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_tax_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_tax_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+    update da_enterprise_tax_info
+    <set >
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="taxCode != null  and taxCode != '' " >
+                     tax_code = #{taxCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="taxOrgan != null  and taxOrgan != '' " >
+                     tax_organ = #{taxOrgan,jdbcType=VARCHAR},
+                  </if>
+                  <if test="taxPersonStatusCode != null ">
+                     tax_person_status_code = #{taxPersonStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="taxPersonStatusText != null  and taxPersonStatusText != '' " >
+                     tax_person_status_text = #{taxPersonStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="taxStatusCode != null ">
+                     tax_status_code = #{taxStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="taxStatusText != null  and taxStatusText != '' " >
+                     tax_status_text = #{taxStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="taxMoney != null ">
+                     tax_money = #{taxMoney,jdbcType=NUMERIC},
+                  </if>
+                  <if test="taxTime != null ">
+                     tax_time = #{taxTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_tax_info
+    <set >
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxCode != null  and t.taxCode != '' " >
+                     tax_code = #{t.taxCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxOrgan != null  and t.taxOrgan != '' " >
+                     tax_organ = #{t.taxOrgan,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxPersonStatusCode != null ">
+                     tax_person_status_code = #{t.taxPersonStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.taxPersonStatusText != null  and t.taxPersonStatusText != '' " >
+                     tax_person_status_text = #{t.taxPersonStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxStatusCode != null ">
+                     tax_status_code = #{t.taxStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.taxStatusText != null  and t.taxStatusText != '' " >
+                     tax_status_text = #{t.taxStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxMoney != null ">
+                     tax_money = #{t.taxMoney,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.taxTime != null ">
+                     tax_time = #{t.taxTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_enterprise_tax_info
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="enterprise_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.enterpriseId != null and daEnterpriseTaxInfo.enterpriseId  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.enterpriseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.enterpriseName != null and daEnterpriseTaxInfo.enterpriseName  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.enterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxCode != null and daEnterpriseTaxInfo.taxCode  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_organ =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxOrgan != null and daEnterpriseTaxInfo.taxOrgan  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxOrgan,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_person_status_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxPersonStatusCode != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_person_status_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxPersonStatusText != null and daEnterpriseTaxInfo.taxPersonStatusText  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxPersonStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_status_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxStatusCode != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_status_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxStatusText != null and daEnterpriseTaxInfo.taxStatusText  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_money =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxMoney != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tax_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.taxTime != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.datasourceCode != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.remark != null and daEnterpriseTaxInfo.remark  != '' " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="created_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
+                  <if test="daEnterpriseTaxInfo.createdTime != null " >
+                     when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daEnterpriseTaxInfo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_enterprise_tax_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="enterpriseId  != null and enterpriseId  != '' " >
+              enterprise_id,
+          </if>
+          <if test="enterpriseName  != null and enterpriseName  != '' " >
+              enterprise_name,
+          </if>
+          <if test="taxCode  != null and taxCode  != '' " >
+              tax_code,
+          </if>
+          <if test="taxOrgan  != null and taxOrgan  != '' " >
+              tax_organ,
+          </if>
+          <if test="taxPersonStatusCode  != null " >
+              tax_person_status_code,
+          </if>
+          <if test="taxPersonStatusText  != null and taxPersonStatusText  != '' " >
+              tax_person_status_text,
+          </if>
+          <if test="taxStatusCode  != null " >
+              tax_status_code,
+          </if>
+          <if test="taxStatusText  != null and taxStatusText  != '' " >
+              tax_status_text,
+          </if>
+          <if test="taxMoney  != null " >
+              tax_money,
+          </if>
+          <if test="taxTime  != null " >
+              tax_time,
+          </if>
+          <if test="datasourceCode  != null " >
+              datasource_code,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="createdTime  != null " >
+              created_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daEnterpriseTaxInfo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daEnterpriseTaxInfo.id ,jdbcType=VARCHAR},
+                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                     #{daEnterpriseTaxInfo.enterpriseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                     #{daEnterpriseTaxInfo.enterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxCode  != null  and t.taxCode != '' " >
+                     #{daEnterpriseTaxInfo.taxCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxOrgan  != null  and t.taxOrgan != '' " >
+                     #{daEnterpriseTaxInfo.taxOrgan ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxPersonStatusCode != null ">
+                    #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.taxPersonStatusText  != null  and t.taxPersonStatusText != '' " >
+                     #{daEnterpriseTaxInfo.taxPersonStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxStatusCode != null ">
+                    #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.taxStatusText  != null  and t.taxStatusText != '' " >
+                     #{daEnterpriseTaxInfo.taxStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.taxMoney != null ">
+                    #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.taxTime != null ">
+                    #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                    #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daEnterpriseTaxInfo.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                    #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_tax_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_tax_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.taxCode != null">
+				and tax_code = #{EntityRelated.taxCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.taxOrgan != null and EntityRelated.taxOrgan != '' ">
+ 				and  tax_organ LIKE CONCAT('%',#{EntityRelated.taxOrgan,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.taxPersonStatusCode != null">
+				and tax_person_status_code = #{EntityRelated.taxPersonStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.taxPersonStatusText != null and EntityRelated.taxPersonStatusText != '' ">
+ 				and  tax_person_status_text LIKE CONCAT('%',#{EntityRelated.taxPersonStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.taxStatusCode != null">
+				and tax_status_code = #{EntityRelated.taxStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.taxStatusText != null and EntityRelated.taxStatusText != '' ">
+ 				and  tax_status_text LIKE CONCAT('%',#{EntityRelated.taxStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginTaxTime != null ">
+				<![CDATA[ AND  unix_timestamp(tax_time)>=unix_timestamp(#{EntityRelated.beginTaxTime})]]> 
+		</if>
+		<if test="EntityRelated.endTaxTime != null ">
+				<![CDATA[ AND  unix_timestamp(tax_time)<unix_timestamp(#{EntityRelated.endTaxTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

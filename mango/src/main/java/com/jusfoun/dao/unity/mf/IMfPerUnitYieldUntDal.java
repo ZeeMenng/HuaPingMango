@@ -1,0 +1,22 @@
+package com.jusfoun.dao.unity.mf;
+
+import com.jusfoun.dao.unity.base.IBaseUntDal;
+import com.jusfoun.ent.extend.mf.MfPerUnitYield;
+
+
+
+/**
+ * @author Zee
+ * @createDate 2017/05/22 14:01:29
+ * @updateDate 2018-6-13 19:07:54
+ * @description 扩展自实体类IBaseUntDal<MfPerUnitYield>，可手动更改。单产预测建模表
+ */
+
+public interface IMfPerUnitYieldUntDal extends IBaseUntDal<MfPerUnitYield> {
+
+}
+
+
+
+
+

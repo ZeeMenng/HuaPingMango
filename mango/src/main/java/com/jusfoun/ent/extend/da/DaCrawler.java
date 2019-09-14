@@ -1,0 +1,25 @@
+package com.jusfoun.ent.extend.da;
+
+import com.jusfoun.ent.generate.da.DaCrawlerGenEnt;
+
+import io.swagger.annotations.ApiModel;
+
+/**
+ * @author Zee
+ * @createDate 2017/05/19 15:34:09
+ * @updateDate 2018-6-13 19:04:23
+ * @description 扩展自实体类DaCrawlerGenEnt，可手动更改。爬虫
+ */
+
+@ApiModel(value = "DaCrawler", description = "爬虫")
+public class DaCrawler extends DaCrawlerGenEnt {
+  
+
+}
+
+
+
+
+
+
+

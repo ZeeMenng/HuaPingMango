@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+</head>
+<body>
+	<div id="myDiv">
+		<h2>测试</h2>
+	</div>
+	<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var interfaces = "http://127.0.0.1:60011/mango";
+  $("#btn_call").click(function(){
+  	//获取基地信息列表
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daBaseInfo/getBaseList",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723" //地区region_id :华坪县530723 百色451000 攀枝花 510400
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+  	
+	//根据基地base_code获取设备列表
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daBaseInfo/getDeviceListByBaseCode",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"baseCode" : "530723001"//基地base_code
+				//临江村王道相大户芒果种植基地	530723001
+				//农丰果蔬种植专业合作社		530723002
+				//农欣芒果种植农民专业合作社		530723003
+				//永学芒果种植专业合作社		530723004
+				//绿康源农业开发有限公司		530723005
+				//金芒果生态开发有限公司		530723006
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//根据设备id获取芒果基地信息
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daBaseInfo/getBaseInfoByDeviceId",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"deviceId" : "16057143"//设备id
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//根据设备id获取实时监测数据
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daIotMonitorData/getActualTimeDataByDeviceId",
+		submitData : {
+			"entityRelated" : {
+				"deviceId" : "16057143"//设备id
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//根据设备id获取过去24小时的监测数据
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daIotMonitorData/getTimesDataByDeviceId",
+		submitData : {
+			"entityRelated" : {
+				"deviceId" : "16057143",//设备id
+				"sensorType" : "788"//传感器类型
+									//空气温度		770
+									//空气湿度		769
+									//土壤温度		788
+									//土壤湿度		787
+									//风速		781
+									//风向		778
+									//降雨量		780
+									//日雨		797
+									//光照强度		782
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//根据设备id获取某个时间段的监测数据
+	 var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daIotMonitorData/getTimeQuantumDataByDeviceId",
+		submitData : {
+			"entityRelated" : {
+				"deviceId" : "16057131",//设备id
+				"startTime" : "",//起始时间
+				"endTime" : ""//结束时间
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	};
+	
+	//根据月份和预警类型获取预警次数和预警波及到的芒果品种的占比
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daIotMonitorData/getEarlyWarningAndMangoProportion",
+		submitData : {
+			"entityRelated" : {
+				"time" : "2018-05",//时间（目前单位为月份）
+				"warningType" : "1"	//预警类型
+									//总预警			0	0
+									//空气温度预警		1	770
+									//空气湿度预警		2	769
+									//土壤温度预警		3	788
+									//土壤湿度预警		4	787
+									//风速预警			5	781
+									//降雨量预警		6	780
+									//日雨预警			7	797
+									//光照强度预警		8	782
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//获取最近几年各种类型预警的走势 
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/da/daIotMonitorData/getEarlyWarningDetails",
+		submitData : {
+			"entityRelated" : {
+				"time" : "",//时间（目前单位为月份）
+				"warningType" : ""	//预警类型
+									//总预警			0	0
+									//空气温度预警		1	770
+									//空气湿度预警		2	769
+									//土壤温度预警		3	788
+									//土壤湿度预警		4	787
+									//风速预警			5	781
+									//降雨量预警		6	780
+									//日雨预警			7	797
+									//光照强度预警		8	782
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	  var submitDataString = JSON.stringify(ajaxParam.submitData);
+	  //Ajax调用处理
+      var html = $.ajax({
+         type: "GET",
+         url: ajaxParam.url,
+         dataType: "json",
+         data:  "jsonData="+submitDataString,
+         async: false,
+		 headers: {
+            'userToken':'super|a0a83550562f49a59e91a26ff74dd519' //用户token，登陆后存放到cookie或localstore
+        }
+      }).responseText;
+      $("#myDiv").html('<h2>'+html+'</h2>');
+  });
+});
+</script>
+</html>

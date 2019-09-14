@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseLoanInfoSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+              <result column="id" property="id" jdbcType="VARCHAR" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="loan_date" property="loanDate" jdbcType="TIMESTAMP" />
+              <result column="loan_money" property="loanMoney" jdbcType="NUMERIC" />
+              <result column="loan_type_code" property="loanTypeCode" jdbcType="TINYINT" />
+              <result column="loan_type_text" property="loanTypeText" jdbcType="VARCHAR" />
+              <result column="loan_status" property="loanStatus" jdbcType="TINYINT" />
+              <result column="loan_status_text" property="loanStatusText" jdbcType="VARCHAR" />
+              <result column="overdue_status_code" property="overdueStatusCode" jdbcType="TINYINT" />
+              <result column="overdue_status_text" property="overdueStatusText" jdbcType="VARCHAR" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,enterprise_id,enterprise_name,loan_date,loan_money,loan_type_code,loan_type_text,loan_status,loan_status_text,overdue_status_code,overdue_status_text,datasource_code,remark,created_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+    insert into da_enterprise_loan_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="loanDate != null " >
+              loan_date,
+          </if>
+          <if test="loanMoney != null " >
+              loan_money,
+          </if>
+          <if test="loanTypeCode != null " >
+              loan_type_code,
+          </if>
+          <if test="loanTypeText != null and loanTypeText != '' " >
+              loan_type_text,
+          </if>
+      
+          <if test="loanStatus != null " >
+              loan_status,
+          </if>
+          <if test="loanStatusText != null and loanStatusText != '' " >
+              loan_status_text,
+          </if>
+      
+          <if test="overdueStatusCode != null " >
+              overdue_status_code,
+          </if>
+          <if test="overdueStatusText != null and overdueStatusText != '' " >
+              overdue_status_text,
+          </if>
+      
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="loanDate != null " >
+              #{loanDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="loanMoney != null " >
+              #{loanMoney,jdbcType=NUMERIC},
+          </if>
+          <if test="loanTypeCode != null " >
+              #{loanTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="loanTypeText != null and loanTypeText != '' " >
+              #{loanTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="loanStatus != null " >
+              #{loanStatus,jdbcType=TINYINT},
+          </if>
+          <if test="loanStatusText != null and loanStatusText != '' " >
+              #{loanStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="overdueStatusCode != null " >
+              #{overdueStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="overdueStatusText != null and overdueStatusText != '' " >
+              #{overdueStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_loan_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseLoanInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseLoanInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.enterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.loanDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseLoanInfo.loanMoney,jdbcType=NUMERIC},
+
+      
+          #{daEnterpriseLoanInfo.loanTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseLoanInfo.loanTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.loanStatus,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseLoanInfo.loanStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.overdueStatusCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseLoanInfo.overdueStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseLoanInfo.remark,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseLoanInfo.createdTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+    update da_enterprise_loan_info
+    <set >
+                  <if test="id != null  and id != '' " >
+                     id = #{id,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="loanDate != null ">
+                     loan_date = #{loanDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="loanMoney != null ">
+                     loan_money = #{loanMoney,jdbcType=NUMERIC},
+                  </if>
+                  <if test="loanTypeCode != null ">
+                     loan_type_code = #{loanTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="loanTypeText != null  and loanTypeText != '' " >
+                     loan_type_text = #{loanTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="loanStatus != null ">
+                     loan_status = #{loanStatus,jdbcType=TINYINT},
+                  </if>
+                  <if test="loanStatusText != null  and loanStatusText != '' " >
+                     loan_status_text = #{loanStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="overdueStatusCode != null ">
+                     overdue_status_code = #{overdueStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="overdueStatusText != null  and overdueStatusText != '' " >
+                     overdue_status_text = #{overdueStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+</update>
+  
+<update id="updateList">
+    update da_enterprise_loan_info
+    <set >
+                  <if test="t.id != null  and t.id != '' " >
+                     id = #{t.id,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.loanDate != null ">
+                     loan_date = #{t.loanDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.loanMoney != null ">
+                     loan_money = #{t.loanMoney,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.loanTypeCode != null ">
+                     loan_type_code = #{t.loanTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.loanTypeText != null  and t.loanTypeText != '' " >
+                     loan_type_text = #{t.loanTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.loanStatus != null ">
+                     loan_status = #{t.loanStatus,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.loanStatusText != null  and t.loanStatusText != '' " >
+                     loan_status_text = #{t.loanStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.overdueStatusCode != null ">
+                     overdue_status_code = #{t.overdueStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.overdueStatusText != null  and t.overdueStatusText != '' " >
+                     overdue_status_text = #{t.overdueStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_loan_info
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_loan_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginLoanDate != null ">
+				<![CDATA[ AND  unix_timestamp(loan_date)>=unix_timestamp(#{EntityRelated.beginLoanDate})]]> 
+		</if>
+		<if test="EntityRelated.endLoanDate != null ">
+				<![CDATA[ AND  unix_timestamp(loan_date)<unix_timestamp(#{EntityRelated.endLoanDate})]]> 
+		</if>
+		<if test="EntityRelated.loanStatusText != null and EntityRelated.loanStatusText != '' ">
+ 				and  loan_status_text LIKE CONCAT('%',#{EntityRelated.loanStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.loanTypeCode != null">
+				and loan_type_code = #{EntityRelated.loanTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.loanTypeText != null and EntityRelated.loanTypeText != '' ">
+ 				and  loan_type_text LIKE CONCAT('%',#{EntityRelated.loanTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.overdueStatusCode != null">
+				and overdue_status_code = #{EntityRelated.overdueStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.overdueStatusText != null and EntityRelated.overdueStatusText != '' ">
+ 				and  overdue_status_text LIKE CONCAT('%',#{EntityRelated.overdueStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

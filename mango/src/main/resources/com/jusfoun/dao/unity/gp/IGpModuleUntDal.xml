@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.gp.IGpModuleUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpModule" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+              <result column="level_code" property="levelCode" jdbcType="TINYINT" />
+              <result column="level_text" property="levelText" jdbcType="VARCHAR" />
+              <result column="farther_id" property="fartherId" jdbcType="VARCHAR" />
+              <result column="priority" property="priority" jdbcType="INTEGER" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,domain_id,name,serial_no,level_code,level_text,farther_id,priority,remark,add_time,update_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpModule" >
+    insert into gp_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="domainId != null and domainId != '' " >
+              domain_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="serialNo != null and serialNo != '' " >
+              serial_no,
+          </if>
+      
+          <if test="levelCode != null " >
+              level_code,
+          </if>
+          <if test="levelText != null and levelText != '' " >
+              level_text,
+          </if>
+      
+          <if test="fartherId != null and fartherId != '' " >
+              farther_id,
+          </if>
+      
+          <if test="priority != null " >
+              priority,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="domainId != null and domainId != '' " >
+              #{domainId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="serialNo != null and serialNo != '' " >
+              #{serialNo,jdbcType=VARCHAR},
+          </if>
+          <if test="levelCode != null " >
+              #{levelCode,jdbcType=TINYINT},
+          </if>
+          <if test="levelText != null and levelText != '' " >
+              #{levelText,jdbcType=VARCHAR},
+          </if>
+          <if test="fartherId != null and fartherId != '' " >
+              #{fartherId,jdbcType=VARCHAR},
+          </if>
+          <if test="priority != null " >
+              #{priority,jdbcType=INTEGER},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into gp_module
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpModule" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{gpModule.id,jdbcType=VARCHAR},
+
+      
+          #{gpModule.domainId,jdbcType=VARCHAR},
+
+      
+          #{gpModule.name,jdbcType=VARCHAR},
+
+      
+          #{gpModule.serialNo,jdbcType=VARCHAR},
+
+      
+          #{gpModule.levelCode,jdbcType=TINYINT},
+
+      
+          #{gpModule.levelText,jdbcType=VARCHAR},
+
+      
+          #{gpModule.fartherId,jdbcType=VARCHAR},
+
+      
+          #{gpModule.priority,jdbcType=INTEGER},
+
+      
+          #{gpModule.remark,jdbcType=VARCHAR},
+
+      
+          #{gpModule.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{gpModule.updateTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from gp_module
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from gp_module
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpModule" >
+    update gp_module
+    <set >
+                  <if test="domainId != null  and domainId != '' " >
+                     domain_id = #{domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="serialNo != null  and serialNo != '' " >
+                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="levelCode != null ">
+                     level_code = #{levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="levelText != null  and levelText != '' " >
+                     level_text = #{levelText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fartherId != null  and fartherId != '' " >
+                     farther_id = #{fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priority != null ">
+                     priority = #{priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update gp_module
+    <set >
+                  <if test="t.domainId != null  and t.domainId != '' " >
+                     domain_id = #{t.domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNo != null  and t.serialNo != '' " >
+                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.levelCode != null ">
+                     level_code = #{t.levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.levelText != null  and t.levelText != '' " >
+                     level_text = #{t.levelText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fartherId != null  and t.fartherId != '' " >
+                     farther_id = #{t.fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priority != null ">
+                     priority = #{t.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update gp_module
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="domain_id =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.domainId != null and gpModule.domainId  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.domainId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.name != null and gpModule.name  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="serial_no =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.serialNo != null and gpModule.serialNo  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.serialNo,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="level_code =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.levelCode != null " >
+                     when id=#{gpModule.id} then #{gpModule.levelCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="level_text =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.levelText != null and gpModule.levelText  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.levelText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="farther_id =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.fartherId != null and gpModule.fartherId  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.fartherId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="priority =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.priority != null " >
+                     when id=#{gpModule.id} then #{gpModule.priority,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.remark != null and gpModule.remark  != '' " >
+                     when id=#{gpModule.id} then #{gpModule.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.addTime != null " >
+                     when id=#{gpModule.id} then #{gpModule.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_time =case" suffix="end,">
+              <foreach collection="list" item="gpModule" index="index">
+                  <if test="gpModule.updateTime != null " >
+                     when id=#{gpModule.id} then #{gpModule.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{gpModule.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into gp_module
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="domainId  != null and domainId  != '' " >
+              domain_id,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="serialNo  != null and serialNo  != '' " >
+              serial_no,
+          </if>
+          <if test="levelCode  != null " >
+              level_code,
+          </if>
+          <if test="levelText  != null and levelText  != '' " >
+              level_text,
+          </if>
+          <if test="fartherId  != null and fartherId  != '' " >
+              farther_id,
+          </if>
+          <if test="priority  != null " >
+              priority,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="updateTime  != null " >
+              update_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="gpModule" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{gpModule.id ,jdbcType=VARCHAR},
+                  <if test="t.domainId  != null  and t.domainId != '' " >
+                     #{gpModule.domainId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{gpModule.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                     #{gpModule.serialNo ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.levelCode != null ">
+                    #{gpModule.levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.levelText  != null  and t.levelText != '' " >
+                     #{gpModule.levelText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fartherId  != null  and t.fartherId != '' " >
+                     #{gpModule.fartherId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priority != null ">
+                    #{gpModule.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{gpModule.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{gpModule.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                    #{gpModule.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_module
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from gp_module where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.domainId != null and EntityRelated.domainId != '' ">
+				and domain_id = #{EntityRelated.domainId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.fartherId != null and EntityRelated.fartherId != '' ">
+				and farther_id = #{EntityRelated.fartherId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.levelCode != null">
+				and level_code = #{EntityRelated.levelCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.levelText != null and EntityRelated.levelText != '' ">
+ 				and  level_text LIKE CONCAT('%',#{EntityRelated.levelText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.serialNo != null and EntityRelated.serialNo != '' ">
+ 				and  serial_no LIKE CONCAT('%',#{EntityRelated.serialNo,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentRuleSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentRule" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
+              <result column="media_type_code_set" property="mediaTypeCodeSet" jdbcType="VARCHAR" />
+              <result column="media_type_text_set" property="mediaTypeTextSet" jdbcType="VARCHAR" />
+              <result column="frequency" property="frequency" jdbcType="INTEGER" />
+              <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+              <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="status_code" property="statusCode" jdbcType="TINYINT" />
+              <result column="status_text" property="statusText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,rule_name,media_type_code_set,media_type_text_set,frequency,start_time,end_time,remark,add_user_id,add_time,status_code,status_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentRule" >
+    insert into da_sentiment_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="ruleName != null and ruleName != '' " >
+              rule_name,
+          </if>
+      
+          <if test="mediaTypeCodeSet != null and mediaTypeCodeSet != '' " >
+              media_type_code_set,
+          </if>
+      
+          <if test="mediaTypeTextSet != null and mediaTypeTextSet != '' " >
+              media_type_text_set,
+          </if>
+      
+          <if test="frequency != null " >
+              frequency,
+          </if>
+          <if test="startTime != null and startTime != '' " >
+              start_time,
+          </if>
+      
+          <if test="endTime != null and endTime != '' " >
+              end_time,
+          </if>
+      
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="statusCode != null " >
+              status_code,
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              status_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="ruleName != null and ruleName != '' " >
+              #{ruleName,jdbcType=VARCHAR},
+          </if>
+          <if test="mediaTypeCodeSet != null and mediaTypeCodeSet != '' " >
+              #{mediaTypeCodeSet,jdbcType=VARCHAR},
+          </if>
+          <if test="mediaTypeTextSet != null and mediaTypeTextSet != '' " >
+              #{mediaTypeTextSet,jdbcType=VARCHAR},
+          </if>
+          <if test="frequency != null " >
+              #{frequency,jdbcType=INTEGER},
+          </if>
+          <if test="startTime != null and startTime != '' " >
+              #{startTime,jdbcType=VARCHAR},
+          </if>
+          <if test="endTime != null and endTime != '' " >
+              #{endTime,jdbcType=VARCHAR},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="statusCode != null " >
+              #{statusCode,jdbcType=TINYINT},
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              #{statusText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sentiment_rule
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentRule" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSentimentRule.id,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.ruleName,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.mediaTypeCodeSet,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.mediaTypeTextSet,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.frequency,jdbcType=INTEGER},
+
+      
+          #{daSentimentRule.startTime,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.endTime,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.remark,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.addUserId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentRule.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daSentimentRule.statusCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentRule.statusText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sentiment_rule
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sentiment_rule
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentRule" >
+    update da_sentiment_rule
+    <set >
+                  <if test="ruleName != null  and ruleName != '' " >
+                     rule_name = #{ruleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mediaTypeCodeSet != null  and mediaTypeCodeSet != '' " >
+                     media_type_code_set = #{mediaTypeCodeSet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mediaTypeTextSet != null  and mediaTypeTextSet != '' " >
+                     media_type_text_set = #{mediaTypeTextSet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="frequency != null ">
+                     frequency = #{frequency,jdbcType=INTEGER},
+                  </if>
+                  <if test="startTime != null  and startTime != '' " >
+                     start_time = #{startTime,jdbcType=VARCHAR},
+                  </if>
+                  <if test="endTime != null  and endTime != '' " >
+                     end_time = #{endTime,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="statusCode != null ">
+                     status_code = #{statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="statusText != null  and statusText != '' " >
+                     status_text = #{statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_sentiment_rule
+    <set >
+                  <if test="t.ruleName != null  and t.ruleName != '' " >
+                     rule_name = #{t.ruleName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaTypeCodeSet != null  and t.mediaTypeCodeSet != '' " >
+                     media_type_code_set = #{t.mediaTypeCodeSet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaTypeTextSet != null  and t.mediaTypeTextSet != '' " >
+                     media_type_text_set = #{t.mediaTypeTextSet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.frequency != null ">
+                     frequency = #{t.frequency,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.startTime != null  and t.startTime != '' " >
+                     start_time = #{t.startTime,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.endTime != null  and t.endTime != '' " >
+                     end_time = #{t.endTime,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.statusCode != null ">
+                     status_code = #{t.statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.statusText != null  and t.statusText != '' " >
+                     status_text = #{t.statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sentiment_rule
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sentiment_rule where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.endTime != null and EntityRelated.endTime != '' ">
+ 				and  end_time LIKE CONCAT('%',#{EntityRelated.endTime,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.mediaTypeCodeSet != null and EntityRelated.mediaTypeCodeSet != '' ">
+ 				and  media_type_code_set LIKE CONCAT('%',#{EntityRelated.mediaTypeCodeSet,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mediaTypeTextSet != null and EntityRelated.mediaTypeTextSet != '' ">
+ 				and  media_type_text_set LIKE CONCAT('%',#{EntityRelated.mediaTypeTextSet,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.ruleName != null and EntityRelated.ruleName != '' ">
+ 				and  rule_name LIKE CONCAT('%',#{EntityRelated.ruleName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.startTime != null and EntityRelated.startTime != '' ">
+ 				and  start_time LIKE CONCAT('%',#{EntityRelated.startTime,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.statusCode != null">
+				and status_code = #{EntityRelated.statusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.statusText != null and EntityRelated.statusText != '' ">
+ 				and  status_text LIKE CONCAT('%',#{EntityRelated.statusText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPirContentVideoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentVideo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+              <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,content_id,resource_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+    insert into pir_content_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+          <if test="resourceId != null and resourceId != '' " >
+              resource_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+          <if test="resourceId != null and resourceId != '' " >
+              #{resourceId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pir_content_video
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirContentVideo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{pirContentVideo.id,jdbcType=VARCHAR},
+
+      
+          #{pirContentVideo.contentId,jdbcType=VARCHAR},
+
+      
+          #{pirContentVideo.resourceId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pir_content_video
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pir_content_video
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+    update pir_content_video
+    <set >
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="resourceId != null  and resourceId != '' " >
+                     resource_id = #{resourceId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pir_content_video
+    <set >
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourceId != null  and t.resourceId != '' " >
+                     resource_id = #{t.resourceId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pir_content_video
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="content_id =case" suffix="end,">
+              <foreach collection="list" item="pirContentVideo" index="index">
+                  <if test="pirContentVideo.contentId != null and pirContentVideo.contentId  != '' " >
+                     when id=#{pirContentVideo.id} then #{pirContentVideo.contentId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="resource_id =case" suffix="end,">
+              <foreach collection="list" item="pirContentVideo" index="index">
+                  <if test="pirContentVideo.resourceId != null and pirContentVideo.resourceId  != '' " >
+                     when id=#{pirContentVideo.id} then #{pirContentVideo.resourceId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{pirContentVideo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pir_content_video
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="contentId  != null and contentId  != '' " >
+              content_id,
+          </if>
+          <if test="resourceId  != null and resourceId  != '' " >
+              resource_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="pirContentVideo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{pirContentVideo.id ,jdbcType=VARCHAR},
+                  <if test="t.contentId  != null  and t.contentId != '' " >
+                     #{pirContentVideo.contentId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+                     #{pirContentVideo.resourceId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pir_content_video
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pir_content_video where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.resourceId != null and EntityRelated.resourceId != '' ">
+				and resource_id = #{EntityRelated.resourceId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

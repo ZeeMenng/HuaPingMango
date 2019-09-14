@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaBaseDetailUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaBaseDetail" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="detail_code" property="detailCode" jdbcType="VARCHAR" />
+              <result column="detail_name" property="detailName" jdbcType="VARCHAR" />
+              <result column="base_id" property="baseId" jdbcType="VARCHAR" />
+              <result column="base_code" property="baseCode" jdbcType="VARCHAR" />
+              <result column="area_detail" property="areaDetail" jdbcType="VARCHAR" />
+              <result column="output" property="output" jdbcType="VARCHAR" />
+              <result column="product_id" property="productId" jdbcType="VARCHAR" />
+              <result column="product_name" property="productName" jdbcType="VARCHAR" />
+              <result column="creator" property="creator" jdbcType="VARCHAR" />
+              <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+              <result column="regenerator" property="regenerator" jdbcType="VARCHAR" />
+              <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+              <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+              <result column="extra" property="extra" jdbcType="VARCHAR" />
+              <result column="planted" property="planted" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,detail_code,detail_name,base_id,base_code,area_detail,output,product_id,product_name,creator,create_date,regenerator,update_date,del_flag,extra,planted
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaBaseDetail" >
+    insert into da_base_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="detailCode != null and detailCode != '' " >
+              detail_code,
+          </if>
+      
+          <if test="detailName != null and detailName != '' " >
+              detail_name,
+          </if>
+      
+          <if test="baseId != null and baseId != '' " >
+              base_id,
+          </if>
+      
+          <if test="baseCode != null and baseCode != '' " >
+              base_code,
+          </if>
+      
+          <if test="areaDetail != null and areaDetail != '' " >
+              area_detail,
+          </if>
+      
+          <if test="output != null and output != '' " >
+              output,
+          </if>
+      
+          <if test="productId != null and productId != '' " >
+              product_id,
+          </if>
+      
+          <if test="productName != null and productName != '' " >
+              product_name,
+          </if>
+      
+          <if test="creator != null and creator != '' " >
+              creator,
+          </if>
+      
+          <if test="createDate != null " >
+              create_date,
+          </if>
+          <if test="regenerator != null and regenerator != '' " >
+              regenerator,
+          </if>
+      
+          <if test="updateDate != null " >
+              update_date,
+          </if>
+          <if test="delFlag != null " >
+              del_flag,
+          </if>
+          <if test="extra != null and extra != '' " >
+              extra,
+          </if>
+      
+          <if test="planted != null " >
+              planted,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="detailCode != null and detailCode != '' " >
+              #{detailCode,jdbcType=VARCHAR},
+          </if>
+          <if test="detailName != null and detailName != '' " >
+              #{detailName,jdbcType=VARCHAR},
+          </if>
+          <if test="baseId != null and baseId != '' " >
+              #{baseId,jdbcType=VARCHAR},
+          </if>
+          <if test="baseCode != null and baseCode != '' " >
+              #{baseCode,jdbcType=VARCHAR},
+          </if>
+          <if test="areaDetail != null and areaDetail != '' " >
+              #{areaDetail,jdbcType=VARCHAR},
+          </if>
+          <if test="output != null and output != '' " >
+              #{output,jdbcType=VARCHAR},
+          </if>
+          <if test="productId != null and productId != '' " >
+              #{productId,jdbcType=VARCHAR},
+          </if>
+          <if test="productName != null and productName != '' " >
+              #{productName,jdbcType=VARCHAR},
+          </if>
+          <if test="creator != null and creator != '' " >
+              #{creator,jdbcType=VARCHAR},
+          </if>
+          <if test="createDate != null " >
+              #{createDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="regenerator != null and regenerator != '' " >
+              #{regenerator,jdbcType=VARCHAR},
+          </if>
+          <if test="updateDate != null " >
+              #{updateDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="delFlag != null " >
+              #{delFlag,jdbcType=TINYINT},
+          </if>
+          <if test="extra != null and extra != '' " >
+              #{extra,jdbcType=VARCHAR},
+          </if>
+          <if test="planted != null " >
+              #{planted,jdbcType=TINYINT},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_base_detail
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daBaseDetail" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daBaseDetail.id,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.detailCode,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.detailName,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.baseId,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.baseCode,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.areaDetail,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.output,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.productId,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.productName,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.creator,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.createDate,jdbcType=TIMESTAMP},
+
+      
+          #{daBaseDetail.regenerator,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.updateDate,jdbcType=TIMESTAMP},
+
+      
+          #{daBaseDetail.delFlag,jdbcType=TINYINT},
+
+      
+          #{daBaseDetail.extra,jdbcType=VARCHAR},
+
+      
+          #{daBaseDetail.planted,jdbcType=TINYINT},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_base_detail
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_base_detail
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaBaseDetail" >
+    update da_base_detail
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="detailCode != null  and detailCode != '' " >
+                     detail_code = #{detailCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="detailName != null  and detailName != '' " >
+                     detail_name = #{detailName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseId != null  and baseId != '' " >
+                     base_id = #{baseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseCode != null  and baseCode != '' " >
+                     base_code = #{baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="areaDetail != null  and areaDetail != '' " >
+                     area_detail = #{areaDetail,jdbcType=VARCHAR},
+                  </if>
+                  <if test="output != null  and output != '' " >
+                     output = #{output,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productId != null  and productId != '' " >
+                     product_id = #{productId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productName != null  and productName != '' " >
+                     product_name = #{productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="creator != null  and creator != '' " >
+                     creator = #{creator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createDate != null ">
+                     create_date = #{createDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="regenerator != null  and regenerator != '' " >
+                     regenerator = #{regenerator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="updateDate != null ">
+                     update_date = #{updateDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="delFlag != null ">
+                     del_flag = #{delFlag,jdbcType=TINYINT},
+                  </if>
+                  <if test="extra != null  and extra != '' " >
+                     extra = #{extra,jdbcType=VARCHAR},
+                  </if>
+                  <if test="planted != null ">
+                     planted = #{planted,jdbcType=TINYINT},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_base_detail
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.detailCode != null  and t.detailCode != '' " >
+                     detail_code = #{t.detailCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.detailName != null  and t.detailName != '' " >
+                     detail_name = #{t.detailName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseId != null  and t.baseId != '' " >
+                     base_id = #{t.baseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseCode != null  and t.baseCode != '' " >
+                     base_code = #{t.baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.areaDetail != null  and t.areaDetail != '' " >
+                     area_detail = #{t.areaDetail,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.output != null  and t.output != '' " >
+                     output = #{t.output,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productId != null  and t.productId != '' " >
+                     product_id = #{t.productId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productName != null  and t.productName != '' " >
+                     product_name = #{t.productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.creator != null  and t.creator != '' " >
+                     creator = #{t.creator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createDate != null ">
+                     create_date = #{t.createDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.regenerator != null  and t.regenerator != '' " >
+                     regenerator = #{t.regenerator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.updateDate != null ">
+                     update_date = #{t.updateDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.delFlag != null ">
+                     del_flag = #{t.delFlag,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.extra != null  and t.extra != '' " >
+                     extra = #{t.extra,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.planted != null ">
+                     planted = #{t.planted,jdbcType=TINYINT},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_base_detail
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.commonFieldId != null and daBaseDetail.commonFieldId  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="detail_code =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.detailCode != null and daBaseDetail.detailCode  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.detailCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="detail_name =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.detailName != null and daBaseDetail.detailName  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.detailName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="base_id =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.baseId != null and daBaseDetail.baseId  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.baseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="base_code =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.baseCode != null and daBaseDetail.baseCode  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.baseCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="area_detail =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.areaDetail != null and daBaseDetail.areaDetail  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.areaDetail,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="output =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.output != null and daBaseDetail.output  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.output,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_id =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.productId != null and daBaseDetail.productId  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.productId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_name =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.productName != null and daBaseDetail.productName  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.productName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="creator =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.creator != null and daBaseDetail.creator  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.creator,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="create_date =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.createDate != null " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.createDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="regenerator =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.regenerator != null and daBaseDetail.regenerator  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.regenerator,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_date =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.updateDate != null " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.updateDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="del_flag =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.delFlag != null " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.delFlag,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="extra =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.extra != null and daBaseDetail.extra  != '' " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.extra,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="planted =case" suffix="end,">
+              <foreach collection="list" item="daBaseDetail" index="index">
+                  <if test="daBaseDetail.planted != null " >
+                     when id=#{daBaseDetail.id} then #{daBaseDetail.planted,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daBaseDetail.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_base_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="detailCode  != null and detailCode  != '' " >
+              detail_code,
+          </if>
+          <if test="detailName  != null and detailName  != '' " >
+              detail_name,
+          </if>
+          <if test="baseId  != null and baseId  != '' " >
+              base_id,
+          </if>
+          <if test="baseCode  != null and baseCode  != '' " >
+              base_code,
+          </if>
+          <if test="areaDetail  != null and areaDetail  != '' " >
+              area_detail,
+          </if>
+          <if test="output  != null and output  != '' " >
+              output,
+          </if>
+          <if test="productId  != null and productId  != '' " >
+              product_id,
+          </if>
+          <if test="productName  != null and productName  != '' " >
+              product_name,
+          </if>
+          <if test="creator  != null and creator  != '' " >
+              creator,
+          </if>
+          <if test="createDate  != null " >
+              create_date,
+          </if>
+          <if test="regenerator  != null and regenerator  != '' " >
+              regenerator,
+          </if>
+          <if test="updateDate  != null " >
+              update_date,
+          </if>
+          <if test="delFlag  != null " >
+              del_flag,
+          </if>
+          <if test="extra  != null and extra  != '' " >
+              extra,
+          </if>
+          <if test="planted  != null " >
+              planted,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daBaseDetail" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daBaseDetail.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daBaseDetail.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.detailCode  != null  and t.detailCode != '' " >
+                     #{daBaseDetail.detailCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.detailName  != null  and t.detailName != '' " >
+                     #{daBaseDetail.detailName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseId  != null  and t.baseId != '' " >
+                     #{daBaseDetail.baseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseCode  != null  and t.baseCode != '' " >
+                     #{daBaseDetail.baseCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.areaDetail  != null  and t.areaDetail != '' " >
+                     #{daBaseDetail.areaDetail ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.output  != null  and t.output != '' " >
+                     #{daBaseDetail.output ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productId  != null  and t.productId != '' " >
+                     #{daBaseDetail.productId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productName  != null  and t.productName != '' " >
+                     #{daBaseDetail.productName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.creator  != null  and t.creator != '' " >
+                     #{daBaseDetail.creator ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createDate != null ">
+                    #{daBaseDetail.createDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.regenerator  != null  and t.regenerator != '' " >
+                     #{daBaseDetail.regenerator ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.updateDate != null ">
+                    #{daBaseDetail.updateDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.delFlag != null ">
+                    #{daBaseDetail.delFlag,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.extra  != null  and t.extra != '' " >
+                     #{daBaseDetail.extra ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.planted != null ">
+                    #{daBaseDetail.planted,jdbcType=TINYINT},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_base_detail
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_base_detail where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.areaDetail != null and EntityRelated.areaDetail != '' ">
+ 				and  area_detail LIKE CONCAT('%',#{EntityRelated.areaDetail,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.baseCode != null">
+				and base_code = #{EntityRelated.baseCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.baseId != null and EntityRelated.baseId != '' ">
+				and base_id = #{EntityRelated.baseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginCreateDate != null ">
+				<![CDATA[ AND  unix_timestamp(create_date)>=unix_timestamp(#{EntityRelated.beginCreateDate})]]> 
+		</if>
+		<if test="EntityRelated.endCreateDate != null ">
+				<![CDATA[ AND  unix_timestamp(create_date)<unix_timestamp(#{EntityRelated.endCreateDate})]]> 
+		</if>
+		<if test="EntityRelated.creator != null and EntityRelated.creator != '' ">
+ 				and  creator LIKE CONCAT('%',#{EntityRelated.creator,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.detailCode != null">
+				and detail_code = #{EntityRelated.detailCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.detailName != null and EntityRelated.detailName != '' ">
+ 				and  detail_name LIKE CONCAT('%',#{EntityRelated.detailName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.extra != null and EntityRelated.extra != '' ">
+ 				and  extra LIKE CONCAT('%',#{EntityRelated.extra,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.output != null and EntityRelated.output != '' ">
+ 				and  output LIKE CONCAT('%',#{EntityRelated.output,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.productId != null and EntityRelated.productId != '' ">
+				and product_id = #{EntityRelated.productId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.productName != null and EntityRelated.productName != '' ">
+ 				and  product_name LIKE CONCAT('%',#{EntityRelated.productName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regenerator != null and EntityRelated.regenerator != '' ">
+ 				and  regenerator LIKE CONCAT('%',#{EntityRelated.regenerator,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateDate != null ">
+				<![CDATA[ AND  unix_timestamp(update_date)>=unix_timestamp(#{EntityRelated.beginUpdateDate})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateDate != null ">
+				<![CDATA[ AND  unix_timestamp(update_date)<unix_timestamp(#{EntityRelated.endUpdateDate})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelTxtUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="txt" property="txt" jdbcType="VARCHAR" />
+              <result column="txt1" property="txt1" jdbcType="VARCHAR" />
+              <result column="txt2" property="txt2" jdbcType="VARCHAR" />
+              <result column="txt3" property="txt3" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,channel_id,txt,txt1,txt2,txt3
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+    insert into pi_channel_txt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="txt != null and txt != '' " >
+              txt,
+          </if>
+      
+          <if test="txt1 != null and txt1 != '' " >
+              txt1,
+          </if>
+      
+          <if test="txt2 != null and txt2 != '' " >
+              txt2,
+          </if>
+      
+          <if test="txt3 != null and txt3 != '' " >
+              txt3,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="txt != null and txt != '' " >
+              #{txt,jdbcType=VARCHAR},
+          </if>
+          <if test="txt1 != null and txt1 != '' " >
+              #{txt1,jdbcType=VARCHAR},
+          </if>
+          <if test="txt2 != null and txt2 != '' " >
+              #{txt2,jdbcType=VARCHAR},
+          </if>
+          <if test="txt3 != null and txt3 != '' " >
+              #{txt3,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_channel_txt
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelTxt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piChannelTxt.id,jdbcType=VARCHAR},
+
+      
+          #{piChannelTxt.channelId,jdbcType=VARCHAR},
+
+      
+          #{piChannelTxt.txt,jdbcType=VARCHAR},
+
+      
+          #{piChannelTxt.txt1,jdbcType=VARCHAR},
+
+      
+          #{piChannelTxt.txt2,jdbcType=VARCHAR},
+
+      
+          #{piChannelTxt.txt3,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_channel_txt
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_channel_txt
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+    update pi_channel_txt
+    <set >
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt != null  and txt != '' " >
+                     txt = #{txt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt1 != null  and txt1 != '' " >
+                     txt1 = #{txt1,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt2 != null  and txt2 != '' " >
+                     txt2 = #{txt2,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt3 != null  and txt3 != '' " >
+                     txt3 = #{txt3,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pi_channel_txt
+    <set >
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt != null  and t.txt != '' " >
+                     txt = #{t.txt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt1 != null  and t.txt1 != '' " >
+                     txt1 = #{t.txt1,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt2 != null  and t.txt2 != '' " >
+                     txt2 = #{t.txt2,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt3 != null  and t.txt3 != '' " >
+                     txt3 = #{t.txt3,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pi_channel_txt
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="channel_id =case" suffix="end,">
+              <foreach collection="list" item="piChannelTxt" index="index">
+                  <if test="piChannelTxt.channelId != null and piChannelTxt.channelId  != '' " >
+                     when id=#{piChannelTxt.id} then #{piChannelTxt.channelId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="txt =case" suffix="end,">
+              <foreach collection="list" item="piChannelTxt" index="index">
+                  <if test="piChannelTxt.txt != null and piChannelTxt.txt  != '' " >
+                     when id=#{piChannelTxt.id} then #{piChannelTxt.txt,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="txt1 =case" suffix="end,">
+              <foreach collection="list" item="piChannelTxt" index="index">
+                  <if test="piChannelTxt.txt1 != null and piChannelTxt.txt1  != '' " >
+                     when id=#{piChannelTxt.id} then #{piChannelTxt.txt1,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="txt2 =case" suffix="end,">
+              <foreach collection="list" item="piChannelTxt" index="index">
+                  <if test="piChannelTxt.txt2 != null and piChannelTxt.txt2  != '' " >
+                     when id=#{piChannelTxt.id} then #{piChannelTxt.txt2,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="txt3 =case" suffix="end,">
+              <foreach collection="list" item="piChannelTxt" index="index">
+                  <if test="piChannelTxt.txt3 != null and piChannelTxt.txt3  != '' " >
+                     when id=#{piChannelTxt.id} then #{piChannelTxt.txt3,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{piChannelTxt.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pi_channel_txt
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="channelId  != null and channelId  != '' " >
+              channel_id,
+          </if>
+          <if test="txt  != null and txt  != '' " >
+              txt,
+          </if>
+          <if test="txt1  != null and txt1  != '' " >
+              txt1,
+          </if>
+          <if test="txt2  != null and txt2  != '' " >
+              txt2,
+          </if>
+          <if test="txt3  != null and txt3  != '' " >
+              txt3,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="piChannelTxt" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{piChannelTxt.id ,jdbcType=VARCHAR},
+                  <if test="t.channelId  != null  and t.channelId != '' " >
+                     #{piChannelTxt.channelId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt  != null  and t.txt != '' " >
+                     #{piChannelTxt.txt ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt1  != null  and t.txt1 != '' " >
+                     #{piChannelTxt.txt1 ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt2  != null  and t.txt2 != '' " >
+                     #{piChannelTxt.txt2 ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt3  != null  and t.txt3 != '' " >
+                     #{piChannelTxt.txt3 ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_channel_txt
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_channel_txt where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.txt != null and EntityRelated.txt != '' ">
+ 				and  txt LIKE CONCAT('%',#{EntityRelated.txt,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt1 != null and EntityRelated.txt1 != '' ">
+ 				and  txt1 LIKE CONCAT('%',#{EntityRelated.txt1,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt2 != null and EntityRelated.txt2 != '' ">
+ 				and  txt2 LIKE CONCAT('%',#{EntityRelated.txt2,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt3 != null and EntityRelated.txt3 != '' ">
+ 				and  txt3 LIKE CONCAT('%',#{EntityRelated.txt3,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

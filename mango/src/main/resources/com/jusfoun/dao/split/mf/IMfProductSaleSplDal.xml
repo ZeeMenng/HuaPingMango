@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.mf.IMfProductSaleSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProductSale" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="yield_actual" property="yieldActual" jdbcType="NUMERIC" />
+              <result column="yield_forecast" property="yieldForecast" jdbcType="NUMERIC" />
+              <result column="sale_actual" property="saleActual" jdbcType="NUMERIC" />
+              <result column="sale_forecast" property="saleForecast" jdbcType="NUMERIC" />
+              <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,yield_actual,yield_forecast,sale_actual,sale_forecast,date_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProductSale" >
+    insert into mf_product_sale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="yieldActual != null " >
+              yield_actual,
+          </if>
+          <if test="yieldForecast != null " >
+              yield_forecast,
+          </if>
+          <if test="saleActual != null " >
+              sale_actual,
+          </if>
+          <if test="saleForecast != null " >
+              sale_forecast,
+          </if>
+          <if test="dateTime != null and dateTime != '' " >
+              date_time,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="yieldActual != null " >
+              #{yieldActual,jdbcType=NUMERIC},
+          </if>
+          <if test="yieldForecast != null " >
+              #{yieldForecast,jdbcType=NUMERIC},
+          </if>
+          <if test="saleActual != null " >
+              #{saleActual,jdbcType=NUMERIC},
+          </if>
+          <if test="saleForecast != null " >
+              #{saleForecast,jdbcType=NUMERIC},
+          </if>
+          <if test="dateTime != null and dateTime != '' " >
+              #{dateTime,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_product_sale
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfProductSale" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfProductSale.id,jdbcType=VARCHAR},
+
+      
+          #{mfProductSale.yieldActual,jdbcType=NUMERIC},
+
+      
+          #{mfProductSale.yieldForecast,jdbcType=NUMERIC},
+
+      
+          #{mfProductSale.saleActual,jdbcType=NUMERIC},
+
+      
+          #{mfProductSale.saleForecast,jdbcType=NUMERIC},
+
+      
+          #{mfProductSale.dateTime,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_product_sale
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_product_sale
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProductSale" >
+    update mf_product_sale
+    <set >
+                  <if test="yieldActual != null ">
+                     yield_actual = #{yieldActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="yieldForecast != null ">
+                     yield_forecast = #{yieldForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleActual != null ">
+                     sale_actual = #{saleActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleForecast != null ">
+                     sale_forecast = #{saleForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="dateTime != null  and dateTime != '' " >
+                     date_time = #{dateTime,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update mf_product_sale
+    <set >
+                  <if test="t.yieldActual != null ">
+                     yield_actual = #{t.yieldActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.yieldForecast != null ">
+                     yield_forecast = #{t.yieldForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleActual != null ">
+                     sale_actual = #{t.saleActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleForecast != null ">
+                     sale_forecast = #{t.saleForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.dateTime != null  and t.dateTime != '' " >
+                     date_time = #{t.dateTime,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_product_sale
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_product_sale where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.dateTime != null and EntityRelated.dateTime != '' ">
+ 				and  date_time LIKE CONCAT('%',#{EntityRelated.dateTime,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

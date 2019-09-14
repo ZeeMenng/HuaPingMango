@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelExtUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelExt" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+              <result column="final_step" property="finalStep" jdbcType="TINYINT" />
+              <result column="after_check" property="afterCheck" jdbcType="TINYINT" />
+              <result column="is_static_channel" property="isStaticChannel" jdbcType="VARCHAR" />
+              <result column="is_static_content" property="isStaticContent" jdbcType="VARCHAR" />
+              <result column="is_access_by_dir" property="isAccessByDir" jdbcType="VARCHAR" />
+              <result column="is_list_child" property="isListChild" jdbcType="VARCHAR" />
+              <result column="page_size" property="pageSize" jdbcType="INTEGER" />
+              <result column="channel_rule" property="channelRule" jdbcType="VARCHAR" />
+              <result column="content_rule" property="contentRule" jdbcType="VARCHAR" />
+              <result column="link" property="link" jdbcType="VARCHAR" />
+              <result column="tpl_channel" property="tplChannel" jdbcType="VARCHAR" />
+              <result column="tpl_content" property="tplContent" jdbcType="VARCHAR" />
+              <result column="title_img" property="titleImg" jdbcType="VARCHAR" />
+              <result column="content_img" property="contentImg" jdbcType="VARCHAR" />
+              <result column="has_title_img" property="hasTitleImg" jdbcType="TINYINT" />
+              <result column="has_content_img" property="hasContentImg" jdbcType="TINYINT" />
+              <result column="title_img_width" property="titleImgWidth" jdbcType="INTEGER" />
+              <result column="title_img_height" property="titleImgHeight" jdbcType="INTEGER" />
+              <result column="content_img_width" property="contentImgWidth" jdbcType="INTEGER" />
+              <result column="content_img_height" property="contentImgHeight" jdbcType="INTEGER" />
+              <result column="comment_control" property="commentControl" jdbcType="INTEGER" />
+              <result column="allow_updown" property="allowUpdown" jdbcType="TINYINT" />
+              <result column="is_blank" property="isBlank" jdbcType="TINYINT" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+              <result column="description" property="description" jdbcType="VARCHAR" />
+              <result column="allow_share" property="allowShare" jdbcType="TINYINT" />
+              <result column="allow_score" property="allowScore" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,channel_id,channel_name,final_step,after_check,is_static_channel,is_static_content,is_access_by_dir,is_list_child,page_size,channel_rule,content_rule,link,tpl_channel,tpl_content,title_img,content_img,has_title_img,has_content_img,title_img_width,title_img_height,content_img_width,content_img_height,comment_control,allow_updown,is_blank,title,keywords,description,allow_share,allow_score
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+    insert into pi_channel_ext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="channelName != null and channelName != '' " >
+              channel_name,
+          </if>
+      
+          <if test="finalStep != null " >
+              final_step,
+          </if>
+          <if test="afterCheck != null " >
+              after_check,
+          </if>
+          <if test="isStaticChannel != null and isStaticChannel != '' " >
+              is_static_channel,
+          </if>
+      
+          <if test="isStaticContent != null and isStaticContent != '' " >
+              is_static_content,
+          </if>
+      
+          <if test="isAccessByDir != null and isAccessByDir != '' " >
+              is_access_by_dir,
+          </if>
+      
+          <if test="isListChild != null and isListChild != '' " >
+              is_list_child,
+          </if>
+      
+          <if test="pageSize != null " >
+              page_size,
+          </if>
+          <if test="channelRule != null and channelRule != '' " >
+              channel_rule,
+          </if>
+      
+          <if test="contentRule != null and contentRule != '' " >
+              content_rule,
+          </if>
+      
+          <if test="link != null and link != '' " >
+              link,
+          </if>
+      
+          <if test="tplChannel != null and tplChannel != '' " >
+              tpl_channel,
+          </if>
+      
+          <if test="tplContent != null and tplContent != '' " >
+              tpl_content,
+          </if>
+      
+          <if test="titleImg != null and titleImg != '' " >
+              title_img,
+          </if>
+      
+          <if test="contentImg != null and contentImg != '' " >
+              content_img,
+          </if>
+      
+          <if test="hasTitleImg != null " >
+              has_title_img,
+          </if>
+          <if test="hasContentImg != null " >
+              has_content_img,
+          </if>
+          <if test="titleImgWidth != null " >
+              title_img_width,
+          </if>
+          <if test="titleImgHeight != null " >
+              title_img_height,
+          </if>
+          <if test="contentImgWidth != null " >
+              content_img_width,
+          </if>
+          <if test="contentImgHeight != null " >
+              content_img_height,
+          </if>
+          <if test="commentControl != null " >
+              comment_control,
+          </if>
+          <if test="allowUpdown != null " >
+              allow_updown,
+          </if>
+          <if test="isBlank != null " >
+              is_blank,
+          </if>
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="keywords != null and keywords != '' " >
+              keywords,
+          </if>
+      
+          <if test="description != null and description != '' " >
+              description,
+          </if>
+      
+          <if test="allowShare != null " >
+              allow_share,
+          </if>
+          <if test="allowScore != null " >
+              allow_score,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="channelName != null and channelName != '' " >
+              #{channelName,jdbcType=VARCHAR},
+          </if>
+          <if test="finalStep != null " >
+              #{finalStep,jdbcType=TINYINT},
+          </if>
+          <if test="afterCheck != null " >
+              #{afterCheck,jdbcType=TINYINT},
+          </if>
+          <if test="isStaticChannel != null and isStaticChannel != '' " >
+              #{isStaticChannel,jdbcType=VARCHAR},
+          </if>
+          <if test="isStaticContent != null and isStaticContent != '' " >
+              #{isStaticContent,jdbcType=VARCHAR},
+          </if>
+          <if test="isAccessByDir != null and isAccessByDir != '' " >
+              #{isAccessByDir,jdbcType=VARCHAR},
+          </if>
+          <if test="isListChild != null and isListChild != '' " >
+              #{isListChild,jdbcType=VARCHAR},
+          </if>
+          <if test="pageSize != null " >
+              #{pageSize,jdbcType=INTEGER},
+          </if>
+          <if test="channelRule != null and channelRule != '' " >
+              #{channelRule,jdbcType=VARCHAR},
+          </if>
+          <if test="contentRule != null and contentRule != '' " >
+              #{contentRule,jdbcType=VARCHAR},
+          </if>
+          <if test="link != null and link != '' " >
+              #{link,jdbcType=VARCHAR},
+          </if>
+          <if test="tplChannel != null and tplChannel != '' " >
+              #{tplChannel,jdbcType=VARCHAR},
+          </if>
+          <if test="tplContent != null and tplContent != '' " >
+              #{tplContent,jdbcType=VARCHAR},
+          </if>
+          <if test="titleImg != null and titleImg != '' " >
+              #{titleImg,jdbcType=VARCHAR},
+          </if>
+          <if test="contentImg != null and contentImg != '' " >
+              #{contentImg,jdbcType=VARCHAR},
+          </if>
+          <if test="hasTitleImg != null " >
+              #{hasTitleImg,jdbcType=TINYINT},
+          </if>
+          <if test="hasContentImg != null " >
+              #{hasContentImg,jdbcType=TINYINT},
+          </if>
+          <if test="titleImgWidth != null " >
+              #{titleImgWidth,jdbcType=INTEGER},
+          </if>
+          <if test="titleImgHeight != null " >
+              #{titleImgHeight,jdbcType=INTEGER},
+          </if>
+          <if test="contentImgWidth != null " >
+              #{contentImgWidth,jdbcType=INTEGER},
+          </if>
+          <if test="contentImgHeight != null " >
+              #{contentImgHeight,jdbcType=INTEGER},
+          </if>
+          <if test="commentControl != null " >
+              #{commentControl,jdbcType=INTEGER},
+          </if>
+          <if test="allowUpdown != null " >
+              #{allowUpdown,jdbcType=TINYINT},
+          </if>
+          <if test="isBlank != null " >
+              #{isBlank,jdbcType=TINYINT},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="keywords != null and keywords != '' " >
+              #{keywords,jdbcType=VARCHAR},
+          </if>
+          <if test="description != null and description != '' " >
+              #{description,jdbcType=VARCHAR},
+          </if>
+          <if test="allowShare != null " >
+              #{allowShare,jdbcType=TINYINT},
+          </if>
+          <if test="allowScore != null " >
+              #{allowScore,jdbcType=TINYINT},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_channel_ext
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelExt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piChannelExt.id,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.channelId,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.channelName,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.finalStep,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.afterCheck,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.isStaticChannel,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.isStaticContent,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.isAccessByDir,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.isListChild,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.pageSize,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.channelRule,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.contentRule,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.link,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.tplChannel,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.tplContent,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.titleImg,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.contentImg,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.hasTitleImg,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.hasContentImg,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.titleImgWidth,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.titleImgHeight,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.contentImgWidth,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.contentImgHeight,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.commentControl,jdbcType=INTEGER},
+
+      
+          #{piChannelExt.allowUpdown,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.isBlank,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.title,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.keywords,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.description,jdbcType=VARCHAR},
+
+      
+          #{piChannelExt.allowShare,jdbcType=TINYINT},
+
+      
+          #{piChannelExt.allowScore,jdbcType=TINYINT},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_channel_ext
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_channel_ext
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+    update pi_channel_ext
+    <set >
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="channelName != null  and channelName != '' " >
+                     channel_name = #{channelName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="finalStep != null ">
+                     final_step = #{finalStep,jdbcType=TINYINT},
+                  </if>
+                  <if test="afterCheck != null ">
+                     after_check = #{afterCheck,jdbcType=TINYINT},
+                  </if>
+                  <if test="isStaticChannel != null  and isStaticChannel != '' " >
+                     is_static_channel = #{isStaticChannel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isStaticContent != null  and isStaticContent != '' " >
+                     is_static_content = #{isStaticContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isAccessByDir != null  and isAccessByDir != '' " >
+                     is_access_by_dir = #{isAccessByDir,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isListChild != null  and isListChild != '' " >
+                     is_list_child = #{isListChild,jdbcType=VARCHAR},
+                  </if>
+                  <if test="pageSize != null ">
+                     page_size = #{pageSize,jdbcType=INTEGER},
+                  </if>
+                  <if test="channelRule != null  and channelRule != '' " >
+                     channel_rule = #{channelRule,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentRule != null  and contentRule != '' " >
+                     content_rule = #{contentRule,jdbcType=VARCHAR},
+                  </if>
+                  <if test="link != null  and link != '' " >
+                     link = #{link,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tplChannel != null  and tplChannel != '' " >
+                     tpl_channel = #{tplChannel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tplContent != null  and tplContent != '' " >
+                     tpl_content = #{tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="titleImg != null  and titleImg != '' " >
+                     title_img = #{titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentImg != null  and contentImg != '' " >
+                     content_img = #{contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="hasTitleImg != null ">
+                     has_title_img = #{hasTitleImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="hasContentImg != null ">
+                     has_content_img = #{hasContentImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="titleImgWidth != null ">
+                     title_img_width = #{titleImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="titleImgHeight != null ">
+                     title_img_height = #{titleImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="contentImgWidth != null ">
+                     content_img_width = #{contentImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="contentImgHeight != null ">
+                     content_img_height = #{contentImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="commentControl != null ">
+                     comment_control = #{commentControl,jdbcType=INTEGER},
+                  </if>
+                  <if test="allowUpdown != null ">
+                     allow_updown = #{allowUpdown,jdbcType=TINYINT},
+                  </if>
+                  <if test="isBlank != null ">
+                     is_blank = #{isBlank,jdbcType=TINYINT},
+                  </if>
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="keywords != null  and keywords != '' " >
+                     keywords = #{keywords,jdbcType=VARCHAR},
+                  </if>
+                  <if test="description != null  and description != '' " >
+                     description = #{description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="allowShare != null ">
+                     allow_share = #{allowShare,jdbcType=TINYINT},
+                  </if>
+                  <if test="allowScore != null ">
+                     allow_score = #{allowScore,jdbcType=TINYINT},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pi_channel_ext
+    <set >
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelName != null  and t.channelName != '' " >
+                     channel_name = #{t.channelName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.finalStep != null ">
+                     final_step = #{t.finalStep,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.afterCheck != null ">
+                     after_check = #{t.afterCheck,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isStaticChannel != null  and t.isStaticChannel != '' " >
+                     is_static_channel = #{t.isStaticChannel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isStaticContent != null  and t.isStaticContent != '' " >
+                     is_static_content = #{t.isStaticContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isAccessByDir != null  and t.isAccessByDir != '' " >
+                     is_access_by_dir = #{t.isAccessByDir,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isListChild != null  and t.isListChild != '' " >
+                     is_list_child = #{t.isListChild,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.pageSize != null ">
+                     page_size = #{t.pageSize,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.channelRule != null  and t.channelRule != '' " >
+                     channel_rule = #{t.channelRule,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentRule != null  and t.contentRule != '' " >
+                     content_rule = #{t.contentRule,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.link != null  and t.link != '' " >
+                     link = #{t.link,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplChannel != null  and t.tplChannel != '' " >
+                     tpl_channel = #{t.tplChannel,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplContent != null  and t.tplContent != '' " >
+                     tpl_content = #{t.tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleImg != null  and t.titleImg != '' " >
+                     title_img = #{t.titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentImg != null  and t.contentImg != '' " >
+                     content_img = #{t.contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.hasTitleImg != null ">
+                     has_title_img = #{t.hasTitleImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.hasContentImg != null ">
+                     has_content_img = #{t.hasContentImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.titleImgWidth != null ">
+                     title_img_width = #{t.titleImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.titleImgHeight != null ">
+                     title_img_height = #{t.titleImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.contentImgWidth != null ">
+                     content_img_width = #{t.contentImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.contentImgHeight != null ">
+                     content_img_height = #{t.contentImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.commentControl != null ">
+                     comment_control = #{t.commentControl,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.allowUpdown != null ">
+                     allow_updown = #{t.allowUpdown,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isBlank != null ">
+                     is_blank = #{t.isBlank,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keywords != null  and t.keywords != '' " >
+                     keywords = #{t.keywords,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description != null  and t.description != '' " >
+                     description = #{t.description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.allowShare != null ">
+                     allow_share = #{t.allowShare,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.allowScore != null ">
+                     allow_score = #{t.allowScore,jdbcType=TINYINT},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pi_channel_ext
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="channel_id =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.channelId != null and piChannelExt.channelId  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.channelId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="channel_name =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.channelName != null and piChannelExt.channelName  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.channelName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="final_step =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.finalStep != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.finalStep,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="after_check =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.afterCheck != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.afterCheck,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_static_channel =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.isStaticChannel != null and piChannelExt.isStaticChannel  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.isStaticChannel,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_static_content =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.isStaticContent != null and piChannelExt.isStaticContent  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.isStaticContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_access_by_dir =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.isAccessByDir != null and piChannelExt.isAccessByDir  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.isAccessByDir,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_list_child =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.isListChild != null and piChannelExt.isListChild  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.isListChild,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="page_size =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.pageSize != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.pageSize,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="channel_rule =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.channelRule != null and piChannelExt.channelRule  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.channelRule,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_rule =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.contentRule != null and piChannelExt.contentRule  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.contentRule,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="link =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.link != null and piChannelExt.link  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.link,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tpl_channel =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.tplChannel != null and piChannelExt.tplChannel  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.tplChannel,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="tpl_content =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.tplContent != null and piChannelExt.tplContent  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.tplContent,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title_img =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.titleImg != null and piChannelExt.titleImg  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.titleImg,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_img =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.contentImg != null and piChannelExt.contentImg  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.contentImg,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="has_title_img =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.hasTitleImg != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.hasTitleImg,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="has_content_img =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.hasContentImg != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.hasContentImg,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title_img_width =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.titleImgWidth != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.titleImgWidth,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title_img_height =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.titleImgHeight != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.titleImgHeight,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_img_width =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.contentImgWidth != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.contentImgWidth,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="content_img_height =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.contentImgHeight != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.contentImgHeight,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="comment_control =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.commentControl != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.commentControl,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="allow_updown =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.allowUpdown != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.allowUpdown,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_blank =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.isBlank != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.isBlank,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="title =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.title != null and piChannelExt.title  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.title,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="keywords =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.keywords != null and piChannelExt.keywords  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.keywords,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="description =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.description != null and piChannelExt.description  != '' " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.description,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="allow_share =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.allowShare != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.allowShare,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="allow_score =case" suffix="end,">
+              <foreach collection="list" item="piChannelExt" index="index">
+                  <if test="piChannelExt.allowScore != null " >
+                     when id=#{piChannelExt.id} then #{piChannelExt.allowScore,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{piChannelExt.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pi_channel_ext
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="channelId  != null and channelId  != '' " >
+              channel_id,
+          </if>
+          <if test="channelName  != null and channelName  != '' " >
+              channel_name,
+          </if>
+          <if test="finalStep  != null " >
+              final_step,
+          </if>
+          <if test="afterCheck  != null " >
+              after_check,
+          </if>
+          <if test="isStaticChannel  != null and isStaticChannel  != '' " >
+              is_static_channel,
+          </if>
+          <if test="isStaticContent  != null and isStaticContent  != '' " >
+              is_static_content,
+          </if>
+          <if test="isAccessByDir  != null and isAccessByDir  != '' " >
+              is_access_by_dir,
+          </if>
+          <if test="isListChild  != null and isListChild  != '' " >
+              is_list_child,
+          </if>
+          <if test="pageSize  != null " >
+              page_size,
+          </if>
+          <if test="channelRule  != null and channelRule  != '' " >
+              channel_rule,
+          </if>
+          <if test="contentRule  != null and contentRule  != '' " >
+              content_rule,
+          </if>
+          <if test="link  != null and link  != '' " >
+              link,
+          </if>
+          <if test="tplChannel  != null and tplChannel  != '' " >
+              tpl_channel,
+          </if>
+          <if test="tplContent  != null and tplContent  != '' " >
+              tpl_content,
+          </if>
+          <if test="titleImg  != null and titleImg  != '' " >
+              title_img,
+          </if>
+          <if test="contentImg  != null and contentImg  != '' " >
+              content_img,
+          </if>
+          <if test="hasTitleImg  != null " >
+              has_title_img,
+          </if>
+          <if test="hasContentImg  != null " >
+              has_content_img,
+          </if>
+          <if test="titleImgWidth  != null " >
+              title_img_width,
+          </if>
+          <if test="titleImgHeight  != null " >
+              title_img_height,
+          </if>
+          <if test="contentImgWidth  != null " >
+              content_img_width,
+          </if>
+          <if test="contentImgHeight  != null " >
+              content_img_height,
+          </if>
+          <if test="commentControl  != null " >
+              comment_control,
+          </if>
+          <if test="allowUpdown  != null " >
+              allow_updown,
+          </if>
+          <if test="isBlank  != null " >
+              is_blank,
+          </if>
+          <if test="title  != null and title  != '' " >
+              title,
+          </if>
+          <if test="keywords  != null and keywords  != '' " >
+              keywords,
+          </if>
+          <if test="description  != null and description  != '' " >
+              description,
+          </if>
+          <if test="allowShare  != null " >
+              allow_share,
+          </if>
+          <if test="allowScore  != null " >
+              allow_score,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="piChannelExt" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{piChannelExt.id ,jdbcType=VARCHAR},
+                  <if test="t.channelId  != null  and t.channelId != '' " >
+                     #{piChannelExt.channelId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelName  != null  and t.channelName != '' " >
+                     #{piChannelExt.channelName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.finalStep != null ">
+                    #{piChannelExt.finalStep,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.afterCheck != null ">
+                    #{piChannelExt.afterCheck,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isStaticChannel  != null  and t.isStaticChannel != '' " >
+                     #{piChannelExt.isStaticChannel ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isStaticContent  != null  and t.isStaticContent != '' " >
+                     #{piChannelExt.isStaticContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isAccessByDir  != null  and t.isAccessByDir != '' " >
+                     #{piChannelExt.isAccessByDir ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isListChild  != null  and t.isListChild != '' " >
+                     #{piChannelExt.isListChild ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.pageSize != null ">
+                    #{piChannelExt.pageSize,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.channelRule  != null  and t.channelRule != '' " >
+                     #{piChannelExt.channelRule ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentRule  != null  and t.contentRule != '' " >
+                     #{piChannelExt.contentRule ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.link  != null  and t.link != '' " >
+                     #{piChannelExt.link ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplChannel  != null  and t.tplChannel != '' " >
+                     #{piChannelExt.tplChannel ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplContent  != null  and t.tplContent != '' " >
+                     #{piChannelExt.tplContent ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleImg  != null  and t.titleImg != '' " >
+                     #{piChannelExt.titleImg ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentImg  != null  and t.contentImg != '' " >
+                     #{piChannelExt.contentImg ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.hasTitleImg != null ">
+                    #{piChannelExt.hasTitleImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.hasContentImg != null ">
+                    #{piChannelExt.hasContentImg,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.titleImgWidth != null ">
+                    #{piChannelExt.titleImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.titleImgHeight != null ">
+                    #{piChannelExt.titleImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.contentImgWidth != null ">
+                    #{piChannelExt.contentImgWidth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.contentImgHeight != null ">
+                    #{piChannelExt.contentImgHeight,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.commentControl != null ">
+                    #{piChannelExt.commentControl,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.allowUpdown != null ">
+                    #{piChannelExt.allowUpdown,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isBlank != null ">
+                    #{piChannelExt.isBlank,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.title  != null  and t.title != '' " >
+                     #{piChannelExt.title ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keywords  != null  and t.keywords != '' " >
+                     #{piChannelExt.keywords ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description  != null  and t.description != '' " >
+                     #{piChannelExt.description ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.allowShare != null ">
+                    #{piChannelExt.allowShare,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.allowScore != null ">
+                    #{piChannelExt.allowScore,jdbcType=TINYINT},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_channel_ext
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_channel_ext where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.channelName != null and EntityRelated.channelName != '' ">
+ 				and  channel_name LIKE CONCAT('%',#{EntityRelated.channelName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.channelRule != null and EntityRelated.channelRule != '' ">
+ 				and  channel_rule LIKE CONCAT('%',#{EntityRelated.channelRule,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentImg != null and EntityRelated.contentImg != '' ">
+ 				and  content_img LIKE CONCAT('%',#{EntityRelated.contentImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentRule != null and EntityRelated.contentRule != '' ">
+ 				and  content_rule LIKE CONCAT('%',#{EntityRelated.contentRule,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.description != null and EntityRelated.description != '' ">
+ 				and  description LIKE CONCAT('%',#{EntityRelated.description,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.isAccessByDir != null and EntityRelated.isAccessByDir != '' ">
+ 				and  is_access_by_dir LIKE CONCAT('%',#{EntityRelated.isAccessByDir,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.isListChild != null and EntityRelated.isListChild != '' ">
+ 				and  is_list_child LIKE CONCAT('%',#{EntityRelated.isListChild,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.isStaticChannel != null and EntityRelated.isStaticChannel != '' ">
+ 				and  is_static_channel LIKE CONCAT('%',#{EntityRelated.isStaticChannel,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.isStaticContent != null and EntityRelated.isStaticContent != '' ">
+ 				and  is_static_content LIKE CONCAT('%',#{EntityRelated.isStaticContent,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.keywords != null and EntityRelated.keywords != '' ">
+ 				and  keywords LIKE CONCAT('%',#{EntityRelated.keywords,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.link != null and EntityRelated.link != '' ">
+ 				and  link LIKE CONCAT('%',#{EntityRelated.link,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.titleImg != null and EntityRelated.titleImg != '' ">
+ 				and  title_img LIKE CONCAT('%',#{EntityRelated.titleImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tplChannel != null and EntityRelated.tplChannel != '' ">
+ 				and  tpl_channel LIKE CONCAT('%',#{EntityRelated.tplChannel,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tplContent != null and EntityRelated.tplContent != '' ">
+ 				and  tpl_content LIKE CONCAT('%',#{EntityRelated.tplContent,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

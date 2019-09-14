@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaIotMonitorBasicSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="hid" property="hid" jdbcType="VARCHAR" />
+              <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+              <result column="basc_code" property="bascCode" jdbcType="VARCHAR" />
+              <result column="basc_name" property="bascName" jdbcType="VARCHAR" />
+              <result column="address" property="address" jdbcType="VARCHAR" />
+              <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+              <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+              <result column="mango_type" property="mangoType" jdbcType="VARCHAR" />
+              <result column="plant_area" property="plantArea" jdbcType="VARCHAR" />
+              <result column="farmers" property="farmers" jdbcType="VARCHAR" />
+              <result column="person" property="person" jdbcType="VARCHAR" />
+              <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+              <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,hid,device_name,basc_code,basc_name,address,longitude,latitude,mango_type,plant_area,farmers,person,telephone,create_time,update_time,remark
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+    insert into da_iot_monitor_basic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="hid != null and hid != '' " >
+              hid,
+          </if>
+      
+          <if test="deviceName != null and deviceName != '' " >
+              device_name,
+          </if>
+      
+          <if test="bascCode != null and bascCode != '' " >
+              basc_code,
+          </if>
+      
+          <if test="bascName != null and bascName != '' " >
+              basc_name,
+          </if>
+      
+          <if test="address != null and address != '' " >
+              address,
+          </if>
+      
+          <if test="longitude != null and longitude != '' " >
+              longitude,
+          </if>
+      
+          <if test="latitude != null and latitude != '' " >
+              latitude,
+          </if>
+      
+          <if test="mangoType != null and mangoType != '' " >
+              mango_type,
+          </if>
+      
+          <if test="plantArea != null and plantArea != '' " >
+              plant_area,
+          </if>
+      
+          <if test="farmers != null and farmers != '' " >
+              farmers,
+          </if>
+      
+          <if test="person != null and person != '' " >
+              person,
+          </if>
+      
+          <if test="telephone != null and telephone != '' " >
+              telephone,
+          </if>
+      
+          <if test="createTime != null " >
+              create_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="hid != null and hid != '' " >
+              #{hid,jdbcType=VARCHAR},
+          </if>
+          <if test="deviceName != null and deviceName != '' " >
+              #{deviceName,jdbcType=VARCHAR},
+          </if>
+          <if test="bascCode != null and bascCode != '' " >
+              #{bascCode,jdbcType=VARCHAR},
+          </if>
+          <if test="bascName != null and bascName != '' " >
+              #{bascName,jdbcType=VARCHAR},
+          </if>
+          <if test="address != null and address != '' " >
+              #{address,jdbcType=VARCHAR},
+          </if>
+          <if test="longitude != null and longitude != '' " >
+              #{longitude,jdbcType=VARCHAR},
+          </if>
+          <if test="latitude != null and latitude != '' " >
+              #{latitude,jdbcType=VARCHAR},
+          </if>
+          <if test="mangoType != null and mangoType != '' " >
+              #{mangoType,jdbcType=VARCHAR},
+          </if>
+          <if test="plantArea != null and plantArea != '' " >
+              #{plantArea,jdbcType=VARCHAR},
+          </if>
+          <if test="farmers != null and farmers != '' " >
+              #{farmers,jdbcType=VARCHAR},
+          </if>
+          <if test="person != null and person != '' " >
+              #{person,jdbcType=VARCHAR},
+          </if>
+          <if test="telephone != null and telephone != '' " >
+              #{telephone,jdbcType=VARCHAR},
+          </if>
+          <if test="createTime != null " >
+              #{createTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_iot_monitor_basic
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIotMonitorBasic" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daIotMonitorBasic.id,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.hid,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.deviceName,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.bascCode,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.bascName,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.address,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.longitude,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.latitude,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.mangoType,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.plantArea,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.farmers,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.person,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.telephone,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorBasic.createTime,jdbcType=TIMESTAMP},
+
+      
+          #{daIotMonitorBasic.updateTime,jdbcType=TIMESTAMP},
+
+      
+          #{daIotMonitorBasic.remark,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_iot_monitor_basic
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_iot_monitor_basic
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+    update da_iot_monitor_basic
+    <set >
+                  <if test="hid != null  and hid != '' " >
+                     hid = #{hid,jdbcType=VARCHAR},
+                  </if>
+                  <if test="deviceName != null  and deviceName != '' " >
+                     device_name = #{deviceName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="bascCode != null  and bascCode != '' " >
+                     basc_code = #{bascCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="bascName != null  and bascName != '' " >
+                     basc_name = #{bascName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="longitude != null  and longitude != '' " >
+                     longitude = #{longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="latitude != null  and latitude != '' " >
+                     latitude = #{latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mangoType != null  and mangoType != '' " >
+                     mango_type = #{mangoType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="plantArea != null  and plantArea != '' " >
+                     plant_area = #{plantArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="farmers != null  and farmers != '' " >
+                     farmers = #{farmers,jdbcType=VARCHAR},
+                  </if>
+                  <if test="person != null  and person != '' " >
+                     person = #{person,jdbcType=VARCHAR},
+                  </if>
+                  <if test="telephone != null  and telephone != '' " >
+                     telephone = #{telephone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createTime != null ">
+                     create_time = #{createTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_iot_monitor_basic
+    <set >
+                  <if test="t.hid != null  and t.hid != '' " >
+                     hid = #{t.hid,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.deviceName != null  and t.deviceName != '' " >
+                     device_name = #{t.deviceName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bascCode != null  and t.bascCode != '' " >
+                     basc_code = #{t.bascCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bascName != null  and t.bascName != '' " >
+                     basc_name = #{t.bascName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.longitude != null  and t.longitude != '' " >
+                     longitude = #{t.longitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.latitude != null  and t.latitude != '' " >
+                     latitude = #{t.latitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mangoType != null  and t.mangoType != '' " >
+                     mango_type = #{t.mangoType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.plantArea != null  and t.plantArea != '' " >
+                     plant_area = #{t.plantArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.farmers != null  and t.farmers != '' " >
+                     farmers = #{t.farmers,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.person != null  and t.person != '' " >
+                     person = #{t.person,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.telephone != null  and t.telephone != '' " >
+                     telephone = #{t.telephone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createTime != null ">
+                     create_time = #{t.createTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_iot_monitor_basic
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_iot_monitor_basic where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.address != null and EntityRelated.address != '' ">
+ 				and  address LIKE CONCAT('%',#{EntityRelated.address,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.bascCode != null">
+				and basc_code = #{EntityRelated.bascCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.bascName != null and EntityRelated.bascName != '' ">
+ 				and  basc_name LIKE CONCAT('%',#{EntityRelated.bascName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginCreateTime != null ">
+				<![CDATA[ AND  unix_timestamp(create_time)>=unix_timestamp(#{EntityRelated.beginCreateTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreateTime != null ">
+				<![CDATA[ AND  unix_timestamp(create_time)<unix_timestamp(#{EntityRelated.endCreateTime})]]> 
+		</if>
+		<if test="EntityRelated.deviceName != null and EntityRelated.deviceName != '' ">
+ 				and  device_name LIKE CONCAT('%',#{EntityRelated.deviceName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.farmers != null and EntityRelated.farmers != '' ">
+ 				and  farmers LIKE CONCAT('%',#{EntityRelated.farmers,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.hid != null and EntityRelated.hid != '' ">
+				and hid = #{EntityRelated.hid,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.latitude != null and EntityRelated.latitude != '' ">
+ 				and  latitude LIKE CONCAT('%',#{EntityRelated.latitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.longitude != null and EntityRelated.longitude != '' ">
+ 				and  longitude LIKE CONCAT('%',#{EntityRelated.longitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mangoType != null and EntityRelated.mangoType != '' ">
+ 				and  mango_type LIKE CONCAT('%',#{EntityRelated.mangoType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.person != null and EntityRelated.person != '' ">
+ 				and  person LIKE CONCAT('%',#{EntityRelated.person,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.plantArea != null and EntityRelated.plantArea != '' ">
+ 				and  plant_area LIKE CONCAT('%',#{EntityRelated.plantArea,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.telephone != null and EntityRelated.telephone != '' ">
+ 				and  telephone LIKE CONCAT('%',#{EntityRelated.telephone,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

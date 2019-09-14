@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaTemplateDataUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaTemplateData" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="template_target_id" property="templateTargetId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+              <result column="audit_status_code" property="auditStatusCode" jdbcType="TINYINT" />
+              <result column="audit_status_text" property="auditStatusText" jdbcType="VARCHAR" />
+              <result column="auditer_suggestion" property="auditerSuggestion" jdbcType="VARCHAR" />
+              <result column="auditer_user_id" property="auditerUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,template_target_id,add_time,add_user_id,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaTemplateData" >
+    insert into da_template_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="templateTargetId != null and templateTargetId != '' " >
+              template_target_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+          <if test="auditStatusCode != null " >
+              audit_status_code,
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              audit_status_text,
+          </if>
+      
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              auditer_suggestion,
+          </if>
+      
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              auditer_user_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="templateTargetId != null and templateTargetId != '' " >
+              #{templateTargetId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="auditStatusCode != null " >
+              #{auditStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              #{auditStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              #{auditerSuggestion,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              #{auditerUserId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_template_data
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daTemplateData" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daTemplateData.id,jdbcType=VARCHAR},
+
+      
+          #{daTemplateData.templateTargetId,jdbcType=VARCHAR},
+
+      
+          #{daTemplateData.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daTemplateData.addUserId,jdbcType=VARCHAR},
+
+      
+          #{daTemplateData.auditStatusCode,jdbcType=TINYINT},
+
+      
+          #{daTemplateData.auditStatusText,jdbcType=VARCHAR},
+
+      
+          #{daTemplateData.auditerSuggestion,jdbcType=VARCHAR},
+
+      
+          #{daTemplateData.auditerUserId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_template_data
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_template_data
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaTemplateData" >
+    update da_template_data
+    <set >
+                  <if test="templateTargetId != null  and templateTargetId != '' " >
+                     template_target_id = #{templateTargetId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditStatusCode != null ">
+                     audit_status_code = #{auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="auditStatusText != null  and auditStatusText != '' " >
+                     audit_status_text = #{auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerSuggestion != null  and auditerSuggestion != '' " >
+                     auditer_suggestion = #{auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerUserId != null  and auditerUserId != '' " >
+                     auditer_user_id = #{auditerUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_template_data
+    <set >
+                  <if test="t.templateTargetId != null  and t.templateTargetId != '' " >
+                     template_target_id = #{t.templateTargetId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditStatusCode != null ">
+                     audit_status_code = #{t.auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.auditStatusText != null  and t.auditStatusText != '' " >
+                     audit_status_text = #{t.auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerSuggestion != null  and t.auditerSuggestion != '' " >
+                     auditer_suggestion = #{t.auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerUserId != null  and t.auditerUserId != '' " >
+                     auditer_user_id = #{t.auditerUserId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_template_data
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="template_target_id =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.templateTargetId != null and daTemplateData.templateTargetId  != '' " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.templateTargetId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.addTime != null " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_user_id =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.addUserId != null and daTemplateData.addUserId  != '' " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.addUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="audit_status_code =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.auditStatusCode != null " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.auditStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="audit_status_text =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.auditStatusText != null and daTemplateData.auditStatusText  != '' " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.auditStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="auditer_suggestion =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.auditerSuggestion != null and daTemplateData.auditerSuggestion  != '' " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.auditerSuggestion,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="auditer_user_id =case" suffix="end,">
+              <foreach collection="list" item="daTemplateData" index="index">
+                  <if test="daTemplateData.auditerUserId != null and daTemplateData.auditerUserId  != '' " >
+                     when id=#{daTemplateData.id} then #{daTemplateData.auditerUserId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daTemplateData.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_template_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="templateTargetId  != null and templateTargetId  != '' " >
+              template_target_id,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="addUserId  != null and addUserId  != '' " >
+              add_user_id,
+          </if>
+          <if test="auditStatusCode  != null " >
+              audit_status_code,
+          </if>
+          <if test="auditStatusText  != null and auditStatusText  != '' " >
+              audit_status_text,
+          </if>
+          <if test="auditerSuggestion  != null and auditerSuggestion  != '' " >
+              auditer_suggestion,
+          </if>
+          <if test="auditerUserId  != null and auditerUserId  != '' " >
+              auditer_user_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daTemplateData" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daTemplateData.id ,jdbcType=VARCHAR},
+                  <if test="t.templateTargetId  != null  and t.templateTargetId != '' " >
+                     #{daTemplateData.templateTargetId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{daTemplateData.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addUserId  != null  and t.addUserId != '' " >
+                     #{daTemplateData.addUserId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditStatusCode != null ">
+                    #{daTemplateData.auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.auditStatusText  != null  and t.auditStatusText != '' " >
+                     #{daTemplateData.auditStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerSuggestion  != null  and t.auditerSuggestion != '' " >
+                     #{daTemplateData.auditerSuggestion ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerUserId  != null  and t.auditerUserId != '' " >
+                     #{daTemplateData.auditerUserId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_template_data
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_template_data where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.auditStatusCode != null">
+				and audit_status_code = #{EntityRelated.auditStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.auditStatusText != null and EntityRelated.auditStatusText != '' ">
+ 				and  audit_status_text LIKE CONCAT('%',#{EntityRelated.auditStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.auditerSuggestion != null and EntityRelated.auditerSuggestion != '' ">
+ 				and  auditer_suggestion LIKE CONCAT('%',#{EntityRelated.auditerSuggestion,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.auditerUserId != null and EntityRelated.auditerUserId != '' ">
+				and auditer_user_id = #{EntityRelated.auditerUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.templateTargetId != null and EntityRelated.templateTargetId != '' ">
+				and template_target_id = #{EntityRelated.templateTargetId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

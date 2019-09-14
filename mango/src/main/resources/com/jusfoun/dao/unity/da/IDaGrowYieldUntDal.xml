@@ -1,0 +1,1644 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaGrowYieldUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaGrowYield" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="base_code" property="baseCode" jdbcType="VARCHAR" />
+              <result column="base_name" property="baseName" jdbcType="VARCHAR" />
+              <result column="block_code" property="blockCode" jdbcType="VARCHAR" />
+              <result column="block_name" property="blockName" jdbcType="VARCHAR" />
+              <result column="grow_area" property="growArea" jdbcType="NUMERIC" />
+              <result column="grow_area_code" property="growAreaCode" jdbcType="TINYINT" />
+              <result column="grow_area_text" property="growAreaText" jdbcType="VARCHAR" />
+              <result column="grow_area_unit" property="growAreaUnit" jdbcType="NUMERIC" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="improve_area" property="improveArea" jdbcType="NUMERIC" />
+              <result column="improve_area_code" property="improveAreaCode" jdbcType="TINYINT" />
+              <result column="improve_area_text" property="improveAreaText" jdbcType="VARCHAR" />
+              <result column="improve_area_unit" property="improveAreaUnit" jdbcType="NUMERIC" />
+              <result column="fruit_area" property="fruitArea" jdbcType="NUMERIC" />
+              <result column="fruit_area_code" property="fruitAreaCode" jdbcType="TINYINT" />
+              <result column="fruit_area_text" property="fruitAreaText" jdbcType="VARCHAR" />
+              <result column="fruit_area_unit" property="fruitAreaUnit" jdbcType="NUMERIC" />
+              <result column="product_total" property="productTotal" jdbcType="NUMERIC" />
+              <result column="product_total_code" property="productTotalCode" jdbcType="TINYINT" />
+              <result column="product_total_text" property="productTotalText" jdbcType="VARCHAR" />
+              <result column="product_total_unit" property="productTotalUnit" jdbcType="NUMERIC" />
+              <result column="output_value" property="outputValue" jdbcType="NUMERIC" />
+              <result column="output_value_code" property="outputValueCode" jdbcType="TINYINT" />
+              <result column="output_value_text" property="outputValueText" jdbcType="VARCHAR" />
+              <result column="output_value_unit" property="outputValueUnit" jdbcType="NUMERIC" />
+              <result column="peasant_count" property="peasantCount" jdbcType="NUMERIC" />
+              <result column="year" property="year" jdbcType="VARCHAR" />
+              <result column="organic_grow_area" property="organicGrowArea" jdbcType="NUMERIC" />
+              <result column="organic_grow_area_code" property="organicGrowAreaCode" jdbcType="TINYINT" />
+              <result column="organic_grow_area_text" property="organicGrowAreaText" jdbcType="VARCHAR" />
+              <result column="organic_grow_area_unit" property="organicGrowAreaUnit" jdbcType="NUMERIC" />
+              <result column="sale_total" property="saleTotal" jdbcType="NUMERIC" />
+              <result column="sale_total_code" property="saleTotalCode" jdbcType="TINYINT" />
+              <result column="sale_total_text" property="saleTotalText" jdbcType="VARCHAR" />
+              <result column="sale_total_unit" property="saleTotalUnit" jdbcType="NUMERIC" />
+              <result column="e_commerce_output_value" property="eCommerceOutputValue" jdbcType="NUMERIC" />
+              <result column="e_commerce_output_value_code" property="eCommerceOutputValueCode" jdbcType="TINYINT" />
+              <result column="e_commerce_output_value_text" property="eCommerceOutputValueText" jdbcType="VARCHAR" />
+              <result column="e_commerce_output_value_unit" property="eCommerceOutputValueUnit" jdbcType="NUMERIC" />
+              <result column="e_commerce_sale_total" property="eCommerceSaleTotal" jdbcType="NUMERIC" />
+              <result column="e_commerce_sale_total_code" property="eCommerceSaleTotalCode" jdbcType="TINYINT" />
+              <result column="e_commerce_sale_total_text" property="eCommerceSaleTotalText" jdbcType="VARCHAR" />
+              <result column="e_commerce_sale_total_unit" property="eCommerceSaleTotalUnit" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,base_code,base_name,block_code,block_name,grow_area,grow_area_code,grow_area_text,grow_area_unit,crop_type_code,crop_type_text,strains_code,strains_text,improve_area,improve_area_code,improve_area_text,improve_area_unit,fruit_area,fruit_area_code,fruit_area_text,fruit_area_unit,product_total,product_total_code,product_total_text,product_total_unit,output_value,output_value_code,output_value_text,output_value_unit,peasant_count,year,organic_grow_area,organic_grow_area_code,organic_grow_area_text,organic_grow_area_unit,sale_total,sale_total_code,sale_total_text,sale_total_unit,e_commerce_output_value,e_commerce_output_value_code,e_commerce_output_value_text,e_commerce_output_value_unit,e_commerce_sale_total,e_commerce_sale_total_code,e_commerce_sale_total_text,e_commerce_sale_total_unit
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaGrowYield" >
+    insert into da_grow_yield
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="baseCode != null and baseCode != '' " >
+              base_code,
+          </if>
+      
+          <if test="baseName != null and baseName != '' " >
+              base_name,
+          </if>
+      
+          <if test="blockCode != null and blockCode != '' " >
+              block_code,
+          </if>
+      
+          <if test="blockName != null and blockName != '' " >
+              block_name,
+          </if>
+      
+          <if test="growArea != null " >
+              grow_area,
+          </if>
+          <if test="growAreaCode != null " >
+              grow_area_code,
+          </if>
+          <if test="growAreaText != null and growAreaText != '' " >
+              grow_area_text,
+          </if>
+      
+          <if test="growAreaUnit != null " >
+              grow_area_unit,
+          </if>
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="improveArea != null " >
+              improve_area,
+          </if>
+          <if test="improveAreaCode != null " >
+              improve_area_code,
+          </if>
+          <if test="improveAreaText != null and improveAreaText != '' " >
+              improve_area_text,
+          </if>
+      
+          <if test="improveAreaUnit != null " >
+              improve_area_unit,
+          </if>
+          <if test="fruitArea != null " >
+              fruit_area,
+          </if>
+          <if test="fruitAreaCode != null " >
+              fruit_area_code,
+          </if>
+          <if test="fruitAreaText != null and fruitAreaText != '' " >
+              fruit_area_text,
+          </if>
+      
+          <if test="fruitAreaUnit != null " >
+              fruit_area_unit,
+          </if>
+          <if test="productTotal != null " >
+              product_total,
+          </if>
+          <if test="productTotalCode != null " >
+              product_total_code,
+          </if>
+          <if test="productTotalText != null and productTotalText != '' " >
+              product_total_text,
+          </if>
+      
+          <if test="productTotalUnit != null " >
+              product_total_unit,
+          </if>
+          <if test="outputValue != null " >
+              output_value,
+          </if>
+          <if test="outputValueCode != null " >
+              output_value_code,
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              output_value_text,
+          </if>
+      
+          <if test="outputValueUnit != null " >
+              output_value_unit,
+          </if>
+          <if test="peasantCount != null " >
+              peasant_count,
+          </if>
+          <if test="year != null and year != '' " >
+              year,
+          </if>
+      
+          <if test="organicGrowArea != null " >
+              organic_grow_area,
+          </if>
+          <if test="organicGrowAreaCode != null " >
+              organic_grow_area_code,
+          </if>
+          <if test="organicGrowAreaText != null and organicGrowAreaText != '' " >
+              organic_grow_area_text,
+          </if>
+      
+          <if test="organicGrowAreaUnit != null " >
+              organic_grow_area_unit,
+          </if>
+          <if test="saleTotal != null " >
+              sale_total,
+          </if>
+          <if test="saleTotalCode != null " >
+              sale_total_code,
+          </if>
+          <if test="saleTotalText != null and saleTotalText != '' " >
+              sale_total_text,
+          </if>
+      
+          <if test="saleTotalUnit != null " >
+              sale_total_unit,
+          </if>
+          <if test="eCommerceOutputValue != null " >
+              e_commerce_output_value,
+          </if>
+          <if test="eCommerceOutputValueCode != null " >
+              e_commerce_output_value_code,
+          </if>
+          <if test="eCommerceOutputValueText != null and eCommerceOutputValueText != '' " >
+              e_commerce_output_value_text,
+          </if>
+      
+          <if test="eCommerceOutputValueUnit != null " >
+              e_commerce_output_value_unit,
+          </if>
+          <if test="eCommerceSaleTotal != null " >
+              e_commerce_sale_total,
+          </if>
+          <if test="eCommerceSaleTotalCode != null " >
+              e_commerce_sale_total_code,
+          </if>
+          <if test="eCommerceSaleTotalText != null and eCommerceSaleTotalText != '' " >
+              e_commerce_sale_total_text,
+          </if>
+      
+          <if test="eCommerceSaleTotalUnit != null " >
+              e_commerce_sale_total_unit,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="baseCode != null and baseCode != '' " >
+              #{baseCode,jdbcType=VARCHAR},
+          </if>
+          <if test="baseName != null and baseName != '' " >
+              #{baseName,jdbcType=VARCHAR},
+          </if>
+          <if test="blockCode != null and blockCode != '' " >
+              #{blockCode,jdbcType=VARCHAR},
+          </if>
+          <if test="blockName != null and blockName != '' " >
+              #{blockName,jdbcType=VARCHAR},
+          </if>
+          <if test="growArea != null " >
+              #{growArea,jdbcType=NUMERIC},
+          </if>
+          <if test="growAreaCode != null " >
+              #{growAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="growAreaText != null and growAreaText != '' " >
+              #{growAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="growAreaUnit != null " >
+              #{growAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="improveArea != null " >
+              #{improveArea,jdbcType=NUMERIC},
+          </if>
+          <if test="improveAreaCode != null " >
+              #{improveAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="improveAreaText != null and improveAreaText != '' " >
+              #{improveAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="improveAreaUnit != null " >
+              #{improveAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="fruitArea != null " >
+              #{fruitArea,jdbcType=NUMERIC},
+          </if>
+          <if test="fruitAreaCode != null " >
+              #{fruitAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="fruitAreaText != null and fruitAreaText != '' " >
+              #{fruitAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="fruitAreaUnit != null " >
+              #{fruitAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="productTotal != null " >
+              #{productTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="productTotalCode != null " >
+              #{productTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="productTotalText != null and productTotalText != '' " >
+              #{productTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="productTotalUnit != null " >
+              #{productTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="outputValue != null " >
+              #{outputValue,jdbcType=NUMERIC},
+          </if>
+          <if test="outputValueCode != null " >
+              #{outputValueCode,jdbcType=TINYINT},
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              #{outputValueText,jdbcType=VARCHAR},
+          </if>
+          <if test="outputValueUnit != null " >
+              #{outputValueUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="peasantCount != null " >
+              #{peasantCount,jdbcType=NUMERIC},
+          </if>
+          <if test="year != null and year != '' " >
+              #{year,jdbcType=VARCHAR},
+          </if>
+          <if test="organicGrowArea != null " >
+              #{organicGrowArea,jdbcType=NUMERIC},
+          </if>
+          <if test="organicGrowAreaCode != null " >
+              #{organicGrowAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="organicGrowAreaText != null and organicGrowAreaText != '' " >
+              #{organicGrowAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="organicGrowAreaUnit != null " >
+              #{organicGrowAreaUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="saleTotal != null " >
+              #{saleTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="saleTotalCode != null " >
+              #{saleTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleTotalText != null and saleTotalText != '' " >
+              #{saleTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleTotalUnit != null " >
+              #{saleTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommerceOutputValue != null " >
+              #{eCommerceOutputValue,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommerceOutputValueCode != null " >
+              #{eCommerceOutputValueCode,jdbcType=TINYINT},
+          </if>
+          <if test="eCommerceOutputValueText != null and eCommerceOutputValueText != '' " >
+              #{eCommerceOutputValueText,jdbcType=VARCHAR},
+          </if>
+          <if test="eCommerceOutputValueUnit != null " >
+              #{eCommerceOutputValueUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommerceSaleTotal != null " >
+              #{eCommerceSaleTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommerceSaleTotalCode != null " >
+              #{eCommerceSaleTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="eCommerceSaleTotalText != null and eCommerceSaleTotalText != '' " >
+              #{eCommerceSaleTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="eCommerceSaleTotalUnit != null " >
+              #{eCommerceSaleTotalUnit,jdbcType=NUMERIC},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_grow_yield
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daGrowYield" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daGrowYield.id,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.name,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.baseCode,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.baseName,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.blockCode,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.blockName,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.growArea,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.growAreaCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.growAreaText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.growAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.improveArea,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.improveAreaCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.improveAreaText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.improveAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.fruitArea,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.fruitAreaCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.fruitAreaText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.fruitAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.productTotal,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.productTotalCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.productTotalText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.productTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.outputValue,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.outputValueCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.outputValueText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.outputValueUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.peasantCount,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.year,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.organicGrowArea,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.organicGrowAreaCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.organicGrowAreaText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.organicGrowAreaUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.saleTotal,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.saleTotalCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.saleTotalText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.saleTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.eCommerceOutputValue,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.eCommerceOutputValueCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.eCommerceOutputValueText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.eCommerceOutputValueUnit,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.eCommerceSaleTotal,jdbcType=NUMERIC},
+
+      
+          #{daGrowYield.eCommerceSaleTotalCode,jdbcType=TINYINT},
+
+      
+          #{daGrowYield.eCommerceSaleTotalText,jdbcType=VARCHAR},
+
+      
+          #{daGrowYield.eCommerceSaleTotalUnit,jdbcType=NUMERIC},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_grow_yield
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_grow_yield
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaGrowYield" >
+    update da_grow_yield
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseCode != null  and baseCode != '' " >
+                     base_code = #{baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseName != null  and baseName != '' " >
+                     base_name = #{baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="blockCode != null  and blockCode != '' " >
+                     block_code = #{blockCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="blockName != null  and blockName != '' " >
+                     block_name = #{blockName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="growArea != null ">
+                     grow_area = #{growArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="growAreaCode != null ">
+                     grow_area_code = #{growAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="growAreaText != null  and growAreaText != '' " >
+                     grow_area_text = #{growAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="growAreaUnit != null ">
+                     grow_area_unit = #{growAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="improveArea != null ">
+                     improve_area = #{improveArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="improveAreaCode != null ">
+                     improve_area_code = #{improveAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="improveAreaText != null  and improveAreaText != '' " >
+                     improve_area_text = #{improveAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="improveAreaUnit != null ">
+                     improve_area_unit = #{improveAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fruitArea != null ">
+                     fruit_area = #{fruitArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fruitAreaCode != null ">
+                     fruit_area_code = #{fruitAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="fruitAreaText != null  and fruitAreaText != '' " >
+                     fruit_area_text = #{fruitAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fruitAreaUnit != null ">
+                     fruit_area_unit = #{fruitAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="productTotal != null ">
+                     product_total = #{productTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="productTotalCode != null ">
+                     product_total_code = #{productTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="productTotalText != null  and productTotalText != '' " >
+                     product_total_text = #{productTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productTotalUnit != null ">
+                     product_total_unit = #{productTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputValue != null ">
+                     output_value = #{outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputValueCode != null ">
+                     output_value_code = #{outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="outputValueText != null  and outputValueText != '' " >
+                     output_value_text = #{outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="outputValueUnit != null ">
+                     output_value_unit = #{outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="peasantCount != null ">
+                     peasant_count = #{peasantCount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="year != null  and year != '' " >
+                     year = #{year,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organicGrowArea != null ">
+                     organic_grow_area = #{organicGrowArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="organicGrowAreaCode != null ">
+                     organic_grow_area_code = #{organicGrowAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="organicGrowAreaText != null  and organicGrowAreaText != '' " >
+                     organic_grow_area_text = #{organicGrowAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organicGrowAreaUnit != null ">
+                     organic_grow_area_unit = #{organicGrowAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleTotal != null ">
+                     sale_total = #{saleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleTotalCode != null ">
+                     sale_total_code = #{saleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleTotalText != null  and saleTotalText != '' " >
+                     sale_total_text = #{saleTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleTotalUnit != null ">
+                     sale_total_unit = #{saleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommerceOutputValue != null ">
+                     e_commerce_output_value = #{eCommerceOutputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommerceOutputValueCode != null ">
+                     e_commerce_output_value_code = #{eCommerceOutputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="eCommerceOutputValueText != null  and eCommerceOutputValueText != '' " >
+                     e_commerce_output_value_text = #{eCommerceOutputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="eCommerceOutputValueUnit != null ">
+                     e_commerce_output_value_unit = #{eCommerceOutputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommerceSaleTotal != null ">
+                     e_commerce_sale_total = #{eCommerceSaleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommerceSaleTotalCode != null ">
+                     e_commerce_sale_total_code = #{eCommerceSaleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="eCommerceSaleTotalText != null  and eCommerceSaleTotalText != '' " >
+                     e_commerce_sale_total_text = #{eCommerceSaleTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="eCommerceSaleTotalUnit != null ">
+                     e_commerce_sale_total_unit = #{eCommerceSaleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_grow_yield
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseCode != null  and t.baseCode != '' " >
+                     base_code = #{t.baseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseName != null  and t.baseName != '' " >
+                     base_name = #{t.baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.blockCode != null  and t.blockCode != '' " >
+                     block_code = #{t.blockCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.blockName != null  and t.blockName != '' " >
+                     block_name = #{t.blockName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growArea != null ">
+                     grow_area = #{t.growArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.growAreaCode != null ">
+                     grow_area_code = #{t.growAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.growAreaText != null  and t.growAreaText != '' " >
+                     grow_area_text = #{t.growAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growAreaUnit != null ">
+                     grow_area_unit = #{t.growAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.improveArea != null ">
+                     improve_area = #{t.improveArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.improveAreaCode != null ">
+                     improve_area_code = #{t.improveAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.improveAreaText != null  and t.improveAreaText != '' " >
+                     improve_area_text = #{t.improveAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.improveAreaUnit != null ">
+                     improve_area_unit = #{t.improveAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruitArea != null ">
+                     fruit_area = #{t.fruitArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruitAreaCode != null ">
+                     fruit_area_code = #{t.fruitAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.fruitAreaText != null  and t.fruitAreaText != '' " >
+                     fruit_area_text = #{t.fruitAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fruitAreaUnit != null ">
+                     fruit_area_unit = #{t.fruitAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotal != null ">
+                     product_total = #{t.productTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotalCode != null ">
+                     product_total_code = #{t.productTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.productTotalText != null  and t.productTotalText != '' " >
+                     product_total_text = #{t.productTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productTotalUnit != null ">
+                     product_total_unit = #{t.productTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValue != null ">
+                     output_value = #{t.outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValueCode != null ">
+                     output_value_code = #{t.outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputValueText != null  and t.outputValueText != '' " >
+                     output_value_text = #{t.outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputValueUnit != null ">
+                     output_value_unit = #{t.outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.peasantCount != null ">
+                     peasant_count = #{t.peasantCount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.year != null  and t.year != '' " >
+                     year = #{t.year,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicGrowArea != null ">
+                     organic_grow_area = #{t.organicGrowArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicGrowAreaCode != null ">
+                     organic_grow_area_code = #{t.organicGrowAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organicGrowAreaText != null  and t.organicGrowAreaText != '' " >
+                     organic_grow_area_text = #{t.organicGrowAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicGrowAreaUnit != null ">
+                     organic_grow_area_unit = #{t.organicGrowAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleTotal != null ">
+                     sale_total = #{t.saleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleTotalCode != null ">
+                     sale_total_code = #{t.saleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleTotalText != null  and t.saleTotalText != '' " >
+                     sale_total_text = #{t.saleTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleTotalUnit != null ">
+                     sale_total_unit = #{t.saleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceOutputValue != null ">
+                     e_commerce_output_value = #{t.eCommerceOutputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceOutputValueCode != null ">
+                     e_commerce_output_value_code = #{t.eCommerceOutputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommerceOutputValueText != null  and t.eCommerceOutputValueText != '' " >
+                     e_commerce_output_value_text = #{t.eCommerceOutputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommerceOutputValueUnit != null ">
+                     e_commerce_output_value_unit = #{t.eCommerceOutputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceSaleTotal != null ">
+                     e_commerce_sale_total = #{t.eCommerceSaleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceSaleTotalCode != null ">
+                     e_commerce_sale_total_code = #{t.eCommerceSaleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommerceSaleTotalText != null  and t.eCommerceSaleTotalText != '' " >
+                     e_commerce_sale_total_text = #{t.eCommerceSaleTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommerceSaleTotalUnit != null ">
+                     e_commerce_sale_total_unit = #{t.eCommerceSaleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_grow_yield
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.commonFieldId != null and daGrowYield.commonFieldId  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.name != null and daGrowYield.name  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="base_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.baseCode != null and daGrowYield.baseCode  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.baseCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="base_name =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.baseName != null and daGrowYield.baseName  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.baseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="block_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.blockCode != null and daGrowYield.blockCode  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.blockCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="block_name =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.blockName != null and daGrowYield.blockName  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.blockName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="grow_area =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.growArea != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.growArea,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="grow_area_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.growAreaCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.growAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="grow_area_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.growAreaText != null and daGrowYield.growAreaText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.growAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="grow_area_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.growAreaUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.growAreaUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.cropTypeCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.cropTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.cropTypeText != null and daGrowYield.cropTypeText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.cropTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.strainsCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.strainsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.strainsText != null and daGrowYield.strainsText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.strainsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="improve_area =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.improveArea != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.improveArea,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="improve_area_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.improveAreaCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.improveAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="improve_area_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.improveAreaText != null and daGrowYield.improveAreaText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.improveAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="improve_area_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.improveAreaUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.improveAreaUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="fruit_area =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.fruitArea != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.fruitArea,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="fruit_area_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.fruitAreaCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.fruitAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="fruit_area_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.fruitAreaText != null and daGrowYield.fruitAreaText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.fruitAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="fruit_area_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.fruitAreaUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.fruitAreaUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_total =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.productTotal != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.productTotal,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_total_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.productTotalCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.productTotalCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_total_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.productTotalText != null and daGrowYield.productTotalText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.productTotalText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="product_total_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.productTotalUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.productTotalUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="output_value =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.outputValue != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.outputValue,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="output_value_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.outputValueCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.outputValueCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="output_value_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.outputValueText != null and daGrowYield.outputValueText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.outputValueText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="output_value_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.outputValueUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.outputValueUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="peasant_count =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.peasantCount != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.peasantCount,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="year =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.year != null and daGrowYield.year  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.year,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_grow_area =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.organicGrowArea != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.organicGrowArea,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_grow_area_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.organicGrowAreaCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.organicGrowAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_grow_area_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.organicGrowAreaText != null and daGrowYield.organicGrowAreaText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.organicGrowAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organic_grow_area_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.organicGrowAreaUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.organicGrowAreaUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_total =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.saleTotal != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.saleTotal,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_total_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.saleTotalCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.saleTotalCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_total_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.saleTotalText != null and daGrowYield.saleTotalText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.saleTotalText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_total_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.saleTotalUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.saleTotalUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_output_value =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceOutputValue != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceOutputValue,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_output_value_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceOutputValueCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceOutputValueCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_output_value_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceOutputValueText != null and daGrowYield.eCommerceOutputValueText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceOutputValueText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_output_value_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceOutputValueUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceOutputValueUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_sale_total =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceSaleTotal != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceSaleTotal,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_sale_total_code =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceSaleTotalCode != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceSaleTotalCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_sale_total_text =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceSaleTotalText != null and daGrowYield.eCommerceSaleTotalText  != '' " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceSaleTotalText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_sale_total_unit =case" suffix="end,">
+              <foreach collection="list" item="daGrowYield" index="index">
+                  <if test="daGrowYield.eCommerceSaleTotalUnit != null " >
+                     when id=#{daGrowYield.id} then #{daGrowYield.eCommerceSaleTotalUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daGrowYield.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_grow_yield
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="baseCode  != null and baseCode  != '' " >
+              base_code,
+          </if>
+          <if test="baseName  != null and baseName  != '' " >
+              base_name,
+          </if>
+          <if test="blockCode  != null and blockCode  != '' " >
+              block_code,
+          </if>
+          <if test="blockName  != null and blockName  != '' " >
+              block_name,
+          </if>
+          <if test="growArea  != null " >
+              grow_area,
+          </if>
+          <if test="growAreaCode  != null " >
+              grow_area_code,
+          </if>
+          <if test="growAreaText  != null and growAreaText  != '' " >
+              grow_area_text,
+          </if>
+          <if test="growAreaUnit  != null " >
+              grow_area_unit,
+          </if>
+          <if test="cropTypeCode  != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText  != null and cropTypeText  != '' " >
+              crop_type_text,
+          </if>
+          <if test="strainsCode  != null " >
+              strains_code,
+          </if>
+          <if test="strainsText  != null and strainsText  != '' " >
+              strains_text,
+          </if>
+          <if test="improveArea  != null " >
+              improve_area,
+          </if>
+          <if test="improveAreaCode  != null " >
+              improve_area_code,
+          </if>
+          <if test="improveAreaText  != null and improveAreaText  != '' " >
+              improve_area_text,
+          </if>
+          <if test="improveAreaUnit  != null " >
+              improve_area_unit,
+          </if>
+          <if test="fruitArea  != null " >
+              fruit_area,
+          </if>
+          <if test="fruitAreaCode  != null " >
+              fruit_area_code,
+          </if>
+          <if test="fruitAreaText  != null and fruitAreaText  != '' " >
+              fruit_area_text,
+          </if>
+          <if test="fruitAreaUnit  != null " >
+              fruit_area_unit,
+          </if>
+          <if test="productTotal  != null " >
+              product_total,
+          </if>
+          <if test="productTotalCode  != null " >
+              product_total_code,
+          </if>
+          <if test="productTotalText  != null and productTotalText  != '' " >
+              product_total_text,
+          </if>
+          <if test="productTotalUnit  != null " >
+              product_total_unit,
+          </if>
+          <if test="outputValue  != null " >
+              output_value,
+          </if>
+          <if test="outputValueCode  != null " >
+              output_value_code,
+          </if>
+          <if test="outputValueText  != null and outputValueText  != '' " >
+              output_value_text,
+          </if>
+          <if test="outputValueUnit  != null " >
+              output_value_unit,
+          </if>
+          <if test="peasantCount  != null " >
+              peasant_count,
+          </if>
+          <if test="year  != null and year  != '' " >
+              year,
+          </if>
+          <if test="organicGrowArea  != null " >
+              organic_grow_area,
+          </if>
+          <if test="organicGrowAreaCode  != null " >
+              organic_grow_area_code,
+          </if>
+          <if test="organicGrowAreaText  != null and organicGrowAreaText  != '' " >
+              organic_grow_area_text,
+          </if>
+          <if test="organicGrowAreaUnit  != null " >
+              organic_grow_area_unit,
+          </if>
+          <if test="saleTotal  != null " >
+              sale_total,
+          </if>
+          <if test="saleTotalCode  != null " >
+              sale_total_code,
+          </if>
+          <if test="saleTotalText  != null and saleTotalText  != '' " >
+              sale_total_text,
+          </if>
+          <if test="saleTotalUnit  != null " >
+              sale_total_unit,
+          </if>
+          <if test="eCommerceOutputValue  != null " >
+              e_commerce_output_value,
+          </if>
+          <if test="eCommerceOutputValueCode  != null " >
+              e_commerce_output_value_code,
+          </if>
+          <if test="eCommerceOutputValueText  != null and eCommerceOutputValueText  != '' " >
+              e_commerce_output_value_text,
+          </if>
+          <if test="eCommerceOutputValueUnit  != null " >
+              e_commerce_output_value_unit,
+          </if>
+          <if test="eCommerceSaleTotal  != null " >
+              e_commerce_sale_total,
+          </if>
+          <if test="eCommerceSaleTotalCode  != null " >
+              e_commerce_sale_total_code,
+          </if>
+          <if test="eCommerceSaleTotalText  != null and eCommerceSaleTotalText  != '' " >
+              e_commerce_sale_total_text,
+          </if>
+          <if test="eCommerceSaleTotalUnit  != null " >
+              e_commerce_sale_total_unit,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daGrowYield" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daGrowYield.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daGrowYield.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{daGrowYield.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseCode  != null  and t.baseCode != '' " >
+                     #{daGrowYield.baseCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseName  != null  and t.baseName != '' " >
+                     #{daGrowYield.baseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.blockCode  != null  and t.blockCode != '' " >
+                     #{daGrowYield.blockCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.blockName  != null  and t.blockName != '' " >
+                     #{daGrowYield.blockName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growArea != null ">
+                    #{daGrowYield.growArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.growAreaCode != null ">
+                    #{daGrowYield.growAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.growAreaText  != null  and t.growAreaText != '' " >
+                     #{daGrowYield.growAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.growAreaUnit != null ">
+                    #{daGrowYield.growAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                    #{daGrowYield.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+                     #{daGrowYield.cropTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                    #{daGrowYield.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+                     #{daGrowYield.strainsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.improveArea != null ">
+                    #{daGrowYield.improveArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.improveAreaCode != null ">
+                    #{daGrowYield.improveAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.improveAreaText  != null  and t.improveAreaText != '' " >
+                     #{daGrowYield.improveAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.improveAreaUnit != null ">
+                    #{daGrowYield.improveAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruitArea != null ">
+                    #{daGrowYield.fruitArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fruitAreaCode != null ">
+                    #{daGrowYield.fruitAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.fruitAreaText  != null  and t.fruitAreaText != '' " >
+                     #{daGrowYield.fruitAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fruitAreaUnit != null ">
+                    #{daGrowYield.fruitAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotal != null ">
+                    #{daGrowYield.productTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotalCode != null ">
+                    #{daGrowYield.productTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.productTotalText  != null  and t.productTotalText != '' " >
+                     #{daGrowYield.productTotalText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productTotalUnit != null ">
+                    #{daGrowYield.productTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValue != null ">
+                    #{daGrowYield.outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValueCode != null ">
+                    #{daGrowYield.outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputValueText  != null  and t.outputValueText != '' " >
+                     #{daGrowYield.outputValueText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputValueUnit != null ">
+                    #{daGrowYield.outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.peasantCount != null ">
+                    #{daGrowYield.peasantCount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.year  != null  and t.year != '' " >
+                     #{daGrowYield.year ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicGrowArea != null ">
+                    #{daGrowYield.organicGrowArea,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.organicGrowAreaCode != null ">
+                    #{daGrowYield.organicGrowAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organicGrowAreaText  != null  and t.organicGrowAreaText != '' " >
+                     #{daGrowYield.organicGrowAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organicGrowAreaUnit != null ">
+                    #{daGrowYield.organicGrowAreaUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleTotal != null ">
+                    #{daGrowYield.saleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleTotalCode != null ">
+                    #{daGrowYield.saleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleTotalText  != null  and t.saleTotalText != '' " >
+                     #{daGrowYield.saleTotalText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleTotalUnit != null ">
+                    #{daGrowYield.saleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceOutputValue != null ">
+                    #{daGrowYield.eCommerceOutputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceOutputValueCode != null ">
+                    #{daGrowYield.eCommerceOutputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommerceOutputValueText  != null  and t.eCommerceOutputValueText != '' " >
+                     #{daGrowYield.eCommerceOutputValueText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommerceOutputValueUnit != null ">
+                    #{daGrowYield.eCommerceOutputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceSaleTotal != null ">
+                    #{daGrowYield.eCommerceSaleTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommerceSaleTotalCode != null ">
+                    #{daGrowYield.eCommerceSaleTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommerceSaleTotalText  != null  and t.eCommerceSaleTotalText != '' " >
+                     #{daGrowYield.eCommerceSaleTotalText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommerceSaleTotalUnit != null ">
+                    #{daGrowYield.eCommerceSaleTotalUnit,jdbcType=NUMERIC},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_grow_yield
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_grow_yield where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.baseCode != null">
+				and base_code = #{EntityRelated.baseCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.baseName != null and EntityRelated.baseName != '' ">
+ 				and  base_name LIKE CONCAT('%',#{EntityRelated.baseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.blockCode != null">
+				and block_code = #{EntityRelated.blockCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.blockName != null and EntityRelated.blockName != '' ">
+ 				and  block_name LIKE CONCAT('%',#{EntityRelated.blockName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.eCommerceOutputValueCode != null">
+				and e_commerce_output_value_code = #{EntityRelated.eCommerceOutputValueCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.eCommerceOutputValueText != null and EntityRelated.eCommerceOutputValueText != '' ">
+ 				and  e_commerce_output_value_text LIKE CONCAT('%',#{EntityRelated.eCommerceOutputValueText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.eCommerceSaleTotalCode != null">
+				and e_commerce_sale_total_code = #{EntityRelated.eCommerceSaleTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.eCommerceSaleTotalText != null and EntityRelated.eCommerceSaleTotalText != '' ">
+ 				and  e_commerce_sale_total_text LIKE CONCAT('%',#{EntityRelated.eCommerceSaleTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fruitAreaCode != null">
+				and fruit_area_code = #{EntityRelated.fruitAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.fruitAreaText != null and EntityRelated.fruitAreaText != '' ">
+ 				and  fruit_area_text LIKE CONCAT('%',#{EntityRelated.fruitAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.growAreaCode != null">
+				and grow_area_code = #{EntityRelated.growAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.growAreaText != null and EntityRelated.growAreaText != '' ">
+ 				and  grow_area_text LIKE CONCAT('%',#{EntityRelated.growAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.improveAreaCode != null">
+				and improve_area_code = #{EntityRelated.improveAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.improveAreaText != null and EntityRelated.improveAreaText != '' ">
+ 				and  improve_area_text LIKE CONCAT('%',#{EntityRelated.improveAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.organicGrowAreaCode != null">
+				and organic_grow_area_code = #{EntityRelated.organicGrowAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.organicGrowAreaText != null and EntityRelated.organicGrowAreaText != '' ">
+ 				and  organic_grow_area_text LIKE CONCAT('%',#{EntityRelated.organicGrowAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.outputValueCode != null">
+				and output_value_code = #{EntityRelated.outputValueCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.outputValueText != null and EntityRelated.outputValueText != '' ">
+ 				and  output_value_text LIKE CONCAT('%',#{EntityRelated.outputValueText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.productTotalCode != null">
+				and product_total_code = #{EntityRelated.productTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.productTotalText != null and EntityRelated.productTotalText != '' ">
+ 				and  product_total_text LIKE CONCAT('%',#{EntityRelated.productTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleTotalCode != null">
+				and sale_total_code = #{EntityRelated.saleTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleTotalText != null and EntityRelated.saleTotalText != '' ">
+ 				and  sale_total_text LIKE CONCAT('%',#{EntityRelated.saleTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.year != null and EntityRelated.year != '' ">
+ 				and  year LIKE CONCAT('%',#{EntityRelated.year,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

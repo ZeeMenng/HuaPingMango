@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiAcquisitionSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAcquisition" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="site_id" property="siteId" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+              <result column="user_id" property="userId" jdbcType="VARCHAR" />
+              <result column="acq_name" property="acqName" jdbcType="VARCHAR" />
+              <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+              <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+              <result column="status" property="status" jdbcType="INTEGER" />
+              <result column="curr_num" property="currNum" jdbcType="INTEGER" />
+              <result column="curr_item" property="currItem" jdbcType="INTEGER" />
+              <result column="total_item" property="totalItem" jdbcType="INTEGER" />
+              <result column="pause_time" property="pauseTime" jdbcType="INTEGER" />
+              <result column="page_encoding" property="pageEncoding" jdbcType="VARCHAR" />
+              <result column="plan_list" property="planList" jdbcType="VARCHAR" />
+              <result column="dynamic_addr" property="dynamicAddr" jdbcType="VARCHAR" />
+              <result column="dynamic_start" property="dynamicStart" jdbcType="INTEGER" />
+              <result column="dynamic_end" property="dynamicEnd" jdbcType="INTEGER" />
+              <result column="linkset_start" property="linksetStart" jdbcType="VARCHAR" />
+              <result column="linkset_end" property="linksetEnd" jdbcType="VARCHAR" />
+              <result column="link_start" property="linkStart" jdbcType="VARCHAR" />
+              <result column="link_end" property="linkEnd" jdbcType="VARCHAR" />
+              <result column="title_start" property="titleStart" jdbcType="VARCHAR" />
+              <result column="title_end" property="titleEnd" jdbcType="VARCHAR" />
+              <result column="keywords_start" property="keywordsStart" jdbcType="VARCHAR" />
+              <result column="keywords_end" property="keywordsEnd" jdbcType="VARCHAR" />
+              <result column="description_start" property="descriptionStart" jdbcType="VARCHAR" />
+              <result column="description_end" property="descriptionEnd" jdbcType="VARCHAR" />
+              <result column="content_start" property="contentStart" jdbcType="VARCHAR" />
+              <result column="content_end" property="contentEnd" jdbcType="VARCHAR" />
+              <result column="pagination_start" property="paginationStart" jdbcType="VARCHAR" />
+              <result column="pagination_end" property="paginationEnd" jdbcType="VARCHAR" />
+              <result column="queue" property="queue" jdbcType="INTEGER" />
+              <result column="repeat_check_type" property="repeatCheckType" jdbcType="VARCHAR" />
+              <result column="img_acqu" property="imgAcqu" jdbcType="TINYINT" />
+              <result column="content_prefix" property="contentPrefix" jdbcType="VARCHAR" />
+              <result column="img_prefix" property="imgPrefix" jdbcType="VARCHAR" />
+              <result column="view_start" property="viewStart" jdbcType="VARCHAR" />
+              <result column="view_end" property="viewEnd" jdbcType="VARCHAR" />
+              <result column="view_id_start" property="viewIdStart" jdbcType="VARCHAR" />
+              <result column="view_id_end" property="viewIdEnd" jdbcType="VARCHAR" />
+              <result column="view_link" property="viewLink" jdbcType="VARCHAR" />
+              <result column="releaseTime_start" property="releaseTimeStart" jdbcType="VARCHAR" />
+              <result column="releaseTime_end" property="releaseTimeEnd" jdbcType="VARCHAR" />
+              <result column="author_start" property="authorStart" jdbcType="VARCHAR" />
+              <result column="author_end" property="authorEnd" jdbcType="VARCHAR" />
+              <result column="origin_start" property="originStart" jdbcType="VARCHAR" />
+              <result column="origin_end" property="originEnd" jdbcType="VARCHAR" />
+              <result column="releaseTime_format" property="releaseTimeFormat" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,site_id,channel_id,type_id,user_id,acq_name,start_time,end_time,status,curr_num,curr_item,total_item,pause_time,page_encoding,plan_list,dynamic_addr,dynamic_start,dynamic_end,linkset_start,linkset_end,link_start,link_end,title_start,title_end,keywords_start,keywords_end,description_start,description_end,content_start,content_end,pagination_start,pagination_end,queue,repeat_check_type,img_acqu,content_prefix,img_prefix,view_start,view_end,view_id_start,view_id_end,view_link,releaseTime_start,releaseTime_end,author_start,author_end,origin_start,origin_end,releaseTime_format
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+    insert into pi_acquisition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="siteId != null and siteId != '' " >
+              site_id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="typeId != null and typeId != '' " >
+              type_id,
+          </if>
+      
+          <if test="userId != null and userId != '' " >
+              user_id,
+          </if>
+      
+          <if test="acqName != null and acqName != '' " >
+              acq_name,
+          </if>
+      
+          <if test="startTime != null " >
+              start_time,
+          </if>
+          <if test="endTime != null " >
+              end_time,
+          </if>
+          <if test="status != null " >
+              status,
+          </if>
+          <if test="currNum != null " >
+              curr_num,
+          </if>
+          <if test="currItem != null " >
+              curr_item,
+          </if>
+          <if test="totalItem != null " >
+              total_item,
+          </if>
+          <if test="pauseTime != null " >
+              pause_time,
+          </if>
+          <if test="pageEncoding != null and pageEncoding != '' " >
+              page_encoding,
+          </if>
+      
+          <if test="planList != null and planList != '' " >
+              plan_list,
+          </if>
+      
+          <if test="dynamicAddr != null and dynamicAddr != '' " >
+              dynamic_addr,
+          </if>
+      
+          <if test="dynamicStart != null " >
+              dynamic_start,
+          </if>
+          <if test="dynamicEnd != null " >
+              dynamic_end,
+          </if>
+          <if test="linksetStart != null and linksetStart != '' " >
+              linkset_start,
+          </if>
+      
+          <if test="linksetEnd != null and linksetEnd != '' " >
+              linkset_end,
+          </if>
+      
+          <if test="linkStart != null and linkStart != '' " >
+              link_start,
+          </if>
+      
+          <if test="linkEnd != null and linkEnd != '' " >
+              link_end,
+          </if>
+      
+          <if test="titleStart != null and titleStart != '' " >
+              title_start,
+          </if>
+      
+          <if test="titleEnd != null and titleEnd != '' " >
+              title_end,
+          </if>
+      
+          <if test="keywordsStart != null and keywordsStart != '' " >
+              keywords_start,
+          </if>
+      
+          <if test="keywordsEnd != null and keywordsEnd != '' " >
+              keywords_end,
+          </if>
+      
+          <if test="descriptionStart != null and descriptionStart != '' " >
+              description_start,
+          </if>
+      
+          <if test="descriptionEnd != null and descriptionEnd != '' " >
+              description_end,
+          </if>
+      
+          <if test="contentStart != null and contentStart != '' " >
+              content_start,
+          </if>
+      
+          <if test="contentEnd != null and contentEnd != '' " >
+              content_end,
+          </if>
+      
+          <if test="paginationStart != null and paginationStart != '' " >
+              pagination_start,
+          </if>
+      
+          <if test="paginationEnd != null and paginationEnd != '' " >
+              pagination_end,
+          </if>
+      
+          <if test="queue != null " >
+              queue,
+          </if>
+          <if test="repeatCheckType != null and repeatCheckType != '' " >
+              repeat_check_type,
+          </if>
+      
+          <if test="imgAcqu != null " >
+              img_acqu,
+          </if>
+          <if test="contentPrefix != null and contentPrefix != '' " >
+              content_prefix,
+          </if>
+      
+          <if test="imgPrefix != null and imgPrefix != '' " >
+              img_prefix,
+          </if>
+      
+          <if test="viewStart != null and viewStart != '' " >
+              view_start,
+          </if>
+      
+          <if test="viewEnd != null and viewEnd != '' " >
+              view_end,
+          </if>
+      
+          <if test="viewIdStart != null and viewIdStart != '' " >
+              view_id_start,
+          </if>
+      
+          <if test="viewIdEnd != null and viewIdEnd != '' " >
+              view_id_end,
+          </if>
+      
+          <if test="viewLink != null and viewLink != '' " >
+              view_link,
+          </if>
+      
+          <if test="releaseTimeStart != null and releaseTimeStart != '' " >
+              releaseTime_start,
+          </if>
+      
+          <if test="releaseTimeEnd != null and releaseTimeEnd != '' " >
+              releaseTime_end,
+          </if>
+      
+          <if test="authorStart != null and authorStart != '' " >
+              author_start,
+          </if>
+      
+          <if test="authorEnd != null and authorEnd != '' " >
+              author_end,
+          </if>
+      
+          <if test="originStart != null and originStart != '' " >
+              origin_start,
+          </if>
+      
+          <if test="originEnd != null and originEnd != '' " >
+              origin_end,
+          </if>
+      
+          <if test="releaseTimeFormat != null and releaseTimeFormat != '' " >
+              releaseTime_format,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="siteId != null and siteId != '' " >
+              #{siteId,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="typeId != null and typeId != '' " >
+              #{typeId,jdbcType=VARCHAR},
+          </if>
+          <if test="userId != null and userId != '' " >
+              #{userId,jdbcType=VARCHAR},
+          </if>
+          <if test="acqName != null and acqName != '' " >
+              #{acqName,jdbcType=VARCHAR},
+          </if>
+          <if test="startTime != null " >
+              #{startTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="endTime != null " >
+              #{endTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="status != null " >
+              #{status,jdbcType=INTEGER},
+          </if>
+          <if test="currNum != null " >
+              #{currNum,jdbcType=INTEGER},
+          </if>
+          <if test="currItem != null " >
+              #{currItem,jdbcType=INTEGER},
+          </if>
+          <if test="totalItem != null " >
+              #{totalItem,jdbcType=INTEGER},
+          </if>
+          <if test="pauseTime != null " >
+              #{pauseTime,jdbcType=INTEGER},
+          </if>
+          <if test="pageEncoding != null and pageEncoding != '' " >
+              #{pageEncoding,jdbcType=VARCHAR},
+          </if>
+          <if test="planList != null and planList != '' " >
+              #{planList,jdbcType=VARCHAR},
+          </if>
+          <if test="dynamicAddr != null and dynamicAddr != '' " >
+              #{dynamicAddr,jdbcType=VARCHAR},
+          </if>
+          <if test="dynamicStart != null " >
+              #{dynamicStart,jdbcType=INTEGER},
+          </if>
+          <if test="dynamicEnd != null " >
+              #{dynamicEnd,jdbcType=INTEGER},
+          </if>
+          <if test="linksetStart != null and linksetStart != '' " >
+              #{linksetStart,jdbcType=VARCHAR},
+          </if>
+          <if test="linksetEnd != null and linksetEnd != '' " >
+              #{linksetEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="linkStart != null and linkStart != '' " >
+              #{linkStart,jdbcType=VARCHAR},
+          </if>
+          <if test="linkEnd != null and linkEnd != '' " >
+              #{linkEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="titleStart != null and titleStart != '' " >
+              #{titleStart,jdbcType=VARCHAR},
+          </if>
+          <if test="titleEnd != null and titleEnd != '' " >
+              #{titleEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="keywordsStart != null and keywordsStart != '' " >
+              #{keywordsStart,jdbcType=VARCHAR},
+          </if>
+          <if test="keywordsEnd != null and keywordsEnd != '' " >
+              #{keywordsEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="descriptionStart != null and descriptionStart != '' " >
+              #{descriptionStart,jdbcType=VARCHAR},
+          </if>
+          <if test="descriptionEnd != null and descriptionEnd != '' " >
+              #{descriptionEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="contentStart != null and contentStart != '' " >
+              #{contentStart,jdbcType=VARCHAR},
+          </if>
+          <if test="contentEnd != null and contentEnd != '' " >
+              #{contentEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="paginationStart != null and paginationStart != '' " >
+              #{paginationStart,jdbcType=VARCHAR},
+          </if>
+          <if test="paginationEnd != null and paginationEnd != '' " >
+              #{paginationEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="queue != null " >
+              #{queue,jdbcType=INTEGER},
+          </if>
+          <if test="repeatCheckType != null and repeatCheckType != '' " >
+              #{repeatCheckType,jdbcType=VARCHAR},
+          </if>
+          <if test="imgAcqu != null " >
+              #{imgAcqu,jdbcType=TINYINT},
+          </if>
+          <if test="contentPrefix != null and contentPrefix != '' " >
+              #{contentPrefix,jdbcType=VARCHAR},
+          </if>
+          <if test="imgPrefix != null and imgPrefix != '' " >
+              #{imgPrefix,jdbcType=VARCHAR},
+          </if>
+          <if test="viewStart != null and viewStart != '' " >
+              #{viewStart,jdbcType=VARCHAR},
+          </if>
+          <if test="viewEnd != null and viewEnd != '' " >
+              #{viewEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="viewIdStart != null and viewIdStart != '' " >
+              #{viewIdStart,jdbcType=VARCHAR},
+          </if>
+          <if test="viewIdEnd != null and viewIdEnd != '' " >
+              #{viewIdEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="viewLink != null and viewLink != '' " >
+              #{viewLink,jdbcType=VARCHAR},
+          </if>
+          <if test="releaseTimeStart != null and releaseTimeStart != '' " >
+              #{releaseTimeStart,jdbcType=VARCHAR},
+          </if>
+          <if test="releaseTimeEnd != null and releaseTimeEnd != '' " >
+              #{releaseTimeEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="authorStart != null and authorStart != '' " >
+              #{authorStart,jdbcType=VARCHAR},
+          </if>
+          <if test="authorEnd != null and authorEnd != '' " >
+              #{authorEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="originStart != null and originStart != '' " >
+              #{originStart,jdbcType=VARCHAR},
+          </if>
+          <if test="originEnd != null and originEnd != '' " >
+              #{originEnd,jdbcType=VARCHAR},
+          </if>
+          <if test="releaseTimeFormat != null and releaseTimeFormat != '' " >
+              #{releaseTimeFormat,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_acquisition
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piAcquisition" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piAcquisition.id,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.siteId,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.channelId,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.typeId,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.userId,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.acqName,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.startTime,jdbcType=TIMESTAMP},
+
+      
+          #{piAcquisition.endTime,jdbcType=TIMESTAMP},
+
+      
+          #{piAcquisition.status,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.currNum,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.currItem,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.totalItem,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.pauseTime,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.pageEncoding,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.planList,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.dynamicAddr,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.dynamicStart,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.dynamicEnd,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.linksetStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.linksetEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.linkStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.linkEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.titleStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.titleEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.keywordsStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.keywordsEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.descriptionStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.descriptionEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.contentStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.contentEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.paginationStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.paginationEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.queue,jdbcType=INTEGER},
+
+      
+          #{piAcquisition.repeatCheckType,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.imgAcqu,jdbcType=TINYINT},
+
+      
+          #{piAcquisition.contentPrefix,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.imgPrefix,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.viewStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.viewEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.viewIdStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.viewIdEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.viewLink,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.releaseTimeStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.releaseTimeEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.authorStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.authorEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.originStart,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.originEnd,jdbcType=VARCHAR},
+
+      
+          #{piAcquisition.releaseTimeFormat,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_acquisition
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_acquisition
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+    update pi_acquisition
+    <set >
+                  <if test="siteId != null  and siteId != '' " >
+                     site_id = #{siteId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="typeId != null  and typeId != '' " >
+                     type_id = #{typeId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="acqName != null  and acqName != '' " >
+                     acq_name = #{acqName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="startTime != null ">
+                     start_time = #{startTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="endTime != null ">
+                     end_time = #{endTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="status != null ">
+                     status = #{status,jdbcType=INTEGER},
+                  </if>
+                  <if test="currNum != null ">
+                     curr_num = #{currNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="currItem != null ">
+                     curr_item = #{currItem,jdbcType=INTEGER},
+                  </if>
+                  <if test="totalItem != null ">
+                     total_item = #{totalItem,jdbcType=INTEGER},
+                  </if>
+                  <if test="pauseTime != null ">
+                     pause_time = #{pauseTime,jdbcType=INTEGER},
+                  </if>
+                  <if test="pageEncoding != null  and pageEncoding != '' " >
+                     page_encoding = #{pageEncoding,jdbcType=VARCHAR},
+                  </if>
+                  <if test="planList != null  and planList != '' " >
+                     plan_list = #{planList,jdbcType=VARCHAR},
+                  </if>
+                  <if test="dynamicAddr != null  and dynamicAddr != '' " >
+                     dynamic_addr = #{dynamicAddr,jdbcType=VARCHAR},
+                  </if>
+                  <if test="dynamicStart != null ">
+                     dynamic_start = #{dynamicStart,jdbcType=INTEGER},
+                  </if>
+                  <if test="dynamicEnd != null ">
+                     dynamic_end = #{dynamicEnd,jdbcType=INTEGER},
+                  </if>
+                  <if test="linksetStart != null  and linksetStart != '' " >
+                     linkset_start = #{linksetStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="linksetEnd != null  and linksetEnd != '' " >
+                     linkset_end = #{linksetEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="linkStart != null  and linkStart != '' " >
+                     link_start = #{linkStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="linkEnd != null  and linkEnd != '' " >
+                     link_end = #{linkEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="titleStart != null  and titleStart != '' " >
+                     title_start = #{titleStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="titleEnd != null  and titleEnd != '' " >
+                     title_end = #{titleEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="keywordsStart != null  and keywordsStart != '' " >
+                     keywords_start = #{keywordsStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="keywordsEnd != null  and keywordsEnd != '' " >
+                     keywords_end = #{keywordsEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="descriptionStart != null  and descriptionStart != '' " >
+                     description_start = #{descriptionStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="descriptionEnd != null  and descriptionEnd != '' " >
+                     description_end = #{descriptionEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentStart != null  and contentStart != '' " >
+                     content_start = #{contentStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentEnd != null  and contentEnd != '' " >
+                     content_end = #{contentEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="paginationStart != null  and paginationStart != '' " >
+                     pagination_start = #{paginationStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="paginationEnd != null  and paginationEnd != '' " >
+                     pagination_end = #{paginationEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="queue != null ">
+                     queue = #{queue,jdbcType=INTEGER},
+                  </if>
+                  <if test="repeatCheckType != null  and repeatCheckType != '' " >
+                     repeat_check_type = #{repeatCheckType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="imgAcqu != null ">
+                     img_acqu = #{imgAcqu,jdbcType=TINYINT},
+                  </if>
+                  <if test="contentPrefix != null  and contentPrefix != '' " >
+                     content_prefix = #{contentPrefix,jdbcType=VARCHAR},
+                  </if>
+                  <if test="imgPrefix != null  and imgPrefix != '' " >
+                     img_prefix = #{imgPrefix,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewStart != null  and viewStart != '' " >
+                     view_start = #{viewStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewEnd != null  and viewEnd != '' " >
+                     view_end = #{viewEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewIdStart != null  and viewIdStart != '' " >
+                     view_id_start = #{viewIdStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewIdEnd != null  and viewIdEnd != '' " >
+                     view_id_end = #{viewIdEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="viewLink != null  and viewLink != '' " >
+                     view_link = #{viewLink,jdbcType=VARCHAR},
+                  </if>
+                  <if test="releaseTimeStart != null  and releaseTimeStart != '' " >
+                     releaseTime_start = #{releaseTimeStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="releaseTimeEnd != null  and releaseTimeEnd != '' " >
+                     releaseTime_end = #{releaseTimeEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="authorStart != null  and authorStart != '' " >
+                     author_start = #{authorStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="authorEnd != null  and authorEnd != '' " >
+                     author_end = #{authorEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="originStart != null  and originStart != '' " >
+                     origin_start = #{originStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="originEnd != null  and originEnd != '' " >
+                     origin_end = #{originEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="releaseTimeFormat != null  and releaseTimeFormat != '' " >
+                     releaseTime_format = #{releaseTimeFormat,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_acquisition
+    <set >
+                  <if test="t.siteId != null  and t.siteId != '' " >
+                     site_id = #{t.siteId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.typeId != null  and t.typeId != '' " >
+                     type_id = #{t.typeId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.acqName != null  and t.acqName != '' " >
+                     acq_name = #{t.acqName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.startTime != null ">
+                     start_time = #{t.startTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.endTime != null ">
+                     end_time = #{t.endTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.status != null ">
+                     status = #{t.status,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.currNum != null ">
+                     curr_num = #{t.currNum,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.currItem != null ">
+                     curr_item = #{t.currItem,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.totalItem != null ">
+                     total_item = #{t.totalItem,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.pauseTime != null ">
+                     pause_time = #{t.pauseTime,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.pageEncoding != null  and t.pageEncoding != '' " >
+                     page_encoding = #{t.pageEncoding,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.planList != null  and t.planList != '' " >
+                     plan_list = #{t.planList,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.dynamicAddr != null  and t.dynamicAddr != '' " >
+                     dynamic_addr = #{t.dynamicAddr,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.dynamicStart != null ">
+                     dynamic_start = #{t.dynamicStart,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.dynamicEnd != null ">
+                     dynamic_end = #{t.dynamicEnd,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.linksetStart != null  and t.linksetStart != '' " >
+                     linkset_start = #{t.linksetStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linksetEnd != null  and t.linksetEnd != '' " >
+                     linkset_end = #{t.linksetEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkStart != null  and t.linkStart != '' " >
+                     link_start = #{t.linkStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkEnd != null  and t.linkEnd != '' " >
+                     link_end = #{t.linkEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleStart != null  and t.titleStart != '' " >
+                     title_start = #{t.titleStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleEnd != null  and t.titleEnd != '' " >
+                     title_end = #{t.titleEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keywordsStart != null  and t.keywordsStart != '' " >
+                     keywords_start = #{t.keywordsStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keywordsEnd != null  and t.keywordsEnd != '' " >
+                     keywords_end = #{t.keywordsEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.descriptionStart != null  and t.descriptionStart != '' " >
+                     description_start = #{t.descriptionStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.descriptionEnd != null  and t.descriptionEnd != '' " >
+                     description_end = #{t.descriptionEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentStart != null  and t.contentStart != '' " >
+                     content_start = #{t.contentStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentEnd != null  and t.contentEnd != '' " >
+                     content_end = #{t.contentEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.paginationStart != null  and t.paginationStart != '' " >
+                     pagination_start = #{t.paginationStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.paginationEnd != null  and t.paginationEnd != '' " >
+                     pagination_end = #{t.paginationEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.queue != null ">
+                     queue = #{t.queue,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.repeatCheckType != null  and t.repeatCheckType != '' " >
+                     repeat_check_type = #{t.repeatCheckType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.imgAcqu != null ">
+                     img_acqu = #{t.imgAcqu,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.contentPrefix != null  and t.contentPrefix != '' " >
+                     content_prefix = #{t.contentPrefix,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.imgPrefix != null  and t.imgPrefix != '' " >
+                     img_prefix = #{t.imgPrefix,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewStart != null  and t.viewStart != '' " >
+                     view_start = #{t.viewStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewEnd != null  and t.viewEnd != '' " >
+                     view_end = #{t.viewEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewIdStart != null  and t.viewIdStart != '' " >
+                     view_id_start = #{t.viewIdStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewIdEnd != null  and t.viewIdEnd != '' " >
+                     view_id_end = #{t.viewIdEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.viewLink != null  and t.viewLink != '' " >
+                     view_link = #{t.viewLink,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.releaseTimeStart != null  and t.releaseTimeStart != '' " >
+                     releaseTime_start = #{t.releaseTimeStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.releaseTimeEnd != null  and t.releaseTimeEnd != '' " >
+                     releaseTime_end = #{t.releaseTimeEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.authorStart != null  and t.authorStart != '' " >
+                     author_start = #{t.authorStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.authorEnd != null  and t.authorEnd != '' " >
+                     author_end = #{t.authorEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.originStart != null  and t.originStart != '' " >
+                     origin_start = #{t.originStart,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.originEnd != null  and t.originEnd != '' " >
+                     origin_end = #{t.originEnd,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.releaseTimeFormat != null  and t.releaseTimeFormat != '' " >
+                     releaseTime_format = #{t.releaseTimeFormat,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_acquisition
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_acquisition where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.acqName != null and EntityRelated.acqName != '' ">
+ 				and  acq_name LIKE CONCAT('%',#{EntityRelated.acqName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.authorEnd != null and EntityRelated.authorEnd != '' ">
+ 				and  author_end LIKE CONCAT('%',#{EntityRelated.authorEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.authorStart != null and EntityRelated.authorStart != '' ">
+ 				and  author_start LIKE CONCAT('%',#{EntityRelated.authorStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.contentEnd != null and EntityRelated.contentEnd != '' ">
+ 				and  content_end LIKE CONCAT('%',#{EntityRelated.contentEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentPrefix != null and EntityRelated.contentPrefix != '' ">
+ 				and  content_prefix LIKE CONCAT('%',#{EntityRelated.contentPrefix,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.contentStart != null and EntityRelated.contentStart != '' ">
+ 				and  content_start LIKE CONCAT('%',#{EntityRelated.contentStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.descriptionEnd != null and EntityRelated.descriptionEnd != '' ">
+ 				and  description_end LIKE CONCAT('%',#{EntityRelated.descriptionEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.descriptionStart != null and EntityRelated.descriptionStart != '' ">
+ 				and  description_start LIKE CONCAT('%',#{EntityRelated.descriptionStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.dynamicAddr != null and EntityRelated.dynamicAddr != '' ">
+ 				and  dynamic_addr LIKE CONCAT('%',#{EntityRelated.dynamicAddr,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)>=unix_timestamp(#{EntityRelated.beginEndTime})]]> 
+		</if>
+		<if test="EntityRelated.endEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)<unix_timestamp(#{EntityRelated.endEndTime})]]> 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.imgPrefix != null and EntityRelated.imgPrefix != '' ">
+ 				and  img_prefix LIKE CONCAT('%',#{EntityRelated.imgPrefix,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.keywordsEnd != null and EntityRelated.keywordsEnd != '' ">
+ 				and  keywords_end LIKE CONCAT('%',#{EntityRelated.keywordsEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.keywordsStart != null and EntityRelated.keywordsStart != '' ">
+ 				and  keywords_start LIKE CONCAT('%',#{EntityRelated.keywordsStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linkEnd != null and EntityRelated.linkEnd != '' ">
+ 				and  link_end LIKE CONCAT('%',#{EntityRelated.linkEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linkStart != null and EntityRelated.linkStart != '' ">
+ 				and  link_start LIKE CONCAT('%',#{EntityRelated.linkStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linksetEnd != null and EntityRelated.linksetEnd != '' ">
+ 				and  linkset_end LIKE CONCAT('%',#{EntityRelated.linksetEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linksetStart != null and EntityRelated.linksetStart != '' ">
+ 				and  linkset_start LIKE CONCAT('%',#{EntityRelated.linksetStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.originEnd != null and EntityRelated.originEnd != '' ">
+ 				and  origin_end LIKE CONCAT('%',#{EntityRelated.originEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.originStart != null and EntityRelated.originStart != '' ">
+ 				and  origin_start LIKE CONCAT('%',#{EntityRelated.originStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.pageEncoding != null and EntityRelated.pageEncoding != '' ">
+ 				and  page_encoding LIKE CONCAT('%',#{EntityRelated.pageEncoding,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.paginationEnd != null and EntityRelated.paginationEnd != '' ">
+ 				and  pagination_end LIKE CONCAT('%',#{EntityRelated.paginationEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.paginationStart != null and EntityRelated.paginationStart != '' ">
+ 				and  pagination_start LIKE CONCAT('%',#{EntityRelated.paginationStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.planList != null and EntityRelated.planList != '' ">
+ 				and  plan_list LIKE CONCAT('%',#{EntityRelated.planList,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.releaseTimeEnd != null and EntityRelated.releaseTimeEnd != '' ">
+ 				and  releaseTime_end LIKE CONCAT('%',#{EntityRelated.releaseTimeEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.releaseTimeFormat != null and EntityRelated.releaseTimeFormat != '' ">
+ 				and  releaseTime_format LIKE CONCAT('%',#{EntityRelated.releaseTimeFormat,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.releaseTimeStart != null and EntityRelated.releaseTimeStart != '' ">
+ 				and  releaseTime_start LIKE CONCAT('%',#{EntityRelated.releaseTimeStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.repeatCheckType != null and EntityRelated.repeatCheckType != '' ">
+ 				and  repeat_check_type LIKE CONCAT('%',#{EntityRelated.repeatCheckType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.siteId != null and EntityRelated.siteId != '' ">
+				and site_id = #{EntityRelated.siteId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)>=unix_timestamp(#{EntityRelated.beginStartTime})]]> 
+		</if>
+		<if test="EntityRelated.endStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)<unix_timestamp(#{EntityRelated.endStartTime})]]> 
+		</if>
+		<if test="EntityRelated.titleEnd != null and EntityRelated.titleEnd != '' ">
+ 				and  title_end LIKE CONCAT('%',#{EntityRelated.titleEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.titleStart != null and EntityRelated.titleStart != '' ">
+ 				and  title_start LIKE CONCAT('%',#{EntityRelated.titleStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.typeId != null and EntityRelated.typeId != '' ">
+				and type_id = #{EntityRelated.typeId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
+				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.viewEnd != null and EntityRelated.viewEnd != '' ">
+ 				and  view_end LIKE CONCAT('%',#{EntityRelated.viewEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.viewIdEnd != null and EntityRelated.viewIdEnd != '' ">
+ 				and  view_id_end LIKE CONCAT('%',#{EntityRelated.viewIdEnd,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.viewIdStart != null and EntityRelated.viewIdStart != '' ">
+ 				and  view_id_start LIKE CONCAT('%',#{EntityRelated.viewIdStart,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.viewLink != null and EntityRelated.viewLink != '' ">
+ 				and  view_link LIKE CONCAT('%',#{EntityRelated.viewLink,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.viewStart != null and EntityRelated.viewStart != '' ">
+ 				and  view_start LIKE CONCAT('%',#{EntityRelated.viewStart,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

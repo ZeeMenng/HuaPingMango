@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseUpdownstreamInfoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseUpdownstreamInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="cognate_enterprise_id" property="cognateEnterpriseId" jdbcType="VARCHAR" />
+              <result column="cognate_enterprise_name" property="cognateEnterpriseName" jdbcType="VARCHAR" />
+              <result column="up_down_type_code" property="upDownTypeCode" jdbcType="TINYINT" />
+              <result column="up_down_type_name" property="upDownTypeName" jdbcType="VARCHAR" />
+              <result column="datasource_code" property="datasourceCode" jdbcType="TINYINT" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,enterprise_id,enterprise_name,cognate_enterprise_id,cognate_enterprise_name,up_down_type_code,up_down_type_name,datasource_code,created_time,remark
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseUpdownstreamInfo" >
+    insert into da_enterprise_updownstream_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              enterprise_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="cognateEnterpriseId != null and cognateEnterpriseId != '' " >
+              cognate_enterprise_id,
+          </if>
+      
+          <if test="cognateEnterpriseName != null and cognateEnterpriseName != '' " >
+              cognate_enterprise_name,
+          </if>
+      
+          <if test="upDownTypeCode != null " >
+              up_down_type_code,
+          </if>
+          <if test="upDownTypeName != null and upDownTypeName != '' " >
+              up_down_type_name,
+          </if>
+      
+          <if test="datasourceCode != null " >
+              datasource_code,
+          </if>
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseId != null and enterpriseId != '' " >
+              #{enterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="cognateEnterpriseId != null and cognateEnterpriseId != '' " >
+              #{cognateEnterpriseId,jdbcType=VARCHAR},
+          </if>
+          <if test="cognateEnterpriseName != null and cognateEnterpriseName != '' " >
+              #{cognateEnterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="upDownTypeCode != null " >
+              #{upDownTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="upDownTypeName != null and upDownTypeName != '' " >
+              #{upDownTypeName,jdbcType=VARCHAR},
+          </if>
+          <if test="datasourceCode != null " >
+              #{datasourceCode,jdbcType=TINYINT},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_updownstream_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseUpdownstreamInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.enterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.cognateEnterpriseId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.cognateEnterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.upDownTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseUpdownstreamInfo.upDownTypeName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseUpdownstreamInfo.datasourceCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseUpdownstreamInfo.createdTime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseUpdownstreamInfo.remark,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_updownstream_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_updownstream_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseUpdownstreamInfo" >
+    update da_enterprise_updownstream_info
+    <set >
+                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                     enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cognateEnterpriseId != null  and cognateEnterpriseId != '' " >
+                     cognate_enterprise_id = #{cognateEnterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cognateEnterpriseName != null  and cognateEnterpriseName != '' " >
+                     cognate_enterprise_name = #{cognateEnterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="upDownTypeCode != null ">
+                     up_down_type_code = #{upDownTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="upDownTypeName != null  and upDownTypeName != '' " >
+                     up_down_type_name = #{upDownTypeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="datasourceCode != null ">
+                     datasource_code = #{datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_updownstream_info
+    <set >
+                  <if test="t.enterpriseId != null  and t.enterpriseId != '' " >
+                     enterprise_id = #{t.enterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cognateEnterpriseId != null  and t.cognateEnterpriseId != '' " >
+                     cognate_enterprise_id = #{t.cognateEnterpriseId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cognateEnterpriseName != null  and t.cognateEnterpriseName != '' " >
+                     cognate_enterprise_name = #{t.cognateEnterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.upDownTypeCode != null ">
+                     up_down_type_code = #{t.upDownTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.upDownTypeName != null  and t.upDownTypeName != '' " >
+                     up_down_type_name = #{t.upDownTypeName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                     datasource_code = #{t.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_enterprise_updownstream_info
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="enterprise_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.enterpriseId != null and daEnterpriseUpdownstreamInfo.enterpriseId  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.enterpriseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.enterpriseName != null and daEnterpriseUpdownstreamInfo.enterpriseName  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.enterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="cognate_enterprise_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.cognateEnterpriseId != null and daEnterpriseUpdownstreamInfo.cognateEnterpriseId  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.cognateEnterpriseId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="cognate_enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.cognateEnterpriseName != null and daEnterpriseUpdownstreamInfo.cognateEnterpriseName  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.cognateEnterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="up_down_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.upDownTypeCode != null " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.upDownTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="up_down_type_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.upDownTypeName != null and daEnterpriseUpdownstreamInfo.upDownTypeName  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.upDownTypeName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="datasource_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.datasourceCode != null " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.datasourceCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="created_time =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.createdTime != null " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.createdTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index">
+                  <if test="daEnterpriseUpdownstreamInfo.remark != null and daEnterpriseUpdownstreamInfo.remark  != '' " >
+                     when id=#{daEnterpriseUpdownstreamInfo.id} then #{daEnterpriseUpdownstreamInfo.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daEnterpriseUpdownstreamInfo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_enterprise_updownstream_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="enterpriseId  != null and enterpriseId  != '' " >
+              enterprise_id,
+          </if>
+          <if test="enterpriseName  != null and enterpriseName  != '' " >
+              enterprise_name,
+          </if>
+          <if test="cognateEnterpriseId  != null and cognateEnterpriseId  != '' " >
+              cognate_enterprise_id,
+          </if>
+          <if test="cognateEnterpriseName  != null and cognateEnterpriseName  != '' " >
+              cognate_enterprise_name,
+          </if>
+          <if test="upDownTypeCode  != null " >
+              up_down_type_code,
+          </if>
+          <if test="upDownTypeName  != null and upDownTypeName  != '' " >
+              up_down_type_name,
+          </if>
+          <if test="datasourceCode  != null " >
+              datasource_code,
+          </if>
+          <if test="createdTime  != null " >
+              created_time,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daEnterpriseUpdownstreamInfo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daEnterpriseUpdownstreamInfo.id ,jdbcType=VARCHAR},
+                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                     #{daEnterpriseUpdownstreamInfo.enterpriseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                     #{daEnterpriseUpdownstreamInfo.enterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cognateEnterpriseId  != null  and t.cognateEnterpriseId != '' " >
+                     #{daEnterpriseUpdownstreamInfo.cognateEnterpriseId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cognateEnterpriseName  != null  and t.cognateEnterpriseName != '' " >
+                     #{daEnterpriseUpdownstreamInfo.cognateEnterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.upDownTypeCode != null ">
+                    #{daEnterpriseUpdownstreamInfo.upDownTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.upDownTypeName  != null  and t.upDownTypeName != '' " >
+                     #{daEnterpriseUpdownstreamInfo.upDownTypeName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.datasourceCode != null ">
+                    #{daEnterpriseUpdownstreamInfo.datasourceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.createdTime != null ">
+                    #{daEnterpriseUpdownstreamInfo.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daEnterpriseUpdownstreamInfo.remark ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_updownstream_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_updownstream_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.cognateEnterpriseId != null and EntityRelated.cognateEnterpriseId != '' ">
+				and cognate_enterprise_id = #{EntityRelated.cognateEnterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cognateEnterpriseName != null and EntityRelated.cognateEnterpriseName != '' ">
+ 				and  cognate_enterprise_name LIKE CONCAT('%',#{EntityRelated.cognateEnterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.datasourceCode != null">
+				and datasource_code = #{EntityRelated.datasourceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseId != null and EntityRelated.enterpriseId != '' ">
+				and enterprise_id = #{EntityRelated.enterpriseId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.upDownTypeCode != null">
+				and up_down_type_code = #{EntityRelated.upDownTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.upDownTypeName != null and EntityRelated.upDownTypeName != '' ">
+ 				and  up_down_type_name LIKE CONCAT('%',#{EntityRelated.upDownTypeName,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

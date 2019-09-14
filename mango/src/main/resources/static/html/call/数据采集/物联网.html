@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+</head>
+<body>
+	<div id="myDiv">
+		<h2>测试</h2>
+	</div>
+	<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+//物联网列表
+function list()  {
+	var ajaxParam = {
+		url : "http://192.168.200.193:60080/iot/basic/getListData",
+		submitData : {
+			"deviceName" : "",//设备名称
+			"hid" : "1",//设备主机编码
+			"limit" : "10",//分页
+			"page" : "1",//分页
+			"orderByField" : "device_name",
+			"enterpriseId" : "asc",//公司id
+			"orderByRule" : "asc",
+			"sysType" : "sjcj"
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+//走势图
+function list()  {
+	var ajaxParam = {
+		url : "http://192.168.200.193:60080/iot/monitor/getIotMonitorDataTrend",
+		submitData : {
+			"hid":"16057131",//设备主机编码
+			"type":"769"//监控类型
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+//监控类型
+$.ajax({
+	type : "GET",
+	url : "http://192.168.200.193:60080/iot/monitor/getMonitorList",
+	async : false,
+	success : function(data) {
+		var html = ''; 
+		if(data.isSuccess){
+			$.each(data.data,function(idx, obj) {
+				if(obj.type == 770){
+					html += '<option selected=true unit=' + obj.unit + ' value=' + obj.type + '>' + obj.displayName + '</option>'; 
+				}else{
+					html += '<option unit=' + obj.unit + ' value=' + obj.type + '>' + obj.displayName + '</option>'; 
+				}
+			});
+		}
+		$("#myDiv").html(html);
+	}
+});
+
+//监控数据
+function list()  {
+	var ajaxParam = {
+		url : "http://192.168.200.193:60080/iot/monitor/getListData",
+		submitData : {
+			"hid":"16057131",//设备主机编码
+			"beginTime":"2018-11-23 14:34:38",//检查时间开始
+			"endTime":"2018-11-23 14:34:38",//检查时间结束
+			"limit":"10",
+			"page":"1",
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+//预警数据
+function list()  {
+	var ajaxParam = {
+		url : "http://192.168.200.193:60080/mango/domainMessage/getMessageList",
+		submitData : {
+			"hid":"16057131",//设备主机编码
+			"limit":"10",
+			"page":"1",
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+//获取基地
+function select() {
+	var ajaxParam = {
+		url : "http://192.168.200.193:60080/ent/syBaseOrigin/getOriginListGropByEnId",
+		submitData : {
+			
+		}
+	};
+	var html = $
+			.ajax({
+				type : "GET",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+</script>
+</html>

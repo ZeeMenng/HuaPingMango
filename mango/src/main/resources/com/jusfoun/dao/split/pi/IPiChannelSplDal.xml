@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiChannelSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannel" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="model_id" property="modelId" jdbcType="VARCHAR" />
+              <result column="site_id" property="siteId" jdbcType="VARCHAR" />
+              <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+              <result column="channel_path" property="channelPath" jdbcType="VARCHAR" />
+              <result column="lft" property="lft" jdbcType="INTEGER" />
+              <result column="rgt" property="rgt" jdbcType="INTEGER" />
+              <result column="priority" property="priority" jdbcType="INTEGER" />
+              <result column="has_content" property="hasContent" jdbcType="TINYINT" />
+              <result column="is_display" property="isDisplay" jdbcType="TINYINT" />
+              <result column="relation_id" property="relationId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,model_id,site_id,parent_id,channel_path,lft,rgt,priority,has_content,is_display,relation_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannel" >
+    insert into pi_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="modelId != null and modelId != '' " >
+              model_id,
+          </if>
+      
+          <if test="siteId != null and siteId != '' " >
+              site_id,
+          </if>
+      
+          <if test="parentId != null and parentId != '' " >
+              parent_id,
+          </if>
+      
+          <if test="channelPath != null and channelPath != '' " >
+              channel_path,
+          </if>
+      
+          <if test="lft != null " >
+              lft,
+          </if>
+          <if test="rgt != null " >
+              rgt,
+          </if>
+          <if test="priority != null " >
+              priority,
+          </if>
+          <if test="hasContent != null " >
+              has_content,
+          </if>
+          <if test="isDisplay != null " >
+              is_display,
+          </if>
+          <if test="relationId != null and relationId != '' " >
+              relation_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="modelId != null and modelId != '' " >
+              #{modelId,jdbcType=VARCHAR},
+          </if>
+          <if test="siteId != null and siteId != '' " >
+              #{siteId,jdbcType=VARCHAR},
+          </if>
+          <if test="parentId != null and parentId != '' " >
+              #{parentId,jdbcType=VARCHAR},
+          </if>
+          <if test="channelPath != null and channelPath != '' " >
+              #{channelPath,jdbcType=VARCHAR},
+          </if>
+          <if test="lft != null " >
+              #{lft,jdbcType=INTEGER},
+          </if>
+          <if test="rgt != null " >
+              #{rgt,jdbcType=INTEGER},
+          </if>
+          <if test="priority != null " >
+              #{priority,jdbcType=INTEGER},
+          </if>
+          <if test="hasContent != null " >
+              #{hasContent,jdbcType=TINYINT},
+          </if>
+          <if test="isDisplay != null " >
+              #{isDisplay,jdbcType=TINYINT},
+          </if>
+          <if test="relationId != null and relationId != '' " >
+              #{relationId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_channel
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannel" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piChannel.id,jdbcType=VARCHAR},
+
+      
+          #{piChannel.modelId,jdbcType=VARCHAR},
+
+      
+          #{piChannel.siteId,jdbcType=VARCHAR},
+
+      
+          #{piChannel.parentId,jdbcType=VARCHAR},
+
+      
+          #{piChannel.channelPath,jdbcType=VARCHAR},
+
+      
+          #{piChannel.lft,jdbcType=INTEGER},
+
+      
+          #{piChannel.rgt,jdbcType=INTEGER},
+
+      
+          #{piChannel.priority,jdbcType=INTEGER},
+
+      
+          #{piChannel.hasContent,jdbcType=TINYINT},
+
+      
+          #{piChannel.isDisplay,jdbcType=TINYINT},
+
+      
+          #{piChannel.relationId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_channel
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_channel
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannel" >
+    update pi_channel
+    <set >
+                  <if test="modelId != null  and modelId != '' " >
+                     model_id = #{modelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="siteId != null  and siteId != '' " >
+                     site_id = #{siteId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="parentId != null  and parentId != '' " >
+                     parent_id = #{parentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="channelPath != null  and channelPath != '' " >
+                     channel_path = #{channelPath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="lft != null ">
+                     lft = #{lft,jdbcType=INTEGER},
+                  </if>
+                  <if test="rgt != null ">
+                     rgt = #{rgt,jdbcType=INTEGER},
+                  </if>
+                  <if test="priority != null ">
+                     priority = #{priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="hasContent != null ">
+                     has_content = #{hasContent,jdbcType=TINYINT},
+                  </if>
+                  <if test="isDisplay != null ">
+                     is_display = #{isDisplay,jdbcType=TINYINT},
+                  </if>
+                  <if test="relationId != null  and relationId != '' " >
+                     relation_id = #{relationId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_channel
+    <set >
+                  <if test="t.modelId != null  and t.modelId != '' " >
+                     model_id = #{t.modelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.siteId != null  and t.siteId != '' " >
+                     site_id = #{t.siteId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.parentId != null  and t.parentId != '' " >
+                     parent_id = #{t.parentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.channelPath != null  and t.channelPath != '' " >
+                     channel_path = #{t.channelPath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lft != null ">
+                     lft = #{t.lft,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.rgt != null ">
+                     rgt = #{t.rgt,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.priority != null ">
+                     priority = #{t.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.hasContent != null ">
+                     has_content = #{t.hasContent,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isDisplay != null ">
+                     is_display = #{t.isDisplay,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.relationId != null  and t.relationId != '' " >
+                     relation_id = #{t.relationId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_channel
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_channel where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelPath != null and EntityRelated.channelPath != '' ">
+ 				and  channel_path LIKE CONCAT('%',#{EntityRelated.channelPath,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.modelId != null and EntityRelated.modelId != '' ">
+				and model_id = #{EntityRelated.modelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.parentId != null and EntityRelated.parentId != '' ">
+				and parent_id = #{EntityRelated.parentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.relationId != null and EntityRelated.relationId != '' ">
+				and relation_id = #{EntityRelated.relationId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.siteId != null and EntityRelated.siteId != '' ">
+				and site_id = #{EntityRelated.siteId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

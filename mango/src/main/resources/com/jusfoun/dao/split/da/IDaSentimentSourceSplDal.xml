@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentSourceSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentSource" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="thread_starter" property="threadStarter" jdbcType="VARCHAR" />
+              <result column="media_type_code" property="mediaTypeCode" jdbcType="TINYINT" />
+              <result column="media_type_text" property="mediaTypeText" jdbcType="VARCHAR" />
+              <result column="website" property="website" jdbcType="VARCHAR" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="status_code" property="statusCode" jdbcType="TINYINT" />
+              <result column="status_text" property="statusText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,thread_starter,media_type_code,media_type_text,website,remark,add_user_id,add_time,status_code,status_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentSource" >
+    insert into da_sentiment_source
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="threadStarter != null and threadStarter != '' " >
+              thread_starter,
+          </if>
+      
+          <if test="mediaTypeCode != null " >
+              media_type_code,
+          </if>
+          <if test="mediaTypeText != null and mediaTypeText != '' " >
+              media_type_text,
+          </if>
+      
+          <if test="website != null and website != '' " >
+              website,
+          </if>
+      
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="statusCode != null " >
+              status_code,
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              status_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="threadStarter != null and threadStarter != '' " >
+              #{threadStarter,jdbcType=VARCHAR},
+          </if>
+          <if test="mediaTypeCode != null " >
+              #{mediaTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="mediaTypeText != null and mediaTypeText != '' " >
+              #{mediaTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="website != null and website != '' " >
+              #{website,jdbcType=VARCHAR},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="statusCode != null " >
+              #{statusCode,jdbcType=TINYINT},
+          </if>
+          <if test="statusText != null and statusText != '' " >
+              #{statusText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sentiment_source
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentSource" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSentimentSource.id,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.threadStarter,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.mediaTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentSource.mediaTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.website,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.remark,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.addUserId,jdbcType=VARCHAR},
+
+      
+          #{daSentimentSource.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daSentimentSource.statusCode,jdbcType=TINYINT},
+
+      
+          #{daSentimentSource.statusText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sentiment_source
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sentiment_source
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentSource" >
+    update da_sentiment_source
+    <set >
+                  <if test="threadStarter != null  and threadStarter != '' " >
+                     thread_starter = #{threadStarter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mediaTypeCode != null ">
+                     media_type_code = #{mediaTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="mediaTypeText != null  and mediaTypeText != '' " >
+                     media_type_text = #{mediaTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="website != null  and website != '' " >
+                     website = #{website,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="statusCode != null ">
+                     status_code = #{statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="statusText != null  and statusText != '' " >
+                     status_text = #{statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_sentiment_source
+    <set >
+                  <if test="t.threadStarter != null  and t.threadStarter != '' " >
+                     thread_starter = #{t.threadStarter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mediaTypeCode != null ">
+                     media_type_code = #{t.mediaTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.mediaTypeText != null  and t.mediaTypeText != '' " >
+                     media_type_text = #{t.mediaTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.website != null  and t.website != '' " >
+                     website = #{t.website,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.statusCode != null ">
+                     status_code = #{t.statusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.statusText != null  and t.statusText != '' " >
+                     status_text = #{t.statusText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sentiment_source
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sentiment_source where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.mediaTypeCode != null">
+				and media_type_code = #{EntityRelated.mediaTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.mediaTypeText != null and EntityRelated.mediaTypeText != '' ">
+ 				and  media_type_text LIKE CONCAT('%',#{EntityRelated.mediaTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.statusCode != null">
+				and status_code = #{EntityRelated.statusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.statusText != null and EntityRelated.statusText != '' ">
+ 				and  status_text LIKE CONCAT('%',#{EntityRelated.statusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.threadStarter != null and EntityRelated.threadStarter != '' ">
+ 				and  thread_starter LIKE CONCAT('%',#{EntityRelated.threadStarter,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.website != null and EntityRelated.website != '' ">
+ 				and  website LIKE CONCAT('%',#{EntityRelated.website,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

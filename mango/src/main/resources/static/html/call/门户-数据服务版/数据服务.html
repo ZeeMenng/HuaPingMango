@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+</head>
+<body>
+	<div id="myDiv">
+		<h2>测试</h2>
+	</div>
+	<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var interfaces = "http://127.0.0.1:60013/mango";
+  $("#btn_call").click(function(){
+	
+	//获取文章列表
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/pi/piContent/getContentListForApp",
+		submitData : {
+			"entityRelated" : {
+				"channelId":"6b8e0f738daed0e79952eba26faa82dc",//栏目id
+		        "relationId":"0101",//栏目级别标识
+		        "isRecommend":0//是否要求获取的文章含有标题图片 0 是 1 否
+			},
+			"orderList" : [ {
+				"columnName" : "release_date",
+				"isASC" : false
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 2
+			}
+		}
+	}; */
+	
+	//根据id获取文章详情
+	/* var ajaxParam = {
+		url : interfaces + "/extend/swagger/pi/piContent/getContentForApp",
+		submitData : {
+			"entityRelated" : {
+				"contentId":"c4b7b64f494d4880b19323e866beea31"//文章id
+			}
+		}
+	}; */
+	
+	//数据资源-生产数据、产值数据-查询指定年份区间各地区芒果种植数据及同比增长率（门户数据服务版）
+	var ajaxParam = {
+		url : "http://127.0.0.1:60011/mango/extend/swagger/da/daGrowYield/getGrowDataAndProportion",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"breed":"0", //0全部 1凯特芒 2水仙芒 3贵妃芒 4台农芒 5金辉芒 6红象芒 7爱文芒 8圣心芒
+				"startTime":"",//开始时间
+				"endTime":"",//结束时间
+				"dimension":"1", //时间维度   1 年 2季度 3月 4 日 5实时
+				"relationId":"01"//生产数据01，产值数据02，价格数据03，贸易数据04
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	};
+	
+	//数据资源-进出口数据-查询指定年份区间各地区芒果进出口数据及同比增长率（门户数据服务版）
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60011/mango/extend/swagger/da/daImportExport/getImportExportDataAndProportion",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"breed":"0", //0全部 1凯特芒 2水仙芒 3贵妃芒 4台农芒 5金辉芒 6红象芒 7爱文芒 8圣心芒
+				"dimension":"4", //时间维度   1 年 2季度 3月 4 日 5实时
+				"startTime":"",//开始时间
+				"endTime":"",//结束时间
+				"priceUnit":"1",//价格单位 1元 2万元 3亿元 4美元
+				"queryType":"volume",//查询内容：volume 金额  amount 数量
+				"relationId":"04"//生产数据01，产值数据02，价格数据03，贸易数据04
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	
+	//数说华芒-查询芒果种植数据、增长数据和增长率
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60013/mango/extend/swagger/da/daGrowYield/getMangoGrowDetails",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"breed":"0" //0全部 1凯特芒 2水仙芒 3贵妃芒 4台农芒 5金辉芒 6红象芒 7爱文芒 8圣心芒
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+//  返回数据：
+// 	"data":{
+//       "info":{
+// 	        "areaSum":0,							种植面积
+// 	        "fruitAreaSum":0,						挂果面积
+// 	        "productSum":0,							产量
+// 	        "outputSum":0,							产值
+// 	        "organicAreaSum":68000340,				有机认证面积
+// 	        "greenAreaSum":5866670,					绿色认证面积
+// 	        "peasantCount":0,						种植户数量
+	
+// 	        "subtractAreaSum":0,					种植面积增长数
+// 	        "subtractFruitAreaSum":0,				挂果面积增长数
+// 	        "subtractProductSum":0,					产量增长数
+// 	        "subtractOutputSum":0,					产值增长数
+// 	        "subtractOrganicAreaSum":1780000,		有机认证面积增长数
+// 	        "subtractGreenAreaSum":600000,			绿色认证面积增长数
+// 	        "subtractPeasantCount":0,				种植户数量增长数
+	
+// 	        "areaSumProportion":"0.00%"				种植面积增长率
+// 	        "fruitAreaSumProportion":"0.00%",		挂果面积增长率
+// 	        "productSumProportion":"0.00%",			产量增长率
+// 	        "outputSumProportion":"0.00%",			产值增长率
+// 	        "organicAreaSumProportion":"2.69%",		有机认证面积增长率
+// 	        "greenAreaSumProportion":"11.39%",		绿色认证面积增长率
+// 	        "peasantCountProportion":"0.00%",		种植户数量增长率
+//         },
+//         "lastYear":"2017",						实际数值展示所需年份
+//         "theYearBeforeLast":"2016"				数值对比所需年份
+//     }
+	
+	//价格监测-价格走势-查询一定月份区间各地区芒果价格数据及同比增长率（门户数据服务版）
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60013/mango/extend/swagger/da/daMarketPrice/getPriceDataAndProportion",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"breed":"0" //0全部 1凯特芒 2水仙芒 3贵妃芒 4台农芒 5金辉芒 6红象芒 7爱文芒 8圣心芒
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//数据资源-价格数据-查询指定时间区间内各地区芒果价格数据（门户数据服务版）
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60011/mango/extend/swagger/da/daMarketPrice/getTimesPriceData",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723", //地区region_id :华坪县530723 百色451000 攀枝花 510400
+				"startTime":"",//开始时间
+				"endTime":"",//结束时间
+				"breed":"0", //0全部 1凯特芒 2水仙芒 3贵妃芒 4台农芒 5金辉芒 6红象芒 7爱文芒 8圣心芒
+				"priceType":"2", //价格类型  1，田头价 2，批发价 3，零售价 4，电商价 5，进口价 6，出口价
+				"priceUnit":"1",//价格单位 1元 2万元 3亿元 4美元
+				"dimension":"4" //时间维度   1 年 2季度 3月 4 日 5实时
+				"relationId":"03"//生产数据01，产值数据02，价格数据03，贸易数据04
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//价格监测-各品种价格
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60011/mango/extend/swagger/da/daMarketPrice/getperBreedPriceData",
+		submitData : {
+			"entityRelated" : {
+				"regionId" : "530723"//地区region_id :华坪县530723 百色451000 攀枝花 510400
+		},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	//数据服务版门户-数据资源-获取查询菜单
+	/* var ajaxParam = {
+		url : "http://127.0.0.1:60011/mango/extend/swagger/pe/peQueryMenu/getQueryMenuList",
+		submitData : {
+			"entityRelated" : {
+				"menuRelationId" : "03" //菜单的relation_id 01 生产数据 02 产值数据 03 价格数据 04 贸易数据
+			},
+			"orderList" : [ {
+				"columnName" : "",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}; */
+	
+	
+	  var submitDataString = JSON.stringify(ajaxParam.submitData);
+	  //Ajax调用处理
+      var html = $.ajax({
+         type: "GET",
+         url: ajaxParam.url,
+         dataType: "json",
+         data:  "jsonData="+submitDataString,
+         async: false,
+		 headers: {
+            'userToken':'super|a0a83550562f49a59e91a26ff74dd519' //用户token，登陆后存放到cookie或localstore
+        }
+      }).responseText;
+      $("#myDiv").html('<h2>'+html+'</h2>');
+  });
+});
+</script>
+</html>

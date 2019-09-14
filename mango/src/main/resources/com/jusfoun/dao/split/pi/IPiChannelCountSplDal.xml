@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiChannelCountSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelCount" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="views" property="views" jdbcType="INTEGER" />
+              <result column="views_month" property="viewsMonth" jdbcType="INTEGER" />
+              <result column="views_week" property="viewsWeek" jdbcType="INTEGER" />
+              <result column="views_day" property="viewsDay" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,channel_id,views,views_month,views_week,views_day
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelCount" >
+    insert into pi_channel_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="views != null " >
+              views,
+          </if>
+          <if test="viewsMonth != null " >
+              views_month,
+          </if>
+          <if test="viewsWeek != null " >
+              views_week,
+          </if>
+          <if test="viewsDay != null " >
+              views_day,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="views != null " >
+              #{views,jdbcType=INTEGER},
+          </if>
+          <if test="viewsMonth != null " >
+              #{viewsMonth,jdbcType=INTEGER},
+          </if>
+          <if test="viewsWeek != null " >
+              #{viewsWeek,jdbcType=INTEGER},
+          </if>
+          <if test="viewsDay != null " >
+              #{viewsDay,jdbcType=INTEGER},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_channel_count
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelCount" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piChannelCount.id,jdbcType=VARCHAR},
+
+      
+          #{piChannelCount.channelId,jdbcType=VARCHAR},
+
+      
+          #{piChannelCount.views,jdbcType=INTEGER},
+
+      
+          #{piChannelCount.viewsMonth,jdbcType=INTEGER},
+
+      
+          #{piChannelCount.viewsWeek,jdbcType=INTEGER},
+
+      
+          #{piChannelCount.viewsDay,jdbcType=INTEGER},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_channel_count
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_channel_count
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelCount" >
+    update pi_channel_count
+    <set >
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="views != null ">
+                     views = #{views,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsMonth != null ">
+                     views_month = #{viewsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsWeek != null ">
+                     views_week = #{viewsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="viewsDay != null ">
+                     views_day = #{viewsDay,jdbcType=INTEGER},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_channel_count
+    <set >
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.views != null ">
+                     views = #{t.views,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsMonth != null ">
+                     views_month = #{t.viewsMonth,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsWeek != null ">
+                     views_week = #{t.viewsWeek,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.viewsDay != null ">
+                     views_day = #{t.viewsDay,jdbcType=INTEGER},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_channel_count
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_channel_count where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

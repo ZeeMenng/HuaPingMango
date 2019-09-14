@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pe.IPeAerialViewUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pe.PeAerialView" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+              <result column="resource_path" property="resourcePath" jdbcType="VARCHAR" />
+              <result column="contet" property="contet" jdbcType="VARCHAR" />
+              <result column="page_view" property="pageView" jdbcType="INTEGER" />
+              <result column="activity" property="activity" jdbcType="INTEGER" />
+              <result column="is_slideshow_code" property="isSlideshowCode" jdbcType="TINYINT" />
+              <result column="is_recommend_code" property="isRecommendCode" jdbcType="TINYINT" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,title,resource_id,resource_path,contet,page_view,activity,is_slideshow_code,is_recommend_code,add_time,update_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pe.PeAerialView" >
+    insert into pe_aerial_view
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="resourceId != null and resourceId != '' " >
+              resource_id,
+          </if>
+      
+          <if test="resourcePath != null and resourcePath != '' " >
+              resource_path,
+          </if>
+      
+          <if test="contet != null and contet != '' " >
+              contet,
+          </if>
+      
+          <if test="pageView != null " >
+              page_view,
+          </if>
+          <if test="activity != null " >
+              activity,
+          </if>
+          <if test="isSlideshowCode != null " >
+              is_slideshow_code,
+          </if>
+          <if test="isRecommendCode != null " >
+              is_recommend_code,
+          </if>
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="resourceId != null and resourceId != '' " >
+              #{resourceId,jdbcType=VARCHAR},
+          </if>
+          <if test="resourcePath != null and resourcePath != '' " >
+              #{resourcePath,jdbcType=VARCHAR},
+          </if>
+          <if test="contet != null and contet != '' " >
+              #{contet,jdbcType=VARCHAR},
+          </if>
+          <if test="pageView != null " >
+              #{pageView,jdbcType=INTEGER},
+          </if>
+          <if test="activity != null " >
+              #{activity,jdbcType=INTEGER},
+          </if>
+          <if test="isSlideshowCode != null " >
+              #{isSlideshowCode,jdbcType=TINYINT},
+          </if>
+          <if test="isRecommendCode != null " >
+              #{isRecommendCode,jdbcType=TINYINT},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pe_aerial_view
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="peAerialView" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{peAerialView.id,jdbcType=VARCHAR},
+
+      
+          #{peAerialView.title,jdbcType=VARCHAR},
+
+      
+          #{peAerialView.resourceId,jdbcType=VARCHAR},
+
+      
+          #{peAerialView.resourcePath,jdbcType=VARCHAR},
+
+      
+          #{peAerialView.contet,jdbcType=VARCHAR},
+
+      
+          #{peAerialView.pageView,jdbcType=INTEGER},
+
+      
+          #{peAerialView.activity,jdbcType=INTEGER},
+
+      
+          #{peAerialView.isSlideshowCode,jdbcType=TINYINT},
+
+      
+          #{peAerialView.isRecommendCode,jdbcType=TINYINT},
+
+      
+          #{peAerialView.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{peAerialView.updateTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pe_aerial_view
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pe_aerial_view
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pe.PeAerialView" >
+    update pe_aerial_view
+    <set >
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="resourceId != null  and resourceId != '' " >
+                     resource_id = #{resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="resourcePath != null  and resourcePath != '' " >
+                     resource_path = #{resourcePath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contet != null  and contet != '' " >
+                     contet = #{contet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="pageView != null ">
+                     page_view = #{pageView,jdbcType=INTEGER},
+                  </if>
+                  <if test="activity != null ">
+                     activity = #{activity,jdbcType=INTEGER},
+                  </if>
+                  <if test="isSlideshowCode != null ">
+                     is_slideshow_code = #{isSlideshowCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="isRecommendCode != null ">
+                     is_recommend_code = #{isRecommendCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pe_aerial_view
+    <set >
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourceId != null  and t.resourceId != '' " >
+                     resource_id = #{t.resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourcePath != null  and t.resourcePath != '' " >
+                     resource_path = #{t.resourcePath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contet != null  and t.contet != '' " >
+                     contet = #{t.contet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.pageView != null ">
+                     page_view = #{t.pageView,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.activity != null ">
+                     activity = #{t.activity,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.isSlideshowCode != null ">
+                     is_slideshow_code = #{t.isSlideshowCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isRecommendCode != null ">
+                     is_recommend_code = #{t.isRecommendCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pe_aerial_view
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="title =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.title != null and peAerialView.title  != '' " >
+                     when id=#{peAerialView.id} then #{peAerialView.title,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="resource_id =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.resourceId != null and peAerialView.resourceId  != '' " >
+                     when id=#{peAerialView.id} then #{peAerialView.resourceId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="resource_path =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.resourcePath != null and peAerialView.resourcePath  != '' " >
+                     when id=#{peAerialView.id} then #{peAerialView.resourcePath,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="contet =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.contet != null and peAerialView.contet  != '' " >
+                     when id=#{peAerialView.id} then #{peAerialView.contet,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="page_view =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.pageView != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.pageView,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="activity =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.activity != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.activity,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_slideshow_code =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.isSlideshowCode != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.isSlideshowCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_recommend_code =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.isRecommendCode != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.isRecommendCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.addTime != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_time =case" suffix="end,">
+              <foreach collection="list" item="peAerialView" index="index">
+                  <if test="peAerialView.updateTime != null " >
+                     when id=#{peAerialView.id} then #{peAerialView.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{peAerialView.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pe_aerial_view
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="title  != null and title  != '' " >
+              title,
+          </if>
+          <if test="resourceId  != null and resourceId  != '' " >
+              resource_id,
+          </if>
+          <if test="resourcePath  != null and resourcePath  != '' " >
+              resource_path,
+          </if>
+          <if test="contet  != null and contet  != '' " >
+              contet,
+          </if>
+          <if test="pageView  != null " >
+              page_view,
+          </if>
+          <if test="activity  != null " >
+              activity,
+          </if>
+          <if test="isSlideshowCode  != null " >
+              is_slideshow_code,
+          </if>
+          <if test="isRecommendCode  != null " >
+              is_recommend_code,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="updateTime  != null " >
+              update_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="peAerialView" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{peAerialView.id ,jdbcType=VARCHAR},
+                  <if test="t.title  != null  and t.title != '' " >
+                     #{peAerialView.title ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+                     #{peAerialView.resourceId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.resourcePath  != null  and t.resourcePath != '' " >
+                     #{peAerialView.resourcePath ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contet  != null  and t.contet != '' " >
+                     #{peAerialView.contet ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.pageView != null ">
+                    #{peAerialView.pageView,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.activity != null ">
+                    #{peAerialView.activity,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.isSlideshowCode != null ">
+                    #{peAerialView.isSlideshowCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isRecommendCode != null ">
+                    #{peAerialView.isRecommendCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{peAerialView.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                    #{peAerialView.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pe_aerial_view
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pe_aerial_view where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.contet != null and EntityRelated.contet != '' ">
+ 				and  contet LIKE CONCAT('%',#{EntityRelated.contet,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.isRecommendCode != null">
+				and is_recommend_code = #{EntityRelated.isRecommendCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.isSlideshowCode != null">
+				and is_slideshow_code = #{EntityRelated.isSlideshowCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.resourceId != null and EntityRelated.resourceId != '' ">
+				and resource_id = #{EntityRelated.resourceId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.resourcePath != null and EntityRelated.resourcePath != '' ">
+ 				and  resource_path LIKE CONCAT('%',#{EntityRelated.resourcePath,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

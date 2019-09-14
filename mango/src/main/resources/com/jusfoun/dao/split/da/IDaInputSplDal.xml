@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaInputSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaInput" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <id column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="object_name" property="objectName" jdbcType="VARCHAR" />
+              <result column="base_name" property="baseName" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="input_name" property="inputName" jdbcType="VARCHAR" />
+              <result column="input_type_code" property="inputTypeCode" jdbcType="TINYINT" />
+              <result column="input_type_text" property="inputTypeText" jdbcType="VARCHAR" />
+              <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+              <result column="purchase_point" property="purchasePoint" jdbcType="VARCHAR" />
+              <result column="procurement_total" property="procurementTotal" jdbcType="NUMERIC" />
+              <result column="procurement_total_unit_code" property="procurementTotalUnitCode" jdbcType="TINYINT" />
+              <result column="procurement_total_unit_text" property="procurementTotalUnitText" jdbcType="VARCHAR" />
+              <result column="procurement_total_unit" property="procurementTotalUnit" jdbcType="NUMERIC" />
+              <result column="use_amount" property="useAmount" jdbcType="NUMERIC" />
+              <result column="use_amount_unit_code" property="useAmountUnitCode" jdbcType="TINYINT" />
+              <result column="use_amount_unit_text" property="useAmountUnitText" jdbcType="VARCHAR" />
+              <result column="use_amount_unit" property="useAmountUnit" jdbcType="NUMERIC" />
+              <result column="per_price" property="perPrice" jdbcType="NUMERIC" />
+              <result column="per_price_unit_code" property="perPriceUnitCode" jdbcType="TINYINT" />
+              <result column="per_price_unit_text" property="perPriceUnitText" jdbcType="VARCHAR" />
+              <result column="per_price_unit" property="perPriceUnit" jdbcType="NUMERIC" />
+              <result column="per_cost" property="perCost" jdbcType="NUMERIC" />
+              <result column="per_cost_unit_code" property="perCostUnitCode" jdbcType="TINYINT" />
+              <result column="per_cost_unit_text" property="perCostUnitText" jdbcType="VARCHAR" />
+              <result column="per_cost_unit" property="perCostUnit" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,object_name,base_name,crop_type_code,crop_type_text,strains_code,strains_text,input_name,input_type_code,input_type_text,brand_name,purchase_point,procurement_total,procurement_total_unit_code,procurement_total_unit_text,procurement_total_unit,use_amount,use_amount_unit_code,use_amount_unit_text,use_amount_unit,per_price,per_price_unit_code,per_price_unit_text,per_price_unit,per_cost,per_cost_unit_code,per_cost_unit_text,per_cost_unit
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+    insert into da_input
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="objectName != null and objectName != '' " >
+              object_name,
+          </if>
+      
+          <if test="baseName != null and baseName != '' " >
+              base_name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="inputName != null and inputName != '' " >
+              input_name,
+          </if>
+      
+          <if test="inputTypeCode != null " >
+              input_type_code,
+          </if>
+          <if test="inputTypeText != null and inputTypeText != '' " >
+              input_type_text,
+          </if>
+      
+          <if test="brandName != null and brandName != '' " >
+              brand_name,
+          </if>
+      
+          <if test="purchasePoint != null and purchasePoint != '' " >
+              purchase_point,
+          </if>
+      
+          <if test="procurementTotal != null " >
+              procurement_total,
+          </if>
+          <if test="procurementTotalUnitCode != null " >
+              procurement_total_unit_code,
+          </if>
+          <if test="procurementTotalUnitText != null and procurementTotalUnitText != '' " >
+              procurement_total_unit_text,
+          </if>
+      
+          <if test="procurementTotalUnit != null " >
+              procurement_total_unit,
+          </if>
+          <if test="useAmount != null " >
+              use_amount,
+          </if>
+          <if test="useAmountUnitCode != null " >
+              use_amount_unit_code,
+          </if>
+          <if test="useAmountUnitText != null and useAmountUnitText != '' " >
+              use_amount_unit_text,
+          </if>
+      
+          <if test="useAmountUnit != null " >
+              use_amount_unit,
+          </if>
+          <if test="perPrice != null " >
+              per_price,
+          </if>
+          <if test="perPriceUnitCode != null " >
+              per_price_unit_code,
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              per_price_unit_text,
+          </if>
+      
+          <if test="perPriceUnit != null " >
+              per_price_unit,
+          </if>
+          <if test="perCost != null " >
+              per_cost,
+          </if>
+          <if test="perCostUnitCode != null " >
+              per_cost_unit_code,
+          </if>
+          <if test="perCostUnitText != null and perCostUnitText != '' " >
+              per_cost_unit_text,
+          </if>
+      
+          <if test="perCostUnit != null " >
+              per_cost_unit,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="objectName != null and objectName != '' " >
+              #{objectName,jdbcType=VARCHAR},
+          </if>
+          <if test="baseName != null and baseName != '' " >
+              #{baseName,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="inputName != null and inputName != '' " >
+              #{inputName,jdbcType=VARCHAR},
+          </if>
+          <if test="inputTypeCode != null " >
+              #{inputTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="inputTypeText != null and inputTypeText != '' " >
+              #{inputTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="brandName != null and brandName != '' " >
+              #{brandName,jdbcType=VARCHAR},
+          </if>
+          <if test="purchasePoint != null and purchasePoint != '' " >
+              #{purchasePoint,jdbcType=VARCHAR},
+          </if>
+          <if test="procurementTotal != null " >
+              #{procurementTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="procurementTotalUnitCode != null " >
+              #{procurementTotalUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="procurementTotalUnitText != null and procurementTotalUnitText != '' " >
+              #{procurementTotalUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="procurementTotalUnit != null " >
+              #{procurementTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="useAmount != null " >
+              #{useAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="useAmountUnitCode != null " >
+              #{useAmountUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="useAmountUnitText != null and useAmountUnitText != '' " >
+              #{useAmountUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="useAmountUnit != null " >
+              #{useAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="perPrice != null " >
+              #{perPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="perPriceUnitCode != null " >
+              #{perPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              #{perPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="perPriceUnit != null " >
+              #{perPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="perCost != null " >
+              #{perCost,jdbcType=NUMERIC},
+          </if>
+          <if test="perCostUnitCode != null " >
+              #{perCostUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="perCostUnitText != null and perCostUnitText != '' " >
+              #{perCostUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="perCostUnit != null " >
+              #{perCostUnit,jdbcType=NUMERIC},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_input
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daInput" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daInput.id,jdbcType=VARCHAR},
+
+      
+          #{daInput.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daInput.name,jdbcType=VARCHAR},
+
+      
+          #{daInput.objectName,jdbcType=VARCHAR},
+
+      
+          #{daInput.baseName,jdbcType=VARCHAR},
+
+      
+          #{daInput.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daInput.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daInput.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daInput.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daInput.inputName,jdbcType=VARCHAR},
+
+      
+          #{daInput.inputTypeCode,jdbcType=TINYINT},
+
+      
+          #{daInput.inputTypeText,jdbcType=VARCHAR},
+
+      
+          #{daInput.brandName,jdbcType=VARCHAR},
+
+      
+          #{daInput.purchasePoint,jdbcType=VARCHAR},
+
+      
+          #{daInput.procurementTotal,jdbcType=NUMERIC},
+
+      
+          #{daInput.procurementTotalUnitCode,jdbcType=TINYINT},
+
+      
+          #{daInput.procurementTotalUnitText,jdbcType=VARCHAR},
+
+      
+          #{daInput.procurementTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daInput.useAmount,jdbcType=NUMERIC},
+
+      
+          #{daInput.useAmountUnitCode,jdbcType=TINYINT},
+
+      
+          #{daInput.useAmountUnitText,jdbcType=VARCHAR},
+
+      
+          #{daInput.useAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{daInput.perPrice,jdbcType=NUMERIC},
+
+      
+          #{daInput.perPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daInput.perPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daInput.perPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daInput.perCost,jdbcType=NUMERIC},
+
+      
+          #{daInput.perCostUnitCode,jdbcType=TINYINT},
+
+      
+          #{daInput.perCostUnitText,jdbcType=VARCHAR},
+
+      
+          #{daInput.perCostUnit,jdbcType=NUMERIC},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_input
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_input
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+    update da_input
+    <set >
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="objectName != null  and objectName != '' " >
+                     object_name = #{objectName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="baseName != null  and baseName != '' " >
+                     base_name = #{baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="inputName != null  and inputName != '' " >
+                     input_name = #{inputName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="inputTypeCode != null ">
+                     input_type_code = #{inputTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="inputTypeText != null  and inputTypeText != '' " >
+                     input_type_text = #{inputTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="brandName != null  and brandName != '' " >
+                     brand_name = #{brandName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="purchasePoint != null  and purchasePoint != '' " >
+                     purchase_point = #{purchasePoint,jdbcType=VARCHAR},
+                  </if>
+                  <if test="procurementTotal != null ">
+                     procurement_total = #{procurementTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="procurementTotalUnitCode != null ">
+                     procurement_total_unit_code = #{procurementTotalUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="procurementTotalUnitText != null  and procurementTotalUnitText != '' " >
+                     procurement_total_unit_text = #{procurementTotalUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="procurementTotalUnit != null ">
+                     procurement_total_unit = #{procurementTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="useAmount != null ">
+                     use_amount = #{useAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="useAmountUnitCode != null ">
+                     use_amount_unit_code = #{useAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="useAmountUnitText != null  and useAmountUnitText != '' " >
+                     use_amount_unit_text = #{useAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="useAmountUnit != null ">
+                     use_amount_unit = #{useAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perPrice != null ">
+                     per_price = #{perPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perPriceUnitCode != null ">
+                     per_price_unit_code = #{perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="perPriceUnitText != null  and perPriceUnitText != '' " >
+                     per_price_unit_text = #{perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="perPriceUnit != null ">
+                     per_price_unit = #{perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perCost != null ">
+                     per_cost = #{perCost,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perCostUnitCode != null ">
+                     per_cost_unit_code = #{perCostUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="perCostUnitText != null  and perCostUnitText != '' " >
+                     per_cost_unit_text = #{perCostUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="perCostUnit != null ">
+                     per_cost_unit = #{perCostUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_input
+    <set >
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.objectName != null  and t.objectName != '' " >
+                     object_name = #{t.objectName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.baseName != null  and t.baseName != '' " >
+                     base_name = #{t.baseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.inputName != null  and t.inputName != '' " >
+                     input_name = #{t.inputName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.inputTypeCode != null ">
+                     input_type_code = #{t.inputTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.inputTypeText != null  and t.inputTypeText != '' " >
+                     input_type_text = #{t.inputTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.brandName != null  and t.brandName != '' " >
+                     brand_name = #{t.brandName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.purchasePoint != null  and t.purchasePoint != '' " >
+                     purchase_point = #{t.purchasePoint,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.procurementTotal != null ">
+                     procurement_total = #{t.procurementTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.procurementTotalUnitCode != null ">
+                     procurement_total_unit_code = #{t.procurementTotalUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.procurementTotalUnitText != null  and t.procurementTotalUnitText != '' " >
+                     procurement_total_unit_text = #{t.procurementTotalUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.procurementTotalUnit != null ">
+                     procurement_total_unit = #{t.procurementTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.useAmount != null ">
+                     use_amount = #{t.useAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.useAmountUnitCode != null ">
+                     use_amount_unit_code = #{t.useAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.useAmountUnitText != null  and t.useAmountUnitText != '' " >
+                     use_amount_unit_text = #{t.useAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.useAmountUnit != null ">
+                     use_amount_unit = #{t.useAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPrice != null ">
+                     per_price = #{t.perPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPriceUnitCode != null ">
+                     per_price_unit_code = #{t.perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perPriceUnitText != null  and t.perPriceUnitText != '' " >
+                     per_price_unit_text = #{t.perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPriceUnit != null ">
+                     per_price_unit = #{t.perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perCost != null ">
+                     per_cost = #{t.perCost,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perCostUnitCode != null ">
+                     per_cost_unit_code = #{t.perCostUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perCostUnitText != null  and t.perCostUnitText != '' " >
+                     per_cost_unit_text = #{t.perCostUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perCostUnit != null ">
+                     per_cost_unit = #{t.perCostUnit,jdbcType=NUMERIC},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_input
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_input where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.baseName != null and EntityRelated.baseName != '' ">
+ 				and  base_name LIKE CONCAT('%',#{EntityRelated.baseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.brandName != null and EntityRelated.brandName != '' ">
+ 				and  brand_name LIKE CONCAT('%',#{EntityRelated.brandName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.inputName != null and EntityRelated.inputName != '' ">
+ 				and  input_name LIKE CONCAT('%',#{EntityRelated.inputName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.inputTypeCode != null">
+				and input_type_code = #{EntityRelated.inputTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.inputTypeText != null and EntityRelated.inputTypeText != '' ">
+ 				and  input_type_text LIKE CONCAT('%',#{EntityRelated.inputTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.objectName != null and EntityRelated.objectName != '' ">
+ 				and  object_name LIKE CONCAT('%',#{EntityRelated.objectName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.perCostUnitCode != null">
+				and per_cost_unit_code = #{EntityRelated.perCostUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.perCostUnitText != null and EntityRelated.perCostUnitText != '' ">
+ 				and  per_cost_unit_text LIKE CONCAT('%',#{EntityRelated.perCostUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.perPriceUnitCode != null">
+				and per_price_unit_code = #{EntityRelated.perPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.perPriceUnitText != null and EntityRelated.perPriceUnitText != '' ">
+ 				and  per_price_unit_text LIKE CONCAT('%',#{EntityRelated.perPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.procurementTotalUnitCode != null">
+				and procurement_total_unit_code = #{EntityRelated.procurementTotalUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.procurementTotalUnitText != null and EntityRelated.procurementTotalUnitText != '' ">
+ 				and  procurement_total_unit_text LIKE CONCAT('%',#{EntityRelated.procurementTotalUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.purchasePoint != null and EntityRelated.purchasePoint != '' ">
+ 				and  purchase_point LIKE CONCAT('%',#{EntityRelated.purchasePoint,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.useAmountUnitCode != null">
+				and use_amount_unit_code = #{EntityRelated.useAmountUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.useAmountUnitText != null and EntityRelated.useAmountUnitText != '' ">
+ 				and  use_amount_unit_text LIKE CONCAT('%',#{EntityRelated.useAmountUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

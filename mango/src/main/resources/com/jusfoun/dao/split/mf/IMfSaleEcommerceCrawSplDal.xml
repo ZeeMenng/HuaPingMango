@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.mf.IMfSaleEcommerceCrawSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="ecommerce_code" property="ecommerceCode" jdbcType="TINYINT" />
+              <result column="ecommerce_text" property="ecommerceText" jdbcType="VARCHAR" />
+              <result column="sale_price" property="salePrice" jdbcType="NUMERIC" />
+              <result column="sale_price_code" property="salePriceCode" jdbcType="TINYINT" />
+              <result column="sale_price_text" property="salePriceText" jdbcType="VARCHAR" />
+              <result column="sale_price_unit" property="salePriceUnit" jdbcType="NUMERIC" />
+              <result column="price_range_code" property="priceRangeCode" jdbcType="TINYINT" />
+              <result column="price_range_text" property="priceRangeText" jdbcType="VARCHAR" />
+              <result column="sale_amount" property="saleAmount" jdbcType="NUMERIC" />
+              <result column="sale_amount_code" property="saleAmountCode" jdbcType="TINYINT" />
+              <result column="sale_amount_text" property="saleAmountText" jdbcType="VARCHAR" />
+              <result column="sale_amount_unit" property="saleAmountUnit" jdbcType="NUMERIC" />
+              <result column="weight_specification_code" property="weightSpecificationCode" jdbcType="TINYINT" />
+              <result column="weight_specification_text" property="weightSpecificationText" jdbcType="VARCHAR" />
+              <result column="sale_volume" property="saleVolume" jdbcType="NUMERIC" />
+              <result column="sale_volume_unit_code" property="saleVolumeUnitCode" jdbcType="TINYINT" />
+              <result column="sale_volume_unit_text" property="saleVolumeUnitText" jdbcType="VARCHAR" />
+              <result column="sale_volume_unit" property="saleVolumeUnit" jdbcType="NUMERIC" />
+              <result column="product_area_code" property="productAreaCode" jdbcType="VARCHAR" />
+              <result column="product_area_text" property="productAreaText" jdbcType="VARCHAR" />
+              <result column="sale_area_code" property="saleAreaCode" jdbcType="VARCHAR" />
+              <result column="sale_area_text" property="saleAreaText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,crop_type_code,crop_type_text,strains_code,strains_text,ecommerce_code,ecommerce_text,sale_price,sale_price_code,sale_price_text,sale_price_unit,price_range_code,price_range_text,sale_amount,sale_amount_code,sale_amount_text,sale_amount_unit,weight_specification_code,weight_specification_text,sale_volume,sale_volume_unit_code,sale_volume_unit_text,sale_volume_unit,product_area_code,product_area_text,sale_area_code,sale_area_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+    insert into mf_sale_ecommerce_craw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="ecommerceCode != null " >
+              ecommerce_code,
+          </if>
+          <if test="ecommerceText != null and ecommerceText != '' " >
+              ecommerce_text,
+          </if>
+      
+          <if test="salePrice != null " >
+              sale_price,
+          </if>
+          <if test="salePriceCode != null " >
+              sale_price_code,
+          </if>
+          <if test="salePriceText != null and salePriceText != '' " >
+              sale_price_text,
+          </if>
+      
+          <if test="salePriceUnit != null " >
+              sale_price_unit,
+          </if>
+          <if test="priceRangeCode != null " >
+              price_range_code,
+          </if>
+          <if test="priceRangeText != null and priceRangeText != '' " >
+              price_range_text,
+          </if>
+      
+          <if test="saleAmount != null " >
+              sale_amount,
+          </if>
+          <if test="saleAmountCode != null " >
+              sale_amount_code,
+          </if>
+          <if test="saleAmountText != null and saleAmountText != '' " >
+              sale_amount_text,
+          </if>
+      
+          <if test="saleAmountUnit != null " >
+              sale_amount_unit,
+          </if>
+          <if test="weightSpecificationCode != null " >
+              weight_specification_code,
+          </if>
+          <if test="weightSpecificationText != null and weightSpecificationText != '' " >
+              weight_specification_text,
+          </if>
+      
+          <if test="saleVolume != null " >
+              sale_volume,
+          </if>
+          <if test="saleVolumeUnitCode != null " >
+              sale_volume_unit_code,
+          </if>
+          <if test="saleVolumeUnitText != null and saleVolumeUnitText != '' " >
+              sale_volume_unit_text,
+          </if>
+      
+          <if test="saleVolumeUnit != null " >
+              sale_volume_unit,
+          </if>
+          <if test="productAreaCode != null and productAreaCode != '' " >
+              product_area_code,
+          </if>
+      
+          <if test="productAreaText != null and productAreaText != '' " >
+              product_area_text,
+          </if>
+      
+          <if test="saleAreaCode != null and saleAreaCode != '' " >
+              sale_area_code,
+          </if>
+      
+          <if test="saleAreaText != null and saleAreaText != '' " >
+              sale_area_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="ecommerceCode != null " >
+              #{ecommerceCode,jdbcType=TINYINT},
+          </if>
+          <if test="ecommerceText != null and ecommerceText != '' " >
+              #{ecommerceText,jdbcType=VARCHAR},
+          </if>
+          <if test="salePrice != null " >
+              #{salePrice,jdbcType=NUMERIC},
+          </if>
+          <if test="salePriceCode != null " >
+              #{salePriceCode,jdbcType=TINYINT},
+          </if>
+          <if test="salePriceText != null and salePriceText != '' " >
+              #{salePriceText,jdbcType=VARCHAR},
+          </if>
+          <if test="salePriceUnit != null " >
+              #{salePriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="priceRangeCode != null " >
+              #{priceRangeCode,jdbcType=TINYINT},
+          </if>
+          <if test="priceRangeText != null and priceRangeText != '' " >
+              #{priceRangeText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAmount != null " >
+              #{saleAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="saleAmountCode != null " >
+              #{saleAmountCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleAmountText != null and saleAmountText != '' " >
+              #{saleAmountText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAmountUnit != null " >
+              #{saleAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="weightSpecificationCode != null " >
+              #{weightSpecificationCode,jdbcType=TINYINT},
+          </if>
+          <if test="weightSpecificationText != null and weightSpecificationText != '' " >
+              #{weightSpecificationText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleVolume != null " >
+              #{saleVolume,jdbcType=NUMERIC},
+          </if>
+          <if test="saleVolumeUnitCode != null " >
+              #{saleVolumeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleVolumeUnitText != null and saleVolumeUnitText != '' " >
+              #{saleVolumeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleVolumeUnit != null " >
+              #{saleVolumeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="productAreaCode != null and productAreaCode != '' " >
+              #{productAreaCode,jdbcType=VARCHAR},
+          </if>
+          <if test="productAreaText != null and productAreaText != '' " >
+              #{productAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAreaCode != null and saleAreaCode != '' " >
+              #{saleAreaCode,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAreaText != null and saleAreaText != '' " >
+              #{saleAreaText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_sale_ecommerce_craw
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfSaleEcommerceCraw" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfSaleEcommerceCraw.id,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.strainsCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.strainsText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.ecommerceCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.ecommerceText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.salePrice,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.salePriceCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.salePriceText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.salePriceUnit,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.priceRangeCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.priceRangeText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleAmount,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.saleAmountCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.saleAmountText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.weightSpecificationCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.weightSpecificationText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleVolume,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.saleVolumeUnitCode,jdbcType=TINYINT},
+
+      
+          #{mfSaleEcommerceCraw.saleVolumeUnitText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleVolumeUnit,jdbcType=NUMERIC},
+
+      
+          #{mfSaleEcommerceCraw.productAreaCode,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.productAreaText,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleAreaCode,jdbcType=VARCHAR},
+
+      
+          #{mfSaleEcommerceCraw.saleAreaText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_sale_ecommerce_craw
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_sale_ecommerce_craw
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+    update mf_sale_ecommerce_craw
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="ecommerceCode != null ">
+                     ecommerce_code = #{ecommerceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="ecommerceText != null  and ecommerceText != '' " >
+                     ecommerce_text = #{ecommerceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="salePrice != null ">
+                     sale_price = #{salePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="salePriceCode != null ">
+                     sale_price_code = #{salePriceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="salePriceText != null  and salePriceText != '' " >
+                     sale_price_text = #{salePriceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="salePriceUnit != null ">
+                     sale_price_unit = #{salePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="priceRangeCode != null ">
+                     price_range_code = #{priceRangeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="priceRangeText != null  and priceRangeText != '' " >
+                     price_range_text = #{priceRangeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAmount != null ">
+                     sale_amount = #{saleAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleAmountCode != null ">
+                     sale_amount_code = #{saleAmountCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleAmountText != null  and saleAmountText != '' " >
+                     sale_amount_text = #{saleAmountText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAmountUnit != null ">
+                     sale_amount_unit = #{saleAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="weightSpecificationCode != null ">
+                     weight_specification_code = #{weightSpecificationCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="weightSpecificationText != null  and weightSpecificationText != '' " >
+                     weight_specification_text = #{weightSpecificationText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleVolume != null ">
+                     sale_volume = #{saleVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleVolumeUnitCode != null ">
+                     sale_volume_unit_code = #{saleVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleVolumeUnitText != null  and saleVolumeUnitText != '' " >
+                     sale_volume_unit_text = #{saleVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleVolumeUnit != null ">
+                     sale_volume_unit = #{saleVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="productAreaCode != null  and productAreaCode != '' " >
+                     product_area_code = #{productAreaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productAreaText != null  and productAreaText != '' " >
+                     product_area_text = #{productAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAreaCode != null  and saleAreaCode != '' " >
+                     sale_area_code = #{saleAreaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAreaText != null  and saleAreaText != '' " >
+                     sale_area_text = #{saleAreaText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update mf_sale_ecommerce_craw
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.ecommerceCode != null ">
+                     ecommerce_code = #{t.ecommerceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.ecommerceText != null  and t.ecommerceText != '' " >
+                     ecommerce_text = #{t.ecommerceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.salePrice != null ">
+                     sale_price = #{t.salePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.salePriceCode != null ">
+                     sale_price_code = #{t.salePriceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.salePriceText != null  and t.salePriceText != '' " >
+                     sale_price_text = #{t.salePriceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.salePriceUnit != null ">
+                     sale_price_unit = #{t.salePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.priceRangeCode != null ">
+                     price_range_code = #{t.priceRangeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceRangeText != null  and t.priceRangeText != '' " >
+                     price_range_text = #{t.priceRangeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAmount != null ">
+                     sale_amount = #{t.saleAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleAmountCode != null ">
+                     sale_amount_code = #{t.saleAmountCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleAmountText != null  and t.saleAmountText != '' " >
+                     sale_amount_text = #{t.saleAmountText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAmountUnit != null ">
+                     sale_amount_unit = #{t.saleAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.weightSpecificationCode != null ">
+                     weight_specification_code = #{t.weightSpecificationCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.weightSpecificationText != null  and t.weightSpecificationText != '' " >
+                     weight_specification_text = #{t.weightSpecificationText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleVolume != null ">
+                     sale_volume = #{t.saleVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleVolumeUnitCode != null ">
+                     sale_volume_unit_code = #{t.saleVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleVolumeUnitText != null  and t.saleVolumeUnitText != '' " >
+                     sale_volume_unit_text = #{t.saleVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleVolumeUnit != null ">
+                     sale_volume_unit = #{t.saleVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productAreaCode != null  and t.productAreaCode != '' " >
+                     product_area_code = #{t.productAreaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productAreaText != null  and t.productAreaText != '' " >
+                     product_area_text = #{t.productAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAreaCode != null  and t.saleAreaCode != '' " >
+                     sale_area_code = #{t.saleAreaCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAreaText != null  and t.saleAreaText != '' " >
+                     sale_area_text = #{t.saleAreaText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_sale_ecommerce_craw
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_sale_ecommerce_craw where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.ecommerceCode != null">
+				and ecommerce_code = #{EntityRelated.ecommerceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.ecommerceText != null and EntityRelated.ecommerceText != '' ">
+ 				and  ecommerce_text LIKE CONCAT('%',#{EntityRelated.ecommerceText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.priceRangeCode != null">
+				and price_range_code = #{EntityRelated.priceRangeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.priceRangeText != null and EntityRelated.priceRangeText != '' ">
+ 				and  price_range_text LIKE CONCAT('%',#{EntityRelated.priceRangeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.productAreaCode != null">
+				and product_area_code = #{EntityRelated.productAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.productAreaText != null and EntityRelated.productAreaText != '' ">
+ 				and  product_area_text LIKE CONCAT('%',#{EntityRelated.productAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleAmountCode != null">
+				and sale_amount_code = #{EntityRelated.saleAmountCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleAmountText != null and EntityRelated.saleAmountText != '' ">
+ 				and  sale_amount_text LIKE CONCAT('%',#{EntityRelated.saleAmountText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleAreaCode != null">
+				and sale_area_code = #{EntityRelated.saleAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleAreaText != null and EntityRelated.saleAreaText != '' ">
+ 				and  sale_area_text LIKE CONCAT('%',#{EntityRelated.saleAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.salePriceCode != null">
+				and sale_price_code = #{EntityRelated.salePriceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.salePriceText != null and EntityRelated.salePriceText != '' ">
+ 				and  sale_price_text LIKE CONCAT('%',#{EntityRelated.salePriceText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleVolumeUnitCode != null">
+				and sale_volume_unit_code = #{EntityRelated.saleVolumeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleVolumeUnitText != null and EntityRelated.saleVolumeUnitText != '' ">
+ 				and  sale_volume_unit_text LIKE CONCAT('%',#{EntityRelated.saleVolumeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.weightSpecificationCode != null">
+				and weight_specification_code = #{EntityRelated.weightSpecificationCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.weightSpecificationText != null and EntityRelated.weightSpecificationText != '' ">
+ 				and  weight_specification_text LIKE CONCAT('%',#{EntityRelated.weightSpecificationText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

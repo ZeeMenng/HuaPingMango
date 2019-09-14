@@ -1,0 +1,2734 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseInfoUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="enterprise_code" property="enterpriseCode" jdbcType="VARCHAR" />
+              <result column="registration_mark" property="registrationMark" jdbcType="VARCHAR" />
+              <result column="archives_number" property="archivesNumber" jdbcType="VARCHAR" />
+              <result column="society_credit_id" property="societyCreditId" jdbcType="VARCHAR" />
+              <result column="register_status_text" property="registerStatusText" jdbcType="VARCHAR" />
+              <result column="register_status_code" property="registerStatusCode" jdbcType="TINYINT" />
+              <result column="register_type_text" property="registerTypeText" jdbcType="VARCHAR" />
+              <result column="register_type_code" property="registerTypeCode" jdbcType="INTEGER" />
+              <result column="statistics_Department_number" property="statisticsDepartmentNumber" jdbcType="VARCHAR" />
+              <result column="found_date" property="foundDate" jdbcType="TIMESTAMP" />
+              <result column="corporation_name" property="corporationName" jdbcType="VARCHAR" />
+              <result column="corporation_identity_card" property="corporationIdentityCard" jdbcType="VARCHAR" />
+              <result column="corporation_mobile" property="corporationMobile" jdbcType="VARCHAR" />
+              <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+              <result column="linkman_mobile" property="linkmanMobile" jdbcType="VARCHAR" />
+              <result column="landline_telephone" property="landlineTelephone" jdbcType="VARCHAR" />
+              <result column="enterprise_type_text" property="enterpriseTypeText" jdbcType="VARCHAR" />
+              <result column="enterprise_type_code" property="enterpriseTypeCode" jdbcType="TINYINT" />
+              <result column="enterprise_nature_code" property="enterpriseNatureCode" jdbcType="TINYINT" />
+              <result column="enterprise_nature_text" property="enterpriseNatureText" jdbcType="VARCHAR" />
+              <result column="industry_type_code" property="industryTypeCode" jdbcType="TINYINT" />
+              <result column="industry_type_text" property="industryTypeText" jdbcType="VARCHAR" />
+              <result column="registered_capital" property="registeredCapital" jdbcType="NUMERIC" />
+              <result column="paidin_capital" property="paidinCapital" jdbcType="NUMERIC" />
+              <result column="address" property="address" jdbcType="VARCHAR" />
+              <result column="enterprise_address" property="enterpriseAddress" jdbcType="VARCHAR" />
+              <result column="enterprise_phone" property="enterprisePhone" jdbcType="VARCHAR" />
+              <result column="administrative_area" property="administrativeArea" jdbcType="VARCHAR" />
+              <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+              <result column="region_text" property="regionText" jdbcType="VARCHAR" />
+              <result column="measure_longitude" property="measureLongitude" jdbcType="VARCHAR" />
+              <result column="measure_latitude" property="measureLatitude" jdbcType="VARCHAR" />
+              <result column="establish_date" property="establishDate" jdbcType="TIMESTAMP" />
+              <result column="approval_date" property="approvalDate" jdbcType="TIMESTAMP" />
+              <result column="business_duetime" property="businessDuetime" jdbcType="TIMESTAMP" />
+              <result column="longdistance_number" property="longdistanceNumber" jdbcType="VARCHAR" />
+              <result column="administration_number" property="administrationNumber" jdbcType="VARCHAR" />
+              <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+              <result column="professional_activity" property="professionalActivity" jdbcType="VARCHAR" />
+              <result column="enterprise_control" property="enterpriseControl" jdbcType="VARCHAR" />
+              <result column="organization_type_text" property="organizationTypeText" jdbcType="VARCHAR" />
+              <result column="organization_type_code" property="organizationTypeCode" jdbcType="VARCHAR" />
+              <result column="industry_activity" property="industryActivity" jdbcType="VARCHAR" />
+              <result column="industry_code" property="industryCode" jdbcType="VARCHAR" />
+              <result column="industry_text" property="industryText" jdbcType="VARCHAR" />
+              <result column="risk_grade" property="riskGrade" jdbcType="VARCHAR" />
+              <result column="risk_value" property="riskValue" jdbcType="NUMERIC" />
+              <result column="category_code" property="categoryCode" jdbcType="TINYINT" />
+              <result column="category_text" property="categoryText" jdbcType="VARCHAR" />
+              <result column="risk_tags_code" property="riskTagsCode" jdbcType="TINYINT" />
+              <result column="risk_tags_text" property="riskTagsText" jdbcType="VARCHAR" />
+              <result column="funnel_tags_code" property="funnelTagsCode" jdbcType="TINYINT" />
+              <result column="funnel_tags_text" property="funnelTagsText" jdbcType="VARCHAR" />
+              <result column="core_code" property="coreCode" jdbcType="TINYINT" />
+              <result column="core_text" property="coreText" jdbcType="VARCHAR" />
+              <result column="person_scale" property="personScale" jdbcType="VARCHAR" />
+              <result column="money_scale" property="moneyScale" jdbcType="VARCHAR" />
+              <result column="year_they" property="yearThey" jdbcType="VARCHAR" />
+              <result column="is_corporate_champion_type_code" property="isCorporateChampionTypeCode" jdbcType="TINYINT" />
+              <result column="is_corporate_champion_type_text" property="isCorporateChampionTypeText" jdbcType="VARCHAR" />
+              <result column="scale_enterprise_type_code" property="scaleEnterpriseTypeCode" jdbcType="TINYINT" />
+              <result column="email" property="email" jdbcType="VARCHAR" />
+              <result column="scale_enterprise_type_text" property="scaleEnterpriseTypeText" jdbcType="VARCHAR" />
+              <result column="summary" property="summary" jdbcType="VARCHAR" />
+              <result column="description" property="description" jdbcType="VARCHAR" />
+              <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+              <result column="telautogram" property="telautogram" jdbcType="VARCHAR" />
+              <result column="is_recommend" property="isRecommend" jdbcType="TINYINT" />
+              <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+              <result column="manage_status" property="manageStatus" jdbcType="VARCHAR" />
+              <result column="trade_text" property="tradeText" jdbcType="VARCHAR" />
+              <result column="registry_office" property="registryOffice" jdbcType="VARCHAR" />
+              <result column="logo_resource_id" property="logoResourceId" jdbcType="VARCHAR" />
+              <result column="logo_resource_path" property="logoResourcePath" jdbcType="VARCHAR" />
+              <result column="is_cooperative_code" property="isCooperativeCode" jdbcType="TINYINT" />
+              <result column="is_cooperative_text" property="isCooperativeText" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,organization_id,enterprise_name,enterprise_code,registration_mark,archives_number,society_credit_id,register_status_text,register_status_code,register_type_text,register_type_code,statistics_Department_number,found_date,corporation_name,corporation_identity_card,corporation_mobile,linkman,linkman_mobile,landline_telephone,enterprise_type_text,enterprise_type_code,enterprise_nature_code,enterprise_nature_text,industry_type_code,industry_type_text,registered_capital,paidin_capital,address,enterprise_address,enterprise_phone,administrative_area,region_code,region_text,measure_longitude,measure_latitude,establish_date,approval_date,business_duetime,longdistance_number,administration_number,business_scope,professional_activity,enterprise_control,organization_type_text,organization_type_code,industry_activity,industry_code,industry_text,risk_grade,risk_value,category_code,category_text,risk_tags_code,risk_tags_text,funnel_tags_code,funnel_tags_text,core_code,core_text,person_scale,money_scale,year_they,is_corporate_champion_type_code,is_corporate_champion_type_text,scale_enterprise_type_code,email,scale_enterprise_type_text,summary,description,zip_code,telautogram,is_recommend,organization_code,manage_status,trade_text,registry_office,logo_resource_id,logo_resource_path,is_cooperative_code,is_cooperative_text
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+    insert into da_enterprise_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="organizationId != null and organizationId != '' " >
+              organization_id,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="enterpriseCode != null and enterpriseCode != '' " >
+              enterprise_code,
+          </if>
+      
+          <if test="registrationMark != null and registrationMark != '' " >
+              registration_mark,
+          </if>
+      
+          <if test="archivesNumber != null and archivesNumber != '' " >
+              archives_number,
+          </if>
+      
+          <if test="societyCreditId != null and societyCreditId != '' " >
+              society_credit_id,
+          </if>
+      
+          <if test="registerStatusText != null and registerStatusText != '' " >
+              register_status_text,
+          </if>
+      
+          <if test="registerStatusCode != null " >
+              register_status_code,
+          </if>
+          <if test="registerTypeText != null and registerTypeText != '' " >
+              register_type_text,
+          </if>
+      
+          <if test="registerTypeCode != null " >
+              register_type_code,
+          </if>
+          <if test="statisticsDepartmentNumber != null and statisticsDepartmentNumber != '' " >
+              statistics_Department_number,
+          </if>
+      
+          <if test="foundDate != null " >
+              found_date,
+          </if>
+          <if test="corporationName != null and corporationName != '' " >
+              corporation_name,
+          </if>
+      
+          <if test="corporationIdentityCard != null and corporationIdentityCard != '' " >
+              corporation_identity_card,
+          </if>
+      
+          <if test="corporationMobile != null and corporationMobile != '' " >
+              corporation_mobile,
+          </if>
+      
+          <if test="linkman != null and linkman != '' " >
+              linkman,
+          </if>
+      
+          <if test="linkmanMobile != null and linkmanMobile != '' " >
+              linkman_mobile,
+          </if>
+      
+          <if test="landlineTelephone != null and landlineTelephone != '' " >
+              landline_telephone,
+          </if>
+      
+          <if test="enterpriseTypeText != null and enterpriseTypeText != '' " >
+              enterprise_type_text,
+          </if>
+      
+          <if test="enterpriseTypeCode != null " >
+              enterprise_type_code,
+          </if>
+          <if test="enterpriseNatureCode != null " >
+              enterprise_nature_code,
+          </if>
+          <if test="enterpriseNatureText != null and enterpriseNatureText != '' " >
+              enterprise_nature_text,
+          </if>
+      
+          <if test="industryTypeCode != null " >
+              industry_type_code,
+          </if>
+          <if test="industryTypeText != null and industryTypeText != '' " >
+              industry_type_text,
+          </if>
+      
+          <if test="registeredCapital != null " >
+              registered_capital,
+          </if>
+          <if test="paidinCapital != null " >
+              paidin_capital,
+          </if>
+          <if test="address != null and address != '' " >
+              address,
+          </if>
+      
+          <if test="enterpriseAddress != null and enterpriseAddress != '' " >
+              enterprise_address,
+          </if>
+      
+          <if test="enterprisePhone != null and enterprisePhone != '' " >
+              enterprise_phone,
+          </if>
+      
+          <if test="administrativeArea != null and administrativeArea != '' " >
+              administrative_area,
+          </if>
+      
+          <if test="regionCode != null and regionCode != '' " >
+              region_code,
+          </if>
+      
+          <if test="regionText != null and regionText != '' " >
+              region_text,
+          </if>
+      
+          <if test="measureLongitude != null and measureLongitude != '' " >
+              measure_longitude,
+          </if>
+      
+          <if test="measureLatitude != null and measureLatitude != '' " >
+              measure_latitude,
+          </if>
+      
+          <if test="establishDate != null " >
+              establish_date,
+          </if>
+          <if test="approvalDate != null " >
+              approval_date,
+          </if>
+          <if test="businessDuetime != null " >
+              business_duetime,
+          </if>
+          <if test="longdistanceNumber != null and longdistanceNumber != '' " >
+              longdistance_number,
+          </if>
+      
+          <if test="administrationNumber != null and administrationNumber != '' " >
+              administration_number,
+          </if>
+      
+          <if test="businessScope != null and businessScope != '' " >
+              business_scope,
+          </if>
+      
+          <if test="professionalActivity != null and professionalActivity != '' " >
+              professional_activity,
+          </if>
+      
+          <if test="enterpriseControl != null and enterpriseControl != '' " >
+              enterprise_control,
+          </if>
+      
+          <if test="organizationTypeText != null and organizationTypeText != '' " >
+              organization_type_text,
+          </if>
+      
+          <if test="organizationTypeCode != null and organizationTypeCode != '' " >
+              organization_type_code,
+          </if>
+      
+          <if test="industryActivity != null and industryActivity != '' " >
+              industry_activity,
+          </if>
+      
+          <if test="industryCode != null and industryCode != '' " >
+              industry_code,
+          </if>
+      
+          <if test="industryText != null and industryText != '' " >
+              industry_text,
+          </if>
+      
+          <if test="riskGrade != null and riskGrade != '' " >
+              risk_grade,
+          </if>
+      
+          <if test="riskValue != null " >
+              risk_value,
+          </if>
+          <if test="categoryCode != null " >
+              category_code,
+          </if>
+          <if test="categoryText != null and categoryText != '' " >
+              category_text,
+          </if>
+      
+          <if test="riskTagsCode != null " >
+              risk_tags_code,
+          </if>
+          <if test="riskTagsText != null and riskTagsText != '' " >
+              risk_tags_text,
+          </if>
+      
+          <if test="funnelTagsCode != null " >
+              funnel_tags_code,
+          </if>
+          <if test="funnelTagsText != null and funnelTagsText != '' " >
+              funnel_tags_text,
+          </if>
+      
+          <if test="coreCode != null " >
+              core_code,
+          </if>
+          <if test="coreText != null and coreText != '' " >
+              core_text,
+          </if>
+      
+          <if test="personScale != null and personScale != '' " >
+              person_scale,
+          </if>
+      
+          <if test="moneyScale != null and moneyScale != '' " >
+              money_scale,
+          </if>
+      
+          <if test="yearThey != null and yearThey != '' " >
+              year_they,
+          </if>
+      
+          <if test="isCorporateChampionTypeCode != null " >
+              is_corporate_champion_type_code,
+          </if>
+          <if test="isCorporateChampionTypeText != null and isCorporateChampionTypeText != '' " >
+              is_corporate_champion_type_text,
+          </if>
+      
+          <if test="scaleEnterpriseTypeCode != null " >
+              scale_enterprise_type_code,
+          </if>
+          <if test="email != null and email != '' " >
+              email,
+          </if>
+      
+          <if test="scaleEnterpriseTypeText != null and scaleEnterpriseTypeText != '' " >
+              scale_enterprise_type_text,
+          </if>
+      
+          <if test="summary != null and summary != '' " >
+              summary,
+          </if>
+      
+          <if test="description != null and description != '' " >
+              description,
+          </if>
+      
+          <if test="zipCode != null and zipCode != '' " >
+              zip_code,
+          </if>
+      
+          <if test="telautogram != null and telautogram != '' " >
+              telautogram,
+          </if>
+      
+          <if test="isRecommend != null " >
+              is_recommend,
+          </if>
+          <if test="organizationCode != null and organizationCode != '' " >
+              organization_code,
+          </if>
+      
+          <if test="manageStatus != null and manageStatus != '' " >
+              manage_status,
+          </if>
+      
+          <if test="tradeText != null and tradeText != '' " >
+              trade_text,
+          </if>
+      
+          <if test="registryOffice != null and registryOffice != '' " >
+              registry_office,
+          </if>
+      
+          <if test="logoResourceId != null and logoResourceId != '' " >
+              logo_resource_id,
+          </if>
+      
+          <if test="logoResourcePath != null and logoResourcePath != '' " >
+              logo_resource_path,
+          </if>
+      
+          <if test="isCooperativeCode != null " >
+              is_cooperative_code,
+          </if>
+          <if test="isCooperativeText != null and isCooperativeText != '' " >
+              is_cooperative_text,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="organizationId != null and organizationId != '' " >
+              #{organizationId,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseCode != null and enterpriseCode != '' " >
+              #{enterpriseCode,jdbcType=VARCHAR},
+          </if>
+          <if test="registrationMark != null and registrationMark != '' " >
+              #{registrationMark,jdbcType=VARCHAR},
+          </if>
+          <if test="archivesNumber != null and archivesNumber != '' " >
+              #{archivesNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="societyCreditId != null and societyCreditId != '' " >
+              #{societyCreditId,jdbcType=VARCHAR},
+          </if>
+          <if test="registerStatusText != null and registerStatusText != '' " >
+              #{registerStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="registerStatusCode != null " >
+              #{registerStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="registerTypeText != null and registerTypeText != '' " >
+              #{registerTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="registerTypeCode != null " >
+              #{registerTypeCode,jdbcType=INTEGER},
+          </if>
+          <if test="statisticsDepartmentNumber != null and statisticsDepartmentNumber != '' " >
+              #{statisticsDepartmentNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="foundDate != null " >
+              #{foundDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="corporationName != null and corporationName != '' " >
+              #{corporationName,jdbcType=VARCHAR},
+          </if>
+          <if test="corporationIdentityCard != null and corporationIdentityCard != '' " >
+              #{corporationIdentityCard,jdbcType=VARCHAR},
+          </if>
+          <if test="corporationMobile != null and corporationMobile != '' " >
+              #{corporationMobile,jdbcType=VARCHAR},
+          </if>
+          <if test="linkman != null and linkman != '' " >
+              #{linkman,jdbcType=VARCHAR},
+          </if>
+          <if test="linkmanMobile != null and linkmanMobile != '' " >
+              #{linkmanMobile,jdbcType=VARCHAR},
+          </if>
+          <if test="landlineTelephone != null and landlineTelephone != '' " >
+              #{landlineTelephone,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseTypeText != null and enterpriseTypeText != '' " >
+              #{enterpriseTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseTypeCode != null " >
+              #{enterpriseTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="enterpriseNatureCode != null " >
+              #{enterpriseNatureCode,jdbcType=TINYINT},
+          </if>
+          <if test="enterpriseNatureText != null and enterpriseNatureText != '' " >
+              #{enterpriseNatureText,jdbcType=VARCHAR},
+          </if>
+          <if test="industryTypeCode != null " >
+              #{industryTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="industryTypeText != null and industryTypeText != '' " >
+              #{industryTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="registeredCapital != null " >
+              #{registeredCapital,jdbcType=NUMERIC},
+          </if>
+          <if test="paidinCapital != null " >
+              #{paidinCapital,jdbcType=NUMERIC},
+          </if>
+          <if test="address != null and address != '' " >
+              #{address,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseAddress != null and enterpriseAddress != '' " >
+              #{enterpriseAddress,jdbcType=VARCHAR},
+          </if>
+          <if test="enterprisePhone != null and enterprisePhone != '' " >
+              #{enterprisePhone,jdbcType=VARCHAR},
+          </if>
+          <if test="administrativeArea != null and administrativeArea != '' " >
+              #{administrativeArea,jdbcType=VARCHAR},
+          </if>
+          <if test="regionCode != null and regionCode != '' " >
+              #{regionCode,jdbcType=VARCHAR},
+          </if>
+          <if test="regionText != null and regionText != '' " >
+              #{regionText,jdbcType=VARCHAR},
+          </if>
+          <if test="measureLongitude != null and measureLongitude != '' " >
+              #{measureLongitude,jdbcType=VARCHAR},
+          </if>
+          <if test="measureLatitude != null and measureLatitude != '' " >
+              #{measureLatitude,jdbcType=VARCHAR},
+          </if>
+          <if test="establishDate != null " >
+              #{establishDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="approvalDate != null " >
+              #{approvalDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="businessDuetime != null " >
+              #{businessDuetime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="longdistanceNumber != null and longdistanceNumber != '' " >
+              #{longdistanceNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="administrationNumber != null and administrationNumber != '' " >
+              #{administrationNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="businessScope != null and businessScope != '' " >
+              #{businessScope,jdbcType=VARCHAR},
+          </if>
+          <if test="professionalActivity != null and professionalActivity != '' " >
+              #{professionalActivity,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseControl != null and enterpriseControl != '' " >
+              #{enterpriseControl,jdbcType=VARCHAR},
+          </if>
+          <if test="organizationTypeText != null and organizationTypeText != '' " >
+              #{organizationTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="organizationTypeCode != null and organizationTypeCode != '' " >
+              #{organizationTypeCode,jdbcType=VARCHAR},
+          </if>
+          <if test="industryActivity != null and industryActivity != '' " >
+              #{industryActivity,jdbcType=VARCHAR},
+          </if>
+          <if test="industryCode != null and industryCode != '' " >
+              #{industryCode,jdbcType=VARCHAR},
+          </if>
+          <if test="industryText != null and industryText != '' " >
+              #{industryText,jdbcType=VARCHAR},
+          </if>
+          <if test="riskGrade != null and riskGrade != '' " >
+              #{riskGrade,jdbcType=VARCHAR},
+          </if>
+          <if test="riskValue != null " >
+              #{riskValue,jdbcType=NUMERIC},
+          </if>
+          <if test="categoryCode != null " >
+              #{categoryCode,jdbcType=TINYINT},
+          </if>
+          <if test="categoryText != null and categoryText != '' " >
+              #{categoryText,jdbcType=VARCHAR},
+          </if>
+          <if test="riskTagsCode != null " >
+              #{riskTagsCode,jdbcType=TINYINT},
+          </if>
+          <if test="riskTagsText != null and riskTagsText != '' " >
+              #{riskTagsText,jdbcType=VARCHAR},
+          </if>
+          <if test="funnelTagsCode != null " >
+              #{funnelTagsCode,jdbcType=TINYINT},
+          </if>
+          <if test="funnelTagsText != null and funnelTagsText != '' " >
+              #{funnelTagsText,jdbcType=VARCHAR},
+          </if>
+          <if test="coreCode != null " >
+              #{coreCode,jdbcType=TINYINT},
+          </if>
+          <if test="coreText != null and coreText != '' " >
+              #{coreText,jdbcType=VARCHAR},
+          </if>
+          <if test="personScale != null and personScale != '' " >
+              #{personScale,jdbcType=VARCHAR},
+          </if>
+          <if test="moneyScale != null and moneyScale != '' " >
+              #{moneyScale,jdbcType=VARCHAR},
+          </if>
+          <if test="yearThey != null and yearThey != '' " >
+              #{yearThey,jdbcType=VARCHAR},
+          </if>
+          <if test="isCorporateChampionTypeCode != null " >
+              #{isCorporateChampionTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="isCorporateChampionTypeText != null and isCorporateChampionTypeText != '' " >
+              #{isCorporateChampionTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="scaleEnterpriseTypeCode != null " >
+              #{scaleEnterpriseTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="email != null and email != '' " >
+              #{email,jdbcType=VARCHAR},
+          </if>
+          <if test="scaleEnterpriseTypeText != null and scaleEnterpriseTypeText != '' " >
+              #{scaleEnterpriseTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="summary != null and summary != '' " >
+              #{summary,jdbcType=VARCHAR},
+          </if>
+          <if test="description != null and description != '' " >
+              #{description,jdbcType=VARCHAR},
+          </if>
+          <if test="zipCode != null and zipCode != '' " >
+              #{zipCode,jdbcType=VARCHAR},
+          </if>
+          <if test="telautogram != null and telautogram != '' " >
+              #{telautogram,jdbcType=VARCHAR},
+          </if>
+          <if test="isRecommend != null " >
+              #{isRecommend,jdbcType=TINYINT},
+          </if>
+          <if test="organizationCode != null and organizationCode != '' " >
+              #{organizationCode,jdbcType=VARCHAR},
+          </if>
+          <if test="manageStatus != null and manageStatus != '' " >
+              #{manageStatus,jdbcType=VARCHAR},
+          </if>
+          <if test="tradeText != null and tradeText != '' " >
+              #{tradeText,jdbcType=VARCHAR},
+          </if>
+          <if test="registryOffice != null and registryOffice != '' " >
+              #{registryOffice,jdbcType=VARCHAR},
+          </if>
+          <if test="logoResourceId != null and logoResourceId != '' " >
+              #{logoResourceId,jdbcType=VARCHAR},
+          </if>
+          <if test="logoResourcePath != null and logoResourcePath != '' " >
+              #{logoResourcePath,jdbcType=VARCHAR},
+          </if>
+          <if test="isCooperativeCode != null " >
+              #{isCooperativeCode,jdbcType=TINYINT},
+          </if>
+          <if test="isCooperativeText != null and isCooperativeText != '' " >
+              #{isCooperativeText,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_enterprise_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daEnterpriseInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.organizationId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registrationMark,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.archivesNumber,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.societyCreditId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registerStatusText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.registerTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER},
+
+      
+          #{daEnterpriseInfo.statisticsDepartmentNumber,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseInfo.corporationName,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.corporationIdentityCard,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.corporationMobile,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.linkman,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.linkmanMobile,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.landlineTelephone,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.enterpriseNatureText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.industryTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC},
+
+      
+          #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC},
+
+      
+          #{daEnterpriseInfo.address,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseAddress,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterprisePhone,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.administrativeArea,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.regionCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.regionText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.measureLongitude,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.measureLatitude,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP},
+
+      
+          #{daEnterpriseInfo.longdistanceNumber,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.administrationNumber,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.businessScope,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.professionalActivity,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.enterpriseControl,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.organizationTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.organizationTypeCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.industryActivity,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.industryCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.industryText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.riskGrade,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC},
+
+      
+          #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.categoryText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.riskTagsText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.funnelTagsText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.coreCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.coreText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.personScale,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.moneyScale,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.yearThey,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.isCorporateChampionTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.email,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.scaleEnterpriseTypeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.summary,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.description,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.zipCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.telautogram,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.organizationCode,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.manageStatus,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.tradeText,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.registryOffice,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.logoResourceId,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.logoResourcePath,jdbcType=VARCHAR},
+
+      
+          #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT},
+
+      
+          #{daEnterpriseInfo.isCooperativeText,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_enterprise_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_enterprise_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+    update da_enterprise_info
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organizationId != null  and organizationId != '' " >
+                     organization_id = #{organizationId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseCode != null  and enterpriseCode != '' " >
+                     enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registrationMark != null  and registrationMark != '' " >
+                     registration_mark = #{registrationMark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="archivesNumber != null  and archivesNumber != '' " >
+                     archives_number = #{archivesNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="societyCreditId != null  and societyCreditId != '' " >
+                     society_credit_id = #{societyCreditId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registerStatusText != null  and registerStatusText != '' " >
+                     register_status_text = #{registerStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registerStatusCode != null ">
+                     register_status_code = #{registerStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="registerTypeText != null  and registerTypeText != '' " >
+                     register_type_text = #{registerTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registerTypeCode != null ">
+                     register_type_code = #{registerTypeCode,jdbcType=INTEGER},
+                  </if>
+                  <if test="statisticsDepartmentNumber != null  and statisticsDepartmentNumber != '' " >
+                     statistics_Department_number = #{statisticsDepartmentNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="foundDate != null ">
+                     found_date = #{foundDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="corporationName != null  and corporationName != '' " >
+                     corporation_name = #{corporationName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="corporationIdentityCard != null  and corporationIdentityCard != '' " >
+                     corporation_identity_card = #{corporationIdentityCard,jdbcType=VARCHAR},
+                  </if>
+                  <if test="corporationMobile != null  and corporationMobile != '' " >
+                     corporation_mobile = #{corporationMobile,jdbcType=VARCHAR},
+                  </if>
+                  <if test="linkman != null  and linkman != '' " >
+                     linkman = #{linkman,jdbcType=VARCHAR},
+                  </if>
+                  <if test="linkmanMobile != null  and linkmanMobile != '' " >
+                     linkman_mobile = #{linkmanMobile,jdbcType=VARCHAR},
+                  </if>
+                  <if test="landlineTelephone != null  and landlineTelephone != '' " >
+                     landline_telephone = #{landlineTelephone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseTypeText != null  and enterpriseTypeText != '' " >
+                     enterprise_type_text = #{enterpriseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseTypeCode != null ">
+                     enterprise_type_code = #{enterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="enterpriseNatureCode != null ">
+                     enterprise_nature_code = #{enterpriseNatureCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="enterpriseNatureText != null  and enterpriseNatureText != '' " >
+                     enterprise_nature_text = #{enterpriseNatureText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="industryTypeCode != null ">
+                     industry_type_code = #{industryTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="industryTypeText != null  and industryTypeText != '' " >
+                     industry_type_text = #{industryTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registeredCapital != null ">
+                     registered_capital = #{registeredCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="paidinCapital != null ">
+                     paidin_capital = #{paidinCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseAddress != null  and enterpriseAddress != '' " >
+                     enterprise_address = #{enterpriseAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterprisePhone != null  and enterprisePhone != '' " >
+                     enterprise_phone = #{enterprisePhone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="administrativeArea != null  and administrativeArea != '' " >
+                     administrative_area = #{administrativeArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionCode != null  and regionCode != '' " >
+                     region_code = #{regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionText != null  and regionText != '' " >
+                     region_text = #{regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="measureLongitude != null  and measureLongitude != '' " >
+                     measure_longitude = #{measureLongitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="measureLatitude != null  and measureLatitude != '' " >
+                     measure_latitude = #{measureLatitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="establishDate != null ">
+                     establish_date = #{establishDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="approvalDate != null ">
+                     approval_date = #{approvalDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="businessDuetime != null ">
+                     business_duetime = #{businessDuetime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="longdistanceNumber != null  and longdistanceNumber != '' " >
+                     longdistance_number = #{longdistanceNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="administrationNumber != null  and administrationNumber != '' " >
+                     administration_number = #{administrationNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="businessScope != null  and businessScope != '' " >
+                     business_scope = #{businessScope,jdbcType=VARCHAR},
+                  </if>
+                  <if test="professionalActivity != null  and professionalActivity != '' " >
+                     professional_activity = #{professionalActivity,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseControl != null  and enterpriseControl != '' " >
+                     enterprise_control = #{enterpriseControl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organizationTypeText != null  and organizationTypeText != '' " >
+                     organization_type_text = #{organizationTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="organizationTypeCode != null  and organizationTypeCode != '' " >
+                     organization_type_code = #{organizationTypeCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="industryActivity != null  and industryActivity != '' " >
+                     industry_activity = #{industryActivity,jdbcType=VARCHAR},
+                  </if>
+                  <if test="industryCode != null  and industryCode != '' " >
+                     industry_code = #{industryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="industryText != null  and industryText != '' " >
+                     industry_text = #{industryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="riskGrade != null  and riskGrade != '' " >
+                     risk_grade = #{riskGrade,jdbcType=VARCHAR},
+                  </if>
+                  <if test="riskValue != null ">
+                     risk_value = #{riskValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="categoryCode != null ">
+                     category_code = #{categoryCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="categoryText != null  and categoryText != '' " >
+                     category_text = #{categoryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="riskTagsCode != null ">
+                     risk_tags_code = #{riskTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="riskTagsText != null  and riskTagsText != '' " >
+                     risk_tags_text = #{riskTagsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="funnelTagsCode != null ">
+                     funnel_tags_code = #{funnelTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="funnelTagsText != null  and funnelTagsText != '' " >
+                     funnel_tags_text = #{funnelTagsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="coreCode != null ">
+                     core_code = #{coreCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="coreText != null  and coreText != '' " >
+                     core_text = #{coreText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="personScale != null  and personScale != '' " >
+                     person_scale = #{personScale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="moneyScale != null  and moneyScale != '' " >
+                     money_scale = #{moneyScale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="yearThey != null  and yearThey != '' " >
+                     year_they = #{yearThey,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isCorporateChampionTypeCode != null ">
+                     is_corporate_champion_type_code = #{isCorporateChampionTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="isCorporateChampionTypeText != null  and isCorporateChampionTypeText != '' " >
+                     is_corporate_champion_type_text = #{isCorporateChampionTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="scaleEnterpriseTypeCode != null ">
+                     scale_enterprise_type_code = #{scaleEnterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="email != null  and email != '' " >
+                     email = #{email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="scaleEnterpriseTypeText != null  and scaleEnterpriseTypeText != '' " >
+                     scale_enterprise_type_text = #{scaleEnterpriseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="summary != null  and summary != '' " >
+                     summary = #{summary,jdbcType=VARCHAR},
+                  </if>
+                  <if test="description != null  and description != '' " >
+                     description = #{description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="zipCode != null  and zipCode != '' " >
+                     zip_code = #{zipCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="telautogram != null  and telautogram != '' " >
+                     telautogram = #{telautogram,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isRecommend != null ">
+                     is_recommend = #{isRecommend,jdbcType=TINYINT},
+                  </if>
+                  <if test="organizationCode != null  and organizationCode != '' " >
+                     organization_code = #{organizationCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="manageStatus != null  and manageStatus != '' " >
+                     manage_status = #{manageStatus,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradeText != null  and tradeText != '' " >
+                     trade_text = #{tradeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registryOffice != null  and registryOffice != '' " >
+                     registry_office = #{registryOffice,jdbcType=VARCHAR},
+                  </if>
+                  <if test="logoResourceId != null  and logoResourceId != '' " >
+                     logo_resource_id = #{logoResourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="logoResourcePath != null  and logoResourcePath != '' " >
+                     logo_resource_path = #{logoResourcePath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isCooperativeCode != null ">
+                     is_cooperative_code = #{isCooperativeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="isCooperativeText != null  and isCooperativeText != '' " >
+                     is_cooperative_text = #{isCooperativeText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_enterprise_info
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationId != null  and t.organizationId != '' " >
+                     organization_id = #{t.organizationId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseCode != null  and t.enterpriseCode != '' " >
+                     enterprise_code = #{t.enterpriseCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registrationMark != null  and t.registrationMark != '' " >
+                     registration_mark = #{t.registrationMark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.archivesNumber != null  and t.archivesNumber != '' " >
+                     archives_number = #{t.archivesNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.societyCreditId != null  and t.societyCreditId != '' " >
+                     society_credit_id = #{t.societyCreditId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerStatusText != null  and t.registerStatusText != '' " >
+                     register_status_text = #{t.registerStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerStatusCode != null ">
+                     register_status_code = #{t.registerStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.registerTypeText != null  and t.registerTypeText != '' " >
+                     register_type_text = #{t.registerTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerTypeCode != null ">
+                     register_type_code = #{t.registerTypeCode,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.statisticsDepartmentNumber != null  and t.statisticsDepartmentNumber != '' " >
+                     statistics_Department_number = #{t.statisticsDepartmentNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.foundDate != null ">
+                     found_date = #{t.foundDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.corporationName != null  and t.corporationName != '' " >
+                     corporation_name = #{t.corporationName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.corporationIdentityCard != null  and t.corporationIdentityCard != '' " >
+                     corporation_identity_card = #{t.corporationIdentityCard,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.corporationMobile != null  and t.corporationMobile != '' " >
+                     corporation_mobile = #{t.corporationMobile,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkman != null  and t.linkman != '' " >
+                     linkman = #{t.linkman,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkmanMobile != null  and t.linkmanMobile != '' " >
+                     linkman_mobile = #{t.linkmanMobile,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.landlineTelephone != null  and t.landlineTelephone != '' " >
+                     landline_telephone = #{t.landlineTelephone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseTypeText != null  and t.enterpriseTypeText != '' " >
+                     enterprise_type_text = #{t.enterpriseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseTypeCode != null ">
+                     enterprise_type_code = #{t.enterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.enterpriseNatureCode != null ">
+                     enterprise_nature_code = #{t.enterpriseNatureCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.enterpriseNatureText != null  and t.enterpriseNatureText != '' " >
+                     enterprise_nature_text = #{t.enterpriseNatureText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryTypeCode != null ">
+                     industry_type_code = #{t.industryTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.industryTypeText != null  and t.industryTypeText != '' " >
+                     industry_type_text = #{t.industryTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registeredCapital != null ">
+                     registered_capital = #{t.registeredCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.paidinCapital != null ">
+                     paidin_capital = #{t.paidinCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseAddress != null  and t.enterpriseAddress != '' " >
+                     enterprise_address = #{t.enterpriseAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterprisePhone != null  and t.enterprisePhone != '' " >
+                     enterprise_phone = #{t.enterprisePhone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.administrativeArea != null  and t.administrativeArea != '' " >
+                     administrative_area = #{t.administrativeArea,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode != null  and t.regionCode != '' " >
+                     region_code = #{t.regionCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText != null  and t.regionText != '' " >
+                     region_text = #{t.regionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.measureLongitude != null  and t.measureLongitude != '' " >
+                     measure_longitude = #{t.measureLongitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.measureLatitude != null  and t.measureLatitude != '' " >
+                     measure_latitude = #{t.measureLatitude,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.establishDate != null ">
+                     establish_date = #{t.establishDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.approvalDate != null ">
+                     approval_date = #{t.approvalDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.businessDuetime != null ">
+                     business_duetime = #{t.businessDuetime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.longdistanceNumber != null  and t.longdistanceNumber != '' " >
+                     longdistance_number = #{t.longdistanceNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.administrationNumber != null  and t.administrationNumber != '' " >
+                     administration_number = #{t.administrationNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.businessScope != null  and t.businessScope != '' " >
+                     business_scope = #{t.businessScope,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.professionalActivity != null  and t.professionalActivity != '' " >
+                     professional_activity = #{t.professionalActivity,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseControl != null  and t.enterpriseControl != '' " >
+                     enterprise_control = #{t.enterpriseControl,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationTypeText != null  and t.organizationTypeText != '' " >
+                     organization_type_text = #{t.organizationTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationTypeCode != null  and t.organizationTypeCode != '' " >
+                     organization_type_code = #{t.organizationTypeCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryActivity != null  and t.industryActivity != '' " >
+                     industry_activity = #{t.industryActivity,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryCode != null  and t.industryCode != '' " >
+                     industry_code = #{t.industryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryText != null  and t.industryText != '' " >
+                     industry_text = #{t.industryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskGrade != null  and t.riskGrade != '' " >
+                     risk_grade = #{t.riskGrade,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskValue != null ">
+                     risk_value = #{t.riskValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.categoryCode != null ">
+                     category_code = #{t.categoryCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.categoryText != null  and t.categoryText != '' " >
+                     category_text = #{t.categoryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskTagsCode != null ">
+                     risk_tags_code = #{t.riskTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.riskTagsText != null  and t.riskTagsText != '' " >
+                     risk_tags_text = #{t.riskTagsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.funnelTagsCode != null ">
+                     funnel_tags_code = #{t.funnelTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.funnelTagsText != null  and t.funnelTagsText != '' " >
+                     funnel_tags_text = #{t.funnelTagsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.coreCode != null ">
+                     core_code = #{t.coreCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.coreText != null  and t.coreText != '' " >
+                     core_text = #{t.coreText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.personScale != null  and t.personScale != '' " >
+                     person_scale = #{t.personScale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.moneyScale != null  and t.moneyScale != '' " >
+                     money_scale = #{t.moneyScale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.yearThey != null  and t.yearThey != '' " >
+                     year_they = #{t.yearThey,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isCorporateChampionTypeCode != null ">
+                     is_corporate_champion_type_code = #{t.isCorporateChampionTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isCorporateChampionTypeText != null  and t.isCorporateChampionTypeText != '' " >
+                     is_corporate_champion_type_text = #{t.isCorporateChampionTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.scaleEnterpriseTypeCode != null ">
+                     scale_enterprise_type_code = #{t.scaleEnterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.email != null  and t.email != '' " >
+                     email = #{t.email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.scaleEnterpriseTypeText != null  and t.scaleEnterpriseTypeText != '' " >
+                     scale_enterprise_type_text = #{t.scaleEnterpriseTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.summary != null  and t.summary != '' " >
+                     summary = #{t.summary,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description != null  and t.description != '' " >
+                     description = #{t.description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.zipCode != null  and t.zipCode != '' " >
+                     zip_code = #{t.zipCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.telautogram != null  and t.telautogram != '' " >
+                     telautogram = #{t.telautogram,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isRecommend != null ">
+                     is_recommend = #{t.isRecommend,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organizationCode != null  and t.organizationCode != '' " >
+                     organization_code = #{t.organizationCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.manageStatus != null  and t.manageStatus != '' " >
+                     manage_status = #{t.manageStatus,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeText != null  and t.tradeText != '' " >
+                     trade_text = #{t.tradeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registryOffice != null  and t.registryOffice != '' " >
+                     registry_office = #{t.registryOffice,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.logoResourceId != null  and t.logoResourceId != '' " >
+                     logo_resource_id = #{t.logoResourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.logoResourcePath != null  and t.logoResourcePath != '' " >
+                     logo_resource_path = #{t.logoResourcePath,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isCooperativeCode != null ">
+                     is_cooperative_code = #{t.isCooperativeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isCooperativeText != null  and t.isCooperativeText != '' " >
+                     is_cooperative_text = #{t.isCooperativeText,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_enterprise_info
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.commonFieldId != null and daEnterpriseInfo.commonFieldId  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organization_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.organizationId != null and daEnterpriseInfo.organizationId  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseName != null and daEnterpriseInfo.enterpriseName  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseCode != null and daEnterpriseInfo.enterpriseCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="registration_mark =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registrationMark != null and daEnterpriseInfo.registrationMark  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registrationMark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="archives_number =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.archivesNumber != null and daEnterpriseInfo.archivesNumber  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.archivesNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="society_credit_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.societyCreditId != null and daEnterpriseInfo.societyCreditId  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.societyCreditId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="register_status_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registerStatusText != null and daEnterpriseInfo.registerStatusText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerStatusText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="register_status_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registerStatusCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="register_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registerTypeText != null and daEnterpriseInfo.registerTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="register_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registerTypeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="statistics_Department_number =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.statisticsDepartmentNumber != null and daEnterpriseInfo.statisticsDepartmentNumber  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.statisticsDepartmentNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="found_date =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.foundDate != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="corporation_name =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.corporationName != null and daEnterpriseInfo.corporationName  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="corporation_identity_card =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.corporationIdentityCard != null and daEnterpriseInfo.corporationIdentityCard  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationIdentityCard,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="corporation_mobile =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.corporationMobile != null and daEnterpriseInfo.corporationMobile  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationMobile,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="linkman =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.linkman != null and daEnterpriseInfo.linkman  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.linkman,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="linkman_mobile =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.linkmanMobile != null and daEnterpriseInfo.linkmanMobile  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.linkmanMobile,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="landline_telephone =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.landlineTelephone != null and daEnterpriseInfo.landlineTelephone  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.landlineTelephone,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseTypeText != null and daEnterpriseInfo.enterpriseTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseTypeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_nature_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseNatureCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_nature_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseNatureText != null and daEnterpriseInfo.enterpriseNatureText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseNatureText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="industry_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.industryTypeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="industry_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.industryTypeText != null and daEnterpriseInfo.industryTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="registered_capital =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registeredCapital != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="paidin_capital =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.paidinCapital != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="address =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.address != null and daEnterpriseInfo.address  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.address,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_address =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseAddress != null and daEnterpriseInfo.enterpriseAddress  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseAddress,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_phone =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterprisePhone != null and daEnterpriseInfo.enterprisePhone  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterprisePhone,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="administrative_area =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.administrativeArea != null and daEnterpriseInfo.administrativeArea  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.administrativeArea,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.regionCode != null and daEnterpriseInfo.regionCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.regionCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.regionText != null and daEnterpriseInfo.regionText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.regionText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="measure_longitude =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.measureLongitude != null and daEnterpriseInfo.measureLongitude  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.measureLongitude,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="measure_latitude =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.measureLatitude != null and daEnterpriseInfo.measureLatitude  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.measureLatitude,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="establish_date =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.establishDate != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="approval_date =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.approvalDate != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="business_duetime =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.businessDuetime != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="longdistance_number =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.longdistanceNumber != null and daEnterpriseInfo.longdistanceNumber  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.longdistanceNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="administration_number =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.administrationNumber != null and daEnterpriseInfo.administrationNumber  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.administrationNumber,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="business_scope =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.businessScope != null and daEnterpriseInfo.businessScope  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.businessScope,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="professional_activity =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.professionalActivity != null and daEnterpriseInfo.professionalActivity  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.professionalActivity,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="enterprise_control =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.enterpriseControl != null and daEnterpriseInfo.enterpriseControl  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseControl,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organization_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.organizationTypeText != null and daEnterpriseInfo.organizationTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organization_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.organizationTypeCode != null and daEnterpriseInfo.organizationTypeCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationTypeCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="industry_activity =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.industryActivity != null and daEnterpriseInfo.industryActivity  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryActivity,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="industry_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.industryCode != null and daEnterpriseInfo.industryCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="industry_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.industryText != null and daEnterpriseInfo.industryText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="risk_grade =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.riskGrade != null and daEnterpriseInfo.riskGrade  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskGrade,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="risk_value =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.riskValue != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="category_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.categoryCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="category_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.categoryText != null and daEnterpriseInfo.categoryText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.categoryText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="risk_tags_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.riskTagsCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="risk_tags_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.riskTagsText != null and daEnterpriseInfo.riskTagsText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskTagsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="funnel_tags_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.funnelTagsCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="funnel_tags_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.funnelTagsText != null and daEnterpriseInfo.funnelTagsText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.funnelTagsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="core_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.coreCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.coreCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="core_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.coreText != null and daEnterpriseInfo.coreText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.coreText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="person_scale =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.personScale != null and daEnterpriseInfo.personScale  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.personScale,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="money_scale =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.moneyScale != null and daEnterpriseInfo.moneyScale  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.moneyScale,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="year_they =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.yearThey != null and daEnterpriseInfo.yearThey  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.yearThey,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_corporate_champion_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.isCorporateChampionTypeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_corporate_champion_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.isCorporateChampionTypeText != null and daEnterpriseInfo.isCorporateChampionTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCorporateChampionTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="scale_enterprise_type_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.scaleEnterpriseTypeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="email =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.email != null and daEnterpriseInfo.email  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.email,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="scale_enterprise_type_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.scaleEnterpriseTypeText != null and daEnterpriseInfo.scaleEnterpriseTypeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.scaleEnterpriseTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="summary =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.summary != null and daEnterpriseInfo.summary  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.summary,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="description =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.description != null and daEnterpriseInfo.description  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.description,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="zip_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.zipCode != null and daEnterpriseInfo.zipCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.zipCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="telautogram =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.telautogram != null and daEnterpriseInfo.telautogram  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.telautogram,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_recommend =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.isRecommend != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="organization_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.organizationCode != null and daEnterpriseInfo.organizationCode  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationCode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="manage_status =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.manageStatus != null and daEnterpriseInfo.manageStatus  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.manageStatus,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.tradeText != null and daEnterpriseInfo.tradeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.tradeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="registry_office =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.registryOffice != null and daEnterpriseInfo.registryOffice  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registryOffice,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="logo_resource_id =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.logoResourceId != null and daEnterpriseInfo.logoResourceId  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.logoResourceId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="logo_resource_path =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.logoResourcePath != null and daEnterpriseInfo.logoResourcePath  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.logoResourcePath,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_cooperative_code =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.isCooperativeCode != null " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_cooperative_text =case" suffix="end,">
+              <foreach collection="list" item="daEnterpriseInfo" index="index">
+                  <if test="daEnterpriseInfo.isCooperativeText != null and daEnterpriseInfo.isCooperativeText  != '' " >
+                     when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCooperativeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daEnterpriseInfo.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_enterprise_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="organizationId  != null and organizationId  != '' " >
+              organization_id,
+          </if>
+          <if test="enterpriseName  != null and enterpriseName  != '' " >
+              enterprise_name,
+          </if>
+          <if test="enterpriseCode  != null and enterpriseCode  != '' " >
+              enterprise_code,
+          </if>
+          <if test="registrationMark  != null and registrationMark  != '' " >
+              registration_mark,
+          </if>
+          <if test="archivesNumber  != null and archivesNumber  != '' " >
+              archives_number,
+          </if>
+          <if test="societyCreditId  != null and societyCreditId  != '' " >
+              society_credit_id,
+          </if>
+          <if test="registerStatusText  != null and registerStatusText  != '' " >
+              register_status_text,
+          </if>
+          <if test="registerStatusCode  != null " >
+              register_status_code,
+          </if>
+          <if test="registerTypeText  != null and registerTypeText  != '' " >
+              register_type_text,
+          </if>
+          <if test="registerTypeCode  != null " >
+              register_type_code,
+          </if>
+          <if test="statisticsDepartmentNumber  != null and statisticsDepartmentNumber  != '' " >
+              statistics_Department_number,
+          </if>
+          <if test="foundDate  != null " >
+              found_date,
+          </if>
+          <if test="corporationName  != null and corporationName  != '' " >
+              corporation_name,
+          </if>
+          <if test="corporationIdentityCard  != null and corporationIdentityCard  != '' " >
+              corporation_identity_card,
+          </if>
+          <if test="corporationMobile  != null and corporationMobile  != '' " >
+              corporation_mobile,
+          </if>
+          <if test="linkman  != null and linkman  != '' " >
+              linkman,
+          </if>
+          <if test="linkmanMobile  != null and linkmanMobile  != '' " >
+              linkman_mobile,
+          </if>
+          <if test="landlineTelephone  != null and landlineTelephone  != '' " >
+              landline_telephone,
+          </if>
+          <if test="enterpriseTypeText  != null and enterpriseTypeText  != '' " >
+              enterprise_type_text,
+          </if>
+          <if test="enterpriseTypeCode  != null " >
+              enterprise_type_code,
+          </if>
+          <if test="enterpriseNatureCode  != null " >
+              enterprise_nature_code,
+          </if>
+          <if test="enterpriseNatureText  != null and enterpriseNatureText  != '' " >
+              enterprise_nature_text,
+          </if>
+          <if test="industryTypeCode  != null " >
+              industry_type_code,
+          </if>
+          <if test="industryTypeText  != null and industryTypeText  != '' " >
+              industry_type_text,
+          </if>
+          <if test="registeredCapital  != null " >
+              registered_capital,
+          </if>
+          <if test="paidinCapital  != null " >
+              paidin_capital,
+          </if>
+          <if test="address  != null and address  != '' " >
+              address,
+          </if>
+          <if test="enterpriseAddress  != null and enterpriseAddress  != '' " >
+              enterprise_address,
+          </if>
+          <if test="enterprisePhone  != null and enterprisePhone  != '' " >
+              enterprise_phone,
+          </if>
+          <if test="administrativeArea  != null and administrativeArea  != '' " >
+              administrative_area,
+          </if>
+          <if test="regionCode  != null and regionCode  != '' " >
+              region_code,
+          </if>
+          <if test="regionText  != null and regionText  != '' " >
+              region_text,
+          </if>
+          <if test="measureLongitude  != null and measureLongitude  != '' " >
+              measure_longitude,
+          </if>
+          <if test="measureLatitude  != null and measureLatitude  != '' " >
+              measure_latitude,
+          </if>
+          <if test="establishDate  != null " >
+              establish_date,
+          </if>
+          <if test="approvalDate  != null " >
+              approval_date,
+          </if>
+          <if test="businessDuetime  != null " >
+              business_duetime,
+          </if>
+          <if test="longdistanceNumber  != null and longdistanceNumber  != '' " >
+              longdistance_number,
+          </if>
+          <if test="administrationNumber  != null and administrationNumber  != '' " >
+              administration_number,
+          </if>
+          <if test="businessScope  != null and businessScope  != '' " >
+              business_scope,
+          </if>
+          <if test="professionalActivity  != null and professionalActivity  != '' " >
+              professional_activity,
+          </if>
+          <if test="enterpriseControl  != null and enterpriseControl  != '' " >
+              enterprise_control,
+          </if>
+          <if test="organizationTypeText  != null and organizationTypeText  != '' " >
+              organization_type_text,
+          </if>
+          <if test="organizationTypeCode  != null and organizationTypeCode  != '' " >
+              organization_type_code,
+          </if>
+          <if test="industryActivity  != null and industryActivity  != '' " >
+              industry_activity,
+          </if>
+          <if test="industryCode  != null and industryCode  != '' " >
+              industry_code,
+          </if>
+          <if test="industryText  != null and industryText  != '' " >
+              industry_text,
+          </if>
+          <if test="riskGrade  != null and riskGrade  != '' " >
+              risk_grade,
+          </if>
+          <if test="riskValue  != null " >
+              risk_value,
+          </if>
+          <if test="categoryCode  != null " >
+              category_code,
+          </if>
+          <if test="categoryText  != null and categoryText  != '' " >
+              category_text,
+          </if>
+          <if test="riskTagsCode  != null " >
+              risk_tags_code,
+          </if>
+          <if test="riskTagsText  != null and riskTagsText  != '' " >
+              risk_tags_text,
+          </if>
+          <if test="funnelTagsCode  != null " >
+              funnel_tags_code,
+          </if>
+          <if test="funnelTagsText  != null and funnelTagsText  != '' " >
+              funnel_tags_text,
+          </if>
+          <if test="coreCode  != null " >
+              core_code,
+          </if>
+          <if test="coreText  != null and coreText  != '' " >
+              core_text,
+          </if>
+          <if test="personScale  != null and personScale  != '' " >
+              person_scale,
+          </if>
+          <if test="moneyScale  != null and moneyScale  != '' " >
+              money_scale,
+          </if>
+          <if test="yearThey  != null and yearThey  != '' " >
+              year_they,
+          </if>
+          <if test="isCorporateChampionTypeCode  != null " >
+              is_corporate_champion_type_code,
+          </if>
+          <if test="isCorporateChampionTypeText  != null and isCorporateChampionTypeText  != '' " >
+              is_corporate_champion_type_text,
+          </if>
+          <if test="scaleEnterpriseTypeCode  != null " >
+              scale_enterprise_type_code,
+          </if>
+          <if test="email  != null and email  != '' " >
+              email,
+          </if>
+          <if test="scaleEnterpriseTypeText  != null and scaleEnterpriseTypeText  != '' " >
+              scale_enterprise_type_text,
+          </if>
+          <if test="summary  != null and summary  != '' " >
+              summary,
+          </if>
+          <if test="description  != null and description  != '' " >
+              description,
+          </if>
+          <if test="zipCode  != null and zipCode  != '' " >
+              zip_code,
+          </if>
+          <if test="telautogram  != null and telautogram  != '' " >
+              telautogram,
+          </if>
+          <if test="isRecommend  != null " >
+              is_recommend,
+          </if>
+          <if test="organizationCode  != null and organizationCode  != '' " >
+              organization_code,
+          </if>
+          <if test="manageStatus  != null and manageStatus  != '' " >
+              manage_status,
+          </if>
+          <if test="tradeText  != null and tradeText  != '' " >
+              trade_text,
+          </if>
+          <if test="registryOffice  != null and registryOffice  != '' " >
+              registry_office,
+          </if>
+          <if test="logoResourceId  != null and logoResourceId  != '' " >
+              logo_resource_id,
+          </if>
+          <if test="logoResourcePath  != null and logoResourcePath  != '' " >
+              logo_resource_path,
+          </if>
+          <if test="isCooperativeCode  != null " >
+              is_cooperative_code,
+          </if>
+          <if test="isCooperativeText  != null and isCooperativeText  != '' " >
+              is_cooperative_text,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daEnterpriseInfo" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daEnterpriseInfo.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daEnterpriseInfo.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationId  != null  and t.organizationId != '' " >
+                     #{daEnterpriseInfo.organizationId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                     #{daEnterpriseInfo.enterpriseName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseCode  != null  and t.enterpriseCode != '' " >
+                     #{daEnterpriseInfo.enterpriseCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registrationMark  != null  and t.registrationMark != '' " >
+                     #{daEnterpriseInfo.registrationMark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.archivesNumber  != null  and t.archivesNumber != '' " >
+                     #{daEnterpriseInfo.archivesNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.societyCreditId  != null  and t.societyCreditId != '' " >
+                     #{daEnterpriseInfo.societyCreditId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerStatusText  != null  and t.registerStatusText != '' " >
+                     #{daEnterpriseInfo.registerStatusText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerStatusCode != null ">
+                    #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.registerTypeText  != null  and t.registerTypeText != '' " >
+                     #{daEnterpriseInfo.registerTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerTypeCode != null ">
+                    #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.statisticsDepartmentNumber  != null  and t.statisticsDepartmentNumber != '' " >
+                     #{daEnterpriseInfo.statisticsDepartmentNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.foundDate != null ">
+                    #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.corporationName  != null  and t.corporationName != '' " >
+                     #{daEnterpriseInfo.corporationName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.corporationIdentityCard  != null  and t.corporationIdentityCard != '' " >
+                     #{daEnterpriseInfo.corporationIdentityCard ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.corporationMobile  != null  and t.corporationMobile != '' " >
+                     #{daEnterpriseInfo.corporationMobile ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkman  != null  and t.linkman != '' " >
+                     #{daEnterpriseInfo.linkman ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.linkmanMobile  != null  and t.linkmanMobile != '' " >
+                     #{daEnterpriseInfo.linkmanMobile ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.landlineTelephone  != null  and t.landlineTelephone != '' " >
+                     #{daEnterpriseInfo.landlineTelephone ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseTypeText  != null  and t.enterpriseTypeText != '' " >
+                     #{daEnterpriseInfo.enterpriseTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseTypeCode != null ">
+                    #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.enterpriseNatureCode != null ">
+                    #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.enterpriseNatureText  != null  and t.enterpriseNatureText != '' " >
+                     #{daEnterpriseInfo.enterpriseNatureText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryTypeCode != null ">
+                    #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.industryTypeText  != null  and t.industryTypeText != '' " >
+                     #{daEnterpriseInfo.industryTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registeredCapital != null ">
+                    #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.paidinCapital != null ">
+                    #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.address  != null  and t.address != '' " >
+                     #{daEnterpriseInfo.address ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseAddress  != null  and t.enterpriseAddress != '' " >
+                     #{daEnterpriseInfo.enterpriseAddress ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterprisePhone  != null  and t.enterprisePhone != '' " >
+                     #{daEnterpriseInfo.enterprisePhone ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.administrativeArea  != null  and t.administrativeArea != '' " >
+                     #{daEnterpriseInfo.administrativeArea ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                     #{daEnterpriseInfo.regionCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionText  != null  and t.regionText != '' " >
+                     #{daEnterpriseInfo.regionText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.measureLongitude  != null  and t.measureLongitude != '' " >
+                     #{daEnterpriseInfo.measureLongitude ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.measureLatitude  != null  and t.measureLatitude != '' " >
+                     #{daEnterpriseInfo.measureLatitude ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.establishDate != null ">
+                    #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.approvalDate != null ">
+                    #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.businessDuetime != null ">
+                    #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.longdistanceNumber  != null  and t.longdistanceNumber != '' " >
+                     #{daEnterpriseInfo.longdistanceNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.administrationNumber  != null  and t.administrationNumber != '' " >
+                     #{daEnterpriseInfo.administrationNumber ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.businessScope  != null  and t.businessScope != '' " >
+                     #{daEnterpriseInfo.businessScope ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.professionalActivity  != null  and t.professionalActivity != '' " >
+                     #{daEnterpriseInfo.professionalActivity ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseControl  != null  and t.enterpriseControl != '' " >
+                     #{daEnterpriseInfo.enterpriseControl ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationTypeText  != null  and t.organizationTypeText != '' " >
+                     #{daEnterpriseInfo.organizationTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.organizationTypeCode  != null  and t.organizationTypeCode != '' " >
+                     #{daEnterpriseInfo.organizationTypeCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryActivity  != null  and t.industryActivity != '' " >
+                     #{daEnterpriseInfo.industryActivity ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryCode  != null  and t.industryCode != '' " >
+                     #{daEnterpriseInfo.industryCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.industryText  != null  and t.industryText != '' " >
+                     #{daEnterpriseInfo.industryText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskGrade  != null  and t.riskGrade != '' " >
+                     #{daEnterpriseInfo.riskGrade ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskValue != null ">
+                    #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.categoryCode != null ">
+                    #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.categoryText  != null  and t.categoryText != '' " >
+                     #{daEnterpriseInfo.categoryText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.riskTagsCode != null ">
+                    #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.riskTagsText  != null  and t.riskTagsText != '' " >
+                     #{daEnterpriseInfo.riskTagsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.funnelTagsCode != null ">
+                    #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.funnelTagsText  != null  and t.funnelTagsText != '' " >
+                     #{daEnterpriseInfo.funnelTagsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.coreCode != null ">
+                    #{daEnterpriseInfo.coreCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.coreText  != null  and t.coreText != '' " >
+                     #{daEnterpriseInfo.coreText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.personScale  != null  and t.personScale != '' " >
+                     #{daEnterpriseInfo.personScale ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.moneyScale  != null  and t.moneyScale != '' " >
+                     #{daEnterpriseInfo.moneyScale ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.yearThey  != null  and t.yearThey != '' " >
+                     #{daEnterpriseInfo.yearThey ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isCorporateChampionTypeCode != null ">
+                    #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isCorporateChampionTypeText  != null  and t.isCorporateChampionTypeText != '' " >
+                     #{daEnterpriseInfo.isCorporateChampionTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.scaleEnterpriseTypeCode != null ">
+                    #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.email  != null  and t.email != '' " >
+                     #{daEnterpriseInfo.email ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.scaleEnterpriseTypeText  != null  and t.scaleEnterpriseTypeText != '' " >
+                     #{daEnterpriseInfo.scaleEnterpriseTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.summary  != null  and t.summary != '' " >
+                     #{daEnterpriseInfo.summary ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description  != null  and t.description != '' " >
+                     #{daEnterpriseInfo.description ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.zipCode  != null  and t.zipCode != '' " >
+                     #{daEnterpriseInfo.zipCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.telautogram  != null  and t.telautogram != '' " >
+                     #{daEnterpriseInfo.telautogram ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isRecommend != null ">
+                    #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.organizationCode  != null  and t.organizationCode != '' " >
+                     #{daEnterpriseInfo.organizationCode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.manageStatus  != null  and t.manageStatus != '' " >
+                     #{daEnterpriseInfo.manageStatus ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeText  != null  and t.tradeText != '' " >
+                     #{daEnterpriseInfo.tradeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registryOffice  != null  and t.registryOffice != '' " >
+                     #{daEnterpriseInfo.registryOffice ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.logoResourceId  != null  and t.logoResourceId != '' " >
+                     #{daEnterpriseInfo.logoResourceId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.logoResourcePath  != null  and t.logoResourcePath != '' " >
+                     #{daEnterpriseInfo.logoResourcePath ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isCooperativeCode != null ">
+                    #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.isCooperativeText  != null  and t.isCooperativeText != '' " >
+                     #{daEnterpriseInfo.isCooperativeText ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_enterprise_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_enterprise_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.address != null and EntityRelated.address != '' ">
+ 				and  address LIKE CONCAT('%',#{EntityRelated.address,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.administrationNumber != null and EntityRelated.administrationNumber != '' ">
+ 				and  administration_number LIKE CONCAT('%',#{EntityRelated.administrationNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.administrativeArea != null and EntityRelated.administrativeArea != '' ">
+ 				and  administrative_area LIKE CONCAT('%',#{EntityRelated.administrativeArea,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginApprovalDate != null ">
+				<![CDATA[ AND  unix_timestamp(approval_date)>=unix_timestamp(#{EntityRelated.beginApprovalDate})]]> 
+		</if>
+		<if test="EntityRelated.endApprovalDate != null ">
+				<![CDATA[ AND  unix_timestamp(approval_date)<unix_timestamp(#{EntityRelated.endApprovalDate})]]> 
+		</if>
+		<if test="EntityRelated.archivesNumber != null and EntityRelated.archivesNumber != '' ">
+ 				and  archives_number LIKE CONCAT('%',#{EntityRelated.archivesNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginBusinessDuetime != null ">
+				<![CDATA[ AND  unix_timestamp(business_duetime)>=unix_timestamp(#{EntityRelated.beginBusinessDuetime})]]> 
+		</if>
+		<if test="EntityRelated.endBusinessDuetime != null ">
+				<![CDATA[ AND  unix_timestamp(business_duetime)<unix_timestamp(#{EntityRelated.endBusinessDuetime})]]> 
+		</if>
+		<if test="EntityRelated.businessScope != null and EntityRelated.businessScope != '' ">
+ 				and  business_scope LIKE CONCAT('%',#{EntityRelated.businessScope,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.categoryCode != null">
+				and category_code = #{EntityRelated.categoryCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.categoryText != null and EntityRelated.categoryText != '' ">
+ 				and  category_text LIKE CONCAT('%',#{EntityRelated.categoryText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.coreCode != null">
+				and core_code = #{EntityRelated.coreCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.coreText != null and EntityRelated.coreText != '' ">
+ 				and  core_text LIKE CONCAT('%',#{EntityRelated.coreText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.corporationIdentityCard != null and EntityRelated.corporationIdentityCard != '' ">
+ 				and  corporation_identity_card LIKE CONCAT('%',#{EntityRelated.corporationIdentityCard,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.corporationMobile != null and EntityRelated.corporationMobile != '' ">
+ 				and  corporation_mobile LIKE CONCAT('%',#{EntityRelated.corporationMobile,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.corporationName != null and EntityRelated.corporationName != '' ">
+ 				and  corporation_name LIKE CONCAT('%',#{EntityRelated.corporationName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.description != null and EntityRelated.description != '' ">
+ 				and  description LIKE CONCAT('%',#{EntityRelated.description,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.email != null and EntityRelated.email != '' ">
+ 				and  email LIKE CONCAT('%',#{EntityRelated.email,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseAddress != null and EntityRelated.enterpriseAddress != '' ">
+ 				and  enterprise_address LIKE CONCAT('%',#{EntityRelated.enterpriseAddress,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseCode != null">
+				and enterprise_code = #{EntityRelated.enterpriseCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseControl != null and EntityRelated.enterpriseControl != '' ">
+ 				and  enterprise_control LIKE CONCAT('%',#{EntityRelated.enterpriseControl,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseNatureCode != null">
+				and enterprise_nature_code = #{EntityRelated.enterpriseNatureCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseNatureText != null and EntityRelated.enterpriseNatureText != '' ">
+ 				and  enterprise_nature_text LIKE CONCAT('%',#{EntityRelated.enterpriseNatureText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterprisePhone != null and EntityRelated.enterprisePhone != '' ">
+ 				and  enterprise_phone LIKE CONCAT('%',#{EntityRelated.enterprisePhone,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseTypeCode != null">
+				and enterprise_type_code = #{EntityRelated.enterpriseTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.enterpriseTypeText != null and EntityRelated.enterpriseTypeText != '' ">
+ 				and  enterprise_type_text LIKE CONCAT('%',#{EntityRelated.enterpriseTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginEstablishDate != null ">
+				<![CDATA[ AND  unix_timestamp(establish_date)>=unix_timestamp(#{EntityRelated.beginEstablishDate})]]> 
+		</if>
+		<if test="EntityRelated.endEstablishDate != null ">
+				<![CDATA[ AND  unix_timestamp(establish_date)<unix_timestamp(#{EntityRelated.endEstablishDate})]]> 
+		</if>
+		<if test="EntityRelated.beginFoundDate != null ">
+				<![CDATA[ AND  unix_timestamp(found_date)>=unix_timestamp(#{EntityRelated.beginFoundDate})]]> 
+		</if>
+		<if test="EntityRelated.endFoundDate != null ">
+				<![CDATA[ AND  unix_timestamp(found_date)<unix_timestamp(#{EntityRelated.endFoundDate})]]> 
+		</if>
+		<if test="EntityRelated.funnelTagsCode != null">
+				and funnel_tags_code = #{EntityRelated.funnelTagsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.funnelTagsText != null and EntityRelated.funnelTagsText != '' ">
+ 				and  funnel_tags_text LIKE CONCAT('%',#{EntityRelated.funnelTagsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.industryActivity != null and EntityRelated.industryActivity != '' ">
+ 				and  industry_activity LIKE CONCAT('%',#{EntityRelated.industryActivity,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.industryCode != null">
+				and industry_code = #{EntityRelated.industryCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.industryText != null and EntityRelated.industryText != '' ">
+ 				and  industry_text LIKE CONCAT('%',#{EntityRelated.industryText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.industryTypeCode != null">
+				and industry_type_code = #{EntityRelated.industryTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.industryTypeText != null and EntityRelated.industryTypeText != '' ">
+ 				and  industry_type_text LIKE CONCAT('%',#{EntityRelated.industryTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.isCooperativeCode != null">
+				and is_cooperative_code = #{EntityRelated.isCooperativeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.isCooperativeText != null and EntityRelated.isCooperativeText != '' ">
+ 				and  is_cooperative_text LIKE CONCAT('%',#{EntityRelated.isCooperativeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.isCorporateChampionTypeCode != null">
+				and is_corporate_champion_type_code = #{EntityRelated.isCorporateChampionTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.isCorporateChampionTypeText != null and EntityRelated.isCorporateChampionTypeText != '' ">
+ 				and  is_corporate_champion_type_text LIKE CONCAT('%',#{EntityRelated.isCorporateChampionTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.landlineTelephone != null and EntityRelated.landlineTelephone != '' ">
+ 				and  landline_telephone LIKE CONCAT('%',#{EntityRelated.landlineTelephone,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linkman != null and EntityRelated.linkman != '' ">
+ 				and  linkman LIKE CONCAT('%',#{EntityRelated.linkman,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.linkmanMobile != null and EntityRelated.linkmanMobile != '' ">
+ 				and  linkman_mobile LIKE CONCAT('%',#{EntityRelated.linkmanMobile,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.logoResourceId != null and EntityRelated.logoResourceId != '' ">
+				and logo_resource_id = #{EntityRelated.logoResourceId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.logoResourcePath != null and EntityRelated.logoResourcePath != '' ">
+ 				and  logo_resource_path LIKE CONCAT('%',#{EntityRelated.logoResourcePath,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.longdistanceNumber != null and EntityRelated.longdistanceNumber != '' ">
+ 				and  longdistance_number LIKE CONCAT('%',#{EntityRelated.longdistanceNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.manageStatus != null and EntityRelated.manageStatus != '' ">
+ 				and  manage_status LIKE CONCAT('%',#{EntityRelated.manageStatus,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.measureLatitude != null and EntityRelated.measureLatitude != '' ">
+ 				and  measure_latitude LIKE CONCAT('%',#{EntityRelated.measureLatitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.measureLongitude != null and EntityRelated.measureLongitude != '' ">
+ 				and  measure_longitude LIKE CONCAT('%',#{EntityRelated.measureLongitude,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.moneyScale != null and EntityRelated.moneyScale != '' ">
+ 				and  money_scale LIKE CONCAT('%',#{EntityRelated.moneyScale,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.organizationCode != null">
+				and organization_code = #{EntityRelated.organizationCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.organizationId != null and EntityRelated.organizationId != '' ">
+				and organization_id = #{EntityRelated.organizationId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.organizationTypeCode != null">
+				and organization_type_code = #{EntityRelated.organizationTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.organizationTypeText != null and EntityRelated.organizationTypeText != '' ">
+ 				and  organization_type_text LIKE CONCAT('%',#{EntityRelated.organizationTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.personScale != null and EntityRelated.personScale != '' ">
+ 				and  person_scale LIKE CONCAT('%',#{EntityRelated.personScale,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.professionalActivity != null and EntityRelated.professionalActivity != '' ">
+ 				and  professional_activity LIKE CONCAT('%',#{EntityRelated.professionalActivity,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionCode != null">
+				and region_code = #{EntityRelated.regionCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.regionText != null and EntityRelated.regionText != '' ">
+ 				and  region_text LIKE CONCAT('%',#{EntityRelated.regionText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.registerStatusCode != null">
+				and register_status_code = #{EntityRelated.registerStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.registerStatusText != null and EntityRelated.registerStatusText != '' ">
+ 				and  register_status_text LIKE CONCAT('%',#{EntityRelated.registerStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.registerTypeCode != null">
+				and register_type_code = #{EntityRelated.registerTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.registerTypeText != null and EntityRelated.registerTypeText != '' ">
+ 				and  register_type_text LIKE CONCAT('%',#{EntityRelated.registerTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.registrationMark != null and EntityRelated.registrationMark != '' ">
+ 				and  registration_mark LIKE CONCAT('%',#{EntityRelated.registrationMark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.registryOffice != null and EntityRelated.registryOffice != '' ">
+ 				and  registry_office LIKE CONCAT('%',#{EntityRelated.registryOffice,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.riskGrade != null and EntityRelated.riskGrade != '' ">
+ 				and  risk_grade LIKE CONCAT('%',#{EntityRelated.riskGrade,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.riskTagsCode != null">
+				and risk_tags_code = #{EntityRelated.riskTagsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.riskTagsText != null and EntityRelated.riskTagsText != '' ">
+ 				and  risk_tags_text LIKE CONCAT('%',#{EntityRelated.riskTagsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.scaleEnterpriseTypeCode != null">
+				and scale_enterprise_type_code = #{EntityRelated.scaleEnterpriseTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.scaleEnterpriseTypeText != null and EntityRelated.scaleEnterpriseTypeText != '' ">
+ 				and  scale_enterprise_type_text LIKE CONCAT('%',#{EntityRelated.scaleEnterpriseTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.societyCreditId != null and EntityRelated.societyCreditId != '' ">
+				and society_credit_id = #{EntityRelated.societyCreditId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.statisticsDepartmentNumber != null and EntityRelated.statisticsDepartmentNumber != '' ">
+ 				and  statistics_Department_number LIKE CONCAT('%',#{EntityRelated.statisticsDepartmentNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.summary != null and EntityRelated.summary != '' ">
+ 				and  summary LIKE CONCAT('%',#{EntityRelated.summary,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.telautogram != null and EntityRelated.telautogram != '' ">
+ 				and  telautogram LIKE CONCAT('%',#{EntityRelated.telautogram,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tradeText != null and EntityRelated.tradeText != '' ">
+ 				and  trade_text LIKE CONCAT('%',#{EntityRelated.tradeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.yearThey != null and EntityRelated.yearThey != '' ">
+ 				and  year_they LIKE CONCAT('%',#{EntityRelated.yearThey,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.zipCode != null">
+				and zip_code = #{EntityRelated.zipCode,jdbcType=TINYINT} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

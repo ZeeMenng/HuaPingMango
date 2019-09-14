@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.mf.IMfPrewarningValueUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="entry_violation" property="entryViolation" jdbcType="INTEGER" />
+              <result column="quality_feedback" property="qualityFeedback" jdbcType="INTEGER" />
+              <result column="agricultural_capital_punishment" property="agriculturalCapitalPunishment" jdbcType="INTEGER" />
+              <result column="quality_spot_check_disqualification" property="qualitySpotCheckDisqualification" jdbcType="INTEGER" />
+              <result column="creator" property="creator" jdbcType="VARCHAR" />
+              <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,entry_violation,quality_feedback,agricultural_capital_punishment,quality_spot_check_disqualification,creator,create_date
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+    insert into mf_prewarning_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="entryViolation != null " >
+              entry_violation,
+          </if>
+          <if test="qualityFeedback != null " >
+              quality_feedback,
+          </if>
+          <if test="agriculturalCapitalPunishment != null " >
+              agricultural_capital_punishment,
+          </if>
+          <if test="qualitySpotCheckDisqualification != null " >
+              quality_spot_check_disqualification,
+          </if>
+          <if test="creator != null and creator != '' " >
+              creator,
+          </if>
+      
+          <if test="createDate != null " >
+              create_date,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="entryViolation != null " >
+              #{entryViolation,jdbcType=INTEGER},
+          </if>
+          <if test="qualityFeedback != null " >
+              #{qualityFeedback,jdbcType=INTEGER},
+          </if>
+          <if test="agriculturalCapitalPunishment != null " >
+              #{agriculturalCapitalPunishment,jdbcType=INTEGER},
+          </if>
+          <if test="qualitySpotCheckDisqualification != null " >
+              #{qualitySpotCheckDisqualification,jdbcType=INTEGER},
+          </if>
+          <if test="creator != null and creator != '' " >
+              #{creator,jdbcType=VARCHAR},
+          </if>
+          <if test="createDate != null " >
+              #{createDate,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_prewarning_value
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfPrewarningValue" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfPrewarningValue.id,jdbcType=VARCHAR},
+
+      
+          #{mfPrewarningValue.entryViolation,jdbcType=INTEGER},
+
+      
+          #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER},
+
+      
+          #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER},
+
+      
+          #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER},
+
+      
+          #{mfPrewarningValue.creator,jdbcType=VARCHAR},
+
+      
+          #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_prewarning_value
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_prewarning_value
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+    update mf_prewarning_value
+    <set >
+                  <if test="entryViolation != null ">
+                     entry_violation = #{entryViolation,jdbcType=INTEGER},
+                  </if>
+                  <if test="qualityFeedback != null ">
+                     quality_feedback = #{qualityFeedback,jdbcType=INTEGER},
+                  </if>
+                  <if test="agriculturalCapitalPunishment != null ">
+                     agricultural_capital_punishment = #{agriculturalCapitalPunishment,jdbcType=INTEGER},
+                  </if>
+                  <if test="qualitySpotCheckDisqualification != null ">
+                     quality_spot_check_disqualification = #{qualitySpotCheckDisqualification,jdbcType=INTEGER},
+                  </if>
+                  <if test="creator != null  and creator != '' " >
+                     creator = #{creator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="createDate != null ">
+                     create_date = #{createDate,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update mf_prewarning_value
+    <set >
+                  <if test="t.entryViolation != null ">
+                     entry_violation = #{t.entryViolation,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.qualityFeedback != null ">
+                     quality_feedback = #{t.qualityFeedback,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.agriculturalCapitalPunishment != null ">
+                     agricultural_capital_punishment = #{t.agriculturalCapitalPunishment,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.qualitySpotCheckDisqualification != null ">
+                     quality_spot_check_disqualification = #{t.qualitySpotCheckDisqualification,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.creator != null  and t.creator != '' " >
+                     creator = #{t.creator,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createDate != null ">
+                     create_date = #{t.createDate,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update mf_prewarning_value
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="entry_violation =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.entryViolation != null " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.entryViolation,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="quality_feedback =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.qualityFeedback != null " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="agricultural_capital_punishment =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.agriculturalCapitalPunishment != null " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="quality_spot_check_disqualification =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.qualitySpotCheckDisqualification != null " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="creator =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.creator != null and mfPrewarningValue.creator  != '' " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.creator,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="create_date =case" suffix="end,">
+              <foreach collection="list" item="mfPrewarningValue" index="index">
+                  <if test="mfPrewarningValue.createDate != null " >
+                     when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{mfPrewarningValue.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into mf_prewarning_value
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="entryViolation  != null " >
+              entry_violation,
+          </if>
+          <if test="qualityFeedback  != null " >
+              quality_feedback,
+          </if>
+          <if test="agriculturalCapitalPunishment  != null " >
+              agricultural_capital_punishment,
+          </if>
+          <if test="qualitySpotCheckDisqualification  != null " >
+              quality_spot_check_disqualification,
+          </if>
+          <if test="creator  != null and creator  != '' " >
+              creator,
+          </if>
+          <if test="createDate  != null " >
+              create_date,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="mfPrewarningValue" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{mfPrewarningValue.id ,jdbcType=VARCHAR},
+                  <if test="t.entryViolation != null ">
+                    #{mfPrewarningValue.entryViolation,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.qualityFeedback != null ">
+                    #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.agriculturalCapitalPunishment != null ">
+                    #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.qualitySpotCheckDisqualification != null ">
+                    #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.creator  != null  and t.creator != '' " >
+                     #{mfPrewarningValue.creator ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.createDate != null ">
+                    #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_prewarning_value
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_prewarning_value where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginCreateDate != null ">
+				<![CDATA[ AND  unix_timestamp(create_date)>=unix_timestamp(#{EntityRelated.beginCreateDate})]]> 
+		</if>
+		<if test="EntityRelated.endCreateDate != null ">
+				<![CDATA[ AND  unix_timestamp(create_date)<unix_timestamp(#{EntityRelated.endCreateDate})]]> 
+		</if>
+		<if test="EntityRelated.creator != null and EntityRelated.creator != '' ">
+ 				and  creator LIKE CONCAT('%',#{EntityRelated.creator,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

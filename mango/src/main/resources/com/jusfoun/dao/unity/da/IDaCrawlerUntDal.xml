@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaCrawlerUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCrawler" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="promo_price" property="promoPrice" jdbcType="NUMERIC" />
+              <result column="price" property="price" jdbcType="NUMERIC" />
+              <result column="from" property="from" jdbcType="VARCHAR" />
+              <result column="inventory" property="inventory" jdbcType="VARCHAR" />
+              <result column="sell_counter" property="sellCounter" jdbcType="VARCHAR" />
+              <result column="rate_counter" property="rateCounter" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="parameter" property="parameter" jdbcType="VARCHAR" />
+              <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+              <result column="source" property="source" jdbcType="TINYINT" />
+              <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,promo_price,price,from,inventory,sell_counter,rate_counter,name,parameter,goods_id,source,created_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCrawler" >
+    insert into da_crawler
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="promoPrice != null " >
+              promo_price,
+          </if>
+          <if test="price != null " >
+              price,
+          </if>
+          <if test="from != null and from != '' " >
+              from,
+          </if>
+      
+          <if test="inventory != null and inventory != '' " >
+              inventory,
+          </if>
+      
+          <if test="sellCounter != null and sellCounter != '' " >
+              sell_counter,
+          </if>
+      
+          <if test="rateCounter != null and rateCounter != '' " >
+              rate_counter,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="parameter != null and parameter != '' " >
+              parameter,
+          </if>
+      
+          <if test="goodsId != null and goodsId != '' " >
+              goods_id,
+          </if>
+      
+          <if test="source != null " >
+              source,
+          </if>
+          <if test="createdTime != null " >
+              created_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="promoPrice != null " >
+              #{promoPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="price != null " >
+              #{price,jdbcType=NUMERIC},
+          </if>
+          <if test="from != null and from != '' " >
+              #{from,jdbcType=VARCHAR},
+          </if>
+          <if test="inventory != null and inventory != '' " >
+              #{inventory,jdbcType=VARCHAR},
+          </if>
+          <if test="sellCounter != null and sellCounter != '' " >
+              #{sellCounter,jdbcType=VARCHAR},
+          </if>
+          <if test="rateCounter != null and rateCounter != '' " >
+              #{rateCounter,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="parameter != null and parameter != '' " >
+              #{parameter,jdbcType=VARCHAR},
+          </if>
+          <if test="goodsId != null and goodsId != '' " >
+              #{goodsId,jdbcType=VARCHAR},
+          </if>
+          <if test="source != null " >
+              #{source,jdbcType=TINYINT},
+          </if>
+          <if test="createdTime != null " >
+              #{createdTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_crawler
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCrawler" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daCrawler.id,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.promoPrice,jdbcType=NUMERIC},
+
+      
+          #{daCrawler.price,jdbcType=NUMERIC},
+
+      
+          #{daCrawler.from,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.inventory,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.sellCounter,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.rateCounter,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.name,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.parameter,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.goodsId,jdbcType=VARCHAR},
+
+      
+          #{daCrawler.source,jdbcType=TINYINT},
+
+      
+          #{daCrawler.createdTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_crawler
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_crawler
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCrawler" >
+    update da_crawler
+    <set >
+                  <if test="promoPrice != null ">
+                     promo_price = #{promoPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="price != null ">
+                     price = #{price,jdbcType=NUMERIC},
+                  </if>
+                  <if test="from != null  and from != '' " >
+                     from = #{from,jdbcType=VARCHAR},
+                  </if>
+                  <if test="inventory != null  and inventory != '' " >
+                     inventory = #{inventory,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sellCounter != null  and sellCounter != '' " >
+                     sell_counter = #{sellCounter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="rateCounter != null  and rateCounter != '' " >
+                     rate_counter = #{rateCounter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="parameter != null  and parameter != '' " >
+                     parameter = #{parameter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="goodsId != null  and goodsId != '' " >
+                     goods_id = #{goodsId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="source != null ">
+                     source = #{source,jdbcType=TINYINT},
+                  </if>
+                  <if test="createdTime != null ">
+                     created_time = #{createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_crawler
+    <set >
+                  <if test="t.promoPrice != null ">
+                     promo_price = #{t.promoPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.price != null ">
+                     price = #{t.price,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.from != null  and t.from != '' " >
+                     from = #{t.from,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.inventory != null  and t.inventory != '' " >
+                     inventory = #{t.inventory,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sellCounter != null  and t.sellCounter != '' " >
+                     sell_counter = #{t.sellCounter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.rateCounter != null  and t.rateCounter != '' " >
+                     rate_counter = #{t.rateCounter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.parameter != null  and t.parameter != '' " >
+                     parameter = #{t.parameter,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.goodsId != null  and t.goodsId != '' " >
+                     goods_id = #{t.goodsId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.source != null ">
+                     source = #{t.source,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.createdTime != null ">
+                     created_time = #{t.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_crawler
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="promo_price =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.promoPrice != null " >
+                     when id=#{daCrawler.id} then #{daCrawler.promoPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.price != null " >
+                     when id=#{daCrawler.id} then #{daCrawler.price,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="from =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.from != null and daCrawler.from  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.from,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="inventory =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.inventory != null and daCrawler.inventory  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.inventory,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sell_counter =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.sellCounter != null and daCrawler.sellCounter  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.sellCounter,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="rate_counter =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.rateCounter != null and daCrawler.rateCounter  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.rateCounter,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.name != null and daCrawler.name  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="parameter =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.parameter != null and daCrawler.parameter  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.parameter,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="goods_id =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.goodsId != null and daCrawler.goodsId  != '' " >
+                     when id=#{daCrawler.id} then #{daCrawler.goodsId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="source =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.source != null " >
+                     when id=#{daCrawler.id} then #{daCrawler.source,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="created_time =case" suffix="end,">
+              <foreach collection="list" item="daCrawler" index="index">
+                  <if test="daCrawler.createdTime != null " >
+                     when id=#{daCrawler.id} then #{daCrawler.createdTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daCrawler.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_crawler
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="promoPrice  != null " >
+              promo_price,
+          </if>
+          <if test="price  != null " >
+              price,
+          </if>
+          <if test="from  != null and from  != '' " >
+              from,
+          </if>
+          <if test="inventory  != null and inventory  != '' " >
+              inventory,
+          </if>
+          <if test="sellCounter  != null and sellCounter  != '' " >
+              sell_counter,
+          </if>
+          <if test="rateCounter  != null and rateCounter  != '' " >
+              rate_counter,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="parameter  != null and parameter  != '' " >
+              parameter,
+          </if>
+          <if test="goodsId  != null and goodsId  != '' " >
+              goods_id,
+          </if>
+          <if test="source  != null " >
+              source,
+          </if>
+          <if test="createdTime  != null " >
+              created_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daCrawler" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daCrawler.id ,jdbcType=VARCHAR},
+                  <if test="t.promoPrice != null ">
+                    #{daCrawler.promoPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.price != null ">
+                    #{daCrawler.price,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.from  != null  and t.from != '' " >
+                     #{daCrawler.from ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.inventory  != null  and t.inventory != '' " >
+                     #{daCrawler.inventory ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sellCounter  != null  and t.sellCounter != '' " >
+                     #{daCrawler.sellCounter ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.rateCounter  != null  and t.rateCounter != '' " >
+                     #{daCrawler.rateCounter ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{daCrawler.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.parameter  != null  and t.parameter != '' " >
+                     #{daCrawler.parameter ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.goodsId  != null  and t.goodsId != '' " >
+                     #{daCrawler.goodsId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.source != null ">
+                    #{daCrawler.source,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.createdTime != null ">
+                    #{daCrawler.createdTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_crawler
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_crawler where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)>=unix_timestamp(#{EntityRelated.beginCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.endCreatedTime != null ">
+				<![CDATA[ AND  unix_timestamp(created_time)<unix_timestamp(#{EntityRelated.endCreatedTime})]]> 
+		</if>
+		<if test="EntityRelated.from != null and EntityRelated.from != '' ">
+ 				and  from LIKE CONCAT('%',#{EntityRelated.from,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.goodsId != null and EntityRelated.goodsId != '' ">
+				and goods_id = #{EntityRelated.goodsId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.inventory != null and EntityRelated.inventory != '' ">
+ 				and  inventory LIKE CONCAT('%',#{EntityRelated.inventory,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.parameter != null and EntityRelated.parameter != '' ">
+ 				and  parameter LIKE CONCAT('%',#{EntityRelated.parameter,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.rateCounter != null and EntityRelated.rateCounter != '' ">
+ 				and  rate_counter LIKE CONCAT('%',#{EntityRelated.rateCounter,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sellCounter != null and EntityRelated.sellCounter != '' ">
+ 				and  sell_counter LIKE CONCAT('%',#{EntityRelated.sellCounter,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

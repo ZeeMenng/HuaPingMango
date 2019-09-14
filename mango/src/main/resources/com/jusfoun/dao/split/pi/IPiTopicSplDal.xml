@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiTopicSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiTopic" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+              <result column="topic_name" property="topicName" jdbcType="VARCHAR" />
+              <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+              <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+              <result column="description" property="description" jdbcType="VARCHAR" />
+              <result column="title_img" property="titleImg" jdbcType="VARCHAR" />
+              <result column="content_img" property="contentImg" jdbcType="VARCHAR" />
+              <result column="tpl_content" property="tplContent" jdbcType="VARCHAR" />
+              <result column="priority" property="priority" jdbcType="INTEGER" />
+              <result column="is_recommend" property="isRecommend" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,channel_id,topic_name,short_name,keywords,description,title_img,content_img,tpl_content,priority,is_recommend
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+    insert into pi_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="channelId != null and channelId != '' " >
+              channel_id,
+          </if>
+      
+          <if test="topicName != null and topicName != '' " >
+              topic_name,
+          </if>
+      
+          <if test="shortName != null and shortName != '' " >
+              short_name,
+          </if>
+      
+          <if test="keywords != null and keywords != '' " >
+              keywords,
+          </if>
+      
+          <if test="description != null and description != '' " >
+              description,
+          </if>
+      
+          <if test="titleImg != null and titleImg != '' " >
+              title_img,
+          </if>
+      
+          <if test="contentImg != null and contentImg != '' " >
+              content_img,
+          </if>
+      
+          <if test="tplContent != null and tplContent != '' " >
+              tpl_content,
+          </if>
+      
+          <if test="priority != null " >
+              priority,
+          </if>
+          <if test="isRecommend != null " >
+              is_recommend,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="channelId != null and channelId != '' " >
+              #{channelId,jdbcType=VARCHAR},
+          </if>
+          <if test="topicName != null and topicName != '' " >
+              #{topicName,jdbcType=VARCHAR},
+          </if>
+          <if test="shortName != null and shortName != '' " >
+              #{shortName,jdbcType=VARCHAR},
+          </if>
+          <if test="keywords != null and keywords != '' " >
+              #{keywords,jdbcType=VARCHAR},
+          </if>
+          <if test="description != null and description != '' " >
+              #{description,jdbcType=VARCHAR},
+          </if>
+          <if test="titleImg != null and titleImg != '' " >
+              #{titleImg,jdbcType=VARCHAR},
+          </if>
+          <if test="contentImg != null and contentImg != '' " >
+              #{contentImg,jdbcType=VARCHAR},
+          </if>
+          <if test="tplContent != null and tplContent != '' " >
+              #{tplContent,jdbcType=VARCHAR},
+          </if>
+          <if test="priority != null " >
+              #{priority,jdbcType=INTEGER},
+          </if>
+          <if test="isRecommend != null " >
+              #{isRecommend,jdbcType=TINYINT},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_topic
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piTopic" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piTopic.id,jdbcType=VARCHAR},
+
+      
+          #{piTopic.channelId,jdbcType=VARCHAR},
+
+      
+          #{piTopic.topicName,jdbcType=VARCHAR},
+
+      
+          #{piTopic.shortName,jdbcType=VARCHAR},
+
+      
+          #{piTopic.keywords,jdbcType=VARCHAR},
+
+      
+          #{piTopic.description,jdbcType=VARCHAR},
+
+      
+          #{piTopic.titleImg,jdbcType=VARCHAR},
+
+      
+          #{piTopic.contentImg,jdbcType=VARCHAR},
+
+      
+          #{piTopic.tplContent,jdbcType=VARCHAR},
+
+      
+          #{piTopic.priority,jdbcType=INTEGER},
+
+      
+          #{piTopic.isRecommend,jdbcType=TINYINT},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_topic
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_topic
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+    update pi_topic
+    <set >
+                  <if test="channelId != null  and channelId != '' " >
+                     channel_id = #{channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="topicName != null  and topicName != '' " >
+                     topic_name = #{topicName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="shortName != null  and shortName != '' " >
+                     short_name = #{shortName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="keywords != null  and keywords != '' " >
+                     keywords = #{keywords,jdbcType=VARCHAR},
+                  </if>
+                  <if test="description != null  and description != '' " >
+                     description = #{description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="titleImg != null  and titleImg != '' " >
+                     title_img = #{titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contentImg != null  and contentImg != '' " >
+                     content_img = #{contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tplContent != null  and tplContent != '' " >
+                     tpl_content = #{tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priority != null ">
+                     priority = #{priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="isRecommend != null ">
+                     is_recommend = #{isRecommend,jdbcType=TINYINT},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_topic
+    <set >
+                  <if test="t.channelId != null  and t.channelId != '' " >
+                     channel_id = #{t.channelId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.topicName != null  and t.topicName != '' " >
+                     topic_name = #{t.topicName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.shortName != null  and t.shortName != '' " >
+                     short_name = #{t.shortName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.keywords != null  and t.keywords != '' " >
+                     keywords = #{t.keywords,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.description != null  and t.description != '' " >
+                     description = #{t.description,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.titleImg != null  and t.titleImg != '' " >
+                     title_img = #{t.titleImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contentImg != null  and t.contentImg != '' " >
+                     content_img = #{t.contentImg,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tplContent != null  and t.tplContent != '' " >
+                     tpl_content = #{t.tplContent,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priority != null ">
+                     priority = #{t.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.isRecommend != null ">
+                     is_recommend = #{t.isRecommend,jdbcType=TINYINT},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_topic
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_topic where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.channelId != null and EntityRelated.channelId != '' ">
+				and channel_id = #{EntityRelated.channelId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.contentImg != null and EntityRelated.contentImg != '' ">
+ 				and  content_img LIKE CONCAT('%',#{EntityRelated.contentImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.description != null and EntityRelated.description != '' ">
+ 				and  description LIKE CONCAT('%',#{EntityRelated.description,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.keywords != null and EntityRelated.keywords != '' ">
+ 				and  keywords LIKE CONCAT('%',#{EntityRelated.keywords,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.shortName != null and EntityRelated.shortName != '' ">
+ 				and  short_name LIKE CONCAT('%',#{EntityRelated.shortName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.titleImg != null and EntityRelated.titleImg != '' ">
+ 				and  title_img LIKE CONCAT('%',#{EntityRelated.titleImg,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.topicName != null and EntityRelated.topicName != '' ">
+ 				and  topic_name LIKE CONCAT('%',#{EntityRelated.topicName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tplContent != null and EntityRelated.tplContent != '' ">
+ 				and  tpl_content LIKE CONCAT('%',#{EntityRelated.tplContent,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

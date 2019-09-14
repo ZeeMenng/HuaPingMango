@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaImportExportSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaImportExport" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="product_name" property="productName" jdbcType="VARCHAR" />
+              <result column="import_amount" property="importAmount" jdbcType="NUMERIC" />
+              <result column="import_amount_unit_code" property="importAmountUnitCode" jdbcType="TINYINT" />
+              <result column="import_amount_unit_text" property="importAmountUnitText" jdbcType="VARCHAR" />
+              <result column="import_amount_unit" property="importAmountUnit" jdbcType="NUMERIC" />
+              <result column="import_volume" property="importVolume" jdbcType="NUMERIC" />
+              <result column="import_volume_unit_code" property="importVolumeUnitCode" jdbcType="TINYINT" />
+              <result column="import_volume_unit_text" property="importVolumeUnitText" jdbcType="VARCHAR" />
+              <result column="import_volume_unit" property="importVolumeUnit" jdbcType="NUMERIC" />
+              <result column="import_price" property="importPrice" jdbcType="NUMERIC" />
+              <result column="import_price_unit_code" property="importPriceUnitCode" jdbcType="TINYINT" />
+              <result column="import_price_unit_text" property="importPriceUnitText" jdbcType="VARCHAR" />
+              <result column="import_price_unit" property="importPriceUnit" jdbcType="NUMERIC" />
+              <result column="import_time" property="importTime" jdbcType="TIMESTAMP" />
+              <result column="import_country_code" property="importCountryCode" jdbcType="VARCHAR" />
+              <result column="import_country_text" property="importCountryText" jdbcType="VARCHAR" />
+              <result column="import_enterprise" property="importEnterprise" jdbcType="VARCHAR" />
+              <result column="export_amount" property="exportAmount" jdbcType="NUMERIC" />
+              <result column="export_amount_unit_code" property="exportAmountUnitCode" jdbcType="TINYINT" />
+              <result column="export_amount_unit_text" property="exportAmountUnitText" jdbcType="VARCHAR" />
+              <result column="export_amount_unit" property="exportAmountUnit" jdbcType="NUMERIC" />
+              <result column="export_volume" property="exportVolume" jdbcType="NUMERIC" />
+              <result column="export_volume_unit_code" property="exportVolumeUnitCode" jdbcType="TINYINT" />
+              <result column="export_volume_unit_text" property="exportVolumeUnitText" jdbcType="VARCHAR" />
+              <result column="export_volume_unit" property="exportVolumeUnit" jdbcType="NUMERIC" />
+              <result column="export_price" property="exportPrice" jdbcType="NUMERIC" />
+              <result column="export_price_unit_code" property="exportPriceUnitCode" jdbcType="TINYINT" />
+              <result column="export_price_unit_text" property="exportPriceUnitText" jdbcType="VARCHAR" />
+              <result column="export_price_unit" property="exportPriceUnit" jdbcType="NUMERIC" />
+              <result column="export_time" property="exportTime" jdbcType="TIMESTAMP" />
+              <result column="export_country_code" property="exportCountryCode" jdbcType="VARCHAR" />
+              <result column="export_country_text" property="exportCountryText" jdbcType="VARCHAR" />
+              <result column="export_enterprise" property="exportEnterprise" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,product_name,import_amount,import_amount_unit_code,import_amount_unit_text,import_amount_unit,import_volume,import_volume_unit_code,import_volume_unit_text,import_volume_unit,import_price,import_price_unit_code,import_price_unit_text,import_price_unit,import_time,import_country_code,import_country_text,import_enterprise,export_amount,export_amount_unit_code,export_amount_unit_text,export_amount_unit,export_volume,export_volume_unit_code,export_volume_unit_text,export_volume_unit,export_price,export_price_unit_code,export_price_unit_text,export_price_unit,export_time,export_country_code,export_country_text,export_enterprise
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+    insert into da_import_export
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="productName != null and productName != '' " >
+              product_name,
+          </if>
+      
+          <if test="importAmount != null " >
+              import_amount,
+          </if>
+          <if test="importAmountUnitCode != null " >
+              import_amount_unit_code,
+          </if>
+          <if test="importAmountUnitText != null and importAmountUnitText != '' " >
+              import_amount_unit_text,
+          </if>
+      
+          <if test="importAmountUnit != null " >
+              import_amount_unit,
+          </if>
+          <if test="importVolume != null " >
+              import_volume,
+          </if>
+          <if test="importVolumeUnitCode != null " >
+              import_volume_unit_code,
+          </if>
+          <if test="importVolumeUnitText != null and importVolumeUnitText != '' " >
+              import_volume_unit_text,
+          </if>
+      
+          <if test="importVolumeUnit != null " >
+              import_volume_unit,
+          </if>
+          <if test="importPrice != null " >
+              import_price,
+          </if>
+          <if test="importPriceUnitCode != null " >
+              import_price_unit_code,
+          </if>
+          <if test="importPriceUnitText != null and importPriceUnitText != '' " >
+              import_price_unit_text,
+          </if>
+      
+          <if test="importPriceUnit != null " >
+              import_price_unit,
+          </if>
+          <if test="importTime != null " >
+              import_time,
+          </if>
+          <if test="importCountryCode != null and importCountryCode != '' " >
+              import_country_code,
+          </if>
+      
+          <if test="importCountryText != null and importCountryText != '' " >
+              import_country_text,
+          </if>
+      
+          <if test="importEnterprise != null and importEnterprise != '' " >
+              import_enterprise,
+          </if>
+      
+          <if test="exportAmount != null " >
+              export_amount,
+          </if>
+          <if test="exportAmountUnitCode != null " >
+              export_amount_unit_code,
+          </if>
+          <if test="exportAmountUnitText != null and exportAmountUnitText != '' " >
+              export_amount_unit_text,
+          </if>
+      
+          <if test="exportAmountUnit != null " >
+              export_amount_unit,
+          </if>
+          <if test="exportVolume != null " >
+              export_volume,
+          </if>
+          <if test="exportVolumeUnitCode != null " >
+              export_volume_unit_code,
+          </if>
+          <if test="exportVolumeUnitText != null and exportVolumeUnitText != '' " >
+              export_volume_unit_text,
+          </if>
+      
+          <if test="exportVolumeUnit != null " >
+              export_volume_unit,
+          </if>
+          <if test="exportPrice != null " >
+              export_price,
+          </if>
+          <if test="exportPriceUnitCode != null " >
+              export_price_unit_code,
+          </if>
+          <if test="exportPriceUnitText != null and exportPriceUnitText != '' " >
+              export_price_unit_text,
+          </if>
+      
+          <if test="exportPriceUnit != null " >
+              export_price_unit,
+          </if>
+          <if test="exportTime != null " >
+              export_time,
+          </if>
+          <if test="exportCountryCode != null and exportCountryCode != '' " >
+              export_country_code,
+          </if>
+      
+          <if test="exportCountryText != null and exportCountryText != '' " >
+              export_country_text,
+          </if>
+      
+          <if test="exportEnterprise != null and exportEnterprise != '' " >
+              export_enterprise,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="productName != null and productName != '' " >
+              #{productName,jdbcType=VARCHAR},
+          </if>
+          <if test="importAmount != null " >
+              #{importAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="importAmountUnitCode != null " >
+              #{importAmountUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="importAmountUnitText != null and importAmountUnitText != '' " >
+              #{importAmountUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="importAmountUnit != null " >
+              #{importAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="importVolume != null " >
+              #{importVolume,jdbcType=NUMERIC},
+          </if>
+          <if test="importVolumeUnitCode != null " >
+              #{importVolumeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="importVolumeUnitText != null and importVolumeUnitText != '' " >
+              #{importVolumeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="importVolumeUnit != null " >
+              #{importVolumeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="importPrice != null " >
+              #{importPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="importPriceUnitCode != null " >
+              #{importPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="importPriceUnitText != null and importPriceUnitText != '' " >
+              #{importPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="importPriceUnit != null " >
+              #{importPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="importTime != null " >
+              #{importTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="importCountryCode != null and importCountryCode != '' " >
+              #{importCountryCode,jdbcType=VARCHAR},
+          </if>
+          <if test="importCountryText != null and importCountryText != '' " >
+              #{importCountryText,jdbcType=VARCHAR},
+          </if>
+          <if test="importEnterprise != null and importEnterprise != '' " >
+              #{importEnterprise,jdbcType=VARCHAR},
+          </if>
+          <if test="exportAmount != null " >
+              #{exportAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="exportAmountUnitCode != null " >
+              #{exportAmountUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="exportAmountUnitText != null and exportAmountUnitText != '' " >
+              #{exportAmountUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="exportAmountUnit != null " >
+              #{exportAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="exportVolume != null " >
+              #{exportVolume,jdbcType=NUMERIC},
+          </if>
+          <if test="exportVolumeUnitCode != null " >
+              #{exportVolumeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="exportVolumeUnitText != null and exportVolumeUnitText != '' " >
+              #{exportVolumeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="exportVolumeUnit != null " >
+              #{exportVolumeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="exportPrice != null " >
+              #{exportPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="exportPriceUnitCode != null " >
+              #{exportPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="exportPriceUnitText != null and exportPriceUnitText != '' " >
+              #{exportPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="exportPriceUnit != null " >
+              #{exportPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="exportTime != null " >
+              #{exportTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="exportCountryCode != null and exportCountryCode != '' " >
+              #{exportCountryCode,jdbcType=VARCHAR},
+          </if>
+          <if test="exportCountryText != null and exportCountryText != '' " >
+              #{exportCountryText,jdbcType=VARCHAR},
+          </if>
+          <if test="exportEnterprise != null and exportEnterprise != '' " >
+              #{exportEnterprise,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_import_export
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daImportExport" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daImportExport.id,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.name,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.productName,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importAmount,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importAmountUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.importAmountUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importVolume,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importVolumeUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.importVolumeUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importVolumeUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importPrice,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.importPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.importTime,jdbcType=TIMESTAMP},
+
+      
+          #{daImportExport.importCountryCode,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importCountryText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.importEnterprise,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportAmount,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportAmountUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.exportAmountUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportVolume,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportVolumeUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.exportVolumeUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportVolumeUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportPrice,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daImportExport.exportPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daImportExport.exportTime,jdbcType=TIMESTAMP},
+
+      
+          #{daImportExport.exportCountryCode,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportCountryText,jdbcType=VARCHAR},
+
+      
+          #{daImportExport.exportEnterprise,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_import_export
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_import_export
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+    update da_import_export
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productName != null  and productName != '' " >
+                     product_name = #{productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importAmount != null ">
+                     import_amount = #{importAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importAmountUnitCode != null ">
+                     import_amount_unit_code = #{importAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="importAmountUnitText != null  and importAmountUnitText != '' " >
+                     import_amount_unit_text = #{importAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importAmountUnit != null ">
+                     import_amount_unit = #{importAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importVolume != null ">
+                     import_volume = #{importVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importVolumeUnitCode != null ">
+                     import_volume_unit_code = #{importVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="importVolumeUnitText != null  and importVolumeUnitText != '' " >
+                     import_volume_unit_text = #{importVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importVolumeUnit != null ">
+                     import_volume_unit = #{importVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importPrice != null ">
+                     import_price = #{importPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importPriceUnitCode != null ">
+                     import_price_unit_code = #{importPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="importPriceUnitText != null  and importPriceUnitText != '' " >
+                     import_price_unit_text = #{importPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importPriceUnit != null ">
+                     import_price_unit = #{importPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="importTime != null ">
+                     import_time = #{importTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="importCountryCode != null  and importCountryCode != '' " >
+                     import_country_code = #{importCountryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importCountryText != null  and importCountryText != '' " >
+                     import_country_text = #{importCountryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="importEnterprise != null  and importEnterprise != '' " >
+                     import_enterprise = #{importEnterprise,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportAmount != null ">
+                     export_amount = #{exportAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportAmountUnitCode != null ">
+                     export_amount_unit_code = #{exportAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="exportAmountUnitText != null  and exportAmountUnitText != '' " >
+                     export_amount_unit_text = #{exportAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportAmountUnit != null ">
+                     export_amount_unit = #{exportAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportVolume != null ">
+                     export_volume = #{exportVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportVolumeUnitCode != null ">
+                     export_volume_unit_code = #{exportVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="exportVolumeUnitText != null  and exportVolumeUnitText != '' " >
+                     export_volume_unit_text = #{exportVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportVolumeUnit != null ">
+                     export_volume_unit = #{exportVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportPrice != null ">
+                     export_price = #{exportPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportPriceUnitCode != null ">
+                     export_price_unit_code = #{exportPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="exportPriceUnitText != null  and exportPriceUnitText != '' " >
+                     export_price_unit_text = #{exportPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportPriceUnit != null ">
+                     export_price_unit = #{exportPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="exportTime != null ">
+                     export_time = #{exportTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="exportCountryCode != null  and exportCountryCode != '' " >
+                     export_country_code = #{exportCountryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportCountryText != null  and exportCountryText != '' " >
+                     export_country_text = #{exportCountryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="exportEnterprise != null  and exportEnterprise != '' " >
+                     export_enterprise = #{exportEnterprise,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_import_export
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productName != null  and t.productName != '' " >
+                     product_name = #{t.productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importAmount != null ">
+                     import_amount = #{t.importAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importAmountUnitCode != null ">
+                     import_amount_unit_code = #{t.importAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.importAmountUnitText != null  and t.importAmountUnitText != '' " >
+                     import_amount_unit_text = #{t.importAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importAmountUnit != null ">
+                     import_amount_unit = #{t.importAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importVolume != null ">
+                     import_volume = #{t.importVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importVolumeUnitCode != null ">
+                     import_volume_unit_code = #{t.importVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.importVolumeUnitText != null  and t.importVolumeUnitText != '' " >
+                     import_volume_unit_text = #{t.importVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importVolumeUnit != null ">
+                     import_volume_unit = #{t.importVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importPrice != null ">
+                     import_price = #{t.importPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importPriceUnitCode != null ">
+                     import_price_unit_code = #{t.importPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.importPriceUnitText != null  and t.importPriceUnitText != '' " >
+                     import_price_unit_text = #{t.importPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importPriceUnit != null ">
+                     import_price_unit = #{t.importPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.importTime != null ">
+                     import_time = #{t.importTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.importCountryCode != null  and t.importCountryCode != '' " >
+                     import_country_code = #{t.importCountryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importCountryText != null  and t.importCountryText != '' " >
+                     import_country_text = #{t.importCountryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.importEnterprise != null  and t.importEnterprise != '' " >
+                     import_enterprise = #{t.importEnterprise,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportAmount != null ">
+                     export_amount = #{t.exportAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportAmountUnitCode != null ">
+                     export_amount_unit_code = #{t.exportAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.exportAmountUnitText != null  and t.exportAmountUnitText != '' " >
+                     export_amount_unit_text = #{t.exportAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportAmountUnit != null ">
+                     export_amount_unit = #{t.exportAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportVolume != null ">
+                     export_volume = #{t.exportVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportVolumeUnitCode != null ">
+                     export_volume_unit_code = #{t.exportVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.exportVolumeUnitText != null  and t.exportVolumeUnitText != '' " >
+                     export_volume_unit_text = #{t.exportVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportVolumeUnit != null ">
+                     export_volume_unit = #{t.exportVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportPrice != null ">
+                     export_price = #{t.exportPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportPriceUnitCode != null ">
+                     export_price_unit_code = #{t.exportPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.exportPriceUnitText != null  and t.exportPriceUnitText != '' " >
+                     export_price_unit_text = #{t.exportPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportPriceUnit != null ">
+                     export_price_unit = #{t.exportPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.exportTime != null ">
+                     export_time = #{t.exportTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.exportCountryCode != null  and t.exportCountryCode != '' " >
+                     export_country_code = #{t.exportCountryCode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportCountryText != null  and t.exportCountryText != '' " >
+                     export_country_text = #{t.exportCountryText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.exportEnterprise != null  and t.exportEnterprise != '' " >
+                     export_enterprise = #{t.exportEnterprise,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_import_export
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_import_export where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.exportAmountUnitCode != null">
+				and export_amount_unit_code = #{EntityRelated.exportAmountUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.exportAmountUnitText != null and EntityRelated.exportAmountUnitText != '' ">
+ 				and  export_amount_unit_text LIKE CONCAT('%',#{EntityRelated.exportAmountUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.exportCountryCode != null">
+				and export_country_code = #{EntityRelated.exportCountryCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.exportCountryText != null and EntityRelated.exportCountryText != '' ">
+ 				and  export_country_text LIKE CONCAT('%',#{EntityRelated.exportCountryText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.exportEnterprise != null and EntityRelated.exportEnterprise != '' ">
+ 				and  export_enterprise LIKE CONCAT('%',#{EntityRelated.exportEnterprise,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.exportPriceUnitCode != null">
+				and export_price_unit_code = #{EntityRelated.exportPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.exportPriceUnitText != null and EntityRelated.exportPriceUnitText != '' ">
+ 				and  export_price_unit_text LIKE CONCAT('%',#{EntityRelated.exportPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginExportTime != null ">
+				<![CDATA[ AND  unix_timestamp(export_time)>=unix_timestamp(#{EntityRelated.beginExportTime})]]> 
+		</if>
+		<if test="EntityRelated.endExportTime != null ">
+				<![CDATA[ AND  unix_timestamp(export_time)<unix_timestamp(#{EntityRelated.endExportTime})]]> 
+		</if>
+		<if test="EntityRelated.exportVolumeUnitCode != null">
+				and export_volume_unit_code = #{EntityRelated.exportVolumeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.exportVolumeUnitText != null and EntityRelated.exportVolumeUnitText != '' ">
+ 				and  export_volume_unit_text LIKE CONCAT('%',#{EntityRelated.exportVolumeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.importAmountUnitCode != null">
+				and import_amount_unit_code = #{EntityRelated.importAmountUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.importAmountUnitText != null and EntityRelated.importAmountUnitText != '' ">
+ 				and  import_amount_unit_text LIKE CONCAT('%',#{EntityRelated.importAmountUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.importCountryCode != null">
+				and import_country_code = #{EntityRelated.importCountryCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.importCountryText != null and EntityRelated.importCountryText != '' ">
+ 				and  import_country_text LIKE CONCAT('%',#{EntityRelated.importCountryText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.importEnterprise != null and EntityRelated.importEnterprise != '' ">
+ 				and  import_enterprise LIKE CONCAT('%',#{EntityRelated.importEnterprise,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.importPriceUnitCode != null">
+				and import_price_unit_code = #{EntityRelated.importPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.importPriceUnitText != null and EntityRelated.importPriceUnitText != '' ">
+ 				and  import_price_unit_text LIKE CONCAT('%',#{EntityRelated.importPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginImportTime != null ">
+				<![CDATA[ AND  unix_timestamp(import_time)>=unix_timestamp(#{EntityRelated.beginImportTime})]]> 
+		</if>
+		<if test="EntityRelated.endImportTime != null ">
+				<![CDATA[ AND  unix_timestamp(import_time)<unix_timestamp(#{EntityRelated.endImportTime})]]> 
+		</if>
+		<if test="EntityRelated.importVolumeUnitCode != null">
+				and import_volume_unit_code = #{EntityRelated.importVolumeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.importVolumeUnitText != null and EntityRelated.importVolumeUnitText != '' ">
+ 				and  import_volume_unit_text LIKE CONCAT('%',#{EntityRelated.importVolumeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.productName != null and EntityRelated.productName != '' ">
+ 				and  product_name LIKE CONCAT('%',#{EntityRelated.productName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pi.IPiContentTxtSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentTxt" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="content_id" property="contentId" jdbcType="VARCHAR" />
+              <result column="txt" property="txt" jdbcType="VARCHAR" />
+              <result column="txt1" property="txt1" jdbcType="VARCHAR" />
+              <result column="txt2" property="txt2" jdbcType="VARCHAR" />
+              <result column="txt3" property="txt3" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,content_id,txt,txt1,txt2,txt3
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentTxt" >
+    insert into pi_content_txt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="contentId != null and contentId != '' " >
+              content_id,
+          </if>
+      
+          <if test="txt != null and txt != '' " >
+              txt,
+          </if>
+      
+          <if test="txt1 != null and txt1 != '' " >
+              txt1,
+          </if>
+      
+          <if test="txt2 != null and txt2 != '' " >
+              txt2,
+          </if>
+      
+          <if test="txt3 != null and txt3 != '' " >
+              txt3,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="contentId != null and contentId != '' " >
+              #{contentId,jdbcType=VARCHAR},
+          </if>
+          <if test="txt != null and txt != '' " >
+              #{txt,jdbcType=VARCHAR},
+          </if>
+          <if test="txt1 != null and txt1 != '' " >
+              #{txt1,jdbcType=VARCHAR},
+          </if>
+          <if test="txt2 != null and txt2 != '' " >
+              #{txt2,jdbcType=VARCHAR},
+          </if>
+          <if test="txt3 != null and txt3 != '' " >
+              #{txt3,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pi_content_txt
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentTxt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{piContentTxt.id,jdbcType=VARCHAR},
+
+      
+          #{piContentTxt.contentId,jdbcType=VARCHAR},
+
+      
+          #{piContentTxt.txt,jdbcType=VARCHAR},
+
+      
+          #{piContentTxt.txt1,jdbcType=VARCHAR},
+
+      
+          #{piContentTxt.txt2,jdbcType=VARCHAR},
+
+      
+          #{piContentTxt.txt3,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pi_content_txt
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pi_content_txt
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentTxt" >
+    update pi_content_txt
+    <set >
+                  <if test="contentId != null  and contentId != '' " >
+                     content_id = #{contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt != null  and txt != '' " >
+                     txt = #{txt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt1 != null  and txt1 != '' " >
+                     txt1 = #{txt1,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt2 != null  and txt2 != '' " >
+                     txt2 = #{txt2,jdbcType=VARCHAR},
+                  </if>
+                  <if test="txt3 != null  and txt3 != '' " >
+                     txt3 = #{txt3,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pi_content_txt
+    <set >
+                  <if test="t.contentId != null  and t.contentId != '' " >
+                     content_id = #{t.contentId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt != null  and t.txt != '' " >
+                     txt = #{t.txt,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt1 != null  and t.txt1 != '' " >
+                     txt1 = #{t.txt1,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt2 != null  and t.txt2 != '' " >
+                     txt2 = #{t.txt2,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.txt3 != null  and t.txt3 != '' " >
+                     txt3 = #{t.txt3,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pi_content_txt
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pi_content_txt where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.contentId != null and EntityRelated.contentId != '' ">
+				and content_id = #{EntityRelated.contentId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.txt != null and EntityRelated.txt != '' ">
+ 				and  txt LIKE CONCAT('%',#{EntityRelated.txt,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt1 != null and EntityRelated.txt1 != '' ">
+ 				and  txt1 LIKE CONCAT('%',#{EntityRelated.txt1,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt2 != null and EntityRelated.txt2 != '' ">
+ 				and  txt2 LIKE CONCAT('%',#{EntityRelated.txt2,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.txt3 != null and EntityRelated.txt3 != '' ">
+ 				and  txt3 LIKE CONCAT('%',#{EntityRelated.txt3,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

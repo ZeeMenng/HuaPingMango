@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaPeasantInfoSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+              <result column="address" property="address" jdbcType="VARCHAR" />
+              <result column="mobile_type" property="mobileType" jdbcType="VARCHAR" />
+              <result column="peasant_type_code" property="peasantTypeCode" jdbcType="TINYINT" />
+              <result column="peasant_type_text" property="peasantTypeText" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="mobile_operate_code" property="mobileOperateCode" jdbcType="TINYINT" />
+              <result column="mobile_operate_text" property="mobileOperateText" jdbcType="VARCHAR" />
+              <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,id_number,address,mobile_type,peasant_type_code,peasant_type_text,enterprise_name,mobile_operate_code,mobile_operate_text,user_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+    insert into da_peasant_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="idNumber != null and idNumber != '' " >
+              id_number,
+          </if>
+      
+          <if test="address != null and address != '' " >
+              address,
+          </if>
+      
+          <if test="mobileType != null and mobileType != '' " >
+              mobile_type,
+          </if>
+      
+          <if test="peasantTypeCode != null " >
+              peasant_type_code,
+          </if>
+          <if test="peasantTypeText != null and peasantTypeText != '' " >
+              peasant_type_text,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="mobileOperateCode != null " >
+              mobile_operate_code,
+          </if>
+          <if test="mobileOperateText != null and mobileOperateText != '' " >
+              mobile_operate_text,
+          </if>
+      
+          <if test="userId != null and userId != '' " >
+              user_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="idNumber != null and idNumber != '' " >
+              #{idNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="address != null and address != '' " >
+              #{address,jdbcType=VARCHAR},
+          </if>
+          <if test="mobileType != null and mobileType != '' " >
+              #{mobileType,jdbcType=VARCHAR},
+          </if>
+          <if test="peasantTypeCode != null " >
+              #{peasantTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="peasantTypeText != null and peasantTypeText != '' " >
+              #{peasantTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="mobileOperateCode != null " >
+              #{mobileOperateCode,jdbcType=TINYINT},
+          </if>
+          <if test="mobileOperateText != null and mobileOperateText != '' " >
+              #{mobileOperateText,jdbcType=VARCHAR},
+          </if>
+          <if test="userId != null and userId != '' " >
+              #{userId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_peasant_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daPeasantInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daPeasantInfo.id,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.idNumber,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.address,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.mobileType,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.peasantTypeCode,jdbcType=TINYINT},
+
+      
+          #{daPeasantInfo.peasantTypeText,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.mobileOperateCode,jdbcType=TINYINT},
+
+      
+          #{daPeasantInfo.mobileOperateText,jdbcType=VARCHAR},
+
+      
+          #{daPeasantInfo.userId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_peasant_info
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_peasant_info
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+    update da_peasant_info
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="idNumber != null  and idNumber != '' " >
+                     id_number = #{idNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mobileType != null  and mobileType != '' " >
+                     mobile_type = #{mobileType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="peasantTypeCode != null ">
+                     peasant_type_code = #{peasantTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="peasantTypeText != null  and peasantTypeText != '' " >
+                     peasant_type_text = #{peasantTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="mobileOperateCode != null ">
+                     mobile_operate_code = #{mobileOperateCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="mobileOperateText != null  and mobileOperateText != '' " >
+                     mobile_operate_text = #{mobileOperateText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_peasant_info
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.idNumber != null  and t.idNumber != '' " >
+                     id_number = #{t.idNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mobileType != null  and t.mobileType != '' " >
+                     mobile_type = #{t.mobileType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.peasantTypeCode != null ">
+                     peasant_type_code = #{t.peasantTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.peasantTypeText != null  and t.peasantTypeText != '' " >
+                     peasant_type_text = #{t.peasantTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.mobileOperateCode != null ">
+                     mobile_operate_code = #{t.mobileOperateCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.mobileOperateText != null  and t.mobileOperateText != '' " >
+                     mobile_operate_text = #{t.mobileOperateText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_peasant_info
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_peasant_info where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.address != null and EntityRelated.address != '' ">
+ 				and  address LIKE CONCAT('%',#{EntityRelated.address,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.idNumber != null and EntityRelated.idNumber != '' ">
+ 				and  id_number LIKE CONCAT('%',#{EntityRelated.idNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mobileOperateCode != null">
+				and mobile_operate_code = #{EntityRelated.mobileOperateCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.mobileOperateText != null and EntityRelated.mobileOperateText != '' ">
+ 				and  mobile_operate_text LIKE CONCAT('%',#{EntityRelated.mobileOperateText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.mobileType != null and EntityRelated.mobileType != '' ">
+ 				and  mobile_type LIKE CONCAT('%',#{EntityRelated.mobileType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.peasantTypeCode != null">
+				and peasant_type_code = #{EntityRelated.peasantTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.peasantTypeText != null and EntityRelated.peasantTypeText != '' ">
+ 				and  peasant_type_text LIKE CONCAT('%',#{EntityRelated.peasantTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
+				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaIotMonitorDataUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotMonitorData" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="hid" property="hid" jdbcType="VARCHAR" />
+              <result column="sensor_type" property="sensorType" jdbcType="INTEGER" />
+              <result column="sensor_name" property="sensorName" jdbcType="VARCHAR" />
+              <result column="display_name" property="displayName" jdbcType="VARCHAR" />
+              <result column="val" property="val" jdbcType="DOUBLE" />
+              <result column="unit" property="unit" jdbcType="VARCHAR" />
+              <result column="time" property="time" jdbcType="TIMESTAMP" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,hid,sensor_type,sensor_name,display_name,val,unit,time,add_time,remark
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorData" >
+    insert into da_iot_monitor_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="hid != null and hid != '' " >
+              hid,
+          </if>
+      
+          <if test="sensorType != null " >
+              sensor_type,
+          </if>
+          <if test="sensorName != null and sensorName != '' " >
+              sensor_name,
+          </if>
+      
+          <if test="displayName != null and displayName != '' " >
+              display_name,
+          </if>
+      
+          <if test="val != null " >
+              val,
+          </if>
+          <if test="unit != null and unit != '' " >
+              unit,
+          </if>
+      
+          <if test="time != null " >
+              time,
+          </if>
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="hid != null and hid != '' " >
+              #{hid,jdbcType=VARCHAR},
+          </if>
+          <if test="sensorType != null " >
+              #{sensorType,jdbcType=INTEGER},
+          </if>
+          <if test="sensorName != null and sensorName != '' " >
+              #{sensorName,jdbcType=VARCHAR},
+          </if>
+          <if test="displayName != null and displayName != '' " >
+              #{displayName,jdbcType=VARCHAR},
+          </if>
+          <if test="val != null " >
+              #{val,jdbcType=DOUBLE},
+          </if>
+          <if test="unit != null and unit != '' " >
+              #{unit,jdbcType=VARCHAR},
+          </if>
+          <if test="time != null " >
+              #{time,jdbcType=TIMESTAMP},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_iot_monitor_data
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIotMonitorData" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daIotMonitorData.id,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorData.hid,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorData.sensorType,jdbcType=INTEGER},
+
+      
+          #{daIotMonitorData.sensorName,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorData.displayName,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorData.val,jdbcType=DOUBLE},
+
+      
+          #{daIotMonitorData.unit,jdbcType=VARCHAR},
+
+      
+          #{daIotMonitorData.time,jdbcType=TIMESTAMP},
+
+      
+          #{daIotMonitorData.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daIotMonitorData.remark,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_iot_monitor_data
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_iot_monitor_data
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorData" >
+    update da_iot_monitor_data
+    <set >
+                  <if test="hid != null  and hid != '' " >
+                     hid = #{hid,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sensorType != null ">
+                     sensor_type = #{sensorType,jdbcType=INTEGER},
+                  </if>
+                  <if test="sensorName != null  and sensorName != '' " >
+                     sensor_name = #{sensorName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="displayName != null  and displayName != '' " >
+                     display_name = #{displayName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="val != null ">
+                     val = #{val,jdbcType=DOUBLE},
+                  </if>
+                  <if test="unit != null  and unit != '' " >
+                     unit = #{unit,jdbcType=VARCHAR},
+                  </if>
+                  <if test="time != null ">
+                     time = #{time,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_iot_monitor_data
+    <set >
+                  <if test="t.hid != null  and t.hid != '' " >
+                     hid = #{t.hid,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sensorType != null ">
+                     sensor_type = #{t.sensorType,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.sensorName != null  and t.sensorName != '' " >
+                     sensor_name = #{t.sensorName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.displayName != null  and t.displayName != '' " >
+                     display_name = #{t.displayName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.val != null ">
+                     val = #{t.val,jdbcType=DOUBLE},
+                  </if>
+                  <if test="t.unit != null  and t.unit != '' " >
+                     unit = #{t.unit,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.time != null ">
+                     time = #{t.time,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_iot_monitor_data
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="hid =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.hid != null and daIotMonitorData.hid  != '' " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.hid,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sensor_type =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.sensorType != null " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.sensorType,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sensor_name =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.sensorName != null and daIotMonitorData.sensorName  != '' " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.sensorName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="display_name =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.displayName != null and daIotMonitorData.displayName  != '' " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.displayName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="val =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.val != null " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.val,jdbcType=DOUBLE}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="unit =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.unit != null and daIotMonitorData.unit  != '' " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.unit,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="time =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.time != null " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.time,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.addTime != null " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="daIotMonitorData" index="index">
+                  <if test="daIotMonitorData.remark != null and daIotMonitorData.remark  != '' " >
+                     when id=#{daIotMonitorData.id} then #{daIotMonitorData.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daIotMonitorData.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_iot_monitor_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="hid  != null and hid  != '' " >
+              hid,
+          </if>
+          <if test="sensorType  != null " >
+              sensor_type,
+          </if>
+          <if test="sensorName  != null and sensorName  != '' " >
+              sensor_name,
+          </if>
+          <if test="displayName  != null and displayName  != '' " >
+              display_name,
+          </if>
+          <if test="val  != null " >
+              val,
+          </if>
+          <if test="unit  != null and unit  != '' " >
+              unit,
+          </if>
+          <if test="time  != null " >
+              time,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daIotMonitorData" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daIotMonitorData.id ,jdbcType=VARCHAR},
+                  <if test="t.hid  != null  and t.hid != '' " >
+                     #{daIotMonitorData.hid ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sensorType != null ">
+                    #{daIotMonitorData.sensorType,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.sensorName  != null  and t.sensorName != '' " >
+                     #{daIotMonitorData.sensorName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.displayName  != null  and t.displayName != '' " >
+                     #{daIotMonitorData.displayName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.val != null ">
+                    #{daIotMonitorData.val,jdbcType=DOUBLE},
+                  </if>
+                  <if test="t.unit  != null  and t.unit != '' " >
+                     #{daIotMonitorData.unit ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.time != null ">
+                    #{daIotMonitorData.time,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{daIotMonitorData.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{daIotMonitorData.remark ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_iot_monitor_data
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_iot_monitor_data where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.displayName != null and EntityRelated.displayName != '' ">
+ 				and  display_name LIKE CONCAT('%',#{EntityRelated.displayName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.hid != null and EntityRelated.hid != '' ">
+				and hid = #{EntityRelated.hid,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sensorName != null and EntityRelated.sensorName != '' ">
+ 				and  sensor_name LIKE CONCAT('%',#{EntityRelated.sensorName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginTime != null ">
+				<![CDATA[ AND  unix_timestamp(time)>=unix_timestamp(#{EntityRelated.beginTime})]]> 
+		</if>
+		<if test="EntityRelated.endTime != null ">
+				<![CDATA[ AND  unix_timestamp(time)<unix_timestamp(#{EntityRelated.endTime})]]> 
+		</if>
+		<if test="EntityRelated.unit != null and EntityRelated.unit != '' ">
+ 				and  unit LIKE CONCAT('%',#{EntityRelated.unit,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

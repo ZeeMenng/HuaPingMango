@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.pe.IPeQueryMenuUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="farther_id" property="fartherId" jdbcType="VARCHAR" />
+              <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+              <result column="region_id" property="regionId" jdbcType="VARCHAR" />
+              <result column="data_time_type_code" property="dataTimeTypeCode" jdbcType="TINYINT" />
+              <result column="data_time_type_text" property="dataTimeTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="price_type_code" property="priceTypeCode" jdbcType="TINYINT" />
+              <result column="price_type_text" property="priceTypeText" jdbcType="VARCHAR" />
+              <result column="query_type" property="queryType" jdbcType="VARCHAR" />
+              <result column="price_unit_code" property="priceUnitCode" jdbcType="TINYINT" />
+              <result column="price_unit_text" property="priceUnitText" jdbcType="VARCHAR" />
+              <result column="menu_level_code" property="menuLevelCode" jdbcType="TINYINT" />
+              <result column="menu_level_text" property="menuLevelText" jdbcType="VARCHAR" />
+              <result column="relation_id" property="relationId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,farther_id,menu_name,region_id,data_time_type_code,data_time_type_text,strains_code,strains_text,price_type_code,price_type_text,query_type,price_unit_code,price_unit_text,menu_level_code,menu_level_text,relation_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+    insert into pe_query_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="fartherId != null and fartherId != '' " >
+              farther_id,
+          </if>
+      
+          <if test="menuName != null and menuName != '' " >
+              menu_name,
+          </if>
+      
+          <if test="regionId != null and regionId != '' " >
+              region_id,
+          </if>
+      
+          <if test="dataTimeTypeCode != null " >
+              data_time_type_code,
+          </if>
+          <if test="dataTimeTypeText != null and dataTimeTypeText != '' " >
+              data_time_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="priceTypeCode != null " >
+              price_type_code,
+          </if>
+          <if test="priceTypeText != null and priceTypeText != '' " >
+              price_type_text,
+          </if>
+      
+          <if test="queryType != null and queryType != '' " >
+              query_type,
+          </if>
+      
+          <if test="priceUnitCode != null " >
+              price_unit_code,
+          </if>
+          <if test="priceUnitText != null and priceUnitText != '' " >
+              price_unit_text,
+          </if>
+      
+          <if test="menuLevelCode != null " >
+              menu_level_code,
+          </if>
+          <if test="menuLevelText != null and menuLevelText != '' " >
+              menu_level_text,
+          </if>
+      
+          <if test="relationId != null and relationId != '' " >
+              relation_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="fartherId != null and fartherId != '' " >
+              #{fartherId,jdbcType=VARCHAR},
+          </if>
+          <if test="menuName != null and menuName != '' " >
+              #{menuName,jdbcType=VARCHAR},
+          </if>
+          <if test="regionId != null and regionId != '' " >
+              #{regionId,jdbcType=VARCHAR},
+          </if>
+          <if test="dataTimeTypeCode != null " >
+              #{dataTimeTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="dataTimeTypeText != null and dataTimeTypeText != '' " >
+              #{dataTimeTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="priceTypeCode != null " >
+              #{priceTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="priceTypeText != null and priceTypeText != '' " >
+              #{priceTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="queryType != null and queryType != '' " >
+              #{queryType,jdbcType=VARCHAR},
+          </if>
+          <if test="priceUnitCode != null " >
+              #{priceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="priceUnitText != null and priceUnitText != '' " >
+              #{priceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="menuLevelCode != null " >
+              #{menuLevelCode,jdbcType=TINYINT},
+          </if>
+          <if test="menuLevelText != null and menuLevelText != '' " >
+              #{menuLevelText,jdbcType=VARCHAR},
+          </if>
+          <if test="relationId != null and relationId != '' " >
+              #{relationId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pe_query_menu
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="peQueryMenu" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{peQueryMenu.id,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.fartherId,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.menuName,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.regionId,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.dataTimeTypeCode,jdbcType=TINYINT},
+
+      
+          #{peQueryMenu.dataTimeTypeText,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.strainsCode,jdbcType=TINYINT},
+
+      
+          #{peQueryMenu.strainsText,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.priceTypeCode,jdbcType=TINYINT},
+
+      
+          #{peQueryMenu.priceTypeText,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.queryType,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.priceUnitCode,jdbcType=TINYINT},
+
+      
+          #{peQueryMenu.priceUnitText,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.menuLevelCode,jdbcType=TINYINT},
+
+      
+          #{peQueryMenu.menuLevelText,jdbcType=VARCHAR},
+
+      
+          #{peQueryMenu.relationId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pe_query_menu
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pe_query_menu
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+    update pe_query_menu
+    <set >
+                  <if test="fartherId != null  and fartherId != '' " >
+                     farther_id = #{fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="menuName != null  and menuName != '' " >
+                     menu_name = #{menuName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionId != null  and regionId != '' " >
+                     region_id = #{regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="dataTimeTypeCode != null ">
+                     data_time_type_code = #{dataTimeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="dataTimeTypeText != null  and dataTimeTypeText != '' " >
+                     data_time_type_text = #{dataTimeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priceTypeCode != null ">
+                     price_type_code = #{priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="priceTypeText != null  and priceTypeText != '' " >
+                     price_type_text = #{priceTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="queryType != null  and queryType != '' " >
+                     query_type = #{queryType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priceUnitCode != null ">
+                     price_unit_code = #{priceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="priceUnitText != null  and priceUnitText != '' " >
+                     price_unit_text = #{priceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="menuLevelCode != null ">
+                     menu_level_code = #{menuLevelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="menuLevelText != null  and menuLevelText != '' " >
+                     menu_level_text = #{menuLevelText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="relationId != null  and relationId != '' " >
+                     relation_id = #{relationId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update pe_query_menu
+    <set >
+                  <if test="t.fartherId != null  and t.fartherId != '' " >
+                     farther_id = #{t.fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.menuName != null  and t.menuName != '' " >
+                     menu_name = #{t.menuName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionId != null  and t.regionId != '' " >
+                     region_id = #{t.regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.dataTimeTypeCode != null ">
+                     data_time_type_code = #{t.dataTimeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.dataTimeTypeText != null  and t.dataTimeTypeText != '' " >
+                     data_time_type_text = #{t.dataTimeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceTypeCode != null ">
+                     price_type_code = #{t.priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceTypeText != null  and t.priceTypeText != '' " >
+                     price_type_text = #{t.priceTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.queryType != null  and t.queryType != '' " >
+                     query_type = #{t.queryType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceUnitCode != null ">
+                     price_unit_code = #{t.priceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceUnitText != null  and t.priceUnitText != '' " >
+                     price_unit_text = #{t.priceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.menuLevelCode != null ">
+                     menu_level_code = #{t.menuLevelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.menuLevelText != null  and t.menuLevelText != '' " >
+                     menu_level_text = #{t.menuLevelText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.relationId != null  and t.relationId != '' " >
+                     relation_id = #{t.relationId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update pe_query_menu
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="farther_id =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.fartherId != null and peQueryMenu.fartherId  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.fartherId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="menu_name =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.menuName != null and peQueryMenu.menuName  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.menuName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="region_id =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.regionId != null and peQueryMenu.regionId  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.regionId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="data_time_type_code =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.dataTimeTypeCode != null " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.dataTimeTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="data_time_type_text =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.dataTimeTypeText != null and peQueryMenu.dataTimeTypeText  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.dataTimeTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_code =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.strainsCode != null " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.strainsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_text =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.strainsText != null and peQueryMenu.strainsText  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.strainsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_type_code =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.priceTypeCode != null " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.priceTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_type_text =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.priceTypeText != null and peQueryMenu.priceTypeText  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.priceTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="query_type =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.queryType != null and peQueryMenu.queryType  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.queryType,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.priceUnitCode != null " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.priceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.priceUnitText != null and peQueryMenu.priceUnitText  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.priceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="menu_level_code =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.menuLevelCode != null " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.menuLevelCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="menu_level_text =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.menuLevelText != null and peQueryMenu.menuLevelText  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.menuLevelText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="relation_id =case" suffix="end,">
+              <foreach collection="list" item="peQueryMenu" index="index">
+                  <if test="peQueryMenu.relationId != null and peQueryMenu.relationId  != '' " >
+                     when id=#{peQueryMenu.id} then #{peQueryMenu.relationId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{peQueryMenu.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into pe_query_menu
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="fartherId  != null and fartherId  != '' " >
+              farther_id,
+          </if>
+          <if test="menuName  != null and menuName  != '' " >
+              menu_name,
+          </if>
+          <if test="regionId  != null and regionId  != '' " >
+              region_id,
+          </if>
+          <if test="dataTimeTypeCode  != null " >
+              data_time_type_code,
+          </if>
+          <if test="dataTimeTypeText  != null and dataTimeTypeText  != '' " >
+              data_time_type_text,
+          </if>
+          <if test="strainsCode  != null " >
+              strains_code,
+          </if>
+          <if test="strainsText  != null and strainsText  != '' " >
+              strains_text,
+          </if>
+          <if test="priceTypeCode  != null " >
+              price_type_code,
+          </if>
+          <if test="priceTypeText  != null and priceTypeText  != '' " >
+              price_type_text,
+          </if>
+          <if test="queryType  != null and queryType  != '' " >
+              query_type,
+          </if>
+          <if test="priceUnitCode  != null " >
+              price_unit_code,
+          </if>
+          <if test="priceUnitText  != null and priceUnitText  != '' " >
+              price_unit_text,
+          </if>
+          <if test="menuLevelCode  != null " >
+              menu_level_code,
+          </if>
+          <if test="menuLevelText  != null and menuLevelText  != '' " >
+              menu_level_text,
+          </if>
+          <if test="relationId  != null and relationId  != '' " >
+              relation_id,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="peQueryMenu" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{peQueryMenu.id ,jdbcType=VARCHAR},
+                  <if test="t.fartherId  != null  and t.fartherId != '' " >
+                     #{peQueryMenu.fartherId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.menuName  != null  and t.menuName != '' " >
+                     #{peQueryMenu.menuName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionId  != null  and t.regionId != '' " >
+                     #{peQueryMenu.regionId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.dataTimeTypeCode != null ">
+                    #{peQueryMenu.dataTimeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.dataTimeTypeText  != null  and t.dataTimeTypeText != '' " >
+                     #{peQueryMenu.dataTimeTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                    #{peQueryMenu.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+                     #{peQueryMenu.strainsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceTypeCode != null ">
+                    #{peQueryMenu.priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceTypeText  != null  and t.priceTypeText != '' " >
+                     #{peQueryMenu.priceTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.queryType  != null  and t.queryType != '' " >
+                     #{peQueryMenu.queryType ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceUnitCode != null ">
+                    #{peQueryMenu.priceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceUnitText  != null  and t.priceUnitText != '' " >
+                     #{peQueryMenu.priceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.menuLevelCode != null ">
+                    #{peQueryMenu.menuLevelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.menuLevelText  != null  and t.menuLevelText != '' " >
+                     #{peQueryMenu.menuLevelText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.relationId  != null  and t.relationId != '' " >
+                     #{peQueryMenu.relationId ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pe_query_menu
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pe_query_menu where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.dataTimeTypeCode != null">
+				and data_time_type_code = #{EntityRelated.dataTimeTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.dataTimeTypeText != null and EntityRelated.dataTimeTypeText != '' ">
+ 				and  data_time_type_text LIKE CONCAT('%',#{EntityRelated.dataTimeTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fartherId != null and EntityRelated.fartherId != '' ">
+				and farther_id = #{EntityRelated.fartherId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.menuLevelCode != null">
+				and menu_level_code = #{EntityRelated.menuLevelCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.menuLevelText != null and EntityRelated.menuLevelText != '' ">
+ 				and  menu_level_text LIKE CONCAT('%',#{EntityRelated.menuLevelText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.menuName != null and EntityRelated.menuName != '' ">
+ 				and  menu_name LIKE CONCAT('%',#{EntityRelated.menuName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.priceTypeCode != null">
+				and price_type_code = #{EntityRelated.priceTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.priceTypeText != null and EntityRelated.priceTypeText != '' ">
+ 				and  price_type_text LIKE CONCAT('%',#{EntityRelated.priceTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.priceUnitCode != null">
+				and price_unit_code = #{EntityRelated.priceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.priceUnitText != null and EntityRelated.priceUnitText != '' ">
+ 				and  price_unit_text LIKE CONCAT('%',#{EntityRelated.priceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.queryType != null and EntityRelated.queryType != '' ">
+ 				and  query_type LIKE CONCAT('%',#{EntityRelated.queryType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.regionId != null and EntityRelated.regionId != '' ">
+				and region_id = #{EntityRelated.regionId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.relationId != null and EntityRelated.relationId != '' ">
+				and relation_id = #{EntityRelated.relationId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

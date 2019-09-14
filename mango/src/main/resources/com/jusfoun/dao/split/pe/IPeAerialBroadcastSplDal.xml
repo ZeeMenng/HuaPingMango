@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.pe.IPeAerialBroadcastSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+              <result column="title" property="title" jdbcType="VARCHAR" />
+              <result column="contet" property="contet" jdbcType="VARCHAR" />
+              <result column="page_view" property="pageView" jdbcType="INTEGER" />
+              <result column="activity" property="activity" jdbcType="INTEGER" />
+              <result column="small_resource_id" property="smallResourceId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,resource_id,title,contet,page_view,activity,small_resource_id
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+    insert into pe_aerial_broadcast
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="resourceId != null and resourceId != '' " >
+              resource_id,
+          </if>
+      
+          <if test="title != null and title != '' " >
+              title,
+          </if>
+      
+          <if test="contet != null and contet != '' " >
+              contet,
+          </if>
+      
+          <if test="pageView != null " >
+              page_view,
+          </if>
+          <if test="activity != null " >
+              activity,
+          </if>
+          <if test="smallResourceId != null and smallResourceId != '' " >
+              small_resource_id,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="resourceId != null and resourceId != '' " >
+              #{resourceId,jdbcType=VARCHAR},
+          </if>
+          <if test="title != null and title != '' " >
+              #{title,jdbcType=VARCHAR},
+          </if>
+          <if test="contet != null and contet != '' " >
+              #{contet,jdbcType=VARCHAR},
+          </if>
+          <if test="pageView != null " >
+              #{pageView,jdbcType=INTEGER},
+          </if>
+          <if test="activity != null " >
+              #{activity,jdbcType=INTEGER},
+          </if>
+          <if test="smallResourceId != null and smallResourceId != '' " >
+              #{smallResourceId,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into pe_aerial_broadcast
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="peAerialBroadcast" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{peAerialBroadcast.id,jdbcType=VARCHAR},
+
+      
+          #{peAerialBroadcast.resourceId,jdbcType=VARCHAR},
+
+      
+          #{peAerialBroadcast.title,jdbcType=VARCHAR},
+
+      
+          #{peAerialBroadcast.contet,jdbcType=VARCHAR},
+
+      
+          #{peAerialBroadcast.pageView,jdbcType=INTEGER},
+
+      
+          #{peAerialBroadcast.activity,jdbcType=INTEGER},
+
+      
+          #{peAerialBroadcast.smallResourceId,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from pe_aerial_broadcast
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from pe_aerial_broadcast
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+    update pe_aerial_broadcast
+    <set >
+                  <if test="resourceId != null  and resourceId != '' " >
+                     resource_id = #{resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="title != null  and title != '' " >
+                     title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contet != null  and contet != '' " >
+                     contet = #{contet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="pageView != null ">
+                     page_view = #{pageView,jdbcType=INTEGER},
+                  </if>
+                  <if test="activity != null ">
+                     activity = #{activity,jdbcType=INTEGER},
+                  </if>
+                  <if test="smallResourceId != null  and smallResourceId != '' " >
+                     small_resource_id = #{smallResourceId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update pe_aerial_broadcast
+    <set >
+                  <if test="t.resourceId != null  and t.resourceId != '' " >
+                     resource_id = #{t.resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.title != null  and t.title != '' " >
+                     title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contet != null  and t.contet != '' " >
+                     contet = #{t.contet,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.pageView != null ">
+                     page_view = #{t.pageView,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.activity != null ">
+                     activity = #{t.activity,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.smallResourceId != null  and t.smallResourceId != '' " >
+                     small_resource_id = #{t.smallResourceId,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from pe_aerial_broadcast
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from pe_aerial_broadcast where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.contet != null and EntityRelated.contet != '' ">
+ 				and  contet LIKE CONCAT('%',#{EntityRelated.contet,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.resourceId != null and EntityRelated.resourceId != '' ">
+				and resource_id = #{EntityRelated.resourceId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.smallResourceId != null and EntityRelated.smallResourceId != '' ">
+				and small_resource_id = #{EntityRelated.smallResourceId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.title != null and EntityRelated.title != '' ">
+ 				and  title LIKE CONCAT('%',#{EntityRelated.title,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

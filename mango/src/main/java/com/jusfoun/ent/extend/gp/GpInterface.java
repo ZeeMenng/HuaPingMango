@@ -1,0 +1,47 @@
+package com.jusfoun.ent.extend.gp;
+
+import com.jusfoun.ent.generate.gp.GpInterfaceGenEnt;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * @author Zee
+ * @createDate 2017/05/19 15:34:09
+ * @updateDate 2017/12/15 23:42:00
+ * @description 扩展自实体类GpInterfaceGenEnt，可手动更改。系统接口。
+ */
+
+@ApiModel(value = "GpInterface", description = "系统接口。")
+public class GpInterface extends GpInterfaceGenEnt {
+  
+	@ApiModelProperty(value="应用领域",hidden=false,required=false)
+    private String domainName;
+	
+	@ApiModelProperty(value="是否为公共接口",hidden=false,required=false)
+    private String isPublicValue;
+
+	public String getDomainName() {
+		return domainName;
+	}
+
+	public void setDomainName(String domainName) {
+		this.domainName = domainName;
+	}
+
+	public String getIsPublicValue() {
+		return isPublicValue;
+	}
+
+	public void setIsPublicValue(String isPublicValue) {
+		this.isPublicValue = isPublicValue;
+	}
+	
+}
+
+
+
+
+
+
+

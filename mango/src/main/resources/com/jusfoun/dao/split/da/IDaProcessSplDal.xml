@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaProcessSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaProcess" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="process_strains_code" property="processStrainsCode" jdbcType="TINYINT" />
+              <result column="process_strains_text" property="processStrainsText" jdbcType="VARCHAR" />
+              <result column="product_name" property="productName" jdbcType="VARCHAR" />
+              <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
+              <result column="output_value" property="outputValue" jdbcType="NUMERIC" />
+              <result column="output_value_code" property="outputValueCode" jdbcType="TINYINT" />
+              <result column="output_value_text" property="outputValueText" jdbcType="VARCHAR" />
+              <result column="output_value_unit" property="outputValueUnit" jdbcType="NUMERIC" />
+              <result column="consume_total" property="consumeTotal" jdbcType="NUMERIC" />
+              <result column="consume_total_code" property="consumeTotalCode" jdbcType="TINYINT" />
+              <result column="consume_total_text" property="consumeTotalText" jdbcType="VARCHAR" />
+              <result column="consume_total_unit" property="consumeTotalUnit" jdbcType="NUMERIC" />
+              <result column="product_total" property="productTotal" jdbcType="NUMERIC" />
+              <result column="product_total_code" property="productTotalCode" jdbcType="TINYINT" />
+              <result column="product_total_text" property="productTotalText" jdbcType="VARCHAR" />
+              <result column="product_total_unit" property="productTotalUnit" jdbcType="NUMERIC" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,crop_type_code,crop_type_text,process_strains_code,process_strains_text,product_name,process_time,output_value,output_value_code,output_value_text,output_value_unit,consume_total,consume_total_code,consume_total_text,consume_total_unit,product_total,product_total_code,product_total_text,product_total_unit,name
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+    insert into da_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="processStrainsCode != null " >
+              process_strains_code,
+          </if>
+          <if test="processStrainsText != null and processStrainsText != '' " >
+              process_strains_text,
+          </if>
+      
+          <if test="productName != null and productName != '' " >
+              product_name,
+          </if>
+      
+          <if test="processTime != null " >
+              process_time,
+          </if>
+          <if test="outputValue != null " >
+              output_value,
+          </if>
+          <if test="outputValueCode != null " >
+              output_value_code,
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              output_value_text,
+          </if>
+      
+          <if test="outputValueUnit != null " >
+              output_value_unit,
+          </if>
+          <if test="consumeTotal != null " >
+              consume_total,
+          </if>
+          <if test="consumeTotalCode != null " >
+              consume_total_code,
+          </if>
+          <if test="consumeTotalText != null and consumeTotalText != '' " >
+              consume_total_text,
+          </if>
+      
+          <if test="consumeTotalUnit != null " >
+              consume_total_unit,
+          </if>
+          <if test="productTotal != null " >
+              product_total,
+          </if>
+          <if test="productTotalCode != null " >
+              product_total_code,
+          </if>
+          <if test="productTotalText != null and productTotalText != '' " >
+              product_total_text,
+          </if>
+      
+          <if test="productTotalUnit != null " >
+              product_total_unit,
+          </if>
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="processStrainsCode != null " >
+              #{processStrainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="processStrainsText != null and processStrainsText != '' " >
+              #{processStrainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="productName != null and productName != '' " >
+              #{productName,jdbcType=VARCHAR},
+          </if>
+          <if test="processTime != null " >
+              #{processTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="outputValue != null " >
+              #{outputValue,jdbcType=NUMERIC},
+          </if>
+          <if test="outputValueCode != null " >
+              #{outputValueCode,jdbcType=TINYINT},
+          </if>
+          <if test="outputValueText != null and outputValueText != '' " >
+              #{outputValueText,jdbcType=VARCHAR},
+          </if>
+          <if test="outputValueUnit != null " >
+              #{outputValueUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="consumeTotal != null " >
+              #{consumeTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="consumeTotalCode != null " >
+              #{consumeTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="consumeTotalText != null and consumeTotalText != '' " >
+              #{consumeTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="consumeTotalUnit != null " >
+              #{consumeTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="productTotal != null " >
+              #{productTotal,jdbcType=NUMERIC},
+          </if>
+          <if test="productTotalCode != null " >
+              #{productTotalCode,jdbcType=TINYINT},
+          </if>
+          <if test="productTotalText != null and productTotalText != '' " >
+              #{productTotalText,jdbcType=VARCHAR},
+          </if>
+          <if test="productTotalUnit != null " >
+              #{productTotalUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_process
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daProcess" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daProcess.id,jdbcType=VARCHAR},
+
+      
+          #{daProcess.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daProcess.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daProcess.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daProcess.processStrainsCode,jdbcType=TINYINT},
+
+      
+          #{daProcess.processStrainsText,jdbcType=VARCHAR},
+
+      
+          #{daProcess.productName,jdbcType=VARCHAR},
+
+      
+          #{daProcess.processTime,jdbcType=TIMESTAMP},
+
+      
+          #{daProcess.outputValue,jdbcType=NUMERIC},
+
+      
+          #{daProcess.outputValueCode,jdbcType=TINYINT},
+
+      
+          #{daProcess.outputValueText,jdbcType=VARCHAR},
+
+      
+          #{daProcess.outputValueUnit,jdbcType=NUMERIC},
+
+      
+          #{daProcess.consumeTotal,jdbcType=NUMERIC},
+
+      
+          #{daProcess.consumeTotalCode,jdbcType=TINYINT},
+
+      
+          #{daProcess.consumeTotalText,jdbcType=VARCHAR},
+
+      
+          #{daProcess.consumeTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daProcess.productTotal,jdbcType=NUMERIC},
+
+      
+          #{daProcess.productTotalCode,jdbcType=TINYINT},
+
+      
+          #{daProcess.productTotalText,jdbcType=VARCHAR},
+
+      
+          #{daProcess.productTotalUnit,jdbcType=NUMERIC},
+
+      
+          #{daProcess.name,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_process
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_process
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+    update da_process
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="processStrainsCode != null ">
+                     process_strains_code = #{processStrainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="processStrainsText != null  and processStrainsText != '' " >
+                     process_strains_text = #{processStrainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productName != null  and productName != '' " >
+                     product_name = #{productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="processTime != null ">
+                     process_time = #{processTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="outputValue != null ">
+                     output_value = #{outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="outputValueCode != null ">
+                     output_value_code = #{outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="outputValueText != null  and outputValueText != '' " >
+                     output_value_text = #{outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="outputValueUnit != null ">
+                     output_value_unit = #{outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="consumeTotal != null ">
+                     consume_total = #{consumeTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="consumeTotalCode != null ">
+                     consume_total_code = #{consumeTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="consumeTotalText != null  and consumeTotalText != '' " >
+                     consume_total_text = #{consumeTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="consumeTotalUnit != null ">
+                     consume_total_unit = #{consumeTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="productTotal != null ">
+                     product_total = #{productTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="productTotalCode != null ">
+                     product_total_code = #{productTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="productTotalText != null  and productTotalText != '' " >
+                     product_total_text = #{productTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="productTotalUnit != null ">
+                     product_total_unit = #{productTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_process
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.processStrainsCode != null ">
+                     process_strains_code = #{t.processStrainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.processStrainsText != null  and t.processStrainsText != '' " >
+                     process_strains_text = #{t.processStrainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productName != null  and t.productName != '' " >
+                     product_name = #{t.productName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.processTime != null ">
+                     process_time = #{t.processTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.outputValue != null ">
+                     output_value = #{t.outputValue,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.outputValueCode != null ">
+                     output_value_code = #{t.outputValueCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.outputValueText != null  and t.outputValueText != '' " >
+                     output_value_text = #{t.outputValueText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.outputValueUnit != null ">
+                     output_value_unit = #{t.outputValueUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.consumeTotal != null ">
+                     consume_total = #{t.consumeTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.consumeTotalCode != null ">
+                     consume_total_code = #{t.consumeTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.consumeTotalText != null  and t.consumeTotalText != '' " >
+                     consume_total_text = #{t.consumeTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.consumeTotalUnit != null ">
+                     consume_total_unit = #{t.consumeTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotal != null ">
+                     product_total = #{t.productTotal,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.productTotalCode != null ">
+                     product_total_code = #{t.productTotalCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.productTotalText != null  and t.productTotalText != '' " >
+                     product_total_text = #{t.productTotalText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.productTotalUnit != null ">
+                     product_total_unit = #{t.productTotalUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_process
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_process where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.consumeTotalCode != null">
+				and consume_total_code = #{EntityRelated.consumeTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.consumeTotalText != null and EntityRelated.consumeTotalText != '' ">
+ 				and  consume_total_text LIKE CONCAT('%',#{EntityRelated.consumeTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.outputValueCode != null">
+				and output_value_code = #{EntityRelated.outputValueCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.outputValueText != null and EntityRelated.outputValueText != '' ">
+ 				and  output_value_text LIKE CONCAT('%',#{EntityRelated.outputValueText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.processStrainsCode != null">
+				and process_strains_code = #{EntityRelated.processStrainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.processStrainsText != null and EntityRelated.processStrainsText != '' ">
+ 				and  process_strains_text LIKE CONCAT('%',#{EntityRelated.processStrainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginProcessTime != null ">
+				<![CDATA[ AND  unix_timestamp(process_time)>=unix_timestamp(#{EntityRelated.beginProcessTime})]]> 
+		</if>
+		<if test="EntityRelated.endProcessTime != null ">
+				<![CDATA[ AND  unix_timestamp(process_time)<unix_timestamp(#{EntityRelated.endProcessTime})]]> 
+		</if>
+		<if test="EntityRelated.productName != null and EntityRelated.productName != '' ">
+ 				and  product_name LIKE CONCAT('%',#{EntityRelated.productName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.productTotalCode != null">
+				and product_total_code = #{EntityRelated.productTotalCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.productTotalText != null and EntityRelated.productTotalText != '' ">
+ 				and  product_total_text LIKE CONCAT('%',#{EntityRelated.productTotalText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

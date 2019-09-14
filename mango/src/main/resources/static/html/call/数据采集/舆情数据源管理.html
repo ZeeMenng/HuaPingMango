@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+</head>
+<body>
+	<div id="myDiv">
+		<h2>测试</h2>
+	</div>
+	<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var interfaces = "http://127.0.0.1:60011/mango";
+  $("#btn_call").click(function(){
+	  //使用swagger:    http://192.168.200.193:8081/mango/swagger-ui.html#/
+		//var DI_QUOTA_DATA_STATUS_TYPE = f7b936b246dc0ead6ea88dc7b0d24501;//状态类型
+		//var DI_MEDIA_TYPE = ac1a2895f794a09f8e2be365b4f7b9e7;//媒体类型
+		
+		通用字典 : interfaces + "/extend/swagger/gp/gpDictionary/getListByTypeId/" +DI_MEDIA_TYPE,
+		
+		// /extend/swagger/da/daSentimentSource/add    新增记录
+		{
+		  "mediaTypeCode": 0,
+		  "mediaTypeText": "string",
+		  "remark": "string",
+		  "statusCode": 0,
+		  "statusText": "string",
+		  "threadStarter": "string",
+		  "website": "string"
+		}
+	  
+  // /extend/swagger/da/daSentimentSource/update   修改记录
+	  {
+		  "id": "string",
+		  "mediaTypeCode": 0,
+		  "mediaTypeText": "string",
+		  "remark": "string",
+		  "statusCode": 0,
+		  "statusText": "string",
+		  "threadStarter": "string",
+		  "website": "string"
+		}
+	  
+	  
+	  //  /extend/swagger/da/daSentimentSource/delete/{id}   删除记录
+	  
+	  
+	//查询
+	var ajaxParam = {
+				url : interfaces + "/extend/swagger/da/daSentimentSource/getListByJsonData",
+				submitData : {
+					"entityRelated" : {
+						"threadStarter" : "百度",
+						"mediaTypeCode" : "0"
+					},
+					"orderList" : [ {
+						"columnName" : "addTime",
+						"isASC" : false
+					} ],
+					"page" : {
+						"pageIndex" : 1,
+						"pageSize" : 10
+					}
+				}
+			};
+	var submitDataString = JSON.stringify(ajaxParam.submitData);
+	  //Ajax调用处理
+	var html = $.ajax({
+         type: "GET",
+         url: ajaxParam.url,
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         data:  "jsonData="+submitDataString,
+         async: false,
+		 headers: {
+        },
+		success : function(result) {
+					if (result.isSuccess) {//先判断成功，然后获取里面的data数据
+// 						alert(result.data);
+						return result.data;
+					}
+		}
+      }).responseText;
+      $("#myDiv").html('<h2>'+html+'</h2>');
+  });
+});
+</script>
+</html>

@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaSalePeasantUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSalePeasant" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="trade_amount" property="tradeAmount" jdbcType="NUMERIC" />
+              <result column="trade_amount_unit_code" property="tradeAmountUnitCode" jdbcType="TINYINT" />
+              <result column="trade_amount_unit_text" property="tradeAmountUnitText" jdbcType="VARCHAR" />
+              <result column="trade_amount_unit" property="tradeAmountUnit" jdbcType="NUMERIC" />
+              <result column="trade_volume" property="tradeVolume" jdbcType="NUMERIC" />
+              <result column="trade_volume_unit_code" property="tradeVolumeUnitCode" jdbcType="TINYINT" />
+              <result column="trade_volume_unit_text" property="tradeVolumeUnitText" jdbcType="VARCHAR" />
+              <result column="trade_volume_unit" property="tradeVolumeUnit" jdbcType="NUMERIC" />
+              <result column="unit_price" property="unitPrice" jdbcType="NUMERIC" />
+              <result column="per_price_unit_code" property="perPriceUnitCode" jdbcType="TINYINT" />
+              <result column="per_price_unit_text" property="perPriceUnitText" jdbcType="VARCHAR" />
+              <result column="per_price_unit" property="perPriceUnit" jdbcType="NUMERIC" />
+              <result column="sale_region_code" property="saleRegionCode" jdbcType="TINYINT" />
+              <result column="sale_region_text" property="saleRegionText" jdbcType="VARCHAR" />
+              <result column="sale_area_code" property="saleAreaCode" jdbcType="TINYINT" />
+              <result column="sale_area_text" property="saleAreaText" jdbcType="VARCHAR" />
+              <result column="sale" property="sale" jdbcType="VARCHAR" />
+              <result column="trade_time" property="tradeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,trade_amount,trade_amount_unit_code,trade_amount_unit_text,trade_amount_unit,trade_volume,trade_volume_unit_code,trade_volume_unit_text,trade_volume_unit,unit_price,per_price_unit_code,per_price_unit_text,per_price_unit,sale_region_code,sale_region_text,sale_area_code,sale_area_text,sale,trade_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSalePeasant" >
+    insert into da_sale_peasant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="tradeAmount != null " >
+              trade_amount,
+          </if>
+          <if test="tradeAmountUnitCode != null " >
+              trade_amount_unit_code,
+          </if>
+          <if test="tradeAmountUnitText != null and tradeAmountUnitText != '' " >
+              trade_amount_unit_text,
+          </if>
+      
+          <if test="tradeAmountUnit != null " >
+              trade_amount_unit,
+          </if>
+          <if test="tradeVolume != null " >
+              trade_volume,
+          </if>
+          <if test="tradeVolumeUnitCode != null " >
+              trade_volume_unit_code,
+          </if>
+          <if test="tradeVolumeUnitText != null and tradeVolumeUnitText != '' " >
+              trade_volume_unit_text,
+          </if>
+      
+          <if test="tradeVolumeUnit != null " >
+              trade_volume_unit,
+          </if>
+          <if test="unitPrice != null " >
+              unit_price,
+          </if>
+          <if test="perPriceUnitCode != null " >
+              per_price_unit_code,
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              per_price_unit_text,
+          </if>
+      
+          <if test="perPriceUnit != null " >
+              per_price_unit,
+          </if>
+          <if test="saleRegionCode != null " >
+              sale_region_code,
+          </if>
+          <if test="saleRegionText != null and saleRegionText != '' " >
+              sale_region_text,
+          </if>
+      
+          <if test="saleAreaCode != null " >
+              sale_area_code,
+          </if>
+          <if test="saleAreaText != null and saleAreaText != '' " >
+              sale_area_text,
+          </if>
+      
+          <if test="sale != null and sale != '' " >
+              sale,
+          </if>
+      
+          <if test="tradeTime != null " >
+              trade_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="tradeAmount != null " >
+              #{tradeAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="tradeAmountUnitCode != null " >
+              #{tradeAmountUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="tradeAmountUnitText != null and tradeAmountUnitText != '' " >
+              #{tradeAmountUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="tradeAmountUnit != null " >
+              #{tradeAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="tradeVolume != null " >
+              #{tradeVolume,jdbcType=NUMERIC},
+          </if>
+          <if test="tradeVolumeUnitCode != null " >
+              #{tradeVolumeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="tradeVolumeUnitText != null and tradeVolumeUnitText != '' " >
+              #{tradeVolumeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="tradeVolumeUnit != null " >
+              #{tradeVolumeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="unitPrice != null " >
+              #{unitPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="perPriceUnitCode != null " >
+              #{perPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              #{perPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="perPriceUnit != null " >
+              #{perPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="saleRegionCode != null " >
+              #{saleRegionCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleRegionText != null and saleRegionText != '' " >
+              #{saleRegionText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAreaCode != null " >
+              #{saleAreaCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleAreaText != null and saleAreaText != '' " >
+              #{saleAreaText,jdbcType=VARCHAR},
+          </if>
+          <if test="sale != null and sale != '' " >
+              #{sale,jdbcType=VARCHAR},
+          </if>
+          <if test="tradeTime != null " >
+              #{tradeTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sale_peasant
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSalePeasant" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSalePeasant.id,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.name,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.tradeAmount,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.tradeAmountUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.tradeAmountUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.tradeAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.tradeVolume,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.tradeVolumeUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.tradeVolumeUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.tradeVolumeUnit,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.unitPrice,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.perPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.perPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.perPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daSalePeasant.saleRegionCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.saleRegionText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.saleAreaCode,jdbcType=TINYINT},
+
+      
+          #{daSalePeasant.saleAreaText,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.sale,jdbcType=VARCHAR},
+
+      
+          #{daSalePeasant.tradeTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sale_peasant
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sale_peasant
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSalePeasant" >
+    update da_sale_peasant
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradeAmount != null ">
+                     trade_amount = #{tradeAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="tradeAmountUnitCode != null ">
+                     trade_amount_unit_code = #{tradeAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="tradeAmountUnitText != null  and tradeAmountUnitText != '' " >
+                     trade_amount_unit_text = #{tradeAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradeAmountUnit != null ">
+                     trade_amount_unit = #{tradeAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="tradeVolume != null ">
+                     trade_volume = #{tradeVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="tradeVolumeUnitCode != null ">
+                     trade_volume_unit_code = #{tradeVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="tradeVolumeUnitText != null  and tradeVolumeUnitText != '' " >
+                     trade_volume_unit_text = #{tradeVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradeVolumeUnit != null ">
+                     trade_volume_unit = #{tradeVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="unitPrice != null ">
+                     unit_price = #{unitPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perPriceUnitCode != null ">
+                     per_price_unit_code = #{perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="perPriceUnitText != null  and perPriceUnitText != '' " >
+                     per_price_unit_text = #{perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="perPriceUnit != null ">
+                     per_price_unit = #{perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleRegionCode != null ">
+                     sale_region_code = #{saleRegionCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleRegionText != null  and saleRegionText != '' " >
+                     sale_region_text = #{saleRegionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAreaCode != null ">
+                     sale_area_code = #{saleAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleAreaText != null  and saleAreaText != '' " >
+                     sale_area_text = #{saleAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sale != null  and sale != '' " >
+                     sale = #{sale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradeTime != null ">
+                     trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_sale_peasant
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeAmount != null ">
+                     trade_amount = #{t.tradeAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeAmountUnitCode != null ">
+                     trade_amount_unit_code = #{t.tradeAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradeAmountUnitText != null  and t.tradeAmountUnitText != '' " >
+                     trade_amount_unit_text = #{t.tradeAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeAmountUnit != null ">
+                     trade_amount_unit = #{t.tradeAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeVolume != null ">
+                     trade_volume = #{t.tradeVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeVolumeUnitCode != null ">
+                     trade_volume_unit_code = #{t.tradeVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradeVolumeUnitText != null  and t.tradeVolumeUnitText != '' " >
+                     trade_volume_unit_text = #{t.tradeVolumeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeVolumeUnit != null ">
+                     trade_volume_unit = #{t.tradeVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.unitPrice != null ">
+                     unit_price = #{t.unitPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPriceUnitCode != null ">
+                     per_price_unit_code = #{t.perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perPriceUnitText != null  and t.perPriceUnitText != '' " >
+                     per_price_unit_text = #{t.perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPriceUnit != null ">
+                     per_price_unit = #{t.perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleRegionCode != null ">
+                     sale_region_code = #{t.saleRegionCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleRegionText != null  and t.saleRegionText != '' " >
+                     sale_region_text = #{t.saleRegionText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAreaCode != null ">
+                     sale_area_code = #{t.saleAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleAreaText != null  and t.saleAreaText != '' " >
+                     sale_area_text = #{t.saleAreaText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sale != null  and t.sale != '' " >
+                     sale = #{t.sale,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeTime != null ">
+                     trade_time = #{t.tradeTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_sale_peasant
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.commonFieldId != null and daSalePeasant.commonFieldId  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.name != null and daSalePeasant.name  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.cropTypeCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.cropTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.cropTypeText != null and daSalePeasant.cropTypeText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.cropTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.strainsCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.strainsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.strainsText != null and daSalePeasant.strainsText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.strainsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_amount =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeAmount != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeAmount,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_amount_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeAmountUnitCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeAmountUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_amount_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeAmountUnitText != null and daSalePeasant.tradeAmountUnitText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeAmountUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_amount_unit =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeAmountUnit != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeAmountUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_volume =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeVolume != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeVolume,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_volume_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeVolumeUnitCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeVolumeUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_volume_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeVolumeUnitText != null and daSalePeasant.tradeVolumeUnitText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeVolumeUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_volume_unit =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeVolumeUnit != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeVolumeUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="unit_price =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.unitPrice != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.unitPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.perPriceUnitCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.perPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.perPriceUnitText != null and daSalePeasant.perPriceUnitText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.perPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.perPriceUnit != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.perPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_region_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.saleRegionCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.saleRegionCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_region_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.saleRegionText != null and daSalePeasant.saleRegionText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.saleRegionText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_area_code =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.saleAreaCode != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.saleAreaCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale_area_text =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.saleAreaText != null and daSalePeasant.saleAreaText  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.saleAreaText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="sale =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.sale != null and daSalePeasant.sale  != '' " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.sale,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_time =case" suffix="end,">
+              <foreach collection="list" item="daSalePeasant" index="index">
+                  <if test="daSalePeasant.tradeTime != null " >
+                     when id=#{daSalePeasant.id} then #{daSalePeasant.tradeTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daSalePeasant.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_sale_peasant
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="cropTypeCode  != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText  != null and cropTypeText  != '' " >
+              crop_type_text,
+          </if>
+          <if test="strainsCode  != null " >
+              strains_code,
+          </if>
+          <if test="strainsText  != null and strainsText  != '' " >
+              strains_text,
+          </if>
+          <if test="tradeAmount  != null " >
+              trade_amount,
+          </if>
+          <if test="tradeAmountUnitCode  != null " >
+              trade_amount_unit_code,
+          </if>
+          <if test="tradeAmountUnitText  != null and tradeAmountUnitText  != '' " >
+              trade_amount_unit_text,
+          </if>
+          <if test="tradeAmountUnit  != null " >
+              trade_amount_unit,
+          </if>
+          <if test="tradeVolume  != null " >
+              trade_volume,
+          </if>
+          <if test="tradeVolumeUnitCode  != null " >
+              trade_volume_unit_code,
+          </if>
+          <if test="tradeVolumeUnitText  != null and tradeVolumeUnitText  != '' " >
+              trade_volume_unit_text,
+          </if>
+          <if test="tradeVolumeUnit  != null " >
+              trade_volume_unit,
+          </if>
+          <if test="unitPrice  != null " >
+              unit_price,
+          </if>
+          <if test="perPriceUnitCode  != null " >
+              per_price_unit_code,
+          </if>
+          <if test="perPriceUnitText  != null and perPriceUnitText  != '' " >
+              per_price_unit_text,
+          </if>
+          <if test="perPriceUnit  != null " >
+              per_price_unit,
+          </if>
+          <if test="saleRegionCode  != null " >
+              sale_region_code,
+          </if>
+          <if test="saleRegionText  != null and saleRegionText  != '' " >
+              sale_region_text,
+          </if>
+          <if test="saleAreaCode  != null " >
+              sale_area_code,
+          </if>
+          <if test="saleAreaText  != null and saleAreaText  != '' " >
+              sale_area_text,
+          </if>
+          <if test="sale  != null and sale  != '' " >
+              sale,
+          </if>
+          <if test="tradeTime  != null " >
+              trade_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daSalePeasant" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daSalePeasant.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daSalePeasant.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{daSalePeasant.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                    #{daSalePeasant.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+                     #{daSalePeasant.cropTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                    #{daSalePeasant.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+                     #{daSalePeasant.strainsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeAmount != null ">
+                    #{daSalePeasant.tradeAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeAmountUnitCode != null ">
+                    #{daSalePeasant.tradeAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradeAmountUnitText  != null  and t.tradeAmountUnitText != '' " >
+                     #{daSalePeasant.tradeAmountUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeAmountUnit != null ">
+                    #{daSalePeasant.tradeAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeVolume != null ">
+                    #{daSalePeasant.tradeVolume,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradeVolumeUnitCode != null ">
+                    #{daSalePeasant.tradeVolumeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradeVolumeUnitText  != null  and t.tradeVolumeUnitText != '' " >
+                     #{daSalePeasant.tradeVolumeUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeVolumeUnit != null ">
+                    #{daSalePeasant.tradeVolumeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.unitPrice != null ">
+                    #{daSalePeasant.unitPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPriceUnitCode != null ">
+                    #{daSalePeasant.perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perPriceUnitText  != null  and t.perPriceUnitText != '' " >
+                     #{daSalePeasant.perPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPriceUnit != null ">
+                    #{daSalePeasant.perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleRegionCode != null ">
+                    #{daSalePeasant.saleRegionCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleRegionText  != null  and t.saleRegionText != '' " >
+                     #{daSalePeasant.saleRegionText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAreaCode != null ">
+                    #{daSalePeasant.saleAreaCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleAreaText  != null  and t.saleAreaText != '' " >
+                     #{daSalePeasant.saleAreaText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sale  != null  and t.sale != '' " >
+                     #{daSalePeasant.sale ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradeTime != null ">
+                    #{daSalePeasant.tradeTime,jdbcType=TIMESTAMP},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sale_peasant
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sale_peasant where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.perPriceUnitCode != null">
+				and per_price_unit_code = #{EntityRelated.perPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.perPriceUnitText != null and EntityRelated.perPriceUnitText != '' ">
+ 				and  per_price_unit_text LIKE CONCAT('%',#{EntityRelated.perPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sale != null and EntityRelated.sale != '' ">
+ 				and  sale LIKE CONCAT('%',#{EntityRelated.sale,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleAreaCode != null">
+				and sale_area_code = #{EntityRelated.saleAreaCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleAreaText != null and EntityRelated.saleAreaText != '' ">
+ 				and  sale_area_text LIKE CONCAT('%',#{EntityRelated.saleAreaText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleRegionCode != null">
+				and sale_region_code = #{EntityRelated.saleRegionCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleRegionText != null and EntityRelated.saleRegionText != '' ">
+ 				and  sale_region_text LIKE CONCAT('%',#{EntityRelated.saleRegionText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tradeAmountUnitCode != null">
+				and trade_amount_unit_code = #{EntityRelated.tradeAmountUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.tradeAmountUnitText != null and EntityRelated.tradeAmountUnitText != '' ">
+ 				and  trade_amount_unit_text LIKE CONCAT('%',#{EntityRelated.tradeAmountUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginTradeTime != null ">
+				<![CDATA[ AND  unix_timestamp(trade_time)>=unix_timestamp(#{EntityRelated.beginTradeTime})]]> 
+		</if>
+		<if test="EntityRelated.endTradeTime != null ">
+				<![CDATA[ AND  unix_timestamp(trade_time)<unix_timestamp(#{EntityRelated.endTradeTime})]]> 
+		</if>
+		<if test="EntityRelated.tradeVolumeUnitCode != null">
+				and trade_volume_unit_code = #{EntityRelated.tradeVolumeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.tradeVolumeUnitText != null and EntityRelated.tradeVolumeUnitText != '' ">
+ 				and  trade_volume_unit_text LIKE CONCAT('%',#{EntityRelated.tradeVolumeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

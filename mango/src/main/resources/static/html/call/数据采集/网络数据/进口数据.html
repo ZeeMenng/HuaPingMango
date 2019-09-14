@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+</head>
+<body>
+	<div id="myDiv">
+		<h2>测试</h2>
+	</div>
+	<button id="btn_call" type="button">提交数据</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn_call').click(function(){
+		list();
+	});
+});
+
+function list()  {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/getListByJsonDatas",
+		submitData : {
+			"entityRelated" : {
+				"year" : "2016",//年度
+				"dataTimeTypeCode" : "1",
+				"regionId" : "031000000",
+				"flag" : "2",//进口标识
+				"importCountryText" : "泰国",//进口国家
+				"importAmountUnitE" : "50",//进口量下線
+				"importAmountUnitS" : "0"//进口量上線
+			},
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			},
+			"orderList" : [
+               {
+            	   "columnName" : "B.start_time",
+            	   "isASC" : false
+               }
+			],
+		}
+	};
+	var submitDataString = JSON
+			.stringify(ajaxParam.submitData);
+	var html = $
+			.ajax({
+				type : "GET",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : "jsonData="
+						+ submitDataString,
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+			
+function audit() {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/audit",
+		submitData : {
+			"entity" : {
+				"daCommonField" : {
+					"auditerSuggestion":"",//审核意见
+					"auditStatusCode":"2",//审核编码 0：待审核，1:审核通过，2：审核不通过'
+					"auditStatusText":"审核不通过"//审核文本 0：待审核，1:审核通过，2：审核不通过'
+				}
+			},
+			"idList":[
+		          "0006debd8c154bbca3dfa5260ad722e9"//需要审核的主键
+			 ]
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+function select() {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/getModel",
+		submitData : {
+			"id" : "a47b370e43b241cca8484b388a3658ae"//主键
+		}
+	};
+	var html = $
+			.ajax({
+				type : "GET",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : ajaxParam.submitData,
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+function remove() {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/delete",
+		submitData : {
+			"id" : ""//主键
+		}
+	};
+	var html = $
+			.ajax({
+				type : "GET",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : ajaxParam.submitData,
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+function add() {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/add",
+		submitData : {
+			"cropTypeCode":"1",
+			"cropTypeText":"芒果",
+			"strainsCode":"0",
+			"strainsText":"全部",
+			"importCountryCode":"075000000",//进口国家编码
+			"importCountryText":"印度",//进口国家名称
+			"importVolume":"1",//进口金额
+			"importVolumeUnitCode":"5",//进口金额类型编码
+			"importVolumeUnitText":"万美元",//进口金额类型名称
+			"importAmount":"1",//进口量
+			"importAmountUnitCode":"2",//进口量类型编码
+			"importAmountUnitText":"吨",//进口量类型名称
+			"importPrice":"1",//进口价格
+			"importPriceUnitCode":"4",//进口价格类型编码
+			"importPriceUnitText":"美元/公斤",//进口价格类型名称
+			"daCommonField":{
+				"dataTimeTypeCode" : "1",
+				"dataTimeTypeText" : "年",
+				"areaLatitudeTypeCode" : "1",
+				"areaLatitudeTypeText" : "国家",
+				"regionId" : "031000000",
+				"regionName" : "中国",
+				"sourceChannelTypeCode" : "7",
+				"sourceChannelTypeText" : "企业web填报",
+				"auditStatusCode" : "0",
+				"auditStatusText" : "待审核",
+				"startTime" : "2017-01-01 01:01:01",//年度
+				"endTime" : "2017-12-31 01:01:01",//年度
+				"remark" : "123qbd"//备注
+			}
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+
+function update() {
+	var ajaxParam = {
+		url : "http://localhost:60011/mango/extend/swagger/da/daImportExport/update",
+		submitData : {
+			"id":"",//主键
+			"importCountryCode":"075000000",//进口国家编码
+			"importCountryText":"印度",//进口国家名称
+			"importVolume":"1",//进口金额
+			"importAmount":"1",//进口量
+			"importPrice":"1"//进口价格
+			"daCommonField":{
+				"id":"",//主键
+				"startTime" : "2017-01-01 01:01:01",//年度
+				"endTime" : "2017-12-31 01:01:01",//年度
+				"remark" : "123qbd"//备注
+			}
+		}
+	};
+	var html = $
+			.ajax({
+				type : "POST",
+				url : ajaxParam.url,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : JSON.stringify(ajaxParam.submitData),
+				async : false
+			}).responseText;
+	$("#myDiv").html(
+			'<h2>' + html + '</h2>');
+};
+</script>
+</html>

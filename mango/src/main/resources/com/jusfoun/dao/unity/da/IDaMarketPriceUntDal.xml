@@ -1,0 +1,1675 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.da.IDaMarketPriceUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaMarketPrice" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="price_type_code" property="priceTypeCode" jdbcType="TINYINT" />
+              <result column="price_type_text" property="priceTypeText" jdbcType="VARCHAR" />
+              <result column="per_price" property="perPrice" jdbcType="NUMERIC" />
+              <result column="per_price_unit_code" property="perPriceUnitCode" jdbcType="TINYINT" />
+              <result column="per_price_unit_text" property="perPriceUnitText" jdbcType="VARCHAR" />
+              <result column="per_price_unit" property="perPriceUnit" jdbcType="NUMERIC" />
+              <result column="average_price" property="averagePrice" jdbcType="NUMERIC" />
+              <result column="average_price_unit_code" property="averagePriceUnitCode" jdbcType="TINYINT" />
+              <result column="average_price_unit_text" property="averagePriceUnitText" jdbcType="VARCHAR" />
+              <result column="average_price_unit" property="averagePriceUnit" jdbcType="NUMERIC" />
+              <result column="price_range_code" property="priceRangeCode" jdbcType="TINYINT" />
+              <result column="price_range_text" property="priceRangeText" jdbcType="VARCHAR" />
+              <result column="bottom_price" property="bottomPrice" jdbcType="NUMERIC" />
+              <result column="bottom_price_unit_code" property="bottomPriceUnitCode" jdbcType="TINYINT" />
+              <result column="bottom_price_unit_text" property="bottomPriceUnitText" jdbcType="VARCHAR" />
+              <result column="bottom_price_unit" property="bottomPriceUnit" jdbcType="NUMERIC" />
+              <result column="top_price" property="topPrice" jdbcType="NUMERIC" />
+              <result column="top_price_unit_code" property="topPriceUnitCode" jdbcType="TINYINT" />
+              <result column="top_price_unit_text" property="topPriceUnitText" jdbcType="VARCHAR" />
+              <result column="top_price_unit" property="topPriceUnit" jdbcType="NUMERIC" />
+              <result column="year" property="year" jdbcType="VARCHAR" />
+              <result column="acre_cost_price" property="acreCostPrice" jdbcType="NUMERIC" />
+              <result column="acre_cost_price_unit_code" property="acreCostPriceUnitCode" jdbcType="TINYINT" />
+              <result column="acre_cost_price_unit_text" property="acreCostPriceUnitText" jdbcType="VARCHAR" />
+              <result column="acre_cost_price_unit" property="acreCostPriceUnit" jdbcType="NUMERIC" />
+              <result column="field_price" property="fieldPrice" jdbcType="NUMERIC" />
+              <result column="field_price_unit_code" property="fieldPriceUnitCode" jdbcType="TINYINT" />
+              <result column="field_price_unit_text" property="fieldPriceUnitText" jdbcType="VARCHAR" />
+              <result column="field_price_unit" property="fieldPriceUnit" jdbcType="NUMERIC" />
+              <result column="retail_price" property="retailPrice" jdbcType="NUMERIC" />
+              <result column="retail_price_unit_code" property="retailPriceUnitCode" jdbcType="TINYINT" />
+              <result column="retail_price_unit_text" property="retailPriceUnitText" jdbcType="VARCHAR" />
+              <result column="retail_price_unit" property="retailPriceUnit" jdbcType="NUMERIC" />
+              <result column="trade_price" property="tradePrice" jdbcType="NUMERIC" />
+              <result column="trade_price_unit_code" property="tradePriceUnitCode" jdbcType="TINYINT" />
+              <result column="trade_price_unit_text" property="tradePriceUnitText" jdbcType="VARCHAR" />
+              <result column="trade_price_unit" property="tradePriceUnit" jdbcType="NUMERIC" />
+              <result column="e_commerce_price" property="eCommercePrice" jdbcType="NUMERIC" />
+              <result column="e_commerce_price_unit_code" property="eCommercePriceUnitCode" jdbcType="TINYINT" />
+              <result column="e_commerce_price_unit_text" property="eCommercePriceUnitText" jdbcType="VARCHAR" />
+              <result column="e_commerce_price_unit" property="eCommercePriceUnit" jdbcType="NUMERIC" />
+              <result column="average_weight" property="averageWeight" jdbcType="NUMERIC" />
+              <result column="mango_grade" property="mangoGrade" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,price_type_code,price_type_text,per_price,per_price_unit_code,per_price_unit_text,per_price_unit,average_price,average_price_unit_code,average_price_unit_text,average_price_unit,price_range_code,price_range_text,bottom_price,bottom_price_unit_code,bottom_price_unit_text,bottom_price_unit,top_price,top_price_unit_code,top_price_unit_text,top_price_unit,year,acre_cost_price,acre_cost_price_unit_code,acre_cost_price_unit_text,acre_cost_price_unit,field_price,field_price_unit_code,field_price_unit_text,field_price_unit,retail_price,retail_price_unit_code,retail_price_unit_text,retail_price_unit,trade_price,trade_price_unit_code,trade_price_unit_text,trade_price_unit,e_commerce_price,e_commerce_price_unit_code,e_commerce_price_unit_text,e_commerce_price_unit,average_weight,mango_grade
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaMarketPrice" >
+    insert into da_market_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="priceTypeCode != null " >
+              price_type_code,
+          </if>
+          <if test="priceTypeText != null and priceTypeText != '' " >
+              price_type_text,
+          </if>
+      
+          <if test="perPrice != null " >
+              per_price,
+          </if>
+          <if test="perPriceUnitCode != null " >
+              per_price_unit_code,
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              per_price_unit_text,
+          </if>
+      
+          <if test="perPriceUnit != null " >
+              per_price_unit,
+          </if>
+          <if test="averagePrice != null " >
+              average_price,
+          </if>
+          <if test="averagePriceUnitCode != null " >
+              average_price_unit_code,
+          </if>
+          <if test="averagePriceUnitText != null and averagePriceUnitText != '' " >
+              average_price_unit_text,
+          </if>
+      
+          <if test="averagePriceUnit != null " >
+              average_price_unit,
+          </if>
+          <if test="priceRangeCode != null " >
+              price_range_code,
+          </if>
+          <if test="priceRangeText != null and priceRangeText != '' " >
+              price_range_text,
+          </if>
+      
+          <if test="bottomPrice != null " >
+              bottom_price,
+          </if>
+          <if test="bottomPriceUnitCode != null " >
+              bottom_price_unit_code,
+          </if>
+          <if test="bottomPriceUnitText != null and bottomPriceUnitText != '' " >
+              bottom_price_unit_text,
+          </if>
+      
+          <if test="bottomPriceUnit != null " >
+              bottom_price_unit,
+          </if>
+          <if test="topPrice != null " >
+              top_price,
+          </if>
+          <if test="topPriceUnitCode != null " >
+              top_price_unit_code,
+          </if>
+          <if test="topPriceUnitText != null and topPriceUnitText != '' " >
+              top_price_unit_text,
+          </if>
+      
+          <if test="topPriceUnit != null " >
+              top_price_unit,
+          </if>
+          <if test="year != null and year != '' " >
+              year,
+          </if>
+      
+          <if test="acreCostPrice != null " >
+              acre_cost_price,
+          </if>
+          <if test="acreCostPriceUnitCode != null " >
+              acre_cost_price_unit_code,
+          </if>
+          <if test="acreCostPriceUnitText != null and acreCostPriceUnitText != '' " >
+              acre_cost_price_unit_text,
+          </if>
+      
+          <if test="acreCostPriceUnit != null " >
+              acre_cost_price_unit,
+          </if>
+          <if test="fieldPrice != null " >
+              field_price,
+          </if>
+          <if test="fieldPriceUnitCode != null " >
+              field_price_unit_code,
+          </if>
+          <if test="fieldPriceUnitText != null and fieldPriceUnitText != '' " >
+              field_price_unit_text,
+          </if>
+      
+          <if test="fieldPriceUnit != null " >
+              field_price_unit,
+          </if>
+          <if test="retailPrice != null " >
+              retail_price,
+          </if>
+          <if test="retailPriceUnitCode != null " >
+              retail_price_unit_code,
+          </if>
+          <if test="retailPriceUnitText != null and retailPriceUnitText != '' " >
+              retail_price_unit_text,
+          </if>
+      
+          <if test="retailPriceUnit != null " >
+              retail_price_unit,
+          </if>
+          <if test="tradePrice != null " >
+              trade_price,
+          </if>
+          <if test="tradePriceUnitCode != null " >
+              trade_price_unit_code,
+          </if>
+          <if test="tradePriceUnitText != null and tradePriceUnitText != '' " >
+              trade_price_unit_text,
+          </if>
+      
+          <if test="tradePriceUnit != null " >
+              trade_price_unit,
+          </if>
+          <if test="eCommercePrice != null " >
+              e_commerce_price,
+          </if>
+          <if test="eCommercePriceUnitCode != null " >
+              e_commerce_price_unit_code,
+          </if>
+          <if test="eCommercePriceUnitText != null and eCommercePriceUnitText != '' " >
+              e_commerce_price_unit_text,
+          </if>
+      
+          <if test="eCommercePriceUnit != null " >
+              e_commerce_price_unit,
+          </if>
+          <if test="averageWeight != null " >
+              average_weight,
+          </if>
+          <if test="mangoGrade != null and mangoGrade != '' " >
+              mango_grade,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="priceTypeCode != null " >
+              #{priceTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="priceTypeText != null and priceTypeText != '' " >
+              #{priceTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="perPrice != null " >
+              #{perPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="perPriceUnitCode != null " >
+              #{perPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="perPriceUnitText != null and perPriceUnitText != '' " >
+              #{perPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="perPriceUnit != null " >
+              #{perPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="averagePrice != null " >
+              #{averagePrice,jdbcType=NUMERIC},
+          </if>
+          <if test="averagePriceUnitCode != null " >
+              #{averagePriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="averagePriceUnitText != null and averagePriceUnitText != '' " >
+              #{averagePriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="averagePriceUnit != null " >
+              #{averagePriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="priceRangeCode != null " >
+              #{priceRangeCode,jdbcType=TINYINT},
+          </if>
+          <if test="priceRangeText != null and priceRangeText != '' " >
+              #{priceRangeText,jdbcType=VARCHAR},
+          </if>
+          <if test="bottomPrice != null " >
+              #{bottomPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="bottomPriceUnitCode != null " >
+              #{bottomPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="bottomPriceUnitText != null and bottomPriceUnitText != '' " >
+              #{bottomPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="bottomPriceUnit != null " >
+              #{bottomPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="topPrice != null " >
+              #{topPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="topPriceUnitCode != null " >
+              #{topPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="topPriceUnitText != null and topPriceUnitText != '' " >
+              #{topPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="topPriceUnit != null " >
+              #{topPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="year != null and year != '' " >
+              #{year,jdbcType=VARCHAR},
+          </if>
+          <if test="acreCostPrice != null " >
+              #{acreCostPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="acreCostPriceUnitCode != null " >
+              #{acreCostPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="acreCostPriceUnitText != null and acreCostPriceUnitText != '' " >
+              #{acreCostPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="acreCostPriceUnit != null " >
+              #{acreCostPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="fieldPrice != null " >
+              #{fieldPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="fieldPriceUnitCode != null " >
+              #{fieldPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="fieldPriceUnitText != null and fieldPriceUnitText != '' " >
+              #{fieldPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="fieldPriceUnit != null " >
+              #{fieldPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="retailPrice != null " >
+              #{retailPrice,jdbcType=NUMERIC},
+          </if>
+          <if test="retailPriceUnitCode != null " >
+              #{retailPriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="retailPriceUnitText != null and retailPriceUnitText != '' " >
+              #{retailPriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="retailPriceUnit != null " >
+              #{retailPriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="tradePrice != null " >
+              #{tradePrice,jdbcType=NUMERIC},
+          </if>
+          <if test="tradePriceUnitCode != null " >
+              #{tradePriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="tradePriceUnitText != null and tradePriceUnitText != '' " >
+              #{tradePriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="tradePriceUnit != null " >
+              #{tradePriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommercePrice != null " >
+              #{eCommercePrice,jdbcType=NUMERIC},
+          </if>
+          <if test="eCommercePriceUnitCode != null " >
+              #{eCommercePriceUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="eCommercePriceUnitText != null and eCommercePriceUnitText != '' " >
+              #{eCommercePriceUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="eCommercePriceUnit != null " >
+              #{eCommercePriceUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="averageWeight != null " >
+              #{averageWeight,jdbcType=NUMERIC},
+          </if>
+          <if test="mangoGrade != null and mangoGrade != '' " >
+              #{mangoGrade,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_market_price
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daMarketPrice" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daMarketPrice.id,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.name,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.priceTypeCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.priceTypeText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.perPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.perPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.averagePrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.averagePriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.priceRangeCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.priceRangeText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.bottomPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.bottomPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.topPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.topPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.year,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.acreCostPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.fieldPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.fieldPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.retailPrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.retailPriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.tradePrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.tradePriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT},
+
+      
+          #{daMarketPrice.eCommercePriceUnitText,jdbcType=VARCHAR},
+
+      
+          #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.averageWeight,jdbcType=NUMERIC},
+
+      
+          #{daMarketPrice.mangoGrade,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_market_price
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_market_price
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaMarketPrice" >
+    update da_market_price
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priceTypeCode != null ">
+                     price_type_code = #{priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="priceTypeText != null  and priceTypeText != '' " >
+                     price_type_text = #{priceTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="perPrice != null ">
+                     per_price = #{perPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="perPriceUnitCode != null ">
+                     per_price_unit_code = #{perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="perPriceUnitText != null  and perPriceUnitText != '' " >
+                     per_price_unit_text = #{perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="perPriceUnit != null ">
+                     per_price_unit = #{perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="averagePrice != null ">
+                     average_price = #{averagePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="averagePriceUnitCode != null ">
+                     average_price_unit_code = #{averagePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="averagePriceUnitText != null  and averagePriceUnitText != '' " >
+                     average_price_unit_text = #{averagePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="averagePriceUnit != null ">
+                     average_price_unit = #{averagePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="priceRangeCode != null ">
+                     price_range_code = #{priceRangeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="priceRangeText != null  and priceRangeText != '' " >
+                     price_range_text = #{priceRangeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="bottomPrice != null ">
+                     bottom_price = #{bottomPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="bottomPriceUnitCode != null ">
+                     bottom_price_unit_code = #{bottomPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="bottomPriceUnitText != null  and bottomPriceUnitText != '' " >
+                     bottom_price_unit_text = #{bottomPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="bottomPriceUnit != null ">
+                     bottom_price_unit = #{bottomPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="topPrice != null ">
+                     top_price = #{topPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="topPriceUnitCode != null ">
+                     top_price_unit_code = #{topPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="topPriceUnitText != null  and topPriceUnitText != '' " >
+                     top_price_unit_text = #{topPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="topPriceUnit != null ">
+                     top_price_unit = #{topPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="year != null  and year != '' " >
+                     year = #{year,jdbcType=VARCHAR},
+                  </if>
+                  <if test="acreCostPrice != null ">
+                     acre_cost_price = #{acreCostPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="acreCostPriceUnitCode != null ">
+                     acre_cost_price_unit_code = #{acreCostPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="acreCostPriceUnitText != null  and acreCostPriceUnitText != '' " >
+                     acre_cost_price_unit_text = #{acreCostPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="acreCostPriceUnit != null ">
+                     acre_cost_price_unit = #{acreCostPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fieldPrice != null ">
+                     field_price = #{fieldPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="fieldPriceUnitCode != null ">
+                     field_price_unit_code = #{fieldPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="fieldPriceUnitText != null  and fieldPriceUnitText != '' " >
+                     field_price_unit_text = #{fieldPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fieldPriceUnit != null ">
+                     field_price_unit = #{fieldPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="retailPrice != null ">
+                     retail_price = #{retailPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="retailPriceUnitCode != null ">
+                     retail_price_unit_code = #{retailPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="retailPriceUnitText != null  and retailPriceUnitText != '' " >
+                     retail_price_unit_text = #{retailPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="retailPriceUnit != null ">
+                     retail_price_unit = #{retailPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="tradePrice != null ">
+                     trade_price = #{tradePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="tradePriceUnitCode != null ">
+                     trade_price_unit_code = #{tradePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="tradePriceUnitText != null  and tradePriceUnitText != '' " >
+                     trade_price_unit_text = #{tradePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="tradePriceUnit != null ">
+                     trade_price_unit = #{tradePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommercePrice != null ">
+                     e_commerce_price = #{eCommercePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="eCommercePriceUnitCode != null ">
+                     e_commerce_price_unit_code = #{eCommercePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="eCommercePriceUnitText != null  and eCommercePriceUnitText != '' " >
+                     e_commerce_price_unit_text = #{eCommercePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="eCommercePriceUnit != null ">
+                     e_commerce_price_unit = #{eCommercePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="averageWeight != null ">
+                     average_weight = #{averageWeight,jdbcType=NUMERIC},
+                  </if>
+                  <if test="mangoGrade != null  and mangoGrade != '' " >
+                     mango_grade = #{mangoGrade,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update da_market_price
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceTypeCode != null ">
+                     price_type_code = #{t.priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceTypeText != null  and t.priceTypeText != '' " >
+                     price_type_text = #{t.priceTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPrice != null ">
+                     per_price = #{t.perPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPriceUnitCode != null ">
+                     per_price_unit_code = #{t.perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perPriceUnitText != null  and t.perPriceUnitText != '' " >
+                     per_price_unit_text = #{t.perPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPriceUnit != null ">
+                     per_price_unit = #{t.perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averagePrice != null ">
+                     average_price = #{t.averagePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averagePriceUnitCode != null ">
+                     average_price_unit_code = #{t.averagePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.averagePriceUnitText != null  and t.averagePriceUnitText != '' " >
+                     average_price_unit_text = #{t.averagePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.averagePriceUnit != null ">
+                     average_price_unit = #{t.averagePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.priceRangeCode != null ">
+                     price_range_code = #{t.priceRangeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceRangeText != null  and t.priceRangeText != '' " >
+                     price_range_text = #{t.priceRangeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bottomPrice != null ">
+                     bottom_price = #{t.bottomPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.bottomPriceUnitCode != null ">
+                     bottom_price_unit_code = #{t.bottomPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.bottomPriceUnitText != null  and t.bottomPriceUnitText != '' " >
+                     bottom_price_unit_text = #{t.bottomPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bottomPriceUnit != null ">
+                     bottom_price_unit = #{t.bottomPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.topPrice != null ">
+                     top_price = #{t.topPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.topPriceUnitCode != null ">
+                     top_price_unit_code = #{t.topPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.topPriceUnitText != null  and t.topPriceUnitText != '' " >
+                     top_price_unit_text = #{t.topPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.topPriceUnit != null ">
+                     top_price_unit = #{t.topPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.year != null  and t.year != '' " >
+                     year = #{t.year,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.acreCostPrice != null ">
+                     acre_cost_price = #{t.acreCostPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.acreCostPriceUnitCode != null ">
+                     acre_cost_price_unit_code = #{t.acreCostPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.acreCostPriceUnitText != null  and t.acreCostPriceUnitText != '' " >
+                     acre_cost_price_unit_text = #{t.acreCostPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.acreCostPriceUnit != null ">
+                     acre_cost_price_unit = #{t.acreCostPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fieldPrice != null ">
+                     field_price = #{t.fieldPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fieldPriceUnitCode != null ">
+                     field_price_unit_code = #{t.fieldPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.fieldPriceUnitText != null  and t.fieldPriceUnitText != '' " >
+                     field_price_unit_text = #{t.fieldPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fieldPriceUnit != null ">
+                     field_price_unit = #{t.fieldPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.retailPrice != null ">
+                     retail_price = #{t.retailPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.retailPriceUnitCode != null ">
+                     retail_price_unit_code = #{t.retailPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.retailPriceUnitText != null  and t.retailPriceUnitText != '' " >
+                     retail_price_unit_text = #{t.retailPriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.retailPriceUnit != null ">
+                     retail_price_unit = #{t.retailPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradePrice != null ">
+                     trade_price = #{t.tradePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradePriceUnitCode != null ">
+                     trade_price_unit_code = #{t.tradePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradePriceUnitText != null  and t.tradePriceUnitText != '' " >
+                     trade_price_unit_text = #{t.tradePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradePriceUnit != null ">
+                     trade_price_unit = #{t.tradePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommercePrice != null ">
+                     e_commerce_price = #{t.eCommercePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommercePriceUnitCode != null ">
+                     e_commerce_price_unit_code = #{t.eCommercePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommercePriceUnitText != null  and t.eCommercePriceUnitText != '' " >
+                     e_commerce_price_unit_text = #{t.eCommercePriceUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommercePriceUnit != null ">
+                     e_commerce_price_unit = #{t.eCommercePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averageWeight != null ">
+                     average_weight = #{t.averageWeight,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.mangoGrade != null  and t.mangoGrade != '' " >
+                     mango_grade = #{t.mangoGrade,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update da_market_price
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="common_field_id =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.commonFieldId != null and daMarketPrice.commonFieldId  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.commonFieldId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.name != null and daMarketPrice.name  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.cropTypeCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.cropTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="crop_type_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.cropTypeText != null and daMarketPrice.cropTypeText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.cropTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.strainsCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.strainsCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="strains_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.strainsText != null and daMarketPrice.strainsText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.strainsText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_type_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.priceTypeCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.priceTypeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_type_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.priceTypeText != null and daMarketPrice.priceTypeText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.priceTypeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.perPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.perPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.perPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.perPriceUnitText != null and daMarketPrice.perPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.perPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="per_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.perPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="average_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.averagePrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.averagePrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="average_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.averagePriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="average_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.averagePriceUnitText != null and daMarketPrice.averagePriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.averagePriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="average_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.averagePriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_range_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.priceRangeCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.priceRangeCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="price_range_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.priceRangeText != null and daMarketPrice.priceRangeText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.priceRangeText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="bottom_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.bottomPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.bottomPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="bottom_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.bottomPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="bottom_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.bottomPriceUnitText != null and daMarketPrice.bottomPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.bottomPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="bottom_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.bottomPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="top_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.topPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.topPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="top_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.topPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="top_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.topPriceUnitText != null and daMarketPrice.topPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.topPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="top_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.topPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="year =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.year != null and daMarketPrice.year  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.year,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="acre_cost_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.acreCostPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="acre_cost_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.acreCostPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="acre_cost_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.acreCostPriceUnitText != null and daMarketPrice.acreCostPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.acreCostPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="acre_cost_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.acreCostPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="field_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.fieldPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.fieldPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="field_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.fieldPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="field_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.fieldPriceUnitText != null and daMarketPrice.fieldPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.fieldPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="field_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.fieldPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="retail_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.retailPrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.retailPrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="retail_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.retailPriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="retail_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.retailPriceUnitText != null and daMarketPrice.retailPriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.retailPriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="retail_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.retailPriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.tradePrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.tradePrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.tradePriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.tradePriceUnitText != null and daMarketPrice.tradePriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.tradePriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="trade_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.tradePriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_price =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.eCommercePrice != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_price_unit_code =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.eCommercePriceUnitCode != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_price_unit_text =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.eCommercePriceUnitText != null and daMarketPrice.eCommercePriceUnitText  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.eCommercePriceUnitText,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="e_commerce_price_unit =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.eCommercePriceUnit != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="average_weight =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.averageWeight != null " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.averageWeight,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="mango_grade =case" suffix="end,">
+              <foreach collection="list" item="daMarketPrice" index="index">
+                  <if test="daMarketPrice.mangoGrade != null and daMarketPrice.mangoGrade  != '' " >
+                     when id=#{daMarketPrice.id} then #{daMarketPrice.mangoGrade,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{daMarketPrice.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into da_market_price
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="commonFieldId  != null and commonFieldId  != '' " >
+              common_field_id,
+          </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
+          <if test="cropTypeCode  != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText  != null and cropTypeText  != '' " >
+              crop_type_text,
+          </if>
+          <if test="strainsCode  != null " >
+              strains_code,
+          </if>
+          <if test="strainsText  != null and strainsText  != '' " >
+              strains_text,
+          </if>
+          <if test="priceTypeCode  != null " >
+              price_type_code,
+          </if>
+          <if test="priceTypeText  != null and priceTypeText  != '' " >
+              price_type_text,
+          </if>
+          <if test="perPrice  != null " >
+              per_price,
+          </if>
+          <if test="perPriceUnitCode  != null " >
+              per_price_unit_code,
+          </if>
+          <if test="perPriceUnitText  != null and perPriceUnitText  != '' " >
+              per_price_unit_text,
+          </if>
+          <if test="perPriceUnit  != null " >
+              per_price_unit,
+          </if>
+          <if test="averagePrice  != null " >
+              average_price,
+          </if>
+          <if test="averagePriceUnitCode  != null " >
+              average_price_unit_code,
+          </if>
+          <if test="averagePriceUnitText  != null and averagePriceUnitText  != '' " >
+              average_price_unit_text,
+          </if>
+          <if test="averagePriceUnit  != null " >
+              average_price_unit,
+          </if>
+          <if test="priceRangeCode  != null " >
+              price_range_code,
+          </if>
+          <if test="priceRangeText  != null and priceRangeText  != '' " >
+              price_range_text,
+          </if>
+          <if test="bottomPrice  != null " >
+              bottom_price,
+          </if>
+          <if test="bottomPriceUnitCode  != null " >
+              bottom_price_unit_code,
+          </if>
+          <if test="bottomPriceUnitText  != null and bottomPriceUnitText  != '' " >
+              bottom_price_unit_text,
+          </if>
+          <if test="bottomPriceUnit  != null " >
+              bottom_price_unit,
+          </if>
+          <if test="topPrice  != null " >
+              top_price,
+          </if>
+          <if test="topPriceUnitCode  != null " >
+              top_price_unit_code,
+          </if>
+          <if test="topPriceUnitText  != null and topPriceUnitText  != '' " >
+              top_price_unit_text,
+          </if>
+          <if test="topPriceUnit  != null " >
+              top_price_unit,
+          </if>
+          <if test="year  != null and year  != '' " >
+              year,
+          </if>
+          <if test="acreCostPrice  != null " >
+              acre_cost_price,
+          </if>
+          <if test="acreCostPriceUnitCode  != null " >
+              acre_cost_price_unit_code,
+          </if>
+          <if test="acreCostPriceUnitText  != null and acreCostPriceUnitText  != '' " >
+              acre_cost_price_unit_text,
+          </if>
+          <if test="acreCostPriceUnit  != null " >
+              acre_cost_price_unit,
+          </if>
+          <if test="fieldPrice  != null " >
+              field_price,
+          </if>
+          <if test="fieldPriceUnitCode  != null " >
+              field_price_unit_code,
+          </if>
+          <if test="fieldPriceUnitText  != null and fieldPriceUnitText  != '' " >
+              field_price_unit_text,
+          </if>
+          <if test="fieldPriceUnit  != null " >
+              field_price_unit,
+          </if>
+          <if test="retailPrice  != null " >
+              retail_price,
+          </if>
+          <if test="retailPriceUnitCode  != null " >
+              retail_price_unit_code,
+          </if>
+          <if test="retailPriceUnitText  != null and retailPriceUnitText  != '' " >
+              retail_price_unit_text,
+          </if>
+          <if test="retailPriceUnit  != null " >
+              retail_price_unit,
+          </if>
+          <if test="tradePrice  != null " >
+              trade_price,
+          </if>
+          <if test="tradePriceUnitCode  != null " >
+              trade_price_unit_code,
+          </if>
+          <if test="tradePriceUnitText  != null and tradePriceUnitText  != '' " >
+              trade_price_unit_text,
+          </if>
+          <if test="tradePriceUnit  != null " >
+              trade_price_unit,
+          </if>
+          <if test="eCommercePrice  != null " >
+              e_commerce_price,
+          </if>
+          <if test="eCommercePriceUnitCode  != null " >
+              e_commerce_price_unit_code,
+          </if>
+          <if test="eCommercePriceUnitText  != null and eCommercePriceUnitText  != '' " >
+              e_commerce_price_unit_text,
+          </if>
+          <if test="eCommercePriceUnit  != null " >
+              e_commerce_price_unit,
+          </if>
+          <if test="averageWeight  != null " >
+              average_weight,
+          </if>
+          <if test="mangoGrade  != null and mangoGrade  != '' " >
+              mango_grade,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="daMarketPrice" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{daMarketPrice.id ,jdbcType=VARCHAR},
+                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                     #{daMarketPrice.commonFieldId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{daMarketPrice.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                    #{daMarketPrice.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+                     #{daMarketPrice.cropTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                    #{daMarketPrice.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+                     #{daMarketPrice.strainsText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priceTypeCode != null ">
+                    #{daMarketPrice.priceTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceTypeText  != null  and t.priceTypeText != '' " >
+                     #{daMarketPrice.priceTypeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPrice != null ">
+                    #{daMarketPrice.perPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.perPriceUnitCode != null ">
+                    #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.perPriceUnitText  != null  and t.perPriceUnitText != '' " >
+                     #{daMarketPrice.perPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.perPriceUnit != null ">
+                    #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averagePrice != null ">
+                    #{daMarketPrice.averagePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averagePriceUnitCode != null ">
+                    #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.averagePriceUnitText  != null  and t.averagePriceUnitText != '' " >
+                     #{daMarketPrice.averagePriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.averagePriceUnit != null ">
+                    #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.priceRangeCode != null ">
+                    #{daMarketPrice.priceRangeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.priceRangeText  != null  and t.priceRangeText != '' " >
+                     #{daMarketPrice.priceRangeText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bottomPrice != null ">
+                    #{daMarketPrice.bottomPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.bottomPriceUnitCode != null ">
+                    #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.bottomPriceUnitText  != null  and t.bottomPriceUnitText != '' " >
+                     #{daMarketPrice.bottomPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.bottomPriceUnit != null ">
+                    #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.topPrice != null ">
+                    #{daMarketPrice.topPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.topPriceUnitCode != null ">
+                    #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.topPriceUnitText  != null  and t.topPriceUnitText != '' " >
+                     #{daMarketPrice.topPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.topPriceUnit != null ">
+                    #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.year  != null  and t.year != '' " >
+                     #{daMarketPrice.year ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.acreCostPrice != null ">
+                    #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.acreCostPriceUnitCode != null ">
+                    #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.acreCostPriceUnitText  != null  and t.acreCostPriceUnitText != '' " >
+                     #{daMarketPrice.acreCostPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.acreCostPriceUnit != null ">
+                    #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fieldPrice != null ">
+                    #{daMarketPrice.fieldPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.fieldPriceUnitCode != null ">
+                    #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.fieldPriceUnitText  != null  and t.fieldPriceUnitText != '' " >
+                     #{daMarketPrice.fieldPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fieldPriceUnit != null ">
+                    #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.retailPrice != null ">
+                    #{daMarketPrice.retailPrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.retailPriceUnitCode != null ">
+                    #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.retailPriceUnitText  != null  and t.retailPriceUnitText != '' " >
+                     #{daMarketPrice.retailPriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.retailPriceUnit != null ">
+                    #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradePrice != null ">
+                    #{daMarketPrice.tradePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.tradePriceUnitCode != null ">
+                    #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.tradePriceUnitText  != null  and t.tradePriceUnitText != '' " >
+                     #{daMarketPrice.tradePriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.tradePriceUnit != null ">
+                    #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommercePrice != null ">
+                    #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.eCommercePriceUnitCode != null ">
+                    #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.eCommercePriceUnitText  != null  and t.eCommercePriceUnitText != '' " >
+                     #{daMarketPrice.eCommercePriceUnitText ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.eCommercePriceUnit != null ">
+                    #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.averageWeight != null ">
+                    #{daMarketPrice.averageWeight,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.mangoGrade  != null  and t.mangoGrade != '' " >
+                     #{daMarketPrice.mangoGrade ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_market_price
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_market_price where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.acreCostPriceUnitCode != null">
+				and acre_cost_price_unit_code = #{EntityRelated.acreCostPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.acreCostPriceUnitText != null and EntityRelated.acreCostPriceUnitText != '' ">
+ 				and  acre_cost_price_unit_text LIKE CONCAT('%',#{EntityRelated.acreCostPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.averagePriceUnitCode != null">
+				and average_price_unit_code = #{EntityRelated.averagePriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.averagePriceUnitText != null and EntityRelated.averagePriceUnitText != '' ">
+ 				and  average_price_unit_text LIKE CONCAT('%',#{EntityRelated.averagePriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.bottomPriceUnitCode != null">
+				and bottom_price_unit_code = #{EntityRelated.bottomPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.bottomPriceUnitText != null and EntityRelated.bottomPriceUnitText != '' ">
+ 				and  bottom_price_unit_text LIKE CONCAT('%',#{EntityRelated.bottomPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.eCommercePriceUnitCode != null">
+				and e_commerce_price_unit_code = #{EntityRelated.eCommercePriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.eCommercePriceUnitText != null and EntityRelated.eCommercePriceUnitText != '' ">
+ 				and  e_commerce_price_unit_text LIKE CONCAT('%',#{EntityRelated.eCommercePriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.fieldPriceUnitCode != null">
+				and field_price_unit_code = #{EntityRelated.fieldPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.fieldPriceUnitText != null and EntityRelated.fieldPriceUnitText != '' ">
+ 				and  field_price_unit_text LIKE CONCAT('%',#{EntityRelated.fieldPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.mangoGrade != null and EntityRelated.mangoGrade != '' ">
+ 				and  mango_grade LIKE CONCAT('%',#{EntityRelated.mangoGrade,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.perPriceUnitCode != null">
+				and per_price_unit_code = #{EntityRelated.perPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.perPriceUnitText != null and EntityRelated.perPriceUnitText != '' ">
+ 				and  per_price_unit_text LIKE CONCAT('%',#{EntityRelated.perPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.priceRangeCode != null">
+				and price_range_code = #{EntityRelated.priceRangeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.priceRangeText != null and EntityRelated.priceRangeText != '' ">
+ 				and  price_range_text LIKE CONCAT('%',#{EntityRelated.priceRangeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.priceTypeCode != null">
+				and price_type_code = #{EntityRelated.priceTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.priceTypeText != null and EntityRelated.priceTypeText != '' ">
+ 				and  price_type_text LIKE CONCAT('%',#{EntityRelated.priceTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.retailPriceUnitCode != null">
+				and retail_price_unit_code = #{EntityRelated.retailPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.retailPriceUnitText != null and EntityRelated.retailPriceUnitText != '' ">
+ 				and  retail_price_unit_text LIKE CONCAT('%',#{EntityRelated.retailPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.topPriceUnitCode != null">
+				and top_price_unit_code = #{EntityRelated.topPriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.topPriceUnitText != null and EntityRelated.topPriceUnitText != '' ">
+ 				and  top_price_unit_text LIKE CONCAT('%',#{EntityRelated.topPriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.tradePriceUnitCode != null">
+				and trade_price_unit_code = #{EntityRelated.tradePriceUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.tradePriceUnitText != null and EntityRelated.tradePriceUnitText != '' ">
+ 				and  trade_price_unit_text LIKE CONCAT('%',#{EntityRelated.tradePriceUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.year != null and EntityRelated.year != '' ">
+ 				and  year LIKE CONCAT('%',#{EntityRelated.year,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

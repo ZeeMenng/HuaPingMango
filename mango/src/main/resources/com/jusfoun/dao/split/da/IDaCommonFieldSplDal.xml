@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaCommonFieldSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCommonField" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="data_time_type_code" property="dataTimeTypeCode" jdbcType="TINYINT" />
+              <result column="data_time_type_text" property="dataTimeTypeText" jdbcType="VARCHAR" />
+              <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+              <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+              <result column="area_latitude_type_code" property="areaLatitudeTypeCode" jdbcType="TINYINT" />
+              <result column="area_latitude_type_text" property="areaLatitudeTypeText" jdbcType="VARCHAR" />
+              <result column="region_id" property="regionId" jdbcType="VARCHAR" />
+              <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+              <result column="source_channel_type_code" property="sourceChannelTypeCode" jdbcType="TINYINT" />
+              <result column="source_channel_type_text" property="sourceChannelTypeText" jdbcType="VARCHAR" />
+              <result column="data_sources" property="dataSources" jdbcType="VARCHAR" />
+              <result column="audit_status_code" property="auditStatusCode" jdbcType="TINYINT" />
+              <result column="audit_status_text" property="auditStatusText" jdbcType="VARCHAR" />
+              <result column="auditer_suggestion" property="auditerSuggestion" jdbcType="VARCHAR" />
+              <result column="auditer_user_id" property="auditerUserId" jdbcType="VARCHAR" />
+              <result column="auditer_time" property="auditerTime" jdbcType="TIMESTAMP" />
+              <result column="add_user_id" property="addUserId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+              <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,data_time_type_code,data_time_type_text,start_time,end_time,area_latitude_type_code,area_latitude_type_text,region_id,region_name,source_channel_type_code,source_channel_type_text,data_sources,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id,auditer_time,add_user_id,add_time,update_time,remark
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCommonField" >
+    insert into da_common_field
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="dataTimeTypeCode != null " >
+              data_time_type_code,
+          </if>
+          <if test="dataTimeTypeText != null and dataTimeTypeText != '' " >
+              data_time_type_text,
+          </if>
+      
+          <if test="startTime != null " >
+              start_time,
+          </if>
+          <if test="endTime != null " >
+              end_time,
+          </if>
+          <if test="areaLatitudeTypeCode != null " >
+              area_latitude_type_code,
+          </if>
+          <if test="areaLatitudeTypeText != null and areaLatitudeTypeText != '' " >
+              area_latitude_type_text,
+          </if>
+      
+          <if test="regionId != null and regionId != '' " >
+              region_id,
+          </if>
+      
+          <if test="regionName != null and regionName != '' " >
+              region_name,
+          </if>
+      
+          <if test="sourceChannelTypeCode != null " >
+              source_channel_type_code,
+          </if>
+          <if test="sourceChannelTypeText != null and sourceChannelTypeText != '' " >
+              source_channel_type_text,
+          </if>
+      
+          <if test="dataSources != null and dataSources != '' " >
+              data_sources,
+          </if>
+      
+          <if test="auditStatusCode != null " >
+              audit_status_code,
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              audit_status_text,
+          </if>
+      
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              auditer_suggestion,
+          </if>
+      
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              auditer_user_id,
+          </if>
+      
+          <if test="auditerTime != null " >
+              auditer_time,
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              add_user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
+          <if test="remark != null and remark != '' " >
+              remark,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="dataTimeTypeCode != null " >
+              #{dataTimeTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="dataTimeTypeText != null and dataTimeTypeText != '' " >
+              #{dataTimeTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="startTime != null " >
+              #{startTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="endTime != null " >
+              #{endTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="areaLatitudeTypeCode != null " >
+              #{areaLatitudeTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="areaLatitudeTypeText != null and areaLatitudeTypeText != '' " >
+              #{areaLatitudeTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="regionId != null and regionId != '' " >
+              #{regionId,jdbcType=VARCHAR},
+          </if>
+          <if test="regionName != null and regionName != '' " >
+              #{regionName,jdbcType=VARCHAR},
+          </if>
+          <if test="sourceChannelTypeCode != null " >
+              #{sourceChannelTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="sourceChannelTypeText != null and sourceChannelTypeText != '' " >
+              #{sourceChannelTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="dataSources != null and dataSources != '' " >
+              #{dataSources,jdbcType=VARCHAR},
+          </if>
+          <if test="auditStatusCode != null " >
+              #{auditStatusCode,jdbcType=TINYINT},
+          </if>
+          <if test="auditStatusText != null and auditStatusText != '' " >
+              #{auditStatusText,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerSuggestion != null and auditerSuggestion != '' " >
+              #{auditerSuggestion,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerUserId != null and auditerUserId != '' " >
+              #{auditerUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="auditerTime != null " >
+              #{auditerTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="addUserId != null and addUserId != '' " >
+              #{addUserId,jdbcType=VARCHAR},
+          </if>
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null and remark != '' " >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_common_field
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCommonField" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daCommonField.id,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.dataTimeTypeCode,jdbcType=TINYINT},
+
+      
+          #{daCommonField.dataTimeTypeText,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.startTime,jdbcType=TIMESTAMP},
+
+      
+          #{daCommonField.endTime,jdbcType=TIMESTAMP},
+
+      
+          #{daCommonField.areaLatitudeTypeCode,jdbcType=TINYINT},
+
+      
+          #{daCommonField.areaLatitudeTypeText,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.regionId,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.regionName,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.sourceChannelTypeCode,jdbcType=TINYINT},
+
+      
+          #{daCommonField.sourceChannelTypeText,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.dataSources,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.auditStatusCode,jdbcType=TINYINT},
+
+      
+          #{daCommonField.auditStatusText,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.auditerSuggestion,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.auditerUserId,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.auditerTime,jdbcType=TIMESTAMP},
+
+      
+          #{daCommonField.addUserId,jdbcType=VARCHAR},
+
+      
+          #{daCommonField.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{daCommonField.updateTime,jdbcType=TIMESTAMP},
+
+      
+          #{daCommonField.remark,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_common_field
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_common_field
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCommonField" >
+    update da_common_field
+    <set >
+                  <if test="dataTimeTypeCode != null ">
+                     data_time_type_code = #{dataTimeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="dataTimeTypeText != null  and dataTimeTypeText != '' " >
+                     data_time_type_text = #{dataTimeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="startTime != null ">
+                     start_time = #{startTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="endTime != null ">
+                     end_time = #{endTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="areaLatitudeTypeCode != null ">
+                     area_latitude_type_code = #{areaLatitudeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="areaLatitudeTypeText != null  and areaLatitudeTypeText != '' " >
+                     area_latitude_type_text = #{areaLatitudeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionId != null  and regionId != '' " >
+                     region_id = #{regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="regionName != null  and regionName != '' " >
+                     region_name = #{regionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="sourceChannelTypeCode != null ">
+                     source_channel_type_code = #{sourceChannelTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="sourceChannelTypeText != null  and sourceChannelTypeText != '' " >
+                     source_channel_type_text = #{sourceChannelTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="dataSources != null  and dataSources != '' " >
+                     data_sources = #{dataSources,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditStatusCode != null ">
+                     audit_status_code = #{auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="auditStatusText != null  and auditStatusText != '' " >
+                     audit_status_text = #{auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerSuggestion != null  and auditerSuggestion != '' " >
+                     auditer_suggestion = #{auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerUserId != null  and auditerUserId != '' " >
+                     auditer_user_id = #{auditerUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="auditerTime != null ">
+                     auditer_time = #{auditerTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_common_field
+    <set >
+                  <if test="t.dataTimeTypeCode != null ">
+                     data_time_type_code = #{t.dataTimeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.dataTimeTypeText != null  and t.dataTimeTypeText != '' " >
+                     data_time_type_text = #{t.dataTimeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.startTime != null ">
+                     start_time = #{t.startTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.endTime != null ">
+                     end_time = #{t.endTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.areaLatitudeTypeCode != null ">
+                     area_latitude_type_code = #{t.areaLatitudeTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.areaLatitudeTypeText != null  and t.areaLatitudeTypeText != '' " >
+                     area_latitude_type_text = #{t.areaLatitudeTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionId != null  and t.regionId != '' " >
+                     region_id = #{t.regionId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.regionName != null  and t.regionName != '' " >
+                     region_name = #{t.regionName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.sourceChannelTypeCode != null ">
+                     source_channel_type_code = #{t.sourceChannelTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.sourceChannelTypeText != null  and t.sourceChannelTypeText != '' " >
+                     source_channel_type_text = #{t.sourceChannelTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.dataSources != null  and t.dataSources != '' " >
+                     data_sources = #{t.dataSources,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditStatusCode != null ">
+                     audit_status_code = #{t.auditStatusCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.auditStatusText != null  and t.auditStatusText != '' " >
+                     audit_status_text = #{t.auditStatusText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerSuggestion != null  and t.auditerSuggestion != '' " >
+                     auditer_suggestion = #{t.auditerSuggestion,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerUserId != null  and t.auditerUserId != '' " >
+                     auditer_user_id = #{t.auditerUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.auditerTime != null ">
+                     auditer_time = #{t.auditerTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_common_field
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_common_field where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
+		<if test="EntityRelated.addUserId != null and EntityRelated.addUserId != '' ">
+				and add_user_id = #{EntityRelated.addUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.areaLatitudeTypeCode != null">
+				and area_latitude_type_code = #{EntityRelated.areaLatitudeTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.areaLatitudeTypeText != null and EntityRelated.areaLatitudeTypeText != '' ">
+ 				and  area_latitude_type_text LIKE CONCAT('%',#{EntityRelated.areaLatitudeTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.auditStatusCode != null">
+				and audit_status_code = #{EntityRelated.auditStatusCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.auditStatusText != null and EntityRelated.auditStatusText != '' ">
+ 				and  audit_status_text LIKE CONCAT('%',#{EntityRelated.auditStatusText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.auditerSuggestion != null and EntityRelated.auditerSuggestion != '' ">
+ 				and  auditer_suggestion LIKE CONCAT('%',#{EntityRelated.auditerSuggestion,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginAuditerTime != null ">
+				<![CDATA[ AND  unix_timestamp(auditer_time)>=unix_timestamp(#{EntityRelated.beginAuditerTime})]]> 
+		</if>
+		<if test="EntityRelated.endAuditerTime != null ">
+				<![CDATA[ AND  unix_timestamp(auditer_time)<unix_timestamp(#{EntityRelated.endAuditerTime})]]> 
+		</if>
+		<if test="EntityRelated.auditerUserId != null and EntityRelated.auditerUserId != '' ">
+				and auditer_user_id = #{EntityRelated.auditerUserId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.dataSources != null and EntityRelated.dataSources != '' ">
+ 				and  data_sources LIKE CONCAT('%',#{EntityRelated.dataSources,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.dataTimeTypeCode != null">
+				and data_time_type_code = #{EntityRelated.dataTimeTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.dataTimeTypeText != null and EntityRelated.dataTimeTypeText != '' ">
+ 				and  data_time_type_text LIKE CONCAT('%',#{EntityRelated.dataTimeTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)>=unix_timestamp(#{EntityRelated.beginEndTime})]]> 
+		</if>
+		<if test="EntityRelated.endEndTime != null ">
+				<![CDATA[ AND  unix_timestamp(end_time)<unix_timestamp(#{EntityRelated.endEndTime})]]> 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.regionId != null and EntityRelated.regionId != '' ">
+				and region_id = #{EntityRelated.regionId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.regionName != null and EntityRelated.regionName != '' ">
+ 				and  region_name LIKE CONCAT('%',#{EntityRelated.regionName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
+ 				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.sourceChannelTypeCode != null">
+				and source_channel_type_code = #{EntityRelated.sourceChannelTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.sourceChannelTypeText != null and EntityRelated.sourceChannelTypeText != '' ">
+ 				and  source_channel_type_text LIKE CONCAT('%',#{EntityRelated.sourceChannelTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)>=unix_timestamp(#{EntityRelated.beginStartTime})]]> 
+		</if>
+		<if test="EntityRelated.endStartTime != null ">
+				<![CDATA[ AND  unix_timestamp(start_time)<unix_timestamp(#{EntityRelated.endStartTime})]]> 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.unity.mf.IMfProcessMaterialConsumeUntDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="actual_amount" property="actualAmount" jdbcType="NUMERIC" />
+              <result column="forecast_amount" property="forecastAmount" jdbcType="NUMERIC" />
+              <result column="scale_actual" property="scaleActual" jdbcType="NUMERIC" />
+              <result column="scale_forecast" property="scaleForecast" jdbcType="NUMERIC" />
+              <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,actual_amount,forecast_amount,scale_actual,scale_forecast,date_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+    insert into mf_process_material_consume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="actualAmount != null " >
+              actual_amount,
+          </if>
+          <if test="forecastAmount != null " >
+              forecast_amount,
+          </if>
+          <if test="scaleActual != null " >
+              scale_actual,
+          </if>
+          <if test="scaleForecast != null " >
+              scale_forecast,
+          </if>
+          <if test="dateTime != null and dateTime != '' " >
+              date_time,
+          </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="actualAmount != null " >
+              #{actualAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="forecastAmount != null " >
+              #{forecastAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="scaleActual != null " >
+              #{scaleActual,jdbcType=NUMERIC},
+          </if>
+          <if test="scaleForecast != null " >
+              #{scaleForecast,jdbcType=NUMERIC},
+          </if>
+          <if test="dateTime != null and dateTime != '' " >
+              #{dateTime,jdbcType=VARCHAR},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into mf_process_material_consume
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfProcessMaterialConsume" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{mfProcessMaterialConsume.id,jdbcType=VARCHAR},
+
+      
+          #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC},
+
+      
+          #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC},
+
+      
+          #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC},
+
+      
+          #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC},
+
+      
+          #{mfProcessMaterialConsume.dateTime,jdbcType=VARCHAR},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from mf_process_material_consume
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from mf_process_material_consume
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+    update mf_process_material_consume
+    <set >
+                  <if test="actualAmount != null ">
+                     actual_amount = #{actualAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="forecastAmount != null ">
+                     forecast_amount = #{forecastAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="scaleActual != null ">
+                     scale_actual = #{scaleActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="scaleForecast != null ">
+                     scale_forecast = #{scaleForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="dateTime != null  and dateTime != '' " >
+                     date_time = #{dateTime,jdbcType=VARCHAR},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+<update id="updateList">
+    update mf_process_material_consume
+    <set >
+                  <if test="t.actualAmount != null ">
+                     actual_amount = #{t.actualAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.forecastAmount != null ">
+                     forecast_amount = #{t.forecastAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.scaleActual != null ">
+                     scale_actual = #{t.scaleActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.scaleForecast != null ">
+                     scale_forecast = #{t.scaleForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.dateTime != null  and t.dateTime != '' " >
+                     date_time = #{t.dateTime,jdbcType=VARCHAR},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+   
+  </update>
+  
+<update id="updateListWithDff"  parameterType="list">
+    update mf_process_material_consume
+		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="actual_amount =case" suffix="end,">
+              <foreach collection="list" item="mfProcessMaterialConsume" index="index">
+                  <if test="mfProcessMaterialConsume.actualAmount != null " >
+                     when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="forecast_amount =case" suffix="end,">
+              <foreach collection="list" item="mfProcessMaterialConsume" index="index">
+                  <if test="mfProcessMaterialConsume.forecastAmount != null " >
+                     when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="scale_actual =case" suffix="end,">
+              <foreach collection="list" item="mfProcessMaterialConsume" index="index">
+                  <if test="mfProcessMaterialConsume.scaleActual != null " >
+                     when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="scale_forecast =case" suffix="end,">
+              <foreach collection="list" item="mfProcessMaterialConsume" index="index">
+                  <if test="mfProcessMaterialConsume.scaleForecast != null " >
+                     when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="date_time =case" suffix="end,">
+              <foreach collection="list" item="mfProcessMaterialConsume" index="index">
+                  <if test="mfProcessMaterialConsume.dateTime != null and mfProcessMaterialConsume.dateTime  != '' " >
+                     when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.dateTime,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+    </trim>
+    where id in
+		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+			#{mfProcessMaterialConsume.id,jdbcType=VARCHAR}
+		</foreach>
+  </update>
+
+  
+  
+  <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    replace into mf_process_material_consume
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+              id ,
+          <if test="actualAmount  != null " >
+              actual_amount,
+          </if>
+          <if test="forecastAmount  != null " >
+              forecast_amount,
+          </if>
+          <if test="scaleActual  != null " >
+              scale_actual,
+          </if>
+          <if test="scaleForecast  != null " >
+              scale_forecast,
+          </if>
+          <if test="dateTime  != null and dateTime  != '' " >
+              date_time,
+          </if>
+    </trim>
+    VALUES
+    <foreach collection="list" item="mfProcessMaterialConsume" index="index" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{mfProcessMaterialConsume.id ,jdbcType=VARCHAR},
+                  <if test="t.actualAmount != null ">
+                    #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.forecastAmount != null ">
+                    #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.scaleActual != null ">
+                    #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.scaleForecast != null ">
+                    #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+                     #{mfProcessMaterialConsume.dateTime ,jdbcType=VARCHAR},
+                  </if>
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from mf_process_material_consume
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from mf_process_material_consume where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.dateTime != null and EntityRelated.dateTime != '' ">
+ 				and  date_time LIKE CONCAT('%',#{EntityRelated.dateTime,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>

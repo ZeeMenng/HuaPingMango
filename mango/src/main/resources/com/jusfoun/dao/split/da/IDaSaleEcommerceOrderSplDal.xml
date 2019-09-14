@@ -1,0 +1,731 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jusfoun.dao.split.da.IDaSaleEcommerceOrderSplDal" >
+
+  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSaleEcommerceOrder" >
+              <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
+              <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
+              <result column="crop_type_text" property="cropTypeText" jdbcType="VARCHAR" />
+              <result column="strains_code" property="strainsCode" jdbcType="TINYINT" />
+              <result column="strains_text" property="strainsText" jdbcType="VARCHAR" />
+              <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+              <result column="ecommerce_type" property="ecommerceType" jdbcType="VARCHAR" />
+              <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+              <result column="ecommerce_code" property="ecommerceCode" jdbcType="TINYINT" />
+              <result column="ecommerce_text" property="ecommerceText" jdbcType="VARCHAR" />
+              <result column="sale_amount" property="saleAmount" jdbcType="NUMERIC" />
+              <result column="sale_amount_unit_code" property="saleAmountUnitCode" jdbcType="TINYINT" />
+              <result column="sale_amount_unit_text" property="saleAmountUnitText" jdbcType="VARCHAR" />
+              <result column="sale_amount_unit" property="saleAmountUnit" jdbcType="NUMERIC" />
+              <result column="actual_income" property="actualIncome" jdbcType="NUMERIC" />
+              <result column="actual_income_unit_code" property="actualIncomeUnitCode" jdbcType="TINYINT" />
+              <result column="actual_income_unit_text" property="actualIncomeUnitText" jdbcType="VARCHAR" />
+              <result column="actual_income_unit" property="actualIncomeUnit" jdbcType="NUMERIC" />
+              <result column="addressee" property="addressee" jdbcType="VARCHAR" />
+              <result column="delivery_address" property="deliveryAddress" jdbcType="VARCHAR" />
+              <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+              <result column="courier" property="courier" jdbcType="VARCHAR" />
+              <result column="courier_fee" property="courierFee" jdbcType="NUMERIC" />
+              <result column="courier_fee_unit_code" property="courierFeeUnitCode" jdbcType="TINYINT" />
+              <result column="courier_fee_unit_text" property="courierFeeUnitText" jdbcType="VARCHAR" />
+              <result column="courier_fee_unit" property="courierFeeUnit" jdbcType="NUMERIC" />
+              <result column="courier_number" property="courierNumber" jdbcType="VARCHAR" />
+              <result column="pay_type_code" property="payTypeCode" jdbcType="TINYINT" />
+              <result column="pay_type_text" property="payTypeText" jdbcType="VARCHAR" />
+              <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+              <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,enterprise_name,ecommerce_type,order_id,ecommerce_code,ecommerce_text,sale_amount,sale_amount_unit_code,sale_amount_unit_text,sale_amount_unit,actual_income,actual_income_unit_code,actual_income_unit_text,actual_income_unit,addressee,delivery_address,contact_phone,courier,courier_fee,courier_fee_unit_code,courier_fee_unit_text,courier_fee_unit,courier_number,pay_type_code,pay_type_text,pay_account,order_time
+  </sql>
+  
+  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSaleEcommerceOrder" >
+    insert into da_sale_ecommerce_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              id,
+          </if>
+      
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              common_field_id,
+          </if>
+      
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
+          <if test="cropTypeCode != null " >
+              crop_type_code,
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              crop_type_text,
+          </if>
+      
+          <if test="strainsCode != null " >
+              strains_code,
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              strains_text,
+          </if>
+      
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              enterprise_name,
+          </if>
+      
+          <if test="ecommerceType != null and ecommerceType != '' " >
+              ecommerce_type,
+          </if>
+      
+          <if test="orderId != null and orderId != '' " >
+              order_id,
+          </if>
+      
+          <if test="ecommerceCode != null " >
+              ecommerce_code,
+          </if>
+          <if test="ecommerceText != null and ecommerceText != '' " >
+              ecommerce_text,
+          </if>
+      
+          <if test="saleAmount != null " >
+              sale_amount,
+          </if>
+          <if test="saleAmountUnitCode != null " >
+              sale_amount_unit_code,
+          </if>
+          <if test="saleAmountUnitText != null and saleAmountUnitText != '' " >
+              sale_amount_unit_text,
+          </if>
+      
+          <if test="saleAmountUnit != null " >
+              sale_amount_unit,
+          </if>
+          <if test="actualIncome != null " >
+              actual_income,
+          </if>
+          <if test="actualIncomeUnitCode != null " >
+              actual_income_unit_code,
+          </if>
+          <if test="actualIncomeUnitText != null and actualIncomeUnitText != '' " >
+              actual_income_unit_text,
+          </if>
+      
+          <if test="actualIncomeUnit != null " >
+              actual_income_unit,
+          </if>
+          <if test="addressee != null and addressee != '' " >
+              addressee,
+          </if>
+      
+          <if test="deliveryAddress != null and deliveryAddress != '' " >
+              delivery_address,
+          </if>
+      
+          <if test="contactPhone != null and contactPhone != '' " >
+              contact_phone,
+          </if>
+      
+          <if test="courier != null and courier != '' " >
+              courier,
+          </if>
+      
+          <if test="courierFee != null " >
+              courier_fee,
+          </if>
+          <if test="courierFeeUnitCode != null " >
+              courier_fee_unit_code,
+          </if>
+          <if test="courierFeeUnitText != null and courierFeeUnitText != '' " >
+              courier_fee_unit_text,
+          </if>
+      
+          <if test="courierFeeUnit != null " >
+              courier_fee_unit,
+          </if>
+          <if test="courierNumber != null and courierNumber != '' " >
+              courier_number,
+          </if>
+      
+          <if test="payTypeCode != null " >
+              pay_type_code,
+          </if>
+          <if test="payTypeText != null and payTypeText != '' " >
+              pay_type_text,
+          </if>
+      
+          <if test="payAccount != null and payAccount != '' " >
+              pay_account,
+          </if>
+      
+          <if test="orderTime != null " >
+              order_time,
+          </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null and id != '' " >
+              #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="commonFieldId != null and commonFieldId != '' " >
+              #{commonFieldId,jdbcType=VARCHAR},
+          </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
+          <if test="cropTypeCode != null " >
+              #{cropTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="cropTypeText != null and cropTypeText != '' " >
+              #{cropTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="strainsCode != null " >
+              #{strainsCode,jdbcType=TINYINT},
+          </if>
+          <if test="strainsText != null and strainsText != '' " >
+              #{strainsText,jdbcType=VARCHAR},
+          </if>
+          <if test="enterpriseName != null and enterpriseName != '' " >
+              #{enterpriseName,jdbcType=VARCHAR},
+          </if>
+          <if test="ecommerceType != null and ecommerceType != '' " >
+              #{ecommerceType,jdbcType=VARCHAR},
+          </if>
+          <if test="orderId != null and orderId != '' " >
+              #{orderId,jdbcType=VARCHAR},
+          </if>
+          <if test="ecommerceCode != null " >
+              #{ecommerceCode,jdbcType=TINYINT},
+          </if>
+          <if test="ecommerceText != null and ecommerceText != '' " >
+              #{ecommerceText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAmount != null " >
+              #{saleAmount,jdbcType=NUMERIC},
+          </if>
+          <if test="saleAmountUnitCode != null " >
+              #{saleAmountUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="saleAmountUnitText != null and saleAmountUnitText != '' " >
+              #{saleAmountUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="saleAmountUnit != null " >
+              #{saleAmountUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="actualIncome != null " >
+              #{actualIncome,jdbcType=NUMERIC},
+          </if>
+          <if test="actualIncomeUnitCode != null " >
+              #{actualIncomeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="actualIncomeUnitText != null and actualIncomeUnitText != '' " >
+              #{actualIncomeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="actualIncomeUnit != null " >
+              #{actualIncomeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="addressee != null and addressee != '' " >
+              #{addressee,jdbcType=VARCHAR},
+          </if>
+          <if test="deliveryAddress != null and deliveryAddress != '' " >
+              #{deliveryAddress,jdbcType=VARCHAR},
+          </if>
+          <if test="contactPhone != null and contactPhone != '' " >
+              #{contactPhone,jdbcType=VARCHAR},
+          </if>
+          <if test="courier != null and courier != '' " >
+              #{courier,jdbcType=VARCHAR},
+          </if>
+          <if test="courierFee != null " >
+              #{courierFee,jdbcType=NUMERIC},
+          </if>
+          <if test="courierFeeUnitCode != null " >
+              #{courierFeeUnitCode,jdbcType=TINYINT},
+          </if>
+          <if test="courierFeeUnitText != null and courierFeeUnitText != '' " >
+              #{courierFeeUnitText,jdbcType=VARCHAR},
+          </if>
+          <if test="courierFeeUnit != null " >
+              #{courierFeeUnit,jdbcType=NUMERIC},
+          </if>
+          <if test="courierNumber != null and courierNumber != '' " >
+              #{courierNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="payTypeCode != null " >
+              #{payTypeCode,jdbcType=TINYINT},
+          </if>
+          <if test="payTypeText != null and payTypeText != '' " >
+              #{payTypeText,jdbcType=VARCHAR},
+          </if>
+          <if test="payAccount != null and payAccount != '' " >
+              #{payAccount,jdbcType=VARCHAR},
+          </if>
+          <if test="orderTime != null " >
+              #{orderTime,jdbcType=TIMESTAMP},
+          </if>
+    </trim>
+  </insert>
+  
+ 
+    <insert id="addList" parameterType="list">
+    	insert into da_sale_ecommerce_order
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSaleEcommerceOrder" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      
+          #{daSaleEcommerceOrder.id,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.commonFieldId,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.name,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.cropTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.cropTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.strainsCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.strainsText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.enterpriseName,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.ecommerceType,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.orderId,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.ecommerceCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.ecommerceText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.saleAmount,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.saleAmountUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.saleAmountUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.saleAmountUnit,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.actualIncome,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.actualIncomeUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.actualIncomeUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.actualIncomeUnit,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.addressee,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.deliveryAddress,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.contactPhone,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.courier,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.courierFee,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.courierFeeUnitCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.courierFeeUnitText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.courierFeeUnit,jdbcType=NUMERIC},
+
+      
+          #{daSaleEcommerceOrder.courierNumber,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.payTypeCode,jdbcType=TINYINT},
+
+      
+          #{daSaleEcommerceOrder.payTypeText,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.payAccount,jdbcType=VARCHAR},
+
+      
+          #{daSaleEcommerceOrder.orderTime,jdbcType=TIMESTAMP},
+
+
+        </trim>
+    	</foreach>
+    </insert>
+
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+                 delete from da_sale_ecommerce_order
+                 where  id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+	<delete id="deleteByIdList" parameterType="list">
+		delete from da_sale_ecommerce_order
+		where id  in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+  
+  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSaleEcommerceOrder" >
+    update da_sale_ecommerce_order
+    <set >
+                  <if test="commonFieldId != null  and commonFieldId != '' " >
+                     common_field_id = #{commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="cropTypeCode != null ">
+                     crop_type_code = #{cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="cropTypeText != null  and cropTypeText != '' " >
+                     crop_type_text = #{cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="strainsCode != null ">
+                     strains_code = #{strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="strainsText != null  and strainsText != '' " >
+                     strains_text = #{strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="enterpriseName != null  and enterpriseName != '' " >
+                     enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="ecommerceType != null  and ecommerceType != '' " >
+                     ecommerce_type = #{ecommerceType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="orderId != null  and orderId != '' " >
+                     order_id = #{orderId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="ecommerceCode != null ">
+                     ecommerce_code = #{ecommerceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="ecommerceText != null  and ecommerceText != '' " >
+                     ecommerce_text = #{ecommerceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAmount != null ">
+                     sale_amount = #{saleAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="saleAmountUnitCode != null ">
+                     sale_amount_unit_code = #{saleAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="saleAmountUnitText != null  and saleAmountUnitText != '' " >
+                     sale_amount_unit_text = #{saleAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="saleAmountUnit != null ">
+                     sale_amount_unit = #{saleAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="actualIncome != null ">
+                     actual_income = #{actualIncome,jdbcType=NUMERIC},
+                  </if>
+                  <if test="actualIncomeUnitCode != null ">
+                     actual_income_unit_code = #{actualIncomeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="actualIncomeUnitText != null  and actualIncomeUnitText != '' " >
+                     actual_income_unit_text = #{actualIncomeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="actualIncomeUnit != null ">
+                     actual_income_unit = #{actualIncomeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="addressee != null  and addressee != '' " >
+                     addressee = #{addressee,jdbcType=VARCHAR},
+                  </if>
+                  <if test="deliveryAddress != null  and deliveryAddress != '' " >
+                     delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="contactPhone != null  and contactPhone != '' " >
+                     contact_phone = #{contactPhone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="courier != null  and courier != '' " >
+                     courier = #{courier,jdbcType=VARCHAR},
+                  </if>
+                  <if test="courierFee != null ">
+                     courier_fee = #{courierFee,jdbcType=NUMERIC},
+                  </if>
+                  <if test="courierFeeUnitCode != null ">
+                     courier_fee_unit_code = #{courierFeeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="courierFeeUnitText != null  and courierFeeUnitText != '' " >
+                     courier_fee_unit_text = #{courierFeeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="courierFeeUnit != null ">
+                     courier_fee_unit = #{courierFeeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="courierNumber != null  and courierNumber != '' " >
+                     courier_number = #{courierNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="payTypeCode != null ">
+                     pay_type_code = #{payTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="payTypeText != null  and payTypeText != '' " >
+                     pay_type_text = #{payTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="payAccount != null  and payAccount != '' " >
+                     pay_account = #{payAccount,jdbcType=VARCHAR},
+                  </if>
+                  <if test="orderTime != null ">
+                     order_time = #{orderTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+                 where  id = #{id,jdbcType=VARCHAR}
+</update>
+  
+<update id="updateList">
+    update da_sale_ecommerce_order
+    <set >
+                  <if test="t.commonFieldId != null  and t.commonFieldId != '' " >
+                     common_field_id = #{t.commonFieldId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cropTypeCode != null ">
+                     crop_type_code = #{t.cropTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.cropTypeText != null  and t.cropTypeText != '' " >
+                     crop_type_text = #{t.cropTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.strainsCode != null ">
+                     strains_code = #{t.strainsCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.strainsText != null  and t.strainsText != '' " >
+                     strains_text = #{t.strainsText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.enterpriseName != null  and t.enterpriseName != '' " >
+                     enterprise_name = #{t.enterpriseName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.ecommerceType != null  and t.ecommerceType != '' " >
+                     ecommerce_type = #{t.ecommerceType,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.orderId != null  and t.orderId != '' " >
+                     order_id = #{t.orderId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.ecommerceCode != null ">
+                     ecommerce_code = #{t.ecommerceCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.ecommerceText != null  and t.ecommerceText != '' " >
+                     ecommerce_text = #{t.ecommerceText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAmount != null ">
+                     sale_amount = #{t.saleAmount,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.saleAmountUnitCode != null ">
+                     sale_amount_unit_code = #{t.saleAmountUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.saleAmountUnitText != null  and t.saleAmountUnitText != '' " >
+                     sale_amount_unit_text = #{t.saleAmountUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.saleAmountUnit != null ">
+                     sale_amount_unit = #{t.saleAmountUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.actualIncome != null ">
+                     actual_income = #{t.actualIncome,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.actualIncomeUnitCode != null ">
+                     actual_income_unit_code = #{t.actualIncomeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.actualIncomeUnitText != null  and t.actualIncomeUnitText != '' " >
+                     actual_income_unit_text = #{t.actualIncomeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.actualIncomeUnit != null ">
+                     actual_income_unit = #{t.actualIncomeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.addressee != null  and t.addressee != '' " >
+                     addressee = #{t.addressee,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.deliveryAddress != null  and t.deliveryAddress != '' " >
+                     delivery_address = #{t.deliveryAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.contactPhone != null  and t.contactPhone != '' " >
+                     contact_phone = #{t.contactPhone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.courier != null  and t.courier != '' " >
+                     courier = #{t.courier,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.courierFee != null ">
+                     courier_fee = #{t.courierFee,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.courierFeeUnitCode != null ">
+                     courier_fee_unit_code = #{t.courierFeeUnitCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.courierFeeUnitText != null  and t.courierFeeUnitText != '' " >
+                     courier_fee_unit_text = #{t.courierFeeUnitText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.courierFeeUnit != null ">
+                     courier_fee_unit = #{t.courierFeeUnit,jdbcType=NUMERIC},
+                  </if>
+                  <if test="t.courierNumber != null  and t.courierNumber != '' " >
+                     courier_number = #{t.courierNumber,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.payTypeCode != null ">
+                     pay_type_code = #{t.payTypeCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.payTypeText != null  and t.payTypeText != '' " >
+                     pay_type_text = #{t.payTypeText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.payAccount != null  and t.payAccount != '' " >
+                     pay_account = #{t.payAccount,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.orderTime != null ">
+                     order_time = #{t.orderTime,jdbcType=TIMESTAMP},
+                  </if>
+   </set>
+	
+		where id  in
+		<foreach collection="idList" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+</update>
+  
+  <select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from da_sale_ecommerce_order
+           where  id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getList" resultMap="BaseResultMap" parameterType="map" >
+          select
+                <include refid="Base_Column_List" />
+          from da_sale_ecommerce_order where 1 = 1
+        <if test="EntityRelated.id != null and EntityRelated.id != '' ">
+			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="EntityRelated.actualIncomeUnitCode != null">
+				and actual_income_unit_code = #{EntityRelated.actualIncomeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.actualIncomeUnitText != null and EntityRelated.actualIncomeUnitText != '' ">
+ 				and  actual_income_unit_text LIKE CONCAT('%',#{EntityRelated.actualIncomeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.addressee != null and EntityRelated.addressee != '' ">
+ 				and  addressee LIKE CONCAT('%',#{EntityRelated.addressee,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.commonFieldId != null and EntityRelated.commonFieldId != '' ">
+				and common_field_id = #{EntityRelated.commonFieldId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.contactPhone != null and EntityRelated.contactPhone != '' ">
+ 				and  contact_phone LIKE CONCAT('%',#{EntityRelated.contactPhone,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.courier != null and EntityRelated.courier != '' ">
+ 				and  courier LIKE CONCAT('%',#{EntityRelated.courier,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.courierFeeUnitCode != null">
+				and courier_fee_unit_code = #{EntityRelated.courierFeeUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.courierFeeUnitText != null and EntityRelated.courierFeeUnitText != '' ">
+ 				and  courier_fee_unit_text LIKE CONCAT('%',#{EntityRelated.courierFeeUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.courierNumber != null and EntityRelated.courierNumber != '' ">
+ 				and  courier_number LIKE CONCAT('%',#{EntityRelated.courierNumber,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.cropTypeCode != null">
+				and crop_type_code = #{EntityRelated.cropTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.cropTypeText != null and EntityRelated.cropTypeText != '' ">
+ 				and  crop_type_text LIKE CONCAT('%',#{EntityRelated.cropTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.deliveryAddress != null and EntityRelated.deliveryAddress != '' ">
+ 				and  delivery_address LIKE CONCAT('%',#{EntityRelated.deliveryAddress,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.ecommerceCode != null">
+				and ecommerce_code = #{EntityRelated.ecommerceCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.ecommerceText != null and EntityRelated.ecommerceText != '' ">
+ 				and  ecommerce_text LIKE CONCAT('%',#{EntityRelated.ecommerceText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.ecommerceType != null and EntityRelated.ecommerceType != '' ">
+ 				and  ecommerce_type LIKE CONCAT('%',#{EntityRelated.ecommerceType,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.enterpriseName != null and EntityRelated.enterpriseName != '' ">
+ 				and  enterprise_name LIKE CONCAT('%',#{EntityRelated.enterpriseName,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
+				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.orderId != null and EntityRelated.orderId != '' ">
+				and order_id = #{EntityRelated.orderId,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginOrderTime != null ">
+				<![CDATA[ AND  unix_timestamp(order_time)>=unix_timestamp(#{EntityRelated.beginOrderTime})]]> 
+		</if>
+		<if test="EntityRelated.endOrderTime != null ">
+				<![CDATA[ AND  unix_timestamp(order_time)<unix_timestamp(#{EntityRelated.endOrderTime})]]> 
+		</if>
+		<if test="EntityRelated.payAccount != null and EntityRelated.payAccount != '' ">
+ 				and  pay_account LIKE CONCAT('%',#{EntityRelated.payAccount,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.payTypeCode != null">
+				and pay_type_code = #{EntityRelated.payTypeCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.payTypeText != null and EntityRelated.payTypeText != '' ">
+ 				and  pay_type_text LIKE CONCAT('%',#{EntityRelated.payTypeText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.saleAmountUnitCode != null">
+				and sale_amount_unit_code = #{EntityRelated.saleAmountUnitCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.saleAmountUnitText != null and EntityRelated.saleAmountUnitText != '' ">
+ 				and  sale_amount_unit_text LIKE CONCAT('%',#{EntityRelated.saleAmountUnitText,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.strainsCode != null">
+				and strains_code = #{EntityRelated.strainsCode,jdbcType=TINYINT} 
+		</if>
+		<if test="EntityRelated.strainsText != null and EntityRelated.strainsText != '' ">
+ 				and  strains_text LIKE CONCAT('%',#{EntityRelated.strainsText,jdbcType=VARCHAR},'%') 
+		</if>
+
+
+		<if test="OrderList != null and OrderList!=null">
+			order by
+			<foreach collection="OrderList" item="Order" index="index" separator=",">
+				${Order.columnName}
+				<if test="Order.isASC">
+					ASC
+				</if>
+				<if test="!Order.isASC">
+					DESC
+				</if>
+			</foreach>
+		</if>
+  </select>
+  
+	<select id="getListBySQL" resultType="java.util.HashMap" parameterType="String">
+		<if test="value!=null and value!=''">
+			${value}
+		</if>
+	</select>
+
+  <cache />
+</mapper>
