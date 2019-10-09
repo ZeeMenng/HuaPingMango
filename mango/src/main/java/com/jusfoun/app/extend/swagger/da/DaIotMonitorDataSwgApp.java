@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.sf.json.JSONObject;
+import sun.util.logging.resources.logging;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -34,6 +35,7 @@ import com.jusfoun.bll.extend.unity.da.DaIotMonitorBasicUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.parameter.da.DaIotMonitorDataParameter;
 import com.jusfoun.set.enumer.StatusEnum;
+import com.jusfoun.set.exception.GlobalException;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.MongoUtil;
 import com.jusfoun.utl.SymbolicConstant;
@@ -148,11 +150,11 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		selectBuffer.append("		A.person person,                                         ");
 		selectBuffer.append("		A.telephone telephone,                                   ");
 		selectBuffer.append("		A.remark remark,                                         ");
-		//默认所有设备都正常
+		// 默认所有设备都正常
 		selectBuffer.append("		" + StatusEnum.ZHENGCHANG.getCode() + " deviceStatus            ");
 		selectBuffer.append("	FROM                                                         ");
 		selectBuffer.append("		da_iot_monitor_basic A                                   ");
-		if(!bascCode.equals("")){
+		if (!bascCode.equals("")) {
 			selectBuffer.append("	WHERE A.basc_code = '" + bascCode + "'                           ");
 		}
 		sqlMap.put("Sql", selectBuffer.toString());
@@ -164,31 +166,31 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		timeMap.put("viewName", "hour");// 视图名，年year，月month，日date，小时hour（默认为年）
 		timeMap.put("pastNum", SymbolicConstant.DEVICE_ERROR_TIME);
 		List<String> timesList = TimesView.getTimesView(timeMap);
-
+		
 		Document sub_match = new Document();
 		sub_match.put("time", new Document("$gte", DateUtils.string2Date(timesList.get(0), "yyyy-MM-dd HH")));
 		Document sub_group = new Document();
 		sub_group.put("_id", "$hid");
 		Document match = new Document("$match", sub_match);
 		Document group = new Document("$group", sub_group);
-
+		
 		List<Document> aggregateList = new ArrayList<Document>();
 		aggregateList.add(match);
 		aggregateList.add(group);
-
+		
 		List<Map<String, Object>> dataList = mongoUtil.queryForAggregate("DaIotMonitorData", aggregateList);
 		Set<Object> hidSet = new HashSet<Object>();
 		for (Map<String, Object> dataMap : dataList) {
 			hidSet.add(dataMap.get("_id"));
 		}
-
+		
 		for (Map<String, Object> modelMap : modelList) {
 			if (hidSet.contains(modelMap.get("hid"))) {
 				modelMap.put("deviceStatus", StatusEnum.ZHENGCHANG.getCode());
 			}
 		}
 		**/
-		//从gp_message表（联网设备故障预警，2小时预警一次）中查询设备最新数据，判断设备异常状态
+		// 从gp_message表（联网设备故障预警，2小时预警一次）中查询设备最新数据，判断设备异常状态
 		Map<String, Object> msgMap = new HashMap<String, Object>();
 		StringBuffer msgSql = new StringBuffer();
 		msgSql.append("SELECT A.id id,A.user_id userId,A.user_name userName,A.title title,A.content content,A.remark remark,A.add_time addTime ");
@@ -197,11 +199,11 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		msgMap.put("Sql", msgSql.toString());
 		ResultModel msgRes = daIotMonitorBasicUntBll.getListBySQL(msgMap);
 		List<Map<String, Object>> msgModelList = (List<Map<String, Object>>) msgRes.getData();
-		if(msgModelList != null && msgModelList.size() > 0){
-			for(Map<String, Object> msgModel : msgModelList){
+		if (msgModelList != null && msgModelList.size() > 0) {
+			for (Map<String, Object> msgModel : msgModelList) {
 				String title = (String) msgModel.get("title");
 				String content = (String) msgModel.get("content");
-				if(SymbolicConstant.DEVICE_ERROR_MSG_TITLE.equals(title)){
+				if (SymbolicConstant.DEVICE_ERROR_MSG_TITLE.equals(title)) {
 					for (Map<String, Object> modelMap : modelList) {
 						String hid = (String) modelMap.get("hid");
 						if (content.contains(hid)) {
@@ -212,17 +214,21 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
 	@ApiOperation(value = "批量新增", notes = "新增多条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "DaIotMonitorDataAddList") })
 	@RequestMapping(value = "/addList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel addList(@RequestBody DaIotMonitorDataParameter.AddList jsonData) throws Exception {
+	public ResultModel addList(@RequestBody DaIotMonitorDataParameter.AddList jsonData) {
 		ResultModel result = new ResultModel();
-		result = daIotMonitorDataUntBll.add(jsonData.getEntityList(),false);
-		mongoUtil.insertMany(jsonData.getEntityList());
+		result = daIotMonitorDataUntBll.add(jsonData.getEntityList(), false);
+		try {
+			mongoUtil.insertMany(jsonData.getEntityList());
+		} catch (Exception exception) {
+			//不作处理
+		}
 		return result;
 	}
 
@@ -353,11 +359,11 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
 
-//		Map<String, String> timeMap = new HashMap<String, String>();
-//		timeMap.put("viewName", "hour");// 视图名，年year，月month，日date，hour时（默认为年）
-//		timeMap.put("hasCurrent", "false");
-//		timeMap.put("pastNum", "24");
-//		List<String> timesList = TimesView.getTimesView(timeMap);
+		// Map<String, String> timeMap = new HashMap<String, String>();
+		// timeMap.put("viewName", "hour");// 视图名，年year，月month，日date，hour时（默认为年）
+		// timeMap.put("hasCurrent", "false");
+		// timeMap.put("pastNum", "24");
+		// List<String> timesList = TimesView.getTimesView(timeMap);
 
 		selectBuffer.append(" SELECT														");
 		selectBuffer.append(" DATE_FORMAT(a.time, '%Y-%m-%d %H') shortTime,														");
@@ -1010,11 +1016,11 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
 
-//		Map<String, String> timeMap = new HashMap<String, String>();
-//		timeMap.put("viewName", "hour");// 视图名，年year，月month，日date，hour时（默认为年）
-//		timeMap.put("hasCurrent", "false");
-//		timeMap.put("pastNum", "24");
-//		List<String> timesList = TimesView.getTimesView(timeMap);
+		// Map<String, String> timeMap = new HashMap<String, String>();
+		// timeMap.put("viewName", "hour");// 视图名，年year，月month，日date，hour时（默认为年）
+		// timeMap.put("hasCurrent", "false");
+		// timeMap.put("pastNum", "24");
+		// List<String> timesList = TimesView.getTimesView(timeMap);
 
 		selectBuffer.append(" SELECT														");
 		selectBuffer.append(" DATE_FORMAT(a.time, '%Y-%m-%d %H') shortTime,														");
