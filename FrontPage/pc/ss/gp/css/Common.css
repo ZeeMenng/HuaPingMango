@@ -277,7 +277,7 @@ embed {
 
 .page-breadcrumb li a:hover {
 	background-color: #f1f4f7;
-	text-decoration: underline;
+	text-decoration: none;
 }
 /***后台登录右下角下拉框，有Ztree插件时展示效果有冲突***/
 .dropdown-menu li {
@@ -376,3 +376,5 @@ html, body {
 .login {
 	padding-top: 5% !important;
 }
+
+

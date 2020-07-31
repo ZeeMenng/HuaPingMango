@@ -134,11 +134,15 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+				// 模糊匹配下拉框使用的关键字
+				if (entityRelatedObject.containsKey(SymbolicConstant.AUTOCOMPLETE_KEY) && StringUtils.isNotBlank(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)))
+					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)).append("%'");
 
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("url") && StringUtils.isNotBlank(entityRelatedObject.getString("url")))
 					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString("url")).append("%'");
+
 				if (entityRelatedObject.containsKey("remark") && StringUtils.isNotBlank(entityRelatedObject.getString("remark")))
 					selectBuffer.append(" and A.remark like '%").append(entityRelatedObject.getString("remark")).append("%'");
 				if (entityRelatedObject.containsKey("isPublicCode") && StringUtils.isNotBlank(entityRelatedObject.getString("isPublicCode")))

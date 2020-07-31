@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/5/24 0:41:19
+ * @updateDate 2020/6/24 14:42:32
  * @description 实体类GpModuleGenEnt，自动生成。功能模块。
  */
 
@@ -26,6 +28,8 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
     private String domainId;
     @ApiModelProperty(value="父级模块。外键，引用自身功能模块表（module）的主键。",hidden=false,required=false)
     private String fartherId;
+    @ApiModelProperty(value="菜单样式。",hidden=false,required=false)
+    private String iconResource;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="模块级别。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种级别：1第一级，2第二级。",allowableValues="0,1",hidden=false,required=false)
@@ -34,12 +38,18 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
     private String levelText;
     @ApiModelProperty(value="模块名称。",hidden=false,required=false)
     private String name;
+    @ApiModelProperty(value="链接页面。外键，引用系统页面表（page）的主键。",hidden=false,required=false)
+    private String pageId;
+    @ApiModelProperty(value="链接页面。路径，和系统页面表（page）的路径（url）对应。",hidden=false,required=false)
+    private String pageUrl;
     @ApiModelProperty(value="排序字段。",hidden=false,required=false)
     private Integer priority;
     @ApiModelProperty(value="备注字段。",hidden=false,required=false)
     private String remark;
     @ApiModelProperty(value="模块编号。",hidden=false,required=false)
     private String serialNo;
+    @ApiModelProperty(value="菜单样式。",hidden=false,required=false)
+    private String style;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
     //多对一关系中，一端实体对象
@@ -86,6 +96,20 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setFartherId(String fartherId) {
 		this.fartherId = fartherId;
+	}
+    
+	/**
+	 * get方法。菜单样式。
+	 */
+	public String getIconResource() {
+		return this.iconResource;
+	}
+
+	/**
+	 * set方法。菜单样式。
+	 */
+	public void setIconResource(String iconResource) {
+		this.iconResource = iconResource;
 	}
     
 	/**
@@ -145,6 +169,34 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
+	 * get方法。链接页面。外键，引用系统页面表（page）的主键。
+	 */
+	public String getPageId() {
+		return this.pageId;
+	}
+
+	/**
+	 * set方法。链接页面。外键，引用系统页面表（page）的主键。
+	 */
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
+	}
+    
+	/**
+	 * get方法。链接页面。路径，和系统页面表（page）的路径（url）对应。
+	 */
+	public String getPageUrl() {
+		return this.pageUrl;
+	}
+
+	/**
+	 * set方法。链接页面。路径，和系统页面表（page）的路径（url）对应。
+	 */
+	public void setPageUrl(String pageUrl) {
+		this.pageUrl = pageUrl;
+	}
+    
+	/**
 	 * get方法。排序字段。
 	 */
 	public Integer getPriority() {
@@ -184,6 +236,20 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
+	}
+    
+	/**
+	 * get方法。菜单样式。
+	 */
+	public String getStyle() {
+		return this.style;
+	}
+
+	/**
+	 * set方法。菜单样式。
+	 */
+	public void setStyle(String style) {
+		this.style = style;
 	}
     
 	/**

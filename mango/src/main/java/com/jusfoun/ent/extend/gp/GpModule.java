@@ -1,9 +1,6 @@
 package com.jusfoun.ent.extend.gp;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.jusfoun.ent.generate.gp.GpModuleGenEnt;
-import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,52 +15,17 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "GpModule", description = "功能模块。")
 public class GpModule extends GpModuleGenEnt {
 
-	@ApiModelProperty(value = "顶级模块。", hidden = false, required = false)
-	private String moduleTop;
-	@ApiModelProperty(value = "父级模块。", hidden = false, required = false)
-	private String moduleFar;
-	@ApiModelProperty(value = "顶级模块名称。", hidden = false, required = false)
-	private String moduleTopName;
-	@ApiModelProperty(value = "父级模块名称。", hidden = false, required = false)
-	private String moduleFarName;
 	@ApiModelProperty(value = "应用领域名称", hidden = false, required = false)
 	private String domainName;
+
 	@ApiModelProperty(value = "级联方式。0全部级联 1仅级联增 2仅级联删  3仅级联改 4不做级联", hidden = false, required = false)
 	private Byte cascadeTypeCode;
 
+	@ApiModelProperty(value = "菜单图标", hidden = false, required = false)
+	private String iconPaths;
 
-
-	public String getModuleTop() {
-		return moduleTop;
-	}
-
-	public void setModuleTop(String moduleTop) {
-		this.moduleTop = moduleTop;
-	}
-
-	public String getModuleFar() {
-		return moduleFar;
-	}
-
-	public void setModuleFar(String moduleFar) {
-		this.moduleFar = moduleFar;
-	}
-
-	public String getModuleTopName() {
-		return moduleTopName;
-	}
-
-	public void setModuleTopName(String moduleTopName) {
-		this.moduleTopName = moduleTopName;
-	}
-
-	public String getModuleFarName() {
-		return moduleFarName;
-	}
-
-	public void setModuleFarName(String moduleFarName) {
-		this.moduleFarName = moduleFarName;
-	}
+	@ApiModelProperty(value = "菜单图标", hidden = false, required = false)
+	private String iconIds;
 
 	public String getDomainName() {
 		return domainName;
@@ -72,7 +34,23 @@ public class GpModule extends GpModuleGenEnt {
 	public void setDomainName(String domainName) {
 		this.domainName = domainName;
 	}
-	
+
+	public String getIconPaths() {
+		return iconPaths;
+	}
+
+	public void setIconPaths(String iconPaths) {
+		this.iconPaths = iconPaths;
+	}
+
+	public String getIconIds() {
+		return iconIds;
+	}
+
+	public void setIconIds(String iconIds) {
+		this.iconIds = iconIds;
+	}
+
 	public Byte getCascadeTypeCode() {
 		return cascadeTypeCode;
 	}

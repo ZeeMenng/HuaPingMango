@@ -100,66 +100,6 @@
 
 });
 
-function initAddFileInput() {
-	// 初始化上传控件的样式
-	var $Control = $("#fileIcons").fileinput({
-		language : 'zh',
-		theme : 'fa',
-		showRemove : false,
-		showZoom : false,
-		showDrag : false,
-		showUpload : false,
-		showCaption : false,
-		ajaxSettings : {
-			headers : {
-				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
-			}
-		},
-		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-		uploadAsync : true,
-		browseClass : "btn btn-primary btn-lg",
-		fileType : "image",
-		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
-		overwriteInitial : false,
-		initialPreviewAsData : true
-
-	});
-	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
-}
-
-function initEditFileInput(IconIdArray, IconPathArray) {
-	var initialPreviewConfigArray = [];
-	for (var i = 0; i < IconIdArray.length; i++) {
-		initialPreviewConfigArray[i] = {
-			url : INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
-		};
-	}
-
-	var $Control = $("#fileIcons").fileinput({
-		language : 'zh',
-		theme : 'fa',
-		showRemove : false,
-		showZoom : false,
-		showDrag : false,
-		showUpload : false,
-		showCaption : false,
-		ajaxSettings : {
-			headers : {
-				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
-			}
-		},
-		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-		uploadAsync : true,
-		browseClass : "btn btn-primary btn-lg",
-		fileType : "image",
-		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
-		overwriteInitial : false,
-		initialPreviewAsData : true,
-		initialPreview : IconPathArray,
-		initialPreviewConfig : initialPreviewConfigArray
-	});
-	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
-}
 
 function initTreeNodes(treeId, async) {
 

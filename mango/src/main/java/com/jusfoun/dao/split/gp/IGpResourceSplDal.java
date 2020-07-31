@@ -7,8 +7,6 @@ import java.util.Map;
 import com.jusfoun.dao.split.base.IBaseSplDal;
 import com.jusfoun.ent.extend.gp.GpResource;
 
-
-
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
@@ -32,11 +30,8 @@ public interface IGpResourceSplDal extends IBaseSplDal {
 
 	public List<GpResource> getList(Map<String, Object> map);
 
+	public List<GpResource> getListByBusinessId(String businessId);
+
 	public List<Map<String, Object>> getListBySQL(String sql);
 
 }
-
-
-
-
-

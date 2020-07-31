@@ -86,16 +86,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.14</version>
-		</dependency>
+
 
 		<!-- 分页插件 -->
 		<dependency>
@@ -289,8 +280,90 @@
 			<artifactId>mongodb-driver</artifactId>
 			<version>3.6.3</version>
 		</dependency>
-	</dependencies>
 
+
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire-booter</artifactId>
+			<version>2.22.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.qdox</groupId>
+			<artifactId>qdox</artifactId>
+			<version>2.0-M8</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-loader-tools</artifactId>
+			<version>1.5.11.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-bom</artifactId>
+			<version>2.2.11</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire-junit4</artifactId>
+			<version>2.18.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.4.8</version>
+			<type>pom</type>
+		</dependency>
+
+<dependency>
+    <groupId>org.apache.maven.surefire</groupId>
+    <artifactId>surefire-providers</artifactId>
+    <version>2.18.1</version>
+    <type>pom</type>
+</dependency>
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-parent</artifactId>
+    <version>20</version>
+    <type>pom</type>
+</dependency>
+
+
+	</dependencies>
 
 
 	<build>
@@ -326,7 +399,14 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
+			<plugin>
+				<groupId> org.apache.maven.plugins</groupId>
+				<artifactId> maven-project-info-reports-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+			</plugin>
 		</plugins>
 
 		<!-- 打包时只包含前端编译后的文件 -->

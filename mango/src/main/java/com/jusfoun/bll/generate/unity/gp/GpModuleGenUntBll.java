@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,16 +24,18 @@ import com.jusfoun.utl.Tools;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/5/24 0:41:02
+ * @updateDate 2020/6/24 14:42:32
  * @description 功能模块。 业务逻辑处理类，扩展自BaseUntBll<GpModule>，自动生成。
  */
 public class GpModuleGenUntBll extends BaseUntBll<GpModule> {
 
 	@Autowired
 	protected IGpModuleUntDal gpModuleUntDal;
+
 
 	public ResultModel updateList(GpModuleParameter.UpdateList updateListParam) {
 		return updateList(updateListParam, isLogWrite);
@@ -54,7 +56,7 @@ public class GpModuleGenUntBll extends BaseUntBll<GpModule> {
 			result.setOperTypeText(OperType.UPDATELIST.getText());
 			result.setRemark("");
 
-			int i = baseUntDal.updateList(updateListParam.getIdList(), updateListParam.getEntity());
+			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(null);
@@ -100,8 +102,9 @@ public class GpModuleGenUntBll extends BaseUntBll<GpModule> {
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
-			result.setOperTypeText(OperType.GETLIST.getText());
+            result.setOperTypeText(OperType.GETLIST.getText());
 			result.setRemark("");
+			
 
 			GpModuleParameter.GetList.EntityRelated entityRelated = getListParam.getEntityRelated();
 			GpModuleParameter.GetList.Page page = getListParam.getPage();
@@ -143,5 +146,10 @@ public class GpModuleGenUntBll extends BaseUntBll<GpModule> {
 		}
 		return result;
 	}
-
+	
 }
+
+
+
+
+

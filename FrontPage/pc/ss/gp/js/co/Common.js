@@ -17,6 +17,9 @@ $(document).ready(function() {
 		return true;
 	}
 	$("#batchEditButton").prop("class", "hidden");
+
+	
+	
 	// 注销按钮
 	$("#aLogout").click(function() {
 		var ajaxParamter = {
@@ -1749,6 +1752,67 @@ function historyBack() {
 	return false;
 }
 
+
+// 初始化AutoComplete输入框
+function initAutoComplete(itemParam, ajaxParam) {
+	var autoCompleteCache = {};
+	// 失去输入焦点后，如果显示值为空，则同时清空隐藏值
+	$("#" + itemParam.textFieldInputId).unbind("blur");
+	$("#" + itemParam.textFieldInputId).bind("blur", function() {
+		if ($("#" + itemParam.textFieldInputId).val() == "") {
+			$("#" + itemParam.textFieldInputId).val("");
+			$("#" + itemParam.valueFieldInputId).val("");
+		} else {
+			// 如果是已经存在缓存中的关键字，也就是输入到文本框中的文字是不能提交的，只能选择后才能提交
+			if (($("#" + itemParam.textFieldInputId).val() in autoCompleteCache) || $("#" + itemParam.textFieldInputId).val().toString().length == 1) {
+				$("#" + itemParam.textFieldInputId).val("");
+				$("#" + itemParam.valueFieldInputId).val("");
+			}
+		}
+	});
+
+	$("#" + itemParam.textFieldInputId).autocomplete({
+		minLength : 2,
+		autoFocus : true,
+		source : function(request, response) {
+			var term = request.term;
+			if (term in autoCompleteCache) {
+				response($.map(autoCompleteCache[term], function(item) {
+					return {
+						value : item[itemParam.textField],
+						label : item[itemParam.textField],
+						submitValue : item[itemParam.valueField]
+					}
+				}));
+				return;
+			}
+			// 将关键字赋予模糊查询的键
+			ajaxParam.jsonData.entityRelated.autoCompleteKey = request.term;
+
+			var ajaxParamter = {
+				"url" : ajaxParam.url + "?jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.jsonData)),
+				"async" : true,
+				"type" : "GET",
+				"success" : function(resultData) {
+					autoCompleteCache[term] = resultData.data;
+					response($.map(resultData.data, function(item) {
+						return {
+							value : item[itemParam.textField],
+							label : item[itemParam.textField],
+							submitValue : item[itemParam.valueField]
+						}
+					}));
+				}
+			};
+			universalAjax(ajaxParamter);
+
+		},
+		select : function(e, ui) {
+			$("#" + itemParam.valueFieldInputId).val(ui.item.submitValue);
+		}
+	});
+}
+
 function printPage() {
 	bdhtml = window.document.body.innerHTML;// 获取当前页的html代码
 	sprnstr = "<!--startprint-->";// 设置打印开始区域
@@ -1908,7 +1972,76 @@ function initMessage() {
 
 }
 
-// 多文件上传初始化
+/** *******************************************文件上传相关方法******************************************* */
+// 多文件上传控件 接受后台数据后 初始化
+function initAddFileInput() {
+	// 初始化上传控件的样式
+	var $Control = $("#fileIcons").fileinput({
+		language : 'zh',
+		theme : 'fa',
+		showRemove : false,
+		showZoom : false,
+		showDrag : false,
+		showUpload : false,
+		showCaption : false,
+		ajaxSettings : {
+			headers : {
+				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
+			}
+		},
+		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
+		uploadAsync : true,
+		browseClass : "btn btn-primary btn-lg",
+		fileType : "image",
+		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
+		overwriteInitial : false,
+		initialPreviewAsData : true
+
+	});
+	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
+}
+
+function initEditFileInput(IconIdArray, IconPathArray) {
+	var initialPreviewConfigArray = [];
+	if (IconIdArray != null & IconPathArray != null) {
+		for (var i = 0; i < IconIdArray.length; i++) {
+			initialPreviewConfigArray[i] = {
+				url : INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
+			};
+		}
+	}
+	// 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
+	 $("#fileIcons").fileinput('destroy');
+	 $("#fileIcons").unbind('on');
+	 
+	 
+	var $Control = $("#fileIcons").fileinput({
+		language : 'zh',
+		theme : 'fa',
+		showRemove : false,
+		showZoom : false,
+		showDrag : false,
+		showUpload : false,
+		showCaption : false,
+		ajaxSettings : {
+			headers : {
+				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
+			}
+		},
+		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
+		uploadAsync : true,
+		browseClass : "btn btn-primary btn-lg",
+		fileType : "image",
+		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
+		overwriteInitial : false,
+		initialPreviewAsData : true,
+		initialPreview : IconPathArray,
+		initialPreviewConfig : initialPreviewConfigArray
+	});
+	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
+}
+
+// 多文件上传控制 刚进入新增页面 初始化
 function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePathsControl) {
 	$(fileControl).on('filepreupload', function(event, data, previewId, index) {
 		for (var i = 0; i < data.files.length; i++) {
@@ -2028,6 +2161,15 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 
 }
 
+
+/** *******************************************文件上传相关方法******************************************* */
+
+
+
+
+/** *******************************************树形菜单相关方法******************************************* */
+
+
 // 初始化详情页中的zTree插件
 function initDetailTree(treeParam) {
 
@@ -2072,3 +2214,467 @@ function initDetailTree(treeParam) {
 
 	universalAjax(ajaxParamter);
 }
+
+
+
+var className = "dark";
+var newCount = 1;
+function addHoverDom(treeId, treeNode) {
+	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	var sObj = $("#" + treeNode.tId + "_span");
+	if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
+		return;
+	var addStr = "<span class='button add' id='addBtn_" + treeNode.tId + "' title='add node' onfocus='this.blur();'></span>";
+	sObj.after(addStr);
+	var btn = $("#addBtn_" + treeNode.tId);
+	if (btn)
+		btn.bind("click", function() {
+			var newNode = {
+				id : (100 + newCount),
+				fartherId : treeNode.id,
+				name : "new node" + (newCount++)
+			};
+			zTree.addNodes(treeNode, newNode);
+			var treeNodes = new Array();
+			treeNodes.push(zTree.getNodeByParam("name", newNode.name, treeNode));
+			updateModulesData(treeId, treeNodes, 'ADD');
+			return false;
+		});
+
+};
+function removeHoverDom(treeId, treeNode) {
+	var sObj = $("#" + treeNode.tId + "_span");
+	$("#addBtn_" + treeNode.tId).unbind().remove();
+};
+function showRemoveBtn(treeId, treeNode) {
+	return treeNode.level != 0;
+}
+function showRenameBtn(treeId, treeNode) {
+	return treeNode.level != 0;
+}
+function beforeDrag(treeId, treeNodes) {
+	for (var i = 0, l = treeNodes.length; i < l; i++) {
+		var pid = treeNodes[i].fartherId;
+		if (pid == "root" || pid == null || pid == "null") {
+			layer.alert("根节点不能移动。", {
+				icon : 6
+			});
+			return false;
+		}
+	}
+	return true;
+}
+function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+
+	if(targetNode.level==0){
+		layer.msg('根节点为应用领域，不能移动到根节点……', {
+			time : 1000
+		});
+		return false;
+	}
+	return true;
+};
+
+var IS_IMMEDIATE = true;
+
+function onDrop(event, treeId, treeNodes, targetNode, moveType) {
+	updateModulesData(treeId, treeNodes, 'UPDATE');
+};
+
+function beforeEditName(treeId, treeNode) {
+	className = (className === "dark" ? "" : "dark");
+	var treeNodes = new Array();
+	treeNodes.push(treeNode);
+	updateModulesData(treeId, treeNodes, 'UPDATE');
+	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	zTree.selectNode(treeNode);
+	zTree.editName(treeNode);
+	return false;
+}
+function beforeRemove(treeId, treeNode) {
+	className = (className === "dark" ? "" : "dark");
+	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	zTree.selectNode(treeNode);
+	layer.confirm('您确定要删除节点  ' + treeNode.name + ' 吗？', {
+		btn : [ '确定', '取消' ]
+	}, function(index) {
+		// 手动处理删除逻辑
+		layer.close(index);
+		zTree.removeNode(treeNode);
+		onRemove(null, treeId, treeNode);
+	});
+	// 不再自动去发onRemove事件
+	return false;
+}
+function onRemove(e, treeId, treeNode) {
+	var treeNodes = new Array();
+	treeNodes.push(treeNode);
+	updateModulesData(treeId, treeNodes, 'DELETE');
+}
+function beforeRename(treeId, treeNode, newName, isCancel) {
+	className = (className === "dark" ? "" : "dark");
+	if (newName.length == 0) {
+		setTimeout(function() {
+			var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+			zTree.cancelEditName();
+			layer.alert("节点名称不能为空。", {
+				icon : 6
+			});
+		}, 0);
+		return false;
+	}
+	return true;
+}
+function onRename(e, treeId, treeNode, isCancel) {
+	var treeNodes = new Array();
+	treeNodes.push(treeNode);
+	updateModulesData(treeId, treeNodes, 'UPDATE');
+}
+function beforeClick(treeId, treeNode,clickFlag) {
+	
+	if(treeNode.level==0){
+		layer.msg('根节点为应用领域，不能修改……', {
+			time : 1000
+		});
+		return false;
+	}
+	return true;
+}
+function onClick(e, treeId, treeNode) {
+
+	var pageParam = {
+		formId : "formEdit",
+		validateRules : {
+			textDomainId : {
+				required : true
+			},
+			textName : {
+				required : true
+			},
+			selectLevelCode : {
+				required : true
+			},
+			textPriority : {
+				digits : true
+			}
+		}
+	};
+	var ajaxParam = {
+		recordId : treeNode.id,
+		getModelAsync : false,
+		url : RU_GPMODULE_UPDATE,
+		getModelUrl : RU_GPMODULE_GETMODELBYPATH,
+		submitData : {}
+	};
+	
+	var initResult = initZTreeEditForm(pageParam, ajaxParam);
+	if (!initResult.isSuccess) {
+		layer.alert("查询信息错误" + initResult.resultMessage, {
+			icon : 6
+		});
+		return;
+	}
+	if (initResult.data.iconIds != null&&initResult.data.iconIds!=""){
+		 initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
+	}
+}
+
+function initZTreeEditForm(pageParam, ajaxParam) {
+	var resultAjaxData;
+	var formEdit = $('#' + pageParam.formId);
+	var errorMessage = $('.alert-danger', formEdit);
+	var successMessage = $('.alert-success', formEdit);
+	var selectRowsCookie = Cookies.get("selectRows");
+	var id = ajaxParam.recordId;
+	
+	// 添加重置按钮事件，重置的动作类似于重新加载
+	$("#buttonReset").unbind('click');
+	$("#buttonReset").click(function(){
+		var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+		var selectNodes=zTree.getSelectedNodes();
+		if(selectNodes!=null&&selectNodes.length!=0)
+			$('#' + selectNodes[0].tId + '_a').trigger('click');
+		
+		layer.msg('表单已重置……', {
+			time : 1000
+		});
+	});
+
+	formEdit.on("submit", function() {
+		for ( var e in CKEDITOR.instances)
+			CKEDITOR.instances[e].updateElement();
+	});
+
+	formEdit.validate({
+		errorClass : 'help-block',
+		rules : pageParam.validateRules,
+		messages : pageParam.validateMessages,
+		ignore : '',
+		errorPlacement : function(e, r) {
+			r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
+		},
+		highlight : function(element) {
+			$(element).closest('.element-group').addClass('has-error');
+		},
+
+		unhighlight : function(element) {
+			$(element).closest('.element-group').removeClass('has-error');
+		},
+		success : function(label) {
+			label.closest('.element-group').removeClass('has-error');
+		},
+
+		submitHandler : function(form) {
+
+			var formData = formEdit.serializeArray();
+			// 将查询条件和其它请求参数组装
+			if (ajaxParam.submitData != null)
+				$.each(formData, function(i, n) {
+					var propertyName = getPropertyName(formData[i].name);
+					ajaxParam.submitData[propertyName] = formData[i].value;
+				});
+
+			if (ajaxParam.type == null)
+				ajaxParam.type = "POST";
+			if (ajaxParam.contentType == null)
+				ajaxParam.contentType = "application/json;charset=utf-8";
+			if (ajaxParam.contentType === "application/json;charset=utf-8")
+				ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
+			// 提交富文本数据，如果包含特殊符号"&"，到后台的数据会被截断，所以用encodeURIComponent。
+			if (ajaxParam.contentType === "application/x-www-form-urlencoded")
+				ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
+			if (ajaxParam.dataType == null)
+				ajaxParam.dataType = "JSON";
+			if (ajaxParam.async == null)
+				ajaxParam.async = true;
+			if (ajaxParam.success == null)
+				ajaxParam.success = function(resultData) {
+					if (!resultData["isSuccess"]) {
+						alert(resultData["resultMessage"]);
+						return false;
+					}
+					
+					// 更新当前节点，也可以用zTree.refresh();
+					var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+					var node = zTree.getNodeByParam("id", ajaxParam.recordId);
+					node.name=$("#textName").val();
+					zTree.updateNode(node)
+					
+					layer.msg('记录修改成功……', {
+						time : 1000
+					});
+					
+					// 修改成功后要清空submitData函数，否则再次修改会出错
+					ajaxParam.submitData={};
+				};
+			if (ajaxParam.error == null)
+				ajaxParam.error = ajaxErrorFunction;
+
+			var ajaxParamter = {
+				"url" : ajaxParam.url,
+				"data" : ajaxParam.submitData,
+				"dataType" : ajaxParam.dataType,
+				"contentType" : ajaxParam.contentType,
+				"type" : ajaxParam.type,
+				"async" : ajaxParam.async,
+				"success" : ajaxParam.success,
+				"error" : ajaxParam.error
+			};
+			universalAjax(ajaxParamter);
+		}
+	});
+
+	$("#buttonBack").click(function() {
+		history.back();
+		return false;
+	});
+
+	// 初始化页面标签
+	var ajaxParamter = {
+		"url" : ajaxParam.getModelUrl + "/" + id,
+		"type" : "GET",
+		"async" : true,
+		"success" : function(resultData) {
+			resultAjaxData = resultData;
+			if (!resultData["isSuccess"]) {
+				alert(resultData["resultMessage"]);
+				return false;
+			}
+			var ajaxData = resultData.data;
+
+			if (ajaxData.imgPath != null) {
+				$("#imgPath").attr("src", ajaxData.imgPath);
+				$("#new").hide();
+				$("#exists").show();
+				$("#move").show();
+			}
+			var form = document.forms[pageParam.formId];
+			// 遍历指定form表单所有元素
+			for (var i = 0; i < form.length; i++) {
+				var fieldName = form[i].name;
+				var array = fieldName.split("");
+				var prefix = null;
+				for (var n = 0; n < array.length; n++) {
+					if (array[n].toLocaleString().charCodeAt(0) >= 65 && array[n].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
+					{
+						prefix = fieldName.substr(0, n);
+						break;
+					}
+				}
+
+				var tagLength = prefix == null ? 0 : prefix.length;
+				var prop = fieldName.substr(tagLength);
+				prop = prop.substr(0, 1).toLowerCase() + prop.substr(1);
+
+				var value = ajaxData[prop];
+
+				switch (prefix) {
+				case "hidden":
+					$("[name='" + fieldName + "']").val(value);
+					break;
+				case "text":
+					$("[name='" + fieldName + "']").val(value);
+					break;
+				case "select":
+					$("select[name='" + fieldName + "']").val(value);
+					break;
+				case "radio":
+					if (value != null)
+						$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
+					break;
+				case "textarea":
+					$("textarea[name='" + fieldName + "']").val(value);
+					break;
+				case "checkbox":
+					$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	};
+	if (ajaxParam.getModelAsync != null)
+		ajaxParamter.async = ajaxParam.getModelAsync;
+	universalAjax(ajaxParamter);
+
+	if (!ajaxParam.getModelAsync)
+		return resultAjaxData;
+	return null;
+
+}
+
+function updateModulesData(treeId, treeNodes, action) {
+
+	if (IS_IMMEDIATE) {
+		immediateUpdate(treeId, treeNodes, action);
+		return;
+	}
+
+	var zTree = $.fn.zTree.getZTreeObj(treeId);
+	var zTreeNodes = zTree.getNodes();
+	var zTreeNodesJsonArray = getModulesJsonArray(zTreeNodes);
+	var infoData = JSON.stringify(zTreeNodesJsonArray);
+	$("#hiddenModules").val(infoData);
+}
+
+function immediateUpdate(treeId, treeNodes, action) {
+	var zTree = $.fn.zTree.getZTreeObj(treeId);
+	var treeNodesArray = zTree.transformToArray(treeNodes);
+
+	var ajaxParamter = {
+		"async" : true,
+		"type" : "POST",
+		"success" : function(resultData) {
+			// 添加成功更新当前系统ID
+			if (action == "ADD") {
+				treeNodes[0].id = resultData.objectId;
+				zTree.updateNode(treeNodes[0])
+			}
+			
+			// 更新成功右侧名称同步更改
+			if (action == "UPDATE") {
+				$("#textName").val(treeNodes[0].name);
+			}
+			
+		
+
+			layer.msg('数据已实时更新……', {
+				time : 1500
+			});
+		}
+	};
+	var cascade = $("input[name='cascadeTypeCodeRadio']:checked").val();
+	if (action == "ADD") {
+		var domainNode = getCurrentRootNode(treeNodesArray[0]);
+		var zTreeNodeJson = {
+			id : null,
+			cascadeTypeCode : cascade,
+			domainId : domainNode.id,
+			domainName : domainNode.name,
+			name : treeNodesArray[0].name,
+			fartherId : treeNodesArray[0].fartherId,
+			levelCode : treeNodesArray[0].level + 1,
+			priority : treeNodesArray[0].getIndex()
+		}
+		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
+		ajaxParamter.url = RU_GPMODULE_ADD;
+	}
+
+	else if (action == "DELETE") {
+
+		var idArray = new Array();
+		$.each(treeNodesArray, function(i, v) {
+			idArray.push(v.id)
+		});
+		var submitData = {
+			idList : idArray,
+			cascadeTypeCode : cascade
+		};
+		ajaxParamter.type = 'POST';
+		ajaxParamter.data = JSON.stringify(submitData);
+		ajaxParamter.url = RU_GPMODULE_DELETELIST;
+	} else if (action = "UPDATE") {
+		var zTreeNodeJsonArray = new Array();
+		$.each(treeNodesArray, function(i, v) {
+			var domainNode = getCurrentRootNode(treeNodesArray[i]);
+			var zTreeNodeJson = {
+				id : treeNodesArray[i].id,
+				cascadeTypeCode : cascade,
+				domainId : domainNode.id,
+				name : treeNodesArray[i].name,
+				fartherId : treeNodesArray[i].fartherId,
+				levelCode : treeNodesArray[i].level + 1,
+				priority : treeNodesArray[i].getIndex()
+			}
+			zTreeNodeJsonArray.push(zTreeNodeJson);
+		});
+		var submitData = {
+			entityList : zTreeNodeJsonArray
+		}
+		var RU_GPMODULE_UPDATELISTWIDFF = "/extend/swagger/gp/gpModule/updateListWithDff"
+		ajaxParamter.data = JSON.stringify(submitData);
+		ajaxParamter.url = RU_GPMODULE_UPDATELISTWIDFF;
+
+	}
+
+	universalAjax(ajaxParamter);
+
+}
+
+function selectAll() {
+	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	zTree.setting.edit.editNameSelectAll = $("#selectAll").attr("checked");
+}
+
+// 获取当前节点的根节点(treeNode为当前节点)
+function getCurrentRootNode(treeNode) {
+	if (treeNode.getParentNode() != null) {
+		var parentNode = treeNode.getParentNode();
+		return getCurrentRootNode(parentNode);
+	} else {
+		return treeNode;
+	}
+}
+
+/** *******************************************树形菜单相关方法******************************************* */

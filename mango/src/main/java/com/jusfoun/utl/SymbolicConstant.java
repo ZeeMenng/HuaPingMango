@@ -60,6 +60,8 @@ public class SymbolicConstant {
 
 	public static final String CONTROLLER_PARAM_JSON = "jsonData";
 	public static final String CONTROLLER_ENTITY_JSON = "jsonEntity";
+	public static final String AUTOCOMPLETE_KEY = "autoCompleteKey";
+	
 
 	public static final String CONTROLLER_LOG_JSON = "jsonLog";
 

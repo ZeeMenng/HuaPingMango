@@ -22,6 +22,8 @@ public enum OperResult {
 	//
 	DELETELIST_S(989800, "批量删除成功！"),
 	//
+	DELETEBYBUSINESSID_S(989700, "根据业务主键删除记录成功！"),
+	//
 	UPDATE_S(979900, "修改记录成功！"), UPDATELIST_S(979800, "批量修改记录成功！"),UPDATELISTWIDTHDFF_S(979700, "批量修改记录为不同值成功！"),UPDATELISTWIDTHDFFORADD_S(979600, "批量修改或新增记录为不同值成功！"),
 	//
 	GETMODEL_S(969900, "单条查询成功！"),
@@ -40,6 +42,8 @@ public enum OperResult {
 	DELETE_F(989901, "删除记录出错！"),
 	//
 	DELETELIST_F(989801, "批量删除出错！"),
+	//
+	DELETEBYBUSINESSID_F(989701, "根据业务主键删除记录看得见！"),
 	//
 	UPDATE_F(979901, "修改记录出错！"), UPDATELIST_F(979801, "批量修改记录出错！"),UPDATELISTWIDTHDFF_F(979701, "批量修改记录为不同值出错！"), UPDATELISTWIDTHDFFORADD_F(97961, "批量修改或新增记录为不同值出错！"),
 	//

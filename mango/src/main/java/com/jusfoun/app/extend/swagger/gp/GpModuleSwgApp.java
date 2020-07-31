@@ -20,14 +20,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GpModuleGenSwgApp;
+import com.jusfoun.bll.extend.split.gp.GpResourceSplBll;
+import com.jusfoun.bll.extend.split.gp.GprResourceSplBll;
 import com.jusfoun.bll.extend.unity.gp.GpDomainUntBll;
 import com.jusfoun.bll.extend.unity.gp.GpMenuUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprResourceUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpMenu;
 import com.jusfoun.ent.extend.gp.GpModule;
+import com.jusfoun.ent.extend.gp.GpResource;
+import com.jusfoun.ent.extend.gp.GprResource;
+import com.jusfoun.ent.extend.gp.GprUserIcon;
 import com.jusfoun.ent.parameter.gp.GpDomainParameter;
 import com.jusfoun.ent.parameter.gp.GpModuleParameter;
-import com.jusfoun.set.enumer.DictionaryEnum;
 import com.jusfoun.set.enumer.DictionaryModuleCascadeEnum;
 import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
 import com.jusfoun.utl.DateUtils;
@@ -58,6 +63,18 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@Autowired
 	@Qualifier("gpDomainUntBll")
 	protected GpDomainUntBll gpDomainUntBll;
+
+	@Autowired
+	@Qualifier("gpResourceSplBll")
+	protected GpResourceSplBll gpResourceSplBll;
+
+	@Autowired
+	@Qualifier("gprResourceUntBll")
+	protected GprResourceUntBll gprResourceUntBll;
+
+	@Autowired
+	@Qualifier("gprResourceSplBll")
+	protected GprResourceSplBll gprResourceSplBll;
 
 	private ArrayList<String> deleteMenuList;
 
@@ -140,36 +157,28 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getModelByPath(@PathVariable("id") String id) {
-		ResultModel result = gpModuleUntBll.getModel(id);
-		if (result.getData() != null) {
-			GpModule gpModule = (GpModule) result.getData();
-			Map<String, Object> map = new HashMap<String, Object>();
-			StringBuffer selectBuffer = new StringBuffer();
-			selectBuffer.append("		SELECT                                                                    ");
-			selectBuffer.append("			t.id,                                                                 ");
-			selectBuffer.append("			ft.id moduleFar,                                                      ");
-			selectBuffer.append("			ft.name moduleFarValue,                                               ");
-			selectBuffer.append("			fft.id moduleTop,                                                     ");
-			selectBuffer.append("			fft.name moduleTopValue,                                              ");
-			selectBuffer.append("			gd.name domainValue                                                   ");
-			selectBuffer.append("		FROM                                                                      ");
-			selectBuffer.append("			gp_module t                                                           ");
-			selectBuffer.append("		LEFT JOIN gp_module ft ON ft.id = t.farther_id                            ");
-			selectBuffer.append("		LEFT JOIN gp_module fft ON fft.id = ft.farther_id                         ");
-			selectBuffer.append("		LEFT JOIN gp_domain gd ON t.domain_id = gd.id                             ");
-			selectBuffer.append("		WHERE                                                                     ");
-			selectBuffer.append("		t.id = '" + gpModule.getId() + "'                                             ");
-			map.put("Sql", selectBuffer.toString());
-			ResultModel resultModel = gpModuleUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
-			Map<String, Object> modelMap = modelList.get(0);
-			gpModule.setModuleTop(modelMap.get("moduleTop") != null ? modelMap.get("moduleTop").toString() : "");
-			gpModule.setModuleFar(modelMap.get("moduleFar") != null ? modelMap.get("moduleFar").toString() : "");
-			gpModule.setModuleTopName(modelMap.get("moduleTopValue") != null ? modelMap.get("moduleTopValue").toString() : "");
-			gpModule.setModuleFarName(modelMap.get("moduleFarValue") != null ? modelMap.get("moduleFarValue").toString() : "");
-			gpModule.setDomainName(modelMap.get("domainValue") != null ? modelMap.get("domainValue").toString() : "");
-			result.setData(gpModule);
+		ResultModel result = new ResultModel();
+
+		result = gpResourceSplBll.getListByBusinessId(id);
+		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
+
+		result = gpModuleUntBll.getModel(id);
+
+		GpModule gpModule = (GpModule) result.getData();
+
+		String userIconIds = "";
+		String userIconPaths = "";
+		for (int i = 0; i < iconResuourceList.size(); i++) {
+			userIconIds += iconResuourceList.get(i).getId();
+			userIconPaths += (this.linkPath +iconResuourceList.get(i).getPath());
+			if (i == iconResuourceList.size() - 1)
+				break;
+			userIconIds += ",";
+			userIconPaths += ",";
 		}
+		gpModule.setIconIds(userIconIds);
+		gpModule.setIconPaths(userIconPaths);
+		result.setData(gpModule);
 		return result;
 	}
 
@@ -203,11 +212,35 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpModule") })
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel update(@RequestBody GpModule jsonData) {
+
+		if (StringUtils.isNotBlank(jsonData.getIconPaths())) {
+			jsonData.setIconPaths(jsonData.getIconPaths().replaceAll(linkPath, ""));
+			String[] resourcePathArray = jsonData.getIconPaths().split(",");
+			if (resourcePathArray.length != 0)
+				jsonData.setIconResource(resourcePathArray[0]);
+		}
+
 		jsonData.setUpdateTime(new Date());
 		if (StringUtils.isBlank(jsonData.getFartherId())) {
 			jsonData.setFartherId(null);
 		}
 		ResultModel result = gpModuleUntBll.update(jsonData);
+
+		// 头像列表
+		gprResourceSplBll.deleteByBusinessId(result.getObjectId());
+		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
+			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
+			String[] resourceArray = jsonData.getIconIds().split(",");
+			for (int i = 0; i < resourceArray.length; i++) {
+				GprResource gprResource = new GprResource();
+				gprResource.setResourceId(resourceArray[i]);
+				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResourceList.add(gprResource);
+			}
+			gprResourceUntBll.add(gprResourceList);
+		}
+
 		return result;
 	}
 
@@ -233,7 +266,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 			if (StringUtils.isBlank(moduleList.get(i).getLevelText()) && moduleList.get(i).getLevelCode() != null)
 				moduleList.get(i).setLevelText(DictionaryModuleLevelEnum.getText(moduleList.get(i).getLevelCode()));
 		}
-					
+
 		ResultModel result = gpModuleUntBll.updateListWithDff(moduleList);
 		return result;
 	}
@@ -470,4 +503,20 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 	}
 
+	private List<Map<String, Object>> getModuleIconList(String moduleId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		StringBuffer selectBuffer = new StringBuffer();
+		selectBuffer.append("		SELECT                                                    ");
+		selectBuffer.append("			B.id iconId,                                     ");
+		selectBuffer.append("			CONCAT('" + this.linkPath + "',B.path) iconPath ");
+		selectBuffer.append("		FROM                                                      ");
+		selectBuffer.append("		gpr_resource A");
+		selectBuffer.append("		INNER JOIN gp_resource B ON A.resource_id = B.id                  ");
+		selectBuffer.append("		WHERE                                                     ");
+		selectBuffer.append("			A.business_id = '" + moduleId + "'        					  ");
+		map.put("Sql", selectBuffer.toString());
+		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
+		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		return modelList;
+	}
 }
