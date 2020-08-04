@@ -2374,7 +2374,7 @@ function onClick(e, treeId, treeNode) {
 		});
 		return;
 	}
-	if (initResult.data.iconIds != null&&initResult.data.iconIds!=""){
+	if (initResult.data.iconIds != null){
 		 initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 	}
 }
