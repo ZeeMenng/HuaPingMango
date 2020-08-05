@@ -20,10 +20,13 @@
 			}
 		};
 		var ajaxParam = {
+				
 			url : RU_GPDOMAIN_ADD,
 			submitData : {}
 		};
 		initAddPage(pageParam, ajaxParam);
+
+		initAddFileInput();
 
 		//初始化功能模块Tree
 		var setting = {
@@ -57,7 +60,7 @@
 				beforeDrop : beforeDrop
 			}
 		};
-
+		IS_IMMEDIATE=false;
 		var zNodes = [ {
 			id : 1,
 			pId : 0,
@@ -145,6 +148,20 @@
 													</div>
 												</div>
 
+											</div>
+											<div class=" form-group">
+												<div class="element-group left">
+													<label for="fileResourceIds" class="control-label col-md-2">
+														领域图标
+														<span class="required" aria-required="true"> * </span>
+													</label>
+
+													<div class="col-md-8" style="line-height: 32px">
+														<input id="fileIcons" type="file" name="fileIcons" multiple />
+														<input type="hidden" id="hiddenIconIds" name="hiddenIconIds" />
+														<input type="hidden" id="hiddenIconPaths" name="hiddenIconPaths" />
+													</div>
+												</div>
 											</div>
 											<div class="form-group">
 												<div class="element-group left">

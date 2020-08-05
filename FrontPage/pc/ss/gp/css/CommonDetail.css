@@ -21,3 +21,8 @@ a:hover {
 	display: block;
 	float: left;
 }
+
+.right-td td ul li a img {
+	width: 150px;
+	height: 150px;
+}

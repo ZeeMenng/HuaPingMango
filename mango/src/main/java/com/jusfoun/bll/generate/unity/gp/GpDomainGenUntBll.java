@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/5/24 0:41:02
+ * @updateDate 2020/8/5 14:22:55
  * @description 应用领域。 业务逻辑处理类，扩展自BaseUntBll<GpDomain>，自动生成。
  */
 public class GpDomainGenUntBll extends BaseUntBll<GpDomain> {

@@ -153,34 +153,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		return result;
 	}
 
-	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
-	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
-	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel getModelByPath(@PathVariable("id") String id) {
-		ResultModel result = new ResultModel();
 
-		result = gpResourceSplBll.getListByBusinessId(id);
-		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
-
-		result = gpModuleUntBll.getModel(id);
-
-		GpModule gpModule = (GpModule) result.getData();
-
-		String userIconIds = "";
-		String userIconPaths = "";
-		for (int i = 0; i < iconResuourceList.size(); i++) {
-			userIconIds += iconResuourceList.get(i).getId();
-			userIconPaths += (this.linkPath + iconResuourceList.get(i).getPath());
-			if (i == iconResuourceList.size() - 1)
-				break;
-			userIconIds += ",";
-			userIconPaths += ",";
-		}
-		gpModule.setIconIds(userIconIds);
-		gpModule.setIconPaths(userIconPaths);
-		result.setData(gpModule);
-		return result;
-	}
 
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpModule") })
@@ -300,6 +273,36 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		return resultModel;
 	}
 
+	
+	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
+	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
+	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getModelByPath(@PathVariable("id") String id) {
+		ResultModel result = new ResultModel();
+
+		result = gpResourceSplBll.getListByBusinessId(id);
+		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
+
+		result = gpModuleUntBll.getModel(id);
+
+		GpModule gpModule = (GpModule) result.getData();
+
+		String userIconIds = "";
+		String userIconPaths = "";
+		for (int i = 0; i < iconResuourceList.size(); i++) {
+			userIconIds += iconResuourceList.get(i).getId();
+			userIconPaths += (this.linkPath + iconResuourceList.get(i).getPath());
+			if (i == iconResuourceList.size() - 1)
+				break;
+			userIconIds += ",";
+			userIconPaths += ",";
+		}
+		gpModule.setIconIds(userIconIds);
+		gpModule.setIconPaths(userIconPaths);
+		result.setData(gpModule);
+		return result;
+	}
+	
 	@ApiOperation(value = "获取树状结构数据", notes = "获取树状结构数据")
 	@RequestMapping(value = "/getTreeNodes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTreeNodes() {

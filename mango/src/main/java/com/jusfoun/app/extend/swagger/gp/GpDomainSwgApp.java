@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GpDomainGenSwgApp;
 import com.jusfoun.bll.extend.split.gp.GpModuleSplBll;
+import com.jusfoun.bll.extend.split.gp.GpResourceSplBll;
+import com.jusfoun.bll.extend.split.gp.GprResourceSplBll;
 import com.jusfoun.bll.extend.unity.gp.GpModuleUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprResourceUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpDomain;
 import com.jusfoun.ent.extend.gp.GpModule;
+import com.jusfoun.ent.extend.gp.GpResource;
+import com.jusfoun.ent.extend.gp.GprResource;
 import com.jusfoun.ent.parameter.gp.GpDomainParameter;
-import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
-import com.jusfoun.set.exception.GlobalException;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.SymbolicConstant;
 import com.jusfoun.utl.Tools;
@@ -54,11 +57,30 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@Qualifier("gpModuleSplBll")
 	protected GpModuleSplBll gpModuleSplBll;
 
+	@Autowired
+	@Qualifier("gpResourceSplBll")
+	protected GpResourceSplBll gpResourceSplBll;
+
+	@Autowired
+	@Qualifier("gprResourceSplBll")
+	protected GprResourceSplBll gprResourceSplBll;
+
+	@Autowired
+	@Qualifier("gprResourceUntBll")
+	protected GprResourceUntBll gprResourceUntBll;
+
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpDomain") })
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel add(@RequestBody GpDomain jsonData) {
 		jsonData.setId(Tools.getUUID());
+		
+		if (StringUtils.isNotBlank(jsonData.getIconPaths())) {
+			jsonData.setIconPaths(jsonData.getIconPaths().replaceAll(linkPath, ""));
+			String[] resourcePathArray = jsonData.getIconPaths().split(",");
+			if (resourcePathArray.length != 0)
+				jsonData.setIconResource(resourcePathArray[0]);
+		}
 
 		ResultModel result = new ResultModel();
 		String modules = jsonData.getModules();
@@ -67,6 +89,21 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 			result = gpModuleSplBll.add(moduleList);
 		}
 		result = gpDomainUntBll.add(jsonData);
+
+		// 图标列表
+		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
+			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
+			String[] resourceArray = jsonData.getIconIds().split(",");
+			for (int i = 0; i < resourceArray.length; i++) {
+				GprResource gprResource = new GprResource();
+				gprResource.setResourceId(resourceArray[i]);
+				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResourceList.add(gprResource);
+			}
+			gprResourceUntBll.add(gprResourceList);
+		}
+
 		return result;
 	}
 
@@ -101,7 +138,12 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpDomain") })
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel update(@RequestBody GpDomain jsonData) {
-
+		if (StringUtils.isNotBlank(jsonData.getIconPaths())) {
+			jsonData.setIconPaths(jsonData.getIconPaths().replaceAll(linkPath, ""));
+			String[] resourcePathArray = jsonData.getIconPaths().split(",");
+			if (resourcePathArray.length != 0)
+				jsonData.setIconResource(resourcePathArray[0]);
+		}
 		Date updateTime = DateUtils.getCurrentDate();
 		jsonData.setUpdateTime(updateTime);
 		ResultModel result = gpDomainUntBll.update(jsonData);
@@ -111,6 +153,22 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(modules);
 			result = gpModuleSplBll.updateDomainModules(moduleList);
 		}
+
+		// 图标列表
+		gprResourceSplBll.deleteByBusinessId(result.getObjectId());
+		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
+			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
+			String[] resourceArray = jsonData.getIconIds().split(",");
+			for (int i = 0; i < resourceArray.length; i++) {
+				GprResource gprResource = new GprResource();
+				gprResource.setResourceId(resourceArray[i]);
+				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResourceList.add(gprResource);
+			}
+			gprResourceUntBll.add(gprResourceList);
+		}
+
 		return result;
 	}
 
@@ -125,6 +183,38 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		return result;
 	}
 
+	
+
+	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
+	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
+	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getModelByPath(@PathVariable("id") String id) {
+		ResultModel result = new ResultModel();
+		
+		result = gpResourceSplBll.getListByBusinessId(id);
+		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
+
+		result = gpDomainUntBll.getModel(id);
+		GpDomain gpDomain = (GpDomain) result.getData();
+		
+		String userIconIds = "";
+		String userIconPaths = "";
+		for (int i = 0; i < iconResuourceList.size(); i++) {
+			userIconIds += iconResuourceList.get(i).getId();
+			userIconPaths += (this.linkPath + iconResuourceList.get(i).getPath());
+			if (i == iconResuourceList.size() - 1)
+				break;
+			userIconIds += ",";
+			userIconPaths += ",";
+		}
+		gpDomain.setIconIds(userIconIds);
+		gpDomain.setIconPaths(userIconPaths);
+		result.setData(gpDomain);
+		
+		return result;
+	}
+
+	
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
@@ -223,7 +313,5 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		}
 
 	}
-
-	
 
 }

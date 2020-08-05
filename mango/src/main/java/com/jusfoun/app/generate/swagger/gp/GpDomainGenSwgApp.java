@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.jusfoun.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:23
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/5 14:22:54
+ * @description 应用领域。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GpDomain",tags="")
+@Api(value = "GpDomain",tags="应用领域。")
 @RequestMapping(value = "/generate/swagger/gp/gpDomain")
 public class GpDomainGenSwgApp extends BaseSwgApp {
 
@@ -173,7 +173,7 @@ public class GpDomainGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.name name,A.serial_no serialNo,A.com com,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_domain A inner join gp_domain B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.serial_no serialNo,A.name name,A.com com,A.icon_resource iconResource,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_domain A inner join gp_domain B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -192,10 +192,10 @@ public class GpDomainGenSwgApp extends BaseSwgApp {
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
                 
-				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
-					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))
 					selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
+				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
+					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("com") && StringUtils.isNotBlank(entityRelatedObject.getString("com")))
 					selectBuffer.append(" and A.com like '%").append(entityRelatedObject.getString("com")).append("%'");
 			}
@@ -228,7 +228,7 @@ public class GpDomainGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "应用领域列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

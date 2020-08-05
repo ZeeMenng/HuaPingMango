@@ -20,12 +20,21 @@
 			}
 		};
 		var ajaxParam = {
+			getModelAsync : false,
 			url : RU_GPDOMAIN_UPDATE,
 			updateListUrl : RU_GPDOMAIN_UPDATELIST,
 			getModelUrl : RU_GPDOMAIN_GETMODELBYPATH,
 			submitData : {}
 		};
-		initEditPage(pageParam, ajaxParam);
+		var initResult = initEditPage(pageParam, ajaxParam);
+		if (!initResult.isSuccess) {
+			layer.alert("查询信息错误" + initResult.resultMessage, {
+				icon : 6
+			});
+			return;
+		}
+		if (initResult.data.iconIds != null)
+			initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 
 		//初始化功能模块Tree
 		var setting = {
@@ -89,7 +98,7 @@
 							zTree.editName(node);
 					}
 				});
-				updateModulesData();
+				
 			}
 		};
 
@@ -164,6 +173,20 @@
 													<label for="textCom" class="control-label col-md-2">领域域名 </label>
 													<div class="col-md-8">
 														<input id="textCom" name="textCom" type="text" data-required="1" class="form-control" />
+													</div>
+												</div>
+											</div>
+											<div class=" form-group">
+												<div class="element-group left">
+													<label for="fileResourceIds" class="control-label col-md-2">
+														领域图标
+														<span class="required" aria-required="true"> * </span>
+													</label>
+
+													<div class="col-md-8" style="line-height: 32px;">
+														<input id="fileIcons" type="file" name="fileIcons" multiple style="height: 30px" />
+														<input type="hidden" id="hiddenIconIds" name="hiddenIconIds" />
+														<input type="hidden" id="hiddenIconPaths" name="hiddenIconPaths" />
 													</div>
 												</div>
 											</div>

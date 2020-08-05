@@ -4,16 +4,17 @@
 
   <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpDomain" >
               <id column="id" property="id" jdbcType="VARCHAR" />
-              <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="com" property="com" jdbcType="VARCHAR" />
+              <result column="icon_resource" property="iconResource" jdbcType="VARCHAR" />
               <result column="remark" property="remark" jdbcType="VARCHAR" />
               <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
               <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,name,serial_no,com,remark,add_time,update_time
+        id,serial_no,name,com,icon_resource,remark,add_time,update_time
   </sql>
   
   <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpDomain" >
@@ -23,16 +24,20 @@
               id,
           </if>
       
-          <if test="name != null and name != '' " >
-              name,
-          </if>
-      
           <if test="serialNo != null and serialNo != '' " >
               serial_no,
           </if>
       
+          <if test="name != null and name != '' " >
+              name,
+          </if>
+      
           <if test="com != null and com != '' " >
               com,
+          </if>
+      
+          <if test="iconResource != null and iconResource != '' " >
+              icon_resource,
           </if>
       
           <if test="remark != null and remark != '' " >
@@ -50,14 +55,17 @@
           <if test="id != null and id != '' " >
               #{id,jdbcType=VARCHAR},
           </if>
-          <if test="name != null and name != '' " >
-              #{name,jdbcType=VARCHAR},
-          </if>
           <if test="serialNo != null and serialNo != '' " >
               #{serialNo,jdbcType=VARCHAR},
           </if>
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
+          </if>
           <if test="com != null and com != '' " >
               #{com,jdbcType=VARCHAR},
+          </if>
+          <if test="iconResource != null and iconResource != '' " >
+              #{iconResource,jdbcType=VARCHAR},
           </if>
           <if test="remark != null and remark != '' " >
               #{remark,jdbcType=VARCHAR},
@@ -85,13 +93,16 @@
           #{gpDomain.id,jdbcType=VARCHAR},
 
       
-          #{gpDomain.name,jdbcType=VARCHAR},
-
-      
           #{gpDomain.serialNo,jdbcType=VARCHAR},
 
       
+          #{gpDomain.name,jdbcType=VARCHAR},
+
+      
           #{gpDomain.com,jdbcType=VARCHAR},
+
+      
+          #{gpDomain.iconResource,jdbcType=VARCHAR},
 
       
           #{gpDomain.remark,jdbcType=VARCHAR},
@@ -125,14 +136,17 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDomain" >
     update gp_domain
     <set >
-                  <if test="name != null  and name != '' " >
-                     name = #{name,jdbcType=VARCHAR},
-                  </if>
                   <if test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
                   </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
+                  </if>
                   <if test="com != null  and com != '' " >
                      com = #{com,jdbcType=VARCHAR},
+                  </if>
+                  <if test="iconResource != null  and iconResource != '' " >
+                     icon_resource = #{iconResource,jdbcType=VARCHAR},
                   </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
@@ -150,14 +164,17 @@
 <update id="updateList">
     update gp_domain
     <set >
-                  <if test="t.name != null  and t.name != '' " >
-                     name = #{t.name,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.serialNo != null  and t.serialNo != '' " >
                      serial_no = #{t.serialNo,jdbcType=VARCHAR},
                   </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.com != null  and t.com != '' " >
                      com = #{t.com,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.iconResource != null  and t.iconResource != '' " >
+                     icon_resource = #{t.iconResource,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
@@ -180,13 +197,6 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_domain
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="name =case" suffix="end,">
-              <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.name != null and gpDomain.name  != '' " >
-                     when id=#{gpDomain.id} then #{gpDomain.name,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
                   <if test="gpDomain.serialNo != null and gpDomain.serialNo  != '' " >
@@ -194,10 +204,24 @@
                   </if>
               </foreach>
          </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="gpDomain" index="index">
+                  <if test="gpDomain.name != null and gpDomain.name  != '' " >
+                     when id=#{gpDomain.id} then #{gpDomain.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="com =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
                   <if test="gpDomain.com != null and gpDomain.com  != '' " >
                      when id=#{gpDomain.id} then #{gpDomain.com,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="icon_resource =case" suffix="end,">
+              <foreach collection="list" item="gpDomain" index="index">
+                  <if test="gpDomain.iconResource != null and gpDomain.iconResource  != '' " >
+                     when id=#{gpDomain.id} then #{gpDomain.iconResource,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -235,14 +259,17 @@
     replace into gp_domain
         <trim prefix="(" suffix=")" suffixOverrides="," >
               id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
           <if test="serialNo  != null and serialNo  != '' " >
               serial_no,
           </if>
+          <if test="name  != null and name  != '' " >
+              name,
+          </if>
           <if test="com  != null and com  != '' " >
               com,
+          </if>
+          <if test="iconResource  != null and iconResource  != '' " >
+              icon_resource,
           </if>
           <if test="remark  != null and remark  != '' " >
               remark,
@@ -258,14 +285,17 @@
     <foreach collection="list" item="gpDomain" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gpDomain.id ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
-                     #{gpDomain.name ,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.serialNo  != null  and t.serialNo != '' " >
                      #{gpDomain.serialNo ,jdbcType=VARCHAR},
                   </if>
+                  <if test="t.name  != null  and t.name != '' " >
+                     #{gpDomain.name ,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.com  != null  and t.com != '' " >
                      #{gpDomain.com ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.iconResource  != null  and t.iconResource != '' " >
+                     #{gpDomain.iconResource ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark  != null  and t.remark != '' " >
                      #{gpDomain.remark ,jdbcType=VARCHAR},
@@ -304,6 +334,9 @@
 		</if>
 		<if test="EntityRelated.com != null and EntityRelated.com != '' ">
  				and  com LIKE CONCAT('%',#{EntityRelated.com,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.iconResource != null and EntityRelated.iconResource != '' ">
+ 				and  icon_resource LIKE CONCAT('%',#{EntityRelated.iconResource,jdbcType=VARCHAR},'%') 
 		</if>
 		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
 				and id = #{EntityRelated.id,jdbcType=VARCHAR} 

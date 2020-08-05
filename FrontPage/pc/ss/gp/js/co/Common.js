@@ -2565,7 +2565,7 @@ function updateModulesData(treeId, treeNodes, action) {
 
 	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var zTreeNodes = zTree.getNodes();
-	var zTreeNodesJsonArray = getModulesJsonArray(zTreeNodes);
+	var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
 	var infoData = JSON.stringify(zTreeNodesJsonArray);
 	$("#hiddenModules").val(infoData);
 }

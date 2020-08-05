@@ -3,6 +3,7 @@ package com.jusfoun.ent.extend.gp;
 import com.jusfoun.ent.generate.gp.GpDomainGenEnt;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author Zee
@@ -15,12 +16,34 @@ import io.swagger.annotations.ApiModel;
 public class GpDomain extends GpDomainGenEnt {
 	private String modules;
 
+	@ApiModelProperty(value = "菜单图标", hidden = false, required = false)
+	private String iconPaths;
+
+	@ApiModelProperty(value = "菜单图标", hidden = false, required = false)
+	private String iconIds;
+
 	public String getModules() {
 		return modules;
 	}
 
 	public void setModules(String modules) {
 		this.modules = modules;
+	}
+
+	public String getIconPaths() {
+		return iconPaths;
+	}
+
+	public void setIconPaths(String iconPaths) {
+		this.iconPaths = iconPaths;
+	}
+
+	public String getIconIds() {
+		return iconIds;
+	}
+
+	public void setIconIds(String iconIds) {
+		this.iconIds = iconIds;
 	}
 
 }
