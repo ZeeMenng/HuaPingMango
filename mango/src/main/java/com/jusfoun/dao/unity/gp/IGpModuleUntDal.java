@@ -1,4 +1,4 @@
-﻿package com.jusfoun.dao.unity.gp;
+package com.jusfoun.dao.unity.gp;
 
 import com.jusfoun.dao.unity.base.IBaseUntDal;
 import com.jusfoun.ent.extend.gp.GpModule;

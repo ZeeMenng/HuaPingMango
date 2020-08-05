@@ -170,7 +170,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		String userIconPaths = "";
 		for (int i = 0; i < iconResuourceList.size(); i++) {
 			userIconIds += iconResuourceList.get(i).getId();
-			userIconPaths += (this.linkPath +iconResuourceList.get(i).getPath());
+			userIconPaths += (this.linkPath + iconResuourceList.get(i).getPath());
 			if (i == iconResuourceList.size() - 1)
 				break;
 			userIconIds += ",";
@@ -273,8 +273,8 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GpModuleAddList") })
-	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updateListWithDffOrAdd(@RequestBody GpModuleParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel updateListWithDfforAdd(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
 		for (int i = 0; i < moduleList.size(); i++) {
 			// 根据Code获取Text
@@ -476,6 +476,51 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 		resultModel = gpModuleSplBll.getListByRoleId(roleId);
 
+		return resultModel;
+	}
+
+	@ApiOperation(value = "获取用户菜单权限", notes = "获取用户菜单权限")
+	@RequestMapping(value = "/getLinkMenu", method = { RequestMethod.POST, RequestMethod.GET }, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getLinkMenu() {
+
+		// 授收domainId参数，如果有此参数，则返回当前登录用户在这个应用领域下拥有的菜单权限，如果没有此参数，则返回用户拥有的所有菜单权限。
+		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String domainId = "";
+		if (StringUtils.isNotBlank(jsonData)) {
+			JSONObject jsonObject = JSONObject.fromObject(jsonData);
+			if (jsonObject.containsKey("domainId"))
+				domainId = jsonObject.getString("domainId");
+		}
+		return StringUtils.isBlank(domainId) ? this.getCurrentUserMenu() : this.getCurrentUserMenu(domainId);
+	}
+
+	private ResultModel getCurrentUserMenu(String... domainId) {
+
+		ResultModel resultModel = new ResultModel();
+
+		StringBuffer selectBuffer = new StringBuffer();
+		selectBuffer.append("	SELECT DISTINCT                                                       ");
+		selectBuffer.append("		A.id AS id,                                                       ");
+		selectBuffer.append("		A.name AS name,                                                   ");
+		selectBuffer.append("		A.style AS iconClass,                                        ");
+		selectBuffer.append("		A.farther_id AS fartherId,                                  ");
+		selectBuffer.append("		A.level_code AS level,                                      ");
+		selectBuffer.append("		A.page_url AS pageUrl,                                             ");
+		selectBuffer.append("		A.priority AS priority                                             ");
+		selectBuffer.append("	FROM                                                                  ");
+		selectBuffer.append("		gp_module A                                                 ");
+		selectBuffer.append("	INNER JOIN  gpr_role_module B ON A.id= B.module_id                          ");
+		selectBuffer.append("	INNER JOIN  gpr_user_role C ON B.role_id = C.role_id                ");
+		selectBuffer.append("	INNER JOIN  gp_user D ON C.user_id = D.id                ");
+		selectBuffer.append("			WHERE                                                         ");
+		selectBuffer.append("				D.id = '" + this.getCurrentUser().getId() + "'                ");
+		selectBuffer.append("			AND  D.is_disabled_code = 1                                    ");
+		if (domainId.length > 0)
+			selectBuffer.append("			AND A.domain_id='").append(domainId[0]).append("'");
+		selectBuffer.append("	ORDER BY A.priority                                                   ");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("Sql", selectBuffer.toString());
+		resultModel = gpModuleUntBll.getListBySQL(map);
 		return resultModel;
 	}
 

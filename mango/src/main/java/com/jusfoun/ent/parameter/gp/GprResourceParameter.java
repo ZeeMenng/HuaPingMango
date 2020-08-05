@@ -1,4 +1,4 @@
-﻿package com.jusfoun.ent.parameter.gp;
+package com.jusfoun.ent.parameter.gp;
 
 import java.util.*;
 

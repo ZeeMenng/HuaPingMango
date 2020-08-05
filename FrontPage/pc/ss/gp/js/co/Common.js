@@ -214,7 +214,6 @@ function initCheckbox() {
 		if (num > checked_count) {
 			$("#contentTable input[name='headerCheckbox']").attr("checked", false);
 		} else if (num == checked_count) {
-			console.log($("#contentTable input[name='headerCheckbox']").is(':checked'));
 			$("#contentTable input[name='headerCheckbox']").prop('checked', true);
 		}
 	});
@@ -252,7 +251,7 @@ function initLinkMenu() {
 	var userInfo = JSON.parse(localStorage.getItem("token"));
 	var userName = userInfo.userName;
 	var ajaxParamter = {
-		"url" : RU_GPMENU_GETLINKMENU + "?userName=" + userName,
+		"url" : RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
 		"type" : "GET",
 		"data" : "jsonData=" + encodeURIComponent(JSON.stringify({
 			"domainId" : DOMAIN_ID_GP
@@ -262,25 +261,24 @@ function initLinkMenu() {
 			total = result.totalCount;
 			var data = result.data;
 			$.each(data, function(i, n) {
-				if (n["moduleLevel"] == "1") {
+				
+				if (n["level"] == "1") {
 					var menu = $("#firstLevelMenuLi").clone();
 					menu.attr("id", n["id"]);
-					menu.attr("moduleId", n["moduleId"]);
-					menu.attr("fartherModuleId", n["fartherModuleId"]);
+					menu.attr("fartherId", n["fartherId"]);
 					menu.find("h3").html(n["name"]);
 					$("#linkMenuUl").append(menu);
+					console.log(n["name"]);
 				}
 
 			});
 
 			$.each(data, function(i, n) {
-				if (n["moduleLevel"] == "2") {
+				if (n["level"] == "2") {
 					{
 						var secondLevelMenu = $("#secondeLevelMenuLi").clone();
 						secondLevelMenu.attr("id", n["id"]);
-
-						secondLevelMenu.attr("moduleId", n["moduleId"]);
-						secondLevelMenu.attr("fartherModuleId", n["fartherModuleId"]);
+						secondLevelMenu.attr("fartherId", n["fartherId"]);
 
 						if (n["pageUrl"] != null)
 							secondLevelMenu.find("a.nav-toggle").attr("href", n["pageUrl"]);
@@ -290,8 +288,8 @@ function initLinkMenu() {
 						secondLevelMenu.find("span.title").html(n["name"]);
 						secondLevelMenu.find("a i").addClass(n["iconClass"]);
 
-						var $firstLevelMenu = $("#linkMenuUl li[moduleId='" + n["fartherModuleId"] + "']");
-						var $lastSecondLevelMenu = $("#linkMenuUl li[fartherModuleId='" + n["fartherModuleId"] + "']:last");
+						var $firstLevelMenu = $("#linkMenuUl li[id='" + n["fartherId"] + "']");
+						var $lastSecondLevelMenu = $("#linkMenuUl li[fartherId='" + n["fartherId"] + "']:last");
 
 						if ($lastSecondLevelMenu.length != 0)
 							$lastSecondLevelMenu.after(secondLevelMenu);
@@ -305,7 +303,7 @@ function initLinkMenu() {
 			});
 
 			$.each(data, function(i, n) {
-				if (n["moduleLevel"] == "3") {
+				if (n["level"] == "3") {
 					{
 						var thirdLevelMenu = $("#thirdLevelMenuLi").clone();
 						thirdLevelMenu.attr("id", n["id"]);
@@ -318,7 +316,7 @@ function initLinkMenu() {
 
 						thirdLevelMenu.find("span.badge").html(n["XiaoXiShuLiang"]);
 						thirdLevelMenu.find("a i").addClass(n["iconClass"]);
-						$("#linkMenuUl li[moduleId='" + n["fartherModuleId"] + "'] ul").append(thirdLevelMenu);
+						$("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
 						// 菜单加焦点
 						var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];
 						var array = pageUrl.split("");
@@ -421,7 +419,6 @@ function executeQuery(pageParam, ajaxParam, operationParam) {
 		$.each(formData, function(i, n) {
 			ajaxParam.submitData.entityRelated[formData[i].name] = formData[i].value;
 		});
-	/* console.log(ajaxParam) */
 	initNewGrid(pageParam, ajaxParam, operationParam);
 }
 
@@ -439,7 +436,6 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
 	$("#pageSizeSelect").val(ajaxParam.submitData.pageSize);
 	$("#" + pageParam.tableId).empty();
 	// 初始化表头部分
-	/* console.log(ajaxParam) */
 	var header = "<thead><tr>";
 	header += "<th class='table-checkbox'  style='width:50px;'>";
 	header += "<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline'>";
@@ -1823,7 +1819,6 @@ function printPage() {
 	window.document.body.innerHTML = prnhtml;
 	window.print();
 	window.document.body.innerHTML = bdhtml;
-	console.log("===========");
 }
 
 // 读取cookies
@@ -2127,10 +2122,7 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 
 		$("#" + hiddenResourcePathsControl).val(resourcePathList);
 	}).on('fileremoved', function(event, id, index) {
-		console.log("fileremoved=======================fileremoved");
-		console.log(event);
-		console.log(id);
-		console.log(index);
+
 	}).on('filedeleted', function(event, key, jqXHR, data) {
 		var result = jqXHR.responseJSON;
 		if (!result.isSuccess) {
@@ -2614,7 +2606,7 @@ function immediateUpdate(treeId, treeNodes, action) {
 			domainName : domainNode.name,
 			name : treeNodesArray[0].name,
 			fartherId : treeNodesArray[0].fartherId,
-			levelCode : treeNodesArray[0].level + 1,
+			levelCode : treeNodesArray[0].level,
 			priority : treeNodesArray[0].getIndex()
 		}
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
@@ -2644,7 +2636,7 @@ function immediateUpdate(treeId, treeNodes, action) {
 				domainId : domainNode.id,
 				name : treeNodesArray[i].name,
 				fartherId : treeNodesArray[i].fartherId,
-				levelCode : treeNodesArray[i].level + 1,
+				levelCode : treeNodesArray[i].level,
 				priority : treeNodesArray[i].getIndex()
 			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
