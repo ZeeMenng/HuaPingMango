@@ -106,12 +106,7 @@
 			"async" : true,
 			"type" : "GET",
 			"success" : function(resultData) {
-				var zNodes = [ {
-					id : 1,
-					fartherId : 0,
-					name : "",
-					open : false
-				} ];
+				var zNodes = [];
 				if (resultData.data != null && resultData.data.length != 0) {
 					zNodes = resultData.data;
 

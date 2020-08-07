@@ -85,7 +85,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		ResultModel result = new ResultModel();
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
-			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(modules);
+			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(),modules);
 			result = gpModuleSplBll.add(moduleList);
 		}
 		result = gpDomainUntBll.add(jsonData);
@@ -150,7 +150,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
-			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(modules);
+			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(),modules);
 			result = gpModuleSplBll.updateDomainModules(moduleList);
 		}
 

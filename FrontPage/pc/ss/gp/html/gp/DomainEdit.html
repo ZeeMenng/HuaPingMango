@@ -75,20 +75,21 @@
 			"async" : true,
 			"success" : function(resultData) {
 				var zNodes = [ {
-					id : 1,
+					id : request("ID"),
 					fartherId : 0,
-					name : "根节点功能模块",
+					name : "根节点",
 					open : true
 				} ];
 				if (resultData.data != null && resultData.data.length != 0)
-					zNodes = resultData.data;
+					zNodes = zNodes.concat(resultData.data);
 				$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
 				var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 				$.each(zNodes, function(index, value) {
-					if (value.levelCode < 3) {
+					if (value.level < 3) {
 						var node = moduleTree.getNodeByParam("id", value.id);
 						moduleTree.expandNode(node, true);// 展开指定节点
 					}
+
 				});
 				var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 				$("#ulModuleTree").on("keydown", "li", function(event) {
@@ -98,7 +99,6 @@
 							zTree.editName(node);
 					}
 				});
-				
 			}
 		};
 

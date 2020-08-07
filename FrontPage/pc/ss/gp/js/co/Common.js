@@ -2566,6 +2566,8 @@ function updateModulesData(treeId, treeNodes, action) {
 	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var zTreeNodes = zTree.getNodes();
 	var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
+	//修改数组长度为1，以达到删除其它节点只保留根目录节点的目的，因为根目录中已经用嵌套方式包含所有节点。
+	zTreeNodesJsonArray.length=1;
 	var infoData = JSON.stringify(zTreeNodesJsonArray);
 	$("#hiddenModules").val(infoData);
 }

@@ -285,42 +285,38 @@ public class Tools {
 	}
 
 	// 根据JSON字符串递归获取GpModule列表
-	public static ArrayList<GpModule> getModuleListFromJsonString(String jsonString) {
+	public static ArrayList<GpModule> getModuleListFromJsonString(String domainId, String jsonString) {
 
 		JSONArray jsonArray = JSONArray.fromObject(jsonString);
-		ArrayList<GpModule> moduleList = convertModuleTreeToList(jsonArray);
+		ArrayList<GpModule> moduleList = convertModuleTreeToList(domainId, domainId, jsonArray);
+		// 删除根节点的元素
+		moduleList.remove(moduleList.size() - 1);
 		return moduleList;
 
 	}
 
-	private static ArrayList<GpModule> convertModuleTreeToList(JSONArray moduleJSONArray) {
+	private static ArrayList<GpModule> convertModuleTreeToList(String domainId, String parentId, JSONArray moduleJSONArray) {
 
 		ArrayList<GpModule> moduleList = new ArrayList<GpModule>();
 
-		for (Object object : moduleJSONArray) {
+		for (int i = 0; i < moduleJSONArray.size(); i++) {
 			GpModule module = new GpModule();
-			JSONObject jsonObject = JSONObject.fromObject(object);
-
-			byte level = ((Integer) (jsonObject.getInt("level") + 1)).byteValue();
+			JSONObject jsonObject = JSONObject.fromObject(moduleJSONArray.get(i));
+			byte level = ((Integer) (jsonObject.getInt("level"))).byteValue();
+			if (level == 1)
+				parentId = domainId;
 
 			module.setId(Tools.getUUID());
+			module.setFartherId(parentId);
+			module.setPriority(i);
+			module.setDomainId(domainId);
 			module.setLevelCode(level);
 			module.setLevelText(DictionaryModuleLevelEnum.getText(level));
 
-			if (jsonObject.containsKey("id"))
-				module.setId(jsonObject.getString("id"));
-			if (jsonObject.containsKey("domainId"))
-				module.setDomainId(jsonObject.getString("domainId"));
-			if (jsonObject.containsKey("fartherId"))
-				module.setFartherId(jsonObject.getString("fartherId"));
 			if (jsonObject.containsKey("name"))
 				module.setName(jsonObject.getString("name"));
-			if (jsonObject.containsKey("priority"))
-				module.setPriority(jsonObject.getInt("priority"));
-			if (jsonObject.containsKey("remark"))
-				module.setRemark(jsonObject.getString("remark"));
 			if (jsonObject.containsKey("children") && StringUtils.isNotBlank(jsonObject.getString("children")))
-				moduleList.addAll(convertModuleTreeToList(JSONArray.fromObject("children")));
+				moduleList.addAll(convertModuleTreeToList(domainId, module.getId(), JSONArray.fromObject(jsonObject.getString("children"))));
 
 			moduleList.add(module);
 		}
