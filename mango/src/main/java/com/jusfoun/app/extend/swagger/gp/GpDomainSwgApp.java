@@ -155,14 +155,14 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		}
 
 		// 图标列表
-		gprResourceSplBll.deleteByBusinessId(result.getObjectId());
+		gprResourceSplBll.deleteByBusinessId(jsonData.getId());
 		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
 			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
 			String[] resourceArray = jsonData.getIconIds().split(",");
 			for (int i = 0; i < resourceArray.length; i++) {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
-				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setBusinessId(jsonData.getId());
 				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}

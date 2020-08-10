@@ -4,7 +4,7 @@
 <head>
 <!--#include file="/pc/ss/gp/html/cl/Header.html"-->
 <!--#include file="/pc/ss/gp/html/cl/HeaderZTree.html"-->
-<script src="../../js/gp/Module.js" type="text/javascript"></script>
+<script src="../../js/gp/Domain.js" type="text/javascript"></script>
 <script src="../../js/co/CommonDetail.js" type="text/javascript"></script>
 <link href="../../css/CommonDetail.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
@@ -29,8 +29,15 @@
 		var treeModulesParam = {
 			url : RU_GPMODULE_GETLISTBYDOMAINID + request("ID"),
 			container : "ulModules",
-			expandNodeLevel : 2
+			expandNodeLevel : 2,
+			initNodes : [ {
+				id : request("ID"),
+				fartherId : 0,
+				name : "根节点",
+				open : true
+			} ]
 		};
+		initDetailTree(treeModulesParam);
 
 		var ajaxParamter = {
 			"url" : RU_GPROLE_GETROLELISTBYDOMAINID + request("ID"),

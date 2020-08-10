@@ -68,7 +68,7 @@
 				beforeDrop : beforeDrop
 			}
 		};
-
+		IS_IMMEDIATE = false;
 		var ajaxParamter = {
 			"url" : RU_GPMODULE_GETLISTBYDOMAINID + request("ID"),
 			"type" : "GET",
@@ -99,6 +99,9 @@
 							zTree.editName(node);
 					}
 				});
+				//更新hiddenModule中的数据
+				updateModulesData("ulModuleTree", null, null)
+
 			}
 		};
 

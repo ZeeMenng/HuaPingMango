@@ -2184,13 +2184,14 @@ function initDetailTree(treeParam) {
 			}
 		}
 	};
-
+	
+	var treeNodes=treeParam.initNodes;
 	var ajaxParamter = {
 		"url" : treeParam.url,
 		"type" : "GET",
 		"async" : true,
 		"success" : function(resultData) {
-			var treeNodes = resultData.data;
+			treeNodes = treeNodes.concat(resultData.data);
 			var orgnaizationTree = $.fn.zTree.init($("#" + treeParam.container), setting, treeNodes);
 			if (resultData.data != null) {
 				var organizationArray = resultData.data;
@@ -2591,8 +2592,6 @@ function immediateUpdate(treeId, treeNodes, action) {
 				$("#textName").val(treeNodes[0].name);
 			}
 			
-		
-
 			layer.msg('数据已实时更新……', {
 				time : 1500
 			});

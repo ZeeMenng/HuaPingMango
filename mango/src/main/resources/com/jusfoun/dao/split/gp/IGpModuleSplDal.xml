@@ -265,7 +265,7 @@
 		level_text = VALUES(level_text),
 		farther_id = VALUES(farther_id),
 		priority = VALUES(priority),
-		update_time = VALUES(update_time)
+		update_time = VALUES(update_time),
 	</update>
 
 	<select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String">

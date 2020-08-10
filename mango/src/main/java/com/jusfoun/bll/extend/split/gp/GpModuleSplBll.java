@@ -485,6 +485,13 @@ public class GpModuleSplBll extends GpModuleGenSplBll {
 			result.setOperTypeText(OperType.UPDATELIST.getText());
 			result.setRemark("修改某个应用领域下的所有功能模块。");
 
+			//给功能模块的添加时间都赋值为当前时间，此处尚有问题
+			for (GpModule gpModule : gpModuleList) {
+				if (gpModule.getAddTime() == null)
+					gpModule.setAddTime(DateUtils.getCurrentTime());
+			}
+			
+			
 			int i = 0;
 			if (gpModuleList.size() > 0) {
 				gpModuleSplDal.deleteInvalidDomainModules(gpModuleList.get(0).getDomainId(), gpModuleList);
