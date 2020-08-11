@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/11/20 11:45:13
+ * @updateDate 2020/8/11 11:43:26
  * @description 实体类DaMarketPriceGenEnt，自动生成。市场价格数据表
  */
 
@@ -825,38 +825,7 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	public void setYear(String year) {
 		this.year = year;
 	}
-
-	public BigDecimal geteCommercePrice() {
-		return eCommercePrice;
-	}
-
-	public void seteCommercePrice(BigDecimal eCommercePrice) {
-		this.eCommercePrice = eCommercePrice;
-	}
-
-	public BigDecimal geteCommercePriceUnit() {
-		return eCommercePriceUnit;
-	}
-
-	public void seteCommercePriceUnit(BigDecimal eCommercePriceUnit) {
-		this.eCommercePriceUnit = eCommercePriceUnit;
-	}
-
-	public Byte geteCommercePriceUnitCode() {
-		return eCommercePriceUnitCode;
-	}
-
-	public void seteCommercePriceUnitCode(Byte eCommercePriceUnitCode) {
-		this.eCommercePriceUnitCode = eCommercePriceUnitCode;
-	}
-
-	public String geteCommercePriceUnitText() {
-		return eCommercePriceUnitText;
-	}
-
-	public void seteCommercePriceUnitText(String eCommercePriceUnitText) {
-		this.eCommercePriceUnitText = eCommercePriceUnitText;
-	}
+    
 
     //一对多关系中，多端数据列表
 

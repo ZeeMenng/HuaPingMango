@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/7/4 16:32:22
+ * @updateDate 2020/8/11 11:43:39
  * @description 实体类GprResourceGenEnt，自动生成。附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。
  */
 

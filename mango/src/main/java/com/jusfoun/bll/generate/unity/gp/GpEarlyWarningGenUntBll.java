@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-8-17 16:57:52
+ * @updateDate 2020/8/11 11:42:47
  * @description 预警阀值表 业务逻辑处理类，扩展自BaseUntBll<GpEarlyWarning>，自动生成。
  */
 public class GpEarlyWarningGenUntBll extends BaseUntBll<GpEarlyWarning> {

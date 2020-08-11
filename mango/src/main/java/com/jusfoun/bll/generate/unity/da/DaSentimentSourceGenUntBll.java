@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.da;
+﻿package com.jusfoun.bll.generate.unity.da;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-7-19 11:37:09
+ * @updateDate 2020/8/11 11:42:47
  * @description 舆情数据源表 业务逻辑处理类，扩展自BaseUntBll<DaSentimentSource>，自动生成。
  */
 public class DaSentimentSourceGenUntBll extends BaseUntBll<DaSentimentSource> {

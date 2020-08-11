@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-8-17 16:57:52
+ * @updateDate 2020/8/11 11:43:48
  * @description 实体类GpEarlyWarningGenEnt，自动生成。预警阀值表
  */
 

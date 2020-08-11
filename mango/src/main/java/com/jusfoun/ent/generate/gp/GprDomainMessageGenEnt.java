@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-9-17 10:14:53
+ * @updateDate 2020/8/11 11:43:36
  * @description 实体类GprDomainMessageGenEnt，自动生成。应用领域的站内信。
  */
 

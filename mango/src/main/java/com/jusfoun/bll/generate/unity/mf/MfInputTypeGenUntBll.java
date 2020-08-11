@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.mf;
+﻿package com.jusfoun.bll.generate.unity.mf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-6-13 19:07:54
+ * @updateDate 2020/8/11 11:42:47
  * @description 投入品种类监管 业务逻辑处理类，扩展自BaseUntBll<MfInputType>，自动生成。
  */
 public class MfInputTypeGenUntBll extends BaseUntBll<MfInputType> {

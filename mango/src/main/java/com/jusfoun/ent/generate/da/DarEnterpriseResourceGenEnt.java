@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/7/11 17:38:34
+ * @updateDate 2020/8/11 11:43:08
  * @description 实体类DarEnterpriseResourceGenEnt，自动生成。企业和资源中间表
  */
 

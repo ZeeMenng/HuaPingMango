@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/5 14:22:54
+ * @updateDate 2020/8/11 11:42:44
  * @description 应用领域。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -126,8 +126,8 @@ public class GpDomainGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GpDomainAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody GpDomainParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody GpDomainParameter.AddList jsonData) {
 		ResultModel result = gpDomainUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;

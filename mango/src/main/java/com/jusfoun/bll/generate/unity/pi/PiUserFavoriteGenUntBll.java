@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.pi;
+﻿package com.jusfoun.bll.generate.unity.pi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-6-15 13:54:46
+ * @updateDate 2020/8/11 11:42:47
  * @description pi_user_favorite 业务逻辑处理类，扩展自BaseUntBll<PiUserFavorite>，自动生成。
  */
 public class PiUserFavoriteGenUntBll extends BaseUntBll<PiUserFavorite> {

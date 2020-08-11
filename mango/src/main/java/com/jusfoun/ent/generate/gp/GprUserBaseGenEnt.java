@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-21 10:22:39
+ * @updateDate 2020/8/11 11:43:44
  * @description 实体类GprUserBaseGenEnt，自动生成。用户归属的基地。
  */
 

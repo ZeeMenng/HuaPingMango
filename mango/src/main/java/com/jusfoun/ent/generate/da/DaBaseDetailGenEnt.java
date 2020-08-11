@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-21 11:38:36
+ * @updateDate 2020/8/11 11:43:09
  * @description 实体类DaBaseDetailGenEnt，自动生成。基地细分表-地块表
  */
 

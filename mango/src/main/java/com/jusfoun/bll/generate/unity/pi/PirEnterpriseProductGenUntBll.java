@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.pi;
+﻿package com.jusfoun.bll.generate.unity.pi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/7/11 17:38:34
+ * @updateDate 2020/8/11 11:42:47
  * @description 企业和产品中间表 业务逻辑处理类，扩展自BaseUntBll<PirEnterpriseProduct>，自动生成。
  */
 public class PirEnterpriseProductGenUntBll extends BaseUntBll<PirEnterpriseProduct> {

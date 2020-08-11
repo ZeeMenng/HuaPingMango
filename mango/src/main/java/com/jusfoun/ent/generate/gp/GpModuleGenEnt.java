@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/6/24 14:42:32
+ * @updateDate 2020/8/11 11:43:51
  * @description 实体类GpModuleGenEnt，自动生成。功能模块。
  */
 
@@ -28,7 +28,7 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
     private String domainId;
     @ApiModelProperty(value="父级模块。外键，引用自身功能模块表（module）的主键。",hidden=false,required=false)
     private String fartherId;
-    @ApiModelProperty(value="菜单样式。",hidden=false,required=false)
+    @ApiModelProperty(value="菜单图标。",hidden=false,required=false)
     private String iconResource;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
@@ -99,14 +99,14 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。菜单样式。
+	 * get方法。菜单图标。
 	 */
 	public String getIconResource() {
 		return this.iconResource;
 	}
 
 	/**
-	 * set方法。菜单样式。
+	 * set方法。菜单图标。
 	 */
 	public void setIconResource(String iconResource) {
 		this.iconResource = iconResource;

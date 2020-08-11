@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/5/24 0:41:19
+ * @updateDate 2020/8/11 11:43:52
  * @description 实体类GpOrganizationGenEnt，自动生成。组织机构。
  */
 
@@ -52,7 +54,7 @@ public class GpOrganizationGenEnt extends BaseEnt implements Serializable {
     private String serialNo;
     @ApiModelProperty(value="简称。",hidden=false,required=false)
     private String shortName;
-    @ApiModelProperty(value="类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业。",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业,8物流企业。",allowableValues="0,1",hidden=false,required=false)
     private Byte typeCode;
     @ApiModelProperty(value="类型。对应数据字典表（dictionary）中的文本字段（text）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业。",hidden=false,required=false)
     private String typeText;
@@ -287,14 +289,14 @@ public class GpOrganizationGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业。
+	 * get方法。类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业,8物流企业。
 	 */
 	public Byte getTypeCode() {
 		return this.typeCode;
 	}
 
 	/**
-	 * set方法。类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业。
+	 * set方法。类型。对应数据字典表（dictionary）中的编码字段（code）。目前七种类型：1县政府、2省市双管单位、3镇政府、4合作社、5生产企业、6加工企业、7销售企业,8物流企业。
 	 */
 	public void setTypeCode(Byte typeCode) {
 		this.typeCode = typeCode;

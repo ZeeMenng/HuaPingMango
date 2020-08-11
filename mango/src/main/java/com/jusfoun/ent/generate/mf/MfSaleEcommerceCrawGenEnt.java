@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.jusfoun.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:07:57
+ * @updateDate 2020/8/11 11:44:03
  * @description 实体类MfSaleEcommerceCrawGenEnt，自动生成。电商数据表,采集
  */
 
@@ -34,9 +34,9 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
     private String ecommerceText;
     @ApiModelProperty(value="主键id",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte priceRangeCode;
-    @ApiModelProperty(value="价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤",hidden=false,required=false)
+    @ApiModelProperty(value="价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤",hidden=false,required=false)
     private String priceRangeText;
     @ApiModelProperty(value="原产区：对应数据字典表（dictionary）中的编码字段（code）",allowableValues="0,1",hidden=false,required=false)
     private String productAreaCode;
@@ -70,13 +70,13 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
     private Byte saleVolumeUnitCode;
     @ApiModelProperty(value="销售额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：百万美元",hidden=false,required=false)
     private String saleVolumeUnitText;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物品种（鲜果）   0：全品种，1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物品种文本（鲜果）  0：全品种， 1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
     private String strainsText;
-    @ApiModelProperty(value="单颗重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",allowableValues="0,1",hidden=false,required=false)
     private Byte weightSpecificationCode;
-    @ApiModelProperty(value="单颗重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",hidden=false,required=false)
+    @ApiModelProperty(value="重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",hidden=false,required=false)
     private String weightSpecificationText;
     //多对一关系中，一端实体对象
 
@@ -167,28 +167,28 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * get方法。价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
 	 */
 	public Byte getPriceRangeCode() {
 		return this.priceRangeCode;
 	}
 
 	/**
-	 * set方法。价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * set方法。价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
 	 */
 	public void setPriceRangeCode(Byte priceRangeCode) {
 		this.priceRangeCode = priceRangeCode;
 	}
     
 	/**
-	 * get方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * get方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
 	 */
 	public String getPriceRangeText() {
 		return this.priceRangeText;
 	}
 
 	/**
-	 * set方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * set方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
 	 */
 	public void setPriceRangeText(String priceRangeText) {
 		this.priceRangeText = priceRangeText;
@@ -419,56 +419,56 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的编码字段（code）作物品种（鲜果）   0：全品种，1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public Byte getStrainsCode() {
 		return this.strainsCode;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的编码字段（code）作物品种（鲜果）   0：全品种，1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsCode(Byte strainsCode) {
 		this.strainsCode = strainsCode;
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本（鲜果）  0：全品种， 1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本（鲜果）  0：全品种， 1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
 	}
     
 	/**
-	 * get方法。单颗重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * get方法。重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
 	 */
 	public Byte getWeightSpecificationCode() {
 		return this.weightSpecificationCode;
 	}
 
 	/**
-	 * set方法。单颗重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * set方法。重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
 	 */
 	public void setWeightSpecificationCode(Byte weightSpecificationCode) {
 		this.weightSpecificationCode = weightSpecificationCode;
 	}
     
 	/**
-	 * get方法。单颗重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * get方法。重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
 	 */
 	public String getWeightSpecificationText() {
 		return this.weightSpecificationText;
 	}
 
 	/**
-	 * set方法。单颗重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * set方法。重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
 	 */
 	public void setWeightSpecificationText(String weightSpecificationText) {
 		this.weightSpecificationText = weightSpecificationText;

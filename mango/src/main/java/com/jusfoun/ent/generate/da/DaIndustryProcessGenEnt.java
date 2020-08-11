@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:32
+ * @updateDate 2020/8/11 11:43:22
  * @description 实体类DaIndustryProcessGenEnt，自动生成。加工品产值数据表
  */
 
@@ -32,6 +32,12 @@ public class DaIndustryProcessGenEnt extends BaseEnt implements Serializable {
     private BigDecimal areaUnit;
     @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
     private String commonFieldId;
+    @ApiModelProperty(value="原材料消耗总量:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
+    private Byte consumeTotalCode;
+    @ApiModelProperty(value="原材料消耗总量文本:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    private String consumeTotalText;
+    @ApiModelProperty(value="原材料消耗总量数值",hidden=false,required=false)
+    private BigDecimal consumeTotalUnit;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
@@ -134,6 +140,48 @@ public class DaIndustryProcessGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
+	}
+    
+	/**
+	 * get方法。原材料消耗总量:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨
+	 */
+	public Byte getConsumeTotalCode() {
+		return this.consumeTotalCode;
+	}
+
+	/**
+	 * set方法。原材料消耗总量:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨
+	 */
+	public void setConsumeTotalCode(Byte consumeTotalCode) {
+		this.consumeTotalCode = consumeTotalCode;
+	}
+    
+	/**
+	 * get方法。原材料消耗总量文本:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨
+	 */
+	public String getConsumeTotalText() {
+		return this.consumeTotalText;
+	}
+
+	/**
+	 * set方法。原材料消耗总量文本:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨
+	 */
+	public void setConsumeTotalText(String consumeTotalText) {
+		this.consumeTotalText = consumeTotalText;
+	}
+    
+	/**
+	 * get方法。原材料消耗总量数值
+	 */
+	public BigDecimal getConsumeTotalUnit() {
+		return this.consumeTotalUnit;
+	}
+
+	/**
+	 * set方法。原材料消耗总量数值
+	 */
+	public void setConsumeTotalUnit(BigDecimal consumeTotalUnit) {
+		this.consumeTotalUnit = consumeTotalUnit;
 	}
     
 	/**

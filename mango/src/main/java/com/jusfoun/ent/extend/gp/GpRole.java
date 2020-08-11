@@ -1,9 +1,10 @@
 package com.jusfoun.ent.extend.gp;
 
+import com.jusfoun.ent.generate.gp.GpRoleGenEnt;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import com.jusfoun.ent.generate.gp.GpRoleGenEnt;
+import net.sf.json.JSONArray;
 
 /**
  * @author Zee
@@ -14,14 +15,23 @@ import com.jusfoun.ent.generate.gp.GpRoleGenEnt;
 
 @ApiModel(value = "GpRole", description = "系统角色。")
 public class GpRole extends GpRoleGenEnt {
-	
-	@ApiModelProperty(value="模块权限id",hidden=false,required=false)
-    private String moduleIds;
-	@ApiModelProperty(value="菜单名称",hidden=false,required=false)
-    private String menuNames;
-	
-	@ApiModelProperty(value="应用领域名称",hidden=false,required=false)
-    private String domainName;
+
+	@ApiModelProperty(value = "应用领域id", hidden = false, required = false)
+	private String domainIds;
+
+	@ApiModelProperty(value = "模块权限id", hidden = false, required = false)
+	private String moduleIds;
+
+	@ApiModelProperty(value = "应用领域名称", hidden = false, required = false)
+	private String domainName;
+
+	public String getDomainIds() {
+		return domainIds;
+	}
+
+	public void setDomainIds(String domainIds) {
+		this.domainIds = domainIds;
+	}
 
 	public String getModuleIds() {
 		return moduleIds;
@@ -29,14 +39,6 @@ public class GpRole extends GpRoleGenEnt {
 
 	public void setModuleIds(String moduleIds) {
 		this.moduleIds = moduleIds;
-	}
-
-	public String getMenuNames() {
-		return menuNames;
-	}
-
-	public void setMenuNames(String menuNames) {
-		this.menuNames = menuNames;
 	}
 
 	public String getDomainName() {
@@ -48,10 +50,3 @@ public class GpRole extends GpRoleGenEnt {
 	}
 
 }
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-7-25 10:44:14
+ * @updateDate 2020/8/11 11:43:31
  * @description 实体类DaSentimentArticleGenEnt，自动生成。舆情文章表
  */
 
@@ -28,9 +28,9 @@ public class DaSentimentArticleGenEnt extends BaseEnt implements Serializable {
     private String articleName;
     @ApiModelProperty(value="文章内容。外键，引用文章内容表（artical_content）的主键（id）。",hidden=false,required=false)
     private String articleTxtId;
-    @ApiModelProperty(value="数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="来源渠道：对应数据字典表（dictionary）中的编码字段（code）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报",allowableValues="0,1",hidden=false,required=false)
     private Byte datasourceCode;
-    @ApiModelProperty(value="数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入",hidden=false,required=false)
+    @ApiModelProperty(value="来源渠道：文本，对应数据字典表（dictionary）中的文本字段（text）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报",hidden=false,required=false)
     private String datasourceText;
     @ApiModelProperty(value="主键id",hidden=false,required=true)
     private String id;
@@ -107,28 +107,28 @@ public class DaSentimentArticleGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入
+	 * get方法。来源渠道：对应数据字典表（dictionary）中的编码字段（code）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报
 	 */
 	public Byte getDatasourceCode() {
 		return this.datasourceCode;
 	}
 
 	/**
-	 * set方法。数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入
+	 * set方法。来源渠道：对应数据字典表（dictionary）中的编码字段（code）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报
 	 */
 	public void setDatasourceCode(Byte datasourceCode) {
 		this.datasourceCode = datasourceCode;
 	}
     
 	/**
-	 * get方法。数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入
+	 * get方法。来源渠道：文本，对应数据字典表（dictionary）中的文本字段（text）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报
 	 */
 	public String getDatasourceText() {
 		return this.datasourceText;
 	}
 
 	/**
-	 * set方法。数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入
+	 * set方法。来源渠道：文本，对应数据字典表（dictionary）中的文本字段（text）1：农户APP填报，2：农户web填报，3：政府人员采集，4：网络采集，5：第三方对接采集，6：其他，7：企业web填报
 	 */
 	public void setDatasourceText(String datasourceText) {
 		this.datasourceText = datasourceText;

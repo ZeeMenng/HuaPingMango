@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.da;
+﻿package com.jusfoun.app.generate.swagger.da;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:19
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/11 11:42:41
+ * @description 采样数据表 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "DaCheckCollection",tags="")
+@Api(value = "DaCheckCollection",tags="采样数据表")
 @RequestMapping(value = "/generate/swagger/da/daCheckCollection")
 public class DaCheckCollectionGenSwgApp extends BaseSwgApp {
 
@@ -126,8 +126,8 @@ public class DaCheckCollectionGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "DaCheckCollectionAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody DaCheckCollectionParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody DaCheckCollectionParameter.AddList jsonData) {
 		ResultModel result = daCheckCollectionUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
@@ -228,7 +228,7 @@ public class DaCheckCollectionGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "采样数据表列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.jusfoun.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:24
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/11 11:42:45
+ * @description token信息。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GpToken",tags="")
+@Api(value = "GpToken",tags="token信息。")
 @RequestMapping(value = "/generate/swagger/gp/gpToken")
 public class GpTokenGenSwgApp extends BaseSwgApp {
 
@@ -126,8 +126,8 @@ public class GpTokenGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GpTokenAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody GpTokenParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody GpTokenParameter.AddList jsonData) {
 		ResultModel result = gpTokenUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
@@ -228,7 +228,7 @@ public class GpTokenGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "token信息列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

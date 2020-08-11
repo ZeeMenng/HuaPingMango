@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:33
+ * @updateDate 2020/8/11 11:43:23
  * @description 实体类DaInputGenEnt，自动生成。投入品信息表
  */
 
@@ -70,9 +70,9 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
     private String procurementTotalUnitText;
     @ApiModelProperty(value="采购点",hidden=false,required=false)
     private String purchasePoint;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
     private String strainsText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal useAmount;
@@ -423,28 +423,28 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public Byte getStrainsCode() {
 		return this.strainsCode;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsCode(Byte strainsCode) {
 		this.strainsCode = strainsCode;
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;

@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.da;
+﻿package com.jusfoun.bll.generate.unity.da;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-6-20 14:12:54
+ * @updateDate 2020/8/11 11:42:47
  * @description 基地信息表 业务逻辑处理类，扩展自BaseUntBll<DaBaseInfo>，自动生成。
  */
 public class DaBaseInfoGenUntBll extends BaseUntBll<DaBaseInfo> {

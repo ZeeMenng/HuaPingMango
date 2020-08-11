@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/5/24 0:41:18
+ * @updateDate 2020/8/11 11:43:49
  * @description 实体类GpInterfaceGenEnt，自动生成。系统接口。
  */
 
@@ -34,7 +36,7 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
     private String tableName;
     @ApiModelProperty(value="接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：0GET，1POST。默认值0。",allowableValues="0,1",hidden=false,required=false)
     private String typeCode;
-    @ApiModelProperty(value="访问路径。",hidden=false,required=false)
+    @ApiModelProperty(value="访问路径。",hidden=false,required=true)
     private String url;
     //多对一关系中，一端实体对象
 

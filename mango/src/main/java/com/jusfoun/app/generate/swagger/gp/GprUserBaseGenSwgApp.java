@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.jusfoun.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:23
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/11 11:42:44
+ * @description 用户归属的基地。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GprUserBase",tags="")
+@Api(value = "GprUserBase",tags="用户归属的基地。")
 @RequestMapping(value = "/generate/swagger/gp/gprUserBase")
 public class GprUserBaseGenSwgApp extends BaseSwgApp {
 
@@ -126,8 +126,8 @@ public class GprUserBaseGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprUserBaseAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody GprUserBaseParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody GprUserBaseParameter.AddList jsonData) {
 		ResultModel result = gprUserBaseUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
@@ -222,7 +222,7 @@ public class GprUserBaseGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "用户归属的基地列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

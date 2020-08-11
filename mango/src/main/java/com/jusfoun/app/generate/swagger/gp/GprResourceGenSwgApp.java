@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.jusfoun.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/7/4 16:32:21
+ * @updateDate 2020/8/11 11:42:44
  * @description 附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -126,8 +126,8 @@ public class GprResourceGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprResourceAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody GprResourceParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody GprResourceParameter.AddList jsonData) {
 		ResultModel result = gprResourceUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;

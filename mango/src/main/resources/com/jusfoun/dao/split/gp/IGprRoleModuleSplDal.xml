@@ -70,16 +70,6 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</delete>
 
-	<delete id="deleteByRoleId" parameterType="java.lang.String">
-		delete from gpr_role_module
-		where roleId = #{roleId,jdbcType=VARCHAR}
-	</delete>
-
-	<delete id="deleteByModuleId" parameterType="java.lang.String">
-		delete from gpr_role_module
-		where moduleId = #{moduleId,jdbcType=VARCHAR}
-	</delete>
-
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_role_module
 		where id in
@@ -87,7 +77,10 @@
 			#{id }
 		</foreach>
 	</delete>
-
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+		delete from gpr_role_module
+		where roleId = #{roleId,jdbcType=VARCHAR}
+	</delete>
 	<delete id="deleteByRoleIdList" parameterType="list">
 		delete from gpr_role_module
 		where id in
@@ -95,7 +88,10 @@
 			#{roleId}
 		</foreach>
 	</delete>
-
+	<delete id="deleteByModuleId" parameterType="java.lang.String">
+		delete from gpr_role_module
+		where moduleId = #{moduleId,jdbcType=VARCHAR}
+	</delete>
 	<delete id="deleteByModuleIdList" parameterType="list">
 		delete from gpr_role_module
 		where id in

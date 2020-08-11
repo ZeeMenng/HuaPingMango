@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-25 10:47:18
+ * @updateDate 2020/8/11 11:43:26
  * @description 实体类DaMainProductionAreaGenEnt，自动生成。芒果主产区
  */
 

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,13 +15,15 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:33
+ * @updateDate 2020/8/11 11:43:25
  * @description 实体类DaIotMonitorDataGenEnt，自动生成。物联网设备监控数据
  */
 
 public class DaIotMonitorDataGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    @ApiModelProperty(value="添加记录时间",hidden=false,required=false)
+    private Date addTime;
     @ApiModelProperty(value="显示名称",hidden=false,required=false)
     private String displayName;
     @ApiModelProperty(value="硬件主机id",hidden=false,required=false)
@@ -34,7 +36,7 @@ public class DaIotMonitorDataGenEnt extends BaseEnt implements Serializable {
     private String sensorName;
     @ApiModelProperty(value="传感器类型",hidden=false,required=false)
     private Integer sensorType;
-    @ApiModelProperty(value="时间",hidden=false,required=false)
+    @ApiModelProperty(value="监控时间",hidden=false,required=false)
     private Date time;
     @ApiModelProperty(value="单位",hidden=false,required=false)
     private String unit;
@@ -44,6 +46,20 @@ public class DaIotMonitorDataGenEnt extends BaseEnt implements Serializable {
 
     //一对多关系中，多端数据列表
 
+	/**
+	 * get方法。添加记录时间
+	 */
+	public Date getAddTime() {
+		return this.addTime;
+	}
+
+	/**
+	 * set方法。添加记录时间
+	 */
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+    
 	/**
 	 * get方法。显示名称
 	 */
@@ -129,14 +145,14 @@ public class DaIotMonitorDataGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。时间
+	 * get方法。监控时间
 	 */
 	public Date getTime() {
 		return this.time;
 	}
 
 	/**
-	 * set方法。时间
+	 * set方法。监控时间
 	 */
 	public void setTime(Date time) {
 		this.time = time;

@@ -153,8 +153,6 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		return result;
 	}
 
-
-
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpModule") })
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -266,14 +264,14 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
-
-		ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData);
+		// 这个接口暂时无人使用，先给一个空值。
+		String doaminId = null;
+		ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(doaminId, jsonData);
 		resultModel = gpModuleSplBll.updateDomainModules(moduleList);
 
 		return resultModel;
 	}
 
-	
 	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -302,7 +300,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		result.setData(gpModule);
 		return result;
 	}
-	
+
 	@ApiOperation(value = "获取树状结构数据", notes = "获取树状结构数据")
 	@RequestMapping(value = "/getTreeNodes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTreeNodes() {

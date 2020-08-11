@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-7-22 16:33:33
+ * @updateDate 2020/8/11 11:43:32
  * @description 实体类DaSentimentRuleGenEnt，自动生成。舆情采集规则表
  */
 
@@ -26,7 +26,7 @@ public class DaSentimentRuleGenEnt extends BaseEnt implements Serializable {
     private Date addTime;
     @ApiModelProperty(value="创建人",hidden=false,required=false)
     private String addUserId;
-    @ApiModelProperty(value="结束时间",hidden=false,required=true)
+    @ApiModelProperty(value="结束时间",hidden=false,required=false)
     private String endTime;
     @ApiModelProperty(value="采集频率（N条/小时）",hidden=false,required=true)
     private Integer frequency;
@@ -40,7 +40,7 @@ public class DaSentimentRuleGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="规则名称",hidden=false,required=false)
     private String ruleName;
-    @ApiModelProperty(value="开始时间",hidden=false,required=true)
+    @ApiModelProperty(value="开始时间",hidden=false,required=false)
     private String startTime;
     @ApiModelProperty(value="状态code，对应数据字典表,状态类型字典",allowableValues="0,1",hidden=false,required=false)
     private Byte statusCode;

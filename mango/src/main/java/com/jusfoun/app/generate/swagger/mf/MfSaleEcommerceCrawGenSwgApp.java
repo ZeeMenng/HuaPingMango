@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.mf;
+﻿package com.jusfoun.app.generate.swagger.mf;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:25
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/11 11:42:45
+ * @description 电商数据表,采集 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "MfSaleEcommerceCraw",tags="")
+@Api(value = "MfSaleEcommerceCraw",tags="电商数据表,采集")
 @RequestMapping(value = "/generate/swagger/mf/mfSaleEcommerceCraw")
 public class MfSaleEcommerceCrawGenSwgApp extends BaseSwgApp {
 
@@ -126,8 +126,8 @@ public class MfSaleEcommerceCrawGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "MfSaleEcommerceCrawAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody MfSaleEcommerceCrawParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody MfSaleEcommerceCrawParameter.AddList jsonData) {
 		ResultModel result = mfSaleEcommerceCrawUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
@@ -228,7 +228,7 @@ public class MfSaleEcommerceCrawGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "电商数据表,采集列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

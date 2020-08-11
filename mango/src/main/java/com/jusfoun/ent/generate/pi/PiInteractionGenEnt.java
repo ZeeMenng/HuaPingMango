@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-7-5 11:35:45
+ * @updateDate 2020/8/11 11:44:18
  * @description 实体类PiInteractionGenEnt，自动生成。pi_interaction
  */
 
@@ -44,7 +44,7 @@ public class PiInteractionGenEnt extends BaseEnt implements Serializable {
     private String job;
     @ApiModelProperty(value="昵称，网名",hidden=false,required=false)
     private String nickName;
-    @ApiModelProperty(value="电话",hidden=false,required=true)
+    @ApiModelProperty(value="电话",hidden=false,required=false)
     private String phone;
     @ApiModelProperty(value="qq号码",hidden=false,required=false)
     private String qq;
@@ -66,8 +66,6 @@ public class PiInteractionGenEnt extends BaseEnt implements Serializable {
     private String title;
     @ApiModelProperty(value="记录最后一次修改时间",hidden=false,required=false)
     private Date updateTime;
-    @ApiModelProperty(value="类型文本：1：问专家，2：留建言",hidden=false,required=false)
-    private String interactionText;
     //多对一关系中，一端实体对象
 
     //一对多关系中，多端数据列表
@@ -380,19 +378,7 @@ public class PiInteractionGenEnt extends BaseEnt implements Serializable {
 		this.updateTime = updateTime;
 	}
     
-	/**
-	 * get方法。类型文字：1：问专家，2：留建言
-	 */
-	public String getInteractionText() {
-		return this.interactionText;
-	}
 
-	/**
-	 * set方法。类型文字：1：问专家，2：留建言
-	 */
-	public void setInteractionText(String interactionText) {
-		this.interactionText = interactionText;
-	}
     //一对多关系中，多端数据列表
 
 }

@@ -6,46 +6,20 @@
  */
 
 $(document).ready(function() {
-	// 初始化应用领域下拉框
-	var selectParam = {
-		selectId : "selectDomainId",
-		textField : "name",
-		valueField : "id"
-	};
 
-	var ajaxParam = {
-		url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}"
-	}
-	initDropDownList(selectParam, ajaxParam);
 });
 
-// 树形结构begin
-var setting = {
-	check : {
-		enable : true
-	},
-	data : {
-		simpleData : {
-			enable : true,
-			idKey : "id",
-			pIdKey : "fartherId"
-		}
-	},
-	callback : {
-		onCheck : onCheck
-	}
-};
 function initTreeNodes(domainId, isInitChecked, initResult) {
 	$.ajax({
 		async : false,
 		url : INTERFACE_SERVER + RU_GPMODULE_GETLISTBYDOMAINID + domainId,
 		success : function(res) {
 			var treeNodes = res.data;
-			var treeObj =$.fn.zTree.init($("#treeContainer"), setting, treeNodes);
+			var treeObj = $.fn.zTree.init($("#treeContainer"), setting, treeNodes);
 			if (isInitChecked)
 				initChecked(initResult);
 			$.each(treeNodes, function(index, value) {
-				if ( value.levelCode < 2) {
+				if (value.levelCode < 2) {
 					var node = treeObj.getNodeByParam("id", value.id);
 					treeObj.expandNode(node, true);// 展开指定节点
 				}
@@ -71,15 +45,22 @@ function initChecked(initResult) {
 	}
 }
 
-// 点击节点回调函数，给隐藏文本域添加角色id数组
+// 点击节点回调函数，给隐藏文本域赋值——选中的应用领域或功能模块列表
 function onCheck() {
 	var treeObj = $.fn.zTree.getZTreeObj("treeContainer");
 	var nodes = treeObj.getCheckedNodes(true);
-	var arr = [];
+
+	var moduleIdsArray = [];
+	var domainIdsArray = [];
 	for (var i = 0; i < nodes.length; i++) {
-		arr.push(nodes[i].id)
+		if (nodes[i].level == 0) {
+			moduleIdsArray.push(nodes[i].id);
+		} else {
+			domainIdsArray.push(nnodes[i].id)
+		}
 	}
-	$("#hiddenModuleIds").val(arr)
+	$("#hiddenModuleIds").val(moduleIdsArray.toString())
+	$("#hiddenDomainIds").val(moduleIdsArray.toString())
 }
-// 树形结构end
+// 
 

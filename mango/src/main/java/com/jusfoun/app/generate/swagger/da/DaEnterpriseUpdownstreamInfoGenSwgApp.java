@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.da;
+﻿package com.jusfoun.app.generate.swagger.da;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2019/9/14 10:29:20
- * @description  对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/8/11 11:42:42
+ * @description 企业关联企业表，企业上下游关系记录。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "DaEnterpriseUpdownstreamInfo",tags="")
+@Api(value = "DaEnterpriseUpdownstreamInfo",tags="企业关联企业表，企业上下游关系记录。")
 @RequestMapping(value = "/generate/swagger/da/daEnterpriseUpdownstreamInfo")
 public class DaEnterpriseUpdownstreamInfoGenSwgApp extends BaseSwgApp {
 
@@ -126,8 +126,8 @@ public class DaEnterpriseUpdownstreamInfoGenSwgApp extends BaseSwgApp {
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "DaEnterpriseUpdownstreamInfoAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDfforAdd(@RequestBody DaEnterpriseUpdownstreamInfoParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResultModel updateListWithDffOrAdd(@RequestBody DaEnterpriseUpdownstreamInfoParameter.AddList jsonData) {
 		ResultModel result = daEnterpriseUpdownstreamInfoUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
@@ -228,7 +228,7 @@ public class DaEnterpriseUpdownstreamInfoGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "企业关联企业表，企业上下游关系记录列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

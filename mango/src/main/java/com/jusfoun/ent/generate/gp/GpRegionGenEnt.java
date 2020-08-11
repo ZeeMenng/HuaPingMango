@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/5/24 0:41:19
+ * @updateDate 2020/8/11 11:43:52
  * @description 实体类GpRegionGenEnt，自动生成。地区信息。
  */
 
@@ -38,7 +40,7 @@ public class GpRegionGenEnt extends BaseEnt implements Serializable {
     private String longitude;
     @ApiModelProperty(value="地区名称。",hidden=false,required=false)
     private String name;
-    @ApiModelProperty(value="区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、镇为第五级、乡为第六级。",hidden=false,required=false)
+    @ApiModelProperty(value="区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、乡镇为第五级",hidden=false,required=false)
     private Byte regionLevel;
     @ApiModelProperty(value="备注字段。",hidden=false,required=false)
     private String remark;
@@ -173,14 +175,14 @@ public class GpRegionGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、镇为第五级、乡为第六级。
+	 * get方法。区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、乡镇为第五级
 	 */
 	public Byte getRegionLevel() {
 		return this.regionLevel;
 	}
 
 	/**
-	 * set方法。区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、镇为第五级、乡为第六级。
+	 * set方法。区域等级。国家为第一级，直辖市、省、自治区、特别行政区为第二级，地级市、直辖市下的区为第三级，县级市、县为第四级、乡镇为第五级
 	 */
 	public void setRegionLevel(Byte regionLevel) {
 		this.regionLevel = regionLevel;

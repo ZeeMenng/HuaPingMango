@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-27 16:08:33
+ * @updateDate 2020/8/11 11:43:12
  * @description 实体类DaCrawlerGenEnt，自动生成。爬虫
  */
 
@@ -44,7 +44,7 @@ public class DaCrawlerGenEnt extends BaseEnt implements Serializable {
     private String rateCounter;
     @ApiModelProperty(value="累计销售",hidden=false,required=false)
     private String sellCounter;
-    @ApiModelProperty(value="数据来源：1 淘宝",hidden=false,required=false)
+    @ApiModelProperty(value="数据来源：'平台号：对应数据字典表（dictionary）中的编码字段（code）1：天猫，2：淘宝，3：京东，4：惠农网'",hidden=false,required=false)
     private Byte source;
     //多对一关系中，一端实体对象
 
@@ -205,14 +205,14 @@ public class DaCrawlerGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。数据来源：1 淘宝
+	 * get方法。数据来源：'平台号：对应数据字典表（dictionary）中的编码字段（code）1：天猫，2：淘宝，3：京东，4：惠农网'
 	 */
 	public Byte getSource() {
 		return this.source;
 	}
 
 	/**
-	 * set方法。数据来源：1 淘宝
+	 * set方法。数据来源：'平台号：对应数据字典表（dictionary）中的编码字段（code）1：天猫，2：淘宝，3：京东，4：惠农网'
 	 */
 	public void setSource(Byte source) {
 		this.source = source;

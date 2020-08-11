@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.jusfoun.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:07:55
+ * @updateDate 2020/8/11 11:43:58
  * @description 实体类MfHpSeasonGenEnt，自动生成。批发价格季节性波动规律分析
  */
 

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/7/27 10:32:48
+ * @updateDate 2020/8/11 11:43:11
  * @description 实体类DaCheckTestingGenEnt，自动生成。检测数据表
  */
 
@@ -30,7 +30,7 @@ public class DaCheckTestingGenEnt extends BaseEnt implements Serializable {
     private String checkPersonnel;
     @ApiModelProperty(value="检测项目",hidden=false,required=false)
     private String checkProject;
-    @ApiModelProperty(value="检测项目编码",hidden=false,required=false)
+    @ApiModelProperty(value="检测项目编码",allowableValues="0,1",hidden=false,required=false)
     private Byte checkProjectCode;
     @ApiModelProperty(value="检测结果",hidden=false,required=false)
     private String checkResult;
@@ -110,6 +110,20 @@ public class DaCheckTestingGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setCheckProject(String checkProject) {
 		this.checkProject = checkProject;
+	}
+    
+	/**
+	 * get方法。检测项目编码
+	 */
+	public Byte getCheckProjectCode() {
+		return this.checkProjectCode;
+	}
+
+	/**
+	 * set方法。检测项目编码
+	 */
+	public void setCheckProjectCode(Byte checkProjectCode) {
+		this.checkProjectCode = checkProjectCode;
 	}
     
 	/**
@@ -250,14 +264,6 @@ public class DaCheckTestingGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
-	}
-
-	public Byte getCheckProjectCode() {
-		return checkProjectCode;
-	}
-
-	public void setCheckProjectCode(Byte checkProjectCode) {
-		this.checkProjectCode = checkProjectCode;
 	}
     
 

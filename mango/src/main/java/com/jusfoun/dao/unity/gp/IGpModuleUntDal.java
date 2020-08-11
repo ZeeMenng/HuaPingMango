@@ -1,4 +1,4 @@
-package com.jusfoun.dao.unity.gp;
+﻿package com.jusfoun.dao.unity.gp;
 
 import com.jusfoun.dao.unity.base.IBaseUntDal;
 import com.jusfoun.ent.extend.gp.GpModule;
@@ -8,7 +8,7 @@ import com.jusfoun.ent.extend.gp.GpModule;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/6/24 14:42:32
+ * @updateDate 2020/8/11 11:42:48
  * @description 扩展自实体类IBaseUntDal<GpModule>，可手动更改。功能模块。
  */
 

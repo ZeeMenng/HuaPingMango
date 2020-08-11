@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.pe;
+﻿package com.jusfoun.bll.generate.unity.pe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/7/13 11:12:05
+ * @updateDate 2020/8/11 11:42:47
  * @description 鸟瞰图 业务逻辑处理类，扩展自BaseUntBll<PeAerialView>，自动生成。
  */
 public class PeAerialViewGenUntBll extends BaseUntBll<PeAerialView> {

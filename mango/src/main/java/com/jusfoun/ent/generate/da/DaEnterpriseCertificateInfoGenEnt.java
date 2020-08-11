@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-9-14 13:59:05
+ * @updateDate 2020/8/11 11:43:12
  * @description 实体类DaEnterpriseCertificateInfoGenEnt，自动生成。企业证书
  */
 
@@ -111,28 +111,28 @@ public class DaEnterpriseCertificateInfoGenEnt extends BaseEnt implements Serial
 	}
     
 	/**
-	 * get方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义6种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
+	 * get方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
 	 */
 	public Byte getCertificateTypeCode() {
 		return this.certificateTypeCode;
 	}
 
 	/**
-	 * set方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义6种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
+	 * set方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
 	 */
 	public void setCertificateTypeCode(Byte certificateTypeCode) {
 		this.certificateTypeCode = certificateTypeCode;
 	}
     
 	/**
-	 * get方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义6种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
+	 * get方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
 	 */
 	public String getCertificateTypeText() {
 		return this.certificateTypeText;
 	}
 
 	/**
-	 * set方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义6种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
+	 * set方法。证书类型。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型   1：通用资质 2：无公害农产品 3：绿色食品 4：有机农产品 5：农产品地理标志
 	 */
 	public void setCertificateTypeText(String certificateTypeText) {
 		this.certificateTypeText = certificateTypeText;

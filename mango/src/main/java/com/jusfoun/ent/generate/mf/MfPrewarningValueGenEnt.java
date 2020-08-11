@@ -1,17 +1,21 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.jusfoun.ent.generate.mf;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.math.BigDecimal;
+
+import java.util.*;
 
 import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-9-26 15:07:45
+ * @updateDate 2020/8/11 11:43:59
  * @description 实体类MfPrewarningValueGenEnt，自动生成。质量安全预警值设置
  */
 
@@ -79,14 +83,14 @@ public class MfPrewarningValueGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。投入品违规使用月预警值
+	 * get方法。违法案件月预警值
 	 */
 	public Integer getEntryViolation() {
 		return this.entryViolation;
 	}
 
 	/**
-	 * set方法。投入品违规使用月预警值
+	 * set方法。违法案件月预警值
 	 */
 	public void setEntryViolation(Integer entryViolation) {
 		this.entryViolation = entryViolation;
@@ -107,14 +111,14 @@ public class MfPrewarningValueGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。质量反馈月预警值
+	 * get方法。投诉反馈月预警值
 	 */
 	public Integer getQualityFeedback() {
 		return this.qualityFeedback;
 	}
 
 	/**
-	 * set方法。质量反馈月预警值
+	 * set方法。投诉反馈月预警值
 	 */
 	public void setQualityFeedback(Integer qualityFeedback) {
 		this.qualityFeedback = qualityFeedback;

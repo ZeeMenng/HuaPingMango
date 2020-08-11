@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:31
+ * @updateDate 2020/8/11 11:43:18
  * @description 实体类DaEnterpriseUpdownstreamInfoGenEnt，自动生成。企业关联企业表，企业上下游关系记录。
  */
 

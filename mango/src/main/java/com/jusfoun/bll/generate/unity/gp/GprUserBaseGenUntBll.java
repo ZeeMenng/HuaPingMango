@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-6-21 10:22:39
+ * @updateDate 2020/8/11 11:42:47
  * @description 用户归属的基地。 业务逻辑处理类，扩展自BaseUntBll<GprUserBase>，自动生成。
  */
 public class GprUserBaseGenUntBll extends BaseUntBll<GprUserBase> {

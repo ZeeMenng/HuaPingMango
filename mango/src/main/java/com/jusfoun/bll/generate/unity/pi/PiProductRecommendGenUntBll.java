@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.pi;
+﻿package com.jusfoun.bll.generate.unity.pi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018-8-19 10:15:48
+ * @updateDate 2020/8/11 11:42:47
  * @description 企业推介产品表 业务逻辑处理类，扩展自BaseUntBll<PiProductRecommend>，自动生成。
  */
 public class PiProductRecommendGenUntBll extends BaseUntBll<PiProductRecommend> {

@@ -1,19 +1,21 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.*;
+
 import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
+
+import java.math.BigDecimal;
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-8-19 10:15:48
+ * @updateDate 2020/8/11 11:44:18
  * @description 实体类PiProductRecommendGenEnt，自动生成。企业推介产品表
  */
 
@@ -35,7 +37,6 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
     @ApiModelProperty(value="单价，标准单位：元/千克",hidden=false,required=false)
     private BigDecimal perPriceUnit;
     @ApiModelProperty(value="发布时间",hidden=false,required=false)
-    @JsonFormat(pattern="yyyy-MM-dd")
     private Date releaseTime;
     @ApiModelProperty(value="备注",hidden=false,required=false)
     private String remark;

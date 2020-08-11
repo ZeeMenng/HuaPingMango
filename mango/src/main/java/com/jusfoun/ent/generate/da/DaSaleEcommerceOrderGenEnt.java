@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/7/26 18:11:35
+ * @updateDate 2020/8/11 11:43:28
  * @description 实体类DaSaleEcommerceOrderGenEnt，自动生成。电商数据表，用于存放直报的电商数据
  */
 

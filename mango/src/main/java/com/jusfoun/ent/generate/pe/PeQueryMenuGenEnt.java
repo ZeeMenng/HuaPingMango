@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pe;
+﻿package com.jusfoun.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-7-2 16:58:02
+ * @updateDate 2020/8/11 11:44:05
  * @description 实体类PeQueryMenuGenEnt，自动生成。数据版门户-数据资源-查询菜单
  */
 

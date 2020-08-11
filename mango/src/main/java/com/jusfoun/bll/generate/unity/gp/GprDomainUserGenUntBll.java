@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/5/24 0:41:02
+ * @updateDate 2020/8/11 11:42:47
  * @description 应用领域拥有的用户。 业务逻辑处理类，扩展自BaseUntBll<GprDomainUser>，自动生成。
  */
 public class GprDomainUserGenUntBll extends BaseUntBll<GprDomainUser> {
@@ -71,8 +71,8 @@ public class GprDomainUserGenUntBll extends BaseUntBll<GprDomainUser> {
 			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.UPDATELIST_F.getCode());
-			result.setResultMessage(OperResult.UPDATELIST_F.getText() + "：" + e.getMessage());
+			result.setResultCode(OperResult.UPDATE_F.getCode());
+			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
 			result.setReturnValue(e.getMessage());
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);

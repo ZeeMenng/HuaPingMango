@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pe;
+﻿package com.jusfoun.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-27 10:25:42
+ * @updateDate 2020/8/11 11:44:04
  * @description 实体类PeAerialBroadcastGenEnt，自动生成。鸟瞰华坪轮播图
  */
 

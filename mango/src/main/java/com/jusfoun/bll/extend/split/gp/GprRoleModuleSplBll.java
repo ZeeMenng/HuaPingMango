@@ -1,8 +1,19 @@
 package com.jusfoun.bll.extend.split.gp;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 import com.jusfoun.bll.generate.split.gp.GprRoleModuleGenSplBll;
+import com.jusfoun.ent.custom.ResultModel;
+import com.jusfoun.set.enumer.OperResult;
+import com.jusfoun.set.enumer.OperType;
+import com.jusfoun.set.exception.GlobalException;
+import com.jusfoun.utl.DateUtils;
+import com.jusfoun.utl.SymbolicConstant;
+import com.jusfoun.utl.Tools;
+
+import net.sf.json.JSONArray;
 
 
 /**
@@ -14,6 +25,89 @@ import com.jusfoun.bll.generate.split.gp.GprRoleModuleGenSplBll;
 @Service("gprRoleModuleSplBll")
 public class GprRoleModuleSplBll extends GprRoleModuleGenSplBll {
 
+	public ResultModel deleteByRoleId(String roleId) {
+		return deleteByRoleId(roleId, isLogRead);
+	}
+
+	public ResultModel deleteByRoleId(String roleId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(roleId);
+			result.setObjectId(roleId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETE.getCode());
+			result.setOperTypeText(OperType.DELETE.getText());
+			result.setRemark("根据角色ID列表，删除角色功能模块中间表。");
+
+			int i = gprRoleModuleSplDal.deleteByRoleId(roleId);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETE_S.getCode());
+			result.setResultMessage(OperResult.DELETE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETE_F.getCode());
+			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+
+	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList) {
+		return deleteByRoleIdList(roleIdList, isLogWrite);
+	}
+
+	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject(roleIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据角色ID列表，批量删除角色功能模块中间表。");
+
+			int i = gprRoleModuleSplDal.deleteByRoleIdList(roleIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
 
 
 }

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.jusfoun.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,18 +15,18 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:07:56
+ * @updateDate 2020/8/11 11:44:00
  * @description 实体类MfProcessMaterialConsumeGenEnt，自动生成。加工品原料消耗情况预测表
  */
 
 public class MfProcessMaterialConsumeGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="鲜果消耗量实际值，单位：元",hidden=false,required=false)
+    @ApiModelProperty(value="鲜果消耗量实际值，单位：万吨",hidden=false,required=false)
     private BigDecimal actualAmount;
     @ApiModelProperty(value="按年，yyyy,如2018",hidden=false,required=false)
     private String dateTime;
-    @ApiModelProperty(value="鲜果消耗量预测值，单位：元",hidden=false,required=false)
+    @ApiModelProperty(value="鲜果消耗量预测值，单位：万吨",hidden=false,required=false)
     private BigDecimal forecastAmount;
     @ApiModelProperty(value="主键id",hidden=false,required=true)
     private String id;
@@ -39,14 +39,14 @@ public class MfProcessMaterialConsumeGenEnt extends BaseEnt implements Serializa
     //一对多关系中，多端数据列表
 
 	/**
-	 * get方法。鲜果消耗量实际值，单位：元
+	 * get方法。鲜果消耗量实际值，单位：万吨
 	 */
 	public BigDecimal getActualAmount() {
 		return this.actualAmount;
 	}
 
 	/**
-	 * set方法。鲜果消耗量实际值，单位：元
+	 * set方法。鲜果消耗量实际值，单位：万吨
 	 */
 	public void setActualAmount(BigDecimal actualAmount) {
 		this.actualAmount = actualAmount;
@@ -67,14 +67,14 @@ public class MfProcessMaterialConsumeGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。鲜果消耗量预测值，单位：元
+	 * get方法。鲜果消耗量预测值，单位：万吨
 	 */
 	public BigDecimal getForecastAmount() {
 		return this.forecastAmount;
 	}
 
 	/**
-	 * set方法。鲜果消耗量预测值，单位：元
+	 * set方法。鲜果消耗量预测值，单位：万吨
 	 */
 	public void setForecastAmount(BigDecimal forecastAmount) {
 		this.forecastAmount = forecastAmount;

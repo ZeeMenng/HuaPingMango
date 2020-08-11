@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,11 +9,13 @@ import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/7/19 9:58:37
+ * @updateDate 2020/8/11 11:44:17
  * @description 实体类PiExpertGenEnt，自动生成。专家表
  */
 
@@ -24,7 +26,7 @@ public class PiExpertGenEnt extends BaseEnt implements Serializable {
     private String id;
     @ApiModelProperty(value="专家简介内容",hidden=false,required=false)
     private String introduction;
-    @ApiModelProperty(value="是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0否，1是。默认值0。",hidden=false,required=true)
+    @ApiModelProperty(value="是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。默认值1。",hidden=false,required=true)
     private Byte isRecommend;
     @ApiModelProperty(value="用户id",hidden=false,required=true)
     private String userId;
@@ -61,14 +63,14 @@ public class PiExpertGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0否，1是。默认值0。
+	 * get方法。是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。默认值1。
 	 */
 	public Byte getIsRecommend() {
 		return this.isRecommend;
 	}
 
 	/**
-	 * set方法。是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0否，1是。默认值0。
+	 * set方法。是否推荐。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。默认值1。
 	 */
 	public void setIsRecommend(Byte isRecommend) {
 		this.isRecommend = isRecommend;

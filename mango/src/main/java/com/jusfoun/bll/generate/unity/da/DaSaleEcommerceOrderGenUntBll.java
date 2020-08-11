@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.da;
+﻿package com.jusfoun.bll.generate.unity.da;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/7/26 18:11:35
+ * @updateDate 2020/8/11 11:42:47
  * @description 电商数据表，用于存放直报的电商数据 业务逻辑处理类，扩展自BaseUntBll<DaSaleEcommerceOrder>，自动生成。
  */
 public class DaSaleEcommerceOrderGenUntBll extends BaseUntBll<DaSaleEcommerceOrder> {

@@ -1,16 +1,21 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+import java.util.*;
 
 import com.jusfoun.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
+
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-8-19 10:55:31
+ * @updateDate 2020/8/11 11:44:10
  * @description 实体类PirProductResourceGenEnt，自动生成。产品和资源中间表
  */
 
@@ -23,7 +28,7 @@ public class PirProductResourceGenEnt extends BaseEnt implements Serializable {
     private String productId;
     @ApiModelProperty(value="引用资源（resource）表的主键",hidden=false,required=false)
     private String resourceId;
-    @ApiModelProperty(value="0：证书图片，1：默认产品图片",hidden=false,required=false)
+    @ApiModelProperty(value="0：产品图片，1：证书图片",hidden=false,required=false)
     private Byte type;
     //多对一关系中，一端实体对象
 
@@ -72,14 +77,14 @@ public class PirProductResourceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。0：证书图片，1：默认产品图片
+	 * get方法。0：产品图片，1：证书图片
 	 */
 	public Byte getType() {
 		return this.type;
 	}
 
 	/**
-	 * set方法。0：证书图片，1：默认产品图片
+	 * set方法。0：产品图片，1：证书图片
 	 */
 	public void setType(Byte type) {
 		this.type = type;

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:29
+ * @updateDate 2020/8/11 11:43:11
  * @description 实体类DaCommonFieldGenEnt，自动生成。通用字段表
  */
 
@@ -32,7 +32,7 @@ public class DaCommonFieldGenEnt extends BaseEnt implements Serializable {
     private String areaLatitudeTypeText;
     @ApiModelProperty(value="审核状态：对应数据字典表（dictionary）中的编码字段（code）0：待审核，1:审核通过，2：审核不通过",allowableValues="0,1",hidden=false,required=false)
     private Byte auditStatusCode;
-    @ApiModelProperty(value="审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 1：无公害认证，2：有机认证，3：绿色认证，4：其他认证0：待审核，1:审核通过，2：审核不通过",hidden=false,required=false)
+    @ApiModelProperty(value="审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 0：待审核，1:审核通过，2：审核不通过",hidden=false,required=false)
     private String auditStatusText;
     @ApiModelProperty(value="审核意见",hidden=false,required=false)
     private String auditerSuggestion;
@@ -139,14 +139,14 @@ public class DaCommonFieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 1：无公害认证，2：有机认证，3：绿色认证，4：其他认证0：待审核，1:审核通过，2：审核不通过
+	 * get方法。审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 0：待审核，1:审核通过，2：审核不通过
 	 */
 	public String getAuditStatusText() {
 		return this.auditStatusText;
 	}
 
 	/**
-	 * set方法。审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 1：无公害认证，2：有机认证，3：绿色认证，4：其他认证0：待审核，1:审核通过，2：审核不通过
+	 * set方法。审核状态文本：文本，对应数据字典表（dictionary）中的文本字段（text） 0：待审核，1:审核通过，2：审核不通过
 	 */
 	public void setAuditStatusText(String auditStatusText) {
 		this.auditStatusText = auditStatusText;

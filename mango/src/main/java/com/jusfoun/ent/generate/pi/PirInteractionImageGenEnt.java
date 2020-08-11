@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-7-5 11:35:45
+ * @updateDate 2020/8/11 11:44:09
  * @description 实体类PirInteractionImageGenEnt，自动生成。pir_interaction_image
  */
 

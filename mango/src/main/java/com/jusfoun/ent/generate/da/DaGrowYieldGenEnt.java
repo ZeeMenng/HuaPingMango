@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/11/20 11:45:13
+ * @updateDate 2020/8/11 11:43:19
  * @description 实体类DaGrowYieldGenEnt，自动生成。种植数据表
  */
 
@@ -809,72 +809,7 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	public void setYear(String year) {
 		this.year = year;
 	}
-
-	public BigDecimal geteCommerceOutputValue() {
-		return eCommerceOutputValue;
-	}
-
-	public void seteCommerceOutputValue(BigDecimal eCommerceOutputValue) {
-		this.eCommerceOutputValue = eCommerceOutputValue;
-	}
-
-	public Byte geteCommerceOutputValueCode() {
-		return eCommerceOutputValueCode;
-	}
-
-	public void seteCommerceOutputValueCode(Byte eCommerceOutputValueCode) {
-		this.eCommerceOutputValueCode = eCommerceOutputValueCode;
-	}
-
-	public String geteCommerceOutputValueText() {
-		return eCommerceOutputValueText;
-	}
-
-	public void seteCommerceOutputValueText(String eCommerceOutputValueText) {
-		this.eCommerceOutputValueText = eCommerceOutputValueText;
-	}
-
-	public BigDecimal geteCommerceOutputValueUnit() {
-		return eCommerceOutputValueUnit;
-	}
-
-	public void seteCommerceOutputValueUnit(BigDecimal eCommerceOutputValueUnit) {
-		this.eCommerceOutputValueUnit = eCommerceOutputValueUnit;
-	}
-
-	public BigDecimal geteCommerceSaleTotal() {
-		return eCommerceSaleTotal;
-	}
-
-	public void seteCommerceSaleTotal(BigDecimal eCommerceSaleTotal) {
-		this.eCommerceSaleTotal = eCommerceSaleTotal;
-	}
-
-	public Byte geteCommerceSaleTotalCode() {
-		return eCommerceSaleTotalCode;
-	}
-
-	public void seteCommerceSaleTotalCode(Byte eCommerceSaleTotalCode) {
-		this.eCommerceSaleTotalCode = eCommerceSaleTotalCode;
-	}
-
-	public String geteCommerceSaleTotalText() {
-		return eCommerceSaleTotalText;
-	}
-
-	public void seteCommerceSaleTotalText(String eCommerceSaleTotalText) {
-		this.eCommerceSaleTotalText = eCommerceSaleTotalText;
-	}
-
-	public BigDecimal geteCommerceSaleTotalUnit() {
-		return eCommerceSaleTotalUnit;
-	}
-
-	public void seteCommerceSaleTotalUnit(BigDecimal eCommerceSaleTotalUnit) {
-		this.eCommerceSaleTotalUnit = eCommerceSaleTotalUnit;
-	}
     
-	
 
     //一对多关系中，多端数据列表
 

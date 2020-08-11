@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2018/6/20 19:04:54
+ * @updateDate 2020/8/11 11:42:47
  * @description token信息。 业务逻辑处理类，扩展自BaseUntBll<GpToken>，自动生成。
  */
 public class GpTokenGenUntBll extends BaseUntBll<GpToken> {

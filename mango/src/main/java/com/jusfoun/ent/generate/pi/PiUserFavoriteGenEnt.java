@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.jusfoun.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-15 13:54:46
+ * @updateDate 2020/8/11 11:44:19
  * @description 实体类PiUserFavoriteGenEnt，自动生成。pi_user_favorite
  */
 

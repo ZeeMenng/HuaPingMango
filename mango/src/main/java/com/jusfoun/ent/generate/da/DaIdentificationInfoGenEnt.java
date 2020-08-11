@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018-6-13 19:04:31
+ * @updateDate 2020/8/11 11:43:20
  * @description 实体类DaIdentificationInfoGenEnt，自动生成。三品一标认证表
  */
 
@@ -34,18 +34,22 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
     private String cropTypeText;
     @ApiModelProperty(value="主键id",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="",hidden=false,required=false)
+    @ApiModelProperty(value="认证面积",hidden=false,required=false)
     private BigDecimal identificationArea;
     @ApiModelProperty(value="认证面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte identificationAreaCode;
     @ApiModelProperty(value="认证面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
     private String identificationAreaText;
-    @ApiModelProperty(value="",hidden=false,required=false)
+    @ApiModelProperty(value="面积通用单位：平方米",hidden=false,required=false)
     private BigDecimal identificationAreaUnit;
     @ApiModelProperty(value="认证类型：对应数据字典表（dictionary）中的编码字段（code） 1：无公害认证，2：有机认证，3：绿色认证，4：其他认证",allowableValues="0,1",hidden=false,required=false)
     private Byte identificationTypeCode;
     @ApiModelProperty(value="认证类型文本：文本，对应数据字典表（dictionary）中的文本字段（text） 1：无公害认证，2：有机认证，3：绿色认证，4：其他认证",hidden=false,required=false)
     private String identificationTypeText;
+    @ApiModelProperty(value="地区纬度。",hidden=false,required=false)
+    private String latitude;
+    @ApiModelProperty(value="地区经度。",hidden=false,required=false)
+    private String longitude;
     @ApiModelProperty(value="获证单位名称，农户或企业。",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="加工时间",hidden=false,required=false)
@@ -54,15 +58,15 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
     private String produceName;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal produceSummation;
-    @ApiModelProperty(value="",hidden=false,required=false)
+    @ApiModelProperty(value="重量通用单位：千克",hidden=false,required=false)
     private BigDecimal produceSummationUnit;
     @ApiModelProperty(value="产品产量单位，1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte produceSummationUnitCode;
     @ApiModelProperty(value="产品产量单位文本，1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
     private String produceSummationUnitText;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒",hidden=false,required=false)
+    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
     private String strainsText;
     //多对一关系中，一端实体对象
 
@@ -153,14 +157,14 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。
+	 * get方法。认证面积
 	 */
 	public BigDecimal getIdentificationArea() {
 		return this.identificationArea;
 	}
 
 	/**
-	 * set方法。
+	 * set方法。认证面积
 	 */
 	public void setIdentificationArea(BigDecimal identificationArea) {
 		this.identificationArea = identificationArea;
@@ -195,14 +199,14 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。
+	 * get方法。面积通用单位：平方米
 	 */
 	public BigDecimal getIdentificationAreaUnit() {
 		return this.identificationAreaUnit;
 	}
 
 	/**
-	 * set方法。
+	 * set方法。面积通用单位：平方米
 	 */
 	public void setIdentificationAreaUnit(BigDecimal identificationAreaUnit) {
 		this.identificationAreaUnit = identificationAreaUnit;
@@ -234,6 +238,34 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
 	 */
 	public void setIdentificationTypeText(String identificationTypeText) {
 		this.identificationTypeText = identificationTypeText;
+	}
+    
+	/**
+	 * get方法。地区纬度。
+	 */
+	public String getLatitude() {
+		return this.latitude;
+	}
+
+	/**
+	 * set方法。地区纬度。
+	 */
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+    
+	/**
+	 * get方法。地区经度。
+	 */
+	public String getLongitude() {
+		return this.longitude;
+	}
+
+	/**
+	 * set方法。地区经度。
+	 */
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
     
 	/**
@@ -293,14 +325,14 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。
+	 * get方法。重量通用单位：千克
 	 */
 	public BigDecimal getProduceSummationUnit() {
 		return this.produceSummationUnit;
 	}
 
 	/**
-	 * set方法。
+	 * set方法。重量通用单位：千克
 	 */
 	public void setProduceSummationUnit(BigDecimal produceSummationUnit) {
 		this.produceSummationUnit = produceSummationUnit;
@@ -335,28 +367,28 @@ public class DaIdentificationInfoGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public Byte getStrainsCode() {
 		return this.strainsCode;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的编码字段（code）作物品种  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsCode(Byte strainsCode) {
 		this.strainsCode = strainsCode;
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * get方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物品种文本  1：凯特芒，2：水仙芒，3：贵妃芒，4：台农芒，5：金辉芒，6：红象芒，7：爱文芒，8：圣心芒
+	 * set方法。对应数据字典表（dictionary）中的作物品种
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
