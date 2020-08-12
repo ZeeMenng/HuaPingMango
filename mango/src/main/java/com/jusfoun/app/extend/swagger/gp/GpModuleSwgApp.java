@@ -244,8 +244,8 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GpModuleAddList") })
-	@RequestMapping(value = "/updateListWithDfforAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updateListWithDfforAdd(@RequestBody GpModuleParameter.AddList jsonData) {
+	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel updateListWithDffOrAdd(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
 		for (int i = 0; i < moduleList.size(); i++) {
 			// 根据Code获取Text

@@ -9,6 +9,26 @@ $(document).ready(function() {
 
 });
 
+
+// 点击节点回调函数，给隐藏文本域赋值——选中的应用领域或功能模块列表
+function onCheck() {
+	var treeObj = $.fn.zTree.getZTreeObj("treeContainer");
+	var nodes = treeObj.getCheckedNodes(true);
+
+	var moduleIdsArray = [];
+	var domainIdsArray = [];
+	for (var i = 0; i < nodes.length; i++) {
+		if (nodes[i].level == 0) {
+			domainIdsArray.push(nodes[i].id);
+		} else {
+			moduleIdsArray.push(nodes[i].id);
+		}
+	}
+	$("#hiddenModuleIds").val(moduleIdsArray.toString())
+	$("#hiddenDomainIds").val(domainIdsArray.toString())
+}
+
+//此方法暂时未使用
 function initTreeNodes(domainId, isInitChecked, initResult) {
 	$.ajax({
 		async : false,
@@ -27,40 +47,3 @@ function initTreeNodes(domainId, isInitChecked, initResult) {
 		}
 	});
 }
-
-// 默认选中节点
-function initChecked(initResult) {
-	var treeObj = $.fn.zTree.getZTreeObj("treeContainer");
-	if (initResult != null && initResult != '' && initResult != undefined) {
-		var moduleIds = initResult.data.moduleIds;
-		if (moduleIds != "" && moduleIds != null && moduleIds != undefined) {
-			var arr = moduleIds.split(",");
-			for (idx in arr) {
-				var node = treeObj.getNodeByParam("id", arr[idx]);
-				if (node) {
-					treeObj.checkNode(node);
-				}
-			}
-		}
-	}
-}
-
-// 点击节点回调函数，给隐藏文本域赋值——选中的应用领域或功能模块列表
-function onCheck() {
-	var treeObj = $.fn.zTree.getZTreeObj("treeContainer");
-	var nodes = treeObj.getCheckedNodes(true);
-
-	var moduleIdsArray = [];
-	var domainIdsArray = [];
-	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].level == 0) {
-			moduleIdsArray.push(nodes[i].id);
-		} else {
-			domainIdsArray.push(nnodes[i].id)
-		}
-	}
-	$("#hiddenModuleIds").val(moduleIdsArray.toString())
-	$("#hiddenDomainIds").val(moduleIdsArray.toString())
-}
-// 
-

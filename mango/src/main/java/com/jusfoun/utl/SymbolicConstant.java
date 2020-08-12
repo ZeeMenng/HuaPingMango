@@ -72,7 +72,7 @@ public class SymbolicConstant {
 
 	public static final String SQLQUERY_KEYWORDS_ORDERBY_RULE = "orderByRule";
 
-	public static final Integer SQLQUERY_KEYWORDS_PAGESIZE_MAX = 1000;
+	public static final Integer SQLQUERY_KEYWORDS_PAGESIZE_MAX = 1000000;
 
 	public static final byte DCODE_BOOLEAN_T = 0;
 	public static final byte DCODE_BOOLEAN_F = 1;

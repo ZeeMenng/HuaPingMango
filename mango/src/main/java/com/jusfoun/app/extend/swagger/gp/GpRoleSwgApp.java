@@ -93,21 +93,22 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("	SELECT  group_concat(domain_id) domainIds  from gpr_role_domain where  role_id='").append(result.getId()).append("'");
+		selectBuffer.append("	SELECT  group_concat(domain_id) domainIds  from gpr_role_domain where  role_id='").append(result.getObjectId()).append("'");
 		map.put("Sql", selectBuffer.toString());
-
 		ResultModel gprRoleDomainResult = gprRoleDomainUntBll.getListBySQL(map);
 		List<Map<String, Object>> data = (List<Map<String, Object>>) gprRoleDomainResult.getData();
-		gpRole.setDomainIds(data.get(0).get("domainIds").toString());
-		
-		 map = new HashMap<String, Object>();
-		 selectBuffer = new StringBuffer();
-		selectBuffer.append("	SELECT  group_concat(module_id) moduleIds  from gpr_role_module where  role_id='").append(result.getId()).append("'");
+		if (data.get(0).get("domainIds") != null)
+			gpRole.setDomainIds(data.get(0).get("domainIds").toString());
+
+		map = new HashMap<String, Object>();
+		selectBuffer = new StringBuffer();
+		selectBuffer.append("	SELECT  group_concat(module_id) moduleIds  from gpr_role_module where  role_id='").append(result.getObjectId()).append("'");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel gprRoleModuleResult = gprRoleDomainUntBll.getListBySQL(map);
 		data = (List<Map<String, Object>>) gprRoleModuleResult.getData();
-		gpRole.setDomainIds(data.get(0).get("moduleIds").toString());
-		
+		if (data.get(0).get("moduleIds") != null)
+			gpRole.setModuleIds(data.get(0).get("moduleIds").toString());
+
 		result.setData(gpRole);
 
 		return result;
@@ -146,9 +147,10 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 			}
 		}
-
-		gprRoleModuleUntBll.add(gprRoleModuleList);
-		gprRoleDomainUntBll.add(gprRoleDomainList);
+		if (gprRoleModuleList.size() != 0)
+			gprRoleModuleUntBll.add(gprRoleModuleList);
+		if (gprRoleDomainList.size() != 0)
+			gprRoleDomainUntBll.add(gprRoleDomainList);
 
 		return result;
 	}

@@ -160,10 +160,7 @@
 		$("#hiddenOldQq").val(initResult.data.qq);
 		$("#hiddenOldEmail").val(initResult.data.email);
 
-		if (initResult.data.domainIds != null) {
-			$("#selectDomainIds").selectpicker('val', initResult.data.domainIds.split(","));
-			$('#selectDomainIds').selectpicker('refresh');
-		}
+
 		if (initResult.data.roleIds != null) {
 			$("#selectRoleIds").selectpicker('val', initResult.data.roleIds.split(","));
 			$('#selectRoleIds').selectpicker('refresh');
@@ -322,17 +319,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="form-group">
-												<div class="element-group left">
-													<label for="textDomainNameList" class="control-label col-md-2"> 应用领域 </label>
-													<div class="col-md-8">
-														<select autocomplete="off" data-required="1" id="selectDomainIds" class="selectpicker" multiple>
-
-														</select>
-														<input type="hidden" name="hiddenDomainIds" id="hiddenDomainIds">
-													</div>
-												</div>
-											</div>
+									
 											<div class="form-group">
 												<div class="element-group left">
 													<label for="textRoleName" class="control-label col-md-2"> 应用角色 </label>

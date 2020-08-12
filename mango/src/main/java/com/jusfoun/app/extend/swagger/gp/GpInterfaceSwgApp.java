@@ -214,23 +214,23 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 		if (!jsonObject.containsKey("jsConstantsPath"))
 			throw new GlobalException("缺少必要参数！");
 		ResultModel result = new ResultModel();
-		String jsConstantsPath = jsonObject.getString("jsConstantsPath");
+
 		// 删除之前的常量文件
+		String jsConstantsPath = jsonObject.getString("jsConstantsPath");
 		FileUtil.deleteFile(new File(jsConstantsPath));
+
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
 		selectBuffer.append("	SELECT A.url url FROM gp_interface A");
 		sqlMap.put("Sql", selectBuffer.toString());
-		String jsonStr = "{\"pageIndex\":1,\"pageSize\":10000}";
-		jsonObject = JSONObject.fromObject(jsonStr);
-		sqlMap.put("Page", jsonObject);
 		result = gpInterfaceUntBll.getListBySQL(sqlMap);
 		List<Map<String, Object>> modelList = (List<Map<String, Object>>) result.getData();
-		List<String> urls = new ArrayList<String>();
+		List<String> interfaceUrlList = new ArrayList<String>();
 		for (Map map2 : modelList) {
-			urls.add(map2.get("url").toString());
+			interfaceUrlList.add(map2.get("url").toString());
 		}
 
+		ArrayList<GpInterface> gpInterfaceList = new ArrayList<GpInterface>();
 		Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> item : handlerMethods.entrySet()) {
 			HashMap<String, String> handlerMethodsMap = new HashMap<String, String>();
@@ -269,11 +269,11 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			bufferedOutputStream.write(text.getBytes());
 			bufferedOutputStream.flush();
 			bufferedOutputStream.close();
-
-			if (StringUtils.isNotBlank(handlerMethodsMap.get("url")) && !urls.contains(handlerMethodsMap.get("url"))) {
+	
+			if (StringUtils.isNotBlank(handlerMethodsMap.get("url")) && !interfaceUrlList.contains(handlerMethodsMap.get("url"))) {
 				GpInterface gpInterface = new GpInterface();
 				gpInterface.setId(Tools.getUUID());
-				gpInterface.setDomainId(Tools.getUUID());
+                gpInterface.setDomainId(Tools.getUUID());
 				gpInterface.setTableName(handlerMethodsMap.get("className"));
 				gpInterface.setUrl(handlerMethodsMap.get("url"));
 				gpInterface.setAddTime(new Date());
@@ -283,9 +283,11 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 				} else if ("GET".equals(handlerMethodsMap.get("type"))) {
 					gpInterface.setTypeCode("0");
 				}
-				result = gpInterfaceUntBll.add(gpInterface);
+				gpInterfaceList.add(gpInterface);
 			}
 		}
+		result = gpInterfaceUntBll.add(gpInterfaceList);
+
 		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 		result.setResultMessage("接口记录更新成功……");
 		return result;

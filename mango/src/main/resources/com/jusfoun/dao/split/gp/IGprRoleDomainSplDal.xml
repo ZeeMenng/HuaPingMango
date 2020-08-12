@@ -93,22 +93,22 @@
 
 	<delete id="deleteByRoleId" parameterType="java.lang.String">
 		delete from gpr_role_domain
-		where roleId = #{roleId,jdbcType=VARCHAR}
+		where role_id = #{roleId,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteByRoleIdList" parameterType="list">
 		delete from gpr_role_domain
-		where id in
+		where role_id in
 		<foreach collection="list" item="roleId" index="index" open="(" close=")" separator=",">
 			#{roleId }
 		</foreach>
 	</delete>
 	<delete id="deleteByDomainId" parameterType="java.lang.String">
 		delete from gpr_role_domain
-		where moduleId = #{domainId,jdbcType=VARCHAR}
+		where domain_id = #{domainId,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteByDomainIdList" parameterType="list">
 		delete from gpr_role_module
-		where id in
+		where domain_id in
 		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
 			#{domainId}
 		</foreach>

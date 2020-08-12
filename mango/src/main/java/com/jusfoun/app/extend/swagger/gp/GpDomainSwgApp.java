@@ -74,7 +74,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel add(@RequestBody GpDomain jsonData) {
 		jsonData.setId(Tools.getUUID());
-		
+
 		if (StringUtils.isNotBlank(jsonData.getIconPaths())) {
 			jsonData.setIconPaths(jsonData.getIconPaths().replaceAll(linkPath, ""));
 			String[] resourcePathArray = jsonData.getIconPaths().split(",");
@@ -85,7 +85,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		ResultModel result = new ResultModel();
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
-			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(),modules);
+			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(), modules);
 			result = gpModuleSplBll.add(moduleList);
 		}
 		result = gpDomainUntBll.add(jsonData);
@@ -150,7 +150,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
-			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(),modules);
+			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(), modules);
 			result = gpModuleSplBll.updateDomainModules(moduleList);
 		}
 
@@ -183,20 +183,68 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		return result;
 	}
 
-	
+	@RequestMapping(value = "/getDomainListByRoleId/{roleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getDomainListByRoleId(@PathVariable("roleId") String roleId) {
 
+		Map<String, Object> map = new HashMap<String, Object>();
+		StringBuffer selectBuffer = new StringBuffer();
+		selectBuffer.append("	SELECT                                         ");
+		selectBuffer.append("		A.id id,                                   ");
+		selectBuffer.append("		A.name name,                               ");
+		selectBuffer.append("		A.serial_no serialNo,                      ");
+		selectBuffer.append("		A.com com,                                 ");
+		selectBuffer.append("		A.remark remark,                           ");
+		selectBuffer.append("		A.add_time addTime,                        ");
+		selectBuffer.append("		A.update_time updateTime                   ");
+		selectBuffer.append("	FROM                                           ");
+		selectBuffer.append("		gp_domain A                                ");
+		selectBuffer.append("	INNER JOIN gpr_role_domain B ON A.id = B.domain_id");
+		selectBuffer.append("	where B.role_id='").append(roleId).append("'");
+
+		map.put("Sql", selectBuffer.toString());
+
+		ResultModel result = gpDomainUntBll.getListBySQL(map);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/getDomainListByUserId/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getDomainListByUserId(@PathVariable("userId") String userId) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		StringBuffer selectBuffer = new StringBuffer();
+		selectBuffer.append("	SELECT                                         ");
+		selectBuffer.append("		A.id id,                                   ");
+		selectBuffer.append("		A.name name,                               ");
+		selectBuffer.append("		A.serial_no serialNo,                      ");
+		selectBuffer.append("		A.com com,                                 ");
+		selectBuffer.append("		A.remark remark,                           ");
+		selectBuffer.append("		A.add_time addTime,                        ");
+		selectBuffer.append("		A.update_time updateTime                   ");
+		selectBuffer.append("	FROM                                           ");
+		selectBuffer.append("		gp_domain A                                ");
+		selectBuffer.append("	INNER JOIN gpr_domain_user B ON A.id = B.domain_id");
+		selectBuffer.append("	where B.user_id='").append(userId).append("'");
+
+		map.put("Sql", selectBuffer.toString());
+
+		ResultModel result = gpDomainUntBll.getListBySQL(map);
+
+		return result;
+	}
+	
 	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getModelByPath(@PathVariable("id") String id) {
 		ResultModel result = new ResultModel();
-		
+
 		result = gpResourceSplBll.getListByBusinessId(id);
 		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
 
 		result = gpDomainUntBll.getModel(id);
 		GpDomain gpDomain = (GpDomain) result.getData();
-		
+
 		String userIconIds = "";
 		String userIconPaths = "";
 		for (int i = 0; i < iconResuourceList.size(); i++) {
@@ -210,11 +258,10 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		gpDomain.setIconIds(userIconIds);
 		gpDomain.setIconPaths(userIconPaths);
 		result.setData(gpDomain);
-		
+
 		return result;
 	}
 
-	
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {

@@ -12,10 +12,7 @@
 			validateRules : {
 				textName : {
 					required : true
-				},
-				hiddenModuleIds : {
-					required : true
-				},
+				}
 			}
 		};
 		var ajaxParam = {
@@ -54,7 +51,7 @@
 		};
 		var ajaxParamter = {
 			"url" : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
-			"async" : true,
+			"async" : false,
 			"type" : "GET",
 			"success" : function(resultData) {
 				var zNodes = [];
@@ -77,18 +74,19 @@
 				$.each(nodeList, function(index, value) {
 					var ajaxParamter = {
 						"url" : RU_GPMODULE_GETLISTBYDOMAINID + value.id,
-						"async" : true,
+						"async" : false,
 						"type" : "GET",
 						"success" : function(resultData) {
-							if (resultData.totalCount != 0) {
-								// 更改功能模块图标展示
-								for (i = 0; i < resultData.data.length; i++) {
-									resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
-									resultData.data[i].iconSkin = "diy02";
-								}
-								moduleTree.addNodes(value, -1, resultData.data);
-
+							if (!resultData.isSuccess)
+								return true;
+							// 更改功能模块图标展示
+							for (i = 0; i < resultData.data.length; i++) {
+								resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+								resultData.data[i].iconSkin = "diy02";
 							}
+							moduleTree.addNodes(value, -1, resultData.data);
+
+							
 
 						}
 					};
@@ -98,6 +96,17 @@
 		};
 		universalAjax(ajaxParamter);
 
+		//初始化树形菜单中的复选
+		var moduleTree = $.fn.zTree.getZTreeObj("treeContainer");
+		var domainOrModuleIds = initResult.data.moduleIds + "," + initResult.data.domainIds;
+		var domainOrModuleIdArray = domainOrModuleIds.split(",");
+		for (idx in domainOrModuleIdArray) {
+			var node = moduleTree.getNodeByParam("id", domainOrModuleIdArray[idx]);
+			if (node) {
+				moduleTree.checkNode(node);
+			}
+		}
+		
 	});
 </script>
 </head>
@@ -138,7 +147,7 @@
 											<input id="hiddenId" name="hiddenId" type="hidden" />
 											<div class="form-hidden">
 												<input type="hidden" name="hiddenModuleIds" id="hiddenModuleIds">
-												<input type="hidden" name="hiddenModuleIds" id="hiddenDomainIds">
+												<input type="hidden" name="hiddenDomainIds" id="hiddenDomainIds">
 											</div>
 											<div class="form-group">
 
@@ -162,7 +171,7 @@
 											</div>
 											<div class="form-group">
 												<div class="element-group left">
-														<label class="control-label col-md-2" for="textRemark">备注字段 </label>
+													<label class="control-label col-md-2" for="textRemark">备注字段 </label>
 													<div class="col-md-8">
 														<textarea id="textareaRemark" name="textareaRemark" class="form-control" rows="3"></textarea>
 													</div>
