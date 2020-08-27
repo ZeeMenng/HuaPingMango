@@ -59,30 +59,22 @@
     	<foreach collection="list" item="gpDictionaryType" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpDictionaryType.id,jdbcType=VARCHAR},
-
-      
           #{gpDictionaryType.name,jdbcType=VARCHAR},
-
-      
           #{gpDictionaryType.remark,jdbcType=VARCHAR},
-
-      
           #{gpDictionaryType.constantName,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_dictionary_type
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_dictionary_type
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_dictionary_type
 		where id  in
@@ -94,14 +86,14 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDictionaryType" >
     update gp_dictionary_type
     <set >
+                  <if test="constantName != null  and constantName != '' " >
+                     constant_name = #{constantName,jdbcType=VARCHAR},
+                  </if>
                   <if test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="constantName != null  and constantName != '' " >
-                     constant_name = #{constantName,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -110,14 +102,14 @@
 <update id="updateList">
     update gp_dictionary_type
     <set >
+                  <if test="t.constantName != null  and t.constantName != '' " >
+                     constant_name = #{t.constantName,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.name != null  and t.name != '' " >
                      name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.constantName != null  and t.constantName != '' " >
-                     constant_name = #{t.constantName,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -131,6 +123,13 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_dictionary_type
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="constant_name =case" suffix="end,">
+              <foreach collection="list" item="gpDictionaryType" index="index">
+                  <if test="gpDictionaryType.constantName != null and gpDictionaryType.constantName  != '' " >
+                     when id=#{gpDictionaryType.id} then #{gpDictionaryType.constantName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpDictionaryType" index="index">
                   <if test="gpDictionaryType.name != null and gpDictionaryType.name  != '' " >
@@ -142,13 +141,6 @@
               <foreach collection="list" item="gpDictionaryType" index="index">
                   <if test="gpDictionaryType.remark != null and gpDictionaryType.remark  != '' " >
                      when id=#{gpDictionaryType.id} then #{gpDictionaryType.remark,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="constant_name =case" suffix="end,">
-              <foreach collection="list" item="gpDictionaryType" index="index">
-                  <if test="gpDictionaryType.constantName != null and gpDictionaryType.constantName  != '' " >
-                     when id=#{gpDictionaryType.id} then #{gpDictionaryType.constantName,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -164,6 +156,9 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_dictionary_type
         <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="constantName  != null and constantName  != '' " >
+              constant_name,
+          </if>
               id ,
           <if test="name  != null and name  != '' " >
               name,
@@ -171,22 +166,19 @@
           <if test="remark  != null and remark  != '' " >
               remark,
           </if>
-          <if test="constantName  != null and constantName  != '' " >
-              constant_name,
-          </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpDictionaryType" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="t.constantName  != null  and t.constantName != '' " >
+                     #{gpDictionaryType.constantName ,jdbcType=VARCHAR},
+                  </if>
               #{gpDictionaryType.id ,jdbcType=VARCHAR},
                   <if test="t.name  != null  and t.name != '' " >
                      #{gpDictionaryType.name ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark  != null  and t.remark != '' " >
                      #{gpDictionaryType.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.constantName  != null  and t.constantName != '' " >
-                     #{gpDictionaryType.constantName ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

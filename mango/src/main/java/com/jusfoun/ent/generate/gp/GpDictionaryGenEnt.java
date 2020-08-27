@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDictionaryType;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:47
+ * @updateDate 2020/8/27 10:33:11
  * @description 实体类GpDictionaryGenEnt，自动生成。字典信息。
  */
 
@@ -34,9 +33,14 @@ public class GpDictionaryGenEnt extends BaseEnt implements Serializable {
     private String text;
     @ApiModelProperty(value="外键，对应字典类型表(dictionary)主键",hidden=false,required=true)
     private String typeId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDictionaryType gpDictionaryType;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。字典编码
@@ -123,7 +127,28 @@ public class GpDictionaryGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。字典类型。
+	 */
+	public GpDictionaryType getGpDictionaryType() {
+		return this.gpDictionaryType;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。字典类型。
+	 */
+	public void setGpDictionaryType(GpDictionaryType gpDictionaryType) {
+		this.gpDictionaryType = gpDictionaryType;
+	}
+
+
+
+
 
 }
 

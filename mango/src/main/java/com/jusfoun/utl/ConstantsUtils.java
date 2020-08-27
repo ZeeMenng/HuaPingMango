@@ -26,6 +26,7 @@ import com.jusfoun.bll.extend.unity.gp.GpPageUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpInterface;
 import com.jusfoun.ent.extend.gp.GpPage;
+import com.jusfoun.set.enumer.InterfaceType;
 import com.jusfoun.set.enumer.OperResult;
 
 import net.sf.json.JSONObject;
@@ -152,9 +153,9 @@ public class ConstantsUtils {
 				jsonData.setAddTime(new Date());
 				jsonData.setIsPublicCode((byte) 0);
 				if ("POST".equals(handlerMethodsMap.get("type"))) {
-					jsonData.setTypeCode("1");
+					jsonData.setTypeCode(InterfaceType.POST.getCode());
 				} else if ("GET".equals(handlerMethodsMap.get("type"))) {
-					jsonData.setTypeCode("0");
+					jsonData.setTypeCode(InterfaceType.GET.getCode());
 				}
 				gpInterfaceUntBll.add(jsonData);
 			}

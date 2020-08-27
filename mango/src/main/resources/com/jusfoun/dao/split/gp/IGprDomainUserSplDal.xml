@@ -64,7 +64,10 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</delete>
 
-
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+		delete gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.role_id= #{roleId,jdbcType=VARCHAR}
+	</delete>
 
 	<delete id="deleteByUserId" parameterType="java.lang.String">
 		delete from gpr_domain_user
@@ -95,6 +98,14 @@
 		where domain_id in
 		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
 			#{userId}
+		</foreach>
+	</delete>
+
+	<delete id="deleteByRoleIdList" parameterType="list">
+		delete gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.role_id= in
+		<foreach collection="list" item="roleId" index="index" open="(" close=")" separator=",">
+			#{roleId}
 		</foreach>
 	</delete>
 

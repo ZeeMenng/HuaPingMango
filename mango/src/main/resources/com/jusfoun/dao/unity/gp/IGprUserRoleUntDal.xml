@@ -51,27 +51,41 @@
     	<foreach collection="list" item="gprUserRole" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gprUserRole.id,jdbcType=VARCHAR},
-
-      
           #{gprUserRole.userId,jdbcType=VARCHAR},
-
-      
           #{gprUserRole.roleId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gpr_user_role
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gpr_user_role
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+    	delete from gpr_user_role
+    	where role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_user_role where role_id = #{roleId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+    	delete from gpr_user_role
+    	where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_user_role where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_user_role
 		where id  in
@@ -83,11 +97,11 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprUserRole" >
     update gpr_user_role
     <set >
-                  <if test="userId != null  and userId != '' " >
-                     user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
                   <if test="roleId != null  and roleId != '' " >
                      role_id = #{roleId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -96,11 +110,11 @@
 <update id="updateList">
     update gpr_user_role
     <set >
-                  <if test="t.userId != null  and t.userId != '' " >
-                     user_id = #{t.userId,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.roleId != null  and t.roleId != '' " >
                      role_id = #{t.roleId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -114,17 +128,17 @@
 <update id="updateListWithDff"  parameterType="list">
     update gpr_user_role
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="user_id =case" suffix="end,">
-              <foreach collection="list" item="gprUserRole" index="index">
-                  <if test="gprUserRole.userId != null and gprUserRole.userId  != '' " >
-                     when id=#{gprUserRole.id} then #{gprUserRole.userId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprUserRole" index="index">
                   <if test="gprUserRole.roleId != null and gprUserRole.roleId  != '' " >
                      when id=#{gprUserRole.id} then #{gprUserRole.roleId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="user_id =case" suffix="end,">
+              <foreach collection="list" item="gprUserRole" index="index">
+                  <if test="gprUserRole.userId != null and gprUserRole.userId  != '' " >
+                     when id=#{gprUserRole.id} then #{gprUserRole.userId,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -141,22 +155,22 @@
     replace into gpr_user_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
               id ,
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
           <if test="roleId  != null and roleId  != '' " >
               role_id,
+          </if>
+          <if test="userId  != null and userId  != '' " >
+              user_id,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gprUserRole" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprUserRole.id ,jdbcType=VARCHAR},
-                  <if test="t.userId  != null  and t.userId != '' " >
-                     #{gprUserRole.userId ,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.roleId  != null  and t.roleId != '' " >
                      #{gprUserRole.roleId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId  != null  and t.userId != '' " >
+                     #{gprUserRole.userId ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

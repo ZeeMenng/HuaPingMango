@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpResource;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:39
+ * @updateDate 2020/8/27 10:33:07
  * @description 实体类GprResourceGenEnt，自动生成。附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。
  */
 
@@ -30,9 +29,14 @@ public class GprResourceGenEnt extends BaseEnt implements Serializable {
     private Byte isDefault;
     @ApiModelProperty(value="附件。外键，引用资源（resource）表的主键",hidden=false,required=false)
     private String resourceId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpResource gpResource;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。业务表。外键，引用业务表的主键
@@ -91,7 +95,28 @@ public class GprResourceGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。文件信息。
+	 */
+	public GpResource getGpResource() {
+		return this.gpResource;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。文件信息。
+	 */
+	public void setGpResource(GpResource gpResource) {
+		this.gpResource = gpResource;
+	}
+
+
+
+
 
 }
 

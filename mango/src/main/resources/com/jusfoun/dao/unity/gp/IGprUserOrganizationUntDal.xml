@@ -51,27 +51,41 @@
     	<foreach collection="list" item="gprUserOrganization" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gprUserOrganization.id,jdbcType=VARCHAR},
-
-      
           #{gprUserOrganization.userId,jdbcType=VARCHAR},
-
-      
           #{gprUserOrganization.organizationId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gpr_user_organization
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gpr_user_organization
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByOrganizationId" parameterType="java.lang.String">
+    	delete from gpr_user_organization
+    	where organization_id = #{organizationId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByOrganizationId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_user_organization where organization_id = #{organizationId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+    	delete from gpr_user_organization
+    	where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_user_organization where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_user_organization
 		where id  in
@@ -83,11 +97,11 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprUserOrganization" >
     update gpr_user_organization
     <set >
-                  <if test="userId != null  and userId != '' " >
-                     user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
                   <if test="organizationId != null  and organizationId != '' " >
                      organization_id = #{organizationId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -96,11 +110,11 @@
 <update id="updateList">
     update gpr_user_organization
     <set >
-                  <if test="t.userId != null  and t.userId != '' " >
-                     user_id = #{t.userId,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.organizationId != null  and t.organizationId != '' " >
                      organization_id = #{t.organizationId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -114,17 +128,17 @@
 <update id="updateListWithDff"  parameterType="list">
     update gpr_user_organization
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="user_id =case" suffix="end,">
-              <foreach collection="list" item="gprUserOrganization" index="index">
-                  <if test="gprUserOrganization.userId != null and gprUserOrganization.userId  != '' " >
-                     when id=#{gprUserOrganization.id} then #{gprUserOrganization.userId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="organization_id =case" suffix="end,">
               <foreach collection="list" item="gprUserOrganization" index="index">
                   <if test="gprUserOrganization.organizationId != null and gprUserOrganization.organizationId  != '' " >
                      when id=#{gprUserOrganization.id} then #{gprUserOrganization.organizationId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="user_id =case" suffix="end,">
+              <foreach collection="list" item="gprUserOrganization" index="index">
+                  <if test="gprUserOrganization.userId != null and gprUserOrganization.userId  != '' " >
+                     when id=#{gprUserOrganization.id} then #{gprUserOrganization.userId,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -141,22 +155,22 @@
     replace into gpr_user_organization
         <trim prefix="(" suffix=")" suffixOverrides="," >
               id ,
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
           <if test="organizationId  != null and organizationId  != '' " >
               organization_id,
+          </if>
+          <if test="userId  != null and userId  != '' " >
+              user_id,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gprUserOrganization" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprUserOrganization.id ,jdbcType=VARCHAR},
-                  <if test="t.userId  != null  and t.userId != '' " >
-                     #{gprUserOrganization.userId ,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.organizationId  != null  and t.organizationId != '' " >
                      #{gprUserOrganization.organizationId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId  != null  and t.userId != '' " >
+                     #{gprUserOrganization.userId ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

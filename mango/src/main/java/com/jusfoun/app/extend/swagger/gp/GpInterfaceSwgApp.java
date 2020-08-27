@@ -28,6 +28,7 @@ import com.jusfoun.app.generate.swagger.gp.GpInterfaceGenSwgApp;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpInterface;
 import com.jusfoun.ent.parameter.gp.GpInterfaceParameter;
+import com.jusfoun.set.enumer.InterfaceType;
 import com.jusfoun.set.exception.GlobalException;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.DictionaryUtil;
@@ -279,9 +280,9 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 				gpInterface.setAddTime(new Date());
 				gpInterface.setIsPublicCode((byte) 0);
 				if ("POST".equals(handlerMethodsMap.get("type"))) {
-					gpInterface.setTypeCode("1");
+					gpInterface.setTypeCode(InterfaceType.POST.getCode());
 				} else if ("GET".equals(handlerMethodsMap.get("type"))) {
-					gpInterface.setTypeCode("0");
+					gpInterface.setTypeCode(InterfaceType.GET.getCode());
 				}
 				gpInterfaceList.add(gpInterface);
 			}

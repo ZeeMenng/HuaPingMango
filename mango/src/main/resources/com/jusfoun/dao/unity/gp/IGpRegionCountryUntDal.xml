@@ -105,48 +105,28 @@
     	<foreach collection="list" item="gpRegionCountry" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpRegionCountry.id,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.isoCode,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.chineseName,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.englishName,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.abbreviation,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.isDisplayCode,jdbcType=TINYINT},
-
-      
           #{gpRegionCountry.longitude,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.latitude,jdbcType=VARCHAR},
-
-      
           #{gpRegionCountry.area,jdbcType=INTEGER},
-
-      
           #{gpRegionCountry.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_region_country
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_region_country
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_region_country
 		where id  in
@@ -158,8 +138,11 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpRegionCountry" >
     update gp_region_country
     <set >
-                  <if test="isoCode != null  and isoCode != '' " >
-                     iso_code = #{isoCode,jdbcType=VARCHAR},
+                  <if test="abbreviation != null  and abbreviation != '' " >
+                     abbreviation = #{abbreviation,jdbcType=VARCHAR},
+                  </if>
+                  <if test="area != null ">
+                     area = #{area,jdbcType=INTEGER},
                   </if>
                   <if test="chineseName != null  and chineseName != '' " >
                      chinese_name = #{chineseName,jdbcType=VARCHAR},
@@ -167,20 +150,17 @@
                   <if test="englishName != null  and englishName != '' " >
                      english_name = #{englishName,jdbcType=VARCHAR},
                   </if>
-                  <if test="abbreviation != null  and abbreviation != '' " >
-                     abbreviation = #{abbreviation,jdbcType=VARCHAR},
-                  </if>
                   <if test="isDisplayCode != null ">
                      is_display_code = #{isDisplayCode,jdbcType=TINYINT},
                   </if>
-                  <if test="longitude != null  and longitude != '' " >
-                     longitude = #{longitude,jdbcType=VARCHAR},
+                  <if test="isoCode != null  and isoCode != '' " >
+                     iso_code = #{isoCode,jdbcType=VARCHAR},
                   </if>
                   <if test="latitude != null  and latitude != '' " >
                      latitude = #{latitude,jdbcType=VARCHAR},
                   </if>
-                  <if test="area != null ">
-                     area = #{area,jdbcType=INTEGER},
+                  <if test="longitude != null  and longitude != '' " >
+                     longitude = #{longitude,jdbcType=VARCHAR},
                   </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
@@ -192,8 +172,11 @@
 <update id="updateList">
     update gp_region_country
     <set >
-                  <if test="t.isoCode != null  and t.isoCode != '' " >
-                     iso_code = #{t.isoCode,jdbcType=VARCHAR},
+                  <if test="t.abbreviation != null  and t.abbreviation != '' " >
+                     abbreviation = #{t.abbreviation,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.area != null ">
+                     area = #{t.area,jdbcType=INTEGER},
                   </if>
                   <if test="t.chineseName != null  and t.chineseName != '' " >
                      chinese_name = #{t.chineseName,jdbcType=VARCHAR},
@@ -201,20 +184,17 @@
                   <if test="t.englishName != null  and t.englishName != '' " >
                      english_name = #{t.englishName,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.abbreviation != null  and t.abbreviation != '' " >
-                     abbreviation = #{t.abbreviation,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.isDisplayCode != null ">
                      is_display_code = #{t.isDisplayCode,jdbcType=TINYINT},
                   </if>
-                  <if test="t.longitude != null  and t.longitude != '' " >
-                     longitude = #{t.longitude,jdbcType=VARCHAR},
+                  <if test="t.isoCode != null  and t.isoCode != '' " >
+                     iso_code = #{t.isoCode,jdbcType=VARCHAR},
                   </if>
                   <if test="t.latitude != null  and t.latitude != '' " >
                      latitude = #{t.latitude,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.area != null ">
-                     area = #{t.area,jdbcType=INTEGER},
+                  <if test="t.longitude != null  and t.longitude != '' " >
+                     longitude = #{t.longitude,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
@@ -231,10 +211,17 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_region_country
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="iso_code =case" suffix="end,">
+         <trim prefix="abbreviation =case" suffix="end,">
               <foreach collection="list" item="gpRegionCountry" index="index">
-                  <if test="gpRegionCountry.isoCode != null and gpRegionCountry.isoCode  != '' " >
-                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.isoCode,jdbcType=VARCHAR}
+                  <if test="gpRegionCountry.abbreviation != null and gpRegionCountry.abbreviation  != '' " >
+                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.abbreviation,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="area =case" suffix="end,">
+              <foreach collection="list" item="gpRegionCountry" index="index">
+                  <if test="gpRegionCountry.area != null " >
+                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.area,jdbcType=INTEGER}
                   </if>
               </foreach>
          </trim>
@@ -252,13 +239,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="abbreviation =case" suffix="end,">
-              <foreach collection="list" item="gpRegionCountry" index="index">
-                  <if test="gpRegionCountry.abbreviation != null and gpRegionCountry.abbreviation  != '' " >
-                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.abbreviation,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="is_display_code =case" suffix="end,">
               <foreach collection="list" item="gpRegionCountry" index="index">
                   <if test="gpRegionCountry.isDisplayCode != null " >
@@ -266,10 +246,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="longitude =case" suffix="end,">
+         <trim prefix="iso_code =case" suffix="end,">
               <foreach collection="list" item="gpRegionCountry" index="index">
-                  <if test="gpRegionCountry.longitude != null and gpRegionCountry.longitude  != '' " >
-                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.longitude,jdbcType=VARCHAR}
+                  <if test="gpRegionCountry.isoCode != null and gpRegionCountry.isoCode  != '' " >
+                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.isoCode,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -280,10 +260,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="area =case" suffix="end,">
+         <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="gpRegionCountry" index="index">
-                  <if test="gpRegionCountry.area != null " >
-                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.area,jdbcType=INTEGER}
+                  <if test="gpRegionCountry.longitude != null and gpRegionCountry.longitude  != '' " >
+                     when id=#{gpRegionCountry.id} then #{gpRegionCountry.longitude,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -306,9 +286,11 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_region_country
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="isoCode  != null and isoCode  != '' " >
-              iso_code,
+          <if test="abbreviation  != null and abbreviation  != '' " >
+              abbreviation,
+          </if>
+          <if test="area  != null " >
+              area,
           </if>
           <if test="chineseName  != null and chineseName  != '' " >
               chinese_name,
@@ -316,20 +298,18 @@
           <if test="englishName  != null and englishName  != '' " >
               english_name,
           </if>
-          <if test="abbreviation  != null and abbreviation  != '' " >
-              abbreviation,
-          </if>
+              id ,
           <if test="isDisplayCode  != null " >
               is_display_code,
           </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
+          <if test="isoCode  != null and isoCode  != '' " >
+              iso_code,
           </if>
           <if test="latitude  != null and latitude  != '' " >
               latitude,
           </if>
-          <if test="area  != null " >
-              area,
+          <if test="longitude  != null and longitude  != '' " >
+              longitude,
           </if>
           <if test="remark  != null and remark  != '' " >
               remark,
@@ -338,9 +318,11 @@
     VALUES
     <foreach collection="list" item="gpRegionCountry" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpRegionCountry.id ,jdbcType=VARCHAR},
-                  <if test="t.isoCode  != null  and t.isoCode != '' " >
-                     #{gpRegionCountry.isoCode ,jdbcType=VARCHAR},
+                  <if test="t.abbreviation  != null  and t.abbreviation != '' " >
+                     #{gpRegionCountry.abbreviation ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.area != null ">
+                    #{gpRegionCountry.area,jdbcType=INTEGER},
                   </if>
                   <if test="t.chineseName  != null  and t.chineseName != '' " >
                      #{gpRegionCountry.chineseName ,jdbcType=VARCHAR},
@@ -348,20 +330,18 @@
                   <if test="t.englishName  != null  and t.englishName != '' " >
                      #{gpRegionCountry.englishName ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.abbreviation  != null  and t.abbreviation != '' " >
-                     #{gpRegionCountry.abbreviation ,jdbcType=VARCHAR},
-                  </if>
+              #{gpRegionCountry.id ,jdbcType=VARCHAR},
                   <if test="t.isDisplayCode != null ">
                     #{gpRegionCountry.isDisplayCode,jdbcType=TINYINT},
                   </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
-                     #{gpRegionCountry.longitude ,jdbcType=VARCHAR},
+                  <if test="t.isoCode  != null  and t.isoCode != '' " >
+                     #{gpRegionCountry.isoCode ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.latitude  != null  and t.latitude != '' " >
                      #{gpRegionCountry.latitude ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.area != null ">
-                    #{gpRegionCountry.area,jdbcType=INTEGER},
+                  <if test="t.longitude  != null  and t.longitude != '' " >
+                     #{gpRegionCountry.longitude ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark  != null  and t.remark != '' " >
                      #{gpRegionCountry.remark ,jdbcType=VARCHAR},

@@ -95,6 +95,14 @@
 		where business_id = #{businessId,jdbcType=VARCHAR}
 	</delete>
 
+	<delete id="deleteByBusinessIdList" parameterType="list">
+		delete from gpr_resource
+		where id in
+		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
+			#{id }
+		</foreach>
+	</delete>
+
 	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprResource">
 		update gpr_resource
 		<set>

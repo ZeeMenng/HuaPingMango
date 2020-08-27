@@ -4,18 +4,22 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GprRoleControl;
+import com.jusfoun.ent.extend.gp.GprRoleDomain;
+import com.jusfoun.ent.extend.gp.GprRoleInterface;
+import com.jusfoun.ent.extend.gp.GprRoleModule;
+import com.jusfoun.ent.extend.gp.GprRolePage;
+import com.jusfoun.ent.extend.gp.GprUserRole;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:54
+ * @updateDate 2020/8/27 10:33:16
  * @description 实体类GpRoleGenEnt，自动生成。系统角色。
  */
 
@@ -32,9 +36,19 @@ public class GpRoleGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GprRoleControl> gprRoleControlList;   
+    private ArrayList<GprRoleDomain> gprRoleDomainList;   
+    private ArrayList<GprRoleInterface> gprRoleInterfaceList;   
+    private ArrayList<GprRoleModule> gprRoleModuleList;   
+    private ArrayList<GprRolePage> gprRolePageList;   
+    private ArrayList<GprUserRole> gprUserRoleList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -107,7 +121,98 @@ public class GpRoleGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的控件权限。
+	 */
+	public ArrayList<GprRoleControl> getGprRoleControlList() {
+		return this.gprRoleControlList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的控件权限。
+	 */
+	public void setGprRoleControlList(ArrayList<GprRoleControl> gprRoleControlList) {
+		this.gprRoleControlList = gprRoleControlList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public ArrayList<GprRoleDomain> getGprRoleDomainList() {
+		return this.gprRoleDomainList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public void setGprRoleDomainList(ArrayList<GprRoleDomain> gprRoleDomainList) {
+		this.gprRoleDomainList = gprRoleDomainList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的接口权限。
+	 */
+	public ArrayList<GprRoleInterface> getGprRoleInterfaceList() {
+		return this.gprRoleInterfaceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的接口权限。
+	 */
+	public void setGprRoleInterfaceList(ArrayList<GprRoleInterface> gprRoleInterfaceList) {
+		this.gprRoleInterfaceList = gprRoleInterfaceList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public ArrayList<GprRoleModule> getGprRoleModuleList() {
+		return this.gprRoleModuleList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public void setGprRoleModuleList(ArrayList<GprRoleModule> gprRoleModuleList) {
+		this.gprRoleModuleList = gprRoleModuleList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的页面权限。
+	 */
+	public ArrayList<GprRolePage> getGprRolePageList() {
+		return this.gprRolePageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的页面权限。
+	 */
+	public void setGprRolePageList(ArrayList<GprRolePage> gprRolePageList) {
+		this.gprRolePageList = gprRolePageList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户拥有的角色。
+	 */
+	public ArrayList<GprUserRole> getGprUserRoleList() {
+		return this.gprUserRoleList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户拥有的角色。
+	 */
+	public void setGprUserRoleList(ArrayList<GprUserRole> gprUserRoleList) {
+		this.gprUserRoleList = gprUserRoleList;
+	}
+
+
+
+
+
+
+
 
 }
 

@@ -4,18 +4,25 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpLoginLog;
+import com.jusfoun.ent.extend.gp.GpMessage;
+import com.jusfoun.ent.extend.gp.GpOperLogLogin;
+import com.jusfoun.ent.extend.gp.GpToken;
+import com.jusfoun.ent.extend.gp.GprDomainUser;
+import com.jusfoun.ent.extend.gp.GprMessageUser;
+import com.jusfoun.ent.extend.gp.GprUserOrganization;
+import com.jusfoun.ent.extend.gp.GprUserRole;
+import com.jusfoun.ent.extend.gp.GprUserStation;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:55
+ * @updateDate 2020/8/27 10:33:17
  * @description 实体类GpUserGenEnt，自动生成。系统用户。
  */
 
@@ -64,9 +71,22 @@ public class GpUserGenEnt extends BaseEnt implements Serializable {
     private Date updateTime;
     @ApiModelProperty(value="登录账号。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpLoginLog> gpLoginLogList;   
+    private ArrayList<GpMessage> gpMessageList;   
+    private ArrayList<GpOperLogLogin> gpOperLogLoginList;   
+    private ArrayList<GpToken> gpTokenList;   
+    private ArrayList<GprDomainUser> gprDomainUserList;   
+    private ArrayList<GprMessageUser> gprMessageUserList;   
+    private ArrayList<GprUserOrganization> gprUserOrganizationList;   
+    private ArrayList<GprUserRole> gprUserRoleList;   
+    private ArrayList<GprUserStation> gprUserStationList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -363,7 +383,140 @@ public class GpUserGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。登录日志。
+	 */
+	public ArrayList<GpLoginLog> getGpLoginLogList() {
+		return this.gpLoginLogList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。登录日志。
+	 */
+	public void setGpLoginLogList(ArrayList<GpLoginLog> gpLoginLogList) {
+		this.gpLoginLogList = gpLoginLogList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。系统消息。
+	 */
+	public ArrayList<GpMessage> getGpMessageList() {
+		return this.gpMessageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。系统消息。
+	 */
+	public void setGpMessageList(ArrayList<GpMessage> gpMessageList) {
+		this.gpMessageList = gpMessageList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public ArrayList<GpOperLogLogin> getGpOperLogLoginList() {
+		return this.gpOperLogLoginList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public void setGpOperLogLoginList(ArrayList<GpOperLogLogin> gpOperLogLoginList) {
+		this.gpOperLogLoginList = gpOperLogLoginList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public ArrayList<GpToken> getGpTokenList() {
+		return this.gpTokenList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public void setGpTokenList(ArrayList<GpToken> gpTokenList) {
+		this.gpTokenList = gpTokenList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。应用领域拥有的用户。
+	 */
+	public ArrayList<GprDomainUser> getGprDomainUserList() {
+		return this.gprDomainUserList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。应用领域拥有的用户。
+	 */
+	public void setGprDomainUserList(ArrayList<GprDomainUser> gprDomainUserList) {
+		this.gprDomainUserList = gprDomainUserList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。消息队列。
+	 */
+	public ArrayList<GprMessageUser> getGprMessageUserList() {
+		return this.gprMessageUserList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。消息队列。
+	 */
+	public void setGprMessageUserList(ArrayList<GprMessageUser> gprMessageUserList) {
+		this.gprMessageUserList = gprMessageUserList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户所属组织机构。
+	 */
+	public ArrayList<GprUserOrganization> getGprUserOrganizationList() {
+		return this.gprUserOrganizationList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户所属组织机构。
+	 */
+	public void setGprUserOrganizationList(ArrayList<GprUserOrganization> gprUserOrganizationList) {
+		this.gprUserOrganizationList = gprUserOrganizationList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户拥有的角色。
+	 */
+	public ArrayList<GprUserRole> getGprUserRoleList() {
+		return this.gprUserRoleList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户拥有的角色。
+	 */
+	public void setGprUserRoleList(ArrayList<GprUserRole> gprUserRoleList) {
+		this.gprUserRoleList = gprUserRoleList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户所属岗位。
+	 */
+	public ArrayList<GprUserStation> getGprUserStationList() {
+		return this.gprUserStationList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户所属岗位。
+	 */
+	public void setGprUserStationList(ArrayList<GprUserStation> gprUserStationList) {
+		this.gprUserStationList = gprUserStationList;
+	}
+
+
+
+
+
+
+
 
 }
 

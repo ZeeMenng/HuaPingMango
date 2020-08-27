@@ -81,39 +81,25 @@
     	<foreach collection="list" item="gpPage" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpPage.id,jdbcType=VARCHAR},
-
-      
           #{gpPage.domainId,jdbcType=VARCHAR},
-
-      
           #{gpPage.name,jdbcType=VARCHAR},
-
-      
           #{gpPage.url,jdbcType=VARCHAR},
-
-      
           #{gpPage.remark,jdbcType=VARCHAR},
-
-      
           #{gpPage.addTime,jdbcType=TIMESTAMP},
-
-      
           #{gpPage.isPublicCode,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_page
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_page
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_page
 		where id  in
@@ -125,23 +111,23 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpPage" >
     update gp_page
     <set >
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isPublicCode != null ">
+                     is_public_code = #{isPublicCode,jdbcType=TINYINT},
                   </if>
                   <if test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
                   </if>
-                  <if test="url != null  and url != '' " >
-                     url = #{url,jdbcType=VARCHAR},
-                  </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="isPublicCode != null ">
-                     is_public_code = #{isPublicCode,jdbcType=TINYINT},
+                  <if test="url != null  and url != '' " >
+                     url = #{url,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -150,23 +136,23 @@
 <update id="updateList">
     update gp_page
     <set >
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isPublicCode != null ">
+                     is_public_code = #{t.isPublicCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.name != null  and t.name != '' " >
                      name = #{t.name,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.url != null  and t.url != '' " >
-                     url = #{t.url,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.isPublicCode != null ">
-                     is_public_code = #{t.isPublicCode,jdbcType=TINYINT},
+                  <if test="t.url != null  and t.url != '' " >
+                     url = #{t.url,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -180,10 +166,24 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_page
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpPage" index="index">
+                  <if test="gpPage.addTime != null " >
+                     when id=#{gpPage.id} then #{gpPage.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
                   <if test="gpPage.domainId != null and gpPage.domainId  != '' " >
                      when id=#{gpPage.id} then #{gpPage.domainId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="is_public_code =case" suffix="end,">
+              <foreach collection="list" item="gpPage" index="index">
+                  <if test="gpPage.isPublicCode != null " >
+                     when id=#{gpPage.id} then #{gpPage.isPublicCode,jdbcType=TINYINT}
                   </if>
               </foreach>
          </trim>
@@ -194,13 +194,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="url =case" suffix="end,">
-              <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.url != null and gpPage.url  != '' " >
-                     when id=#{gpPage.id} then #{gpPage.url,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
                   <if test="gpPage.remark != null and gpPage.remark  != '' " >
@@ -208,17 +201,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="add_time =case" suffix="end,">
+         <trim prefix="url =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.addTime != null " >
-                     when id=#{gpPage.id} then #{gpPage.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="is_public_code =case" suffix="end,">
-              <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.isPublicCode != null " >
-                     when id=#{gpPage.id} then #{gpPage.isPublicCode,jdbcType=TINYINT}
+                  <if test="gpPage.url != null and gpPage.url  != '' " >
+                     when id=#{gpPage.id} then #{gpPage.url,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -234,47 +220,47 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_page
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
+          <if test="addTime  != null " >
+              add_time,
+          </if>
           <if test="domainId  != null and domainId  != '' " >
               domain_id,
+          </if>
+              id ,
+          <if test="isPublicCode  != null " >
+              is_public_code,
           </if>
           <if test="name  != null and name  != '' " >
               name,
           </if>
-          <if test="url  != null and url  != '' " >
-              url,
-          </if>
           <if test="remark  != null and remark  != '' " >
               remark,
           </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="isPublicCode  != null " >
-              is_public_code,
+          <if test="url  != null and url  != '' " >
+              url,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpPage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpPage.id ,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                    #{gpPage.addTime,jdbcType=TIMESTAMP},
+                  </if>
                   <if test="t.domainId  != null  and t.domainId != '' " >
                      #{gpPage.domainId ,jdbcType=VARCHAR},
+                  </if>
+              #{gpPage.id ,jdbcType=VARCHAR},
+                  <if test="t.isPublicCode != null ">
+                    #{gpPage.isPublicCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.name  != null  and t.name != '' " >
                      #{gpPage.name ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.url  != null  and t.url != '' " >
-                     #{gpPage.url ,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.remark  != null  and t.remark != '' " >
                      #{gpPage.remark ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.addTime != null ">
-                    #{gpPage.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.isPublicCode != null ">
-                    #{gpPage.isPublicCode,jdbcType=TINYINT},
+                  <if test="t.url  != null  and t.url != '' " >
+                     #{gpPage.url ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

@@ -19,18 +19,23 @@ public enum OperResult {
 	ADDLIST_S(999800, "批量添加成功！"),
 	//
 	DELETE_S(989900, "删除记录成功！"),
+
 	//
 	DELETELIST_S(989800, "批量删除成功！"),
 	//
 	DELETEBYBUSINESSID_S(989700, "根据业务主键删除记录成功！"),
 	//
-	UPDATE_S(979900, "修改记录成功！"), UPDATELIST_S(979800, "批量修改记录成功！"),UPDATELISTWIDTHDFF_S(979700, "批量修改记录为不同值成功！"),UPDATELISTWIDTHDFFORADD_S(979600, "批量修改或新增记录为不同值成功！"),
+	DELETEBYFOREIGNKEY_S(989600, "根据外键删除记录成功！"),
+	//
+	UPDATE_S(979900, "修改记录成功！"), UPDATELIST_S(979800, "批量修改记录成功！"), UPDATELISTWIDTHDFF_S(979700, "批量修改记录为不同值成功！"), UPDATELISTWIDTHDFFORADD_S(979600, "批量修改或新增记录为不同值成功！"),
 	//
 	GETMODEL_S(969900, "单条查询成功！"),
 	//
 	GETLIST_S(969800, "模糊查询成功！"),
 	//
 	GETLISTBYSQL_S(969700, "自定义查询成功！"),
+	//
+	GETLISTBYFOREIGNKEY_S(969600, "根据外键查询成功！"),
 
 	//
 	CUSTOM_F(900001, "自定义方法操作失败！"),
@@ -43,15 +48,19 @@ public enum OperResult {
 	//
 	DELETELIST_F(989801, "批量删除出错！"),
 	//
-	DELETEBYBUSINESSID_F(989701, "根据业务主键删除记录看得见！"),
+	DELETEBYBUSINESSID_F(989701, "根据业务主键删除记录失败！"),
 	//
-	UPDATE_F(979901, "修改记录出错！"), UPDATELIST_F(979801, "批量修改记录出错！"),UPDATELISTWIDTHDFF_F(979701, "批量修改记录为不同值出错！"), UPDATELISTWIDTHDFFORADD_F(97961, "批量修改或新增记录为不同值出错！"),
+	DELETEBYFOREIGNKEY_F(989601, "根据外键删除记录删除失败！"),
+	//
+	UPDATE_F(979901, "修改记录出错！"), UPDATELIST_F(979801, "批量修改记录出错！"), UPDATELISTWIDTHDFF_F(979701, "批量修改记录为不同值出错！"), UPDATELISTWIDTHDFFORADD_F(97961, "批量修改或新增记录为不同值出错！"),
 	//
 	GETMODEL_F(969901, "单条查询出错！"),
 	//
 	GETLIST_F(969801, "模糊查询出错！"),
 	//
-	GETLISTBYSQL_F(969701, "自定义查询出错！");
+	GETLISTBYSQL_F(969701, "自定义查询出错！"),
+	//
+	GETLISTBYFOREIGNKEY_F(969601, "根据外键查询失败！");
 
 	private String text;
 	private Integer code;

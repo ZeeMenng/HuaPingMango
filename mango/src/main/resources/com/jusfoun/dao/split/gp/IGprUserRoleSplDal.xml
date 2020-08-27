@@ -58,39 +58,39 @@
 	</insert>
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete from gpr_user_role
-		where id = #{id,jdbcType=VARCHAR}
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.id = #{id,jdbcType=VARCHAR}
 	</delete>
 	
 	<delete id="deleteByUserId" parameterType="java.lang.String">
-		delete from gpr_user_role
-		where user_id= #{userId,jdbcType=VARCHAR}
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.user_id= #{userId,jdbcType=VARCHAR}
 	</delete>
 	
 	<delete id="deleteByRoleId" parameterType="java.lang.String">
-		delete from gpr_user_role
-		where role_id= #{roleId,jdbcType=VARCHAR}
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.role_id= #{roleId,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete from gpr_user_role
-		where id in
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.id in
 		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
 			#{id }
 		</foreach>
 	</delete>
 	
 	<delete id="deleteByUserIdList" parameterType="list">
-		delete from gpr_user_role
-		where user_id in
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.user_id in
 		<foreach collection="list" item="userId" index="index" open="(" close=")" separator=",">
 			#{userId}
 		</foreach>
 	</delete>
 
 	<delete id="deleteByRoleIdList" parameterType="list">
-		delete from gpr_user_role
-		where role_id in
+		delete  gpr_user_role,gpr_domain_user from gpr_user_role left join gpr_domain_user on gpr_user_role.user_id=gpr_domain_user.user_id
+		where gpr_user_role.role_id in
 		<foreach collection="list" item="roleId" index="index" open="(" close=")" separator=",">
 			#{roleId}
 		</foreach>

@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDictionary;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:47
+ * @updateDate 2020/8/27 10:33:11
  * @description 实体类GpDictionaryTypeGenEnt，自动生成。字典类型。
  */
 
@@ -30,9 +29,14 @@ public class GpDictionaryTypeGenEnt extends BaseEnt implements Serializable {
     private String name;
     @ApiModelProperty(value="备注",hidden=false,required=false)
     private String remark;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpDictionary> gpDictionaryList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。常量名称
@@ -91,7 +95,28 @@ public class GpDictionaryTypeGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。字典信息。
+	 */
+	public ArrayList<GpDictionary> getGpDictionaryList() {
+		return this.gpDictionaryList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。字典信息。
+	 */
+	public void setGpDictionaryList(ArrayList<GpDictionary> gpDictionaryList) {
+		this.gpDictionaryList = gpDictionaryList;
+	}
+
+
+
+
+
+
+
 
 }
 

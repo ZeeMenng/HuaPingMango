@@ -4,18 +4,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpUser;
+import com.jusfoun.ent.extend.gp.GprDomainMessage;
+import com.jusfoun.ent.extend.gp.GprMessageUser;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:50
+ * @updateDate 2020/8/27 10:33:13
  * @description 实体类GpMessageGenEnt，自动生成。系统消息。
  */
 
@@ -40,9 +41,16 @@ public class GpMessageGenEnt extends BaseEnt implements Serializable {
     private String userId;
     @ApiModelProperty(value="消息创建者。登录名称，和系统用户表（user）的登录名称（user_name）对应。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GprDomainMessage> gprDomainMessageList;   
+    private ArrayList<GprMessageUser> gprMessageUserList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -171,7 +179,56 @@ public class GpMessageGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。应用领域的站内信。
+	 */
+	public ArrayList<GprDomainMessage> getGprDomainMessageList() {
+		return this.gprDomainMessageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。应用领域的站内信。
+	 */
+	public void setGprDomainMessageList(ArrayList<GprDomainMessage> gprDomainMessageList) {
+		this.gprDomainMessageList = gprDomainMessageList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。消息队列。
+	 */
+	public ArrayList<GprMessageUser> getGprMessageUserList() {
+		return this.gprMessageUserList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。消息队列。
+	 */
+	public void setGprMessageUserList(ArrayList<GprMessageUser> gprMessageUserList) {
+		this.gprMessageUserList = gprMessageUserList;
+	}
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

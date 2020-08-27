@@ -24,8 +24,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.jusfoun.app.generate.swagger.gp.GpUserGenSwgApp;
 import com.jusfoun.bll.extend.split.gp.GprDomainUserSplBll;
 import com.jusfoun.bll.extend.split.gp.GprMessageUserSplBll;
+import com.jusfoun.bll.extend.split.gp.GprResourceSplBll;
 import com.jusfoun.bll.extend.split.gp.GprUserBaseSplBll;
-import com.jusfoun.bll.extend.split.gp.GprUserIconSplBll;
 import com.jusfoun.bll.extend.split.gp.GprUserOrganizationSplBll;
 import com.jusfoun.bll.extend.split.gp.GprUserRoleSplBll;
 import com.jusfoun.bll.extend.split.gp.GprUserStationSplBll;
@@ -33,13 +33,15 @@ import com.jusfoun.bll.extend.unity.gp.GpLoginLogUntBll;
 import com.jusfoun.bll.extend.unity.gp.GpMenuUntBll;
 import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprDomainUserUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprUserIconUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprResourceUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprRoleDomainUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprUserOrganizationUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprUserRoleUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpResource;
 import com.jusfoun.ent.extend.gp.GpUser;
 import com.jusfoun.ent.extend.gp.GprDomainUser;
+import com.jusfoun.ent.extend.gp.GprResource;
 import com.jusfoun.ent.extend.gp.GprUserIcon;
 import com.jusfoun.ent.extend.gp.GprUserOrganization;
 import com.jusfoun.ent.extend.gp.GprUserRole;
@@ -79,6 +81,10 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	protected GprUserRoleSplBll gprUserRoleSplBll;
 
 	@Autowired
+	@Qualifier("gprRoleDomainUntBll")
+	protected GprRoleDomainUntBll gprRoleDomainUntBll;
+
+	@Autowired
 	private DictionaryUtil dictionaryUtil;
 
 	@Autowired
@@ -94,12 +100,12 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	protected GpUserUntBll gpUserUntBll;
 
 	@Autowired
-	@Qualifier("gprUserIconUntBll")
-	protected GprUserIconUntBll gprUserIconUntBll;
+	@Qualifier("gprResourceUntBll")
+	protected GprResourceUntBll gprResourceUntBll;
 
 	@Autowired
-	@Qualifier("gprUserIconSplBll")
-	protected GprUserIconSplBll gprUserIconSplBll;
+	@Qualifier("gprResourceSplBll")
+	protected GprResourceSplBll gprResourceSplBll;
 
 	@Autowired
 	@Qualifier("gprUserStationSplBll")
@@ -155,16 +161,16 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		// 头像列表
 		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
-			ArrayList<GprUserIcon> gprUserIconList = new ArrayList<GprUserIcon>();
+			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
 			String[] resourceArray = jsonData.getIconIds().split(",");
 			for (int i = 0; i < resourceArray.length; i++) {
-				GprUserIcon gprUserIcon = new GprUserIcon();
-				gprUserIcon.setResourceId(resourceArray[i]);
-				gprUserIcon.setUserId(result.getObjectId());
-				gprUserIcon.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
-				gprUserIconList.add(gprUserIcon);
+				GprResource gprResource = new GprResource();
+				gprResource.setResourceId(resourceArray[i]);
+				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResourceList.add(gprResource);
 			}
-			gprUserIconUntBll.add(gprUserIconList);
+			gprResourceUntBll.add(gprResourceList);
 		}
 		// 组织机构
 		if (StringUtils.isNotBlank(jsonData.getOrgIds())) {
@@ -178,7 +184,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprUserOrganizationUntBll.add(addOrgs);
 		}
 
-		// 角色列表
+		// 角色列表和应用领域列表
 		if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
 			ArrayList<GprUserRole> arrayList = new ArrayList<GprUserRole>();
 			if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
@@ -190,18 +196,20 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 				}
 			}
 			gprUserRoleUntBll.add(arrayList);
-		}
-		// 应用领域
-		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
-			ArrayList<GprDomainUser> gprDaominUserList = new ArrayList<GprDomainUser>();
-			for (String domainId : jsonData.getDomainIds().split(",")) {
-				GprDomainUser gprDomainUser = new GprDomainUser();
-				gprDomainUser.setDomainId(domainId);
 
+			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'"+jsonData.getRoleIds().replace(",", "','")+"'", result.getObjectId());
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("Sql", sql);
+			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
+			List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
+			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+			for (Map<String, Object> domainId : domainIdList) {
+				GprDomainUser gprDomainUser = new GprDomainUser();
+				gprDomainUser.setDomainId(domainId.get("domain_id").toString());
 				gprDomainUser.setUserId(result.getObjectId());
-				gprDaominUserList.add(gprDomainUser);
+				gprDominUserList.add(gprDomainUser);
 			}
-			gprDomainUserUntBll.add(gprDaominUserList);
+			gprDomainUserUntBll.add(gprDominUserList);
 		}
 
 		return result;
@@ -211,7 +219,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		gprUserIconSplBll.deleteByUserId(id);
+		gprResourceSplBll.deleteByBusinessId(id);
 		gprUserOrganizationSplBll.deleteByUserId(id);
 		gprUserRoleSplBll.deleteByUserId(id);
 		gprUserStationSplBll.deleteByUserId(id);
@@ -227,7 +235,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteList(@RequestBody GpUserParameter.DeleteByIdList jsonData) {
 		ArrayList<String> idList = jsonData.getIdList();
-		gprUserIconSplBll.deleteByUserIdList(idList);
+		gprResourceSplBll.deleteByBusinessIdList(idList);
 		gprUserOrganizationSplBll.deleteByUserIdList(idList);
 		gprUserRoleSplBll.deleteByUserIdList(idList);
 		gprUserStationSplBll.deleteByUserIdList(idList);
@@ -249,24 +257,24 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			if (resourcePathArray.length != 0)
 				jsonData.setIcon(resourcePathArray[0]);
 		}
-		
+
 		if (jsonData.getBirthTime() != null)
 			jsonData.setAge((byte) Tools.getAgeByBirth(jsonData.getBirthTime()));
 		result = gpUserUntBll.update(jsonData);
 		String userId = jsonData.getId();
 		// 头像列表
-		gprUserIconSplBll.deleteByUserId(userId);
+		gprResourceSplBll.deleteByBusinessId(userId);
 		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
-			ArrayList<GprUserIcon> gprUserIconList = new ArrayList<GprUserIcon>();
+			ArrayList<GprResource> gprResourceList = new ArrayList<GprResource>();
 			String[] resourceArray = jsonData.getIconIds().split(",");
 			for (int i = 0; i < resourceArray.length; i++) {
-				GprUserIcon gprUserIcon = new GprUserIcon();
-				gprUserIcon.setResourceId(resourceArray[i]);
-				gprUserIcon.setUserId(result.getObjectId());
-				gprUserIcon.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
-				gprUserIconList.add(gprUserIcon);
+				GprResource gprResource = new GprResource();
+				gprResource.setResourceId(resourceArray[i]);
+				gprResource.setBusinessId(result.getObjectId());
+				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResourceList.add(gprResource);
 			}
-			gprUserIconUntBll.add(gprUserIconList);
+			gprResourceUntBll.add(gprResourceList);
 		}
 		// 组织机构
 		gprUserOrganizationSplBll.deleteByUserId(userId);
@@ -281,8 +289,9 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprUserOrganizationUntBll.add(addOrgs);
 		}
 
-		// 角色列表
+		// 角色列表和应用领域
 		gprUserRoleSplBll.deleteByUserId(userId);
+		gprDomainUserSplBll.deleteByUserId(userId);
 		if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
 			ArrayList<GprUserRole> arrayList = new ArrayList<GprUserRole>();
 			if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
@@ -294,19 +303,20 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 				}
 			}
 			gprUserRoleUntBll.add(arrayList);
-		}
-		// 应用领域
-		gprDomainUserSplBll.deleteByUserId(userId);
-		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
-			ArrayList<GprDomainUser> gprDaominUserList = new ArrayList<GprDomainUser>();
-			for (String domainId : jsonData.getDomainIds().split(",")) {
-				GprDomainUser gprDomainUser = new GprDomainUser();
-				gprDomainUser.setDomainId(domainId);
 
+			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'"+jsonData.getRoleIds().replace(",", "','")+"'", result.getObjectId());
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("Sql", sql);
+			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
+			List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
+			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+			for (Map<String, Object> domainId : domainIdList) {
+				GprDomainUser gprDomainUser = new GprDomainUser();
+				gprDomainUser.setDomainId(domainId.get("domain_id").toString());
 				gprDomainUser.setUserId(result.getObjectId());
-				gprDaominUserList.add(gprDomainUser);
+				gprDominUserList.add(gprDomainUser);
 			}
-			gprDomainUserUntBll.add(gprDaominUserList);
+			gprDomainUserUntBll.add(gprDominUserList);
 		}
 
 		return result;
@@ -587,12 +597,12 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("			B.id iconId,                                     ");
 		selectBuffer.append("			CONCAT('" + this.linkPath + "',B.path) iconPath ");
 		selectBuffer.append("		FROM                                                      ");
-		selectBuffer.append("		gpr_user_icon A");
+		selectBuffer.append("		gpr_resource A");
 		selectBuffer.append("		INNER JOIN gp_resource B ON A.resource_id = B.id                  ");
 		selectBuffer.append("		WHERE                                                     ");
-		selectBuffer.append("			A.user_id = '" + userId + "'        					  ");
+		selectBuffer.append("			A.business_id = '" + userId + "'        					  ");
 		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel = gprUserIconUntBll.getListBySQL(map);
+		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
 		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
 		return modelList;
 	}
@@ -620,12 +630,12 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("		SELECT                                                    ");
 		selectBuffer.append("			A.id                                                  ");
 		selectBuffer.append("		FROM                                                      ");
-		selectBuffer.append("			gpr_user_icon A                                       ");
+		selectBuffer.append("			gpr_resource A                                       ");
 		selectBuffer.append("		INNER JOIN gp_resource B ON A.resource_id = B.id          ");
 		selectBuffer.append("		WHERE                                                     ");
-		selectBuffer.append("			A.user_id = '" + userId + "' and is_default = '0'     ");
+		selectBuffer.append("			A.business_id = '" + userId + "' and is_default = '0'     ");
 		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel = gprUserIconUntBll.getListBySQL(map);
+		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
 		List<Map<String, Object>> iconList = (List<Map<String, Object>>) resultModel.getData();
 		return iconList;
 	}
@@ -637,25 +647,25 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	 */
 	private void updateUserIcon(String userId, String resourceId) {
 		// 修改目前默认头像为非默认，再新增此默认头像
-		GprUserIcon gprUserIcon;
+		GprResource gprResource;
 		List<Map<String, Object>> iconList = getIconList(userId);
 		ArrayList<String> idList = new ArrayList<String>();
 		for (Map<String, Object> map2 : iconList) {
 			String id = map2.get("id").toString();
-			gprUserIcon = new GprUserIcon();
-			gprUserIcon.setId(id);
-			gprUserIcon.setUserId(userId);
-			gprUserIcon.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_F);
-			gprUserIconUntBll.update(gprUserIcon);
+			gprResource = new GprResource();
+			gprResource.setId(id);
+			gprResource.setBusinessId(userId);
+			gprResource.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_F);
+			gprResourceUntBll.update(gprResource);
 
 		}
 
 		if (StringUtils.isNotBlank(resourceId)) {
-			gprUserIcon = new GprUserIcon();
-			gprUserIcon.setUserId(userId);
-			gprUserIcon.setResourceId(resourceId);
-			gprUserIcon.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_T);
-			gprUserIconUntBll.add(gprUserIcon);
+			gprResource = new GprResource();
+			gprResource.setBusinessId(userId);
+			gprResource.setResourceId(resourceId);
+			gprResource.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_T);
+			gprResourceUntBll.add(gprResource);
 		}
 	}
 

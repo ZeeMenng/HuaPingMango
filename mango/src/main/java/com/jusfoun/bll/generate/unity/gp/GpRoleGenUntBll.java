@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/11 11:42:47
+ * @updateDate 2020/8/27 11:19:19
  * @description 系统角色。 业务逻辑处理类，扩展自BaseUntBll<GpRole>，自动生成。
  */
 public class GpRoleGenUntBll extends BaseUntBll<GpRole> {
@@ -146,7 +146,8 @@ public class GpRoleGenUntBll extends BaseUntBll<GpRole> {
 		}
 		return result;
 	}
-	
+
+
 }
 
 

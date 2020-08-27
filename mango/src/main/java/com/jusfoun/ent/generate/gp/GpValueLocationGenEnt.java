@@ -4,18 +4,16 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
+import io.swagger.annotations.ApiModelProperty;
 
 import com.jusfoun.ent.base.BaseEnt;
 
-import io.swagger.annotations.ApiModelProperty;
-
-import java.math.BigDecimal;
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 12:00:43
+ * @updateDate 2020/8/27 10:33:18
  * @description 实体类GpValueLocationGenEnt，自动生成。调用存储过程查询某个值在本数据库中的位置，记录相关信息到本表中。
  */
 
@@ -30,7 +28,7 @@ public class GpValueLocationGenEnt extends BaseEnt implements Serializable {
     private String id;
     @ApiModelProperty(value="原始表名",hidden=false,required=false)
     private String originTableName;
-    @ApiModelProperty(value=" 备注。",hidden=false,required=false)
+    @ApiModelProperty(value="备注。",hidden=false,required=false)
     private String remarks;
     @ApiModelProperty(value="值所在列名。",hidden=false,required=false)
     private String targetColumnName;
@@ -38,9 +36,13 @@ public class GpValueLocationGenEnt extends BaseEnt implements Serializable {
     private String targetRecordId;
     @ApiModelProperty(value="值所在表名。",hidden=false,required=false)
     private String targetTableName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。添加时间
@@ -99,14 +101,14 @@ public class GpValueLocationGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。 备注。
+	 * get方法。备注。
 	 */
 	public String getRemarks() {
 		return this.remarks;
 	}
 
 	/**
-	 * set方法。 备注。
+	 * set方法。备注。
 	 */
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
@@ -155,7 +157,14 @@ public class GpValueLocationGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

@@ -4,18 +4,20 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpLoginLog;
+import com.jusfoun.ent.extend.gp.GpOperLog;
+import com.jusfoun.ent.extend.gp.GpToken;
+import com.jusfoun.ent.extend.gp.GpUser;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:51
+ * @updateDate 2020/8/27 10:33:14
  * @description 实体类GpOperLogLoginGenEnt，自动生成。登录用户操作日志。
  */
 
@@ -34,9 +36,17 @@ public class GpOperLogLoginGenEnt extends BaseEnt implements Serializable {
     private String userId;
     @ApiModelProperty(value="所属用户 。登录名称，和系统用户表（user）的登录名称（user_name）对应。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpLoginLog gpLoginLog;
+    private  GpOperLog gpOperLog;
+    private  GpToken gpToken;
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。主键。
@@ -123,7 +133,70 @@ public class GpOperLogLoginGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。登录日志。
+	 */
+	public GpLoginLog getGpLoginLog() {
+		return this.gpLoginLog;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。登录日志。
+	 */
+	public void setGpLoginLog(GpLoginLog gpLoginLog) {
+		this.gpLoginLog = gpLoginLog;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。操作日志。
+	 */
+	public GpOperLog getGpOperLog() {
+		return this.gpOperLog;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。操作日志。
+	 */
+	public void setGpOperLog(GpOperLog gpOperLog) {
+		this.gpOperLog = gpOperLog;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。token信息。
+	 */
+	public GpToken getGpToken() {
+		return this.gpToken;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。token信息。
+	 */
+	public void setGpToken(GpToken gpToken) {
+		this.gpToken = gpToken;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

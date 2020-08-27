@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpModule;
+import com.jusfoun.ent.extend.gp.GpPage;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:39
+ * @updateDate 2020/8/27 10:33:07
  * @description 实体类GprModulePageGenEnt，自动生成。功能模块所包含的页面。
  */
 
@@ -28,9 +28,15 @@ public class GprModulePageGenEnt extends BaseEnt implements Serializable {
     private String moduleId;
     @ApiModelProperty(value="系统页面。外键，引用应用系统页面表（page）的主键。",hidden=false,required=false)
     private String pageId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpModule gpModule;
+    private  GpPage gpPage;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。主键。
@@ -75,7 +81,42 @@ public class GprModulePageGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。功能模块。
+	 */
+	public GpModule getGpModule() {
+		return this.gpModule;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。功能模块。
+	 */
+	public void setGpModule(GpModule gpModule) {
+		this.gpModule = gpModule;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统页面。
+	 */
+	public GpPage getGpPage() {
+		return this.gpPage;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统页面。
+	 */
+	public void setGpPage(GpPage gpPage) {
+		this.gpPage = gpPage;
+	}
+
+
+
+
 
 }
 

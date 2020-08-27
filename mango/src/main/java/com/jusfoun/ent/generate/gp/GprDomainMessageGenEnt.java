@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDomain;
+import com.jusfoun.ent.extend.gp.GpMessage;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:36
+ * @updateDate 2020/8/27 10:33:06
  * @description 实体类GprDomainMessageGenEnt，自动生成。应用领域的站内信。
  */
 
@@ -30,9 +30,15 @@ public class GprDomainMessageGenEnt extends BaseEnt implements Serializable {
     private String id;
     @ApiModelProperty(value="领域消息。外键，引用站内信（message）的主键。",hidden=false,required=false)
     private String messageId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
+    private  GpMessage gpMessage;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。应用领域。外键，引用应用领域表（domain）的主键。
@@ -91,7 +97,42 @@ public class GprDomainMessageGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统消息。
+	 */
+	public GpMessage getGpMessage() {
+		return this.gpMessage;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统消息。
+	 */
+	public void setGpMessage(GpMessage gpMessage) {
+		this.gpMessage = gpMessage;
+	}
+
+
+
+
 
 }
 

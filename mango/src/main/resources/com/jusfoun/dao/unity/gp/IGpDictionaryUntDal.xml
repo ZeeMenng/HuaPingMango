@@ -73,36 +73,34 @@
     	<foreach collection="list" item="gpDictionary" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpDictionary.id,jdbcType=VARCHAR},
-
-      
           #{gpDictionary.typeId,jdbcType=VARCHAR},
-
-      
           #{gpDictionary.code,jdbcType=TINYINT},
-
-      
           #{gpDictionary.text,jdbcType=VARCHAR},
-
-      
           #{gpDictionary.priority,jdbcType=INTEGER},
-
-      
           #{gpDictionary.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_dictionary
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_dictionary
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByTypeId" parameterType="java.lang.String">
+    	delete from gp_dictionary
+    	where type_id = #{typeId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByTypeId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_dictionary where type_id = #{typeId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_dictionary
 		where id  in
@@ -114,20 +112,20 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDictionary" >
     update gp_dictionary
     <set >
-                  <if test="typeId != null  and typeId != '' " >
-                     type_id = #{typeId,jdbcType=VARCHAR},
-                  </if>
                   <if test="code != null ">
                      code = #{code,jdbcType=TINYINT},
-                  </if>
-                  <if test="text != null  and text != '' " >
-                     text = #{text,jdbcType=VARCHAR},
                   </if>
                   <if test="priority != null ">
                      priority = #{priority,jdbcType=INTEGER},
                   </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="text != null  and text != '' " >
+                     text = #{text,jdbcType=VARCHAR},
+                  </if>
+                  <if test="typeId != null  and typeId != '' " >
+                     type_id = #{typeId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -136,20 +134,20 @@
 <update id="updateList">
     update gp_dictionary
     <set >
-                  <if test="t.typeId != null  and t.typeId != '' " >
-                     type_id = #{t.typeId,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.code != null ">
                      code = #{t.code,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.text != null  and t.text != '' " >
-                     text = #{t.text,jdbcType=VARCHAR},
                   </if>
                   <if test="t.priority != null ">
                      priority = #{t.priority,jdbcType=INTEGER},
                   </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.text != null  and t.text != '' " >
+                     text = #{t.text,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.typeId != null  and t.typeId != '' " >
+                     type_id = #{t.typeId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -163,24 +161,10 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_dictionary
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="type_id =case" suffix="end,">
-              <foreach collection="list" item="gpDictionary" index="index">
-                  <if test="gpDictionary.typeId != null and gpDictionary.typeId  != '' " >
-                     when id=#{gpDictionary.id} then #{gpDictionary.typeId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="code =case" suffix="end,">
               <foreach collection="list" item="gpDictionary" index="index">
                   <if test="gpDictionary.code != null " >
                      when id=#{gpDictionary.id} then #{gpDictionary.code,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="text =case" suffix="end,">
-              <foreach collection="list" item="gpDictionary" index="index">
-                  <if test="gpDictionary.text != null and gpDictionary.text  != '' " >
-                     when id=#{gpDictionary.id} then #{gpDictionary.text,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -198,6 +182,20 @@
                   </if>
               </foreach>
          </trim>
+         <trim prefix="text =case" suffix="end,">
+              <foreach collection="list" item="gpDictionary" index="index">
+                  <if test="gpDictionary.text != null and gpDictionary.text  != '' " >
+                     when id=#{gpDictionary.id} then #{gpDictionary.text,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="type_id =case" suffix="end,">
+              <foreach collection="list" item="gpDictionary" index="index">
+                  <if test="gpDictionary.typeId != null and gpDictionary.typeId  != '' " >
+                     when id=#{gpDictionary.id} then #{gpDictionary.typeId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
@@ -210,41 +208,41 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_dictionary
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="typeId  != null and typeId  != '' " >
-              type_id,
-          </if>
           <if test="code  != null " >
               code,
           </if>
-          <if test="text  != null and text  != '' " >
-              text,
-          </if>
+              id ,
           <if test="priority  != null " >
               priority,
           </if>
           <if test="remark  != null and remark  != '' " >
               remark,
           </if>
+          <if test="text  != null and text  != '' " >
+              text,
+          </if>
+          <if test="typeId  != null and typeId  != '' " >
+              type_id,
+          </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpDictionary" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpDictionary.id ,jdbcType=VARCHAR},
-                  <if test="t.typeId  != null  and t.typeId != '' " >
-                     #{gpDictionary.typeId ,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.code != null ">
                     #{gpDictionary.code,jdbcType=TINYINT},
                   </if>
-                  <if test="t.text  != null  and t.text != '' " >
-                     #{gpDictionary.text ,jdbcType=VARCHAR},
-                  </if>
+              #{gpDictionary.id ,jdbcType=VARCHAR},
                   <if test="t.priority != null ">
                     #{gpDictionary.priority,jdbcType=INTEGER},
                   </if>
                   <if test="t.remark  != null  and t.remark != '' " >
                      #{gpDictionary.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.text  != null  and t.text != '' " >
+                     #{gpDictionary.text ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.typeId  != null  and t.typeId != '' " >
+                     #{gpDictionary.typeId ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

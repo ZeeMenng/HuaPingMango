@@ -185,81 +185,39 @@
     	<foreach collection="list" item="gpUser" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpUser.id,jdbcType=VARCHAR},
-
-      
           #{gpUser.userName,jdbcType=VARCHAR},
-
-      
           #{gpUser.password,jdbcType=VARCHAR},
-
-      
           #{gpUser.realName,jdbcType=VARCHAR},
-
-      
           #{gpUser.genderCode,jdbcType=TINYINT},
-
-      
           #{gpUser.birthTime,jdbcType=TIMESTAMP},
-
-      
           #{gpUser.age,jdbcType=TINYINT},
-
-      
           #{gpUser.isMarriageCode,jdbcType=TINYINT},
-
-      
           #{gpUser.phone,jdbcType=VARCHAR},
-
-      
           #{gpUser.email,jdbcType=VARCHAR},
-
-      
           #{gpUser.qq,jdbcType=VARCHAR},
-
-      
           #{gpUser.icon,jdbcType=VARCHAR},
-
-      
           #{gpUser.registerIp,jdbcType=VARCHAR},
-
-      
           #{gpUser.lastLoginTime,jdbcType=TIMESTAMP},
-
-      
           #{gpUser.lastLoginIp,jdbcType=VARCHAR},
-
-      
           #{gpUser.loginCount,jdbcType=INTEGER},
-
-      
           #{gpUser.remark,jdbcType=VARCHAR},
-
-      
           #{gpUser.isAdminCode,jdbcType=TINYINT},
-
-      
           #{gpUser.isDisabledCode,jdbcType=TINYINT},
-
-      
           #{gpUser.addTime,jdbcType=TIMESTAMP},
-
-      
           #{gpUser.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_user
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_user
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_user
 		where id  in
@@ -271,53 +229,23 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpUser" >
     update gp_user
     <set >
-                  <if test="userName != null  and userName != '' " >
-                     user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="password != null  and password != '' " >
-                     password = #{password,jdbcType=VARCHAR},
-                  </if>
-                  <if test="realName != null  and realName != '' " >
-                     real_name = #{realName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="genderCode != null ">
-                     gender_code = #{genderCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="birthTime != null ">
-                     birth_time = #{birthTime,jdbcType=TIMESTAMP},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="age != null ">
                      age = #{age,jdbcType=TINYINT},
                   </if>
-                  <if test="isMarriageCode != null ">
-                     is_marriage_code = #{isMarriageCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="phone != null  and phone != '' " >
-                     phone = #{phone,jdbcType=VARCHAR},
+                  <if test="birthTime != null ">
+                     birth_time = #{birthTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="email != null  and email != '' " >
                      email = #{email,jdbcType=VARCHAR},
                   </if>
-                  <if test="qq != null  and qq != '' " >
-                     qq = #{qq,jdbcType=VARCHAR},
+                  <if test="genderCode != null ">
+                     gender_code = #{genderCode,jdbcType=TINYINT},
                   </if>
                   <if test="icon != null  and icon != '' " >
                      icon = #{icon,jdbcType=VARCHAR},
-                  </if>
-                  <if test="registerIp != null  and registerIp != '' " >
-                     register_ip = #{registerIp,jdbcType=VARCHAR},
-                  </if>
-                  <if test="lastLoginTime != null ">
-                     last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="lastLoginIp != null  and lastLoginIp != '' " >
-                     last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-                  </if>
-                  <if test="loginCount != null ">
-                     login_count = #{loginCount,jdbcType=INTEGER},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
                   </if>
                   <if test="isAdminCode != null ">
                      is_admin_code = #{isAdminCode,jdbcType=TINYINT},
@@ -325,11 +253,41 @@
                   <if test="isDisabledCode != null ">
                      is_disabled_code = #{isDisabledCode,jdbcType=TINYINT},
                   </if>
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  <if test="isMarriageCode != null ">
+                     is_marriage_code = #{isMarriageCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="lastLoginIp != null  and lastLoginIp != '' " >
+                     last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+                  </if>
+                  <if test="lastLoginTime != null ">
+                     last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="loginCount != null ">
+                     login_count = #{loginCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="password != null  and password != '' " >
+                     password = #{password,jdbcType=VARCHAR},
+                  </if>
+                  <if test="phone != null  and phone != '' " >
+                     phone = #{phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="qq != null  and qq != '' " >
+                     qq = #{qq,jdbcType=VARCHAR},
+                  </if>
+                  <if test="realName != null  and realName != '' " >
+                     real_name = #{realName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="registerIp != null  and registerIp != '' " >
+                     register_ip = #{registerIp,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="userName != null  and userName != '' " >
+                     user_name = #{userName,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -338,53 +296,23 @@
 <update id="updateList">
     update gp_user
     <set >
-                  <if test="t.userName != null  and t.userName != '' " >
-                     user_name = #{t.userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.password != null  and t.password != '' " >
-                     password = #{t.password,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.realName != null  and t.realName != '' " >
-                     real_name = #{t.realName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.genderCode != null ">
-                     gender_code = #{t.genderCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.birthTime != null ">
-                     birth_time = #{t.birthTime,jdbcType=TIMESTAMP},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.age != null ">
                      age = #{t.age,jdbcType=TINYINT},
                   </if>
-                  <if test="t.isMarriageCode != null ">
-                     is_marriage_code = #{t.isMarriageCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.phone != null  and t.phone != '' " >
-                     phone = #{t.phone,jdbcType=VARCHAR},
+                  <if test="t.birthTime != null ">
+                     birth_time = #{t.birthTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.email != null  and t.email != '' " >
                      email = #{t.email,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.qq != null  and t.qq != '' " >
-                     qq = #{t.qq,jdbcType=VARCHAR},
+                  <if test="t.genderCode != null ">
+                     gender_code = #{t.genderCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.icon != null  and t.icon != '' " >
                      icon = #{t.icon,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registerIp != null  and t.registerIp != '' " >
-                     register_ip = #{t.registerIp,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.lastLoginTime != null ">
-                     last_login_time = #{t.lastLoginTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.lastLoginIp != null  and t.lastLoginIp != '' " >
-                     last_login_ip = #{t.lastLoginIp,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.loginCount != null ">
-                     login_count = #{t.loginCount,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
                   <if test="t.isAdminCode != null ">
                      is_admin_code = #{t.isAdminCode,jdbcType=TINYINT},
@@ -392,11 +320,41 @@
                   <if test="t.isDisabledCode != null ">
                      is_disabled_code = #{t.isDisabledCode,jdbcType=TINYINT},
                   </if>
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.isMarriageCode != null ">
+                     is_marriage_code = #{t.isMarriageCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.lastLoginIp != null  and t.lastLoginIp != '' " >
+                     last_login_ip = #{t.lastLoginIp,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lastLoginTime != null ">
+                     last_login_time = #{t.lastLoginTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.loginCount != null ">
+                     login_count = #{t.loginCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.password != null  and t.password != '' " >
+                     password = #{t.password,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone != null  and t.phone != '' " >
+                     phone = #{t.phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qq != null  and t.qq != '' " >
+                     qq = #{t.qq,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.realName != null  and t.realName != '' " >
+                     real_name = #{t.realName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerIp != null  and t.registerIp != '' " >
+                     register_ip = #{t.registerIp,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.userName != null  and t.userName != '' " >
+                     user_name = #{t.userName,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -410,38 +368,10 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_user
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="user_name =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.userName != null and gpUser.userName  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.userName,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="password =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.password != null and gpUser.password  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.password,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="real_name =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.realName != null and gpUser.realName  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.realName,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="gender_code =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.genderCode != null " >
-                     when id=#{gpUser.id} then #{gpUser.genderCode,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="birth_time =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.birthTime != null " >
-                     when id=#{gpUser.id} then #{gpUser.birthTime,jdbcType=TIMESTAMP}
+                  <if test="gpUser.addTime != null " >
+                     when id=#{gpUser.id} then #{gpUser.addTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -452,17 +382,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="is_marriage_code =case" suffix="end,">
+         <trim prefix="birth_time =case" suffix="end,">
               <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.isMarriageCode != null " >
-                     when id=#{gpUser.id} then #{gpUser.isMarriageCode,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="phone =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.phone != null and gpUser.phone  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.phone,jdbcType=VARCHAR}
+                  <if test="gpUser.birthTime != null " >
+                     when id=#{gpUser.id} then #{gpUser.birthTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -473,10 +396,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="qq =case" suffix="end,">
+         <trim prefix="gender_code =case" suffix="end,">
               <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.qq != null and gpUser.qq  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.qq,jdbcType=VARCHAR}
+                  <if test="gpUser.genderCode != null " >
+                     when id=#{gpUser.id} then #{gpUser.genderCode,jdbcType=TINYINT}
                   </if>
               </foreach>
          </trim>
@@ -484,41 +407,6 @@
               <foreach collection="list" item="gpUser" index="index">
                   <if test="gpUser.icon != null and gpUser.icon  != '' " >
                      when id=#{gpUser.id} then #{gpUser.icon,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="register_ip =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.registerIp != null and gpUser.registerIp  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.registerIp,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="last_login_time =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.lastLoginTime != null " >
-                     when id=#{gpUser.id} then #{gpUser.lastLoginTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="last_login_ip =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.lastLoginIp != null and gpUser.lastLoginIp  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.lastLoginIp,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="login_count =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.loginCount != null " >
-                     when id=#{gpUser.id} then #{gpUser.loginCount,jdbcType=INTEGER}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="remark =case" suffix="end,">
-              <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.remark != null and gpUser.remark  != '' " >
-                     when id=#{gpUser.id} then #{gpUser.remark,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -536,10 +424,73 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="add_time =case" suffix="end,">
+         <trim prefix="is_marriage_code =case" suffix="end,">
               <foreach collection="list" item="gpUser" index="index">
-                  <if test="gpUser.addTime != null " >
-                     when id=#{gpUser.id} then #{gpUser.addTime,jdbcType=TIMESTAMP}
+                  <if test="gpUser.isMarriageCode != null " >
+                     when id=#{gpUser.id} then #{gpUser.isMarriageCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="last_login_ip =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.lastLoginIp != null and gpUser.lastLoginIp  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.lastLoginIp,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="last_login_time =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.lastLoginTime != null " >
+                     when id=#{gpUser.id} then #{gpUser.lastLoginTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="login_count =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.loginCount != null " >
+                     when id=#{gpUser.id} then #{gpUser.loginCount,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="password =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.password != null and gpUser.password  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.password,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="phone =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.phone != null and gpUser.phone  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.phone,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="qq =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.qq != null and gpUser.qq  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.qq,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="real_name =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.realName != null and gpUser.realName  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.realName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="register_ip =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.registerIp != null and gpUser.registerIp  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.registerIp,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.remark != null and gpUser.remark  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.remark,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -547,6 +498,13 @@
               <foreach collection="list" item="gpUser" index="index">
                   <if test="gpUser.updateTime != null " >
                      when id=#{gpUser.id} then #{gpUser.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="user_name =case" suffix="end,">
+              <foreach collection="list" item="gpUser" index="index">
+                  <if test="gpUser.userName != null and gpUser.userName  != '' " >
+                     when id=#{gpUser.id} then #{gpUser.userName,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -562,131 +520,131 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="userName  != null and userName  != '' " >
-              user_name,
-          </if>
-          <if test="password  != null and password  != '' " >
-              password,
-          </if>
-          <if test="realName  != null and realName  != '' " >
-              real_name,
-          </if>
-          <if test="genderCode  != null " >
-              gender_code,
-          </if>
-          <if test="birthTime  != null " >
-              birth_time,
+          <if test="addTime  != null " >
+              add_time,
           </if>
           <if test="age  != null " >
               age,
           </if>
-          <if test="isMarriageCode  != null " >
-              is_marriage_code,
-          </if>
-          <if test="phone  != null and phone  != '' " >
-              phone,
+          <if test="birthTime  != null " >
+              birth_time,
           </if>
           <if test="email  != null and email  != '' " >
               email,
           </if>
-          <if test="qq  != null and qq  != '' " >
-              qq,
+          <if test="genderCode  != null " >
+              gender_code,
           </if>
           <if test="icon  != null and icon  != '' " >
               icon,
           </if>
-          <if test="registerIp  != null and registerIp  != '' " >
-              register_ip,
-          </if>
-          <if test="lastLoginTime  != null " >
-              last_login_time,
-          </if>
-          <if test="lastLoginIp  != null and lastLoginIp  != '' " >
-              last_login_ip,
-          </if>
-          <if test="loginCount  != null " >
-              login_count,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+              id ,
           <if test="isAdminCode  != null " >
               is_admin_code,
           </if>
           <if test="isDisabledCode  != null " >
               is_disabled_code,
           </if>
-          <if test="addTime  != null " >
-              add_time,
+          <if test="isMarriageCode  != null " >
+              is_marriage_code,
+          </if>
+          <if test="lastLoginIp  != null and lastLoginIp  != '' " >
+              last_login_ip,
+          </if>
+          <if test="lastLoginTime  != null " >
+              last_login_time,
+          </if>
+          <if test="loginCount  != null " >
+              login_count,
+          </if>
+          <if test="password  != null and password  != '' " >
+              password,
+          </if>
+          <if test="phone  != null and phone  != '' " >
+              phone,
+          </if>
+          <if test="qq  != null and qq  != '' " >
+              qq,
+          </if>
+          <if test="realName  != null and realName  != '' " >
+              real_name,
+          </if>
+          <if test="registerIp  != null and registerIp  != '' " >
+              register_ip,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
           </if>
           <if test="updateTime  != null " >
               update_time,
+          </if>
+          <if test="userName  != null and userName  != '' " >
+              user_name,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpUser" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpUser.id ,jdbcType=VARCHAR},
-                  <if test="t.userName  != null  and t.userName != '' " >
-                     #{gpUser.userName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.password  != null  and t.password != '' " >
-                     #{gpUser.password ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.realName  != null  and t.realName != '' " >
-                     #{gpUser.realName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.genderCode != null ">
-                    #{gpUser.genderCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.birthTime != null ">
-                    #{gpUser.birthTime,jdbcType=TIMESTAMP},
+                  <if test="t.addTime != null ">
+                    #{gpUser.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.age != null ">
                     #{gpUser.age,jdbcType=TINYINT},
                   </if>
-                  <if test="t.isMarriageCode != null ">
-                    #{gpUser.isMarriageCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.phone  != null  and t.phone != '' " >
-                     #{gpUser.phone ,jdbcType=VARCHAR},
+                  <if test="t.birthTime != null ">
+                    #{gpUser.birthTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.email  != null  and t.email != '' " >
                      #{gpUser.email ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.qq  != null  and t.qq != '' " >
-                     #{gpUser.qq ,jdbcType=VARCHAR},
+                  <if test="t.genderCode != null ">
+                    #{gpUser.genderCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.icon  != null  and t.icon != '' " >
                      #{gpUser.icon ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.registerIp  != null  and t.registerIp != '' " >
-                     #{gpUser.registerIp ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.lastLoginTime != null ">
-                    #{gpUser.lastLoginTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.lastLoginIp  != null  and t.lastLoginIp != '' " >
-                     #{gpUser.lastLoginIp ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.loginCount != null ">
-                    #{gpUser.loginCount,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
-                     #{gpUser.remark ,jdbcType=VARCHAR},
-                  </if>
+              #{gpUser.id ,jdbcType=VARCHAR},
                   <if test="t.isAdminCode != null ">
                     #{gpUser.isAdminCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.isDisabledCode != null ">
                     #{gpUser.isDisabledCode,jdbcType=TINYINT},
                   </if>
-                  <if test="t.addTime != null ">
-                    #{gpUser.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.isMarriageCode != null ">
+                    #{gpUser.isMarriageCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.lastLoginIp  != null  and t.lastLoginIp != '' " >
+                     #{gpUser.lastLoginIp ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.lastLoginTime != null ">
+                    #{gpUser.lastLoginTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.loginCount != null ">
+                    #{gpUser.loginCount,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.password  != null  and t.password != '' " >
+                     #{gpUser.password ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone  != null  and t.phone != '' " >
+                     #{gpUser.phone ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.qq  != null  and t.qq != '' " >
+                     #{gpUser.qq ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.realName  != null  and t.realName != '' " >
+                     #{gpUser.realName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.registerIp  != null  and t.registerIp != '' " >
+                     #{gpUser.registerIp ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{gpUser.remark ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.updateTime != null ">
                     #{gpUser.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.userName  != null  and t.userName != '' " >
+                     #{gpUser.userName ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

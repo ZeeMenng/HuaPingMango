@@ -210,4 +210,12 @@ public class SymbolicConstant {
 	public static final String DI_QUOTA_DATA_STATUS_TYPE = "f7b936b246dc0ead6ea88dc7b0d24501";//指标数据状态类型字典
 	public static final String DI_CROP_BREED = "f8ba8a76017c654648c239a4a0f37b34";//作物种类字典
 	public static final String DI_ENTERPRISE_RELATION_TYPE = "fb498fc2c61dd4c81bc7e15310b1ad8e";//企业上下游关系类型字典
+	
+	
+	
+	//查询出某个用户没有拥有、但相应角色拥有的应用领域。 
+	public static final String SQL_SELECT_ROLE_DOMAIN_ID="select domain_id from gpr_role_domain where role_id in (%s) and domain_id not in (select domain_id from gpr_domain_user where user_id='%s') group by domain_id";
+	
+	//根据角色，查出这个角色下的用户和应用领域
+	public static final String SQL_SELECT_USER_DOMAIN_BY_ROLE="select A.domain_id,B.user_id from gpr_role_domain A inner join gpr_user_role B on A.role_id=B.role_id where A.role_id='%s'";
 }

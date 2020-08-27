@@ -226,7 +226,7 @@ public class AuthenticationController extends BaseSwgApp {
 				gpLoginLog.setLogoutTypeCode(LogoutType.PASSIVE.getCode());
 				gpLoginLogUntBll.update(gpLoginLog, false);
 
-				GpToken gpToken = (GpToken) gpTokenUntBll.getModel(gpLoginLog.getTokenId()).getData();
+				GpToken gpToken = (GpToken) gpTokenUntBll.getModel(gpLoginLog.getId()).getData();
 				gpToken.setADeadTime(DateUtils.getCurrentTime());
 				gpToken.setRDeadTime(DateUtils.getCurrentTime());
 				gpTokenUntBll.update(gpToken, false);
@@ -263,18 +263,11 @@ public class AuthenticationController extends BaseSwgApp {
 		gpToken.setUserId(user.getId());
 		gpToken.setUserName(user.getUserName());
 		gpToken.getSecret();
-		gpToken.setLoginLogId(loginLogId);
 
+		GpLoginLog gpLoginLog = new GpLoginLog();
 		String ip = Tools.getIpAddr(request);
 		String resolution = request.getParameter("resolution");
-
-		// 插入登录信息到GpToken表中
-		resultModel = gpTokenUntBll.add(gpToken, false);
-		if (!resultModel.getIsSuccess())
-			throw new GlobalException(resultModel.getResultMessage());
-		GpLoginLog gpLoginLog = new GpLoginLog();
 		gpLoginLog.setId(loginLogId);
-		gpLoginLog.setTokenId(loginLogId);
 		gpLoginLog.setBrowser(Tools.getBrowser(request));
 		gpLoginLog.setDomainId(clientId);
 		gpLoginLog.setDomainName(DomainEnum.getText(clientId));
@@ -294,6 +287,11 @@ public class AuthenticationController extends BaseSwgApp {
 		if (!resultModel.getIsSuccess())
 			throw new GlobalException(resultModel.getResultMessage());
 
+		// 插入登录信息到GpToken表中
+		resultModel = gpTokenUntBll.add(gpToken, false);
+		if (!resultModel.getIsSuccess())
+			throw new GlobalException(resultModel.getResultMessage());
+		
 		// 处理用户表中最后登陆信息
 		user.setLoginCount(user.getLoginCount() + 1);
 		user.setLastLoginTime(gpLoginLog.getLoginTime());

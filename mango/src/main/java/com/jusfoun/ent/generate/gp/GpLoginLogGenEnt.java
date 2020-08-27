@@ -4,18 +4,20 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDomain;
+import com.jusfoun.ent.extend.gp.GpUser;
+import com.jusfoun.ent.extend.gp.GpOperLogLogin;
+import com.jusfoun.ent.extend.gp.GpToken;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:49
+ * @updateDate 2020/8/27 10:33:13
  * @description 实体类GpLoginLogGenEnt，自动生成。登录日志。
  */
 
@@ -48,15 +50,21 @@ public class GpLoginLogGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="屏幕分辨率。",hidden=false,required=false)
     private String resolution;
-    @ApiModelProperty(value="所属Token。外键，引用Token信息表（token）的主键。",hidden=false,required=false)
-    private String tokenId;
     @ApiModelProperty(value="系统用户。外键，引用系统用户表（user）的主键。",hidden=false,required=false)
     private String userId;
     @ApiModelProperty(value="登录用户名。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpOperLogLogin> gpOperLogLoginList;   
+    private ArrayList<GpToken> gpTokenList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。浏览器版本。
@@ -241,20 +249,6 @@ public class GpLoginLogGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。所属Token。外键，引用Token信息表（token）的主键。
-	 */
-	public String getTokenId() {
-		return this.tokenId;
-	}
-
-	/**
-	 * set方法。所属Token。外键，引用Token信息表（token）的主键。
-	 */
-	public void setTokenId(String tokenId) {
-		this.tokenId = tokenId;
-	}
-    
-	/**
 	 * get方法。系统用户。外键，引用系统用户表（user）的主键。
 	 */
 	public String getUserId() {
@@ -283,7 +277,70 @@ public class GpLoginLogGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public ArrayList<GpOperLogLogin> getGpOperLogLoginList() {
+		return this.gpOperLogLoginList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public void setGpOperLogLoginList(ArrayList<GpOperLogLogin> gpOperLogLoginList) {
+		this.gpOperLogLoginList = gpOperLogLoginList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public ArrayList<GpToken> getGpTokenList() {
+		return this.gpTokenList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public void setGpTokenList(ArrayList<GpToken> gpTokenList) {
+		this.gpTokenList = gpTokenList;
+	}
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

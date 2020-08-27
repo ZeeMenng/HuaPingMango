@@ -75,36 +75,64 @@
     	<foreach collection="list" item="gpOperLogLogin" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpOperLogLogin.id,jdbcType=VARCHAR},
-
-      
           #{gpOperLogLogin.operLogId,jdbcType=VARCHAR},
-
-      
           #{gpOperLogLogin.loginLogId,jdbcType=VARCHAR},
-
-      
           #{gpOperLogLogin.userId,jdbcType=VARCHAR},
-
-      
           #{gpOperLogLogin.userName,jdbcType=VARCHAR},
-
-      
           #{gpOperLogLogin.tokenId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_oper_log_login
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_oper_log_login
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByLoginLogId" parameterType="java.lang.String">
+    	delete from gp_oper_log_login
+    	where login_log_id = #{loginLogId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByLoginLogId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_oper_log_login where login_log_id = #{loginLogId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByOperLogId" parameterType="java.lang.String">
+    	delete from gp_oper_log_login
+    	where oper_log_id = #{operLogId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByOperLogId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_oper_log_login where oper_log_id = #{operLogId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByTokenId" parameterType="java.lang.String">
+    	delete from gp_oper_log_login
+    	where token_id = #{tokenId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByTokenId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_oper_log_login where token_id = #{tokenId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+    	delete from gp_oper_log_login
+    	where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_oper_log_login where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_oper_log_login
 		where id  in
@@ -116,20 +144,20 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpOperLogLogin" >
     update gp_oper_log_login
     <set >
+                  <if test="loginLogId != null  and loginLogId != '' " >
+                     login_log_id = #{loginLogId,jdbcType=VARCHAR},
+                  </if>
                   <if test="operLogId != null  and operLogId != '' " >
                      oper_log_id = #{operLogId,jdbcType=VARCHAR},
                   </if>
-                  <if test="loginLogId != null  and loginLogId != '' " >
-                     login_log_id = #{loginLogId,jdbcType=VARCHAR},
+                  <if test="tokenId != null  and tokenId != '' " >
+                     token_id = #{tokenId,jdbcType=VARCHAR},
                   </if>
                   <if test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
                   </if>
                   <if test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="tokenId != null  and tokenId != '' " >
-                     token_id = #{tokenId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -138,20 +166,20 @@
 <update id="updateList">
     update gp_oper_log_login
     <set >
+                  <if test="t.loginLogId != null  and t.loginLogId != '' " >
+                     login_log_id = #{t.loginLogId,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.operLogId != null  and t.operLogId != '' " >
                      oper_log_id = #{t.operLogId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.loginLogId != null  and t.loginLogId != '' " >
-                     login_log_id = #{t.loginLogId,jdbcType=VARCHAR},
+                  <if test="t.tokenId != null  and t.tokenId != '' " >
+                     token_id = #{t.tokenId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userId != null  and t.userId != '' " >
                      user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userName != null  and t.userName != '' " >
                      user_name = #{t.userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tokenId != null  and t.tokenId != '' " >
-                     token_id = #{t.tokenId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -165,6 +193,13 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_oper_log_login
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="login_log_id =case" suffix="end,">
+              <foreach collection="list" item="gpOperLogLogin" index="index">
+                  <if test="gpOperLogLogin.loginLogId != null and gpOperLogLogin.loginLogId  != '' " >
+                     when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.loginLogId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="oper_log_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
                   <if test="gpOperLogLogin.operLogId != null and gpOperLogLogin.operLogId  != '' " >
@@ -172,10 +207,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="login_log_id =case" suffix="end,">
+         <trim prefix="token_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.loginLogId != null and gpOperLogLogin.loginLogId  != '' " >
-                     when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.loginLogId,jdbcType=VARCHAR}
+                  <if test="gpOperLogLogin.tokenId != null and gpOperLogLogin.tokenId  != '' " >
+                     when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.tokenId,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -193,13 +228,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="token_id =case" suffix="end,">
-              <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.tokenId != null and gpOperLogLogin.tokenId  != '' " >
-                     when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.tokenId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
@@ -213,11 +241,14 @@
     replace into gp_oper_log_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
               id ,
+          <if test="loginLogId  != null and loginLogId  != '' " >
+              login_log_id,
+          </if>
           <if test="operLogId  != null and operLogId  != '' " >
               oper_log_id,
           </if>
-          <if test="loginLogId  != null and loginLogId  != '' " >
-              login_log_id,
+          <if test="tokenId  != null and tokenId  != '' " >
+              token_id,
           </if>
           <if test="userId  != null and userId  != '' " >
               user_id,
@@ -225,28 +256,25 @@
           <if test="userName  != null and userName  != '' " >
               user_name,
           </if>
-          <if test="tokenId  != null and tokenId  != '' " >
-              token_id,
-          </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpOperLogLogin" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gpOperLogLogin.id ,jdbcType=VARCHAR},
+                  <if test="t.loginLogId  != null  and t.loginLogId != '' " >
+                     #{gpOperLogLogin.loginLogId ,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.operLogId  != null  and t.operLogId != '' " >
                      #{gpOperLogLogin.operLogId ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.loginLogId  != null  and t.loginLogId != '' " >
-                     #{gpOperLogLogin.loginLogId ,jdbcType=VARCHAR},
+                  <if test="t.tokenId  != null  and t.tokenId != '' " >
+                     #{gpOperLogLogin.tokenId ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userId  != null  and t.userId != '' " >
                      #{gpOperLogLogin.userId ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userName  != null  and t.userName != '' " >
                      #{gpOperLogLogin.userName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tokenId  != null  and t.tokenId != '' " >
-                     #{gpOperLogLogin.tokenId ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

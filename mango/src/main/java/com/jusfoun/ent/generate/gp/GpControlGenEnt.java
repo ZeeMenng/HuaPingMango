@@ -4,18 +4,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDomain;
+import com.jusfoun.ent.extend.gp.GpPage;
+import com.jusfoun.ent.extend.gp.GprRoleControl;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:47
+ * @updateDate 2020/8/27 10:33:10
  * @description 实体类GpControlGenEnt，自动生成。系统控件。
  */
 
@@ -40,9 +41,16 @@ public class GpControlGenEnt extends BaseEnt implements Serializable {
     private String serialNo;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
+    private  GpPage gpPage;
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GprRoleControl> gprRoleControlList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -171,7 +179,56 @@ public class GpControlGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的控件权限。
+	 */
+	public ArrayList<GprRoleControl> getGprRoleControlList() {
+		return this.gprRoleControlList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的控件权限。
+	 */
+	public void setGprRoleControlList(ArrayList<GprRoleControl> gprRoleControlList) {
+		this.gprRoleControlList = gprRoleControlList;
+	}
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统页面。
+	 */
+	public GpPage getGpPage() {
+		return this.gpPage;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统页面。
+	 */
+	public void setGpPage(GpPage gpPage) {
+		this.gpPage = gpPage;
+	}
+
+
+
+
 
 }
 

@@ -51,27 +51,41 @@
     	<foreach collection="list" item="gprDomainUser" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gprDomainUser.id,jdbcType=VARCHAR},
-
-      
           #{gprDomainUser.domainId,jdbcType=VARCHAR},
-
-      
           #{gprDomainUser.userId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gpr_domain_user
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gpr_domain_user
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByDomainId" parameterType="java.lang.String">
+    	delete from gpr_domain_user
+    	where domain_id = #{domainId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_domain_user where domain_id = #{domainId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+    	delete from gpr_domain_user
+    	where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_domain_user where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_domain_user
 		where id  in
@@ -140,10 +154,10 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_domain_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
           <if test="domainId  != null and domainId  != '' " >
               domain_id,
           </if>
+              id ,
           <if test="userId  != null and userId  != '' " >
               user_id,
           </if>
@@ -151,10 +165,10 @@
     VALUES
     <foreach collection="list" item="gprDomainUser" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gprDomainUser.id ,jdbcType=VARCHAR},
                   <if test="t.domainId  != null  and t.domainId != '' " >
                      #{gprDomainUser.domainId ,jdbcType=VARCHAR},
                   </if>
+              #{gprDomainUser.id ,jdbcType=VARCHAR},
                   <if test="t.userId  != null  and t.userId != '' " >
                      #{gprDomainUser.userId ,jdbcType=VARCHAR},
                   </if>

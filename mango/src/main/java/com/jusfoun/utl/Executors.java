@@ -82,7 +82,7 @@ public class Executors extends BaseApp{
 		
 		// 处理登陆日志
 		GpLoginLog gpLoginLog = new GpLoginLog();
-		gpLoginLog.setTokenId(token);
+		gpLoginLog.setId(token);
 		gpLoginLog.setUserName(userName);
 		gpLoginLog.setIp(ip);
 		gpLoginLog.setBrowser(browser);

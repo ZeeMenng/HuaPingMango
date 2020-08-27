@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/11 11:42:44
+ * @updateDate 2020/8/26 19:55:23
  * @description 附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

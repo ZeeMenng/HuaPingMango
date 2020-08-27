@@ -196,6 +196,92 @@ public class GprDomainUserSplBll extends GprDomainUserGenSplBll {
 		return result;
 	}
 
+	
+	public ResultModel deleteByRoleId(String roleId) {
+		return deleteByDomainId(roleId, isLogRead);
+	}
+
+	public ResultModel deleteByRoleId(String roleId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(roleId);
+			result.setObjectId(roleId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETE.getCode());
+			result.setOperTypeText(OperType.DELETE.getText());
+			result.setRemark("根据角色ID，删除应用领域用户中间表。");
+
+			int i = gprDomainUserSplDal.deleteByRoleId(roleId);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETE_S.getCode());
+			result.setResultMessage(OperResult.DELETE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETE_F.getCode());
+			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList) {
+		return deleteByRoleIdList(roleIdList, isLogWrite);
+	}
+
+	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject(roleIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据角色ID，批量删除应用领域用户中间表。");
+
+			int i = gprDomainUserSplDal.deleteByRoleIdList(roleIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+	
+	
 	public ResultModel getListByUserId(String userId) {
 		return getListByUserId(userId, isLogRead);
 	}
@@ -208,8 +294,8 @@ public class GprDomainUserSplBll extends GprDomainUserGenSplBll {
 			result.setIncomeValue(userId);
 			result.setObjectId(userId);
 			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
+			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
+			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
 			result.setRemark("根据用户ID，查询应用领域用户中间表。");
 
 			List<GprDomainUser> modelList = gprDomainUserSplDal.getListByUserId(userId);
@@ -217,18 +303,18 @@ public class GprDomainUserSplBll extends GprDomainUserGenSplBll {
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
 			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLIST_S.getCode());
-			result.setResultMessage(OperResult.GETLIST_S.getText());
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 			if (modelList.isEmpty()) {
 				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLIST_F.getCode());
-				result.setResultMessage(OperResult.GETLIST_F.getText() + "：不存在相应记录！");
+				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
 			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
 			result.setReturnValue(e.getMessage());
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);

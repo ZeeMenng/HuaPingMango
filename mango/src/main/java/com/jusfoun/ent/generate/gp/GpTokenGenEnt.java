@@ -4,18 +4,20 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpOperLogLogin;
+import com.jusfoun.ent.extend.gp.GpDomain;
+import com.jusfoun.ent.extend.gp.GpLoginLog;
+import com.jusfoun.ent.extend.gp.GpUser;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:54
+ * @updateDate 2020/8/27 10:33:17
  * @description 实体类GpTokenGenEnt，自动生成。token信息。
  */
 
@@ -32,8 +34,6 @@ public class GpTokenGenEnt extends BaseEnt implements Serializable {
     private String domainId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="对应登录记录。外键，引用登录日志表（login_log）的主键。",hidden=false,required=false)
-    private String loginLogId;
     @ApiModelProperty(value="refresh_token过期时间。",hidden=false,required=false)
     private Date rDeadTime;
     @ApiModelProperty(value="refresh_token。唯一字段。",hidden=false,required=false)
@@ -48,9 +48,17 @@ public class GpTokenGenEnt extends BaseEnt implements Serializable {
     private String userId;
     @ApiModelProperty(value="所属用户 。登录名称，和系统用户表（user）的登录名称（user_name）对应。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
+    private  GpLoginLog gpLoginLog;
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpOperLogLogin> gpOperLogLoginList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。access_token过期时间。
@@ -120,20 +128,6 @@ public class GpTokenGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setId(String id) {
 		this.id = id;
-	}
-    
-	/**
-	 * get方法。对应登录记录。外键，引用登录日志表（login_log）的主键。
-	 */
-	public String getLoginLogId() {
-		return this.loginLogId;
-	}
-
-	/**
-	 * set方法。对应登录记录。外键，引用登录日志表（login_log）的主键。
-	 */
-	public void setLoginLogId(String loginLogId) {
-		this.loginLogId = loginLogId;
 	}
     
 	/**
@@ -235,7 +229,70 @@ public class GpTokenGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public ArrayList<GpOperLogLogin> getGpOperLogLoginList() {
+		return this.gpOperLogLoginList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。登录用户操作日志。
+	 */
+	public void setGpOperLogLoginList(ArrayList<GpOperLogLogin> gpOperLogLoginList) {
+		this.gpOperLogLoginList = gpOperLogLoginList;
+	}
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。登录日志。
+	 */
+	public GpLoginLog getGpLoginLog() {
+		return this.gpLoginLog;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。登录日志。
+	 */
+	public void setGpLoginLog(GpLoginLog gpLoginLog) {
+		this.gpLoginLog = gpLoginLog;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

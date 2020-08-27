@@ -4,7 +4,6 @@
 
   <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpToken" >
               <id column="id" property="id" jdbcType="VARCHAR" />
-              <result column="login_log_id" property="loginLogId" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="user_id" property="userId" jdbcType="VARCHAR" />
               <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -19,7 +18,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,login_log_id,domain_id,user_id,user_name,access_token,a_dead_time,refresh_token,r_dead_time,secret,remark,add_time,update_time
+        id,domain_id,user_id,user_name,access_token,a_dead_time,refresh_token,r_dead_time,secret,remark,add_time,update_time
   </sql>
   
   <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpToken" >
@@ -27,10 +26,6 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
               id,
-          </if>
-      
-          <if test="loginLogId != null and loginLogId != '' " >
-              login_log_id,
           </if>
       
           <if test="domainId != null and domainId != '' " >
@@ -78,9 +73,6 @@
           <if test="id != null and id != '' " >
               #{id,jdbcType=VARCHAR},
           </if>
-          <if test="loginLogId != null and loginLogId != '' " >
-              #{loginLogId,jdbcType=VARCHAR},
-          </if>
           <if test="domainId != null and domainId != '' " >
               #{domainId,jdbcType=VARCHAR},
           </if>
@@ -127,57 +119,60 @@
     	<foreach collection="list" item="gpToken" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpToken.id,jdbcType=VARCHAR},
-
-      
-          #{gpToken.loginLogId,jdbcType=VARCHAR},
-
-      
           #{gpToken.domainId,jdbcType=VARCHAR},
-
-      
           #{gpToken.userId,jdbcType=VARCHAR},
-
-      
           #{gpToken.userName,jdbcType=VARCHAR},
-
-      
           #{gpToken.accessToken,jdbcType=VARCHAR},
-
-      
           #{gpToken.aDeadTime,jdbcType=TIMESTAMP},
-
-      
           #{gpToken.refreshToken,jdbcType=VARCHAR},
-
-      
           #{gpToken.rDeadTime,jdbcType=TIMESTAMP},
-
-      
           #{gpToken.secret,jdbcType=VARCHAR},
-
-      
           #{gpToken.remark,jdbcType=VARCHAR},
-
-      
           #{gpToken.addTime,jdbcType=TIMESTAMP},
-
-      
           #{gpToken.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_token
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_token
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByDomainId" parameterType="java.lang.String">
+    	delete from gp_token
+    	where domain_id = #{domainId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_token where domain_id = #{domainId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteById" parameterType="java.lang.String">
+    	delete from gp_token
+    	where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_token where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+    	delete from gp_token
+    	where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_token where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_token
 		where id  in
@@ -189,41 +184,38 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpToken" >
     update gp_token
     <set >
-                  <if test="loginLogId != null  and loginLogId != '' " >
-                     login_log_id = #{loginLogId,jdbcType=VARCHAR},
+                  <if test="aDeadTime != null ">
+                     a_dead_time = #{aDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="accessToken != null  and accessToken != '' " >
+                     access_token = #{accessToken,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="rDeadTime != null ">
+                     r_dead_time = #{rDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="refreshToken != null  and refreshToken != '' " >
+                     refresh_token = #{refreshToken,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="secret != null  and secret != '' " >
+                     secret = #{secret,jdbcType=VARCHAR},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
                   </if>
                   <if test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="accessToken != null  and accessToken != '' " >
-                     access_token = #{accessToken,jdbcType=VARCHAR},
-                  </if>
-                  <if test="aDeadTime != null ">
-                     a_dead_time = #{aDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="refreshToken != null  and refreshToken != '' " >
-                     refresh_token = #{refreshToken,jdbcType=VARCHAR},
-                  </if>
-                  <if test="rDeadTime != null ">
-                     r_dead_time = #{rDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="secret != null  and secret != '' " >
-                     secret = #{secret,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="updateTime != null ">
-                     update_time = #{updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -232,41 +224,38 @@
 <update id="updateList">
     update gp_token
     <set >
-                  <if test="t.loginLogId != null  and t.loginLogId != '' " >
-                     login_log_id = #{t.loginLogId,jdbcType=VARCHAR},
+                  <if test="t.aDeadTime != null ">
+                     a_dead_time = #{t.aDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.accessToken != null  and t.accessToken != '' " >
+                     access_token = #{t.accessToken,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.rDeadTime != null ">
+                     r_dead_time = #{t.rDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.refreshToken != null  and t.refreshToken != '' " >
+                     refresh_token = #{t.refreshToken,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.secret != null  and t.secret != '' " >
+                     secret = #{t.secret,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.userId != null  and t.userId != '' " >
                      user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userName != null  and t.userName != '' " >
                      user_name = #{t.userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.accessToken != null  and t.accessToken != '' " >
-                     access_token = #{t.accessToken,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.aDeadTime != null ">
-                     a_dead_time = #{t.aDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.refreshToken != null  and t.refreshToken != '' " >
-                     refresh_token = #{t.refreshToken,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.rDeadTime != null ">
-                     r_dead_time = #{t.rDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.secret != null  and t.secret != '' " >
-                     secret = #{t.secret,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
-                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -280,10 +269,24 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_token
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="login_log_id =case" suffix="end,">
+         <trim prefix="a_dead_time =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.loginLogId != null and gpToken.loginLogId  != '' " >
-                     when id=#{gpToken.id} then #{gpToken.loginLogId,jdbcType=VARCHAR}
+                  <if test="gpToken.aDeadTime != null " >
+                     when id=#{gpToken.id} then #{gpToken.aDeadTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="access_token =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.accessToken != null and gpToken.accessToken  != '' " >
+                     when id=#{gpToken.id} then #{gpToken.accessToken,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.addTime != null " >
+                     when id=#{gpToken.id} then #{gpToken.addTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -291,6 +294,41 @@
               <foreach collection="list" item="gpToken" index="index">
                   <if test="gpToken.domainId != null and gpToken.domainId  != '' " >
                      when id=#{gpToken.id} then #{gpToken.domainId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="r_dead_time =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.rDeadTime != null " >
+                     when id=#{gpToken.id} then #{gpToken.rDeadTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="refresh_token =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.refreshToken != null and gpToken.refreshToken  != '' " >
+                     when id=#{gpToken.id} then #{gpToken.refreshToken,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.remark != null and gpToken.remark  != '' " >
+                     when id=#{gpToken.id} then #{gpToken.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="secret =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.secret != null and gpToken.secret  != '' " >
+                     when id=#{gpToken.id} then #{gpToken.secret,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="update_time =case" suffix="end,">
+              <foreach collection="list" item="gpToken" index="index">
+                  <if test="gpToken.updateTime != null " >
+                     when id=#{gpToken.id} then #{gpToken.updateTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -308,62 +346,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="access_token =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.accessToken != null and gpToken.accessToken  != '' " >
-                     when id=#{gpToken.id} then #{gpToken.accessToken,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="a_dead_time =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.aDeadTime != null " >
-                     when id=#{gpToken.id} then #{gpToken.aDeadTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="refresh_token =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.refreshToken != null and gpToken.refreshToken  != '' " >
-                     when id=#{gpToken.id} then #{gpToken.refreshToken,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="r_dead_time =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.rDeadTime != null " >
-                     when id=#{gpToken.id} then #{gpToken.rDeadTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="secret =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.secret != null and gpToken.secret  != '' " >
-                     when id=#{gpToken.id} then #{gpToken.secret,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="remark =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.remark != null and gpToken.remark  != '' " >
-                     when id=#{gpToken.id} then #{gpToken.remark,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.addTime != null " >
-                     when id=#{gpToken.id} then #{gpToken.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="update_time =case" suffix="end,">
-              <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.updateTime != null " >
-                     when id=#{gpToken.id} then #{gpToken.updateTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
@@ -376,12 +358,33 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_token
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="loginLogId  != null and loginLogId  != '' " >
-              login_log_id,
+          <if test="aDeadTime  != null " >
+              a_dead_time,
+          </if>
+          <if test="accessToken  != null and accessToken  != '' " >
+              access_token,
+          </if>
+          <if test="addTime  != null " >
+              add_time,
           </if>
           <if test="domainId  != null and domainId  != '' " >
               domain_id,
+          </if>
+              id ,
+          <if test="rDeadTime  != null " >
+              r_dead_time,
+          </if>
+          <if test="refreshToken  != null and refreshToken  != '' " >
+              refresh_token,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="secret  != null and secret  != '' " >
+              secret,
+          </if>
+          <if test="updateTime  != null " >
+              update_time,
           </if>
           <if test="userId  != null and userId  != '' " >
               user_id,
@@ -389,70 +392,43 @@
           <if test="userName  != null and userName  != '' " >
               user_name,
           </if>
-          <if test="accessToken  != null and accessToken  != '' " >
-              access_token,
-          </if>
-          <if test="aDeadTime  != null " >
-              a_dead_time,
-          </if>
-          <if test="refreshToken  != null and refreshToken  != '' " >
-              refresh_token,
-          </if>
-          <if test="rDeadTime  != null " >
-              r_dead_time,
-          </if>
-          <if test="secret  != null and secret  != '' " >
-              secret,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpToken" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpToken.id ,jdbcType=VARCHAR},
-                  <if test="t.loginLogId  != null  and t.loginLogId != '' " >
-                     #{gpToken.loginLogId ,jdbcType=VARCHAR},
+                  <if test="t.aDeadTime != null ">
+                    #{gpToken.aDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.accessToken  != null  and t.accessToken != '' " >
+                     #{gpToken.accessToken ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                    #{gpToken.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.domainId  != null  and t.domainId != '' " >
                      #{gpToken.domainId ,jdbcType=VARCHAR},
+                  </if>
+              #{gpToken.id ,jdbcType=VARCHAR},
+                  <if test="t.rDeadTime != null ">
+                    #{gpToken.rDeadTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.refreshToken  != null  and t.refreshToken != '' " >
+                     #{gpToken.refreshToken ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{gpToken.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.secret  != null  and t.secret != '' " >
+                     #{gpToken.secret ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.updateTime != null ">
+                    #{gpToken.updateTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.userId  != null  and t.userId != '' " >
                      #{gpToken.userId ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.userName  != null  and t.userName != '' " >
                      #{gpToken.userName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.accessToken  != null  and t.accessToken != '' " >
-                     #{gpToken.accessToken ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.aDeadTime != null ">
-                    #{gpToken.aDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.refreshToken  != null  and t.refreshToken != '' " >
-                     #{gpToken.refreshToken ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.rDeadTime != null ">
-                    #{gpToken.rDeadTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.secret  != null  and t.secret != '' " >
-                     #{gpToken.secret ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
-                     #{gpToken.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                    #{gpToken.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
-                    #{gpToken.updateTime,jdbcType=TIMESTAMP},
                   </if>
       </trim>
     </foreach>
@@ -494,9 +470,6 @@
 		</if>
 		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
 				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
-		</if>
-		<if test="EntityRelated.loginLogId != null and EntityRelated.loginLogId != '' ">
-				and login_log_id = #{EntityRelated.loginLogId,jdbcType=VARCHAR} 
 		</if>
 		<if test="EntityRelated.beginRDeadTime != null ">
 				<![CDATA[ AND  unix_timestamp(r_dead_time)>=unix_timestamp(#{EntityRelated.beginRDeadTime})]]> 

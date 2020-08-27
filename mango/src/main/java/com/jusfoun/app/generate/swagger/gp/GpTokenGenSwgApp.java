@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/11 11:42:45
+ * @updateDate 2020/8/26 19:55:24
  * @description token信息。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpTokenGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.login_log_id loginLogId,A.domain_id domainId,A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A inner join gp_token B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A inner join gp_token B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);

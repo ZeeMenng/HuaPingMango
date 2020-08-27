@@ -18,12 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GpRoleGenSwgApp;
+import com.jusfoun.bll.extend.split.gp.GprDomainUserSplBll;
 import com.jusfoun.bll.extend.split.gp.GprRoleDomainSplBll;
 import com.jusfoun.bll.extend.split.gp.GprRoleModuleSplBll;
+import com.jusfoun.bll.extend.unity.gp.GprDomainUserUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprRoleControlUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprRoleDomainUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprRoleInterfaceUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprRoleModuleUntBll;
+import com.jusfoun.bll.extend.unity.gp.GprRolePageUntBll;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpRole;
+import com.jusfoun.ent.extend.gp.GprDomainUser;
 import com.jusfoun.ent.extend.gp.GprRoleDomain;
 import com.jusfoun.ent.extend.gp.GprRoleModule;
 import com.jusfoun.ent.parameter.gp.GpRoleParameter;
@@ -53,6 +59,27 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	@Autowired
 	@Qualifier("gprRoleDomainUntBll")
 	protected GprRoleDomainUntBll gprRoleDomainUntBll;
+
+	@Autowired
+	@Qualifier("gprDomainUserUntBll")
+	protected GprDomainUserUntBll gprDomainUserUntBll;
+
+	@Autowired
+	@Qualifier("gprRoleControlUntBll")
+	protected GprRoleControlUntBll gprRoleControlUntBll;
+
+	@Autowired
+	@Qualifier("gprDomainUserSplBll")
+	protected GprDomainUserSplBll gprDomainUserSplBll;
+
+	@Autowired
+	@Qualifier("gprRoleInterfaceUntBll")
+	protected GprRoleInterfaceUntBll gprRoleInterfaceUntBll;
+
+	@Autowired
+	@Qualifier("gprRolePageUntBll")
+	protected GprRolePageUntBll gprRolePageUntBll;
+
 	@Autowired
 	@Qualifier("gprRoleModuleSplBll")
 	protected GprRoleModuleSplBll gprRoleModuleSplBll;
@@ -67,6 +94,10 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	public ResultModel delete(@RequestParam String id) {
 		gprRoleModuleSplBll.deleteByRoleId(id);
 		gprRoleDomainSplBll.deleteByRoleId(id);
+		gprRolePageUntBll.deleteByRoleId(id);
+		gprRoleControlUntBll.deleteByRoleId(id);
+		gprRoleInterfaceUntBll.deleteByRoleId(id);
+
 		ResultModel result = gpRoleUntBll.delete(id);
 		return result;
 	}
@@ -126,32 +157,52 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		ArrayList<GprRoleModule> gprRoleModuleList = new ArrayList<GprRoleModule>();
 		ArrayList<GprRoleDomain> gprRoleDomainList = new ArrayList<GprRoleDomain>();
+		ArrayList<GprDomainUser> gprDomainUserList = new ArrayList<GprDomainUser>();
 
+		//插入角色功能模块关系表
 		if (StringUtils.isNotBlank(jsonData.getModuleIds())) {
 			String[] moduleIdArray = jsonData.getModuleIds().split(",");
 			for (String moduleId : moduleIdArray) {
 				GprRoleModule gprRoleModule = new GprRoleModule();
 				gprRoleModule.setRoleId(jsonData.getId());
 				gprRoleModule.setModuleId(moduleId);
+				gprRoleModule.setIsEnableCode(SymbolicConstant.DCODE_BOOLEAN_T);
 				gprRoleModuleList.add(gprRoleModule);
 
 			}
 		}
+		gprRoleModuleUntBll.add(gprRoleModuleList);
+		
+		//插入角色用户关系
 		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
 			String[] moduleIdArray = jsonData.getDomainIds().split(",");
 			for (String domainId : moduleIdArray) {
 				GprRoleDomain gprRoleDomain = new GprRoleDomain();
 				gprRoleDomain.setRoleId(jsonData.getId());
 				gprRoleDomain.setDomainId(domainId);
+				gprRoleDomain.setIsEnableCode(SymbolicConstant.DCODE_BOOLEAN_T);
 				gprRoleDomainList.add(gprRoleDomain);
 
 			}
 		}
-		if (gprRoleModuleList.size() != 0)
-			gprRoleModuleUntBll.add(gprRoleModuleList);
-		if (gprRoleDomainList.size() != 0)
-			gprRoleDomainUntBll.add(gprRoleDomainList);
+		gprRoleDomainUntBll.add(gprRoleDomainList);
 
+		//插入用户应用领域关系，先 获取这个角色下的用户和应用领域，再插入
+		String sql = String.format(SymbolicConstant.SQL_SELECT_USER_DOMAIN_BY_ROLE, jsonData.getId());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("Sql", sql);
+		ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
+		List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
+		for (Map<String, Object> domainId : domainIdList) {
+			GprDomainUser gprDomainUser = new GprDomainUser();
+			gprDomainUser.setDomainId(domainId.get("domain_id").toString());
+			gprDomainUser.setUserId(domainId.get("user_id").toString());
+			gprDomainUserList.add(gprDomainUser);
+		}
+
+			gprDomainUserUntBll.add(gprDomainUserList);
+		
+		
 		return result;
 	}
 

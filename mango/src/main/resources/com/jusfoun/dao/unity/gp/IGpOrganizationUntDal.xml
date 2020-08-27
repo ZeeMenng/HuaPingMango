@@ -174,75 +174,37 @@
     	<foreach collection="list" item="gpOrganization" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpOrganization.id,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.serialNo,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.name,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.shortName,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.typeCode,jdbcType=TINYINT},
-
-      
           #{gpOrganization.typeText,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.levelCode,jdbcType=TINYINT},
-
-      
           #{gpOrganization.levelText,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.fartherId,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.priority,jdbcType=INTEGER},
-
-      
           #{gpOrganization.phone,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.email,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.fax,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.postcode,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.address,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.responsibility,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.remark,jdbcType=VARCHAR},
-
-      
           #{gpOrganization.addTime,jdbcType=TIMESTAMP},
-
-      
           #{gpOrganization.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_organization
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_organization
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_organization
 		where id  in
@@ -254,11 +216,47 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpOrganization" >
     update gp_organization
     <set >
-                  <if test="serialNo != null  and serialNo != '' " >
-                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="address != null  and address != '' " >
+                     address = #{address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="email != null  and email != '' " >
+                     email = #{email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fartherId != null  and fartherId != '' " >
+                     farther_id = #{fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="fax != null  and fax != '' " >
+                     fax = #{fax,jdbcType=VARCHAR},
+                  </if>
+                  <if test="levelCode != null ">
+                     level_code = #{levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="levelText != null  and levelText != '' " >
+                     level_text = #{levelText,jdbcType=VARCHAR},
                   </if>
                   <if test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="phone != null  and phone != '' " >
+                     phone = #{phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="postcode != null  and postcode != '' " >
+                     postcode = #{postcode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="priority != null ">
+                     priority = #{priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="responsibility != null  and responsibility != '' " >
+                     responsibility = #{responsibility,jdbcType=VARCHAR},
+                  </if>
+                  <if test="serialNo != null  and serialNo != '' " >
+                     serial_no = #{serialNo,jdbcType=VARCHAR},
                   </if>
                   <if test="shortName != null  and shortName != '' " >
                      short_name = #{shortName,jdbcType=VARCHAR},
@@ -268,42 +266,6 @@
                   </if>
                   <if test="typeText != null  and typeText != '' " >
                      type_text = #{typeText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="levelCode != null ">
-                     level_code = #{levelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="levelText != null  and levelText != '' " >
-                     level_text = #{levelText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="fartherId != null  and fartherId != '' " >
-                     farther_id = #{fartherId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="priority != null ">
-                     priority = #{priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="phone != null  and phone != '' " >
-                     phone = #{phone,jdbcType=VARCHAR},
-                  </if>
-                  <if test="email != null  and email != '' " >
-                     email = #{email,jdbcType=VARCHAR},
-                  </if>
-                  <if test="fax != null  and fax != '' " >
-                     fax = #{fax,jdbcType=VARCHAR},
-                  </if>
-                  <if test="postcode != null  and postcode != '' " >
-                     postcode = #{postcode,jdbcType=VARCHAR},
-                  </if>
-                  <if test="address != null  and address != '' " >
-                     address = #{address,jdbcType=VARCHAR},
-                  </if>
-                  <if test="responsibility != null  and responsibility != '' " >
-                     responsibility = #{responsibility,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -315,11 +277,47 @@
 <update id="updateList">
     update gp_organization
     <set >
-                  <if test="t.serialNo != null  and t.serialNo != '' " >
-                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.address != null  and t.address != '' " >
+                     address = #{t.address,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.email != null  and t.email != '' " >
+                     email = #{t.email,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fartherId != null  and t.fartherId != '' " >
+                     farther_id = #{t.fartherId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fax != null  and t.fax != '' " >
+                     fax = #{t.fax,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.levelCode != null ">
+                     level_code = #{t.levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.levelText != null  and t.levelText != '' " >
+                     level_text = #{t.levelText,jdbcType=VARCHAR},
                   </if>
                   <if test="t.name != null  and t.name != '' " >
                      name = #{t.name,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone != null  and t.phone != '' " >
+                     phone = #{t.phone,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.postcode != null  and t.postcode != '' " >
+                     postcode = #{t.postcode,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priority != null ">
+                     priority = #{t.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.responsibility != null  and t.responsibility != '' " >
+                     responsibility = #{t.responsibility,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNo != null  and t.serialNo != '' " >
+                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
                   </if>
                   <if test="t.shortName != null  and t.shortName != '' " >
                      short_name = #{t.shortName,jdbcType=VARCHAR},
@@ -329,42 +327,6 @@
                   </if>
                   <if test="t.typeText != null  and t.typeText != '' " >
                      type_text = #{t.typeText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.levelCode != null ">
-                     level_code = #{t.levelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.levelText != null  and t.levelText != '' " >
-                     level_text = #{t.levelText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fartherId != null  and t.fartherId != '' " >
-                     farther_id = #{t.fartherId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
-                     priority = #{t.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.phone != null  and t.phone != '' " >
-                     phone = #{t.phone,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.email != null  and t.email != '' " >
-                     email = #{t.email,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fax != null  and t.fax != '' " >
-                     fax = #{t.fax,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.postcode != null  and t.postcode != '' " >
-                     postcode = #{t.postcode,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address != null  and t.address != '' " >
-                     address = #{t.address,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.responsibility != null  and t.responsibility != '' " >
-                     responsibility = #{t.responsibility,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -381,10 +343,52 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_organization
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="serial_no =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.serialNo != null and gpOrganization.serialNo  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.serialNo,jdbcType=VARCHAR}
+                  <if test="gpOrganization.addTime != null " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="address =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.address != null and gpOrganization.address  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.address,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="email =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.email != null and gpOrganization.email  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.email,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="farther_id =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.fartherId != null and gpOrganization.fartherId  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.fartherId,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="fax =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.fax != null and gpOrganization.fax  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.fax,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="level_code =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.levelCode != null " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.levelCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="level_text =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.levelText != null and gpOrganization.levelText  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.levelText,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -392,6 +396,48 @@
               <foreach collection="list" item="gpOrganization" index="index">
                   <if test="gpOrganization.name != null and gpOrganization.name  != '' " >
                      when id=#{gpOrganization.id} then #{gpOrganization.name,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="phone =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.phone != null and gpOrganization.phone  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.phone,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="postcode =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.postcode != null and gpOrganization.postcode  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.postcode,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="priority =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.priority != null " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.priority,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.remark != null and gpOrganization.remark  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.remark,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="responsibility =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.responsibility != null and gpOrganization.responsibility  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.responsibility,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="serial_no =case" suffix="end,">
+              <foreach collection="list" item="gpOrganization" index="index">
+                  <if test="gpOrganization.serialNo != null and gpOrganization.serialNo  != '' " >
+                     when id=#{gpOrganization.id} then #{gpOrganization.serialNo,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -416,90 +462,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="level_code =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.levelCode != null " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.levelCode,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="level_text =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.levelText != null and gpOrganization.levelText  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.levelText,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="farther_id =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.fartherId != null and gpOrganization.fartherId  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.fartherId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="priority =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.priority != null " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.priority,jdbcType=INTEGER}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="phone =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.phone != null and gpOrganization.phone  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.phone,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="email =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.email != null and gpOrganization.email  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.email,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="fax =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.fax != null and gpOrganization.fax  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.fax,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="postcode =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.postcode != null and gpOrganization.postcode  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.postcode,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="address =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.address != null and gpOrganization.address  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.address,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="responsibility =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.responsibility != null and gpOrganization.responsibility  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.responsibility,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="remark =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.remark != null and gpOrganization.remark  != '' " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.remark,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.addTime != null " >
-                     when id=#{gpOrganization.id} then #{gpOrganization.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="update_time =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
                   <if test="gpOrganization.updateTime != null " >
@@ -519,12 +481,48 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_organization
         <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="addTime  != null " >
+              add_time,
+          </if>
+          <if test="address  != null and address  != '' " >
+              address,
+          </if>
+          <if test="email  != null and email  != '' " >
+              email,
+          </if>
+          <if test="fartherId  != null and fartherId  != '' " >
+              farther_id,
+          </if>
+          <if test="fax  != null and fax  != '' " >
+              fax,
+          </if>
               id ,
-          <if test="serialNo  != null and serialNo  != '' " >
-              serial_no,
+          <if test="levelCode  != null " >
+              level_code,
+          </if>
+          <if test="levelText  != null and levelText  != '' " >
+              level_text,
           </if>
           <if test="name  != null and name  != '' " >
               name,
+          </if>
+          <if test="phone  != null and phone  != '' " >
+              phone,
+          </if>
+          <if test="postcode  != null and postcode  != '' " >
+              postcode,
+          </if>
+          <if test="priority  != null " >
+              priority,
+          </if>
+          <if test="remark  != null and remark  != '' " >
+              remark,
+          </if>
+          <if test="responsibility  != null and responsibility  != '' " >
+              responsibility,
+          </if>
+          <if test="serialNo  != null and serialNo  != '' " >
+              serial_no,
           </if>
           <if test="shortName  != null and shortName  != '' " >
               short_name,
@@ -535,42 +533,6 @@
           <if test="typeText  != null and typeText  != '' " >
               type_text,
           </if>
-          <if test="levelCode  != null " >
-              level_code,
-          </if>
-          <if test="levelText  != null and levelText  != '' " >
-              level_text,
-          </if>
-          <if test="fartherId  != null and fartherId  != '' " >
-              farther_id,
-          </if>
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="phone  != null and phone  != '' " >
-              phone,
-          </if>
-          <if test="email  != null and email  != '' " >
-              email,
-          </if>
-          <if test="fax  != null and fax  != '' " >
-              fax,
-          </if>
-          <if test="postcode  != null and postcode  != '' " >
-              postcode,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="responsibility  != null and responsibility  != '' " >
-              responsibility,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
           <if test="updateTime  != null " >
               update_time,
           </if>
@@ -578,12 +540,48 @@
     VALUES
     <foreach collection="list" item="gpOrganization" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="t.addTime != null ">
+                    #{gpOrganization.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.address  != null  and t.address != '' " >
+                     #{gpOrganization.address ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.email  != null  and t.email != '' " >
+                     #{gpOrganization.email ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fartherId  != null  and t.fartherId != '' " >
+                     #{gpOrganization.fartherId ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.fax  != null  and t.fax != '' " >
+                     #{gpOrganization.fax ,jdbcType=VARCHAR},
+                  </if>
               #{gpOrganization.id ,jdbcType=VARCHAR},
-                  <if test="t.serialNo  != null  and t.serialNo != '' " >
-                     #{gpOrganization.serialNo ,jdbcType=VARCHAR},
+                  <if test="t.levelCode != null ">
+                    #{gpOrganization.levelCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.levelText  != null  and t.levelText != '' " >
+                     #{gpOrganization.levelText ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.name  != null  and t.name != '' " >
                      #{gpOrganization.name ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.phone  != null  and t.phone != '' " >
+                     #{gpOrganization.phone ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.postcode  != null  and t.postcode != '' " >
+                     #{gpOrganization.postcode ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.priority != null ">
+                    #{gpOrganization.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{gpOrganization.remark ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.responsibility  != null  and t.responsibility != '' " >
+                     #{gpOrganization.responsibility ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                     #{gpOrganization.serialNo ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.shortName  != null  and t.shortName != '' " >
                      #{gpOrganization.shortName ,jdbcType=VARCHAR},
@@ -593,42 +591,6 @@
                   </if>
                   <if test="t.typeText  != null  and t.typeText != '' " >
                      #{gpOrganization.typeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.levelCode != null ">
-                    #{gpOrganization.levelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.levelText  != null  and t.levelText != '' " >
-                     #{gpOrganization.levelText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fartherId  != null  and t.fartherId != '' " >
-                     #{gpOrganization.fartherId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
-                    #{gpOrganization.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.phone  != null  and t.phone != '' " >
-                     #{gpOrganization.phone ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.email  != null  and t.email != '' " >
-                     #{gpOrganization.email ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fax  != null  and t.fax != '' " >
-                     #{gpOrganization.fax ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.postcode  != null  and t.postcode != '' " >
-                     #{gpOrganization.postcode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
-                     #{gpOrganization.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.responsibility  != null  and t.responsibility != '' " >
-                     #{gpOrganization.responsibility ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
-                     #{gpOrganization.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                    #{gpOrganization.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                     #{gpOrganization.updateTime,jdbcType=TIMESTAMP},

@@ -4,18 +4,26 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpControl;
+import com.jusfoun.ent.extend.gp.GpInterface;
+import com.jusfoun.ent.extend.gp.GpLoginLog;
+import com.jusfoun.ent.extend.gp.GpModule;
+import com.jusfoun.ent.extend.gp.GpOperLog;
+import com.jusfoun.ent.extend.gp.GpResource;
+import com.jusfoun.ent.extend.gp.GpToken;
+import com.jusfoun.ent.extend.gp.GprDomainMessage;
+import com.jusfoun.ent.extend.gp.GprDomainUser;
+import com.jusfoun.ent.extend.gp.GprRoleDomain;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:48
+ * @updateDate 2020/8/27 10:33:12
  * @description 实体类GpDomainGenEnt，自动生成。应用领域。
  */
 
@@ -38,9 +46,23 @@ public class GpDomainGenEnt extends BaseEnt implements Serializable {
     private String serialNo;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpControl> gpControlList;   
+    private ArrayList<GpInterface> gpInterfaceList;   
+    private ArrayList<GpLoginLog> gpLoginLogList;   
+    private ArrayList<GpModule> gpModuleList;   
+    private ArrayList<GpOperLog> gpOperLogList;   
+    private ArrayList<GpResource> gpResourceList;   
+    private ArrayList<GpToken> gpTokenList;   
+    private ArrayList<GprDomainMessage> gprDomainMessageList;   
+    private ArrayList<GprDomainUser> gprDomainUserList;   
+    private ArrayList<GprRoleDomain> gprRoleDomainList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -155,7 +177,154 @@ public class GpDomainGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。系统控件。
+	 */
+	public ArrayList<GpControl> getGpControlList() {
+		return this.gpControlList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。系统控件。
+	 */
+	public void setGpControlList(ArrayList<GpControl> gpControlList) {
+		this.gpControlList = gpControlList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。系统接口。
+	 */
+	public ArrayList<GpInterface> getGpInterfaceList() {
+		return this.gpInterfaceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。系统接口。
+	 */
+	public void setGpInterfaceList(ArrayList<GpInterface> gpInterfaceList) {
+		this.gpInterfaceList = gpInterfaceList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。登录日志。
+	 */
+	public ArrayList<GpLoginLog> getGpLoginLogList() {
+		return this.gpLoginLogList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。登录日志。
+	 */
+	public void setGpLoginLogList(ArrayList<GpLoginLog> gpLoginLogList) {
+		this.gpLoginLogList = gpLoginLogList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。功能模块。
+	 */
+	public ArrayList<GpModule> getGpModuleList() {
+		return this.gpModuleList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。功能模块。
+	 */
+	public void setGpModuleList(ArrayList<GpModule> gpModuleList) {
+		this.gpModuleList = gpModuleList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。操作日志。
+	 */
+	public ArrayList<GpOperLog> getGpOperLogList() {
+		return this.gpOperLogList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。操作日志。
+	 */
+	public void setGpOperLogList(ArrayList<GpOperLog> gpOperLogList) {
+		this.gpOperLogList = gpOperLogList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。文件信息。
+	 */
+	public ArrayList<GpResource> getGpResourceList() {
+		return this.gpResourceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。文件信息。
+	 */
+	public void setGpResourceList(ArrayList<GpResource> gpResourceList) {
+		this.gpResourceList = gpResourceList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public ArrayList<GpToken> getGpTokenList() {
+		return this.gpTokenList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。token信息。
+	 */
+	public void setGpTokenList(ArrayList<GpToken> gpTokenList) {
+		this.gpTokenList = gpTokenList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。应用领域的站内信。
+	 */
+	public ArrayList<GprDomainMessage> getGprDomainMessageList() {
+		return this.gprDomainMessageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。应用领域的站内信。
+	 */
+	public void setGprDomainMessageList(ArrayList<GprDomainMessage> gprDomainMessageList) {
+		this.gprDomainMessageList = gprDomainMessageList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。应用领域拥有的用户。
+	 */
+	public ArrayList<GprDomainUser> getGprDomainUserList() {
+		return this.gprDomainUserList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。应用领域拥有的用户。
+	 */
+	public void setGprDomainUserList(ArrayList<GprDomainUser> gprDomainUserList) {
+		this.gprDomainUserList = gprDomainUserList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public ArrayList<GprRoleDomain> getGprRoleDomainList() {
+		return this.gprRoleDomainList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的功能模块权限。
+	 */
+	public void setGprRoleDomainList(ArrayList<GprRoleDomain> gprRoleDomainList) {
+		this.gprRoleDomainList = gprRoleDomainList;
+	}
+
+
+
+
+
+
+
 
 }
 

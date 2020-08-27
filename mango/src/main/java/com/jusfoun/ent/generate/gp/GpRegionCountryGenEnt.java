@@ -4,18 +4,16 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
+import io.swagger.annotations.ApiModelProperty;
 
 import com.jusfoun.ent.base.BaseEnt;
 
-import io.swagger.annotations.ApiModelProperty;
-
-import java.math.BigDecimal;
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:53
+ * @updateDate 2020/8/27 10:33:16
  * @description 实体类GpRegionCountryGenEnt，自动生成。地区信息。
  */
 
@@ -42,9 +40,13 @@ public class GpRegionCountryGenEnt extends BaseEnt implements Serializable {
     private String longitude;
     @ApiModelProperty(value="备注字段。",hidden=false,required=false)
     private String remark;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。简称
@@ -187,7 +189,14 @@ public class GpRegionCountryGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

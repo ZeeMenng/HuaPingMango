@@ -66,9 +66,12 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			}
 			// 统一新增时间begin
 			try {
-				Field timeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-				timeField.setAccessible(true);
-				timeField.set(t, DateUtils.getCurrentTime());
+				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				addTimeField.setAccessible(true);
+				updateTimeField.setAccessible(true);
+				addTimeField.set(t, DateUtils.getCurrentTime());
+				updateTimeField.set(t, DateUtils.getCurrentTime());
 			} catch (NoSuchFieldException e) {
 				// 不是所有类都会有新增时间字段，捕获异常继续执行
 				logger.error(e.getMessage());
@@ -127,7 +130,8 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	}
 
 	public ResultModel add(ArrayList<T> tList, boolean isLog) {
-
+		if (tList == null || tList.isEmpty())
+			throw new GlobalException("传入的数组为空！");
 		ResultModel result = new ResultModel();
 
 		try {
@@ -151,9 +155,12 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 				// 统一新增时间begin
 				try {
-					Field timeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-					timeField.setAccessible(true);
-					timeField.set(t, DateUtils.getCurrentTime());
+					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+					addTimeField.setAccessible(true);
+					updateTimeField.setAccessible(true);
+					addTimeField.set(t, DateUtils.getCurrentTime());
+					updateTimeField.set(t, DateUtils.getCurrentTime());
 				} catch (NoSuchFieldException e) {
 					// 不是所有类都会有新增时间字段，捕获异常继续执行
 					logger.error(e.getMessage());

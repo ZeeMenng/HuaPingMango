@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/11 11:42:45
+ * @updateDate 2020/8/26 19:55:23
  * @description 登录日志。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpLoginLogGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.token_id tokenId,A.domain_id domainId,A.user_id userId,A.user_name userName,A.login_time loginTime,A.logout_time logoutTime,A.logout_type_code logoutTypeCode,A.duration duration,A.ip ip,A.ip_address ipAddress,A.browser browser,A.resolution resolution,A.os os,A.is_success_code isSuccessCode,A.remark remark  from gp_login_log A inner join gp_login_log B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,A.user_id userId,A.user_name userName,A.login_time loginTime,A.logout_time logoutTime,A.logout_type_code logoutTypeCode,A.duration duration,A.ip ip,A.ip_address ipAddress,A.browser browser,A.resolution resolution,A.os os,A.is_success_code isSuccessCode,A.remark remark  from gp_login_log A inner join gp_login_log B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);

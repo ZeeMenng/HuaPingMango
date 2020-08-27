@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpStation;
+import com.jusfoun.ent.extend.gp.GprUserOrganization;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:52
+ * @updateDate 2020/8/27 10:33:15
  * @description 实体类GpOrganizationGenEnt，自动生成。组织机构。
  */
 
@@ -60,9 +60,15 @@ public class GpOrganizationGenEnt extends BaseEnt implements Serializable {
     private String typeText;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpStation> gpStationList;   
+    private ArrayList<GprUserOrganization> gprUserOrganizationList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -331,7 +337,42 @@ public class GpOrganizationGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。岗位。
+	 */
+	public ArrayList<GpStation> getGpStationList() {
+		return this.gpStationList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。岗位。
+	 */
+	public void setGpStationList(ArrayList<GpStation> gpStationList) {
+		this.gpStationList = gpStationList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户所属组织机构。
+	 */
+	public ArrayList<GprUserOrganization> getGprUserOrganizationList() {
+		return this.gprUserOrganizationList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户所属组织机构。
+	 */
+	public void setGprUserOrganizationList(ArrayList<GprUserOrganization> gprUserOrganizationList) {
+		this.gprUserOrganizationList = gprUserOrganizationList;
+	}
+
+
+
+
+
+
+
 
 }
 

@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpRole;
+import com.jusfoun.ent.extend.gp.GpUser;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:46
+ * @updateDate 2020/8/27 10:33:10
  * @description 实体类GprUserRoleGenEnt，自动生成。用户拥有的角色。
  */
 
@@ -28,9 +28,15 @@ public class GprUserRoleGenEnt extends BaseEnt implements Serializable {
     private String roleId;
     @ApiModelProperty(value="系统用户。外键，引用系统用户表（user）的主键。",hidden=false,required=false)
     private String userId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpRole gpRole;
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。主键。
@@ -75,7 +81,42 @@ public class GprUserRoleGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统角色。
+	 */
+	public GpRole getGpRole() {
+		return this.gpRole;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统角色。
+	 */
+	public void setGpRole(GpRole gpRole) {
+		this.gpRole = gpRole;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

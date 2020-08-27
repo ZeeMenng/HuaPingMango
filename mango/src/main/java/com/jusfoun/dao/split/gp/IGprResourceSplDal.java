@@ -28,6 +28,8 @@ public interface IGprResourceSplDal extends IBaseSplDal {
 
 	public int deleteByBusinessId(String businessId);
 	
+	public int deleteByBusinessIdList(ArrayList<String> businessIdList);
+	
 	public int update(GprResource gprResource);
 
 	public GprResource getModel(String id);

@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/11 11:42:47
+ * @updateDate 2020/8/27 11:19:15
  * @description 角色拥有的页面权限。 业务逻辑处理类，扩展自BaseUntBll<GprRolePage>，自动生成。
  */
 public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {
@@ -146,7 +146,176 @@ public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {
 		}
 		return result;
 	}
-	
+ 
+ 	public ResultModel deleteByPageId(String pageId) {
+		return deleteByPageId(pageId, isLogRead);
+	}
+
+	public ResultModel deleteByPageId(String pageId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(pageId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETE.getCode());
+			result.setOperTypeText(OperType.DELETE.getText());
+			result.setRemark("根据外键，删除中间表数据。");
+
+			int i = gprRolePageUntDal.deleteByPageId( pageId);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETE_S.getCode());
+			result.setResultMessage(OperResult.DELETE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETE_F.getCode());
+			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+	public ResultModel getListByPageId(String pageId) {
+		return getListByPageId(pageId, isLogRead);
+	}
+
+	public ResultModel getListByPageId(String pageId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(pageId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
+			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
+			result.setRemark("根据外键，查询中间表。");
+
+			List<GprRolePage> modelList = gprRolePageUntDal.getListByPageId(pageId);
+
+			result.setReturnValue(JSONArray.fromObject(modelList).toString());
+			result.setData(modelList);
+			result.setTotalCount(modelList.size());
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (modelList.isEmpty()) {
+				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
+			}
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+ 
+ 	public ResultModel deleteByRoleId(String roleId) {
+		return deleteByRoleId(roleId, isLogRead);
+	}
+
+	public ResultModel deleteByRoleId(String roleId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(roleId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETE.getCode());
+			result.setOperTypeText(OperType.DELETE.getText());
+			result.setRemark("根据外键，删除中间表数据。");
+
+			int i = gprRolePageUntDal.deleteByRoleId( roleId);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETE_S.getCode());
+			result.setResultMessage(OperResult.DELETE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETE_F.getCode());
+			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+	public ResultModel getListByRoleId(String roleId) {
+		return getListByRoleId(roleId, isLogRead);
+	}
+
+	public ResultModel getListByRoleId(String roleId, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(roleId);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
+			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
+			result.setRemark("根据外键，查询中间表。");
+
+			List<GprRolePage> modelList = gprRolePageUntDal.getListByRoleId(roleId);
+
+			result.setReturnValue(JSONArray.fromObject(modelList).toString());
+			result.setData(modelList);
+			result.setTotalCount(modelList.size());
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (modelList.isEmpty()) {
+				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
+			}
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+
 }
 
 

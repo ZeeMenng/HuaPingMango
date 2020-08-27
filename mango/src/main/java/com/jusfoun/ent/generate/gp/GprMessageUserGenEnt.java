@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpMessage;
+import com.jusfoun.ent.extend.gp.GpUser;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:38
+ * @updateDate 2020/8/27 10:33:07
  * @description 实体类GprMessageUserGenEnt，自动生成。消息队列。
  */
 
@@ -36,9 +36,15 @@ public class GprMessageUserGenEnt extends BaseEnt implements Serializable {
     private String userId;
     @ApiModelProperty(value="消息接收者。登录名称，和系统用户表（user）的登录名称（user_name）对应。",hidden=false,required=false)
     private String userName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpMessage gpMessage;
+    private  GpUser gpUser;
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -139,7 +145,42 @@ public class GprMessageUserGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统消息。
+	 */
+	public GpMessage getGpMessage() {
+		return this.gpMessage;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统消息。
+	 */
+	public void setGpMessage(GpMessage gpMessage) {
+		this.gpMessage = gpMessage;
+	}
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public GpUser getGpUser() {
+		return this.gpUser;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。系统用户。
+	 */
+	public void setGpUser(GpUser gpUser) {
+		this.gpUser = gpUser;
+	}
+
+
+
+
 
 }
 

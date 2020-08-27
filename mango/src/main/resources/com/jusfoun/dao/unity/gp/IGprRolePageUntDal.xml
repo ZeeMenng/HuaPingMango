@@ -58,30 +58,42 @@
     	<foreach collection="list" item="gprRolePage" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gprRolePage.id,jdbcType=VARCHAR},
-
-      
           #{gprRolePage.roleId,jdbcType=VARCHAR},
-
-      
           #{gprRolePage.pageId,jdbcType=VARCHAR},
-
-      
           #{gprRolePage.isEnableCode,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gpr_role_page
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gpr_role_page
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByPageId" parameterType="java.lang.String">
+    	delete from gpr_role_page
+    	where page_id = #{pageId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByPageId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_role_page where page_id = #{pageId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+    	delete from gpr_role_page
+    	where role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_role_page where role_id = #{roleId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_role_page
 		where id  in
@@ -93,14 +105,14 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRolePage" >
     update gpr_role_page
     <set >
-                  <if test="roleId != null  and roleId != '' " >
-                     role_id = #{roleId,jdbcType=VARCHAR},
+                  <if test="isEnableCode != null ">
+                     is_enable_code = #{isEnableCode,jdbcType=TINYINT},
                   </if>
                   <if test="pageId != null  and pageId != '' " >
                      page_id = #{pageId,jdbcType=VARCHAR},
                   </if>
-                  <if test="isEnableCode != null ">
-                     is_enable_code = #{isEnableCode,jdbcType=TINYINT},
+                  <if test="roleId != null  and roleId != '' " >
+                     role_id = #{roleId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -109,14 +121,14 @@
 <update id="updateList">
     update gpr_role_page
     <set >
-                  <if test="t.roleId != null  and t.roleId != '' " >
-                     role_id = #{t.roleId,jdbcType=VARCHAR},
+                  <if test="t.isEnableCode != null ">
+                     is_enable_code = #{t.isEnableCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.pageId != null  and t.pageId != '' " >
                      page_id = #{t.pageId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.isEnableCode != null ">
-                     is_enable_code = #{t.isEnableCode,jdbcType=TINYINT},
+                  <if test="t.roleId != null  and t.roleId != '' " >
+                     role_id = #{t.roleId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -130,10 +142,10 @@
 <update id="updateListWithDff"  parameterType="list">
     update gpr_role_page
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="role_id =case" suffix="end,">
+         <trim prefix="is_enable_code =case" suffix="end,">
               <foreach collection="list" item="gprRolePage" index="index">
-                  <if test="gprRolePage.roleId != null and gprRolePage.roleId  != '' " >
-                     when id=#{gprRolePage.id} then #{gprRolePage.roleId,jdbcType=VARCHAR}
+                  <if test="gprRolePage.isEnableCode != null " >
+                     when id=#{gprRolePage.id} then #{gprRolePage.isEnableCode,jdbcType=TINYINT}
                   </if>
               </foreach>
          </trim>
@@ -144,10 +156,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="is_enable_code =case" suffix="end,">
+         <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRolePage" index="index">
-                  <if test="gprRolePage.isEnableCode != null " >
-                     when id=#{gprRolePage.id} then #{gprRolePage.isEnableCode,jdbcType=TINYINT}
+                  <if test="gprRolePage.roleId != null and gprRolePage.roleId  != '' " >
+                     when id=#{gprRolePage.id} then #{gprRolePage.roleId,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -164,28 +176,28 @@
     replace into gpr_role_page
         <trim prefix="(" suffix=")" suffixOverrides="," >
               id ,
-          <if test="roleId  != null and roleId  != '' " >
-              role_id,
+          <if test="isEnableCode  != null " >
+              is_enable_code,
           </if>
           <if test="pageId  != null and pageId  != '' " >
               page_id,
           </if>
-          <if test="isEnableCode  != null " >
-              is_enable_code,
+          <if test="roleId  != null and roleId  != '' " >
+              role_id,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gprRolePage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprRolePage.id ,jdbcType=VARCHAR},
-                  <if test="t.roleId  != null  and t.roleId != '' " >
-                     #{gprRolePage.roleId ,jdbcType=VARCHAR},
+                  <if test="t.isEnableCode != null ">
+                    #{gprRolePage.isEnableCode,jdbcType=TINYINT},
                   </if>
                   <if test="t.pageId  != null  and t.pageId != '' " >
                      #{gprRolePage.pageId ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.isEnableCode != null ">
-                    #{gprRolePage.isEnableCode,jdbcType=TINYINT},
+                  <if test="t.roleId  != null  and t.roleId != '' " >
+                     #{gprRolePage.roleId ,jdbcType=VARCHAR},
                   </if>
       </trim>
     </foreach>

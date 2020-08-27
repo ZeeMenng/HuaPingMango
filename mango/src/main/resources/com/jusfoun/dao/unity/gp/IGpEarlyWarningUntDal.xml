@@ -141,63 +141,33 @@
     	<foreach collection="list" item="gpEarlyWarning" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gpEarlyWarning.id,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.growthId,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.growthName,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.beginDate,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.endDate,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.warningType,jdbcType=INTEGER},
-
-      
           #{gpEarlyWarning.warningName,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.maxVal,jdbcType=DOUBLE},
-
-      
           #{gpEarlyWarning.minVal,jdbcType=DOUBLE},
-
-      
           #{gpEarlyWarning.tipsMess,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.stutasCode,jdbcType=TINYINT},
-
-      
           #{gpEarlyWarning.stutasText,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.remark,jdbcType=VARCHAR},
-
-      
           #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP},
-
-      
           #{gpEarlyWarning.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gp_early_warning
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gp_early_warning
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_early_warning
 		where id  in
@@ -209,11 +179,8 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpEarlyWarning" >
     update gp_early_warning
     <set >
-                  <if test="growthId != null  and growthId != '' " >
-                     growth_id = #{growthId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="growthName != null  and growthName != '' " >
-                     growth_name = #{growthName,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="beginDate != null  and beginDate != '' " >
                      begin_date = #{beginDate,jdbcType=VARCHAR},
@@ -221,11 +188,11 @@
                   <if test="endDate != null  and endDate != '' " >
                      end_date = #{endDate,jdbcType=VARCHAR},
                   </if>
-                  <if test="warningType != null ">
-                     warning_type = #{warningType,jdbcType=INTEGER},
+                  <if test="growthId != null  and growthId != '' " >
+                     growth_id = #{growthId,jdbcType=VARCHAR},
                   </if>
-                  <if test="warningName != null  and warningName != '' " >
-                     warning_name = #{warningName,jdbcType=VARCHAR},
+                  <if test="growthName != null  and growthName != '' " >
+                     growth_name = #{growthName,jdbcType=VARCHAR},
                   </if>
                   <if test="maxVal != null ">
                      max_val = #{maxVal,jdbcType=DOUBLE},
@@ -233,8 +200,8 @@
                   <if test="minVal != null ">
                      min_val = #{minVal,jdbcType=DOUBLE},
                   </if>
-                  <if test="tipsMess != null  and tipsMess != '' " >
-                     tips_mess = #{tipsMess,jdbcType=VARCHAR},
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
                   </if>
                   <if test="stutasCode != null ">
                      stutas_code = #{stutasCode,jdbcType=TINYINT},
@@ -242,14 +209,17 @@
                   <if test="stutasText != null  and stutasText != '' " >
                      stutas_text = #{stutasText,jdbcType=VARCHAR},
                   </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  <if test="tipsMess != null  and tipsMess != '' " >
+                     tips_mess = #{tipsMess,jdbcType=VARCHAR},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="warningName != null  and warningName != '' " >
+                     warning_name = #{warningName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="warningType != null ">
+                     warning_type = #{warningType,jdbcType=INTEGER},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -258,11 +228,8 @@
 <update id="updateList">
     update gp_early_warning
     <set >
-                  <if test="t.growthId != null  and t.growthId != '' " >
-                     growth_id = #{t.growthId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growthName != null  and t.growthName != '' " >
-                     growth_name = #{t.growthName,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.beginDate != null  and t.beginDate != '' " >
                      begin_date = #{t.beginDate,jdbcType=VARCHAR},
@@ -270,11 +237,11 @@
                   <if test="t.endDate != null  and t.endDate != '' " >
                      end_date = #{t.endDate,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.warningType != null ">
-                     warning_type = #{t.warningType,jdbcType=INTEGER},
+                  <if test="t.growthId != null  and t.growthId != '' " >
+                     growth_id = #{t.growthId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.warningName != null  and t.warningName != '' " >
-                     warning_name = #{t.warningName,jdbcType=VARCHAR},
+                  <if test="t.growthName != null  and t.growthName != '' " >
+                     growth_name = #{t.growthName,jdbcType=VARCHAR},
                   </if>
                   <if test="t.maxVal != null ">
                      max_val = #{t.maxVal,jdbcType=DOUBLE},
@@ -282,8 +249,8 @@
                   <if test="t.minVal != null ">
                      min_val = #{t.minVal,jdbcType=DOUBLE},
                   </if>
-                  <if test="t.tipsMess != null  and t.tipsMess != '' " >
-                     tips_mess = #{t.tipsMess,jdbcType=VARCHAR},
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
                   <if test="t.stutasCode != null ">
                      stutas_code = #{t.stutasCode,jdbcType=TINYINT},
@@ -291,14 +258,17 @@
                   <if test="t.stutasText != null  and t.stutasText != '' " >
                      stutas_text = #{t.stutasText,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.tipsMess != null  and t.tipsMess != '' " >
+                     tips_mess = #{t.tipsMess,jdbcType=VARCHAR},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.warningName != null  and t.warningName != '' " >
+                     warning_name = #{t.warningName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.warningType != null ">
+                     warning_type = #{t.warningType,jdbcType=INTEGER},
                   </if>
    </set>
 	
@@ -312,17 +282,10 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_early_warning
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="growth_id =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.growthId != null and gpEarlyWarning.growthId  != '' " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthId,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="growth_name =case" suffix="end,">
-              <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.growthName != null and gpEarlyWarning.growthName  != '' " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthName,jdbcType=VARCHAR}
+                  <if test="gpEarlyWarning.addTime != null " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -340,17 +303,17 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="warning_type =case" suffix="end,">
+         <trim prefix="growth_id =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.warningType != null " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.warningType,jdbcType=INTEGER}
+                  <if test="gpEarlyWarning.growthId != null and gpEarlyWarning.growthId  != '' " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthId,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
-         <trim prefix="warning_name =case" suffix="end,">
+         <trim prefix="growth_name =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.warningName != null and gpEarlyWarning.warningName  != '' " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.warningName,jdbcType=VARCHAR}
+                  <if test="gpEarlyWarning.growthName != null and gpEarlyWarning.growthName  != '' " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthName,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -368,10 +331,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="tips_mess =case" suffix="end,">
+         <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.tipsMess != null and gpEarlyWarning.tipsMess  != '' " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.tipsMess,jdbcType=VARCHAR}
+                  <if test="gpEarlyWarning.remark != null and gpEarlyWarning.remark  != '' " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.remark,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -389,17 +352,10 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="remark =case" suffix="end,">
+         <trim prefix="tips_mess =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.remark != null and gpEarlyWarning.remark  != '' " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.remark,jdbcType=VARCHAR}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.addTime != null " >
-                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP}
+                  <if test="gpEarlyWarning.tipsMess != null and gpEarlyWarning.tipsMess  != '' " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.tipsMess,jdbcType=VARCHAR}
                   </if>
               </foreach>
          </trim>
@@ -407,6 +363,20 @@
               <foreach collection="list" item="gpEarlyWarning" index="index">
                   <if test="gpEarlyWarning.updateTime != null " >
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.updateTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="warning_name =case" suffix="end,">
+              <foreach collection="list" item="gpEarlyWarning" index="index">
+                  <if test="gpEarlyWarning.warningName != null and gpEarlyWarning.warningName  != '' " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.warningName,jdbcType=VARCHAR}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="warning_type =case" suffix="end,">
+              <foreach collection="list" item="gpEarlyWarning" index="index">
+                  <if test="gpEarlyWarning.warningType != null " >
+                     when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.warningType,jdbcType=INTEGER}
                   </if>
               </foreach>
          </trim>
@@ -422,12 +392,8 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_early_warning
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="growthId  != null and growthId  != '' " >
-              growth_id,
-          </if>
-          <if test="growthName  != null and growthName  != '' " >
-              growth_name,
+          <if test="addTime  != null " >
+              add_time,
           </if>
           <if test="beginDate  != null and beginDate  != '' " >
               begin_date,
@@ -435,20 +401,21 @@
           <if test="endDate  != null and endDate  != '' " >
               end_date,
           </if>
-          <if test="warningType  != null " >
-              warning_type,
+          <if test="growthId  != null and growthId  != '' " >
+              growth_id,
           </if>
-          <if test="warningName  != null and warningName  != '' " >
-              warning_name,
+          <if test="growthName  != null and growthName  != '' " >
+              growth_name,
           </if>
+              id ,
           <if test="maxVal  != null " >
               max_val,
           </if>
           <if test="minVal  != null " >
               min_val,
           </if>
-          <if test="tipsMess  != null and tipsMess  != '' " >
-              tips_mess,
+          <if test="remark  != null and remark  != '' " >
+              remark,
           </if>
           <if test="stutasCode  != null " >
               stutas_code,
@@ -456,25 +423,24 @@
           <if test="stutasText  != null and stutasText  != '' " >
               stutas_text,
           </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
+          <if test="tipsMess  != null and tipsMess  != '' " >
+              tips_mess,
           </if>
           <if test="updateTime  != null " >
               update_time,
+          </if>
+          <if test="warningName  != null and warningName  != '' " >
+              warning_name,
+          </if>
+          <if test="warningType  != null " >
+              warning_type,
           </if>
     </trim>
     VALUES
     <foreach collection="list" item="gpEarlyWarning" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-              #{gpEarlyWarning.id ,jdbcType=VARCHAR},
-                  <if test="t.growthId  != null  and t.growthId != '' " >
-                     #{gpEarlyWarning.growthId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growthName  != null  and t.growthName != '' " >
-                     #{gpEarlyWarning.growthName ,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                    #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.beginDate  != null  and t.beginDate != '' " >
                      #{gpEarlyWarning.beginDate ,jdbcType=VARCHAR},
@@ -482,20 +448,21 @@
                   <if test="t.endDate  != null  and t.endDate != '' " >
                      #{gpEarlyWarning.endDate ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.warningType != null ">
-                    #{gpEarlyWarning.warningType,jdbcType=INTEGER},
+                  <if test="t.growthId  != null  and t.growthId != '' " >
+                     #{gpEarlyWarning.growthId ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.warningName  != null  and t.warningName != '' " >
-                     #{gpEarlyWarning.warningName ,jdbcType=VARCHAR},
+                  <if test="t.growthName  != null  and t.growthName != '' " >
+                     #{gpEarlyWarning.growthName ,jdbcType=VARCHAR},
                   </if>
+              #{gpEarlyWarning.id ,jdbcType=VARCHAR},
                   <if test="t.maxVal != null ">
                     #{gpEarlyWarning.maxVal,jdbcType=DOUBLE},
                   </if>
                   <if test="t.minVal != null ">
                     #{gpEarlyWarning.minVal,jdbcType=DOUBLE},
                   </if>
-                  <if test="t.tipsMess  != null  and t.tipsMess != '' " >
-                     #{gpEarlyWarning.tipsMess ,jdbcType=VARCHAR},
+                  <if test="t.remark  != null  and t.remark != '' " >
+                     #{gpEarlyWarning.remark ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.stutasCode != null ">
                     #{gpEarlyWarning.stutasCode,jdbcType=TINYINT},
@@ -503,14 +470,17 @@
                   <if test="t.stutasText  != null  and t.stutasText != '' " >
                      #{gpEarlyWarning.stutasText ,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
-                     #{gpEarlyWarning.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
-                    #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.tipsMess  != null  and t.tipsMess != '' " >
+                     #{gpEarlyWarning.tipsMess ,jdbcType=VARCHAR},
                   </if>
                   <if test="t.updateTime != null ">
                     #{gpEarlyWarning.updateTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.warningName  != null  and t.warningName != '' " >
+                     #{gpEarlyWarning.warningName ,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.warningType != null ">
+                    #{gpEarlyWarning.warningType,jdbcType=INTEGER},
                   </if>
       </trim>
     </foreach>

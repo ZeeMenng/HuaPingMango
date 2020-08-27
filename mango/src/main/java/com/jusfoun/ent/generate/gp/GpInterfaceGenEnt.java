@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpDomain;
+import com.jusfoun.ent.extend.gp.GprRoleInterface;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:49
+ * @updateDate 2020/8/27 10:33:12
  * @description 实体类GpInterfaceGenEnt，自动生成。系统接口。
  */
 
@@ -34,13 +34,19 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="操作主表。",hidden=false,required=false)
     private String tableName;
-    @ApiModelProperty(value="接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：0GET，1POST。默认值0。",allowableValues="0,1",hidden=false,required=false)
-    private String typeCode;
+    @ApiModelProperty(value="接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：1GET，2POST。",allowableValues="0,1",hidden=false,required=false)
+    private Byte typeCode;
     @ApiModelProperty(value="访问路径。",hidden=false,required=true)
     private String url;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GprRoleInterface> gprRoleInterfaceList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -127,16 +133,16 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：0GET，1POST。默认值0。
+	 * get方法。接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：1GET，2POST。
 	 */
-	public String getTypeCode() {
+	public Byte getTypeCode() {
 		return this.typeCode;
 	}
 
 	/**
-	 * set方法。接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：0GET，1POST。默认值0。
+	 * set方法。接口调用方式。对应数据字典表（dictionary）中的编码字段（code）。目前两种类型：1GET，2POST。
 	 */
-	public void setTypeCode(String typeCode) {
+	public void setTypeCode(Byte typeCode) {
 		this.typeCode = typeCode;
 	}
     
@@ -155,7 +161,42 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的接口权限。
+	 */
+	public ArrayList<GprRoleInterface> getGprRoleInterfaceList() {
+		return this.gprRoleInterfaceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的接口权限。
+	 */
+	public void setGprRoleInterfaceList(ArrayList<GprRoleInterface> gprRoleInterfaceList) {
+		this.gprRoleInterfaceList = gprRoleInterfaceList;
+	}
+
+
+
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
+
+
+
+
 
 }
 

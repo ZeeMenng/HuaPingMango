@@ -4,7 +4,6 @@
 
   <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpLoginLog" >
               <id column="id" property="id" jdbcType="VARCHAR" />
-              <result column="token_id" property="tokenId" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="user_id" property="userId" jdbcType="VARCHAR" />
               <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -22,7 +21,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,token_id,domain_id,user_id,user_name,login_time,logout_time,logout_type_code,duration,ip,ip_address,browser,resolution,os,is_success_code,remark
+        id,domain_id,user_id,user_name,login_time,logout_time,logout_type_code,duration,ip,ip_address,browser,resolution,os,is_success_code,remark
   </sql>
   
   <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpLoginLog" >
@@ -31,11 +30,6 @@
           <if test="id != null and id != '' " >
               id,
           </if>
-      
-          <if test="tokenId != null and tokenId != '' " >
-              token_id,
-          </if>
-      
           <if test="domainId != null and domainId != '' " >
               domain_id,
           </if>
@@ -91,9 +85,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
               #{id,jdbcType=VARCHAR},
-          </if>
-          <if test="tokenId != null and tokenId != '' " >
-              #{tokenId,jdbcType=VARCHAR},
           </if>
           <if test="domainId != null and domainId != '' " >
               #{domainId,jdbcType=VARCHAR},
@@ -221,9 +212,7 @@
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpLoginLog" >
     update gp_login_log
     <set >
-                  <if test="tokenId != null  and tokenId != '' " >
-                     token_id = #{tokenId,jdbcType=VARCHAR},
-                  </if>
+
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
                   </if>
@@ -273,9 +262,6 @@
 <update id="updateList">
     update gp_login_log
     <set >
-                  <if test="t.tokenId != null  and t.tokenId != '' " >
-                     token_id = #{t.tokenId,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
                   </if>
@@ -391,9 +377,6 @@
 		</if>
 		<if test="EntityRelated.resolution != null and EntityRelated.resolution != '' ">
  				and  resolution LIKE CONCAT('%',#{EntityRelated.resolution,jdbcType=VARCHAR},'%') 
-		</if>
-		<if test="EntityRelated.tokenId != null and EntityRelated.tokenId != '' ">
-				and token_id = #{EntityRelated.tokenId,jdbcType=VARCHAR} 
 		</if>
 		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
 				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 

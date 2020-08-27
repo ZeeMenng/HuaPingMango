@@ -26,11 +26,15 @@ public interface IGprDomainUserSplDal extends IBaseSplDal {
 
 	public int deleteByUserId(String userId);
 	
+	public int deleteByRoleId(String roleId);
+	
 	public int deleteByIdList(ArrayList<String> idList);
 	
 	public int deleteByDomainIdList(ArrayList<String> domainIdList);
 
 	public int deleteByUserIdList(ArrayList<String> userIdList);
+	
+	public int deleteByRoleIdList(ArrayList<String> roleIdList);
 	
 	public int update(GprDomainUser gprDomainUser);
 

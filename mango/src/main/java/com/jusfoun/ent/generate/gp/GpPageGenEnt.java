@@ -4,18 +4,20 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpControl;
+import com.jusfoun.ent.extend.gp.GpResource;
+import com.jusfoun.ent.extend.gp.GprModulePage;
+import com.jusfoun.ent.extend.gp.GprRolePage;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:52
+ * @updateDate 2020/8/27 10:33:15
  * @description 实体类GpPageGenEnt，自动生成。系统页面。
  */
 
@@ -36,9 +38,17 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="存放路径。",hidden=false,required=false)
     private String url;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+    private ArrayList<GpControl> gpControlList;   
+    private ArrayList<GpResource> gpResourceList;   
+    private ArrayList<GprModulePage> gprModulePageList;   
+    private ArrayList<GprRolePage> gprRolePageList;   
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录创建时间。
@@ -139,7 +149,70 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。系统控件。
+	 */
+	public ArrayList<GpControl> getGpControlList() {
+		return this.gpControlList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。系统控件。
+	 */
+	public void setGpControlList(ArrayList<GpControl> gpControlList) {
+		this.gpControlList = gpControlList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。文件信息。
+	 */
+	public ArrayList<GpResource> getGpResourceList() {
+		return this.gpResourceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。文件信息。
+	 */
+	public void setGpResourceList(ArrayList<GpResource> gpResourceList) {
+		this.gpResourceList = gpResourceList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。功能模块所包含的页面。
+	 */
+	public ArrayList<GprModulePage> getGprModulePageList() {
+		return this.gprModulePageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。功能模块所包含的页面。
+	 */
+	public void setGprModulePageList(ArrayList<GprModulePage> gprModulePageList) {
+		this.gprModulePageList = gprModulePageList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。角色拥有的页面权限。
+	 */
+	public ArrayList<GprRolePage> getGprRolePageList() {
+		return this.gprRolePageList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。角色拥有的页面权限。
+	 */
+	public void setGprRolePageList(ArrayList<GprRolePage> gprRolePageList) {
+		this.gprRolePageList = gprRolePageList;
+	}
+
+
+
+
+
+
+
 
 }
 

@@ -51,27 +51,41 @@
     	<foreach collection="list" item="gprModulePage" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{gprModulePage.id,jdbcType=VARCHAR},
-
-      
           #{gprModulePage.moduleId,jdbcType=VARCHAR},
-
-      
           #{gprModulePage.pageId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from gpr_module_page
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from gpr_module_page
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+	<delete id="deleteByModuleId" parameterType="java.lang.String">
+    	delete from gpr_module_page
+    	where module_id = #{moduleId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByModuleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_module_page where module_id = #{moduleId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPageId" parameterType="java.lang.String">
+    	delete from gpr_module_page
+    	where page_id = #{pageId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="getListByPageId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gpr_module_page where page_id = #{pageId,jdbcType=VARCHAR}
+	</select>
+
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_module_page
 		where id  in
