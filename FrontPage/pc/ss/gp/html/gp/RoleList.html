@@ -6,6 +6,18 @@
 <script src="../../js/gp/Role.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		// 初始化应用领域下拉框
+		var selectParam = {
+			selectId : "selectDomainId",
+			textField : "name",
+			valueField : "id"
+		};
+
+		var ajaxParam = {
+			url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}"
+		}
+		initDropDownList(selectParam, ajaxParam);
 
 		// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 		var pageParam = {

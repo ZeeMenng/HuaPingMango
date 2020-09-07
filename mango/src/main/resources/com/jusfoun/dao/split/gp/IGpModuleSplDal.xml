@@ -127,17 +127,17 @@
 
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete a,b,c,d from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id left join gp_menu d on a.id=d.module_id
+		delete a,b,c from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id 
 		where a.id = #{id,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByDomainId" parameterType="java.lang.String">
-		delete a,b,c,d from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id left join gp_menu d on a.id=d.module_id
+		delete a,b,c from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id 
 		where a.domain_id = #{domainId,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete a,b,c,d from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id left join gp_menu d on a.id=d.module_id
+		delete a,b,c from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id 
 		where a.id in
 		<foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
 			#{id}
@@ -145,7 +145,7 @@
 	</delete>
 
 	<delete id="deleteByDomainIdList" parameterType="list">
-		delete a,b,c,d from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id left join gp_menu d on a.id=d.module_id
+		delete a,b,c from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id 
 		where a.domain_id in
 		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
 			#{domainId}
@@ -153,7 +153,7 @@
 	</delete>
 
 	<delete id="deleteInvalidDomainModules">
-		delete a,b,c,d from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id left join gp_menu d on a.id=d.module_id
+		delete a,b,c from gp_module a left join gpr_role_module b on a.id=b.module_id left join gpr_module_page c on a.id=c.module_id 
 		where a.domain_id= #{domainId} and a.id not in
 		<foreach collection="moduleList" item="module" index="index" open="(" close=")" separator=",">
 			#{module.id }
@@ -265,7 +265,7 @@
 		level_text = VALUES(level_text),
 		farther_id = VALUES(farther_id),
 		priority = VALUES(priority),
-		update_time = VALUES(update_time),
+		update_time = VALUES(update_time)
 	</update>
 
 	<select id="getModel" resultMap="BaseResultMap" parameterType="java.lang.String">

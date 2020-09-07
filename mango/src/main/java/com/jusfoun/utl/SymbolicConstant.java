@@ -218,4 +218,11 @@ public class SymbolicConstant {
 	
 	//根据角色，查出这个角色下的用户和应用领域
 	public static final String SQL_SELECT_USER_DOMAIN_BY_ROLE="select A.domain_id,B.user_id from gpr_role_domain A inner join gpr_user_role B on A.role_id=B.role_id where A.role_id='%s'";
+	
+	public static final String SQL_SELECT_ROLE_GET_LIST="SELECT distinct A.id id,A.name name,A.remark remark,A.add_time addTime, A.update_time updateTime FROM gp_role A left join gpr_role_domain B on A.id=B.role_id WHERE 1 = 1";
+	
+	
+	
+	
+	
 }

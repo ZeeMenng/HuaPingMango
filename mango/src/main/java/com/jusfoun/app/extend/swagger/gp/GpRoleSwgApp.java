@@ -279,18 +279,8 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 			return resultModel;
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("	SELECT                                    ");
-		selectBuffer.append("		A.id id,                              ");
-		selectBuffer.append("		A.name name,                          ");
-		selectBuffer.append("		A.remark remark,                      ");
-		selectBuffer.append("		A.add_time addTime,                   ");
-		selectBuffer.append("		A.update_time updateTime              ");
-		selectBuffer.append("	FROM                                      ");
-		selectBuffer.append("		gp_role A                             ");
-		selectBuffer.append("	WHERE                                     ");
-		selectBuffer.append("		1 = 1                                 ");
-
+		StringBuffer selectBuffer = new StringBuffer(SymbolicConstant.SQL_SELECT_ROLE_GET_LIST);
+	
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 
@@ -307,6 +297,8 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+				if (entityRelatedObject.containsKey("selectDomainId") && StringUtils.isNotBlank(entityRelatedObject.getString("selectDomainId")))
+					selectBuffer.append(" and B.domain_id ='").append(entityRelatedObject.getString("selectDomainId")).append("'");
 				if (entityRelatedObject.containsKey("textName") && StringUtils.isNotBlank(entityRelatedObject.getString("textName")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("textName")).append("%'");
 				if (entityRelatedObject.containsKey("textRemark") && StringUtils.isNotBlank(entityRelatedObject.getString("textRemark")))

@@ -130,9 +130,14 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	}
 
 	public ResultModel add(ArrayList<T> tList, boolean isLog) {
-		if (tList == null || tList.isEmpty())
-			throw new GlobalException("传入的数组为空！");
 		ResultModel result = new ResultModel();
+		if (tList == null || tList.isEmpty())
+		{
+			result.setResultCode(OperResult.ADDLIST_F.getCode());
+			result.setResultMessage("传入的为空数组！");
+			return result;
+		}
+		
 
 		try {
 
@@ -168,7 +173,6 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				// 统一新增时间end
 
 			}
-
 			int i = baseUntDal.addList(tList);
 
 			result.setReturnValue(String.valueOf(i));
@@ -222,6 +226,13 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	public ResultModel updateListWithDff(ArrayList<T> tList, boolean isLog) {
 
 		ResultModel result = new ResultModel();
+		if (tList == null || tList.isEmpty())
+		{
+			result.setResultCode(OperResult.ADDLIST_F.getCode());
+			result.setResultMessage("传入的为空数组！");
+			return result;
+		}
+		
 
 		try {
 
@@ -310,7 +321,13 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	public ResultModel updateListWithDffOrAdd(ArrayList<T> tList, boolean isLog) {
 
 		ResultModel result = new ResultModel();
-
+		if (tList == null || tList.isEmpty())
+		{
+			result.setResultCode(OperResult.ADDLIST_F.getCode());
+			result.setResultMessage("传入的为空数组！");
+			return result;
+		}
+		
 		try {
 
 			result.setAddTime(DateUtils.getCurrentTime());
@@ -441,7 +458,13 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 	public ResultModel deleteByIdList(ArrayList<String> idList, boolean isLog) {
 		ResultModel result = new ResultModel();
-
+		if (idList == null || idList.isEmpty())
+		{
+			result.setResultCode(OperResult.ADDLIST_F.getCode());
+			result.setResultMessage("传入的为空数组！");
+			return result;
+		}
+		
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());

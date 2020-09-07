@@ -84,21 +84,21 @@
 	</delete>
 
 	<delete id="deleteByDomainId" parameterType="java.lang.String">
-		delete a,b,c,d,e,f from gp_role a left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
-		where a.domain_id = #{domainId,jdbcType=VARCHAR}
+		delete a,b,c,d,e,f from gp_role a left join gpr_role_domain g on a.id=g.role_id left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
+		where g.domain_id = #{domainId,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete a,b,c,d,e,f from gp_role a left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
-		where a.id in
+		delete a,b,c,d,e,f from gp_role a left join gpr_role_domain g on a.id=g.role_id left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
+		where g.id in
 		<foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</delete>
 
 	<delete id="deleteByDomainIdList" parameterType="list">
-		delete a,b,c,d,e,f from gp_role a left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
-		where a.domain_id in
+		delete a,b,c,d,e,f from gp_role a left join gpr_role_domain g on a.id=g.role_id left join gpr_role_interface b on a.id=b.role_id left join gpr_role_module c on a.id=c.role_id left join gpr_role_page d on a.id=d.role_id left join gpr_role_control e on a.id=e.role_id left join gpr_user_role f on a.id=f.role_id
+		where g.domain_id in
 		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
 			#{domainId}
 		</foreach>

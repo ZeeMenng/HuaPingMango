@@ -8,6 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,7 +28,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jusfoun.ent.extend.gp.GpModule;
 import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
-import com.jusfoun.set.exception.GlobalException;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -288,9 +289,21 @@ public class Tools {
 	public static ArrayList<GpModule> getModuleListFromJsonString(String domainId, String jsonString) {
 
 		JSONArray jsonArray = JSONArray.fromObject(jsonString);
-		ArrayList<GpModule> moduleList = convertModuleTreeToList(domainId, domainId, jsonArray);
-		// 删除根节点的元素
-		moduleList.remove(moduleList.size() - 1);
+		ArrayList<GpModule> moduleList = convertModuleTreeToList(domainId, null, jsonArray);
+
+		// 等级小的在前，否则插入时因为自身外键约束会报错
+		Collections.sort(moduleList, new Comparator<GpModule>() {
+			@Override
+			public int compare(GpModule module1, GpModule module2) {
+				if (module1.getLevelCode() > module2.getLevelCode()) {
+					return 1;
+				} else if (module1.getLevelCode() == module2.getLevelCode()) {
+					return 0;
+				} else {
+					return -1;
+				}
+			}
+		});
 		return moduleList;
 
 	}
@@ -303,10 +316,8 @@ public class Tools {
 			GpModule module = new GpModule();
 			JSONObject jsonObject = JSONObject.fromObject(moduleJSONArray.get(i));
 			byte level = ((Integer) (jsonObject.getInt("level"))).byteValue();
-			if (level == 1)
-				parentId = domainId;
-
-			module.setId(Tools.getUUID());
+			if (StringUtils.isEmpty((module.getId())))
+				module.setId(Tools.getUUID());
 			module.setFartherId(parentId);
 			module.setPriority(i);
 			module.setDomainId(domainId);
@@ -316,8 +327,11 @@ public class Tools {
 			if (jsonObject.containsKey("name"))
 				module.setName(jsonObject.getString("name"));
 			if (jsonObject.containsKey("children") && StringUtils.isNotBlank(jsonObject.getString("children")))
-				moduleList.addAll(convertModuleTreeToList(domainId, module.getId(), JSONArray.fromObject(jsonObject.getString("children"))));
+				moduleList.addAll(convertModuleTreeToList(domainId, level == 0 ? null : module.getId(), JSONArray.fromObject(jsonObject.getString("children"))));
 
+			// 根节点跳过
+			if (level == 0)
+				continue;
 			moduleList.add(module);
 		}
 

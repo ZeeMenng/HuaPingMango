@@ -68,13 +68,12 @@ public class GpDomainSplBll extends GpDomainGenSplBll {
 			result.setRemark("根据主键删除应用领域记录，同时级联删除其相关表的记录。");
 			int i, j, k, l, m;
 
-			i = gpRoleSplDal.deleteByDomainId(id);
 			j = gpModuleSplDal.deleteByDomainId(id);
 			k = gpPageSplDal.deleteByDomainId(id);
 			l = gpInterfaceSplDal.deleteByDomainId(id);
 			m = gpDomainSplDal.delete(id);
 
-			int deleteCounts = i + j + k + l + m;
+			int deleteCounts = j + k + l + m;
 
 			result.setReturnValue(String.valueOf(deleteCounts));
 			result.setData(deleteCounts);
@@ -116,14 +115,14 @@ public class GpDomainSplBll extends GpDomainGenSplBll {
 			result.setOperTypeText(OperType.DELETELIST.getText());
 			result.setRemark("根据主键列表删除应用领域记录，同时级联删除其相关表的记录。");
 			int i, j, k, l, m;
-			i = gpRoleSplDal.deleteByDomainIdList(idList);
+
 			j = gpModuleSplDal.deleteByDomainIdList(idList);
 			k = gpPageSplDal.deleteByDomainIdList(idList);
 			l = gpInterfaceSplDal.deleteByDomainIdList(idList);
 
 			m = gpDomainSplDal.deleteByIdList(idList);
 
-			int deleteCounts = i + j + k + l + m;
+			int deleteCounts = j + k + l + m;
 
 			result.setReturnValue(String.valueOf(deleteCounts));
 			result.setData(deleteCounts);

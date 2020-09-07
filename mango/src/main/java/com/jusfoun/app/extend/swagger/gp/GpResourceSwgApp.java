@@ -142,10 +142,10 @@ public class GpResourceSwgApp extends GpResourceGenSwgApp {
 				gpResource.setId(Tools.getUUID());
 				gpResource.setDomainId(currentUser == null ? "" : currentUser.getCurrentDomain() == null ? "" : currentUser.getCurrentDomain().getId());
 				gpResource.setExtension(extension);
-				gpResource.setModuleId("");
+				//gpResource.setModuleId("");
 				gpResource.setNewName(newName);
 				gpResource.setOriginalName(originalName);
-				gpResource.setPageId("");
+				//gpResource.setPageId("");
 				gpResource.setPath(path + newName);
 				gpResource.setPriority(priority);
 				gpResource.setSize(size);

@@ -83,12 +83,14 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		}
 
 		ResultModel result = new ResultModel();
+		result = gpDomainUntBll.add(jsonData);
+		
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
-			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(), modules);
+			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(result.getObjectId(), modules);
 			result = gpModuleSplBll.add(moduleList);
 		}
-		result = gpDomainUntBll.add(jsonData);
+		
 
 		// 图标列表
 		if (StringUtils.isNotBlank(jsonData.getIconIds())) {

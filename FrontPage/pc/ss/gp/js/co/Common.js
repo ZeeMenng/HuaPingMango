@@ -2188,23 +2188,31 @@ function initDetailTree(treeParam) {
 
 	var treeNodes=[];
 	if(treeParam.initNodes)
-treeNodes=treeParam.initNodes;
+		treeNodes=treeParam.initNodes;
 	var ajaxParamter = {
 		"url" : treeParam.url,
 		"type" : "GET",
 		"async" : true,
 		"success" : function(resultData) {
 			treeNodes = treeNodes.concat(resultData.data);
+			
+			// 将一级功能模块的fartherId都变为应用领域的ID，级别变为0，否则功能模块无法依附应用领域
+			$.each(treeNodes, function(index, value) {
+				if(value.fartherId==null){
+					value.levelCode=0;
+					value.fartherId=value.domainId;
+					treeNodes[index]=value;
+				}
+			});
 			var orgnaizationTree = $.fn.zTree.init($("#" + treeParam.container), setting, treeNodes);
-			if (resultData.data != null) {
-				var organizationArray = resultData.data;
-				$.each(organizationArray, function(index, value) {
+
+				$.each(treeNodes, function(index, value) {
+					
 					if (treeParam.expandNodeLevel == null || value.levelCode < treeParam.expandNodeLevel) {
 						var node = orgnaizationTree.getNodeByParam("id", value.id);
 						orgnaizationTree.expandNode(node, true);// 展开指定节点
 					}
 				});
-			}
 		}
 	};
 
@@ -2251,9 +2259,10 @@ function showRenameBtn(treeId, treeNode) {
 function beforeDrag(treeId, treeNodes) {
 	for (var i = 0, l = treeNodes.length; i < l; i++) {
 		var pid = treeNodes[i].fartherId;
-		if (pid == "root" || pid == null || pid == "null") {
-			layer.alert("根节点不能移动。", {
-				icon : 6
+		var level=treeNodes[i].level;
+		if ((pid == "root" || pid == null || pid == "null")&level==0) {
+			layer.msg('根节点不能移动……', {
+				time : 1000
 			});
 			return false;
 		}

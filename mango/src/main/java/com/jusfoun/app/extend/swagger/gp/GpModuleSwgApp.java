@@ -76,65 +76,12 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@Qualifier("gprResourceSplBll")
 	protected GprResourceSplBll gprResourceSplBll;
 
-	private ArrayList<String> deleteMenuList;
-
-	private ArrayList<String> deleteModuleList;
-
-	/**
-	 * 递归查询出需要删除的moduleId
-	 * @param gpModule
-	 */
-	private void getIdList(String moduleId) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("SELECT A.id id FROM gp_module A WHERE A.farther_id = '" + moduleId + "'");
-		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel = gpModuleUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
-		for (Map<String, Object> map2 : modelList) {
-			deleteModuleList.add(map2.get("id").toString());
-			getIdList(map2.get("id").toString());
-		}
-	}
-
-	/**
-	 * 需要删除的模块id列表及菜单id列表
-	 * @param idList
-	 */
-	private void deleteMethod(List<String> idList) {
-		deleteMenuList = new ArrayList<String>();// 初始化删除菜单id
-		deleteModuleList = new ArrayList<String>();// 初始化删除模块id
-		for (String id : idList) {
-			deleteModuleList.add(id);
-			getIdList(id);
-		}
-		String moduleIds = "";
-		for (String moduleId : deleteModuleList) {
-			moduleIds += "'" + moduleId + "',";
-		}
-		if (StringUtils.isNotBlank(moduleIds)) {
-			moduleIds = moduleIds.substring(0, moduleIds.length() - 1);
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("SELECT A.id id FROM gp_menu A WHERE A.module_id IN (" + moduleIds + ")");
-		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel2 = gpMenuUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel2.getData();
-		for (Map<String, Object> modelMap : modelList) {
-			deleteMenuList.add(modelMap.get("id").toString());
-		}
-	}
-
 	@ApiOperation(value = "删除记录", notes = "根据主键删除相应记录")
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		List<String> idList = new ArrayList<String>();
-		idList.add(id);
-		deleteMethod(idList);
-		gpMenuUntBll.deleteByIdList(deleteMenuList);// 删除模块对应的菜单
-		ResultModel result = gpModuleUntBll.deleteByIdList(deleteModuleList);// 删除模块
+
+		ResultModel result = gpModuleSplBll.delete(id);// 删除模块
 		return result;
 	}
 
@@ -142,13 +89,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GpModuleDeleteByIdList")
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteList(@RequestBody GpModuleParameter.DeleteByIdList jsonData) {
-		deleteMethod(jsonData.getIdList());
-
-		ResultModel result = gpModuleUntBll.deleteByIdList(deleteModuleList);// 删除模块
-
-		// 根据级联参数类型决定是否级联处理菜单部分
-		if (jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.ALL.getCode() || jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.DELETE.getCode())
-			result = gpMenuUntBll.deleteByIdList(deleteMenuList);// 删除模块对应的菜单
+		ResultModel result = gpModuleSplBll.deleteByIdList(jsonData.getIdList());// 删除模块
 
 		return result;
 	}
@@ -429,6 +370,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("	distinct	C.id id,                                         ");
 		selectBuffer.append("		C.name name,                                     ");
 		selectBuffer.append("		C.farther_id fartherId,                          ");
+		selectBuffer.append("		C.domain_id domainId,                          ");
 		selectBuffer.append("		C.level_code levelCode,                          ");
 		selectBuffer.append("		C.level_text levelText,                          ");
 		selectBuffer.append("		C.priority priority                              ");
@@ -549,20 +491,5 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 	}
 
-	private List<Map<String, Object>> getModuleIconList(String moduleId) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("		SELECT                                                    ");
-		selectBuffer.append("			B.id iconId,                                     ");
-		selectBuffer.append("			CONCAT('" + this.linkPath + "',B.path) iconPath ");
-		selectBuffer.append("		FROM                                                      ");
-		selectBuffer.append("		gpr_resource A");
-		selectBuffer.append("		INNER JOIN gp_resource B ON A.resource_id = B.id                  ");
-		selectBuffer.append("		WHERE                                                     ");
-		selectBuffer.append("			A.business_id = '" + moduleId + "'        					  ");
-		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
-		return modelList;
-	}
+
 }
