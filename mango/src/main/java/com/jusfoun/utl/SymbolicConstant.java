@@ -221,8 +221,10 @@ public class SymbolicConstant {
 	
 	public static final String SQL_SELECT_ROLE_GET_LIST="SELECT distinct A.id id,A.name name,A.remark remark,A.add_time addTime, A.update_time updateTime FROM gp_role A left join gpr_role_domain B on A.id=B.role_id WHERE 1 = 1";
 	
-	
-	
+	// 用于生成记录号serialNo的、雪花算法（Snowflake）的开始时间（2020/9/17 17:38:36）及dataCentId和workerId暂时写成固定
+	public static final long SNOWFLAKE_SERIAL_NO_STARTTIME=1600335516000L;
+	public static final int SNOWFLAKE_SERIAL_NO_DATACENTER_ID=1;
+	public static final int SNOWFLAKE_SERIAL_NO_WORKDER_ID=1;
 	
 	
 }

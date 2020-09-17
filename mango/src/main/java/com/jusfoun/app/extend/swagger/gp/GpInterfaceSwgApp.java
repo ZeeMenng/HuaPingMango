@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.httpclient.util.DateParseException;
+import org.apache.commons.httpclient.util.DateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,11 +30,14 @@ import com.jusfoun.app.generate.swagger.gp.GpInterfaceGenSwgApp;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpInterface;
 import com.jusfoun.ent.parameter.gp.GpInterfaceParameter;
+import com.jusfoun.set.enumer.DomainEnum;
 import com.jusfoun.set.enumer.InterfaceType;
 import com.jusfoun.set.exception.GlobalException;
+import com.jusfoun.utl.CamelCaseUtl;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.DictionaryUtil;
 import com.jusfoun.utl.FileUtil;
+import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
 import com.jusfoun.utl.SymbolicConstant;
 import com.jusfoun.utl.Tools;
 
@@ -207,7 +212,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 	}
 
 	@RequestMapping(value = "/updateInterfaceConstants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updateInterfaceConstants() throws IOException {
+	public ResultModel updateInterfaceConstants() throws IOException, DateParseException {
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			throw new GlobalException("缺少必要参数！");
@@ -222,72 +227,119 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("	SELECT A.url url FROM gp_interface A");
+		selectBuffer.append("	SELECT * FROM gp_interface A");
 		sqlMap.put("Sql", selectBuffer.toString());
 		result = gpInterfaceUntBll.getListBySQL(sqlMap);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) result.getData();
-		List<String> interfaceUrlList = new ArrayList<String>();
-		for (Map map2 : modelList) {
-			interfaceUrlList.add(map2.get("url").toString());
-		}
+		List<Map<String, Object>> interfaceList = (List<Map<String, Object>>) result.getData();
 
 		ArrayList<GpInterface> gpInterfaceList = new ArrayList<GpInterface>();
 		Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> item : handlerMethods.entrySet()) {
-			HashMap<String, String> handlerMethodsMap = new HashMap<String, String>();
-			RequestMappingInfo info = item.getKey();
-			HandlerMethod method = item.getValue();
+			RequestMappingInfo requestMappingInfo = item.getKey();
+			HandlerMethod handlerMethod = item.getValue();
 
-			PatternsRequestCondition p = info.getPatternsCondition();
-			for (String url : p.getPatterns()) {
-				if (url.equals("/error"))
+			Date addTime = DateUtils.getCurrentTime();
+			String domainId = null;
+			String id = Tools.getUUID();
+			Byte isPublicCode = SymbolicConstant.DCODE_BOOLEAN_T;
+			String name = null;
+			String remark = null;
+			String serialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+
+			String tableName = null;
+			Byte typeCode = null;
+			Date updateTime = DateUtils.getCurrentTime();
+			String url = null;
+
+			// 获取接口路径URL
+			PatternsRequestCondition patternsRequestCondition = requestMappingInfo.getPatternsCondition();
+			for (String urlPattern : patternsRequestCondition.getPatterns()) {
+				if (urlPattern.equals("/error"))
 					continue;
-				if (url.contains("{")) {
-					url = url.substring(0, url.indexOf("{") - 1) + "/";
+				if (urlPattern.contains("{")) {
+					urlPattern = urlPattern.substring(0, urlPattern.indexOf("{") - 1) + "/";
 				}
-				handlerMethodsMap.put("url", url);
+				url = urlPattern;
 			}
-			String className = method.getMethod().getDeclaringClass().getSimpleName();
-			className = className.replaceAll("GenSwgApp", "");
-			className = className.replaceAll("SwgApp", "");
-			className = className.replaceAll("Controller", "");
-			handlerMethodsMap.put("className", className); // 类名
-			handlerMethodsMap.put("method", method.getMethod().getName()); // 方法名
-			RequestMethodsRequestCondition methodsCondition = info.getMethodsCondition();
-			String type = methodsCondition.toString();
-			if (type != null && type.startsWith("[") && type.endsWith("]")) {
-				type = type.substring(1, type.length() - 1);
-				handlerMethodsMap.put("type", type); // 请求类型
-			}
-			// 变量名
-			String name = "var RU_" + (handlerMethodsMap.get("className") + "_" + handlerMethodsMap.get("method")).toUpperCase();
-			// 路径
-			String path = "\"" + handlerMethodsMap.get("url") + "\";";
-			String text = name + " = " + path + System.getProperty("line.separator", "/n");
+			if (StringUtils.isBlank(url))
+				continue;
+
+			// 获取JS常量文件中的变量名，并写入JS常量文件中
+			String className = handlerMethod.getMethod().getDeclaringClass().getSimpleName().replaceAll("GenSwgApp", "").replaceAll("SwgApp", "").replaceAll("Controller", "");
+			String methodName = handlerMethod.getMethod().getName();
+			String jsConstantName = "var RU_" + (className + "_" + methodName).toUpperCase();
+
+			String path = "\"" + url + "\";";
+			String text = jsConstantName + " = " + path + System.getProperty("line.separator", "/n");
 
 			FileOutputStream fileOutputStream = new FileOutputStream(new File(jsConstantsPath), true);
 			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 			bufferedOutputStream.write(text.getBytes());
 			bufferedOutputStream.flush();
 			bufferedOutputStream.close();
-	
-			if (StringUtils.isNotBlank(handlerMethodsMap.get("url")) && !interfaceUrlList.contains(handlerMethodsMap.get("url"))) {
-				GpInterface gpInterface = new GpInterface();
-				gpInterface.setId(Tools.getUUID());
-                gpInterface.setDomainId(Tools.getUUID());
-				gpInterface.setTableName(handlerMethodsMap.get("className"));
-				gpInterface.setUrl(handlerMethodsMap.get("url"));
-				gpInterface.setAddTime(new Date());
-				gpInterface.setIsPublicCode((byte) 0);
-				if ("POST".equals(handlerMethodsMap.get("type"))) {
-					gpInterface.setTypeCode(InterfaceType.POST.getCode());
-				} else if ("GET".equals(handlerMethodsMap.get("type"))) {
-					gpInterface.setTypeCode(InterfaceType.GET.getCode());
+
+			// 处理应用领域
+			if (className.startsWith(DomainEnum.DA.getName()))
+				domainId = DomainEnum.DA.getId();
+			if (className.startsWith(DomainEnum.MF.getName()))
+				domainId = DomainEnum.MF.getId();
+			if (className.startsWith(DomainEnum.WP.getName()))
+				domainId = DomainEnum.WP.getId();
+			if (className.startsWith(DomainEnum.GP.getName()))
+				domainId = DomainEnum.GP.getId();
+
+			// 获取接口调用方式typeCode
+			RequestMethodsRequestCondition methodsCondition = requestMappingInfo.getMethodsCondition();
+			String type = methodsCondition.toString();
+			if (type != null && type.startsWith("[") && type.endsWith("]")) {
+				type = type.substring(1, type.length() - 1);
+				if (InterfaceType.POST.getText().equals(type)) {
+					typeCode = InterfaceType.POST.getCode();
+				} else if (InterfaceType.GET.getText().equals(type)) {
+					typeCode = InterfaceType.GET.getCode();
 				}
-				gpInterfaceList.add(gpInterface);
 			}
+
+			// 获取接口名称name和接口描述remark
+			ApiOperation apiOperation = handlerMethod.getMethodAnnotation(ApiOperation.class);
+			if (apiOperation != null) {
+				name = apiOperation.value();
+				remark = apiOperation.notes();
+			}
+
+			// 将类名转换为表名
+			tableName = CamelCaseUtl.toUnderlineName(className);
+
+			// 将接口信息插入数据库
+			GpInterface gpInterface = new GpInterface();
+			gpInterface.setId(id);
+			gpInterface.setAddTime(addTime);
+			gpInterface.setName(name);
+			gpInterface.setDomainId(domainId);
+			gpInterface.setTableName(tableName);
+			gpInterface.setUrl(url);
+			gpInterface.setIsPublicCode(isPublicCode);
+			gpInterface.setRemark(remark);
+			gpInterface.setSerialNo(serialNo);
+			gpInterface.setTypeCode(typeCode);
+			gpInterface.setUpdateTime(updateTime);
+
+			// 如果包含，说明是修改记录
+			for (Map<String, Object> interfaceMap : interfaceList) {
+				if (interfaceMap.get("url").equals(url)) {
+					gpInterface.setId(interfaceMap.get("id").toString());
+					if (interfaceMap.get("serial_no") != null)
+						gpInterface.setSerialNo(interfaceMap.get("serial_no").toString());
+					gpInterface.setAddTime(null);
+					break;
+				}
+			}
+
+			gpInterfaceList.add(gpInterface);
+
 		}
-		result = gpInterfaceUntBll.add(gpInterfaceList);
+
+		result = gpInterfaceUntBll.updateListWithDffOrAdd(gpInterfaceList);
 
 		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 		result.setResultMessage("接口记录更新成功……");

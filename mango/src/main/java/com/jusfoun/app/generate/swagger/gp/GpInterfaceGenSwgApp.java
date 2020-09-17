@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/26 19:55:23
+ * @updateDate 2020/9/10 14:48:42
  * @description 系统接口。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpInterfaceGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.domain_id domainId,A.table_name tableName,A.url url,A.remark remark,A.add_time addTime,A.is_public_code isPublicCode,A.type_code typeCode  from gp_interface A inner join gp_interface B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.serial_no serialNo,A.domain_id domainId,A.name name,A.table_name tableName,A.is_public_code isPublicCode,A.type_code typeCode,A.url url,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_interface A inner join gp_interface B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -192,12 +192,12 @@ public class GpInterfaceGenSwgApp extends BaseSwgApp {
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
                 
+				if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))
+					selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
+				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
+					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("tableName") && StringUtils.isNotBlank(entityRelatedObject.getString("tableName")))
 					selectBuffer.append(" and A.table_name like '%").append(entityRelatedObject.getString("tableName")).append("%'");
-				if (entityRelatedObject.containsKey("url") && StringUtils.isNotBlank(entityRelatedObject.getString("url")))
-					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString("url")).append("%'");
-				if (entityRelatedObject.containsKey("remark") && StringUtils.isNotBlank(entityRelatedObject.getString("remark")))
-					selectBuffer.append(" and A.remark like '%").append(entityRelatedObject.getString("remark")).append("%'");
 			}
 
 			if (jsonObject.containsKey("page")) {

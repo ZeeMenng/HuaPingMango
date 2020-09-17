@@ -155,6 +155,15 @@ $(document).ready(function() {
 
 });
 
+/**
+ * @author Zee
+ * @createDate 2020年9月17日 下午6:05:12
+ * @updateDate 2020年9月17日 下午6:05:12
+ * @description layer.load 参数: icon:0,1,2 loading风格 shade:false 是否有遮罩，true表示有遮罩
+ *              time : 2*1000 设定最长等待时间,设置时间之后，loading会在时间到之后自动关闭
+ * 
+ * 
+ */
 function updatePageConstant() {
 	var ajaxParamter = {
 		"url" : "/extend/swagger/gp/gpInterface/updateInterfaceConstants",
@@ -163,6 +172,12 @@ function updatePageConstant() {
 		}),
 		"type" : "GET",
 		"async" : true,
+		"beforeSend" : function() {
+			layer.closeAll();
+			layer.load(0, {
+				shade : false
+			});
+		},
 		"success" : function(resultData) {
 			if (!resultData["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
