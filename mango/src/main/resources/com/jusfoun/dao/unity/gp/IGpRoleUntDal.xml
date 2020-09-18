@@ -55,8 +55,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_role
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -176,36 +175,28 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-              id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
+add_time,
+id,
+name,
+remark,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpRole" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gpRole.addTime,jdbcType=TIMESTAMP},
-                  </if>
+            
               #{gpRole.id ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
+                  
                      #{gpRole.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{gpRole.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.updateTime != null ">
+                  
+                  
                     #{gpRole.updateTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

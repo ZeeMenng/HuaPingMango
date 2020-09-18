@@ -10,7 +10,7 @@ import com.jusfoun.ent.extend.gp.GpRegionCountry;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/27 11:19:26
+ * @updateDate 2020/9/18 15:38:55
  * @description 扩展自实体类IBaseUntDal<GpRegionCountry>，可手动更改。地区信息。
  */
 

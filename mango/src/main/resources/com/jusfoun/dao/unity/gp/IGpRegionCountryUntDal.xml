@@ -95,8 +95,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_region_country
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -286,66 +285,48 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_region_country
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="abbreviation  != null and abbreviation  != '' " >
-              abbreviation,
-          </if>
-          <if test="area  != null " >
-              area,
-          </if>
-          <if test="chineseName  != null and chineseName  != '' " >
-              chinese_name,
-          </if>
-          <if test="englishName  != null and englishName  != '' " >
-              english_name,
-          </if>
-              id ,
-          <if test="isDisplayCode  != null " >
-              is_display_code,
-          </if>
-          <if test="isoCode  != null and isoCode  != '' " >
-              iso_code,
-          </if>
-          <if test="latitude  != null and latitude  != '' " >
-              latitude,
-          </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+abbreviation,
+area,
+chinese_name,
+english_name,
+id,
+is_display_code,
+iso_code,
+latitude,
+longitude,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="gpRegionCountry" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.abbreviation  != null  and t.abbreviation != '' " >
+                  
                      #{gpRegionCountry.abbreviation ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.area != null ">
+                  
+                  
                     #{gpRegionCountry.area,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.chineseName  != null  and t.chineseName != '' " >
+            
+                  
                      #{gpRegionCountry.chineseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.englishName  != null  and t.englishName != '' " >
+                  
+                  
                      #{gpRegionCountry.englishName ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gpRegionCountry.id ,jdbcType=VARCHAR},
-                  <if test="t.isDisplayCode != null ">
+                  
                     #{gpRegionCountry.isDisplayCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isoCode  != null  and t.isoCode != '' " >
+            
+                  
                      #{gpRegionCountry.isoCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.latitude  != null  and t.latitude != '' " >
+                  
+                  
                      #{gpRegionCountry.latitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
+                  
+                  
                      #{gpRegionCountry.longitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{gpRegionCountry.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

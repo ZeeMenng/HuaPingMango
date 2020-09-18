@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_user_role
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -154,24 +153,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_user_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="roleId  != null and roleId  != '' " >
-              role_id,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
+id,
+role_id,
+user_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprUserRole" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprUserRole.id ,jdbcType=VARCHAR},
-                  <if test="t.roleId  != null  and t.roleId != '' " >
+                  
                      #{gprUserRole.roleId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{gprUserRole.userId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

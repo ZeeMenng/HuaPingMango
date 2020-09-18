@@ -14,7 +14,7 @@ import com.jusfoun.ent.extend.gp.GpToken;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/27 11:19:25
+ * @updateDate 2020/9/18 15:38:53
  * @description 扩展自实体类IBaseUntDal<GpLoginLog>，可手动更改。登录日志。
  */
 

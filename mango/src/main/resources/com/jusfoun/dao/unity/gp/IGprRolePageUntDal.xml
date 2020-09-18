@@ -48,8 +48,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_role_page
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -175,30 +174,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_role_page
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="isEnableCode  != null " >
-              is_enable_code,
-          </if>
-          <if test="pageId  != null and pageId  != '' " >
-              page_id,
-          </if>
-          <if test="roleId  != null and roleId  != '' " >
-              role_id,
-          </if>
+id,
+is_enable_code,
+page_id,
+role_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprRolePage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprRolePage.id ,jdbcType=VARCHAR},
-                  <if test="t.isEnableCode != null ">
+                  
                     #{gprRolePage.isEnableCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.pageId  != null  and t.pageId != '' " >
+            
+                  
                      #{gprRolePage.pageId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.roleId  != null  and t.roleId != '' " >
+                  
+                  
                      #{gprRolePage.roleId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -10,7 +10,7 @@ import com.jusfoun.ent.extend.gp.GpValueLocation;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/27 11:19:27
+ * @updateDate 2020/9/18 15:38:58
  * @description 扩展自实体类IBaseUntDal<GpValueLocation>，可手动更改。调用存储过程查询某个值在本数据库中的位置，记录相关信息到本表中。
  */
 

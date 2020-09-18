@@ -133,8 +133,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_module
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -415,96 +414,68 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_module
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="domainId  != null and domainId  != '' " >
-              domain_id,
-          </if>
-          <if test="fartherId  != null and fartherId  != '' " >
-              farther_id,
-          </if>
-          <if test="iconResource  != null and iconResource  != '' " >
-              icon_resource,
-          </if>
-              id ,
-          <if test="levelCode  != null " >
-              level_code,
-          </if>
-          <if test="levelText  != null and levelText  != '' " >
-              level_text,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="pageId  != null and pageId  != '' " >
-              page_id,
-          </if>
-          <if test="pageUrl  != null and pageUrl  != '' " >
-              page_url,
-          </if>
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="serialNo  != null and serialNo  != '' " >
-              serial_no,
-          </if>
-          <if test="style  != null and style  != '' " >
-              style,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
+add_time,
+domain_id,
+farther_id,
+icon_resource,
+id,
+level_code,
+level_text,
+name,
+page_id,
+page_url,
+priority,
+remark,
+serial_no,
+style,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpModule" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gpModule.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.domainId  != null  and t.domainId != '' " >
+            
+                  
                      #{gpModule.domainId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fartherId  != null  and t.fartherId != '' " >
+                  
+                  
                      #{gpModule.fartherId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.iconResource  != null  and t.iconResource != '' " >
+                  
+                  
                      #{gpModule.iconResource ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gpModule.id ,jdbcType=VARCHAR},
-                  <if test="t.levelCode != null ">
+                  
                     #{gpModule.levelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.levelText  != null  and t.levelText != '' " >
+            
+                  
                      #{gpModule.levelText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{gpModule.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.pageId  != null  and t.pageId != '' " >
+                  
+                  
                      #{gpModule.pageId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.pageUrl  != null  and t.pageUrl != '' " >
+                  
+                  
                      #{gpModule.pageUrl ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
+                  
+                  
                     #{gpModule.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{gpModule.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                  
+                  
                      #{gpModule.serialNo ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.style  != null  and t.style != '' " >
+                  
+                  
                      #{gpModule.style ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.updateTime != null ">
+                  
+                  
                     #{gpModule.updateTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

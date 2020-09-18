@@ -63,8 +63,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_dictionary
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -208,42 +207,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_dictionary
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="code  != null " >
-              code,
-          </if>
-              id ,
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="text  != null and text  != '' " >
-              text,
-          </if>
-          <if test="typeId  != null and typeId  != '' " >
-              type_id,
-          </if>
+code,
+id,
+priority,
+remark,
+text,
+type_id,
     </trim>
     VALUES
     <foreach collection="list" item="gpDictionary" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.code != null ">
+                  
                     #{gpDictionary.code,jdbcType=TINYINT},
-                  </if>
+            
               #{gpDictionary.id ,jdbcType=VARCHAR},
-                  <if test="t.priority != null ">
+                  
                     #{gpDictionary.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{gpDictionary.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.text  != null  and t.text != '' " >
+                  
+                  
                      #{gpDictionary.text ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.typeId  != null  and t.typeId != '' " >
+                  
+                  
                      #{gpDictionary.typeId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

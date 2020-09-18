@@ -70,8 +70,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_message_user
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -239,48 +238,36 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_message_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-              id ,
-          <if test="isReadCode  != null " >
-              is_read_code,
-          </if>
-          <if test="messageId  != null and messageId  != '' " >
-              message_id,
-          </if>
-          <if test="readTime  != null " >
-              read_time,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
-          <if test="userName  != null and userName  != '' " >
-              user_name,
-          </if>
+add_time,
+id,
+is_read_code,
+message_id,
+read_time,
+user_id,
+user_name,
     </trim>
     VALUES
     <foreach collection="list" item="gprMessageUser" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gprMessageUser.addTime,jdbcType=TIMESTAMP},
-                  </if>
+            
               #{gprMessageUser.id ,jdbcType=VARCHAR},
-                  <if test="t.isReadCode != null ">
+                  
                     #{gprMessageUser.isReadCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.messageId  != null  and t.messageId != '' " >
+            
+                  
                      #{gprMessageUser.messageId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.readTime != null ">
+                  
+                  
                     #{gprMessageUser.readTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+            
+                  
                      #{gprMessageUser.userId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userName  != null  and t.userName != '' " >
+                  
+                  
                      #{gprMessageUser.userName ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

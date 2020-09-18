@@ -20,7 +20,7 @@ import com.jusfoun.ent.extend.gp.GprRoleDomain;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/27 11:19:24
+ * @updateDate 2020/9/18 15:38:52
  * @description 扩展自实体类IBaseUntDal<GpDomain>，可手动更改。应用领域。
  */
 

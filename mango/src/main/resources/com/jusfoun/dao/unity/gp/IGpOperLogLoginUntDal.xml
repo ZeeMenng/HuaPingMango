@@ -65,8 +65,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_oper_log_login
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -240,42 +239,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_oper_log_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="loginLogId  != null and loginLogId  != '' " >
-              login_log_id,
-          </if>
-          <if test="operLogId  != null and operLogId  != '' " >
-              oper_log_id,
-          </if>
-          <if test="tokenId  != null and tokenId  != '' " >
-              token_id,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
-          <if test="userName  != null and userName  != '' " >
-              user_name,
-          </if>
+id,
+login_log_id,
+oper_log_id,
+token_id,
+user_id,
+user_name,
     </trim>
     VALUES
     <foreach collection="list" item="gpOperLogLogin" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gpOperLogLogin.id ,jdbcType=VARCHAR},
-                  <if test="t.loginLogId  != null  and t.loginLogId != '' " >
+                  
                      #{gpOperLogLogin.loginLogId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.operLogId  != null  and t.operLogId != '' " >
+                  
+                  
                      #{gpOperLogLogin.operLogId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tokenId  != null  and t.tokenId != '' " >
+                  
+                  
                      #{gpOperLogLogin.tokenId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{gpOperLogLogin.userId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userName  != null  and t.userName != '' " >
+                  
+                  
                      #{gpOperLogLogin.userName ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

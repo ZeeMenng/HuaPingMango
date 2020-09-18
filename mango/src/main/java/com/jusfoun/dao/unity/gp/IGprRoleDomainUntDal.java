@@ -12,7 +12,7 @@ import com.jusfoun.ent.extend.gp.GpRole;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/27 11:19:22
+ * @updateDate 2020/9/18 15:38:48
  * @description 扩展自实体类IBaseUntDal<GprRoleDomain>，可手动更改。角色拥有的功能模块权限。
  */
 

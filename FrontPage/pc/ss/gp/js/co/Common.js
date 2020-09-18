@@ -1221,6 +1221,7 @@ function request(name) {
  * @param errorThrown
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
+	layer.closeAll();
 	if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
 		var result = JSON.parse(XMLHttpRequest.responseText)
 		layer.alert(result.resultMessage, {

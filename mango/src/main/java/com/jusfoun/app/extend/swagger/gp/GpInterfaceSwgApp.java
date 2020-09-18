@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -212,7 +214,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 	}
 
 	@RequestMapping(value = "/updateInterfaceConstants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updateInterfaceConstants() throws IOException, DateParseException {
+	public ResultModel updateInterfaceConstants() throws IOException, DateParseException, ParseException {
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			throw new GlobalException("缺少必要参数！");
@@ -279,13 +281,15 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			bufferedOutputStream.close();
 
 			// 处理应用领域
-			if (className.startsWith(DomainEnum.DA.getName()))
+			if (className.toUpperCase().startsWith(DomainEnum.DA.name()))
 				domainId = DomainEnum.DA.getId();
-			if (className.startsWith(DomainEnum.MF.getName()))
+			else if (className.toUpperCase().startsWith(DomainEnum.MF.name()))
 				domainId = DomainEnum.MF.getId();
-			if (className.startsWith(DomainEnum.WP.getName()))
+			else if (className.toUpperCase().startsWith(DomainEnum.WP.name()))
 				domainId = DomainEnum.WP.getId();
-			if (className.startsWith(DomainEnum.GP.getName()))
+			else if (className.toUpperCase().startsWith(DomainEnum.GP.name()))
+				domainId = DomainEnum.GP.getId();
+			else
 				domainId = DomainEnum.GP.getId();
 
 			// 获取接口调用方式typeCode
@@ -293,10 +297,12 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			String type = methodsCondition.toString();
 			if (type != null && type.startsWith("[") && type.endsWith("]")) {
 				type = type.substring(1, type.length() - 1);
-				if (InterfaceType.POST.getText().equals(type)) {
+				if (InterfaceType.POST.name().equals(type)) {
 					typeCode = InterfaceType.POST.getCode();
-				} else if (InterfaceType.GET.getText().equals(type)) {
+				} else if (InterfaceType.GET.name().equals(type)) {
 					typeCode = InterfaceType.GET.getCode();
+				}else {
+					typeCode = InterfaceType.POSTORGET.getCode();
 				}
 			}
 
@@ -330,7 +336,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 					gpInterface.setId(interfaceMap.get("id").toString());
 					if (interfaceMap.get("serial_no") != null)
 						gpInterface.setSerialNo(interfaceMap.get("serial_no").toString());
-					gpInterface.setAddTime(null);
+					gpInterface.setAddTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(interfaceMap.get("add_time").toString()));
 					break;
 				}
 			}

@@ -132,8 +132,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_login_log
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -413,96 +412,68 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_login_log
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="browser  != null and browser  != '' " >
-              browser,
-          </if>
-          <if test="domainId  != null and domainId  != '' " >
-              domain_id,
-          </if>
-          <if test="duration  != null " >
-              duration,
-          </if>
-              id ,
-          <if test="ip  != null and ip  != '' " >
-              ip,
-          </if>
-          <if test="ipAddress  != null and ipAddress  != '' " >
-              ip_address,
-          </if>
-          <if test="isSuccessCode  != null " >
-              is_success_code,
-          </if>
-          <if test="loginTime  != null " >
-              login_time,
-          </if>
-          <if test="logoutTime  != null " >
-              logout_time,
-          </if>
-          <if test="logoutTypeCode  != null " >
-              logout_type_code,
-          </if>
-          <if test="os  != null and os  != '' " >
-              os,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="resolution  != null and resolution  != '' " >
-              resolution,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
-          <if test="userName  != null and userName  != '' " >
-              user_name,
-          </if>
+browser,
+domain_id,
+duration,
+id,
+ip,
+ip_address,
+is_success_code,
+login_time,
+logout_time,
+logout_type_code,
+os,
+remark,
+resolution,
+user_id,
+user_name,
     </trim>
     VALUES
     <foreach collection="list" item="gpLoginLog" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.browser  != null  and t.browser != '' " >
+                  
                      #{gpLoginLog.browser ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.domainId  != null  and t.domainId != '' " >
+                  
+                  
                      #{gpLoginLog.domainId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.duration != null ">
+                  
+                  
                     #{gpLoginLog.duration,jdbcType=INTEGER},
-                  </if>
+            
               #{gpLoginLog.id ,jdbcType=VARCHAR},
-                  <if test="t.ip  != null  and t.ip != '' " >
+                  
                      #{gpLoginLog.ip ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ipAddress  != null  and t.ipAddress != '' " >
+                  
+                  
                      #{gpLoginLog.ipAddress ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isSuccessCode != null ">
+                  
+                  
                     #{gpLoginLog.isSuccessCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.loginTime != null ">
+            
+                  
                     #{gpLoginLog.loginTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.logoutTime != null ">
+            
+                  
                     #{gpLoginLog.logoutTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.logoutTypeCode != null ">
+            
+                  
                     #{gpLoginLog.logoutTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.os  != null  and t.os != '' " >
+            
+                  
                      #{gpLoginLog.os ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{gpLoginLog.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resolution  != null  and t.resolution != '' " >
+                  
+                  
                      #{gpLoginLog.resolution ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{gpLoginLog.userId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userName  != null  and t.userName != '' " >
+                  
+                  
                      #{gpLoginLog.userName ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

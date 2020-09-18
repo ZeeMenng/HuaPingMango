@@ -49,8 +49,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_dictionary_type
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -156,30 +155,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_dictionary_type
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="constantName  != null and constantName  != '' " >
-              constant_name,
-          </if>
-              id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+constant_name,
+id,
+name,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="gpDictionaryType" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.constantName  != null  and t.constantName != '' " >
+                  
                      #{gpDictionaryType.constantName ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gpDictionaryType.id ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
+                  
                      #{gpDictionaryType.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{gpDictionaryType.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

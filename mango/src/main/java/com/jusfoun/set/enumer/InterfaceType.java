@@ -10,7 +10,9 @@ public enum InterfaceType {
 	//
 	GET((byte)1, "GET方式"),
 	// 新增操作
-	POST((byte)2, "POST方式");
+	POST((byte)2, "POST方式"),
+	//
+	POSTORGET((byte)0, "POST||GET方式");
 	
 	private String text;
 	private Byte code;

@@ -79,8 +79,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_station
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -252,54 +251,40 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_station
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-              id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="organizationId  != null and organizationId  != '' " >
-              organization_id,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="responsibility  != null and responsibility  != '' " >
-              responsibility,
-          </if>
-          <if test="serialNo  != null and serialNo  != '' " >
-              serial_no,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
+add_time,
+id,
+name,
+organization_id,
+remark,
+responsibility,
+serial_no,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpStation" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gpStation.addTime,jdbcType=TIMESTAMP},
-                  </if>
+            
               #{gpStation.id ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
+                  
                      #{gpStation.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.organizationId  != null  and t.organizationId != '' " >
+                  
+                  
                      #{gpStation.organizationId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{gpStation.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.responsibility  != null  and t.responsibility != '' " >
+                  
+                  
                      #{gpStation.responsibility ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                  
+                  
                      #{gpStation.serialNo ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.updateTime != null ">
+                  
+                  
                     #{gpStation.updateTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

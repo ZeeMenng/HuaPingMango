@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_user_base
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -134,24 +133,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_user_base
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="baseId  != null and baseId  != '' " >
-              base_id,
-          </if>
-              id ,
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
+base_id,
+id,
+user_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprUserBase" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.baseId  != null  and t.baseId != '' " >
+                  
                      #{gprUserBase.baseId ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gprUserBase.id ,jdbcType=VARCHAR},
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
                      #{gprUserBase.userId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

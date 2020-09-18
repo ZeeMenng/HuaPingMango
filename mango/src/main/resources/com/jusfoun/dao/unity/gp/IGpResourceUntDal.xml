@@ -110,8 +110,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_resource
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -359,78 +358,56 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_resource
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="domainId  != null and domainId  != '' " >
-              domain_id,
-          </if>
-          <if test="extension  != null and extension  != '' " >
-              extension,
-          </if>
-              id ,
-          <if test="moduleId  != null and moduleId  != '' " >
-              module_id,
-          </if>
-          <if test="newName  != null and newName  != '' " >
-              new_name,
-          </if>
-          <if test="originalName  != null and originalName  != '' " >
-              original_name,
-          </if>
-          <if test="pageId  != null and pageId  != '' " >
-              page_id,
-          </if>
-          <if test="path  != null and path  != '' " >
-              path,
-          </if>
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="size  != null " >
-              size,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
+add_time,
+domain_id,
+extension,
+id,
+module_id,
+new_name,
+original_name,
+page_id,
+path,
+priority,
+size,
+user_id,
     </trim>
     VALUES
     <foreach collection="list" item="gpResource" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gpResource.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.domainId  != null  and t.domainId != '' " >
+            
+                  
                      #{gpResource.domainId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.extension  != null  and t.extension != '' " >
+                  
+                  
                      #{gpResource.extension ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gpResource.id ,jdbcType=VARCHAR},
-                  <if test="t.moduleId  != null  and t.moduleId != '' " >
+                  
                      #{gpResource.moduleId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.newName  != null  and t.newName != '' " >
+                  
+                  
                      #{gpResource.newName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.originalName  != null  and t.originalName != '' " >
+                  
+                  
                      #{gpResource.originalName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.pageId  != null  and t.pageId != '' " >
+                  
+                  
                      #{gpResource.pageId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.path  != null  and t.path != '' " >
+                  
+                  
                      #{gpResource.path ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
+                  
+                  
                     #{gpResource.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.size != null ">
+            
+                  
                     #{gpResource.size,jdbcType=BIGINT},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+            
+                  
                      #{gpResource.userId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

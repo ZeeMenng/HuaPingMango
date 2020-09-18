@@ -131,8 +131,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gp_early_warning
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -392,96 +391,68 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_early_warning
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="beginDate  != null and beginDate  != '' " >
-              begin_date,
-          </if>
-          <if test="endDate  != null and endDate  != '' " >
-              end_date,
-          </if>
-          <if test="growthId  != null and growthId  != '' " >
-              growth_id,
-          </if>
-          <if test="growthName  != null and growthName  != '' " >
-              growth_name,
-          </if>
-              id ,
-          <if test="maxVal  != null " >
-              max_val,
-          </if>
-          <if test="minVal  != null " >
-              min_val,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="stutasCode  != null " >
-              stutas_code,
-          </if>
-          <if test="stutasText  != null and stutasText  != '' " >
-              stutas_text,
-          </if>
-          <if test="tipsMess  != null and tipsMess  != '' " >
-              tips_mess,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
-          <if test="warningName  != null and warningName  != '' " >
-              warning_name,
-          </if>
-          <if test="warningType  != null " >
-              warning_type,
-          </if>
+add_time,
+begin_date,
+end_date,
+growth_id,
+growth_name,
+id,
+max_val,
+min_val,
+remark,
+stutas_code,
+stutas_text,
+tips_mess,
+update_time,
+warning_name,
+warning_type,
     </trim>
     VALUES
     <foreach collection="list" item="gpEarlyWarning" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.addTime != null ">
+                  
                     #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.beginDate  != null  and t.beginDate != '' " >
+            
+                  
                      #{gpEarlyWarning.beginDate ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.endDate  != null  and t.endDate != '' " >
+                  
+                  
                      #{gpEarlyWarning.endDate ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growthId  != null  and t.growthId != '' " >
+                  
+                  
                      #{gpEarlyWarning.growthId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growthName  != null  and t.growthName != '' " >
+                  
+                  
                      #{gpEarlyWarning.growthName ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gpEarlyWarning.id ,jdbcType=VARCHAR},
-                  <if test="t.maxVal != null ">
+                  
                     #{gpEarlyWarning.maxVal,jdbcType=DOUBLE},
-                  </if>
-                  <if test="t.minVal != null ">
+            
+                  
                     #{gpEarlyWarning.minVal,jdbcType=DOUBLE},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{gpEarlyWarning.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.stutasCode != null ">
+                  
+                  
                     #{gpEarlyWarning.stutasCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.stutasText  != null  and t.stutasText != '' " >
+            
+                  
                      #{gpEarlyWarning.stutasText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tipsMess  != null  and t.tipsMess != '' " >
+                  
+                  
                      #{gpEarlyWarning.tipsMess ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.updateTime != null ">
+                  
+                  
                     #{gpEarlyWarning.updateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.warningName  != null  and t.warningName != '' " >
+            
+                  
                      #{gpEarlyWarning.warningName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.warningType != null ">
+                  
+                  
                     #{gpEarlyWarning.warningType,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

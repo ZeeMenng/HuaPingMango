@@ -48,8 +48,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_resource
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -165,30 +164,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_resource
         <trim prefix="(" suffix=")" suffixOverrides="," >
-          <if test="businessId  != null and businessId  != '' " >
-              business_id,
-          </if>
-              id ,
-          <if test="isDefault  != null " >
-              is_default,
-          </if>
-          <if test="resourceId  != null and resourceId  != '' " >
-              resource_id,
-          </if>
+business_id,
+id,
+is_default,
+resource_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprResource" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  <if test="t.businessId  != null  and t.businessId != '' " >
+                  
                      #{gprResource.businessId ,jdbcType=VARCHAR},
-                  </if>
+                  
               #{gprResource.id ,jdbcType=VARCHAR},
-                  <if test="t.isDefault != null ">
+                  
                     #{gprResource.isDefault,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+            
+                  
                      #{gprResource.resourceId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

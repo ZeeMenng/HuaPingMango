@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into gpr_module_page
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -154,24 +153,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_module_page
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="moduleId  != null and moduleId  != '' " >
-              module_id,
-          </if>
-          <if test="pageId  != null and pageId  != '' " >
-              page_id,
-          </if>
+id,
+module_id,
+page_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprModulePage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprModulePage.id ,jdbcType=VARCHAR},
-                  <if test="t.moduleId  != null  and t.moduleId != '' " >
+                  
                      #{gprModulePage.moduleId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.pageId  != null  and t.pageId != '' " >
+                  
+                  
                      #{gprModulePage.pageId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>
