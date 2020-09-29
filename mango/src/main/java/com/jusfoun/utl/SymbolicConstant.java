@@ -45,6 +45,7 @@ public class SymbolicConstant {
 	public static final String ERROR_PAGE = "/error";
 
 	public static final String TABLE_ID = "id";
+	public static final String TABLE_SERIAL_NO = "serialNo";
 	public static final String ADD_TIME = "addTime";
 	public static final String UPDATE_TIME = "updateTime";
 

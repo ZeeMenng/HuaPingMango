@@ -71,8 +71,8 @@ $(document).ready(function() {
 		submitData : {
 			"entityRelated" : {},
 			"orderList" : [ {
-				"columnName" : "id",
-				"isASC" : true
+				"columnName" : "A.add_time",
+				"isASC" : false
 			} ],
 			"page" : {
 				"pageIndex" : DEFAULT_PAGE_INDEX,
@@ -82,8 +82,8 @@ $(document).ready(function() {
 		columnInfo : [
 
 		{
-			"columnName" : "tableName",
-			"columnText" : "操作主表",
+			"columnName" : "name",
+			"columnText" : "接口名称",
 			"style" : "text-align:left",
 			"linkFunction" : function(event) {
 				var href = RP_GPINTERFACE_DETAIL + "?" + RECORD_ID + "=" + event.id;
@@ -102,7 +102,12 @@ $(document).ready(function() {
 			"columnName" : "typeCode",
 			"columnText" : "请求方式",
 			"style" : "text-align:left",
-		}, ]
+		}, {
+		"columnName" : "addTime",
+		"columnText" : "添加时间",
+		"style" : "text-align:center",
+		"width" : '120px'
+	}]
 	};
 
 	var operationParam = [ {

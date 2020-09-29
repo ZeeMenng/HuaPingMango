@@ -20,6 +20,7 @@ import com.jusfoun.set.enumer.OperType;
 import com.jusfoun.set.exception.GlobalException;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.PageHelperUtil;
+import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
 import com.jusfoun.utl.SymbolicConstant;
 import com.jusfoun.utl.Tools;
 
@@ -53,17 +54,29 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setOperTypeText(OperType.ADD.getText());
 			result.setRemark("");
 
+			//给主键统一赋值
 			Class<?> cla = t.getClass().getSuperclass();
 			String tId = Tools.getUUID();
-			Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
-			field.setAccessible(true);
-			Object idObject = field.get(t);
+			Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+			idField.setAccessible(true);
+			Object idObject = idField.get(t);
 			if (idObject == null || StringUtils.isEmpty(idObject.toString())) {
-				field.set(t, tId);
+				idField.set(t, tId);
 				result.setObjectId(tId);
 			} else {
 				result.setObjectId(idObject.toString());
 			}
+			
+			//给编号统一赋值
+			String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+			Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+			serialNoField.setAccessible(true);
+			Object serialNoObject = serialNoField.get(t);
+			if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) 
+				serialNoField.set(t, tSerialNo);
+		
+			
+			
 			// 统一新增时间begin
 			try {
 				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
@@ -151,13 +164,23 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
+				
+				//给主键统一赋值
 				String tId = Tools.getUUID();
-				Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
-				field.setAccessible(true);
-				Object idObject = field.get(t);
+				Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+				idField.setAccessible(true);
+				Object idObject = idField.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
-					field.set(t, tId);
-
+					idField.set(t, tId);
+				
+				//给编号统一赋值
+				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+				serialNoField.setAccessible(true);
+				Object serialNoObject = serialNoField.get(t);
+				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) 
+					serialNoField.set(t, tSerialNo);
+				
 				// 统一新增时间begin
 				try {
 					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);

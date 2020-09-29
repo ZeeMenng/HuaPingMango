@@ -122,13 +122,15 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 		StringBuffer selectBuffer = new StringBuffer();
 		selectBuffer.append("	SELECT                                                       ");
 		selectBuffer.append("		A.id id,                                                 ");
+		selectBuffer.append("		A.name name,                                  ");
 		selectBuffer.append("		A.domain_id domainId,                                    ");
 		selectBuffer.append("		A.table_name tableName,                                  ");
 		selectBuffer.append("		A.url url,                                               ");
 		selectBuffer.append("		A.remark remark,                                         ");
 		selectBuffer.append("		A.add_time addTime,                                      ");
+		selectBuffer.append("		A.update_time updateTime,                                      ");
 		selectBuffer.append("		IF(A.is_public_code=0,'是','否') isPublicCode,           ");
-		selectBuffer.append("		IF(A.type_code='0','GET','POST') typeCode                ");
+		selectBuffer.append("		CASE A.type_code WHEN 1 THEN 'GET' WHEN 2 THEN 'POST' ELSE '其它' END AS typeCode");
 		selectBuffer.append("	FROM                                                         ");
 		selectBuffer.append("		gp_interface A                                           ");
 		selectBuffer.append("	INNER JOIN gp_interface B ON A.id = B.id                     ");

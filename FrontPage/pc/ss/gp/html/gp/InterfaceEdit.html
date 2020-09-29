@@ -15,7 +15,7 @@
 				textSerialNo : {
 					required : true
 				},
-				textDomainId : {
+				selectDomainId : {
 					required : true
 				},
 				textTableName : {
@@ -24,7 +24,7 @@
 				textUrl : {
 					required : true
 				},
-				textIsPublicCode : {
+				selectIsPublicCode : {
 					required : true
 				},
 				textTypeCode : {
@@ -94,7 +94,7 @@
 														<span class="required" aria-required="true"> * </span>
 													</label>
 													<div class="col-md-3">
-														<input id="textSerialNo" name="textSerialNo" type="text" data-required="1" class="form-control" />
+														<input id="textSerialNo" name="textSerialNo" type="text" data-required="1" class="form-control" disabled=true/>
 													</div>
 												</div>
 											</div>
@@ -139,7 +139,7 @@
 														<span class="required" aria-required="true"> * </span>
 													</label>
 													<div class="col-md-3">
-														<select id="selectTypeCode" name="selectTypeCode" class="form-control" onchange="$('#queryBuilderForm').submit();">
+														<select id="selectTypeCode" name="selectTypeCode" class="form-control" >
 															<option value=""></option>
 														</select>
 													</div>
