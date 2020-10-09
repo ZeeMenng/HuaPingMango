@@ -2284,7 +2284,9 @@ function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 var IS_IMMEDIATE = true;
 
 function onDrop(event, treeId, treeNodes, targetNode, moveType) {
+	
 	updateModulesData(treeId, treeNodes, 'UPDATE');
+	
 };
 
 function beforeEditName(treeId, treeNode) {
@@ -2641,19 +2643,28 @@ function immediateUpdate(treeId, treeNodes, action) {
 		ajaxParamter.data = JSON.stringify(submitData);
 		ajaxParamter.url = RU_GPMODULE_DELETELIST;
 	} else if (action = "UPDATE") {
+		
+		
+		
 		var zTreeNodeJsonArray = new Array();
-		$.each(treeNodesArray, function(i, v) {
-			var domainNode = getCurrentRootNode(treeNodesArray[i]);
+		$.each(treeNodesArray, function(h, u) {
+			var domainNode = getCurrentRootNode(treeNodesArray[h]);
+           //拖拽会影响兄弟结点的排序		   
+			var treeNodesBrotherArray=new Array();
+			u.getParentNode()==null?treeNodesBrotherArray=treeNodesArray:treeNodesBrotherArray=u.getParentNode().children;  
+			$.each(treeNodesBrotherArray, function(i, v) {
+			
 			var zTreeNodeJson = {
-				id : treeNodesArray[i].id,
+				id : v.id,
 				cascadeTypeCode : cascade,
 				domainId : domainNode.id,
-				name : treeNodesArray[i].name,
-				fartherId : treeNodesArray[i].fartherId,
-				levelCode : treeNodesArray[i].level,
-				priority : treeNodesArray[i].getIndex()
+				name : v.name,
+				fartherId : v.fartherId,
+				levelCode :v.level,
+				priority : v.getIndex()
 			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
+			});
 		});
 		var submitData = {
 			entityList : zTreeNodeJsonArray
