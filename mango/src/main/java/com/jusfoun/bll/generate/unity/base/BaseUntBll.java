@@ -18,6 +18,7 @@ import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.set.enumer.OperResult;
 import com.jusfoun.set.enumer.OperType;
 import com.jusfoun.set.exception.GlobalException;
+import com.jusfoun.utl.ClassUtil;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.PageHelperUtil;
 import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
@@ -54,7 +55,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setOperTypeText(OperType.ADD.getText());
 			result.setRemark("");
 
-			//给主键统一赋值
+			// 给主键统一赋值
 			Class<?> cla = t.getClass().getSuperclass();
 			String tId = Tools.getUUID();
 			Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
@@ -66,17 +67,16 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			} else {
 				result.setObjectId(idObject.toString());
 			}
-			
+
 			//给编号统一赋值
-			String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
-			Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
-			serialNoField.setAccessible(true);
-			Object serialNoObject = serialNoField.get(t);
-			if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) 
-				serialNoField.set(t, tSerialNo);
-		
-			
-			
+			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
+				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+				serialNoField.setAccessible(true);
+				Object serialNoObject = serialNoField.get(t);
+				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
+					serialNoField.set(t, tSerialNo);
+			}
 			// 统一新增时间begin
 			try {
 				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
@@ -144,13 +144,11 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 	public ResultModel add(ArrayList<T> tList, boolean isLog) {
 		ResultModel result = new ResultModel();
-		if (tList == null || tList.isEmpty())
-		{
+		if (tList == null || tList.isEmpty()) {
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage("传入的为空数组！");
 			return result;
 		}
-		
 
 		try {
 
@@ -164,23 +162,25 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
-				
-				//给主键统一赋值
+
+				// 给主键统一赋值
 				String tId = Tools.getUUID();
 				Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
 				idField.setAccessible(true);
 				Object idObject = idField.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					idField.set(t, tId);
-				
-				//给编号统一赋值
-				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
-				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
-				serialNoField.setAccessible(true);
-				Object serialNoObject = serialNoField.get(t);
-				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) 
-					serialNoField.set(t, tSerialNo);
-				
+
+				// 给编号统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
+					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+
+					Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+					serialNoField.setAccessible(true);
+					Object serialNoObject = serialNoField.get(t);
+					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
+						serialNoField.set(t, tSerialNo);
+				}
 				// 统一新增时间begin
 				try {
 					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
@@ -249,13 +249,11 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	public ResultModel updateListWithDff(ArrayList<T> tList, boolean isLog) {
 
 		ResultModel result = new ResultModel();
-		if (tList == null || tList.isEmpty())
-		{
+		if (tList == null || tList.isEmpty()) {
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage("传入的为空数组！");
 			return result;
 		}
-		
 
 		try {
 
@@ -344,13 +342,12 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	public ResultModel updateListWithDffOrAdd(ArrayList<T> tList, boolean isLog) {
 
 		ResultModel result = new ResultModel();
-		if (tList == null || tList.isEmpty())
-		{
+		if (tList == null || tList.isEmpty()) {
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage("传入的为空数组！");
 			return result;
 		}
-		
+
 		try {
 
 			result.setAddTime(DateUtils.getCurrentTime());
@@ -481,13 +478,12 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 	public ResultModel deleteByIdList(ArrayList<String> idList, boolean isLog) {
 		ResultModel result = new ResultModel();
-		if (idList == null || idList.isEmpty())
-		{
+		if (idList == null || idList.isEmpty()) {
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage("传入的为空数组！");
 			return result;
 		}
-		
+
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
