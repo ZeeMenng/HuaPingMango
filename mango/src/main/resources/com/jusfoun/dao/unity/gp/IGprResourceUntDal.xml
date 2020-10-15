@@ -76,6 +76,15 @@
     	where resource_id = #{resourceId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByResourceIdList" parameterType="list">
+		delete from gpr_resource
+		where resource_id  in
+		<foreach collection="list" item="ResourceId " index="index" open="(" close=")" separator=",">
+			#{ResourceId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByResourceId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />

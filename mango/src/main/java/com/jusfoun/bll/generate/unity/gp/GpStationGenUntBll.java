@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:20
+ * @updateDate 2020/10/13 20:02:15
  * @description 岗位。 业务逻辑处理类，扩展自BaseUntBll<GpStation>，自动生成。
  */
 public class GpStationGenUntBll extends BaseUntBll<GpStation> {
@@ -186,6 +186,49 @@ public class GpStationGenUntBll extends BaseUntBll<GpStation> {
 
 		return result;
 	}
+
+
+ 	public ResultModel deleteByOrganizationIdList(ArrayList<String> organizationIdList) {
+		return deleteByOrganizationIdList(organizationIdList, isLogRead);
+	}
+
+	public ResultModel deleteByOrganizationIdList(ArrayList<String> organizationIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject( organizationIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据外键列表，批量删除本表数据。");
+
+			int i = gpStationUntDal.deleteByOrganizationIdList(organizationIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
 
 	public ResultModel getListByOrganizationId(String organizationId) {
 		return getListByOrganizationId(organizationId, isLogRead);

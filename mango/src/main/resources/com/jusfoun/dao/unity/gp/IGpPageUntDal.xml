@@ -97,6 +97,25 @@
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
+	<delete id="deleteByDomainId" parameterType="java.lang.String">
+    	delete from gp_page
+    	where domain_id = #{domainId,jdbcType=VARCHAR}
+    </delete>
+    
+   <delete id="deleteByDomainIdList" parameterType="list">
+		delete from gp_page
+		where domain_id  in
+		<foreach collection="list" item="DomainId " index="index" open="(" close=")" separator=",">
+			#{DomainId }
+		</foreach>
+	</delete>
+    
+    
+    <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from gp_page where domain_id = #{domainId,jdbcType=VARCHAR}
+	</select>
 
 
 	<delete id="deleteByIdList" parameterType="list">

@@ -111,6 +111,15 @@
     	where organization_id = #{organizationId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByOrganizationIdList" parameterType="list">
+		delete from gp_station
+		where organization_id  in
+		<foreach collection="list" item="OrganizationId " index="index" open="(" close=")" separator=",">
+			#{OrganizationId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByOrganizationId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />

@@ -76,6 +76,15 @@
     	where domain_id = #{domainId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByDomainIdList" parameterType="list">
+		delete from gpr_role_domain
+		where domain_id  in
+		<foreach collection="list" item="DomainId " index="index" open="(" close=")" separator=",">
+			#{DomainId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -85,6 +94,15 @@
     	delete from gpr_role_domain
     	where role_id = #{roleId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByRoleIdList" parameterType="list">
+		delete from gpr_role_domain
+		where role_id  in
+		<foreach collection="list" item="RoleId " index="index" open="(" close=")" separator=",">
+			#{RoleId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

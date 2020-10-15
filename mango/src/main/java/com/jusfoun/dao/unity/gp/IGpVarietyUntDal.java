@@ -10,7 +10,7 @@ import com.jusfoun.ent.extend.gp.GpVariety;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/9/18 15:38:58
+ * @updateDate 2020/10/13 20:02:29
  * @description 扩展自实体类IBaseUntDal<GpVariety>，可手动更改。品种表
  */
 

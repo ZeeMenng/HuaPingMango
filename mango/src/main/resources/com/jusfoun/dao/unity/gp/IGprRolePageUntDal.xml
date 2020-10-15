@@ -76,6 +76,15 @@
     	where page_id = #{pageId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByPageIdList" parameterType="list">
+		delete from gpr_role_page
+		where page_id  in
+		<foreach collection="list" item="PageId " index="index" open="(" close=")" separator=",">
+			#{PageId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByPageId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -85,6 +94,15 @@
     	delete from gpr_role_page
     	where role_id = #{roleId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByRoleIdList" parameterType="list">
+		delete from gpr_role_page
+		where role_id  in
+		<foreach collection="list" item="RoleId " index="index" open="(" close=")" separator=",">
+			#{RoleId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

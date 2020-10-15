@@ -76,6 +76,15 @@
     	where control_id = #{controlId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByControlIdList" parameterType="list">
+		delete from gpr_role_control
+		where control_id  in
+		<foreach collection="list" item="ControlId " index="index" open="(" close=")" separator=",">
+			#{ControlId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByControlId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -85,6 +94,15 @@
     	delete from gpr_role_control
     	where role_id = #{roleId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByRoleIdList" parameterType="list">
+		delete from gpr_role_control
+		where role_id  in
+		<foreach collection="list" item="RoleId " index="index" open="(" close=")" separator=",">
+			#{RoleId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

@@ -164,17 +164,35 @@
 
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete from gp_resource
-		where id = #{id,jdbcType=VARCHAR}
+		delete a,b from gp_resource a left join gpr_resource b on a.id=b.resource_id
+		where a.id = #{id,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete from gp_resource
-		where id in
+		delete a,b from gp_resource a left join gpr_resource b on a.id=b.resource_id
+		where a.id in
 		<foreach collection="list" item="id " index="index" open="(" close=")" separator=",">
 			#{id }
 		</foreach>
 	</delete>
+
+
+
+	<delete id="deleteByDomainId" parameterType="java.lang.String">
+		delete a,b from gp_resource a left join gpr_resource b on a.id=b.resource_id
+		where a.domain_id = #{domainId,jdbcType=VARCHAR}
+	</delete>
+
+
+	<delete id="deleteByDomainIdList" parameterType="list">
+		delete a,b from gp_resource a left join gpr_resource b on a.id=b.resource_id 
+		where a.domain_id in
+		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
+			#{domainId}
+		</foreach>
+	</delete>
+
+
 
 	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GpResource">
 		update gp_resource

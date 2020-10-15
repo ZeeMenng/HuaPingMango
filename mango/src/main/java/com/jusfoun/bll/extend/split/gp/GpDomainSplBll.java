@@ -5,15 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jusfoun.bll.extend.unity.gp.GprRoleDomainUntBll;
 import com.jusfoun.bll.generate.split.gp.GpDomainGenSplBll;
-import com.jusfoun.dao.split.gp.IGpControlSplDal;
-import com.jusfoun.dao.split.gp.IGpInterfaceSplDal;
-import com.jusfoun.dao.split.gp.IGpMenuSplDal;
-import com.jusfoun.dao.split.gp.IGpModuleSplDal;
-import com.jusfoun.dao.split.gp.IGpPageSplDal;
-import com.jusfoun.dao.split.gp.IGpRoleSplDal;
-import com.jusfoun.dao.split.gp.IGprDomainMessageSplDal;
-import com.jusfoun.dao.split.gp.IGprDomainUserSplDal;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.set.enumer.OperResult;
 import com.jusfoun.set.enumer.OperType;
@@ -34,21 +27,25 @@ import net.sf.json.JSONArray;
 public class GpDomainSplBll extends GpDomainGenSplBll {
 
 	@Autowired
-	protected IGprDomainUserSplDal gprDomainUserSplDal;
+	protected GprDomainUserSplBll gprDomainUserSplBll;
 	@Autowired
-	protected IGprDomainMessageSplDal gprDomainMessageSplDal;
+	protected GprDomainMessageSplBll gprDomainMessageSplBll;
 	@Autowired
-	protected IGpModuleSplDal gpModuleSplDal;
+	protected GprRoleDomainUntBll gprRoleDomainUntBll;
 	@Autowired
-	protected IGpMenuSplDal gpMenuSplDal;
+	protected GpModuleSplBll gpModuleSplBll;
 	@Autowired
-	protected IGpPageSplDal gpPageSplDal;
+	protected GpMenuSplBll gpMenuSplBll;
 	@Autowired
-	protected IGpControlSplDal gpControlSplDal;
+	protected GpPageSplBll gpPageSplBll;
 	@Autowired
-	protected IGpInterfaceSplDal gpInterfaceSplDal;
+	protected GpControlSplBll gpControlSplBll;
 	@Autowired
-	protected IGpRoleSplDal gpRoleSplDal;
+	protected GpInterfaceSplBll gpInterfaceSplBll;
+	@Autowired
+	protected GpRoleSplBll gpRoleSplBll;
+	@Autowired
+	protected GpResourceSplBll gpResourceSplBll;
 
 	public ResultModel delete(String id) {
 		return delete(id, isLogWrite);
@@ -66,14 +63,17 @@ public class GpDomainSplBll extends GpDomainGenSplBll {
 			result.setOperTypeCode(OperType.DELETE.getCode());
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据主键删除应用领域记录，同时级联删除其相关表的记录。");
-			int i, j, k, l, m;
 
-			j = gpModuleSplDal.deleteByDomainId(id);
-			k = gpPageSplDal.deleteByDomainId(id);
-			l = gpInterfaceSplDal.deleteByDomainId(id);
-			m = gpDomainSplDal.delete(id);
+			gprDomainUserSplBll.deleteByDomainId(id);
+			gprDomainMessageSplBll.deleteByDomainId(id);
+			gprRoleDomainUntBll.deleteByDomainId(id);
+			gpControlSplBll.deleteByDomainId(id);
+			gpModuleSplBll.deleteByDomainId(id);
+			gpPageSplBll.deleteByDomainId(id);
+			gpInterfaceSplBll.deleteByDomainId(id);
+			gpResourceSplBll.deleteByDomainId(id);
 
-			int deleteCounts = j + k + l + m;
+			int deleteCounts = gpDomainSplDal.delete(id);
 
 			result.setReturnValue(String.valueOf(deleteCounts));
 			result.setData(deleteCounts);
@@ -114,15 +114,18 @@ public class GpDomainSplBll extends GpDomainGenSplBll {
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
 			result.setRemark("根据主键列表删除应用领域记录，同时级联删除其相关表的记录。");
-			int i, j, k, l, m;
 
-			j = gpModuleSplDal.deleteByDomainIdList(idList);
-			k = gpPageSplDal.deleteByDomainIdList(idList);
-			l = gpInterfaceSplDal.deleteByDomainIdList(idList);
+			gprDomainUserSplBll.deleteByDomainIdList(idList);
+			gprDomainMessageSplBll.deleteByDomainIdList(idList);
+			gprRoleDomainUntBll.deleteByDomainIdList(idList);
 
-			m = gpDomainSplDal.deleteByIdList(idList);
+			gpModuleSplBll.deleteByDomainIdList(idList);
+			gpPageSplBll.deleteByDomainIdList(idList);
+			gpControlSplBll.deleteByDomainIdList(idList);
+			gpInterfaceSplBll.deleteByDomainIdList(idList);
+			gpResourceSplBll.deleteByDomainIdList(idList);
 
-			int deleteCounts = j + k + l + m;
+			int deleteCounts = gpDomainSplDal.deleteByIdList(idList);
 
 			result.setReturnValue(String.valueOf(deleteCounts));
 			result.setData(deleteCounts);

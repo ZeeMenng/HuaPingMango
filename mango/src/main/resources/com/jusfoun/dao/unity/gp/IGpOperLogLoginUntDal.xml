@@ -95,6 +95,15 @@
     	where login_log_id = #{loginLogId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByLoginLogIdList" parameterType="list">
+		delete from gp_oper_log_login
+		where login_log_id  in
+		<foreach collection="list" item="LoginLogId " index="index" open="(" close=")" separator=",">
+			#{LoginLogId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByLoginLogId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -104,6 +113,15 @@
     	delete from gp_oper_log_login
     	where oper_log_id = #{operLogId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByOperLogIdList" parameterType="list">
+		delete from gp_oper_log_login
+		where oper_log_id  in
+		<foreach collection="list" item="OperLogId " index="index" open="(" close=")" separator=",">
+			#{OperLogId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByOperLogId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -115,6 +133,15 @@
     	where token_id = #{tokenId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByTokenIdList" parameterType="list">
+		delete from gp_oper_log_login
+		where token_id  in
+		<foreach collection="list" item="TokenId " index="index" open="(" close=")" separator=",">
+			#{TokenId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByTokenId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -124,6 +151,15 @@
     	delete from gp_oper_log_login
     	where user_id = #{userId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByUserIdList" parameterType="list">
+		delete from gp_oper_log_login
+		where user_id  in
+		<foreach collection="list" item="UserId " index="index" open="(" close=")" separator=",">
+			#{UserId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

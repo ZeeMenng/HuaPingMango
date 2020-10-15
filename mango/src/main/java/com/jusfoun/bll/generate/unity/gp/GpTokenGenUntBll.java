@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:20
+ * @updateDate 2020/10/13 20:02:15
  * @description token信息。 业务逻辑处理类，扩展自BaseUntBll<GpToken>，自动生成。
  */
 public class GpTokenGenUntBll extends BaseUntBll<GpToken> {
@@ -187,6 +187,49 @@ public class GpTokenGenUntBll extends BaseUntBll<GpToken> {
 		return result;
 	}
 
+
+ 	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList) {
+		return deleteByDomainIdList(domainIdList, isLogRead);
+	}
+
+	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject( domainIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据外键列表，批量删除本表数据。");
+
+			int i = gpTokenUntDal.deleteByDomainIdList(domainIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+
 	public ResultModel getListByDomainId(String domainId) {
 		return getListByDomainId(domainId, isLogRead);
 	}
@@ -203,90 +246,6 @@ public class GpTokenGenUntBll extends BaseUntBll<GpToken> {
 			result.setRemark("根据外键，查询中间表。");
 
 			List<GpToken> modelList = gpTokenUntDal.getListByDomainId(domainId);
-
-			result.setReturnValue(JSONArray.fromObject(modelList).toString());
-			result.setData(modelList);
-			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
- 
- 	public ResultModel deleteById(String id) {
-		return deleteById(id, isLogRead);
-	}
-
-	public ResultModel deleteById(String id, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(id);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据外键，删除中间表数据。");
-
-			int i = gpTokenUntDal.deleteById( id);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel getListById(String id) {
-		return getListById(id, isLogRead);
-	}
-
-	public ResultModel getListById(String id, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(id);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
-			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
-			result.setRemark("根据外键，查询中间表。");
-
-			List<GpToken> modelList = gpTokenUntDal.getListById(id);
 
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
@@ -354,6 +313,49 @@ public class GpTokenGenUntBll extends BaseUntBll<GpToken> {
 
 		return result;
 	}
+
+
+ 	public ResultModel deleteByUserIdList(ArrayList<String> userIdList) {
+		return deleteByUserIdList(userIdList, isLogRead);
+	}
+
+	public ResultModel deleteByUserIdList(ArrayList<String> userIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject( userIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据外键列表，批量删除本表数据。");
+
+			int i = gpTokenUntDal.deleteByUserIdList(userIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
 
 	public ResultModel getListByUserId(String userId) {
 		return getListByUserId(userId, isLogRead);

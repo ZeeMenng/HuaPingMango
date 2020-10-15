@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:15
+ * @updateDate 2020/10/13 20:02:07
  * @description 用户归属的基地。 业务逻辑处理类，扩展自BaseUntBll<GprUserBase>，自动生成。
  */
 public class GprUserBaseGenUntBll extends BaseUntBll<GprUserBase> {

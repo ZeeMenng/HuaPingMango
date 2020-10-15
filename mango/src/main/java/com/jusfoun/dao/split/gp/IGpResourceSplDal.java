@@ -22,7 +22,11 @@ public interface IGpResourceSplDal extends IBaseSplDal {
 
 	public int delete(String id);
 
+	public int deleteByDomainId(String domainId);
+
 	public int deleteByIdList(ArrayList<String> idList);
+
+	public int deleteByDomainIdList(ArrayList<String> idList);
 
 	public int update(GpResource gpResource);
 

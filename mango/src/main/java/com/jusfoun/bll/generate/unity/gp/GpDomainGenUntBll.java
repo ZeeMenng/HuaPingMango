@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:17
+ * @updateDate 2020/10/13 20:02:10
  * @description 应用领域。 业务逻辑处理类，扩展自BaseUntBll<GpDomain>，自动生成。
  */
 public class GpDomainGenUntBll extends BaseUntBll<GpDomain> {

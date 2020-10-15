@@ -93,6 +93,15 @@
     	where type_id = #{typeId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByTypeIdList" parameterType="list">
+		delete from gp_dictionary
+		where type_id  in
+		<foreach collection="list" item="TypeId " index="index" open="(" close=")" separator=",">
+			#{TypeId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByTypeId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />

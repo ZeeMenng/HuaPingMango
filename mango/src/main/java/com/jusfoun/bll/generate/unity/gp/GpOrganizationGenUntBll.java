@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:18
+ * @updateDate 2020/10/13 20:02:13
  * @description 组织机构。 业务逻辑处理类，扩展自BaseUntBll<GpOrganization>，自动生成。
  */
 public class GpOrganizationGenUntBll extends BaseUntBll<GpOrganization> {

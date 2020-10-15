@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:15
+ * @updateDate 2020/10/13 20:02:07
  * @description 角色拥有的页面权限。 业务逻辑处理类，扩展自BaseUntBll<GprRolePage>，自动生成。
  */
 public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {
@@ -187,6 +187,49 @@ public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {
 		return result;
 	}
 
+
+ 	public ResultModel deleteByPageIdList(ArrayList<String> pageIdList) {
+		return deleteByPageIdList(pageIdList, isLogRead);
+	}
+
+	public ResultModel deleteByPageIdList(ArrayList<String> pageIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject( pageIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据外键列表，批量删除本表数据。");
+
+			int i = gprRolePageUntDal.deleteByPageIdList(pageIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
+
 	public ResultModel getListByPageId(String pageId) {
 		return getListByPageId(pageId, isLogRead);
 	}
@@ -270,6 +313,49 @@ public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {
 
 		return result;
 	}
+
+
+ 	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList) {
+		return deleteByRoleIdList(roleIdList, isLogRead);
+	}
+
+	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject( roleIdList).toString());
+			result.setObjectId("");
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("根据外键列表，批量删除本表数据。");
+
+			int i = gprRolePageUntDal.deleteByRoleIdList(roleIdList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+	}
+
 
 	public ResultModel getListByRoleId(String roleId) {
 		return getListByRoleId(roleId, isLogRead);

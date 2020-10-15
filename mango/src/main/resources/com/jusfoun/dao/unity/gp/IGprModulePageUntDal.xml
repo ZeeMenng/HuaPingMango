@@ -68,6 +68,15 @@
     	where module_id = #{moduleId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByModuleIdList" parameterType="list">
+		delete from gpr_module_page
+		where module_id  in
+		<foreach collection="list" item="ModuleId " index="index" open="(" close=")" separator=",">
+			#{ModuleId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByModuleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -77,6 +86,15 @@
     	delete from gpr_module_page
     	where page_id = #{pageId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByPageIdList" parameterType="list">
+		delete from gpr_module_page
+		where page_id  in
+		<foreach collection="list" item="PageId " index="index" open="(" close=")" separator=",">
+			#{PageId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByPageId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

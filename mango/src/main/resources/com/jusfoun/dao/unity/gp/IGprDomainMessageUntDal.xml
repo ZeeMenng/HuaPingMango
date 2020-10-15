@@ -77,6 +77,15 @@
     	where domain_id = #{domainId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByDomainIdList" parameterType="list">
+		delete from gpr_domain_message
+		where domain_id  in
+		<foreach collection="list" item="DomainId " index="index" open="(" close=")" separator=",">
+			#{DomainId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -86,6 +95,15 @@
     	delete from gpr_domain_message
     	where message_id = #{messageId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByMessageIdList" parameterType="list">
+		delete from gpr_domain_message
+		where message_id  in
+		<foreach collection="list" item="MessageId " index="index" open="(" close=")" separator=",">
+			#{MessageId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByMessageId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

@@ -110,22 +110,22 @@
 	</insert>
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete a,b from gp_control a left join gpr_role_control b
-		where id = #{id,jdbcType=VARCHAR}
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
+		where a.id = #{id,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByPageId" parameterType="java.lang.String">
-		delete a,b from gp_control a left join gpr_role_control b
-		where page_id = #{pageId,jdbcType=VARCHAR}
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
+		where a.page_id = #{pageId,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByDomainId" parameterType="java.lang.String">
-		delete a,b from gp_control a left join gpr_role_control b
-		where domain_id = #{domainId,jdbcType=VARCHAR}
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
+		where a.domain_id = #{domainId,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete a,b from gp_control a left join gpr_role_control b
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
 		where a.id in
 		<foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
 			#{id}
@@ -133,7 +133,7 @@
 	</delete>
 
 	<delete id="deleteByPageIdList" parameterType="list">
-		delete a,b from gp_control a left join gpr_role_control b
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
 		where a.page_id in
 		<foreach collection="list" item="pageId" index="index" open="(" close=")" separator=",">
 			#{pageId}
@@ -141,8 +141,8 @@
 	</delete>
 
 	<delete id="deleteByDomainIdList" parameterType="list">
-		delete a,b from gp_control a left join gpr_role_control b
-		where a.domainId in
+		delete a,b from gp_control a left join gpr_role_control b on a.id=b.control_id
+		where a.domain_id in
 		<foreach collection="list" item="domainId" index="index" open="(" close=")" separator=",">
 			#{domainId}
 		</foreach>

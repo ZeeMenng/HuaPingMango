@@ -12,7 +12,7 @@ import com.jusfoun.ent.extend.gp.GpUser;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/9/18 15:38:50
+ * @updateDate 2020/10/13 20:02:20
  * @description 扩展自实体类IBaseUntDal<GprUserOrganization>，可手动更改。用户所属组织机构。
  */
 
@@ -20,10 +20,14 @@ public interface IGprUserOrganizationUntDal extends IBaseUntDal<GprUserOrganizat
 
  
 	public int deleteByOrganizationId(String  organizationId);
+    
+    public int deleteByOrganizationIdList(List<String> organizationIdList);
 
 	public List<GprUserOrganization> getListByOrganizationId(String  organizationId);
  
 	public int deleteByUserId(String  userId);
+    
+    public int deleteByUserIdList(List<String> userIdList);
 
 	public List<GprUserOrganization> getListByUserId(String  userId);
    

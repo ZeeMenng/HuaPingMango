@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/27 11:19:20
+ * @updateDate 2020/10/13 20:02:16
  * @description 调用存储过程查询某个值在本数据库中的位置，记录相关信息到本表中。 业务逻辑处理类，扩展自BaseUntBll<GpValueLocation>，自动生成。
  */
 public class GpValueLocationGenUntBll extends BaseUntBll<GpValueLocation> {

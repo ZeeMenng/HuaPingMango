@@ -19,7 +19,7 @@ import com.jusfoun.ent.extend.gp.GprUserStation;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/9/18 15:38:58
+ * @updateDate 2020/10/13 20:02:28
  * @description 扩展自实体类IBaseUntDal<GpUser>，可手动更改。系统用户。
  */
 

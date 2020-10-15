@@ -76,6 +76,15 @@
     	where interface_id = #{interfaceId,jdbcType=VARCHAR}
     </delete>
     
+   <delete id="deleteByInterfaceIdList" parameterType="list">
+		delete from gpr_role_interface
+		where interface_id  in
+		<foreach collection="list" item="InterfaceId " index="index" open="(" close=")" separator=",">
+			#{InterfaceId }
+		</foreach>
+	</delete>
+    
+    
     <select id="getListByInterfaceId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -85,6 +94,15 @@
     	delete from gpr_role_interface
     	where role_id = #{roleId,jdbcType=VARCHAR}
     </delete>
+    
+   <delete id="deleteByRoleIdList" parameterType="list">
+		delete from gpr_role_interface
+		where role_id  in
+		<foreach collection="list" item="RoleId " index="index" open="(" close=")" separator=",">
+			#{RoleId }
+		</foreach>
+	</delete>
+    
     
     <select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

@@ -8,6 +8,7 @@ import com.jusfoun.ent.extend.gp.GpInterface;
 import com.jusfoun.ent.extend.gp.GpLoginLog;
 import com.jusfoun.ent.extend.gp.GpModule;
 import com.jusfoun.ent.extend.gp.GpOperLog;
+import com.jusfoun.ent.extend.gp.GpPage;
 import com.jusfoun.ent.extend.gp.GpResource;
 import com.jusfoun.ent.extend.gp.GpToken;
 import com.jusfoun.ent.extend.gp.GprDomainMessage;
@@ -20,7 +21,7 @@ import com.jusfoun.ent.extend.gp.GprRoleDomain;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/9/18 15:38:52
+ * @updateDate 2020/10/13 20:02:23
  * @description 扩展自实体类IBaseUntDal<GpDomain>，可手动更改。应用领域。
  */
 

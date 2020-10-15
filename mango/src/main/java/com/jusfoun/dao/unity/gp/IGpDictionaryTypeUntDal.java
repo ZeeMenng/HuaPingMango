@@ -11,7 +11,7 @@ import com.jusfoun.ent.extend.gp.GpDictionary;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/9/18 15:38:52
+ * @updateDate 2020/10/13 20:02:22
  * @description 扩展自实体类IBaseUntDal<GpDictionaryType>，可手动更改。字典类型。
  */
 

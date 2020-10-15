@@ -91,12 +91,12 @@
 	</insert>
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete a,b,c from gp_domain a left join gpr_domain_user b on a.id=b.domain_id left join gpr_domain_message c on a.id=c.domain_id left join gpr_role_domain d on a.id=d.role_id
+		delete a,b,c,d from gp_domain a left join gpr_domain_user b on a.id=b.domain_id left join gpr_domain_message c on a.id=c.domain_id left join gpr_role_domain d on a.id=d.domain_id
 		where a.id = #{id,jdbcType=VARCHAR}
 	</delete>
 
 	<delete id="deleteByIdList" parameterType="list">
-		delete a,b,c from gp_domain a left join gpr_domain_user b on a.id=b.domain_id left join gpr_domain_message c on a.id=c.domain_id left join gpr_role_domain d on a.id=d.role_id
+		delete a,b,c,d from gp_domain a left join gpr_domain_user b on a.id=b.domain_id left join gpr_domain_message c on a.id=c.domain_id left join gpr_role_domain d on a.id=d.domain_id
 		where a.id in
 		<foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
 			#{id}
