@@ -35,10 +35,10 @@ import net.sf.json.JSONObject;
  * @author Zee
  * @createDate 2017/05/22 15:00:55
  * @updateDate 2020/10/21 21:21:12
- * @description 说明：接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
+ * @description 接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GpCatalogInterface",tags="说明：接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。")
+@Api(value = "GpCatalogInterface",tags="接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。")
 @RequestMapping(value = "/generate/swagger/gp/gpCatalogInterface")
 public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
 

@@ -29,7 +29,7 @@ import net.sf.json.JSONObject;
  * @author Zee
  * @createDate 2017/05/22 14:01:41
  * @updateDate 2020/10/21 21:21:12
- * @description 说明：接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 业务逻辑处理类，扩展自BaseUntBll<GpCatalogInterface>，自动生成。
+ * @description 接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 业务逻辑处理类，扩展自BaseUntBll<GpCatalogInterface>，自动生成。
  */
 public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> {
 
