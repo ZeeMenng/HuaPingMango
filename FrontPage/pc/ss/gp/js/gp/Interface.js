@@ -7,6 +7,12 @@
 
 $(document).ready(function() {
 
+
+});
+
+function initSelect(async){
+	
+	
 	// 初始化应用领域下拉框
 	var selectParam1 = {
 		selectId : "selectDomainId",
@@ -14,7 +20,8 @@ $(document).ready(function() {
 		valueField : "id"
 	};
 	var ajaxParam1 = {
-		url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}"
+		url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}",
+		async:async
 	}
 	initDropDownList(selectParam1, ajaxParam1);
 
@@ -25,7 +32,8 @@ $(document).ready(function() {
 		valueField : "code"
 	};
 	var ajaxParam2 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN,
+		async:async
 	}
 	initDropDownList(selectParam2, ajaxParam2);
 
@@ -36,10 +44,119 @@ $(document).ready(function() {
 		valueField : "code"
 	};
 	var ajaxParam3 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_REQUEST_METHOD
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_REQUEST_METHOD,
+		async:async
 	}
 	initDropDownList(selectParam3, ajaxParam3);
+	
+}
 
+function initCatalogZTree() {
+
+	var jsonData = {
+		"entityRelated" : {
+
+		},
+		"orderList" : [ {
+			"columnName" : "name",
+			"isASC" : true
+		} ]
+	};
+	// 树形结构begin
+	var setting = {
+		view : {
+			addHoverDom : addHoverDom,
+			removeHoverDom : removeHoverDom,
+			selectedMulti : true,
+			dblClickExpand : false
+		},
+		edit : {
+			enable : true,
+			editNameSelectAll : true,
+			showRemoveBtn : showRemoveBtn,
+			showRenameBtn : showRenameBtn
+		},
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "fartherId"
+			}
+		},
+		callback : {
+			beforeDrag : beforeDrag,
+			// beforeEditName : beforeEditName,
+			beforeRemove : beforeRemove,
+			beforeRename : beforeRename,
+			beforeClick : beforeClick,
+			onDrop : onDrop,
+			onRemove : onRemove,
+			onRename : onRename,
+			beforeDrop : beforeDrop,
+			onClick : onClick
+		}
+	};
+	var ajaxParamter = {
+		"url" : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
+		"async" : true,
+		"type" : "GET",
+		"success" : function(resultData) {
+			var zNodes = [];
+			if (resultData.data != null && resultData.data.length != 0) {
+				zNodes = resultData.data;
+
+				// 更改应用领域图标展示
+				for (i = 0; i < zNodes.length; i++) {
+					zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
+					zNodes[i].iconSkin = "diy01";
+				}
+
+			}
+			$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
+
+			$(".ztree .level0 a").attr("style", "cursor:default")
+
+			var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+
+			// 树形菜单加上 F2快捷键
+			$("#ulModuleTree").on("keydown", "li", function(event) {
+				if (event.keyCode == 113) {
+					var node = moduleTree.getNodeByTId($(this).attr("id"));
+					if (node.isHover && node.level != 0)
+						moduleTree.editName(node);
+				}
+			});
+
+			var nodeList = moduleTree.getNodes();
+			$.each(nodeList, function(index, value) {
+				var ajaxParamter = {
+					"url" : RU_GPMODULE_GETLISTBYDOMAINID + value.id,
+					"async" : true,
+					"type" : "GET",
+					"success" : function(resultData) {
+						if (resultData.totalCount != 0) {
+
+							// 更改功能模块图标展示
+							for (i = 0; i < resultData.data.length; i++) {
+								resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+								resultData.data[i].iconSkin = "diy02";
+							}
+							moduleTree.addNodes(value, -1, resultData.data);
+
+						}
+
+					}
+				};
+				universalAjax(ajaxParamter);
+			});
+			fuzzySearch("ulModuleTree", '#ztree_search', null, true); // 初始化模糊搜索方法
+		}
+	};
+	universalAjax(ajaxParamter);
+	initEditFileInput();
+}
+
+function initInterfaceTable() {
 	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
@@ -85,6 +202,7 @@ $(document).ready(function() {
 			"columnName" : "name",
 			"columnText" : "接口名称",
 			"style" : "text-align:left",
+			"width" : "100px",
 			"linkFunction" : function(event) {
 				var href = RP_GPINTERFACE_DETAIL + "?" + RECORD_ID + "=" + event.id;
 				return href;
@@ -92,22 +210,9 @@ $(document).ready(function() {
 		}, {
 			"columnName" : "url",
 			"columnText" : "访问路径",
-			"style" : "text-align:left",
-			"width" : '300px'
-		}, {
-			"columnName" : "isPublicCode",
-			"columnText" : "公共",
-			"style" : "text-align:center",
-		}, {
-			"columnName" : "typeCode",
-			"columnText" : "请求方式",
-			"style" : "text-align:left",
-		}, {
-		"columnName" : "addTime",
-		"columnText" : "添加时间",
-		"style" : "text-align:center",
-		"width" : '120px'
-	}]
+			"style" : "text-align:left"
+
+		} ]
 	};
 
 	var operationParam = [ {
@@ -157,8 +262,7 @@ $(document).ready(function() {
 		return;
 
 	});
-
-});
+}
 
 /**
  * @author Zee
