@@ -7,12 +7,10 @@
 
 $(document).ready(function() {
 
-
 });
 
-function initSelect(async){
-	
-	
+function initSelect(async) {
+
 	// 初始化应用领域下拉框
 	var selectParam1 = {
 		selectId : "selectDomainId",
@@ -21,7 +19,7 @@ function initSelect(async){
 	};
 	var ajaxParam1 = {
 		url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}",
-		async:async
+		async : async
 	}
 	initDropDownList(selectParam1, ajaxParam1);
 
@@ -33,7 +31,7 @@ function initSelect(async){
 	};
 	var ajaxParam2 = {
 		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN,
-		async:async
+		async : async
 	}
 	initDropDownList(selectParam2, ajaxParam2);
 
@@ -45,10 +43,10 @@ function initSelect(async){
 	};
 	var ajaxParam3 = {
 		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_REQUEST_METHOD,
-		async:async
+		async : async
 	}
 	initDropDownList(selectParam3, ajaxParam3);
-	
+
 }
 
 function initCatalogZTree() {
@@ -64,6 +62,9 @@ function initCatalogZTree() {
 	};
 	// 树形结构begin
 	var setting = {
+		check : {
+			enable : true
+		},
 		view : {
 			addHoverDom : addHoverDom,
 			removeHoverDom : removeHoverDom,
@@ -76,11 +77,19 @@ function initCatalogZTree() {
 			showRemoveBtn : showRemoveBtn,
 			showRenameBtn : showRenameBtn
 		},
+		url : {
+			addUrl : RU_GPCATALOGINTERFACE_ADD,
+			deleteUrl : RU_GPCATALOGINTERFACE_DELETE,
+			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
+			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
+			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
+		},
+
 		data : {
 			simpleData : {
 				enable : true,
-				idKey : "id",
-				pIdKey : "fartherId"
+				idKey : "code",
+				pIdKey : "fartherCode"
 			}
 		},
 		callback : {
@@ -93,30 +102,37 @@ function initCatalogZTree() {
 			onRemove : onRemove,
 			onRename : onRename,
 			beforeDrop : beforeDrop,
-			onClick : onClick
+			onClick : onClick,
+			onCheck : onCheck
 		}
 	};
+
+	var zNodes = [ {
+		id : 1,
+		pId : 0,
+		name : "根节点",
+		open : true
+	} ];
+
+	$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
+
 	var ajaxParamter = {
-		"url" : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
+		"url" : RU_GPCATALOGINTERFACE_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
 		"async" : true,
 		"type" : "GET",
 		"success" : function(resultData) {
-			var zNodes = [];
-			if (resultData.data != null && resultData.data.length != 0) {
-				zNodes = resultData.data;
-
-				// 更改应用领域图标展示
-				for (i = 0; i < zNodes.length; i++) {
-					zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
-					zNodes[i].iconSkin = "diy01";
-				}
-
+			if (resultData.totalCount == 0)
+				return false
+			var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+			zNodes = resultData.data;
+			// 更改应用领域图标展示
+			for (i = 0; i < zNodes.length; i++) {
+				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+				zNodes[i].iconSkin = "diy02";
 			}
 			$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
-
-			var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 
 			// 树形菜单加上 F2快捷键
 			$("#ulModuleTree").on("keydown", "li", function(event) {
@@ -127,33 +143,10 @@ function initCatalogZTree() {
 				}
 			});
 
-			var nodeList = moduleTree.getNodes();
-			$.each(nodeList, function(index, value) {
-				var ajaxParamter = {
-					"url" : RU_GPMODULE_GETLISTBYDOMAINID + value.id,
-					"async" : true,
-					"type" : "GET",
-					"success" : function(resultData) {
-						if (resultData.totalCount != 0) {
-
-							// 更改功能模块图标展示
-							for (i = 0; i < resultData.data.length; i++) {
-								resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
-								resultData.data[i].iconSkin = "diy02";
-							}
-							moduleTree.addNodes(value, -1, resultData.data);
-
-						}
-
-					}
-				};
-				universalAjax(ajaxParamter);
-			});
 			fuzzySearch("ulModuleTree", '#ztree_search', null, true); // 初始化模糊搜索方法
 		}
 	};
 	universalAjax(ajaxParamter);
-	initEditFileInput();
 }
 
 function initInterfaceTable() {
@@ -304,4 +297,14 @@ function updatePageConstant() {
 	};
 
 	universalAjax(ajaxParamter);
+}
+
+function onCheck(event, treeId, treeNode) {
+	var treeObj = $.fn.zTree.getZTreeObj(treeId);
+	var nodes = treeObj.getCheckedNodes(true);
+	var arr = [];
+	for (var i = 0; i < nodes.length; i++) {
+		arr.push(nodes[i].id)
+	}
+	$("#hiddenOrgIds").val(arr)
 }

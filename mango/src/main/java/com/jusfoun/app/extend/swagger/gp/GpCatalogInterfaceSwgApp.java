@@ -1,9 +1,22 @@
 ﻿package com.jusfoun.app.extend.swagger.gp;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GpCatalogInterfaceGenSwgApp;
+import com.jusfoun.ent.custom.ResultModel;
+import com.jusfoun.ent.extend.gp.GpCatalogInterface;
+import com.jusfoun.ent.extend.gp.GpMenu;
+import com.jusfoun.set.enumer.DictionaryModuleCascadeEnum;
+import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -16,6 +29,19 @@ import com.jusfoun.app.generate.swagger.gp.GpCatalogInterfaceGenSwgApp;
 @RequestMapping(value = "/extend/swagger/gp/gpCatalogInterface")
 public class  GpCatalogInterfaceSwgApp extends  GpCatalogInterfaceGenSwgApp {
 
+	
+	@ApiOperation(value = "新增记录", notes = "新增单条记录")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpCatalogInterface") })
+	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel add(@RequestBody GpCatalogInterface jsonData) {
+		
+	
+		ResultModel result = gpCatalogInterfaceUntBll.add(jsonData);
+
+		return result;
+	}
+
+	
 }
 
 

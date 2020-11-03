@@ -2349,7 +2349,7 @@ function beforeClick(treeId, treeNode,clickFlag) {
 	return true;
 }
 function onClick(e, treeId, treeNode) {
-
+	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 	var pageParam = {
 		formId : "formEdit",
 		validateRules : {
@@ -2370,8 +2370,8 @@ function onClick(e, treeId, treeNode) {
 	var ajaxParam = {
 		recordId : treeNode.id,
 		getModelAsync : false,
-		url : RU_GPMODULE_UPDATE,
-		getModelUrl : RU_GPMODULE_GETMODELBYPATH,
+		url : zTree.setting.url.updateUrl,
+		getModelUrl :zTree.setting.url.getModelUrl ,
 		submitData : {}
 	};
 	
@@ -2623,10 +2623,11 @@ function immediateUpdate(treeId, treeNodes, action) {
 			name : treeNodesArray[0].name,
 			fartherId : treeNodesArray[0].fartherId,
 			levelCode : treeNodesArray[0].level,
+			level:treeNodesArray[0].level,
 			priority : treeNodesArray[0].getIndex()
 		}
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
-		ajaxParamter.url = RU_GPMODULE_ADD;
+		ajaxParamter.url = zTree.setting.url.addUrl;
 	}
 
 	else if (action == "DELETE") {
@@ -2641,15 +2642,13 @@ function immediateUpdate(treeId, treeNodes, action) {
 		};
 		ajaxParamter.type = 'POST';
 		ajaxParamter.data = JSON.stringify(submitData);
-		ajaxParamter.url = RU_GPMODULE_DELETELIST;
+		ajaxParamter.url = zTree.setting.url.deleteUrl;
 	} else if (action = "UPDATE") {
-		
-		
-		
+
 		var zTreeNodeJsonArray = new Array();
 		$.each(treeNodesArray, function(h, u) {
 			var domainNode = getCurrentRootNode(treeNodesArray[h]);
-           //拖拽会影响兄弟结点的排序		   
+           // 拖拽会影响兄弟结点的排序
 			var treeNodesBrotherArray=new Array();
 			u.getParentNode()==null?treeNodesBrotherArray=treeNodesArray:treeNodesBrotherArray=u.getParentNode().children;  
 			$.each(treeNodesBrotherArray, function(i, v) {
@@ -2669,9 +2668,8 @@ function immediateUpdate(treeId, treeNodes, action) {
 		var submitData = {
 			entityList : zTreeNodeJsonArray
 		}
-		var RU_GPMODULE_UPDATELISTWIDFF = "/extend/swagger/gp/gpModule/updateListWithDff"
 		ajaxParamter.data = JSON.stringify(submitData);
-		ajaxParamter.url = RU_GPMODULE_UPDATELISTWIDFF;
+		ajaxParamter.url = zTree.setting.url.updateListUrl;
 
 	}
 
