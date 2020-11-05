@@ -34,11 +34,11 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/10/21 21:21:12
- * @description 接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
+ * @updateDate 2020/11/5 20:16:08
+ * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GpCatalogInterface",tags="接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。")
+@Api(value = "GpCatalogInterface",tags="接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。")
 @RequestMapping(value = "/generate/swagger/gp/gpCatalogInterface")
 public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
 
@@ -173,7 +173,7 @@ public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.name name,A.code code,A.level level,A.farther_code fartherCode,A.category_code categoryCode,A.remark remark  from gp_catalog_interface A inner join gp_catalog_interface B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.name name,A.serial_no serialNo,A.level level,A.farther_id fartherId,A.priority priority,A.category_code categoryCode,A.category_text categoryText,A.remark remark  from gp_catalog_interface A inner join gp_catalog_interface B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -194,8 +194,8 @@ public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
                 
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
-				if (entityRelatedObject.containsKey("code") && StringUtils.isNotBlank(entityRelatedObject.getString("code")))
-					selectBuffer.append(" and A.code like '%").append(entityRelatedObject.getString("code")).append("%'");
+				if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))
+					selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
 				if (entityRelatedObject.containsKey("level") && StringUtils.isNotBlank(entityRelatedObject.getString("level")))
 					selectBuffer.append(" and A.level like '%").append(entityRelatedObject.getString("level")).append("%'");
 			}
@@ -228,7 +228,7 @@ public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
-		String fileName = "说明：接口分类字典列表数据" + DateUtils.getCurrentDateStr() + ".xls";
+		String fileName = "接口分类字典列表数据" + DateUtils.getCurrentDateStr() + ".xls";
 		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {

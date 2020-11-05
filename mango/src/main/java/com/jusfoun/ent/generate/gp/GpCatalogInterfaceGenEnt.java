@@ -7,14 +7,16 @@ import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
 import com.jusfoun.ent.base.BaseEnt;
+import com.jusfoun.ent.extend.gp.GpCatalogInterface;
+import com.jusfoun.ent.extend.gp.GpCatalogInterface;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/10/21 21:21:14
- * @description 实体类GpCatalogInterfaceGenEnt，自动生成。接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+ * @updateDate 2020/11/5 20:16:09
+ * @description 实体类GpCatalogInterfaceGenEnt，自动生成。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
  */
 
 public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
@@ -22,24 +24,30 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="分类方式。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种分类方式：1按业务分类，2按请求方式分类。",allowableValues="0,1",hidden=false,required=false)
     private Byte categoryCode;
-    @ApiModelProperty(value="类别编码。非空唯一，十位字符串，0000000000，可继续扩展，每两位代表一级编码，目前最多支持到五级分类。",hidden=false,required=false)
-    private String code;
-    @ApiModelProperty(value="父级编码。父级类别编码，顶级类别的父级编码为0000000000。",allowableValues="0,1",hidden=false,required=false)
-    private String fartherCode;
+    @ApiModelProperty(value="分类方式。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种分类方式：1按业务分类，2按请求方式分类。",hidden=false,required=false)
+    private String categoryText;
+    @ApiModelProperty(value="父级模块。外键，引用自身接口分类字典表（gp_catalog_interface）的主键。",hidden=false,required=false)
+    private String fartherId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="级别。类别在层级关系中所属等级。",hidden=false,required=false)
+    @ApiModelProperty(value="类别层级。类别在层级关系中所属等级。",hidden=false,required=false)
     private Byte level;
     @ApiModelProperty(value="类别名称。",hidden=false,required=false)
     private String name;
+    @ApiModelProperty(value="排序字段。",hidden=false,required=false)
+    private Integer priority;
     @ApiModelProperty(value="备注。",hidden=false,required=false)
     private String remark;
+    @ApiModelProperty(value="类别编号。",hidden=false,required=false)
+    private String serialNo;
 
    //本表做为子表时，父表实体对象
 
     //本表做为父表时，子表数据列表
 
     //父子表均为自身时
+    private  GpCatalogInterface gpCatalogInterface;
+    private ArrayList<GpCatalogInterface> gpCatalogInterfaceList;   
 
 
 	/**
@@ -57,31 +65,31 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。类别编码。非空唯一，十位字符串，0000000000，可继续扩展，每两位代表一级编码，目前最多支持到五级分类。
+	 * get方法。分类方式。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种分类方式：1按业务分类，2按请求方式分类。
 	 */
-	public String getCode() {
-		return this.code;
+	public String getCategoryText() {
+		return this.categoryText;
 	}
 
 	/**
-	 * set方法。类别编码。非空唯一，十位字符串，0000000000，可继续扩展，每两位代表一级编码，目前最多支持到五级分类。
+	 * set方法。分类方式。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种分类方式：1按业务分类，2按请求方式分类。
 	 */
-	public void setCode(String code) {
-		this.code = code;
+	public void setCategoryText(String categoryText) {
+		this.categoryText = categoryText;
 	}
     
 	/**
-	 * get方法。父级编码。父级类别编码，顶级类别的父级编码为0000000000。
+	 * get方法。父级模块。外键，引用自身接口分类字典表（gp_catalog_interface）的主键。
 	 */
-	public String getFartherCode() {
-		return this.fartherCode;
+	public String getFartherId() {
+		return this.fartherId;
 	}
 
 	/**
-	 * set方法。父级编码。父级类别编码，顶级类别的父级编码为0000000000。
+	 * set方法。父级模块。外键，引用自身接口分类字典表（gp_catalog_interface）的主键。
 	 */
-	public void setFartherCode(String fartherCode) {
-		this.fartherCode = fartherCode;
+	public void setFartherId(String fartherId) {
+		this.fartherId = fartherId;
 	}
     
 	/**
@@ -99,14 +107,14 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。级别。类别在层级关系中所属等级。
+	 * get方法。类别层级。类别在层级关系中所属等级。
 	 */
 	public Byte getLevel() {
 		return this.level;
 	}
 
 	/**
-	 * set方法。级别。类别在层级关系中所属等级。
+	 * set方法。类别层级。类别在层级关系中所属等级。
 	 */
 	public void setLevel(Byte level) {
 		this.level = level;
@@ -127,6 +135,20 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
+	 * get方法。排序字段。
+	 */
+	public Integer getPriority() {
+		return this.priority;
+	}
+
+	/**
+	 * set方法。排序字段。
+	 */
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+    
+	/**
 	 * get方法。备注。
 	 */
 	public String getRemark() {
@@ -140,6 +162,20 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 		this.remark = remark;
 	}
     
+	/**
+	 * get方法。类别编号。
+	 */
+	public String getSerialNo() {
+		return this.serialNo;
+	}
+
+	/**
+	 * set方法。类别编号。
+	 */
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
+	}
+    
 
 
 
@@ -148,6 +184,35 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 
 
 
+
+	/**
+	 * get方法。父子表均为自身时，父表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+	 */
+	public GpCatalogInterface getGpCatalogInterface() {
+		return this.gpCatalogInterface;
+	}
+
+	/**
+	 * set方法。父子表均为自身时，父表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+	 */
+	public void setGpCatalogInterface(GpCatalogInterface gpCatalogInterface) {
+		this.gpCatalogInterface = gpCatalogInterface;
+	}
+
+
+	/**
+	 * get方法。父子表均为自身时，子表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+	 */
+	public ArrayList<GpCatalogInterface> getGpCatalogInterfaceList() {
+		return this.gpCatalogInterfaceList;
+	}
+
+	/**
+	 * set方法。父子表均为自身时，子表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+	 */
+	public void setGpCatalogInterfaceList(ArrayList<GpCatalogInterface> gpCatalogInterfaceList) {
+		this.gpCatalogInterfaceList = gpCatalogInterfaceList;
+	}
 
 
 }

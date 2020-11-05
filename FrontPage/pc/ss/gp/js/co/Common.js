@@ -2614,18 +2614,24 @@ function immediateUpdate(treeId, treeNodes, action) {
 	};
 	var cascade = $("input[name='cascadeTypeCodeRadio']:checked").val();
 	if (action == "ADD") {
-		var domainNode = getCurrentRootNode(treeNodesArray[0]);
+		var rootNode = getCurrentRootNode(treeNodesArray[0]);
 		var zTreeNodeJson = {
 			id : null,
 			cascadeTypeCode : cascade,
-			domainId : domainNode.id,
-			domainName : domainNode.name,
 			name : treeNodesArray[0].name,
 			fartherId : treeNodesArray[0].fartherId,
 			levelCode : treeNodesArray[0].level,
 			level:treeNodesArray[0].level,
 			priority : treeNodesArray[0].getIndex()
 		}
+		
+		// 如果根节点是应用领域
+		if(rootNode.isDomain!=null&&rootNode.isDomain){
+		zTreeNodeJson.domainId =rootNode.id;
+		zTreeNodeJson.domainName =rootNode.name;
+		zTreeNodeJson.fartherId=null; 
+		}
+		
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
 		ajaxParamter.url = zTree.setting.url.addUrl;
 	}
@@ -2642,21 +2648,25 @@ function immediateUpdate(treeId, treeNodes, action) {
 		};
 		ajaxParamter.type = 'POST';
 		ajaxParamter.data = JSON.stringify(submitData);
-		ajaxParamter.url = zTree.setting.url.deleteUrl;
+		ajaxParamter.url = zTree.setting.url.deleteListUrl;
 	} else if (action = "UPDATE") {
 
 		var zTreeNodeJsonArray = new Array();
 		$.each(treeNodesArray, function(h, u) {
-			var domainNode = getCurrentRootNode(treeNodesArray[h]);
+			var rootNode = getCurrentRootNode(treeNodesArray[h]);
            // 拖拽会影响兄弟结点的排序
 			var treeNodesBrotherArray=new Array();
-			u.getParentNode()==null?treeNodesBrotherArray=treeNodesArray:treeNodesBrotherArray=u.getParentNode().children;  
+			if(u.getParentNode()==null)
+				treeNodesBrotherArray=zTree.getNodesByParam("level", 1, null);
+			else
+				treeNodesBrotherArray=zTree.getNodesByParam("fartherId", u.fartherId, null);  
+			
 			$.each(treeNodesBrotherArray, function(i, v) {
 			
 			var zTreeNodeJson = {
 				id : v.id,
 				cascadeTypeCode : cascade,
-				domainId : domainNode.id,
+				domainId : rootNode.id,
 				name : v.name,
 				fartherId : v.fartherId,
 				levelCode :v.level,

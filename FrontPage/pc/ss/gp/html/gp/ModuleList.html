@@ -75,12 +75,12 @@
 				selectedMulti : true,
 				dblClickExpand : false
 			},
-			url:{
-				addUrl:RU_GPMODULE_ADD,
-				deleteUrl:RU_GPMODULE_DELETELIST,
-				updateListUrl:RU_GPMODULE_UPDATELISTWITHDFF,
-				updateUrl:RU_GPMODULE_UPDATE,
-				getModelUrl:RU_GPMODULE_GETMODELBYPATH
+			url : {
+				addUrl : RU_GPMODULE_ADD,
+				deleteListUrl : RU_GPMODULE_DELETELIST,
+				updateListUrl : RU_GPMODULE_UPDATELISTWITHDFF,
+				updateUrl : RU_GPMODULE_UPDATE,
+				getModelUrl : RU_GPMODULE_GETMODELBYPATH
 			},
 			edit : {
 				enable : true,
@@ -121,6 +121,7 @@
 					for (i = 0; i < zNodes.length; i++) {
 						zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
 						zNodes[i].iconSkin = "diy01";
+						zNodes[i].isDomain = true;
 					}
 
 				}
@@ -129,7 +130,7 @@
 				$(".ztree .level0 a").attr("style", "cursor:default")
 
 				var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
-				
+
 				//树形菜单加上 F2快捷键
 				$("#ulModuleTree").on("keydown", "li", function(event) {
 					if (event.keyCode == 113) {
@@ -138,7 +139,7 @@
 							moduleTree.editName(node);
 					}
 				});
-				
+
 				var nodeList = moduleTree.getNodes();
 				$.each(nodeList, function(index, value) {
 					var ajaxParamter = {
@@ -167,7 +168,6 @@
 		universalAjax(ajaxParamter);
 		initEditFileInput();
 	});
-
 </script>
 <style type="text/css">
 .left-div .portlet {

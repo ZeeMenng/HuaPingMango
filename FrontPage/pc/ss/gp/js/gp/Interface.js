@@ -73,13 +73,11 @@ function initCatalogZTree() {
 		},
 		edit : {
 			enable : true,
-			editNameSelectAll : true,
-			showRemoveBtn : showRemoveBtn,
-			showRenameBtn : showRenameBtn
+			editNameSelectAll : true
 		},
 		url : {
 			addUrl : RU_GPCATALOGINTERFACE_ADD,
-			deleteUrl : RU_GPCATALOGINTERFACE_DELETE,
+			deleteListUrl : RU_GPCATALOGINTERFACE_DELETELIST,
 			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
 			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
 			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
@@ -88,27 +86,23 @@ function initCatalogZTree() {
 		data : {
 			simpleData : {
 				enable : true,
-				idKey : "code",
-				pIdKey : "fartherCode"
+				idKey : "id",
+				pIdKey : "fartherId"
 			}
 		},
 		callback : {
-			beforeDrag : beforeDrag,
-			// beforeEditName : beforeEditName,
 			beforeRemove : beforeRemove,
 			beforeRename : beforeRename,
-			beforeClick : beforeClick,
 			onDrop : onDrop,
 			onRemove : onRemove,
 			onRename : onRename,
-			beforeDrop : beforeDrop,
-			onClick : onClick,
+			//onClick : onClick,
 			onCheck : onCheck
 		}
 	};
 
 	var zNodes = [ {
-		id : 1,
+		id : null,
 		pId : 0,
 		name : "根节点",
 		open : true
@@ -125,7 +119,7 @@ function initCatalogZTree() {
 				return false
 			var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 			zNodes = resultData.data;
-			// 更改应用领域图标展示
+			// 
 			for (i = 0; i < zNodes.length; i++) {
 				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 				zNodes[i].iconSkin = "diy02";
@@ -140,6 +134,13 @@ function initCatalogZTree() {
 					var node = moduleTree.getNodeByTId($(this).attr("id"));
 					if (node.isHover && node.level != 0)
 						moduleTree.editName(node);
+				}
+			});
+			// 展开节点
+			$.each(zNodes, function(index, value) {
+				if (value.level < 2) {
+					var node = moduleTree.getNodeByParam("id", value.id);
+					moduleTree.expandNode(node, true);// 展开指定节点
 				}
 			});
 
