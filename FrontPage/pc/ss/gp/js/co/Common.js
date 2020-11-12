@@ -2285,7 +2285,7 @@ var IS_IMMEDIATE = true;
 
 function onDrop(event, treeId, treeNodes, targetNode, moveType) {
 	
-	updateModulesData(treeId, treeNodes, 'UPDATE');
+	updateModulesData(treeId, treeNodes, 'UPDATE',targetNode,moveType);
 	
 };
 
@@ -2572,10 +2572,10 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 
 }
 
-function updateModulesData(treeId, treeNodes, action) {
+function updateModulesData(treeId, treeNodes, action,targetNode,moveType) {
 
 	if (IS_IMMEDIATE) {
-		immediateUpdate(treeId, treeNodes, action);
+		immediateUpdate(treeId, treeNodes, action,targetNode,moveType);
 		return;
 	}
 
@@ -2588,7 +2588,7 @@ function updateModulesData(treeId, treeNodes, action) {
 	$("#hiddenModules").val(infoData);
 }
 
-function immediateUpdate(treeId, treeNodes, action) {
+function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var treeNodesArray = zTree.transformToArray(treeNodes);
 
@@ -2639,6 +2639,7 @@ function immediateUpdate(treeId, treeNodes, action) {
 	else if (action == "DELETE") {
 
 		var idArray = new Array();
+		
 		$.each(treeNodesArray, function(i, v) {
 			idArray.push(v.id)
 		});
@@ -2650,19 +2651,16 @@ function immediateUpdate(treeId, treeNodes, action) {
 		ajaxParamter.data = JSON.stringify(submitData);
 		ajaxParamter.url = zTree.setting.url.deleteListUrl;
 	} else if (action = "UPDATE") {
-
 		var zTreeNodeJsonArray = new Array();
+		  // 拖拽会影响兄弟结点的排序，修改原兄弟节点排序，此方法应该放在beforeDro
 		$.each(treeNodesArray, function(h, u) {
 			var rootNode = getCurrentRootNode(treeNodesArray[h]);
-           // 拖拽会影响兄弟结点的排序
 			var treeNodesBrotherArray=new Array();
 			if(u.getParentNode()==null)
-				treeNodesBrotherArray=zTree.getNodesByParam("level", 1, null);
+				treeNodesBrotherArray=zTree.getNodesByParam("fartherId", null, null);
 			else
 				treeNodesBrotherArray=zTree.getNodesByParam("fartherId", u.fartherId, null);  
-			
 			$.each(treeNodesBrotherArray, function(i, v) {
-			
 			var zTreeNodeJson = {
 				id : v.id,
 				cascadeTypeCode : cascade,
@@ -2670,19 +2668,80 @@ function immediateUpdate(treeId, treeNodes, action) {
 				name : v.name,
 				fartherId : v.fartherId,
 				levelCode :v.level,
+				level:v.level,
 				priority : v.getIndex()
 			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
 			});
 		});
-		var submitData = {
-			entityList : zTreeNodeJsonArray
+		
+		//如果是拖拽动作，而且拖拽到根节点
+		if(targetNode==null&&moveType!=null){
+			var treeNodesBrotherArray=zTree.getNodesByParam("fartherId", null, null);
+			$.each(treeNodesBrotherArray, function(i, v) {
+			var zTreeNodeJson = {
+				id : v.id,
+				cascadeTypeCode : cascade,
+				domainId : v.domainId,
+				name : v.name,
+				fartherId : v.fartherId,
+				levelCode :v.level,
+				level:v.level,
+				priority : v.getIndex()
+			}
+			zTreeNodeJsonArray.push(zTreeNodeJson);
+			});
+			
 		}
-		ajaxParamter.data = JSON.stringify(submitData);
-		ajaxParamter.url = zTree.setting.url.updateListUrl;
+		//如果是拖拽动作，而且没有拖拽到根节点
+		if(targetNode!=null&&moveType!=null)
+		{
+		// 如果拖拽成为目标节点的子级节点
+		if(moveType =="inner"){
+			var treeNodesBrotherArray=zTree.getNodesByParam("fartherId", targetNode.id, null);
+			$.each(treeNodesBrotherArray, function(i, v) {
+			var zTreeNodeJson = {
+				id : v.id,
+				cascadeTypeCode : cascade,
+				domainId : v.domainId,
+				name : v.name,
+				fartherId : v.fartherId,
+				levelCode :v.level,
+				level:v.level,
+				priority : v.getIndex()
+			}
+			zTreeNodeJsonArray.push(zTreeNodeJson);
+			});
+		}
 
+		if(moveType =="prev"||moveType =="next"){
+			function zTreeFilterPrev(node){
+				 return (node.fartherId == targetNode.fartherId && node.getIndex()>=targetNode.getIndex());
+			}
+			
+			var treeNodesBrotherArray=zTree.getNodesByFilter(zTreeFilterPrev); 
+			$.each(treeNodesBrotherArray, function(i, v) {
+			var zTreeNodeJson = {
+				id : v.id,
+				cascadeTypeCode : cascade,
+				domainId : v.domainId,
+				name : v.name,
+				fartherId : v.fartherId,
+				levelCode :v.level,
+				level:v.level,
+				priority : v.getIndex()
+			}
+			zTreeNodeJsonArray.push(zTreeNodeJson);
+			});
+		}
+		}
+		var submitData = {
+				entityList : zTreeNodeJsonArray
+			}
+			ajaxParamter.data = JSON.stringify(submitData);
+			ajaxParamter.url = zTree.setting.url.updateListUrl;
 	}
-
+      
 	universalAjax(ajaxParamter);
 
 }

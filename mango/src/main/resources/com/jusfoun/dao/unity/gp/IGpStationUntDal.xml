@@ -250,7 +250,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="gpStation" index="index" open="(" close=")" separator=",">
 			#{gpStation.id,jdbcType=VARCHAR}
 		</foreach>
   </update>

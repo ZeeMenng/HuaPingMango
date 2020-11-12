@@ -206,7 +206,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="gpDictionary" index="index" open="(" close=")" separator=",">
 			#{gpDictionary.id,jdbcType=VARCHAR}
 		</foreach>
   </update>

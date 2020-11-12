@@ -420,7 +420,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="gpLoginLog" index="index" open="(" close=")" separator=",">
 			#{gpLoginLog.id,jdbcType=VARCHAR}
 		</foreach>
   </update>

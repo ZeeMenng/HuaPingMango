@@ -56,7 +56,7 @@ function initCatalogZTree() {
 
 		},
 		"orderList" : [ {
-			"columnName" : "name",
+			"columnName" : "priority",
 			"isASC" : true
 		} ]
 	};

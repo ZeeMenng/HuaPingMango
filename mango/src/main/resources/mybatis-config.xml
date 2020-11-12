@@ -3,12 +3,11 @@
 
 <configuration>
 
-
 	<settings>
 		<!-- 这个配置使全局的映射器启用或禁用缓存。系统默认值是true -->
 		<setting name="cacheEnabled" value="false" />
 		<!-- 查询值为空时也返回属性 -->
-		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="callSettersOnNulls" value="true" />
 	</settings>
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageHelper">
@@ -33,6 +32,11 @@
 			<!-- 可以配置pageNum,pageSize,count,pageSizeZero,reasonable,不配置映射的用默认值 -->
 			<!-- 不理解该含义的前提下，不要随便复制该配置 -->
 			<!--<property name="params" value="pageNum=start;pageSize=limit;" /> -->
+		</plugin>
+
+		<plugin interceptor="com.jusfoun.set.interceptor.MyBatisSQLInterceptor">
+		</plugin>
+		<plugin interceptor="com.jusfoun.set.interceptor.MyBatisResultInterceptor">
 		</plugin>
 	</plugins>
 
