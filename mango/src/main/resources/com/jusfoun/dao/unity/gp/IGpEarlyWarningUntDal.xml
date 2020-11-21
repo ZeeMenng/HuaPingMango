@@ -290,30 +290,46 @@
          </trim>
          <trim prefix="begin_date =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.beginDate != null and gpEarlyWarning.beginDate  != '' " >
+                  <if test="gpEarlyWarning.beginDate != null and gpEarlyWarning.beginDate  != ''  and gpEarlyWarning.beginDate  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.beginDate,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.beginDate != null  and gpEarlyWarning.beginDate  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="end_date =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.endDate != null and gpEarlyWarning.endDate  != '' " >
+                  <if test="gpEarlyWarning.endDate != null and gpEarlyWarning.endDate  != ''  and gpEarlyWarning.endDate  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.endDate,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.endDate != null  and gpEarlyWarning.endDate  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="growth_id =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.growthId != null and gpEarlyWarning.growthId  != '' " >
+                  <if test="gpEarlyWarning.growthId != null and gpEarlyWarning.growthId  != ''  and gpEarlyWarning.growthId  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.growthId != null  and gpEarlyWarning.growthId  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="growth_name =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.growthName != null and gpEarlyWarning.growthName  != '' " >
+                  <if test="gpEarlyWarning.growthName != null and gpEarlyWarning.growthName  != ''  and gpEarlyWarning.growthName  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.growthName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.growthName != null  and gpEarlyWarning.growthName  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="max_val =case" suffix="end,">
@@ -332,9 +348,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.remark != null and gpEarlyWarning.remark  != '' " >
+                  <if test="gpEarlyWarning.remark != null and gpEarlyWarning.remark  != ''  and gpEarlyWarning.remark  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.remark != null  and gpEarlyWarning.remark  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="stutas_code =case" suffix="end,">
@@ -346,16 +366,24 @@
          </trim>
          <trim prefix="stutas_text =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.stutasText != null and gpEarlyWarning.stutasText  != '' " >
+                  <if test="gpEarlyWarning.stutasText != null and gpEarlyWarning.stutasText  != ''  and gpEarlyWarning.stutasText  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.stutasText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.stutasText != null  and gpEarlyWarning.stutasText  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tips_mess =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.tipsMess != null and gpEarlyWarning.tipsMess  != '' " >
+                  <if test="gpEarlyWarning.tipsMess != null and gpEarlyWarning.tipsMess  != ''  and gpEarlyWarning.tipsMess  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.tipsMess,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.tipsMess != null  and gpEarlyWarning.tipsMess  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
@@ -367,9 +395,13 @@
          </trim>
          <trim prefix="warning_name =case" suffix="end,">
               <foreach collection="list" item="gpEarlyWarning" index="index">
-                  <if test="gpEarlyWarning.warningName != null and gpEarlyWarning.warningName  != '' " >
+                  <if test="gpEarlyWarning.warningName != null and gpEarlyWarning.warningName  != ''  and gpEarlyWarning.warningName  != '-1' ">
                      when id=#{gpEarlyWarning.id} then #{gpEarlyWarning.warningName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpEarlyWarning.warningName != null  and gpEarlyWarning.warningName  == '-1' ">
+                     when id=#{gpEarlyWarning.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="warning_type =case" suffix="end,">

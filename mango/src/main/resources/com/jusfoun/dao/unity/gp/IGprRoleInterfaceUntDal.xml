@@ -161,9 +161,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="interface_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleInterface" index="index">
-                  <if test="gprRoleInterface.interfaceId != null and gprRoleInterface.interfaceId  != '' " >
+                  <if test="gprRoleInterface.interfaceId != null and gprRoleInterface.interfaceId  != ''  and gprRoleInterface.interfaceId  != '-1' ">
                      when id=#{gprRoleInterface.id} then #{gprRoleInterface.interfaceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleInterface.interfaceId != null  and gprRoleInterface.interfaceId  == '-1' ">
+                     when id=#{gprRoleInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_enable_code =case" suffix="end,">
@@ -175,9 +179,13 @@
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleInterface" index="index">
-                  <if test="gprRoleInterface.roleId != null and gprRoleInterface.roleId  != '' " >
+                  <if test="gprRoleInterface.roleId != null and gprRoleInterface.roleId  != ''  and gprRoleInterface.roleId  != '-1' ">
                      when id=#{gprRoleInterface.id} then #{gprRoleInterface.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleInterface.roleId != null  and gprRoleInterface.roleId  == '-1' ">
+                     when id=#{gprRoleInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

@@ -285,9 +285,13 @@
          </trim>
          <trim prefix="access_token =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.accessToken != null and gpToken.accessToken  != '' " >
+                  <if test="gpToken.accessToken != null and gpToken.accessToken  != ''  and gpToken.accessToken  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.accessToken,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.accessToken != null  and gpToken.accessToken  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -299,9 +303,13 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.domainId != null and gpToken.domainId  != '' " >
+                  <if test="gpToken.domainId != null and gpToken.domainId  != ''  and gpToken.domainId  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.domainId != null  and gpToken.domainId  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="r_dead_time =case" suffix="end,">
@@ -313,23 +321,35 @@
          </trim>
          <trim prefix="refresh_token =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.refreshToken != null and gpToken.refreshToken  != '' " >
+                  <if test="gpToken.refreshToken != null and gpToken.refreshToken  != ''  and gpToken.refreshToken  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.refreshToken,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.refreshToken != null  and gpToken.refreshToken  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.remark != null and gpToken.remark  != '' " >
+                  <if test="gpToken.remark != null and gpToken.remark  != ''  and gpToken.remark  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.remark != null  and gpToken.remark  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="secret =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.secret != null and gpToken.secret  != '' " >
+                  <if test="gpToken.secret != null and gpToken.secret  != ''  and gpToken.secret  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.secret,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.secret != null  and gpToken.secret  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
@@ -341,16 +361,24 @@
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.userId != null and gpToken.userId  != '' " >
+                  <if test="gpToken.userId != null and gpToken.userId  != ''  and gpToken.userId  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.userId != null  and gpToken.userId  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gpToken" index="index">
-                  <if test="gpToken.userName != null and gpToken.userName  != '' " >
+                  <if test="gpToken.userName != null and gpToken.userName  != ''  and gpToken.userName  != '-1' ">
                      when id=#{gpToken.id} then #{gpToken.userName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpToken.userName != null  and gpToken.userName  == '-1' ">
+                     when id=#{gpToken.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

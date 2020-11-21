@@ -239,16 +239,24 @@
          </trim>
          <trim prefix="code =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.code != null and gpRegion.code  != '' " >
+                  <if test="gpRegion.code != null and gpRegion.code  != ''  and gpRegion.code  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.code,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.code != null  and gpRegion.code  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="farther_code =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.fartherCode != null and gpRegion.fartherCode  != '' " >
+                  <if test="gpRegion.fartherCode != null and gpRegion.fartherCode  != ''  and gpRegion.fartherCode  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.fartherCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.fartherCode != null  and gpRegion.fartherCode  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_display_code =case" suffix="end,">
@@ -260,23 +268,35 @@
          </trim>
          <trim prefix="latitude =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.latitude != null and gpRegion.latitude  != '' " >
+                  <if test="gpRegion.latitude != null and gpRegion.latitude  != ''  and gpRegion.latitude  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.latitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.latitude != null  and gpRegion.latitude  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.longitude != null and gpRegion.longitude  != '' " >
+                  <if test="gpRegion.longitude != null and gpRegion.longitude  != ''  and gpRegion.longitude  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.longitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.longitude != null  and gpRegion.longitude  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.name != null and gpRegion.name  != '' " >
+                  <if test="gpRegion.name != null and gpRegion.name  != ''  and gpRegion.name  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.name != null  and gpRegion.name  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_level =case" suffix="end,">
@@ -288,9 +308,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpRegion" index="index">
-                  <if test="gpRegion.remark != null and gpRegion.remark  != '' " >
+                  <if test="gpRegion.remark != null and gpRegion.remark  != ''  and gpRegion.remark  != '-1' ">
                      when id=#{gpRegion.id} then #{gpRegion.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRegion.remark != null  and gpRegion.remark  == '-1' ">
+                     when id=#{gpRegion.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

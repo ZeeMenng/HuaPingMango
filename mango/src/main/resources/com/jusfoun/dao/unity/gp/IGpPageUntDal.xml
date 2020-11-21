@@ -193,9 +193,13 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.domainId != null and gpPage.domainId  != '' " >
+                  <if test="gpPage.domainId != null and gpPage.domainId  != ''  and gpPage.domainId  != '-1' ">
                      when id=#{gpPage.id} then #{gpPage.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpPage.domainId != null  and gpPage.domainId  == '-1' ">
+                     when id=#{gpPage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_public_code =case" suffix="end,">
@@ -207,23 +211,35 @@
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.name != null and gpPage.name  != '' " >
+                  <if test="gpPage.name != null and gpPage.name  != ''  and gpPage.name  != '-1' ">
                      when id=#{gpPage.id} then #{gpPage.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpPage.name != null  and gpPage.name  == '-1' ">
+                     when id=#{gpPage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.remark != null and gpPage.remark  != '' " >
+                  <if test="gpPage.remark != null and gpPage.remark  != ''  and gpPage.remark  != '-1' ">
                      when id=#{gpPage.id} then #{gpPage.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpPage.remark != null  and gpPage.remark  == '-1' ">
+                     when id=#{gpPage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="url =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.url != null and gpPage.url  != '' " >
+                  <if test="gpPage.url != null and gpPage.url  != ''  and gpPage.url  != '-1' ">
                      when id=#{gpPage.id} then #{gpPage.url,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpPage.url != null  and gpPage.url  == '-1' ">
+                     when id=#{gpPage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

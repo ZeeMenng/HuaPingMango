@@ -161,9 +161,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="control_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleControl" index="index">
-                  <if test="gprRoleControl.controlId != null and gprRoleControl.controlId  != '' " >
+                  <if test="gprRoleControl.controlId != null and gprRoleControl.controlId  != ''  and gprRoleControl.controlId  != '-1' ">
                      when id=#{gprRoleControl.id} then #{gprRoleControl.controlId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleControl.controlId != null  and gprRoleControl.controlId  == '-1' ">
+                     when id=#{gprRoleControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_enable_code =case" suffix="end,">
@@ -175,9 +179,13 @@
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleControl" index="index">
-                  <if test="gprRoleControl.roleId != null and gprRoleControl.roleId  != '' " >
+                  <if test="gprRoleControl.roleId != null and gprRoleControl.roleId  != ''  and gprRoleControl.roleId  != '-1' ">
                      when id=#{gprRoleControl.id} then #{gprRoleControl.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleControl.roleId != null  and gprRoleControl.roleId  == '-1' ">
+                     when id=#{gprRoleControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

@@ -218,9 +218,13 @@
          </trim>
          <trim prefix="message_id =case" suffix="end,">
               <foreach collection="list" item="gprMessageUser" index="index">
-                  <if test="gprMessageUser.messageId != null and gprMessageUser.messageId  != '' " >
+                  <if test="gprMessageUser.messageId != null and gprMessageUser.messageId  != ''  and gprMessageUser.messageId  != '-1' ">
                      when id=#{gprMessageUser.id} then #{gprMessageUser.messageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprMessageUser.messageId != null  and gprMessageUser.messageId  == '-1' ">
+                     when id=#{gprMessageUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="read_time =case" suffix="end,">
@@ -232,16 +236,24 @@
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gprMessageUser" index="index">
-                  <if test="gprMessageUser.userId != null and gprMessageUser.userId  != '' " >
+                  <if test="gprMessageUser.userId != null and gprMessageUser.userId  != ''  and gprMessageUser.userId  != '-1' ">
                      when id=#{gprMessageUser.id} then #{gprMessageUser.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprMessageUser.userId != null  and gprMessageUser.userId  == '-1' ">
+                     when id=#{gprMessageUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gprMessageUser" index="index">
-                  <if test="gprMessageUser.userName != null and gprMessageUser.userName  != '' " >
+                  <if test="gprMessageUser.userName != null and gprMessageUser.userName  != ''  and gprMessageUser.userName  != '-1' ">
                      when id=#{gprMessageUser.id} then #{gprMessageUser.userName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprMessageUser.userName != null  and gprMessageUser.userName  == '-1' ">
+                     when id=#{gprMessageUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

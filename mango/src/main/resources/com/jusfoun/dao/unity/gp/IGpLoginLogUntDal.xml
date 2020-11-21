@@ -322,16 +322,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="browser =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.browser != null and gpLoginLog.browser  != '' " >
+                  <if test="gpLoginLog.browser != null and gpLoginLog.browser  != ''  and gpLoginLog.browser  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.browser,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.browser != null  and gpLoginLog.browser  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.domainId != null and gpLoginLog.domainId  != '' " >
+                  <if test="gpLoginLog.domainId != null and gpLoginLog.domainId  != ''  and gpLoginLog.domainId  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.domainId != null  and gpLoginLog.domainId  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="duration =case" suffix="end,">
@@ -343,16 +351,24 @@
          </trim>
          <trim prefix="ip =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.ip != null and gpLoginLog.ip  != '' " >
+                  <if test="gpLoginLog.ip != null and gpLoginLog.ip  != ''  and gpLoginLog.ip  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.ip,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.ip != null  and gpLoginLog.ip  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="ip_address =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.ipAddress != null and gpLoginLog.ipAddress  != '' " >
+                  <if test="gpLoginLog.ipAddress != null and gpLoginLog.ipAddress  != ''  and gpLoginLog.ipAddress  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.ipAddress,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.ipAddress != null  and gpLoginLog.ipAddress  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_success_code =case" suffix="end,">
@@ -385,37 +401,57 @@
          </trim>
          <trim prefix="os =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.os != null and gpLoginLog.os  != '' " >
+                  <if test="gpLoginLog.os != null and gpLoginLog.os  != ''  and gpLoginLog.os  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.os,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.os != null  and gpLoginLog.os  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.remark != null and gpLoginLog.remark  != '' " >
+                  <if test="gpLoginLog.remark != null and gpLoginLog.remark  != ''  and gpLoginLog.remark  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.remark != null  and gpLoginLog.remark  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resolution =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.resolution != null and gpLoginLog.resolution  != '' " >
+                  <if test="gpLoginLog.resolution != null and gpLoginLog.resolution  != ''  and gpLoginLog.resolution  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.resolution,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.resolution != null  and gpLoginLog.resolution  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.userId != null and gpLoginLog.userId  != '' " >
+                  <if test="gpLoginLog.userId != null and gpLoginLog.userId  != ''  and gpLoginLog.userId  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.userId != null  and gpLoginLog.userId  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.userName != null and gpLoginLog.userName  != '' " >
+                  <if test="gpLoginLog.userName != null and gpLoginLog.userName  != ''  and gpLoginLog.userName  != '-1' ">
                      when id=#{gpLoginLog.id} then #{gpLoginLog.userName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpLoginLog.userName != null  and gpLoginLog.userName  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

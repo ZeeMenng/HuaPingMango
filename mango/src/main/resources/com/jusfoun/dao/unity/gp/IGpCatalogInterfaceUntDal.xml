@@ -213,16 +213,24 @@
          </trim>
          <trim prefix="category_text =case" suffix="end,">
               <foreach collection="list" item="gpCatalogInterface" index="index">
-                  <if test="gpCatalogInterface.categoryText != null and gpCatalogInterface.categoryText  != '' " >
+                  <if test="gpCatalogInterface.categoryText != null and gpCatalogInterface.categoryText  != ''  and gpCatalogInterface.categoryText  != '-1' ">
                      when id=#{gpCatalogInterface.id} then #{gpCatalogInterface.categoryText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpCatalogInterface.categoryText != null  and gpCatalogInterface.categoryText  == '-1' ">
+                     when id=#{gpCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="farther_id =case" suffix="end,">
               <foreach collection="list" item="gpCatalogInterface" index="index">
-                  <if test="gpCatalogInterface.fartherId != null and gpCatalogInterface.fartherId  != '' " >
+                  <if test="gpCatalogInterface.fartherId != null and gpCatalogInterface.fartherId  != ''  and gpCatalogInterface.fartherId  != '-1' ">
                      when id=#{gpCatalogInterface.id} then #{gpCatalogInterface.fartherId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpCatalogInterface.fartherId != null  and gpCatalogInterface.fartherId  == '-1' ">
+                     when id=#{gpCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="level =case" suffix="end,">
@@ -234,9 +242,13 @@
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpCatalogInterface" index="index">
-                  <if test="gpCatalogInterface.name != null and gpCatalogInterface.name  != '' " >
+                  <if test="gpCatalogInterface.name != null and gpCatalogInterface.name  != ''  and gpCatalogInterface.name  != '-1' ">
                      when id=#{gpCatalogInterface.id} then #{gpCatalogInterface.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpCatalogInterface.name != null  and gpCatalogInterface.name  == '-1' ">
+                     when id=#{gpCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -248,16 +260,24 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpCatalogInterface" index="index">
-                  <if test="gpCatalogInterface.remark != null and gpCatalogInterface.remark  != '' " >
+                  <if test="gpCatalogInterface.remark != null and gpCatalogInterface.remark  != ''  and gpCatalogInterface.remark  != '-1' ">
                      when id=#{gpCatalogInterface.id} then #{gpCatalogInterface.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpCatalogInterface.remark != null  and gpCatalogInterface.remark  == '-1' ">
+                     when id=#{gpCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpCatalogInterface" index="index">
-                  <if test="gpCatalogInterface.serialNo != null and gpCatalogInterface.serialNo  != '' " >
+                  <if test="gpCatalogInterface.serialNo != null and gpCatalogInterface.serialNo  != ''  and gpCatalogInterface.serialNo  != '-1' ">
                      when id=#{gpCatalogInterface.id} then #{gpCatalogInterface.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpCatalogInterface.serialNo != null  and gpCatalogInterface.serialNo  == '-1' ">
+                     when id=#{gpCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

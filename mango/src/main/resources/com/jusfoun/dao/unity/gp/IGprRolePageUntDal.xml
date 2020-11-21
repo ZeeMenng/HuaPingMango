@@ -168,16 +168,24 @@
          </trim>
          <trim prefix="page_id =case" suffix="end,">
               <foreach collection="list" item="gprRolePage" index="index">
-                  <if test="gprRolePage.pageId != null and gprRolePage.pageId  != '' " >
+                  <if test="gprRolePage.pageId != null and gprRolePage.pageId  != ''  and gprRolePage.pageId  != '-1' ">
                      when id=#{gprRolePage.id} then #{gprRolePage.pageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRolePage.pageId != null  and gprRolePage.pageId  == '-1' ">
+                     when id=#{gprRolePage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRolePage" index="index">
-                  <if test="gprRolePage.roleId != null and gprRolePage.roleId  != '' " >
+                  <if test="gprRolePage.roleId != null and gprRolePage.roleId  != ''  and gprRolePage.roleId  != '-1' ">
                      when id=#{gprRolePage.id} then #{gprRolePage.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRolePage.roleId != null  and gprRolePage.roleId  == '-1' ">
+                     when id=#{gprRolePage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

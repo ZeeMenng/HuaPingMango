@@ -147,16 +147,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprUserRole" index="index">
-                  <if test="gprUserRole.roleId != null and gprUserRole.roleId  != '' " >
+                  <if test="gprUserRole.roleId != null and gprUserRole.roleId  != ''  and gprUserRole.roleId  != '-1' ">
                      when id=#{gprUserRole.id} then #{gprUserRole.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprUserRole.roleId != null  and gprUserRole.roleId  == '-1' ">
+                     when id=#{gprUserRole.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gprUserRole" index="index">
-                  <if test="gprUserRole.userId != null and gprUserRole.userId  != '' " >
+                  <if test="gprUserRole.userId != null and gprUserRole.userId  != ''  and gprUserRole.userId  != '-1' ">
                      when id=#{gprUserRole.id} then #{gprUserRole.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprUserRole.userId != null  and gprUserRole.userId  == '-1' ">
+                     when id=#{gprUserRole.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

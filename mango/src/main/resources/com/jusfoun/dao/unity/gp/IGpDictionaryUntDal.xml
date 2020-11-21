@@ -185,23 +185,35 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpDictionary" index="index">
-                  <if test="gpDictionary.remark != null and gpDictionary.remark  != '' " >
+                  <if test="gpDictionary.remark != null and gpDictionary.remark  != ''  and gpDictionary.remark  != '-1' ">
                      when id=#{gpDictionary.id} then #{gpDictionary.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionary.remark != null  and gpDictionary.remark  == '-1' ">
+                     when id=#{gpDictionary.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="text =case" suffix="end,">
               <foreach collection="list" item="gpDictionary" index="index">
-                  <if test="gpDictionary.text != null and gpDictionary.text  != '' " >
+                  <if test="gpDictionary.text != null and gpDictionary.text  != ''  and gpDictionary.text  != '-1' ">
                      when id=#{gpDictionary.id} then #{gpDictionary.text,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionary.text != null  and gpDictionary.text  == '-1' ">
+                     when id=#{gpDictionary.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_id =case" suffix="end,">
               <foreach collection="list" item="gpDictionary" index="index">
-                  <if test="gpDictionary.typeId != null and gpDictionary.typeId  != '' " >
+                  <if test="gpDictionary.typeId != null and gpDictionary.typeId  != ''  and gpDictionary.typeId  != '-1' ">
                      when id=#{gpDictionary.id} then #{gpDictionary.typeId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionary.typeId != null  and gpDictionary.typeId  == '-1' ">
+                     when id=#{gpDictionary.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

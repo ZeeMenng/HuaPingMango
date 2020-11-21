@@ -147,16 +147,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gprDomainUser" index="index">
-                  <if test="gprDomainUser.domainId != null and gprDomainUser.domainId  != '' " >
+                  <if test="gprDomainUser.domainId != null and gprDomainUser.domainId  != ''  and gprDomainUser.domainId  != '-1' ">
                      when id=#{gprDomainUser.id} then #{gprDomainUser.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprDomainUser.domainId != null  and gprDomainUser.domainId  == '-1' ">
+                     when id=#{gprDomainUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gprDomainUser" index="index">
-                  <if test="gprDomainUser.userId != null and gprDomainUser.userId  != '' " >
+                  <if test="gprDomainUser.userId != null and gprDomainUser.userId  != ''  and gprDomainUser.userId  != '-1' ">
                      when id=#{gprDomainUser.id} then #{gprDomainUser.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprDomainUser.userId != null  and gprDomainUser.userId  == '-1' ">
+                     when id=#{gprDomainUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

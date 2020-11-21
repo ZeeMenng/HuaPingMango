@@ -147,16 +147,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="module_id =case" suffix="end,">
               <foreach collection="list" item="gprModulePage" index="index">
-                  <if test="gprModulePage.moduleId != null and gprModulePage.moduleId  != '' " >
+                  <if test="gprModulePage.moduleId != null and gprModulePage.moduleId  != ''  and gprModulePage.moduleId  != '-1' ">
                      when id=#{gprModulePage.id} then #{gprModulePage.moduleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprModulePage.moduleId != null  and gprModulePage.moduleId  == '-1' ">
+                     when id=#{gprModulePage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="page_id =case" suffix="end,">
               <foreach collection="list" item="gprModulePage" index="index">
-                  <if test="gprModulePage.pageId != null and gprModulePage.pageId  != '' " >
+                  <if test="gprModulePage.pageId != null and gprModulePage.pageId  != ''  and gprModulePage.pageId  != '-1' ">
                      when id=#{gprModulePage.id} then #{gprModulePage.pageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprModulePage.pageId != null  and gprModulePage.pageId  == '-1' ">
+                     when id=#{gprModulePage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

@@ -305,51 +305,79 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.domainId != null and gpResource.domainId  != '' " >
+                  <if test="gpResource.domainId != null and gpResource.domainId  != ''  and gpResource.domainId  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.domainId != null  and gpResource.domainId  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="extension =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.extension != null and gpResource.extension  != '' " >
+                  <if test="gpResource.extension != null and gpResource.extension  != ''  and gpResource.extension  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.extension,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.extension != null  and gpResource.extension  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="module_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.moduleId != null and gpResource.moduleId  != '' " >
+                  <if test="gpResource.moduleId != null and gpResource.moduleId  != ''  and gpResource.moduleId  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.moduleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.moduleId != null  and gpResource.moduleId  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="new_name =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.newName != null and gpResource.newName  != '' " >
+                  <if test="gpResource.newName != null and gpResource.newName  != ''  and gpResource.newName  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.newName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.newName != null  and gpResource.newName  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="original_name =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.originalName != null and gpResource.originalName  != '' " >
+                  <if test="gpResource.originalName != null and gpResource.originalName  != ''  and gpResource.originalName  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.originalName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.originalName != null  and gpResource.originalName  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="page_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.pageId != null and gpResource.pageId  != '' " >
+                  <if test="gpResource.pageId != null and gpResource.pageId  != ''  and gpResource.pageId  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.pageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.pageId != null  and gpResource.pageId  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="path =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.path != null and gpResource.path  != '' " >
+                  <if test="gpResource.path != null and gpResource.path  != ''  and gpResource.path  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.path,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.path != null  and gpResource.path  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -368,9 +396,13 @@
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.userId != null and gpResource.userId  != '' " >
+                  <if test="gpResource.userId != null and gpResource.userId  != ''  and gpResource.userId  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpResource.userId != null  and gpResource.userId  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

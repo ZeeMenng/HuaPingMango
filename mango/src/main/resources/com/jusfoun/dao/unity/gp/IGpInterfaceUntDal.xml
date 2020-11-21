@@ -251,9 +251,13 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.domainId != null and gpInterface.domainId  != '' " >
+                  <if test="gpInterface.domainId != null and gpInterface.domainId  != ''  and gpInterface.domainId  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.domainId != null  and gpInterface.domainId  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_public_code =case" suffix="end,">
@@ -265,30 +269,46 @@
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.name != null and gpInterface.name  != '' " >
+                  <if test="gpInterface.name != null and gpInterface.name  != ''  and gpInterface.name  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.name != null  and gpInterface.name  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.remark != null and gpInterface.remark  != '' " >
+                  <if test="gpInterface.remark != null and gpInterface.remark  != ''  and gpInterface.remark  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.remark != null  and gpInterface.remark  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.serialNo != null and gpInterface.serialNo  != '' " >
+                  <if test="gpInterface.serialNo != null and gpInterface.serialNo  != ''  and gpInterface.serialNo  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.serialNo != null  and gpInterface.serialNo  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="table_name =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.tableName != null and gpInterface.tableName  != '' " >
+                  <if test="gpInterface.tableName != null and gpInterface.tableName  != ''  and gpInterface.tableName  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.tableName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.tableName != null  and gpInterface.tableName  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_code =case" suffix="end,">
@@ -307,9 +327,13 @@
          </trim>
          <trim prefix="url =case" suffix="end,">
               <foreach collection="list" item="gpInterface" index="index">
-                  <if test="gpInterface.url != null and gpInterface.url  != '' " >
+                  <if test="gpInterface.url != null and gpInterface.url  != ''  and gpInterface.url  != '-1' ">
                      when id=#{gpInterface.id} then #{gpInterface.url,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpInterface.url != null  and gpInterface.url  == '-1' ">
+                     when id=#{gpInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

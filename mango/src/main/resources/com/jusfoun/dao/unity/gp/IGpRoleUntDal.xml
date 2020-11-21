@@ -144,16 +144,24 @@
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpRole" index="index">
-                  <if test="gpRole.name != null and gpRole.name  != '' " >
+                  <if test="gpRole.name != null and gpRole.name  != ''  and gpRole.name  != '-1' ">
                      when id=#{gpRole.id} then #{gpRole.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRole.name != null  and gpRole.name  == '-1' ">
+                     when id=#{gpRole.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpRole" index="index">
-                  <if test="gpRole.remark != null and gpRole.remark  != '' " >
+                  <if test="gpRole.remark != null and gpRole.remark  != ''  and gpRole.remark  != '-1' ">
                      when id=#{gpRole.id} then #{gpRole.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpRole.remark != null  and gpRole.remark  == '-1' ">
+                     when id=#{gpRole.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">

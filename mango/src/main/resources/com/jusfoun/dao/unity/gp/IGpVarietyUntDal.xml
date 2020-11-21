@@ -291,9 +291,13 @@
          </trim>
          <trim prefix="add_user_id =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.addUserId != null and gpVariety.addUserId  != '' " >
+                  <if test="gpVariety.addUserId != null and gpVariety.addUserId  != ''  and gpVariety.addUserId  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.addUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.addUserId != null  and gpVariety.addUserId  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="cycle_time =case" suffix="end,">
@@ -305,23 +309,35 @@
          </trim>
          <trim prefix="describes =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.describes != null and gpVariety.describes  != '' " >
+                  <if test="gpVariety.describes != null and gpVariety.describes  != ''  and gpVariety.describes  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.describes,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.describes != null  and gpVariety.describes  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.name != null and gpVariety.name  != '' " >
+                  <if test="gpVariety.name != null and gpVariety.name  != ''  and gpVariety.name  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.name != null  and gpVariety.name  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="parent_id =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.parentId != null and gpVariety.parentId  != '' " >
+                  <if test="gpVariety.parentId != null and gpVariety.parentId  != ''  and gpVariety.parentId  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.parentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.parentId != null  and gpVariety.parentId  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -333,30 +349,46 @@
          </trim>
          <trim prefix="relation_id =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.relationId != null and gpVariety.relationId  != '' " >
+                  <if test="gpVariety.relationId != null and gpVariety.relationId  != ''  and gpVariety.relationId  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.relationId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.relationId != null  and gpVariety.relationId  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.remark != null and gpVariety.remark  != '' " >
+                  <if test="gpVariety.remark != null and gpVariety.remark  != ''  and gpVariety.remark  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.remark != null  and gpVariety.remark  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.resourceId != null and gpVariety.resourceId  != '' " >
+                  <if test="gpVariety.resourceId != null and gpVariety.resourceId  != ''  and gpVariety.resourceId  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.resourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.resourceId != null  and gpVariety.resourceId  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_url =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.resourceUrl != null and gpVariety.resourceUrl  != '' " >
+                  <if test="gpVariety.resourceUrl != null and gpVariety.resourceUrl  != ''  and gpVariety.resourceUrl  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.resourceUrl,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.resourceUrl != null  and gpVariety.resourceUrl  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="stutas_code =case" suffix="end,">
@@ -368,9 +400,13 @@
          </trim>
          <trim prefix="stutas_text =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.stutasText != null and gpVariety.stutasText  != '' " >
+                  <if test="gpVariety.stutasText != null and gpVariety.stutasText  != ''  and gpVariety.stutasText  != '-1' ">
                      when id=#{gpVariety.id} then #{gpVariety.stutasText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpVariety.stutasText != null  and gpVariety.stutasText  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">

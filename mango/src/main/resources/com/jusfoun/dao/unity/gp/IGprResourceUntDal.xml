@@ -142,9 +142,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="business_id =case" suffix="end,">
               <foreach collection="list" item="gprResource" index="index">
-                  <if test="gprResource.businessId != null and gprResource.businessId  != '' " >
+                  <if test="gprResource.businessId != null and gprResource.businessId  != ''  and gprResource.businessId  != '-1' ">
                      when id=#{gprResource.id} then #{gprResource.businessId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprResource.businessId != null  and gprResource.businessId  == '-1' ">
+                     when id=#{gprResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_default =case" suffix="end,">
@@ -156,9 +160,13 @@
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="gprResource" index="index">
-                  <if test="gprResource.resourceId != null and gprResource.resourceId  != '' " >
+                  <if test="gprResource.resourceId != null and gprResource.resourceId  != ''  and gprResource.resourceId  != '-1' ">
                      when id=#{gprResource.id} then #{gprResource.resourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprResource.resourceId != null  and gprResource.resourceId  == '-1' ">
+                     when id=#{gprResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

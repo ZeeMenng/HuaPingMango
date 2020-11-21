@@ -189,37 +189,57 @@
          </trim>
          <trim prefix="com =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.com != null and gpDomain.com  != '' " >
+                  <if test="gpDomain.com != null and gpDomain.com  != ''  and gpDomain.com  != '-1' ">
                      when id=#{gpDomain.id} then #{gpDomain.com,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.com != null  and gpDomain.com  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="icon_resource =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.iconResource != null and gpDomain.iconResource  != '' " >
+                  <if test="gpDomain.iconResource != null and gpDomain.iconResource  != ''  and gpDomain.iconResource  != '-1' ">
                      when id=#{gpDomain.id} then #{gpDomain.iconResource,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.iconResource != null  and gpDomain.iconResource  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.name != null and gpDomain.name  != '' " >
+                  <if test="gpDomain.name != null and gpDomain.name  != ''  and gpDomain.name  != '-1' ">
                      when id=#{gpDomain.id} then #{gpDomain.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.name != null  and gpDomain.name  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.remark != null and gpDomain.remark  != '' " >
+                  <if test="gpDomain.remark != null and gpDomain.remark  != ''  and gpDomain.remark  != '-1' ">
                      when id=#{gpDomain.id} then #{gpDomain.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.remark != null  and gpDomain.remark  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.serialNo != null and gpDomain.serialNo  != '' " >
+                  <if test="gpDomain.serialNo != null and gpDomain.serialNo  != ''  and gpDomain.serialNo  != '-1' ">
                      when id=#{gpDomain.id} then #{gpDomain.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.serialNo != null  and gpDomain.serialNo  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">

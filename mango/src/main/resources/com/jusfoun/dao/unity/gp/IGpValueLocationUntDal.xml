@@ -190,44 +190,68 @@
          </trim>
          <trim prefix="column_value =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.columnValue != null and gpValueLocation.columnValue  != '' " >
+                  <if test="gpValueLocation.columnValue != null and gpValueLocation.columnValue  != ''  and gpValueLocation.columnValue  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.columnValue,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.columnValue != null  and gpValueLocation.columnValue  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="origin_table_name =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.originTableName != null and gpValueLocation.originTableName  != '' " >
+                  <if test="gpValueLocation.originTableName != null and gpValueLocation.originTableName  != ''  and gpValueLocation.originTableName  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.originTableName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.originTableName != null  and gpValueLocation.originTableName  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remarks =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.remarks != null and gpValueLocation.remarks  != '' " >
+                  <if test="gpValueLocation.remarks != null and gpValueLocation.remarks  != ''  and gpValueLocation.remarks  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.remarks,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.remarks != null  and gpValueLocation.remarks  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_column_name =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.targetColumnName != null and gpValueLocation.targetColumnName  != '' " >
+                  <if test="gpValueLocation.targetColumnName != null and gpValueLocation.targetColumnName  != ''  and gpValueLocation.targetColumnName  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.targetColumnName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.targetColumnName != null  and gpValueLocation.targetColumnName  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_record_id =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.targetRecordId != null and gpValueLocation.targetRecordId  != '' " >
+                  <if test="gpValueLocation.targetRecordId != null and gpValueLocation.targetRecordId  != ''  and gpValueLocation.targetRecordId  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.targetRecordId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.targetRecordId != null  and gpValueLocation.targetRecordId  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_table_name =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.targetTableName != null and gpValueLocation.targetTableName  != '' " >
+                  <if test="gpValueLocation.targetTableName != null and gpValueLocation.targetTableName  != ''  and gpValueLocation.targetTableName  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.targetTableName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpValueLocation.targetTableName != null  and gpValueLocation.targetTableName  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

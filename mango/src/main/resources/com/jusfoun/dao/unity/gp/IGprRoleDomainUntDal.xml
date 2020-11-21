@@ -161,9 +161,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleDomain" index="index">
-                  <if test="gprRoleDomain.domainId != null and gprRoleDomain.domainId  != '' " >
+                  <if test="gprRoleDomain.domainId != null and gprRoleDomain.domainId  != ''  and gprRoleDomain.domainId  != '-1' ">
                      when id=#{gprRoleDomain.id} then #{gprRoleDomain.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleDomain.domainId != null  and gprRoleDomain.domainId  == '-1' ">
+                     when id=#{gprRoleDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_enable_code =case" suffix="end,">
@@ -175,9 +179,13 @@
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleDomain" index="index">
-                  <if test="gprRoleDomain.roleId != null and gprRoleDomain.roleId  != '' " >
+                  <if test="gprRoleDomain.roleId != null and gprRoleDomain.roleId  != ''  and gprRoleDomain.roleId  != '-1' ">
                      when id=#{gprRoleDomain.id} then #{gprRoleDomain.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleDomain.roleId != null  and gprRoleDomain.roleId  == '-1' ">
+                     when id=#{gprRoleDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

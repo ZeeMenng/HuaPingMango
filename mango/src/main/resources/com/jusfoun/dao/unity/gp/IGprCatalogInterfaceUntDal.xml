@@ -147,16 +147,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="catalog_id =case" suffix="end,">
               <foreach collection="list" item="gprCatalogInterface" index="index">
-                  <if test="gprCatalogInterface.catalogId != null and gprCatalogInterface.catalogId  != '' " >
+                  <if test="gprCatalogInterface.catalogId != null and gprCatalogInterface.catalogId  != ''  and gprCatalogInterface.catalogId  != '-1' ">
                      when id=#{gprCatalogInterface.id} then #{gprCatalogInterface.catalogId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprCatalogInterface.catalogId != null  and gprCatalogInterface.catalogId  == '-1' ">
+                     when id=#{gprCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="interface_id =case" suffix="end,">
               <foreach collection="list" item="gprCatalogInterface" index="index">
-                  <if test="gprCatalogInterface.interfaceId != null and gprCatalogInterface.interfaceId  != '' " >
+                  <if test="gprCatalogInterface.interfaceId != null and gprCatalogInterface.interfaceId  != ''  and gprCatalogInterface.interfaceId  != '-1' ">
                      when id=#{gprCatalogInterface.id} then #{gprCatalogInterface.interfaceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprCatalogInterface.interfaceId != null  and gprCatalogInterface.interfaceId  == '-1' ">
+                     when id=#{gprCatalogInterface.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

@@ -162,23 +162,35 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gprDomainMessage" index="index">
-                  <if test="gprDomainMessage.domainId != null and gprDomainMessage.domainId  != '' " >
+                  <if test="gprDomainMessage.domainId != null and gprDomainMessage.domainId  != ''  and gprDomainMessage.domainId  != '-1' ">
                      when id=#{gprDomainMessage.id} then #{gprDomainMessage.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprDomainMessage.domainId != null  and gprDomainMessage.domainId  == '-1' ">
+                     when id=#{gprDomainMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="gprDomainMessage" index="index">
-                  <if test="gprDomainMessage.enterpriseId != null and gprDomainMessage.enterpriseId  != '' " >
+                  <if test="gprDomainMessage.enterpriseId != null and gprDomainMessage.enterpriseId  != ''  and gprDomainMessage.enterpriseId  != '-1' ">
                      when id=#{gprDomainMessage.id} then #{gprDomainMessage.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprDomainMessage.enterpriseId != null  and gprDomainMessage.enterpriseId  == '-1' ">
+                     when id=#{gprDomainMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="message_id =case" suffix="end,">
               <foreach collection="list" item="gprDomainMessage" index="index">
-                  <if test="gprDomainMessage.messageId != null and gprDomainMessage.messageId  != '' " >
+                  <if test="gprDomainMessage.messageId != null and gprDomainMessage.messageId  != ''  and gprDomainMessage.messageId  != '-1' ">
                      when id=#{gprDomainMessage.id} then #{gprDomainMessage.messageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprDomainMessage.messageId != null  and gprDomainMessage.messageId  == '-1' ">
+                     when id=#{gprDomainMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

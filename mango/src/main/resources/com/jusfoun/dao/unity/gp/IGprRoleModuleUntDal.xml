@@ -168,16 +168,24 @@
          </trim>
          <trim prefix="module_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleModule" index="index">
-                  <if test="gprRoleModule.moduleId != null and gprRoleModule.moduleId  != '' " >
+                  <if test="gprRoleModule.moduleId != null and gprRoleModule.moduleId  != ''  and gprRoleModule.moduleId  != '-1' ">
                      when id=#{gprRoleModule.id} then #{gprRoleModule.moduleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleModule.moduleId != null  and gprRoleModule.moduleId  == '-1' ">
+                     when id=#{gprRoleModule.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleModule" index="index">
-                  <if test="gprRoleModule.roleId != null and gprRoleModule.roleId  != '' " >
+                  <if test="gprRoleModule.roleId != null and gprRoleModule.roleId  != ''  and gprRoleModule.roleId  != '-1' ">
                      when id=#{gprRoleModule.id} then #{gprRoleModule.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprRoleModule.roleId != null  and gprRoleModule.roleId  == '-1' ">
+                     when id=#{gprRoleModule.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

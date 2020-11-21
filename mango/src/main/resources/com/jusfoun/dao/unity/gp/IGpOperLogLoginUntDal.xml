@@ -230,37 +230,57 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="login_log_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.loginLogId != null and gpOperLogLogin.loginLogId  != '' " >
+                  <if test="gpOperLogLogin.loginLogId != null and gpOperLogLogin.loginLogId  != ''  and gpOperLogLogin.loginLogId  != '-1' ">
                      when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.loginLogId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLogLogin.loginLogId != null  and gpOperLogLogin.loginLogId  == '-1' ">
+                     when id=#{gpOperLogLogin.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="oper_log_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.operLogId != null and gpOperLogLogin.operLogId  != '' " >
+                  <if test="gpOperLogLogin.operLogId != null and gpOperLogLogin.operLogId  != ''  and gpOperLogLogin.operLogId  != '-1' ">
                      when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.operLogId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLogLogin.operLogId != null  and gpOperLogLogin.operLogId  == '-1' ">
+                     when id=#{gpOperLogLogin.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="token_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.tokenId != null and gpOperLogLogin.tokenId  != '' " >
+                  <if test="gpOperLogLogin.tokenId != null and gpOperLogLogin.tokenId  != ''  and gpOperLogLogin.tokenId  != '-1' ">
                      when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.tokenId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLogLogin.tokenId != null  and gpOperLogLogin.tokenId  == '-1' ">
+                     when id=#{gpOperLogLogin.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.userId != null and gpOperLogLogin.userId  != '' " >
+                  <if test="gpOperLogLogin.userId != null and gpOperLogLogin.userId  != ''  and gpOperLogLogin.userId  != '-1' ">
                      when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLogLogin.userId != null  and gpOperLogLogin.userId  == '-1' ">
+                     when id=#{gpOperLogLogin.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gpOperLogLogin" index="index">
-                  <if test="gpOperLogLogin.userName != null and gpOperLogLogin.userName  != '' " >
+                  <if test="gpOperLogLogin.userName != null and gpOperLogLogin.userName  != ''  and gpOperLogLogin.userName  != '-1' ">
                      when id=#{gpOperLogLogin.id} then #{gpOperLogLogin.userName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLogLogin.userName != null  and gpOperLogLogin.userName  == '-1' ">
+                     when id=#{gpOperLogLogin.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

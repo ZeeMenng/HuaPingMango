@@ -351,30 +351,46 @@
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.address != null and gpOrganization.address  != '' " >
+                  <if test="gpOrganization.address != null and gpOrganization.address  != ''  and gpOrganization.address  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.address != null  and gpOrganization.address  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="email =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.email != null and gpOrganization.email  != '' " >
+                  <if test="gpOrganization.email != null and gpOrganization.email  != ''  and gpOrganization.email  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.email,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.email != null  and gpOrganization.email  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="farther_id =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.fartherId != null and gpOrganization.fartherId  != '' " >
+                  <if test="gpOrganization.fartherId != null and gpOrganization.fartherId  != ''  and gpOrganization.fartherId  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.fartherId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.fartherId != null  and gpOrganization.fartherId  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="fax =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.fax != null and gpOrganization.fax  != '' " >
+                  <if test="gpOrganization.fax != null and gpOrganization.fax  != ''  and gpOrganization.fax  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.fax,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.fax != null  and gpOrganization.fax  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="level_code =case" suffix="end,">
@@ -386,30 +402,46 @@
          </trim>
          <trim prefix="level_text =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.levelText != null and gpOrganization.levelText  != '' " >
+                  <if test="gpOrganization.levelText != null and gpOrganization.levelText  != ''  and gpOrganization.levelText  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.levelText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.levelText != null  and gpOrganization.levelText  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.name != null and gpOrganization.name  != '' " >
+                  <if test="gpOrganization.name != null and gpOrganization.name  != ''  and gpOrganization.name  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.name != null  and gpOrganization.name  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="phone =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.phone != null and gpOrganization.phone  != '' " >
+                  <if test="gpOrganization.phone != null and gpOrganization.phone  != ''  and gpOrganization.phone  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.phone,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.phone != null  and gpOrganization.phone  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="postcode =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.postcode != null and gpOrganization.postcode  != '' " >
+                  <if test="gpOrganization.postcode != null and gpOrganization.postcode  != ''  and gpOrganization.postcode  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.postcode,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.postcode != null  and gpOrganization.postcode  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -421,30 +453,46 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.remark != null and gpOrganization.remark  != '' " >
+                  <if test="gpOrganization.remark != null and gpOrganization.remark  != ''  and gpOrganization.remark  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.remark != null  and gpOrganization.remark  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="responsibility =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.responsibility != null and gpOrganization.responsibility  != '' " >
+                  <if test="gpOrganization.responsibility != null and gpOrganization.responsibility  != ''  and gpOrganization.responsibility  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.responsibility,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.responsibility != null  and gpOrganization.responsibility  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.serialNo != null and gpOrganization.serialNo  != '' " >
+                  <if test="gpOrganization.serialNo != null and gpOrganization.serialNo  != ''  and gpOrganization.serialNo  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.serialNo != null  and gpOrganization.serialNo  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="short_name =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.shortName != null and gpOrganization.shortName  != '' " >
+                  <if test="gpOrganization.shortName != null and gpOrganization.shortName  != ''  and gpOrganization.shortName  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.shortName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.shortName != null  and gpOrganization.shortName  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_code =case" suffix="end,">
@@ -456,9 +504,13 @@
          </trim>
          <trim prefix="type_text =case" suffix="end,">
               <foreach collection="list" item="gpOrganization" index="index">
-                  <if test="gpOrganization.typeText != null and gpOrganization.typeText  != '' " >
+                  <if test="gpOrganization.typeText != null and gpOrganization.typeText  != ''  and gpOrganization.typeText  != '-1' ">
                      when id=#{gpOrganization.id} then #{gpOrganization.typeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOrganization.typeText != null  and gpOrganization.typeText  == '-1' ">
+                     when id=#{gpOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">

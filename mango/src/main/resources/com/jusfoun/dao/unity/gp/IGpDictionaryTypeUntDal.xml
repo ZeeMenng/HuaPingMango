@@ -124,23 +124,35 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="constant_name =case" suffix="end,">
               <foreach collection="list" item="gpDictionaryType" index="index">
-                  <if test="gpDictionaryType.constantName != null and gpDictionaryType.constantName  != '' " >
+                  <if test="gpDictionaryType.constantName != null and gpDictionaryType.constantName  != ''  and gpDictionaryType.constantName  != '-1' ">
                      when id=#{gpDictionaryType.id} then #{gpDictionaryType.constantName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionaryType.constantName != null  and gpDictionaryType.constantName  == '-1' ">
+                     when id=#{gpDictionaryType.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpDictionaryType" index="index">
-                  <if test="gpDictionaryType.name != null and gpDictionaryType.name  != '' " >
+                  <if test="gpDictionaryType.name != null and gpDictionaryType.name  != ''  and gpDictionaryType.name  != '-1' ">
                      when id=#{gpDictionaryType.id} then #{gpDictionaryType.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionaryType.name != null  and gpDictionaryType.name  == '-1' ">
+                     when id=#{gpDictionaryType.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpDictionaryType" index="index">
-                  <if test="gpDictionaryType.remark != null and gpDictionaryType.remark  != '' " >
+                  <if test="gpDictionaryType.remark != null and gpDictionaryType.remark  != ''  and gpDictionaryType.remark  != '-1' ">
                      when id=#{gpDictionaryType.id} then #{gpDictionaryType.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDictionaryType.remark != null  and gpDictionaryType.remark  == '-1' ">
+                     when id=#{gpDictionaryType.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

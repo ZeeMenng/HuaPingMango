@@ -26,6 +26,7 @@ import com.jusfoun.bll.extend.unity.gp.GpDomainUntBll;
 import com.jusfoun.bll.extend.unity.gp.GpMenuUntBll;
 import com.jusfoun.bll.extend.unity.gp.GprResourceUntBll;
 import com.jusfoun.ent.custom.ResultModel;
+import com.jusfoun.ent.extend.gp.GpCatalogInterface;
 import com.jusfoun.ent.extend.gp.GpMenu;
 import com.jusfoun.ent.extend.gp.GpModule;
 import com.jusfoun.ent.extend.gp.GpResource;
@@ -35,6 +36,7 @@ import com.jusfoun.ent.parameter.gp.GpDomainParameter;
 import com.jusfoun.ent.parameter.gp.GpModuleParameter;
 import com.jusfoun.set.enumer.DictionaryModuleCascadeEnum;
 import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
+import com.jusfoun.utl.ClassFieldNullable;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.SymbolicConstant;
 import com.jusfoun.utl.Tools;
@@ -179,7 +181,13 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 				moduleList.get(i).setLevelText(DictionaryModuleLevelEnum.getText(moduleList.get(i).getLevelCode()));
 		}
 
-		ResultModel result = gpModuleUntBll.updateListWithDff(moduleList);
+		 ArrayList<GpModule> list=ClassFieldNullable.convertNull(moduleList, new ArrayList<String>() {
+				{
+					add("fartherId");
+				}
+			});
+		
+		ResultModel result = gpModuleUntBll.updateListWithDff(list);
 		return result;
 	}
 

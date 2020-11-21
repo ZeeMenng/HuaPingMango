@@ -147,16 +147,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="organization_id =case" suffix="end,">
               <foreach collection="list" item="gprUserOrganization" index="index">
-                  <if test="gprUserOrganization.organizationId != null and gprUserOrganization.organizationId  != '' " >
+                  <if test="gprUserOrganization.organizationId != null and gprUserOrganization.organizationId  != ''  and gprUserOrganization.organizationId  != '-1' ">
                      when id=#{gprUserOrganization.id} then #{gprUserOrganization.organizationId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprUserOrganization.organizationId != null  and gprUserOrganization.organizationId  == '-1' ">
+                     when id=#{gprUserOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gprUserOrganization" index="index">
-                  <if test="gprUserOrganization.userId != null and gprUserOrganization.userId  != '' " >
+                  <if test="gprUserOrganization.userId != null and gprUserOrganization.userId  != ''  and gprUserOrganization.userId  != '-1' ">
                      when id=#{gprUserOrganization.id} then #{gprUserOrganization.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gprUserOrganization.userId != null  and gprUserOrganization.userId  == '-1' ">
+                     when id=#{gprUserOrganization.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

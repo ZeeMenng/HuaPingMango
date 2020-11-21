@@ -223,23 +223,35 @@
          </trim>
          <trim prefix="content =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.content != null and gpMessage.content  != '' " >
+                  <if test="gpMessage.content != null and gpMessage.content  != ''  and gpMessage.content  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.content,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.content != null  and gpMessage.content  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.remark != null and gpMessage.remark  != '' " >
+                  <if test="gpMessage.remark != null and gpMessage.remark  != ''  and gpMessage.remark  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.remark != null  and gpMessage.remark  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.title != null and gpMessage.title  != '' " >
+                  <if test="gpMessage.title != null and gpMessage.title  != ''  and gpMessage.title  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.title,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.title != null  and gpMessage.title  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_code =case" suffix="end,">
@@ -251,23 +263,35 @@
          </trim>
          <trim prefix="type_text =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.typeText != null and gpMessage.typeText  != '' " >
+                  <if test="gpMessage.typeText != null and gpMessage.typeText  != ''  and gpMessage.typeText  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.typeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.typeText != null  and gpMessage.typeText  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.userId != null and gpMessage.userId  != '' " >
+                  <if test="gpMessage.userId != null and gpMessage.userId  != ''  and gpMessage.userId  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.userId != null  and gpMessage.userId  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.userName != null and gpMessage.userName  != '' " >
+                  <if test="gpMessage.userName != null and gpMessage.userName  != ''  and gpMessage.userName  != '-1' ">
                      when id=#{gpMessage.id} then #{gpMessage.userName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpMessage.userName != null  and gpMessage.userName  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>

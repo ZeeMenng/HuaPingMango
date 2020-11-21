@@ -295,16 +295,24 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.domainId != null and gpOperLog.domainId  != '' " >
+                  <if test="gpOperLog.domainId != null and gpOperLog.domainId  != ''  and gpOperLog.domainId  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.domainId != null  and gpOperLog.domainId  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="income_value =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.incomeValue != null and gpOperLog.incomeValue  != '' " >
+                  <if test="gpOperLog.incomeValue != null and gpOperLog.incomeValue  != ''  and gpOperLog.incomeValue  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.incomeValue,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.incomeValue != null  and gpOperLog.incomeValue  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_success_code =case" suffix="end,">
@@ -316,9 +324,13 @@
          </trim>
          <trim prefix="object_id =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.objectId != null and gpOperLog.objectId  != '' " >
+                  <if test="gpOperLog.objectId != null and gpOperLog.objectId  != ''  and gpOperLog.objectId  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.objectId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.objectId != null  and gpOperLog.objectId  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="oper_type_code =case" suffix="end,">
@@ -330,16 +342,24 @@
          </trim>
          <trim prefix="oper_type_text =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.operTypeText != null and gpOperLog.operTypeText  != '' " >
+                  <if test="gpOperLog.operTypeText != null and gpOperLog.operTypeText  != ''  and gpOperLog.operTypeText  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.operTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.operTypeText != null  and gpOperLog.operTypeText  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.remark != null and gpOperLog.remark  != '' " >
+                  <if test="gpOperLog.remark != null and gpOperLog.remark  != ''  and gpOperLog.remark  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.remark != null  and gpOperLog.remark  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="result_code =case" suffix="end,">
@@ -351,23 +371,35 @@
          </trim>
          <trim prefix="result_message =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.resultMessage != null and gpOperLog.resultMessage  != '' " >
+                  <if test="gpOperLog.resultMessage != null and gpOperLog.resultMessage  != ''  and gpOperLog.resultMessage  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.resultMessage,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.resultMessage != null  and gpOperLog.resultMessage  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="return_value =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.returnValue != null and gpOperLog.returnValue  != '' " >
+                  <if test="gpOperLog.returnValue != null and gpOperLog.returnValue  != ''  and gpOperLog.returnValue  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.returnValue,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.returnValue != null  and gpOperLog.returnValue  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="table_name =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
-                  <if test="gpOperLog.tableName != null and gpOperLog.tableName  != '' " >
+                  <if test="gpOperLog.tableName != null and gpOperLog.tableName  != ''  and gpOperLog.tableName  != '-1' ">
                      when id=#{gpOperLog.id} then #{gpOperLog.tableName,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpOperLog.tableName != null  and gpOperLog.tableName  == '-1' ">
+                     when id=#{gpOperLog.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="total_count =case" suffix="end,">

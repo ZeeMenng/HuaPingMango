@@ -242,44 +242,68 @@
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.domainId != null and gpControl.domainId  != '' " >
+                  <if test="gpControl.domainId != null and gpControl.domainId  != ''  and gpControl.domainId  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.domainId != null  and gpControl.domainId  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.name != null and gpControl.name  != '' " >
+                  <if test="gpControl.name != null and gpControl.name  != ''  and gpControl.name  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.name != null  and gpControl.name  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="page_id =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.pageId != null and gpControl.pageId  != '' " >
+                  <if test="gpControl.pageId != null and gpControl.pageId  != ''  and gpControl.pageId  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.pageId,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.pageId != null  and gpControl.pageId  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="page_url =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.pageUrl != null and gpControl.pageUrl  != '' " >
+                  <if test="gpControl.pageUrl != null and gpControl.pageUrl  != ''  and gpControl.pageUrl  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.pageUrl,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.pageUrl != null  and gpControl.pageUrl  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.remark != null and gpControl.remark  != '' " >
+                  <if test="gpControl.remark != null and gpControl.remark  != ''  and gpControl.remark  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.remark != null  and gpControl.remark  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.serialNo != null and gpControl.serialNo  != '' " >
+                  <if test="gpControl.serialNo != null and gpControl.serialNo  != ''  and gpControl.serialNo  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpControl.serialNo != null  and gpControl.serialNo  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
