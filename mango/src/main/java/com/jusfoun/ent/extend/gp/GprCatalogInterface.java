@@ -13,13 +13,14 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel(value = "GprCatalogInterface", description = "后台接口所属分类。")
 public class GprCatalogInterface extends GprCatalogInterfaceGenEnt {
-  
+	private Byte categoryCode;
+
+	public Byte getCategoryCode() {
+		return categoryCode;
+	}
+
+	public void setCategoryCode(Byte categoryCode) {
+		this.categoryCode = categoryCode;
+	}
 
 }
-
-
-
-
-
-
-

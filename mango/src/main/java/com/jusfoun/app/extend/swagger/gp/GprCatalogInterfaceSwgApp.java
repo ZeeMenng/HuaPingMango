@@ -1,10 +1,18 @@
 ﻿package com.jusfoun.app.extend.swagger.gp;
 
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GprCatalogInterfaceGenSwgApp;
+import com.jusfoun.ent.custom.ResultModel;
+import com.jusfoun.ent.parameter.gp.GprCatalogInterfaceParameter;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Zee
@@ -14,9 +22,17 @@ import com.jusfoun.app.generate.swagger.gp.GprCatalogInterfaceGenSwgApp;
  */
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gprCatalogInterface")
-public class  GprCatalogInterfaceSwgApp extends  GprCatalogInterfaceGenSwgApp {
+public class GprCatalogInterfaceSwgApp extends GprCatalogInterfaceGenSwgApp {
+
+	@ApiOperation(value = "更换接口分类", notes = "批量划分某分类方式下的某接口的分类")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprCatalogInterfaceAddList") })
+	@RequestMapping(value = "/addList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel addList(@RequestBody GprCatalogInterfaceParameter.AddList jsonData) {
+
+		gprCatalogInterfaceSplBll.deleteInvalidRecord(jsonData.getEntityList());
+		ResultModel result = gprCatalogInterfaceUntBll.add(jsonData.getEntityList());
+
+		return result;
+	}
 
 }
-
-
-

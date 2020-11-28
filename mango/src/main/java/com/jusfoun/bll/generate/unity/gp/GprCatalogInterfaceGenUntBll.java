@@ -357,6 +357,8 @@ public class GprCatalogInterfaceGenUntBll extends BaseUntBll<GprCatalogInterface
 	}
 
 
+	
+	
 	public ResultModel getListByInterfaceId(String interfaceId) {
 		return getListByInterfaceId(interfaceId, isLogRead);
 	}

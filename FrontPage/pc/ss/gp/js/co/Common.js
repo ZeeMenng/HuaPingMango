@@ -2200,7 +2200,7 @@ function initDetailTree(treeParam) {
 			// 将一级功能模块的fartherId都变为应用领域的ID，级别变为0，否则功能模块无法依附应用领域
 			$.each(treeNodes, function(index, value) {
 				if(value.fartherId==null){
-					value.levelCode=0;
+					value.level=0;
 					value.fartherId=value.domainId;
 					treeNodes[index]=value;
 				}
@@ -2209,7 +2209,7 @@ function initDetailTree(treeParam) {
 
 				$.each(treeNodes, function(index, value) {
 					
-					if (treeParam.expandNodeLevel == null || value.levelCode < treeParam.expandNodeLevel) {
+					if (treeParam.expandNodeLevel == null || value.level < treeParam.expandNodeLevel) {
 						var node = orgnaizationTree.getNodeByParam("id", value.id);
 						orgnaizationTree.expandNode(node, true);// 展开指定节点
 					}
@@ -2285,7 +2285,7 @@ var IS_IMMEDIATE = true;
 
 function onDrop(event, treeId, treeNodes, targetNode, moveType) {
 	
-	updateModulesData(treeId, treeNodes, 'UPDATE',targetNode,moveType);
+	updateModulesData(treeId, treeNodes, 'DROP',targetNode,moveType);
 	
 };
 
@@ -2613,23 +2613,25 @@ function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 		}
 	};
 	var cascade = $("input[name='cascadeTypeCodeRadio']:checked").val();
+	var rootNode = getCurrentRootNode(treeNodesArray[0]);
 	if (action == "ADD") {
-		var rootNode = getCurrentRootNode(treeNodesArray[0]);
+		
 		var zTreeNodeJson = {
 			id : null,
 			cascadeTypeCode : cascade,
 			name : treeNodesArray[0].name,
 			fartherId : treeNodesArray[0].fartherId,
-			levelCode : treeNodesArray[0].level,
-			level:treeNodesArray[0].level,
-			priority : treeNodesArray[0].getIndex()
+			level:(rootNode.isDomain?treeNodesArray[0].level:treeNodesArray[0].level+1),
+			priority : treeNodesArray[0].getIndex(),
+			categoryCode:1,
+			categoryText:'按业务分类'
 		}
 		
 		// 如果根节点是应用领域
 		if(rootNode.isDomain!=null&&rootNode.isDomain){
 		zTreeNodeJson.domainId =rootNode.id;
 		zTreeNodeJson.domainName =rootNode.name;
-		zTreeNodeJson.fartherId=null; 
+		zTreeNodeJson.fartherId=null; 		
 		}
 		
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
@@ -2650,7 +2652,21 @@ function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 		ajaxParamter.type = 'POST';
 		ajaxParamter.data = JSON.stringify(submitData);
 		ajaxParamter.url = zTree.setting.url.deleteListUrl;
-	} else if (action = "UPDATE") {
+	}else if (action = "UPDATE") {
+		var zTreeNodeJsonArray = new Array(); 
+		
+		var zTreeNodeJson = {
+			id :  treeNodesArray[0].id,
+			name : treeNodesArray[0].name,
+			fartherId : treeNodesArray[0].fartherId,
+			level:(rootNode.isDomain?treeNodesArray[0].level:treeNodesArray[0].level+1),
+			priority : treeNodesArray[0].getIndex()
+		}
+		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
+		ajaxParamter.url = zTree.setting.url.updateUrl;
+		
+	}
+	else if (action = "DROP") {
 		var treeNodesBrotherArray = new Array();
 		var zTreeNodeJsonArray = new Array();
 
@@ -2682,15 +2698,15 @@ function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 				domainId : v.domainId,
 				name : v.name,
 				fartherId : v.fartherId,
-				levelCode :v.level,
-				level:v.level,
+				level:(rootNode.isDomain?v.level:v.level+1),
 				priority : v.getIndex(),
 				categoryCode:1,
 				categoryText:'按业务分类'
 			}
 			//如果为功能模块的拖拽，要特别处理
-			if(v.domainId!=null&&v.level==1)
+			if(v.domainId!=null&&v.level==1){
 				zTreeNodeJson.fartherId=null;
+			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
 		});
 		// 拖拽节点的子点级别可能发生变化
@@ -2703,7 +2719,7 @@ function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 				domainId : v.domainId,
 				name : v.name,
 				fartherId : v.fartherId,
-				level :v.level,
+				level:(rootNode.isDomain?v.level:v.level+1),
 				priority : v.getIndex(),
 				categoryCode:1,
 				categoryText:'按业务分类'

@@ -17,8 +17,20 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		$("#aEditInterfaceCatalogButton").on('click', function(e) {
+			var zTree = $.fn.zTree.getZTreeObj("ulEditInterfaceCatalogTree");
+			zTree.checkAllNodes(false);
+			if (selectRows.length == 0) {
+				layer.alert('请先选择要修改分类的记录！', {
+					icon : 6
+				});
+				return false;
+			}
+		});
 		initSelect(true);
-		initCatalogZTree();
+		initUlInterfaceCatalogTree();
+		initUlEditInterfaceCatalogTree();
 		initInterfaceTable();
 
 	});
@@ -64,8 +76,8 @@ ul.ztree {
 	height: 18px;
 }
 
-.ztree li a>span:not (.button ) {
-	max-width: 100px;
+.ztree li a>span:not (.button ){
+	max-width: 100 px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -127,9 +139,9 @@ a:hover {
 													<div class="input-icon right">
 														<!-- <i class="fa fa-search fa-spin font-blue"></i> -->
 														<i class="fa fa-search"></i>
-														<input type="text" id="ztree_search" value="" class="form-control" placeholder="输入关键词进行搜索……" autocomplete="off" />
+														<input type="text" id="textInterfaceCatalogTreeSearch" value="" class="form-control" placeholder="输入关键词进行搜索……" autocomplete="off" />
 													</div>
-													<ul id="ulModuleTree" class="ztree jstree-container-ul"></ul>
+													<ul id="ulInterfaceCatalogTree" class="ztree jstree-container-ul"></ul>
 												</div>
 											</div>
 											<div class="form-hidden">
@@ -145,6 +157,7 @@ a:hover {
 
 						<div class="col-md-9 portlet light bordered">
 							<form class="portlet-body form form-inline form-body" role="form" id="queryBuilderForm">
+								<input id="hiddenInterfaceCatalogIds" name="interfaceCatalogIds" type="hidden" />
 								<label class="control-label">关键词：</label>
 								<input class="form-control " id="textTableName" name="tableName" size="10" type="text" />
 								&nbsp;&nbsp;&nbsp;&nbsp;
@@ -170,10 +183,6 @@ a:hover {
 							</form>
 						</div>
 						<div class="col-md-9 right-div">
-
-
-
-
 							<div class="portlet box red">
 								<div class="portlet-title">
 									<div class="caption">
@@ -181,6 +190,32 @@ a:hover {
 										<li>系统接口管理
 									</div>
 									<div class="actions">
+
+										<div class="btn-group">
+											<a id="aEditInterfaceCatalogButton" class="btn btn-default btn-sm " href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+												修改分类
+												<i class="fa fa-angle-down"></i>
+											</a>
+											<div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+												<form action="#" id="formZTree" class="form-horizontal">
+													<div class="form-body">
+														<div class="form-group">
+															<div class="col-md-12">
+																<div class="input-icon right">
+																	<!-- <i class="fa fa-search fa-spin font-blue"></i> -->
+																	<i class="fa fa-search"></i>
+																	<input type="text" id="textEditInterfaceCatalogTreeSearch" value="" class="form-control" placeholder="输入关键词进行搜索……" autocomplete="off" />
+																</div>
+																<ul id="ulEditInterfaceCatalogTree" class="ztree jstree-container-ul"></ul>
+															</div>
+														</div>
+														<div class="form-hidden">
+															<input type="hidden" name="hiddenOrgIds" id="hiddenOrgIds">
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
 
 										<button id="addButton" type="button" class="btn btn-default btn-sm">
 											<i class="fa fa-plus"></i>
@@ -282,5 +317,7 @@ a:hover {
 		</div>
 	</div>
 	<!--#include file="/pc/ss/gp/html/cl/Footer.html"-->
+
+
 </body>
 </html>

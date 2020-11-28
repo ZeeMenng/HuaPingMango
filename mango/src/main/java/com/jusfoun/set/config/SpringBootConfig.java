@@ -17,7 +17,7 @@ import com.jusfoun.utl.SymbolicConstant;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan
+@ComponentScan({"*.base","*.gp"})
 public class SpringBootConfig extends WebMvcAutoConfigurationAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

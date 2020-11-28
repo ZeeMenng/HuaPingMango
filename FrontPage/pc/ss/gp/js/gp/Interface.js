@@ -49,7 +49,7 @@ function initSelect(async) {
 
 }
 
-function initCatalogZTree() {
+function initUlInterfaceCatalogTree() {
 
 	var jsonData = {
 		"entityRelated" : {
@@ -96,8 +96,17 @@ function initCatalogZTree() {
 			onDrop : onDrop,
 			onRemove : onRemove,
 			onRename : onRename,
-			//onClick : onClick,
-			onCheck : onCheck
+			onCheck : function onCheck(event, treeId, treeNode) {
+				var treeObj = $.fn.zTree.getZTreeObj(treeId);
+				var nodes = treeObj.getCheckedNodes(true);
+				var interfaceCatalogIds = [];
+				for (var i = 0; i < nodes.length; i++) {
+					interfaceCatalogIds.push(nodes[i].id)
+				}
+				$("#hiddenInterfaceCatalogIds").val(interfaceCatalogIds);
+				$("#submitButton").click();
+			}
+
 		}
 	};
 
@@ -108,7 +117,7 @@ function initCatalogZTree() {
 		open : true
 	} ];
 
-	$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
+	$.fn.zTree.init($("#ulInterfaceCatalogTree"), setting, zNodes);
 
 	var ajaxParamter = {
 		"url" : RU_GPCATALOGINTERFACE_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
@@ -117,22 +126,24 @@ function initCatalogZTree() {
 		"success" : function(resultData) {
 			if (resultData.totalCount == 0)
 				return false
-			var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+			var moduleTree = $.fn.zTree.getZTreeObj("ulInterfaceCatalogTree");
 			zNodes = resultData.data;
 			// 
 			for (i = 0; i < zNodes.length; i++) {
 				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 				zNodes[i].iconSkin = "diy02";
 			}
-			$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
+			$.fn.zTree.init($("#ulInterfaceCatalogTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
 
 			// 树形菜单加上 F2快捷键
-			$("#ulModuleTree").on("keydown", "li", function(event) {
+			$("#ulInterfaceCatalogTree").on("keydown", "li", function(event) {
 				if (event.keyCode == 113) {
 					var node = moduleTree.getNodeByTId($(this).attr("id"));
-					if (node.isHover && node.level != 0)
+					if (node.isHover && !node.isDomain)
+						moduleTree.editName(node);
+					else if (node.isHover && node.level != 0)
 						moduleTree.editName(node);
 				}
 			});
@@ -144,7 +155,147 @@ function initCatalogZTree() {
 				}
 			});
 
-			fuzzySearch("ulModuleTree", '#ztree_search', null, true); // 初始化模糊搜索方法
+			fuzzySearch("ulInterfaceCatalogTree", '#textInterfaceCatalogTreeSearch', null, true); // 初始化模糊搜索方法
+		}
+	};
+	universalAjax(ajaxParamter);
+}
+
+function initUlEditInterfaceCatalogTree() {
+
+	var jsonData = {
+		"entityRelated" : {
+
+		},
+		"orderList" : [ {
+			"columnName" : "priority",
+			"isASC" : true
+		} ]
+	};
+	// 树形结构begin
+	var setting = {
+		check : {
+			enable : true
+		},
+		view : {
+			selectedMulti : false,
+			dblClickExpand : false
+		},
+		edit : {
+			enable : false,
+			editNameSelectAll : false
+		},
+		url : {
+			addUrl : RU_GPCATALOGINTERFACE_ADD,
+			deleteListUrl : RU_GPCATALOGINTERFACE_DELETELIST,
+			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
+			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
+			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
+		},
+
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "fartherId"
+			}
+		},
+		callback : {
+			beforeCheck:function(treeId, treeNode){
+				
+				if(treeNode.children&&treeNode.children.length>0){
+					layer.msg('请选择叶子节点……', {
+						time : 1500
+					});
+					return false;
+					
+				}
+				
+			},
+			onCheck : function(event, treeId, treeNode) {
+				var zTree = $.fn.zTree.getZTreeObj(treeId);
+				
+				// 单选
+				if (treeNode.checked) {
+					zTree.checkAllNodes(false);
+					zTree.checkNode(treeNode, true, true, false);
+				}
+
+			
+				var gprCatalogInterfaceList = [];
+				$.each(selectRows, function(a, b) {
+					var gprCatalogInterface = {};
+					gprCatalogInterface.catalogId = treeNode.id;
+					gprCatalogInterface.interfaceId = b;
+					gprCatalogInterface.categoryCode = 1;
+					gprCatalogInterfaceList.push(gprCatalogInterface);
+				});
+
+				var submitData = {
+					entityList : gprCatalogInterfaceList
+				}
+
+				var ajaxParamter = {
+					"url" : RU_GPRCATALOGINTERFACE_ADDLIST,
+					"data" : JSON.stringify(submitData),
+					"success" : function(resultData) {
+						layer.msg('修改分类成功……', {
+							time : 1500
+						});
+					}
+				};
+				universalAjax(ajaxParamter);
+
+			}
+		}
+	};
+
+	var zNodes = [ {
+		id : null,
+		pId : 0,
+		name : "根节点",
+		open : true
+	} ];
+
+	$.fn.zTree.init($("#ulEditInterfaceCatalogTree"), setting, zNodes);
+
+	var ajaxParamter = {
+		"url" : RU_GPCATALOGINTERFACE_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
+		"async" : true,
+		"type" : "GET",
+		"success" : function(resultData) {
+			if (resultData.totalCount == 0)
+				return false
+			var moduleTree = $.fn.zTree.getZTreeObj("ulEditInterfaceCatalogTree");
+			zNodes = resultData.data;
+			// 
+			for (i = 0; i < zNodes.length; i++) {
+				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+				zNodes[i].iconSkin = "diy02";
+			}
+			$.fn.zTree.init($("#ulEditInterfaceCatalogTree"), setting, zNodes);
+
+			$(".ztree .level0 a").attr("style", "cursor:default")
+
+			// 树形菜单加上 F2快捷键
+			$("#ulEditInterfaceCatalogTree").on("keydown", "li", function(event) {
+				if (event.keyCode == 113) {
+					var node = moduleTree.getNodeByTId($(this).attr("id"));
+					if (node.isHover && !node.isDomain)
+						moduleTree.editName(node);
+					else if (node.isHover && node.level != 0)
+						moduleTree.editName(node);
+				}
+			});
+			// 展开节点
+			$.each(zNodes, function(index, value) {
+				if (value.level < 2) {
+					var node = moduleTree.getNodeByParam("id", value.id);
+					moduleTree.expandNode(node, true);// 展开指定节点
+				}
+			});
+
+			fuzzySearch("ulEditInterfaceCatalogTree", '#textEditInterfaceCatalogTreeSearch', null, true); // 初始化模糊搜索方法
 		}
 	};
 	universalAjax(ajaxParamter);
@@ -300,12 +451,3 @@ function updatePageConstant() {
 	universalAjax(ajaxParamter);
 }
 
-function onCheck(event, treeId, treeNode) {
-	var treeObj = $.fn.zTree.getZTreeObj(treeId);
-	var nodes = treeObj.getCheckedNodes(true);
-	var arr = [];
-	for (var i = 0; i < nodes.length; i++) {
-		arr.push(nodes[i].id)
-	}
-	$("#hiddenOrgIds").val(arr)
-}

@@ -173,7 +173,7 @@ public class GpModuleGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.domain_id domainId,A.name name,A.serial_no serialNo,A.level_code levelCode,A.level_text levelText,A.farther_id fartherId,A.priority priority,A.page_id pageId,A.page_url pageUrl,A.style style,A.icon_resource iconResource,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_module A inner join gp_module B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,A.name name,A.serial_no serialNo,A.level level,A.farther_id fartherId,A.priority priority,A.page_id pageId,A.page_url pageUrl,A.style style,A.icon_resource iconResource,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_module A inner join gp_module B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);

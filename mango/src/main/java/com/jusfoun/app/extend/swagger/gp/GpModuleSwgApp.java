@@ -102,9 +102,6 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public ResultModel add(@RequestBody GpModule jsonData) {
 		jsonData.setAddTime(new Date());
 		jsonData.setUpdateTime(new Date());
-		// 根据Code获取Text
-		if (StringUtils.isBlank(jsonData.getLevelText()) && jsonData.getLevelCode() != null)
-			jsonData.setLevelText(DictionaryModuleLevelEnum.getText(jsonData.getLevelCode()));
 		ResultModel result = gpModuleUntBll.add(jsonData);
 		// 根据级联参数类型决定是否级联处理菜单部分
 		if (jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.ALL.getCode() || jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.ADD.getCode()) {
@@ -175,12 +172,6 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@RequestMapping(value = "/updateListWithDff", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateListWithDff(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
-		for (int i = 0; i < moduleList.size(); i++) {
-			// 根据Code获取Text
-			if (StringUtils.isBlank(moduleList.get(i).getLevelText()) && moduleList.get(i).getLevelCode() != null)
-				moduleList.get(i).setLevelText(DictionaryModuleLevelEnum.getText(moduleList.get(i).getLevelCode()));
-		}
-
 		 ArrayList<GpModule> list=ClassFieldNullable.convertNull(moduleList, new ArrayList<String>() {
 				{
 					add("fartherId");
@@ -196,11 +187,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateListWithDffOrAdd(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
-		for (int i = 0; i < moduleList.size(); i++) {
-			// 根据Code获取Text
-			if (StringUtils.isBlank(moduleList.get(i).getLevelText()) && moduleList.get(i).getLevelCode() != null)
-				moduleList.get(i).setLevelText(DictionaryModuleLevelEnum.getText(moduleList.get(i).getLevelCode()));
-		}
+
 		ResultModel result = gpModuleUntBll.updateListWithDffOrAdd(moduleList);
 		return result;
 	}
@@ -266,8 +253,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("		C.name name,                                     ");
 		selectBuffer.append("		B.id fartherId,                                  ");
 		selectBuffer.append("		B.name fartherName,                              ");
-		selectBuffer.append("		A.level_code levelCode,                          ");
-		selectBuffer.append("		A.level_text levelText,                          ");
+		selectBuffer.append("		A.level level,                          ");
 		selectBuffer.append("		A.priority priority                              ");
 		selectBuffer.append("	FROM                                                 ");
 		selectBuffer.append("		gp_module A                                      ");
@@ -283,7 +269,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 			treeMap.put("id", map2.get("id"));
 			treeMap.put("pId", map2.get("fartherId"));
 			treeMap.put("name", map2.get("name"));
-			if (!"3".equals(map2.get("levelCode").toString())) {
+			if (!"3".equals(map2.get("level").toString())) {
 				treeMap.put("open", true);
 			}
 			treeNodes.add(treeMap);
@@ -309,7 +295,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("		B.id fartherId,                                 ");
 		selectBuffer.append("		B.name fartherName,                             ");
 		selectBuffer.append("		C.name menuName,                                ");
-		selectBuffer.append("		A.level_text levelText,                         ");
+		selectBuffer.append("		A.level level,                         ");
 		selectBuffer.append("		A.priority priority                             ");
 		selectBuffer.append("	FROM                                                ");
 		selectBuffer.append("		gp_module A                                     ");
@@ -337,8 +323,8 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
-				if (entityRelatedObject.containsKey("levelCode") && StringUtils.isNotBlank(entityRelatedObject.getString("levelCode")))
-					selectBuffer.append(" and A.level_code = '").append(entityRelatedObject.getString("levelCode")).append("'");
+				if (entityRelatedObject.containsKey("level") && StringUtils.isNotBlank(entityRelatedObject.getString("level")))
+					selectBuffer.append(" and A.level = '").append(entityRelatedObject.getString("level")).append("'");
 				if (entityRelatedObject.containsKey("fartherId") && StringUtils.isNotBlank(entityRelatedObject.getString("fartherId")))
 					selectBuffer.append(" and A.farther_id = '").append(entityRelatedObject.getString("fartherId")).append("'");
 			}
@@ -379,8 +365,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("		C.name name,                                     ");
 		selectBuffer.append("		C.farther_id fartherId,                          ");
 		selectBuffer.append("		C.domain_id domainId,                          ");
-		selectBuffer.append("		C.level_code levelCode,                          ");
-		selectBuffer.append("		C.level_text levelText,                          ");
+		selectBuffer.append("		C.level level,                          ");
 		selectBuffer.append("		C.priority priority                              ");
 		selectBuffer.append("	FROM                                                 ");
 		selectBuffer.append("		gpr_user_role A                                  ");
@@ -388,7 +373,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("	INNER JOIN gp_module C ON B.module_id = C.id          ");
 		selectBuffer.append("	WHERE    1 = 1                                       ");
 		selectBuffer.append("	AND  A.user_id='").append(userId).append("'");
-		selectBuffer.append("	order by C.domain_id,C.level_code ASC,C.farther_id,C.priority");
+		selectBuffer.append("	order by C.domain_id,C.level ASC,C.farther_id,C.priority");
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpModuleUntBll.getListBySQL(map);
@@ -455,7 +440,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("		A.name AS name,                                                   ");
 		selectBuffer.append("		A.style AS iconClass,                                        ");
 		selectBuffer.append("		A.farther_id AS fartherId,                                  ");
-		selectBuffer.append("		A.level_code AS level,                                      ");
+		selectBuffer.append("		A.level AS level,                                      ");
 		selectBuffer.append("		A.page_url AS pageUrl,                                             ");
 		selectBuffer.append("		A.priority AS priority                                             ");
 		selectBuffer.append("	FROM                                                                  ");

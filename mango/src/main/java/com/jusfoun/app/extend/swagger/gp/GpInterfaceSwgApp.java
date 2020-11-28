@@ -133,7 +133,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 		selectBuffer.append("		CASE A.type_code WHEN 1 THEN 'GET' WHEN 2 THEN 'POST' ELSE '其它' END AS typeCode");
 		selectBuffer.append("	FROM                                                         ");
 		selectBuffer.append("		gp_interface A                                           ");
-		selectBuffer.append("	INNER JOIN gp_interface B ON A.id = B.id                     ");
+		selectBuffer.append("	LEFT JOIN gpr_catalog_interface B ON A.id = B.interface_id                     ");
 		selectBuffer.append("	WHERE                                                        ");
 		selectBuffer.append("		1 = 1                                                    ");
 
@@ -153,7 +153,10 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-
+				if (entityRelatedObject.containsKey("interfaceCatalogIds") && StringUtils.isNotBlank(entityRelatedObject.getString("interfaceCatalogIds"))) {
+					String interfaceCatalogIds = entityRelatedObject.get("interfaceCatalogIds").toString().replaceAll(",", "','");
+					selectBuffer.append(" and B.catalog_id in('").append(interfaceCatalogIds).append("')");
+				}
 				if (entityRelatedObject.containsKey("tableName") && StringUtils.isNotBlank(entityRelatedObject.getString("tableName")))
 					selectBuffer.append(" and A.table_name like '%").append(entityRelatedObject.getString("tableName")).append("%'");
 				if (entityRelatedObject.containsKey("url") && StringUtils.isNotBlank(entityRelatedObject.getString("url")))
@@ -303,7 +306,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 					typeCode = InterfaceType.POST.getCode();
 				} else if (InterfaceType.GET.name().equals(type)) {
 					typeCode = InterfaceType.GET.getCode();
-				}else {
+				} else {
 					typeCode = InterfaceType.POSTORGET.getCode();
 				}
 			}

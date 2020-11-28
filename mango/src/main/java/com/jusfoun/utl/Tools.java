@@ -295,9 +295,9 @@ public class Tools {
 		Collections.sort(moduleList, new Comparator<GpModule>() {
 			@Override
 			public int compare(GpModule module1, GpModule module2) {
-				if (module1.getLevelCode() > module2.getLevelCode()) {
+				if (module1.getLevel() > module2.getLevel()) {
 					return 1;
-				} else if (module1.getLevelCode() == module2.getLevelCode()) {
+				} else if (module1.getLevel() == module2.getLevel()) {
 					return 0;
 				} else {
 					return -1;
@@ -321,8 +321,7 @@ public class Tools {
 			module.setFartherId(parentId);
 			module.setPriority(i);
 			module.setDomainId(domainId);
-			module.setLevelCode(level);
-			module.setLevelText(DictionaryModuleLevelEnum.getText(level));
+			module.setLevel(level);
 
 			if (jsonObject.containsKey("name"))
 				module.setName(jsonObject.getString("name"));

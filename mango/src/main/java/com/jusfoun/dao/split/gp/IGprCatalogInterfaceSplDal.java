@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jusfoun.dao.split.base.IBaseSplDal;
+import com.jusfoun.ent.extend.gp.GpModule;
 import com.jusfoun.ent.extend.gp.GprCatalogInterface;
 
 
@@ -25,6 +28,8 @@ public interface IGprCatalogInterfaceSplDal extends IBaseSplDal {
 	public int delete(String id);
 
 	public int deleteByIdList(ArrayList<String> idList);
+	
+	public int deleteInvalidRecord(ArrayList<GprCatalogInterface> gprCatalogInterfaceList);
 
 	public int update(GprCatalogInterface gprCatalogInterface);
 

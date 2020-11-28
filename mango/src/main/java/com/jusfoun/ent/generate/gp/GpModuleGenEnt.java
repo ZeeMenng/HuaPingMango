@@ -19,7 +19,7 @@ import com.jusfoun.ent.extend.gp.GprRoleModule;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:13
+ * @updateDate 2020/11/23 13:49:07
  * @description 实体类GpModuleGenEnt，自动生成。功能模块。
  */
 
@@ -36,10 +36,8 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
     private String iconResource;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="模块级别。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种级别：1第一级，2第二级。",allowableValues="0,1",hidden=false,required=false)
-    private Byte levelCode;
-    @ApiModelProperty(value="模块级别。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种级别：1第一级，2第二级。",hidden=false,required=false)
-    private String levelText;
+    @ApiModelProperty(value="模块级别。模块在层级关系中所属等级，从1开始。",hidden=false,required=false)
+    private Byte level;
     @ApiModelProperty(value="模块名称。",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="链接页面。外键，引用系统页面表（page）的主键。",hidden=false,required=false)
@@ -141,31 +139,17 @@ public class GpModuleGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。模块级别。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种级别：1第一级，2第二级。
+	 * get方法。模块级别。模块在层级关系中所属等级，从1开始。
 	 */
-	public Byte getLevelCode() {
-		return this.levelCode;
+	public Byte getLevel() {
+		return this.level;
 	}
 
 	/**
-	 * set方法。模块级别。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种级别：1第一级，2第二级。
+	 * set方法。模块级别。模块在层级关系中所属等级，从1开始。
 	 */
-	public void setLevelCode(Byte levelCode) {
-		this.levelCode = levelCode;
-	}
-    
-	/**
-	 * get方法。模块级别。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种级别：1第一级，2第二级。
-	 */
-	public String getLevelText() {
-		return this.levelText;
-	}
-
-	/**
-	 * set方法。模块级别。文本，对应数据字典表（dictionary）中的文本字段（text）。目前先定义两种级别：1第一级，2第二级。
-	 */
-	public void setLevelText(String levelText) {
-		this.levelText = levelText;
+	public void setLevel(Byte level) {
+		this.level = level;
 	}
     
 	/**
