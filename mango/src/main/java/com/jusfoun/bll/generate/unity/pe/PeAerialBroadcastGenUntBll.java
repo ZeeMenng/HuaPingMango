@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.generate.unity.pe;
+package com.jusfoun.bll.generate.unity.pe;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.generate.split.gp;
+package com.jusfoun.bll.generate.split.gp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

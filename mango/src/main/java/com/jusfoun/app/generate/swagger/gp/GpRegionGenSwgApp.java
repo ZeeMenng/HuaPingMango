@@ -1,4 +1,4 @@
-﻿package com.jusfoun.app.generate.swagger.gp;
+package com.jusfoun.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;

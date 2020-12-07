@@ -69,8 +69,9 @@ import net.sf.json.JSONObject;
 @RequestMapping(value = "/extend/swagger/gp/gpUser")
 public class GpUserSwgApp extends GpUserGenSwgApp {
 
-	@Autowired
-	private Executors executors;
+	/*
+	 * @Autowired private Executors executors;
+	 */
 
 	@Autowired
 	@Qualifier("gprUserRoleUntBll")
@@ -870,7 +871,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		modelMap.put("token", token);
 		modelMap.putAll(Tools.getLoginInfo(request));
 		// 使用多线程处理用户登陆的其他信息并插入mysql
-		executors.dealLogin(modelMap);
+		//executors.dealLogin(modelMap);
 		// redis存放用户登陆信息
 		// redisUtil.setSessionData(modelMap);
 		return token;

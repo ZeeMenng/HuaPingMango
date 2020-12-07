@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.extend.split.gp;
+package com.jusfoun.bll.extend.split.gp;
 
 import org.springframework.stereotype.Service;
 

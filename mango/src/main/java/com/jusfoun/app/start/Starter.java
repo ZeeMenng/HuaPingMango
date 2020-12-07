@@ -4,13 +4,18 @@ import javax.servlet.MultipartConfigElement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -21,8 +26,17 @@ import com.jusfoun.set.config.MybatisConfig;
 
 @Configuration
 @Import({ MybatisConfig.class })
-@ComponentScan(basePackages = { "com.jusfoun" })
-@EnableAutoConfiguration
+@ComponentScan(basePackages = { "com.**.base.**", "com.**.gp.**", "com.**.pi.**", "com.jusfoun.set.**", "com.jusfoun.utl.**" },
+excludeFilters = { 
+		@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { 
+				com.jusfoun.utl.Executors.class,
+				com.jusfoun.utl.MongoUtil.class,
+				com.jusfoun.utl.service.DaUserContributionUtil.class}),
+		@Filter(type = FilterType.REGEX, pattern  = "com.jusfoun.utl.crawler.*"),
+		@Filter(type = FilterType.REGEX, pattern  = "com.jusfoun.utl.task.*")
+})
+//屏蔽MongoDB自动连接
+@EnableAutoConfiguration(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @EnableScheduling
 @EnableCaching
 public class Starter extends SpringBootServletInitializer {
@@ -60,7 +74,7 @@ public class Starter extends SpringBootServletInitializer {
 
 	@Bean
 	public MultipartResolver multipartResolver() {
-		 return new StandardServletMultipartResolver();
+		return new StandardServletMultipartResolver();
 	}
 
 	/**

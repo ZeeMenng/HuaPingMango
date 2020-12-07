@@ -1,4 +1,4 @@
-﻿package com.jusfoun.ent.extend.gp;
+package com.jusfoun.ent.extend.gp;
 
 import com.jusfoun.ent.generate.gp.GprRoleDomainGenEnt;
 

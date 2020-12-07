@@ -19,7 +19,7 @@ import com.mongodb.client.MongoDatabase;
  * @updateDate 2018年7月12日 下午3:02:04
  * @description MongoConfig
  */
-@Configuration
+//@Configuration
 public class MongoConfig {
 
 //	@Value("${mongo.username}")

@@ -43,8 +43,8 @@ import com.google.common.base.Predicate;
  * @updateDate 2017年4月13日 下午3:17:54
  * @description Swagger相关的配置
  */
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class SwaggerConfig {
 
 	private List<Parameter> setHeaderToken() {

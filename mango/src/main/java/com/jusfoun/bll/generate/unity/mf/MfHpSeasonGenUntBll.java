@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.generate.unity.mf;
+package com.jusfoun.bll.generate.unity.mf;
 
 import java.util.ArrayList;
 import java.util.HashMap;

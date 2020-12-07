@@ -1,4 +1,4 @@
-﻿package com.jusfoun.app.extend.swagger.gp;
+package com.jusfoun.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 

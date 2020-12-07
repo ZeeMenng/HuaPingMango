@@ -1,4 +1,4 @@
-﻿package com.jusfoun.dao.unity.pi;
+package com.jusfoun.dao.unity.pi;
 
 import com.jusfoun.dao.unity.base.IBaseUntDal;
 import com.jusfoun.ent.extend.pi.PirChannelUser;

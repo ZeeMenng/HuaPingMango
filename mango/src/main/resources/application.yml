@@ -32,9 +32,9 @@ mybatis:
   configLocation: mybatis-config.xml
   
 # 打印sql  
-logging:  
- level: 
-   com.jusfoun.dao.unity: DEBUG
+#logging:  
+# level: 
+#   com.jusfoun.dao.unity: DEBUG
 
 # MySQL config
 spring:

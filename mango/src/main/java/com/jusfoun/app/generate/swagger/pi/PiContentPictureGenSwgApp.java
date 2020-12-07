@@ -1,4 +1,4 @@
-﻿package com.jusfoun.app.generate.swagger.pi;
+package com.jusfoun.app.generate.swagger.pi;
 
 import java.io.IOException;
 import java.util.HashMap;

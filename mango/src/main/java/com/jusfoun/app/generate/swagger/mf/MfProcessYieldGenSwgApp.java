@@ -1,4 +1,4 @@
-﻿package com.jusfoun.app.generate.swagger.mf;
+package com.jusfoun.app.generate.swagger.mf;
 
 import java.io.IOException;
 import java.util.HashMap;

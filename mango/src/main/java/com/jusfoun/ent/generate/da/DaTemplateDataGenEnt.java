@@ -1,4 +1,4 @@
-﻿package com.jusfoun.ent.generate.da;
+package com.jusfoun.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

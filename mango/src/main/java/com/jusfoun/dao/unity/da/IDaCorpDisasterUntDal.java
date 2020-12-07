@@ -1,4 +1,4 @@
-﻿package com.jusfoun.dao.unity.da;
+package com.jusfoun.dao.unity.da;
 
 import com.jusfoun.dao.unity.base.IBaseUntDal;
 import com.jusfoun.ent.extend.da.DaCorpDisaster;

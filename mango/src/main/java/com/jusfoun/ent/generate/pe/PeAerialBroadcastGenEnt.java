@@ -1,4 +1,4 @@
-﻿package com.jusfoun.ent.generate.pe;
+package com.jusfoun.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

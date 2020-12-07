@@ -1,4 +1,4 @@
-﻿package com.jusfoun.dao.unity.mf;
+package com.jusfoun.dao.unity.mf;
 
 import com.jusfoun.dao.unity.base.IBaseUntDal;
 import com.jusfoun.ent.extend.mf.MfForprice;

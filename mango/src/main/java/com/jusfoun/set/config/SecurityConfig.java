@@ -1,12 +1,14 @@
 package com.jusfoun.set.config;
 
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.mvc.Controller;
 
 /**
  * @author Zee
@@ -15,14 +17,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @description Spring Security设置用类
  */
 @Configuration
-@ComponentScan(basePackages = { "com.jusfoun" })
+@ComponentScan(basePackages = { "com.jusfoun.app.**.gp.**", "com.jusfoun.app.**.pi.**", "com.jusfoun.set.**"})
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	}
-
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

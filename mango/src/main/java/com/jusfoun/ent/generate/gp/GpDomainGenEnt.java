@@ -1,4 +1,4 @@
-﻿package com.jusfoun.ent.generate.gp;
+package com.jusfoun.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

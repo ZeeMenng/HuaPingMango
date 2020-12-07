@@ -1,6 +1,7 @@
 package com.jusfoun.set.interceptor;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +13,11 @@ import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
@@ -37,14 +42,27 @@ public class MyBatisSQLInterceptor implements Interceptor {
 			// 获取参数，if语句成立，表示sql语句有参数，参数格式是map形式
 			if (invocation.getArgs().length > 1) {
 				parameter = invocation.getArgs()[1];
-				System.out.println("parameter = " + parameter);
+				// System.out.println("parameter = " + parameter);
 			}
 			String sqlId = mappedStatement.getId(); // 获取到节点的id,即sql语句的id
-			System.out.println("sqlId = " + sqlId);
+			// System.out.println("sqlId = " + sqlId);
+			
+			//跳过没必要的SQL
+			ArrayList<String> skipMethod = new ArrayList<String>();
+			skipMethod.add("com.jusfoun.dao.unity.gp.IGpTokenUntDal.getModel");
+			skipMethod.add("com.jusfoun.dao.split.gp.IGpInterfaceSplDal.isPermitted");
+			skipMethod.add("com.jusfoun.dao.split.gp.IGpUserSplDal.getModelByUserName");
+			skipMethod.add("com.jusfoun.dao.split.gp.IGprDomainUserSplDal.isPermitted");
+			skipMethod.add("com.jusfoun.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
+			skipMethod.add("com.jusfoun.dao.unity.gp.IGpDomainUntDal.getModel");
+			skipMethod.add("com.jusfoun.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
+			skipMethod.add("com.jusfoun.dao.unity.gp.IGpModuleUntDal.getListBySQL");
+			
 			BoundSql boundSql = mappedStatement.getBoundSql(parameter); // BoundSql就是封装myBatis最终产生的sql类
 			Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置
 			String sql = getSql(configuration, boundSql, sqlId); // 获取到最终的sql语句
-			System.out.println("sql = " + sql);
+			if (!skipMethod.contains(sqlId))
+				System.out.println("sql = " + sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

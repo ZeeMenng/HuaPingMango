@@ -239,6 +239,8 @@ function initUlEditInterfaceCatalogTree() {
 					"url" : RU_GPRCATALOGINTERFACE_ADDLIST,
 					"data" : JSON.stringify(submitData),
 					"success" : function(resultData) {
+						selectRows = new Array();
+						$("#queryBuilderForm").submit();
 						layer.msg('修改分类成功……', {
 							time : 1500
 						});

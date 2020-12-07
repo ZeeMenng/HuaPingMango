@@ -7,6 +7,8 @@ import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,7 +19,7 @@ import com.jusfoun.utl.SymbolicConstant;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"*.base","*.gp"})
+@ComponentScan(basePackages = { "com.jusfoun.app.**.gp.**", "com.jusfoun.app.**.pi.**", "com.jusfoun.set.**"})
 public class SpringBootConfig extends WebMvcAutoConfigurationAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

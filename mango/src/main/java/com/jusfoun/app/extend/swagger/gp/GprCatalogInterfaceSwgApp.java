@@ -1,4 +1,4 @@
-﻿package com.jusfoun.app.extend.swagger.gp;
+package com.jusfoun.app.extend.swagger.gp;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;

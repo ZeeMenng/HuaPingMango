@@ -1,4 +1,4 @@
-﻿package com.jusfoun.dao.split.gp;
+package com.jusfoun.dao.split.gp;
 
 import java.util.ArrayList;
 import java.util.List;
