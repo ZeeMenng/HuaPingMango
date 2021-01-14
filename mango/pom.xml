@@ -13,7 +13,7 @@
 		<start-class>com.jusfoun.app.start.Starter</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<excludeFolder></excludeFolder>
-		<org.poi-version>3.14</org.poi-version>
+		<org.poi-version>4.1.2</org.poi-version>
 	</properties>
 	<dependencies>
 		<!-- Excel -->
