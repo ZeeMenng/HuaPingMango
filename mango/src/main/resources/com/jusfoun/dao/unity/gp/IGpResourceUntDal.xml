@@ -198,7 +198,29 @@
 		<include refid="Base_Column_List" />
 		from gp_resource where page_id = #{pageId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gp_resource
+		where 1=1
 
+   and domain_id in
+		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
+				#{gpResource.domainId,jdbcType=VARCHAR}
+		</foreach>
+   and module_id in
+		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
+				#{gpResource.moduleId,jdbcType=VARCHAR}
+		</foreach>
+   and page_id in
+		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
+				#{gpResource.pageId,jdbcType=VARCHAR}
+		</foreach>
+   and resource_id in
+		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
+				#{gpResource.resourceId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_resource
@@ -208,29 +230,31 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpResource" >
     update gp_resource
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="extension != null  and extension != '' " >
-                     extension = #{extension,jdbcType=VARCHAR},
                   </if>
                   <if test="moduleId != null  and moduleId != '' " >
                      module_id = #{moduleId,jdbcType=VARCHAR},
                   </if>
-                  <if test="newName != null  and newName != '' " >
-                     new_name = #{newName,jdbcType=VARCHAR},
+                  <if test="pageId != null  and pageId != '' " >
+                     page_id = #{pageId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
                   </if>
                   <if test="originalName != null  and originalName != '' " >
                      original_name = #{originalName,jdbcType=VARCHAR},
                   </if>
-                  <if test="pageId != null  and pageId != '' " >
-                     page_id = #{pageId,jdbcType=VARCHAR},
+                  <if test="newName != null  and newName != '' " >
+                     new_name = #{newName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="extension != null  and extension != '' " >
+                     extension = #{extension,jdbcType=VARCHAR},
                   </if>
                   <if test="path != null  and path != '' " >
                      path = #{path,jdbcType=VARCHAR},
@@ -241,8 +265,8 @@
                   <if test="size != null ">
                      size = #{size,jdbcType=BIGINT},
                   </if>
-                  <if test="userId != null  and userId != '' " >
-                     user_id = #{userId,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -251,26 +275,26 @@
 <update id="updateList">
     update gp_resource
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.extension != null  and t.extension != '' " >
-                     extension = #{t.extension,jdbcType=VARCHAR},
                   </if>
                   <if test="t.moduleId != null  and t.moduleId != '' " >
                      module_id = #{t.moduleId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.newName != null  and t.newName != '' " >
-                     new_name = #{t.newName,jdbcType=VARCHAR},
+                  <if test="t.pageId != null  and t.pageId != '' " >
+                     page_id = #{t.pageId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.originalName != null  and t.originalName != '' " >
                      original_name = #{t.originalName,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.pageId != null  and t.pageId != '' " >
-                     page_id = #{t.pageId,jdbcType=VARCHAR},
+                  <if test="t.newName != null  and t.newName != '' " >
+                     new_name = #{t.newName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.extension != null  and t.extension != '' " >
+                     extension = #{t.extension,jdbcType=VARCHAR},
                   </if>
                   <if test="t.path != null  and t.path != '' " >
                      path = #{t.path,jdbcType=VARCHAR},
@@ -281,8 +305,8 @@
                   <if test="t.size != null ">
                      size = #{t.size,jdbcType=BIGINT},
                   </if>
-                  <if test="t.userId != null  and t.userId != '' " >
-                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -296,30 +320,12 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_resource
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.addTime != null " >
-                     when id=#{gpResource.id} then #{gpResource.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
                   <if test="gpResource.domainId != null and gpResource.domainId  != ''  and gpResource.domainId  != '-1' ">
                      when id=#{gpResource.id} then #{gpResource.domainId,jdbcType=VARCHAR}
                   </if>
                   <if test="gpResource.domainId != null  and gpResource.domainId  == '-1' ">
-                     when id=#{gpResource.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
-         <trim prefix="extension =case" suffix="end,">
-              <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.extension != null and gpResource.extension  != ''  and gpResource.extension  != '-1' ">
-                     when id=#{gpResource.id} then #{gpResource.extension,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpResource.extension != null  and gpResource.extension  == '-1' ">
                      when id=#{gpResource.id} then null
                   </if>
                   
@@ -336,12 +342,23 @@
                   
               </foreach>
          </trim>
-         <trim prefix="new_name =case" suffix="end,">
+         <trim prefix="page_id =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.newName != null and gpResource.newName  != ''  and gpResource.newName  != '-1' ">
-                     when id=#{gpResource.id} then #{gpResource.newName,jdbcType=VARCHAR}
+                  <if test="gpResource.pageId != null and gpResource.pageId  != ''  and gpResource.pageId  != '-1' ">
+                     when id=#{gpResource.id} then #{gpResource.pageId,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpResource.newName != null  and gpResource.newName  == '-1' ">
+                  <if test="gpResource.pageId != null  and gpResource.pageId  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="user_id =case" suffix="end,">
+              <foreach collection="list" item="gpResource" index="index">
+                  <if test="gpResource.userId != null and gpResource.userId  != ''  and gpResource.userId  != '-1' ">
+                     when id=#{gpResource.id} then #{gpResource.userId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpResource.userId != null  and gpResource.userId  == '-1' ">
                      when id=#{gpResource.id} then null
                   </if>
                   
@@ -358,12 +375,23 @@
                   
               </foreach>
          </trim>
-         <trim prefix="page_id =case" suffix="end,">
+         <trim prefix="new_name =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.pageId != null and gpResource.pageId  != ''  and gpResource.pageId  != '-1' ">
-                     when id=#{gpResource.id} then #{gpResource.pageId,jdbcType=VARCHAR}
+                  <if test="gpResource.newName != null and gpResource.newName  != ''  and gpResource.newName  != '-1' ">
+                     when id=#{gpResource.id} then #{gpResource.newName,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpResource.pageId != null  and gpResource.pageId  == '-1' ">
+                  <if test="gpResource.newName != null  and gpResource.newName  == '-1' ">
+                     when id=#{gpResource.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="extension =case" suffix="end,">
+              <foreach collection="list" item="gpResource" index="index">
+                  <if test="gpResource.extension != null and gpResource.extension  != ''  and gpResource.extension  != '-1' ">
+                     when id=#{gpResource.id} then #{gpResource.extension,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpResource.extension != null  and gpResource.extension  == '-1' ">
                      when id=#{gpResource.id} then null
                   </if>
                   
@@ -394,15 +422,11 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="user_id =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpResource" index="index">
-                  <if test="gpResource.userId != null and gpResource.userId  != ''  and gpResource.userId  != '-1' ">
-                     when id=#{gpResource.id} then #{gpResource.userId,jdbcType=VARCHAR}
+                  <if test="gpResource.addTime != null " >
+                     when id=#{gpResource.id} then #{gpResource.addTime,jdbcType=TIMESTAMP}
                   </if>
-                  <if test="gpResource.userId != null  and gpResource.userId  == '-1' ">
-                     when id=#{gpResource.id} then null
-                  </if>
-                  
               </foreach>
          </trim>
     </trim>
@@ -417,43 +441,43 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_resource
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
-domain_id,
-extension,
 id,
+domain_id,
 module_id,
-new_name,
-original_name,
 page_id,
+user_id,
+original_name,
+new_name,
+extension,
 path,
 priority,
 size,
-user_id,
+add_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpResource" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpResource.addTime,jdbcType=TIMESTAMP},
-            
+              #{gpResource.id ,jdbcType=VARCHAR},
                   
                      #{gpResource.domainId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpResource.extension ,jdbcType=VARCHAR},
-                  
-              #{gpResource.id ,jdbcType=VARCHAR},
-                  
                      #{gpResource.moduleId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpResource.newName ,jdbcType=VARCHAR},
+                     #{gpResource.pageId ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpResource.userId ,jdbcType=VARCHAR},
                   
                   
                      #{gpResource.originalName ,jdbcType=VARCHAR},
                   
                   
-                     #{gpResource.pageId ,jdbcType=VARCHAR},
+                     #{gpResource.newName ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpResource.extension ,jdbcType=VARCHAR},
                   
                   
                      #{gpResource.path ,jdbcType=VARCHAR},
@@ -465,8 +489,8 @@ user_id,
                     #{gpResource.size,jdbcType=BIGINT},
             
                   
-                     #{gpResource.userId ,jdbcType=VARCHAR},
-                  
+                    #{gpResource.addTime,jdbcType=TIMESTAMP},
+            
       </trim>
     </foreach>
   </insert>

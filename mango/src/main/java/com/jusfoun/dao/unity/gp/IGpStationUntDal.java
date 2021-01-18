@@ -1,4 +1,4 @@
-package com.jusfoun.dao.unity.gp;
+﻿package com.jusfoun.dao.unity.gp;
 
 import java.util.List;
 import com.jusfoun.dao.unity.base.IBaseUntDal;
@@ -12,7 +12,7 @@ import com.jusfoun.ent.extend.gp.GprUserStation;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/10/13 20:02:27
+ * @updateDate 2021/1/4 14:18:38
  * @description 扩展自实体类IBaseUntDal<GpStation>，可手动更改。岗位。
  */
 
@@ -25,6 +25,7 @@ public interface IGpStationUntDal extends IBaseUntDal<GpStation> {
 
 	public List<GpStation> getListByOrganizationId(String  organizationId);
    
+
    
 }
 

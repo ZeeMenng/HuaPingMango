@@ -106,6 +106,21 @@
 		</foreach>
 	</delete>
 
+
+	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_role_interface
+		where interface_id in
+
+		<foreach collection="list" item="gprRoleInterface" index="index" open="(" close=")" separator=",">
+				#{gprRoleInterface.interfaceId,jdbcType=VARCHAR}
+		</foreach>
+		and role_id in
+		<foreach collection="list" item="gprRoleInterface" index="index" open="(" close=")" separator=",">
+				#{gprRoleInterface.roleId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+
+
 	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRoleInterface">
 		update gpr_role_interface
 		<set>

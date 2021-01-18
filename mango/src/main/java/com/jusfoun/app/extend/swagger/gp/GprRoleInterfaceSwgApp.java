@@ -1,9 +1,24 @@
 package com.jusfoun.app.extend.swagger.gp;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GprRoleInterfaceGenSwgApp;
+import com.jusfoun.ent.custom.ResultModel;
+import com.jusfoun.ent.extend.gp.GprRoleInterface;
+import com.jusfoun.ent.parameter.gp.GprRoleInterfaceParameter;
+import com.jusfoun.utl.SymbolicConstant;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -15,6 +30,32 @@ import com.jusfoun.app.generate.swagger.gp.GprRoleInterfaceGenSwgApp;
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gprRoleInterface")
 public class GprRoleInterfaceSwgApp extends GprRoleInterfaceGenSwgApp {
+	
+	
+	
+	@ApiOperation(value = "删除接口权限", notes = "删除接口权限")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
+	@RequestMapping(value = "/deleteInterfaceAuthority", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel deleteInterfaceAuthority(@RequestBody GprRoleInterfaceParameter.DeleteByCompositeIdList jsonData) {
+		ResultModel result = gprRoleInterfaceSplBll.deleteByCompositeIdList(jsonData.getEntityList());
+
+		return result;
+	}
+
+	
+	@ApiOperation(value = "查询接口权限", notes = "查询某一角色的接口权限")
+	@ApiImplicitParam(paramType = "path", name = "roleId", value = "角色ID", required = true, dataType = "String")
+	@RequestMapping(value = "/getListByRoleId/{roleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getListByRoleId(@PathVariable("roleId") String roleId) {
+		ResultModel result = gprRoleInterfaceUntBll.getListByRoleId(roleId);
+		List<GprRoleInterface> roleInterfaceList=(List<GprRoleInterface>)result.getData();
+		result.setData(roleInterfaceList.stream().filter(gprRoleInterface->gprRoleInterface.getIsEnableCode()==SymbolicConstant.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
+		
+		return result;
+	}
+
+	
+	
 
 }
 

@@ -32,6 +32,8 @@ public interface IGprRoleInterfaceSplDal extends IBaseSplDal {
 
 	public int deleteByInterfaceIdList(ArrayList<String> interfaceIdList);
 
+	public int deleteByCompositeIdList(ArrayList<GprRoleInterface> gprRoleInterfaceList);
+	
 	public int update(GprRoleInterface gprRoleInterface);
 
 	public GprRoleInterface getModel(String id);

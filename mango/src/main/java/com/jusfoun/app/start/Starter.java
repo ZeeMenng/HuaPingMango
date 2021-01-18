@@ -26,11 +26,12 @@ import com.jusfoun.set.config.MybatisConfig;
 
 @Configuration
 @Import({ MybatisConfig.class })
-@ComponentScan(basePackages = { "com.**.base.**", "com.**.gp.**", "com.**.pi.**", "com.jusfoun.set.**", "com.jusfoun.utl.**" },
+@ComponentScan(basePackages = { "com.**.base.**","com.**.custom.**", "com.**.gp.**", "com.**.pi.**", "com.jusfoun.set.**", "com.jusfoun.utl.**" },
 excludeFilters = { 
 		@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { 
 				com.jusfoun.utl.Executors.class,
 				com.jusfoun.utl.MongoUtil.class,
+				com.jusfoun.app.custom.MongodbController.class,
 				com.jusfoun.utl.service.DaUserContributionUtil.class}),
 		@Filter(type = FilterType.REGEX, pattern  = "com.jusfoun.utl.crawler.*"),
 		@Filter(type = FilterType.REGEX, pattern  = "com.jusfoun.utl.task.*")

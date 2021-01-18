@@ -101,7 +101,21 @@
 		<include refid="Base_Column_List" />
 		from gpr_catalog_interface where interface_id = #{interfaceId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_catalog_interface
+		where 1=1
 
+   and catalog_id in
+		<foreach collection="list" item="gprCatalogInterface" index="index" open="(" close=")" separator=",">
+				#{gprCatalogInterface.catalogId,jdbcType=VARCHAR}
+		</foreach>
+   and interface_id in
+		<foreach collection="list" item="gprCatalogInterface" index="index" open="(" close=")" separator=",">
+				#{gprCatalogInterface.interfaceId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_catalog_interface
@@ -110,6 +124,8 @@
 			#{id }
 		</foreach>
 	</delete>
+  
+  
   
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprCatalogInterface" >
     update gpr_catalog_interface
@@ -179,17 +195,17 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_catalog_interface
         <trim prefix="(" suffix=")" suffixOverrides="," >
-catalog_id,
 id,
+catalog_id,
 interface_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprCatalogInterface" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{gprCatalogInterface.id ,jdbcType=VARCHAR},
                   
                      #{gprCatalogInterface.catalogId ,jdbcType=VARCHAR},
                   
-              #{gprCatalogInterface.id ,jdbcType=VARCHAR},
                   
                      #{gprCatalogInterface.interfaceId ,jdbcType=VARCHAR},
                   

@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="zh-cn">
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
 <!--#include file="/pc/ss/gp/html/cl/Header.html"-->
 <!--#include file="/pc/ss/gp/html/cl/HeaderZTree.html"-->
@@ -104,6 +105,7 @@ a:hover {
 }
 </style>
 </head>
+
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-wrapper">
 	<!--#include file="/pc/ss/gp/html/cl/Top.html"-->
 	<div id="content_right" class="page-container page-content-wrapper">
@@ -139,9 +141,10 @@ a:hover {
 													<div class="input-icon right">
 														<!-- <i class="fa fa-search fa-spin font-blue"></i> -->
 														<i class="fa fa-search"></i>
-														<input type="text" id="textInterfaceCatalogTreeSearch" value="" class="form-control" placeholder="输入关键词进行搜索……" autocomplete="off" />
+														<input type="text" id="textInterfaceCatalogTreeSearch" value="" class="form-control" placeholder="" autocomplete="off" />
 													</div>
-													<ul id="ulInterfaceCatalogTree" class="ztree jstree-container-ul"></ul>
+													<ul id="ulInterfaceCatalogTree" class="ztree jstree-container-ul">
+													</ul>
 												</div>
 											</div>
 											<div class="form-hidden">
@@ -156,20 +159,20 @@ a:hover {
 
 
 						<div class="col-md-9 portlet light bordered">
-							<form class="portlet-body form form-inline form-body" role="form" id="queryBuilderForm">
+							<form class="portlet-body form form-inline form-body " role="form" id="queryBuilderForm">
 								<input id="hiddenInterfaceCatalogIds" name="interfaceCatalogIds" type="hidden" />
 								<label class="control-label">关键词：</label>
-								<input class="form-control " id="textTableName" name="tableName" size="10" type="text" />
+								<input class="form-control " id="textKeywords" name="kewwords" size="45" type="text" placeholder="可输入 /编号/名称/应用领域/备注……" />
 								&nbsp;&nbsp;&nbsp;&nbsp;
-								<label class="control-label">是否为公共接口：</label>
+								<label class="control-label">公共接口：</label>
 								<select id="selectIsPublicCode" name="isPublicCode" class="form-control" onchange="$('#queryBuilderForm').submit();">
 									<option value="">全部</option>
 								</select>
-								&nbsp;&nbsp;&nbsp;&nbsp;
+								<!-- &nbsp;&nbsp;&nbsp;&nbsp;
 								<label class="control-label">请求方法：</label>
 								<select id="selectTypeCode" name="typeCode" class="form-control" onchange="$('#queryBuilderForm').submit();">
 									<option value="">全部</option>
-								</select>
+								</select> -->
 								<div class="search-button">
 									<button type="submit" class="btn red-mint" id="submitButton">
 										<i class="fa fa-search"></i>
@@ -320,4 +323,5 @@ a:hover {
 
 
 </body>
+
 </html>

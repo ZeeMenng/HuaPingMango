@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/10/13 20:02:16
+ * @updateDate 2021/1/4 14:18:28
  * @description 调用存储过程查询某个值在本数据库中的位置，记录相关信息到本表中。 业务逻辑处理类，扩展自BaseUntBll<GpValueLocation>，自动生成。
  */
 public class GpValueLocationGenUntBll extends BaseUntBll<GpValueLocation> {
@@ -146,7 +146,7 @@ public class GpValueLocationGenUntBll extends BaseUntBll<GpValueLocation> {
 		}
 		return result;
 	}
-
+  
 
 }
 

@@ -101,7 +101,21 @@
 		<include refid="Base_Column_List" />
 		from gpr_module_page where page_id = #{pageId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_module_page
+		where 1=1
 
+   and module_id in
+		<foreach collection="list" item="gprModulePage" index="index" open="(" close=")" separator=",">
+				#{gprModulePage.moduleId,jdbcType=VARCHAR}
+		</foreach>
+   and page_id in
+		<foreach collection="list" item="gprModulePage" index="index" open="(" close=")" separator=",">
+				#{gprModulePage.pageId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_module_page
@@ -110,6 +124,8 @@
 			#{id }
 		</foreach>
 	</delete>
+  
+  
   
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprModulePage" >
     update gpr_module_page

@@ -106,7 +106,7 @@
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_domain
@@ -116,11 +116,16 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDomain" >
     update gp_domain
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  <if test="serialNo != null  and serialNo != '' " >
+                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="com != null  and com != '' " >
                      com = #{com,jdbcType=VARCHAR},
@@ -128,14 +133,11 @@
                   <if test="iconResource != null  and iconResource != '' " >
                      icon_resource = #{iconResource,jdbcType=VARCHAR},
                   </if>
-                  <if test="name != null  and name != '' " >
-                     name = #{name,jdbcType=VARCHAR},
-                  </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="serialNo != null  and serialNo != '' " >
-                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -147,8 +149,11 @@
 <update id="updateList">
     update gp_domain
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.serialNo != null  and t.serialNo != '' " >
+                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.com != null  and t.com != '' " >
                      com = #{t.com,jdbcType=VARCHAR},
@@ -156,14 +161,11 @@
                   <if test="t.iconResource != null  and t.iconResource != '' " >
                      icon_resource = #{t.iconResource,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.name != null  and t.name != '' " >
-                     name = #{t.name,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.serialNo != null  and t.serialNo != '' " >
-                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -180,11 +182,26 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_domain
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
+         <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.addTime != null " >
-                     when id=#{gpDomain.id} then #{gpDomain.addTime,jdbcType=TIMESTAMP}
+                  <if test="gpDomain.serialNo != null and gpDomain.serialNo  != ''  and gpDomain.serialNo  != '-1' ">
+                     when id=#{gpDomain.id} then #{gpDomain.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="gpDomain.serialNo != null  and gpDomain.serialNo  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="name =case" suffix="end,">
+              <foreach collection="list" item="gpDomain" index="index">
+                  <if test="gpDomain.name != null and gpDomain.name  != ''  and gpDomain.name  != '-1' ">
+                     when id=#{gpDomain.id} then #{gpDomain.name,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpDomain.name != null  and gpDomain.name  == '-1' ">
+                     when id=#{gpDomain.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="com =case" suffix="end,">
@@ -209,17 +226,6 @@
                   
               </foreach>
          </trim>
-         <trim prefix="name =case" suffix="end,">
-              <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.name != null and gpDomain.name  != ''  and gpDomain.name  != '-1' ">
-                     when id=#{gpDomain.id} then #{gpDomain.name,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpDomain.name != null  and gpDomain.name  == '-1' ">
-                     when id=#{gpDomain.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
                   <if test="gpDomain.remark != null and gpDomain.remark  != ''  and gpDomain.remark  != '-1' ">
@@ -231,15 +237,11 @@
                   
               </foreach>
          </trim>
-         <trim prefix="serial_no =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpDomain" index="index">
-                  <if test="gpDomain.serialNo != null and gpDomain.serialNo  != ''  and gpDomain.serialNo  != '-1' ">
-                     when id=#{gpDomain.id} then #{gpDomain.serialNo,jdbcType=VARCHAR}
+                  <if test="gpDomain.addTime != null " >
+                     when id=#{gpDomain.id} then #{gpDomain.addTime,jdbcType=TIMESTAMP}
                   </if>
-                  <if test="gpDomain.serialNo != null  and gpDomain.serialNo  == '-1' ">
-                     when id=#{gpDomain.id} then null
-                  </if>
-                  
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
@@ -261,37 +263,37 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_domain
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
+id,
+serial_no,
+name,
 com,
 icon_resource,
-id,
-name,
 remark,
-serial_no,
+add_time,
 update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpDomain" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{gpDomain.id ,jdbcType=VARCHAR},
                   
-                    #{gpDomain.addTime,jdbcType=TIMESTAMP},
-            
+                     #{gpDomain.serialNo ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpDomain.name ,jdbcType=VARCHAR},
+                  
                   
                      #{gpDomain.com ,jdbcType=VARCHAR},
                   
                   
                      #{gpDomain.iconResource ,jdbcType=VARCHAR},
                   
-              #{gpDomain.id ,jdbcType=VARCHAR},
-                  
-                     #{gpDomain.name ,jdbcType=VARCHAR},
-                  
                   
                      #{gpDomain.remark ,jdbcType=VARCHAR},
                   
                   
-                     #{gpDomain.serialNo ,jdbcType=VARCHAR},
-                  
+                    #{gpDomain.addTime,jdbcType=TIMESTAMP},
+            
                   
                     #{gpDomain.updateTime,jdbcType=TIMESTAMP},
             

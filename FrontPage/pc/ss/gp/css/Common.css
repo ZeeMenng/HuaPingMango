@@ -377,4 +377,9 @@ html, body {
 	padding-top: 5% !important;
 }
 
-
+/** Ztree显示外围边框 ***/
+ul.ztree {
+    margin-top: 10px;
+    border: 1px solid #c2cad8;
+   
+}

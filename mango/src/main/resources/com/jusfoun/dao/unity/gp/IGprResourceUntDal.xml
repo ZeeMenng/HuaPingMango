@@ -90,7 +90,7 @@
 		<include refid="Base_Column_List" />
 		from gpr_resource where resource_id = #{resourceId,jdbcType=VARCHAR}
 	</select>
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_resource
@@ -100,17 +100,19 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprResource" >
     update gpr_resource
     <set >
                   <if test="businessId != null  and businessId != '' " >
                      business_id = #{businessId,jdbcType=VARCHAR},
                   </if>
-                  <if test="isDefault != null ">
-                     is_default = #{isDefault,jdbcType=TINYINT},
-                  </if>
                   <if test="resourceId != null  and resourceId != '' " >
                      resource_id = #{resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="isDefault != null ">
+                     is_default = #{isDefault,jdbcType=TINYINT},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -122,11 +124,11 @@
                   <if test="t.businessId != null  and t.businessId != '' " >
                      business_id = #{t.businessId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.isDefault != null ">
-                     is_default = #{t.isDefault,jdbcType=TINYINT},
-                  </if>
                   <if test="t.resourceId != null  and t.resourceId != '' " >
                      resource_id = #{t.resourceId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.isDefault != null ">
+                     is_default = #{t.isDefault,jdbcType=TINYINT},
                   </if>
    </set>
 	
@@ -151,13 +153,6 @@
                   
               </foreach>
          </trim>
-         <trim prefix="is_default =case" suffix="end,">
-              <foreach collection="list" item="gprResource" index="index">
-                  <if test="gprResource.isDefault != null " >
-                     when id=#{gprResource.id} then #{gprResource.isDefault,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="gprResource" index="index">
                   <if test="gprResource.resourceId != null and gprResource.resourceId  != ''  and gprResource.resourceId  != '-1' ">
@@ -167,6 +162,13 @@
                      when id=#{gprResource.id} then null
                   </if>
                   
+              </foreach>
+         </trim>
+         <trim prefix="is_default =case" suffix="end,">
+              <foreach collection="list" item="gprResource" index="index">
+                  <if test="gprResource.isDefault != null " >
+                     when id=#{gprResource.id} then #{gprResource.isDefault,jdbcType=TINYINT}
+                  </if>
               </foreach>
          </trim>
     </trim>
@@ -181,24 +183,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_resource
         <trim prefix="(" suffix=")" suffixOverrides="," >
-business_id,
 id,
-is_default,
+business_id,
 resource_id,
+is_default,
     </trim>
     VALUES
     <foreach collection="list" item="gprResource" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{gprResource.id ,jdbcType=VARCHAR},
                   
                      #{gprResource.businessId ,jdbcType=VARCHAR},
                   
-              #{gprResource.id ,jdbcType=VARCHAR},
-                  
-                    #{gprResource.isDefault,jdbcType=TINYINT},
-            
                   
                      #{gprResource.resourceId ,jdbcType=VARCHAR},
                   
+                  
+                    #{gprResource.isDefault,jdbcType=TINYINT},
+            
       </trim>
     </foreach>
   </insert>

@@ -44,7 +44,22 @@
 				}
 			},
 			callback : {
-				onCheck : onCheck
+				onCheck : function () {
+					var treeObj = $.fn.zTree.getZTreeObj("treeContainer");
+					var nodes = treeObj.getCheckedNodes(true);
+
+					var moduleIdsArray = [];
+					var domainIdsArray = [];
+					for (var i = 0; i < nodes.length; i++) {
+						if (nodes[i].level == 0) {
+							domainIdsArray.push(nodes[i].id);
+						} else {
+							moduleIdsArray.push(nodes[i].id);
+						}
+					}
+					$("#hiddenModuleIds").val(moduleIdsArray.toString())
+					$("#hiddenDomainIds").val(domainIdsArray.toString())
+				}
 			}
 		};
 		var ajaxParamter = {

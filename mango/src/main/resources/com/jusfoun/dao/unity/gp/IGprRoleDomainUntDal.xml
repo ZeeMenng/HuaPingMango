@@ -109,7 +109,21 @@
 		<include refid="Base_Column_List" />
 		from gpr_role_domain where role_id = #{roleId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_role_domain
+		where 1=1
 
+   and domain_id in
+		<foreach collection="list" item="gprRoleDomain" index="index" open="(" close=")" separator=",">
+				#{gprRoleDomain.domainId,jdbcType=VARCHAR}
+		</foreach>
+   and role_id in
+		<foreach collection="list" item="gprRoleDomain" index="index" open="(" close=")" separator=",">
+				#{gprRoleDomain.roleId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_role_domain
@@ -119,17 +133,19 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRoleDomain" >
     update gpr_role_domain
     <set >
+                  <if test="roleId != null  and roleId != '' " >
+                     role_id = #{roleId,jdbcType=VARCHAR},
+                  </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
                   </if>
                   <if test="isEnableCode != null ">
                      is_enable_code = #{isEnableCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="roleId != null  and roleId != '' " >
-                     role_id = #{roleId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -138,14 +154,14 @@
 <update id="updateList">
     update gpr_role_domain
     <set >
+                  <if test="t.roleId != null  and t.roleId != '' " >
+                     role_id = #{t.roleId,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.isEnableCode != null ">
                      is_enable_code = #{t.isEnableCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.roleId != null  and t.roleId != '' " >
-                     role_id = #{t.roleId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -159,6 +175,17 @@
 <update id="updateListWithDff"  parameterType="list">
     update gpr_role_domain
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="role_id =case" suffix="end,">
+              <foreach collection="list" item="gprRoleDomain" index="index">
+                  <if test="gprRoleDomain.roleId != null and gprRoleDomain.roleId  != ''  and gprRoleDomain.roleId  != '-1' ">
+                     when id=#{gprRoleDomain.id} then #{gprRoleDomain.roleId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gprRoleDomain.roleId != null  and gprRoleDomain.roleId  == '-1' ">
+                     when id=#{gprRoleDomain.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleDomain" index="index">
                   <if test="gprRoleDomain.domainId != null and gprRoleDomain.domainId  != ''  and gprRoleDomain.domainId  != '-1' ">
@@ -177,17 +204,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="role_id =case" suffix="end,">
-              <foreach collection="list" item="gprRoleDomain" index="index">
-                  <if test="gprRoleDomain.roleId != null and gprRoleDomain.roleId  != ''  and gprRoleDomain.roleId  != '-1' ">
-                     when id=#{gprRoleDomain.id} then #{gprRoleDomain.roleId,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gprRoleDomain.roleId != null  and gprRoleDomain.roleId  == '-1' ">
-                     when id=#{gprRoleDomain.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gprRoleDomain" index="index" open="(" close=")" separator=",">
@@ -200,24 +216,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_role_domain
         <trim prefix="(" suffix=")" suffixOverrides="," >
-domain_id,
 id,
-is_enable_code,
 role_id,
+domain_id,
+is_enable_code,
     </trim>
     VALUES
     <foreach collection="list" item="gprRoleDomain" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                     #{gprRoleDomain.domainId ,jdbcType=VARCHAR},
-                  
               #{gprRoleDomain.id ,jdbcType=VARCHAR},
-                  
-                    #{gprRoleDomain.isEnableCode,jdbcType=TINYINT},
-            
                   
                      #{gprRoleDomain.roleId ,jdbcType=VARCHAR},
                   
+                  
+                     #{gprRoleDomain.domainId ,jdbcType=VARCHAR},
+                  
+                  
+                    #{gprRoleDomain.isEnableCode,jdbcType=TINYINT},
+            
       </trim>
     </foreach>
   </insert>

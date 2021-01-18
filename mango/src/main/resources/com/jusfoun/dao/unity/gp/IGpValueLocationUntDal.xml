@@ -107,7 +107,7 @@
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_value_location
@@ -117,29 +117,31 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpValueLocation" >
     update gp_value_location
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="columnValue != null  and columnValue != '' " >
                      column_value = #{columnValue,jdbcType=VARCHAR},
                   </if>
                   <if test="originTableName != null  and originTableName != '' " >
                      origin_table_name = #{originTableName,jdbcType=VARCHAR},
                   </if>
-                  <if test="remarks != null  and remarks != '' " >
-                     remarks = #{remarks,jdbcType=VARCHAR},
-                  </if>
                   <if test="targetColumnName != null  and targetColumnName != '' " >
                      target_column_name = #{targetColumnName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="targetTableName != null  and targetTableName != '' " >
+                     target_table_name = #{targetTableName,jdbcType=VARCHAR},
                   </if>
                   <if test="targetRecordId != null  and targetRecordId != '' " >
                      target_record_id = #{targetRecordId,jdbcType=VARCHAR},
                   </if>
-                  <if test="targetTableName != null  and targetTableName != '' " >
-                     target_table_name = #{targetTableName,jdbcType=VARCHAR},
+                  <if test="remarks != null  and remarks != '' " >
+                     remarks = #{remarks,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -148,26 +150,26 @@
 <update id="updateList">
     update gp_value_location
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="t.columnValue != null  and t.columnValue != '' " >
                      column_value = #{t.columnValue,jdbcType=VARCHAR},
                   </if>
                   <if test="t.originTableName != null  and t.originTableName != '' " >
                      origin_table_name = #{t.originTableName,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remarks != null  and t.remarks != '' " >
-                     remarks = #{t.remarks,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.targetColumnName != null  and t.targetColumnName != '' " >
                      target_column_name = #{t.targetColumnName,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.targetTableName != null  and t.targetTableName != '' " >
+                     target_table_name = #{t.targetTableName,jdbcType=VARCHAR},
                   </if>
                   <if test="t.targetRecordId != null  and t.targetRecordId != '' " >
                      target_record_id = #{t.targetRecordId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.targetTableName != null  and t.targetTableName != '' " >
-                     target_table_name = #{t.targetTableName,jdbcType=VARCHAR},
+                  <if test="t.remarks != null  and t.remarks != '' " >
+                     remarks = #{t.remarks,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -181,13 +183,6 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_value_location
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.addTime != null " >
-                     when id=#{gpValueLocation.id} then #{gpValueLocation.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="column_value =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
                   <if test="gpValueLocation.columnValue != null and gpValueLocation.columnValue  != ''  and gpValueLocation.columnValue  != '-1' ">
@@ -210,34 +205,12 @@
                   
               </foreach>
          </trim>
-         <trim prefix="remarks =case" suffix="end,">
-              <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.remarks != null and gpValueLocation.remarks  != ''  and gpValueLocation.remarks  != '-1' ">
-                     when id=#{gpValueLocation.id} then #{gpValueLocation.remarks,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpValueLocation.remarks != null  and gpValueLocation.remarks  == '-1' ">
-                     when id=#{gpValueLocation.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
          <trim prefix="target_column_name =case" suffix="end,">
               <foreach collection="list" item="gpValueLocation" index="index">
                   <if test="gpValueLocation.targetColumnName != null and gpValueLocation.targetColumnName  != ''  and gpValueLocation.targetColumnName  != '-1' ">
                      when id=#{gpValueLocation.id} then #{gpValueLocation.targetColumnName,jdbcType=VARCHAR}
                   </if>
                   <if test="gpValueLocation.targetColumnName != null  and gpValueLocation.targetColumnName  == '-1' ">
-                     when id=#{gpValueLocation.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
-         <trim prefix="target_record_id =case" suffix="end,">
-              <foreach collection="list" item="gpValueLocation" index="index">
-                  <if test="gpValueLocation.targetRecordId != null and gpValueLocation.targetRecordId  != ''  and gpValueLocation.targetRecordId  != '-1' ">
-                     when id=#{gpValueLocation.id} then #{gpValueLocation.targetRecordId,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpValueLocation.targetRecordId != null  and gpValueLocation.targetRecordId  == '-1' ">
                      when id=#{gpValueLocation.id} then null
                   </if>
                   
@@ -254,6 +227,35 @@
                   
               </foreach>
          </trim>
+         <trim prefix="target_record_id =case" suffix="end,">
+              <foreach collection="list" item="gpValueLocation" index="index">
+                  <if test="gpValueLocation.targetRecordId != null and gpValueLocation.targetRecordId  != ''  and gpValueLocation.targetRecordId  != '-1' ">
+                     when id=#{gpValueLocation.id} then #{gpValueLocation.targetRecordId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpValueLocation.targetRecordId != null  and gpValueLocation.targetRecordId  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="remarks =case" suffix="end,">
+              <foreach collection="list" item="gpValueLocation" index="index">
+                  <if test="gpValueLocation.remarks != null and gpValueLocation.remarks  != ''  and gpValueLocation.remarks  != '-1' ">
+                     when id=#{gpValueLocation.id} then #{gpValueLocation.remarks,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpValueLocation.remarks != null  and gpValueLocation.remarks  == '-1' ">
+                     when id=#{gpValueLocation.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpValueLocation" index="index">
+                  <if test="gpValueLocation.addTime != null " >
+                     when id=#{gpValueLocation.id} then #{gpValueLocation.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gpValueLocation" index="index" open="(" close=")" separator=",">
@@ -266,40 +268,40 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_value_location
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
-column_value,
 id,
+column_value,
 origin_table_name,
-remarks,
 target_column_name,
-target_record_id,
 target_table_name,
+target_record_id,
+remarks,
+add_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpValueLocation" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpValueLocation.addTime,jdbcType=TIMESTAMP},
-            
+              #{gpValueLocation.id ,jdbcType=VARCHAR},
                   
                      #{gpValueLocation.columnValue ,jdbcType=VARCHAR},
                   
-              #{gpValueLocation.id ,jdbcType=VARCHAR},
                   
                      #{gpValueLocation.originTableName ,jdbcType=VARCHAR},
-                  
-                  
-                     #{gpValueLocation.remarks ,jdbcType=VARCHAR},
                   
                   
                      #{gpValueLocation.targetColumnName ,jdbcType=VARCHAR},
                   
                   
+                     #{gpValueLocation.targetTableName ,jdbcType=VARCHAR},
+                  
+                  
                      #{gpValueLocation.targetRecordId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpValueLocation.targetTableName ,jdbcType=VARCHAR},
+                     #{gpValueLocation.remarks ,jdbcType=VARCHAR},
                   
+                  
+                    #{gpValueLocation.addTime,jdbcType=TIMESTAMP},
+            
       </trim>
     </foreach>
   </insert>

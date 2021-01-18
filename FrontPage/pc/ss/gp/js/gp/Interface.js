@@ -349,7 +349,7 @@ function initInterfaceTable() {
 			"columnName" : "name",
 			"columnText" : "接口名称",
 			"style" : "text-align:left",
-			"width" : "100px",
+			"width" : "60px",
 			"linkFunction" : function(event) {
 				var href = RP_GPINTERFACE_DETAIL + "?" + RECORD_ID + "=" + event.id;
 				return href;
@@ -357,43 +357,13 @@ function initInterfaceTable() {
 		}, {
 			"columnName" : "url",
 			"columnText" : "访问路径",
+			"width" : "330px",
 			"style" : "text-align:left"
 
 		} ]
 	};
 
-	var operationParam = [ {
-		"operationText" : "修改",
-		"buttonClass" : "yellow",
-		"iconClass" : "fa fa-pencil-square-o",
-		"clickFunction" : function(event) {
-			window.location.href = pageParam.editPage.url + "?" + RECORD_ID + "=" + event.data.id;
-		}
-	}, {
-		"operationText" : "删除",
-		"buttonClass" : "red",
-		"iconClass" : "fa fa-trash-o",
-		"clickFunction" : function(event) {
-			layer.confirm('您确定要删除当前记录？', {
-				btn : [ '确定', '取消' ]
-			}, function() {
-				layer.closeAll('dialog');
-				ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
-				ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
-				pageParam.deleteInterface.url = RU_GPINTERFACE_DELETE;
-				pageParam.deleteInterface.type = "GET";
-				pageParam.deleteInterface.submitData = {
-					"id" : event.data.id,
-				};
-				deleteRecord(pageParam, ajaxParam, operationParam);
-			});
-		},
-		"visibleFunction" : function(recordData) {
-			if (recordData.status == "1")
-				return false;
-			return true;
-		}
-	} ];
+	var operationParam = [ ];
 	initQueryForm(pageParam, ajaxParam, operationParam);
 
 	$("#updateInterfaceConstantsButton").click(function() {

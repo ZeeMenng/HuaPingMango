@@ -134,7 +134,7 @@
 		<include refid="Base_Column_List" />
 		from gp_message where user_id = #{userId,jdbcType=VARCHAR}
 	</select>
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_message
@@ -144,20 +144,22 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpMessage" >
     update gp_message
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="content != null  and content != '' " >
-                     content = #{content,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
+                  <if test="userName != null  and userName != '' " >
+                     user_name = #{userName,jdbcType=VARCHAR},
                   </if>
                   <if test="title != null  and title != '' " >
                      title = #{title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="content != null  and content != '' " >
+                     content = #{content,jdbcType=VARCHAR},
                   </if>
                   <if test="typeCode != null ">
                      type_code = #{typeCode,jdbcType=TINYINT},
@@ -165,11 +167,11 @@
                   <if test="typeText != null  and typeText != '' " >
                      type_text = #{typeText,jdbcType=VARCHAR},
                   </if>
-                  <if test="userId != null  and userId != '' " >
-                     user_id = #{userId,jdbcType=VARCHAR},
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="userName != null  and userName != '' " >
-                     user_name = #{userName,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -178,17 +180,17 @@
 <update id="updateList">
     update gp_message
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.content != null  and t.content != '' " >
-                     content = #{t.content,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
+                  <if test="t.userName != null  and t.userName != '' " >
+                     user_name = #{t.userName,jdbcType=VARCHAR},
                   </if>
                   <if test="t.title != null  and t.title != '' " >
                      title = #{t.title,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.content != null  and t.content != '' " >
+                     content = #{t.content,jdbcType=VARCHAR},
                   </if>
                   <if test="t.typeCode != null ">
                      type_code = #{t.typeCode,jdbcType=TINYINT},
@@ -196,11 +198,11 @@
                   <if test="t.typeText != null  and t.typeText != '' " >
                      type_text = #{t.typeText,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.userId != null  and t.userId != '' " >
-                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.userName != null  and t.userName != '' " >
-                     user_name = #{t.userName,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -214,30 +216,23 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_message
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
+         <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.addTime != null " >
-                     when id=#{gpMessage.id} then #{gpMessage.addTime,jdbcType=TIMESTAMP}
+                  <if test="gpMessage.userId != null and gpMessage.userId  != ''  and gpMessage.userId  != '-1' ">
+                     when id=#{gpMessage.id} then #{gpMessage.userId,jdbcType=VARCHAR}
                   </if>
-              </foreach>
-         </trim>
-         <trim prefix="content =case" suffix="end,">
-              <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.content != null and gpMessage.content  != ''  and gpMessage.content  != '-1' ">
-                     when id=#{gpMessage.id} then #{gpMessage.content,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpMessage.content != null  and gpMessage.content  == '-1' ">
+                  <if test="gpMessage.userId != null  and gpMessage.userId  == '-1' ">
                      when id=#{gpMessage.id} then null
                   </if>
                   
               </foreach>
          </trim>
-         <trim prefix="remark =case" suffix="end,">
+         <trim prefix="user_name =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.remark != null and gpMessage.remark  != ''  and gpMessage.remark  != '-1' ">
-                     when id=#{gpMessage.id} then #{gpMessage.remark,jdbcType=VARCHAR}
+                  <if test="gpMessage.userName != null and gpMessage.userName  != ''  and gpMessage.userName  != '-1' ">
+                     when id=#{gpMessage.id} then #{gpMessage.userName,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpMessage.remark != null  and gpMessage.remark  == '-1' ">
+                  <if test="gpMessage.userName != null  and gpMessage.userName  == '-1' ">
                      when id=#{gpMessage.id} then null
                   </if>
                   
@@ -249,6 +244,17 @@
                      when id=#{gpMessage.id} then #{gpMessage.title,jdbcType=VARCHAR}
                   </if>
                   <if test="gpMessage.title != null  and gpMessage.title  == '-1' ">
+                     when id=#{gpMessage.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="content =case" suffix="end,">
+              <foreach collection="list" item="gpMessage" index="index">
+                  <if test="gpMessage.content != null and gpMessage.content  != ''  and gpMessage.content  != '-1' ">
+                     when id=#{gpMessage.id} then #{gpMessage.content,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpMessage.content != null  and gpMessage.content  == '-1' ">
                      when id=#{gpMessage.id} then null
                   </if>
                   
@@ -272,26 +278,22 @@
                   
               </foreach>
          </trim>
-         <trim prefix="user_id =case" suffix="end,">
+         <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.userId != null and gpMessage.userId  != ''  and gpMessage.userId  != '-1' ">
-                     when id=#{gpMessage.id} then #{gpMessage.userId,jdbcType=VARCHAR}
+                  <if test="gpMessage.remark != null and gpMessage.remark  != ''  and gpMessage.remark  != '-1' ">
+                     when id=#{gpMessage.id} then #{gpMessage.remark,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpMessage.userId != null  and gpMessage.userId  == '-1' ">
+                  <if test="gpMessage.remark != null  and gpMessage.remark  == '-1' ">
                      when id=#{gpMessage.id} then null
                   </if>
                   
               </foreach>
          </trim>
-         <trim prefix="user_name =case" suffix="end,">
+         <trim prefix="add_time =case" suffix="end,">
               <foreach collection="list" item="gpMessage" index="index">
-                  <if test="gpMessage.userName != null and gpMessage.userName  != ''  and gpMessage.userName  != '-1' ">
-                     when id=#{gpMessage.id} then #{gpMessage.userName,jdbcType=VARCHAR}
+                  <if test="gpMessage.addTime != null " >
+                     when id=#{gpMessage.id} then #{gpMessage.addTime,jdbcType=TIMESTAMP}
                   </if>
-                  <if test="gpMessage.userName != null  and gpMessage.userName  == '-1' ">
-                     when id=#{gpMessage.id} then null
-                  </if>
-                  
               </foreach>
          </trim>
     </trim>
@@ -306,31 +308,31 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_message
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
-content,
 id,
-remark,
-title,
-type_code,
-type_text,
 user_id,
 user_name,
+title,
+content,
+type_code,
+type_text,
+remark,
+add_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpMessage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpMessage.addTime,jdbcType=TIMESTAMP},
-            
-                  
-                     #{gpMessage.content ,jdbcType=VARCHAR},
-                  
               #{gpMessage.id ,jdbcType=VARCHAR},
                   
-                     #{gpMessage.remark ,jdbcType=VARCHAR},
+                     #{gpMessage.userId ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpMessage.userName ,jdbcType=VARCHAR},
                   
                   
                      #{gpMessage.title ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpMessage.content ,jdbcType=VARCHAR},
                   
                   
                     #{gpMessage.typeCode,jdbcType=TINYINT},
@@ -339,11 +341,11 @@ user_name,
                      #{gpMessage.typeText ,jdbcType=VARCHAR},
                   
                   
-                     #{gpMessage.userId ,jdbcType=VARCHAR},
+                     #{gpMessage.remark ,jdbcType=VARCHAR},
                   
                   
-                     #{gpMessage.userName ,jdbcType=VARCHAR},
-                  
+                    #{gpMessage.addTime,jdbcType=TIMESTAMP},
+            
       </trim>
     </foreach>
   </insert>

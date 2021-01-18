@@ -133,7 +133,8 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 		selectBuffer.append("		CASE A.type_code WHEN 1 THEN 'GET' WHEN 2 THEN 'POST' ELSE '其它' END AS typeCode");
 		selectBuffer.append("	FROM                                                         ");
 		selectBuffer.append("		gp_interface A                                           ");
-		selectBuffer.append("	LEFT JOIN gpr_catalog_interface B ON A.id = B.interface_id                     ");
+		selectBuffer.append("	LEFT JOIN gpr_catalog_interface B ON A.id = B.interface_id   ");
+		selectBuffer.append("	LEFT JOIN gp_domain C ON A.domain_id = C.id   ");
 		selectBuffer.append("	WHERE                                                        ");
 		selectBuffer.append("		1 = 1                                                    ");
 
@@ -153,12 +154,18 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and( A.serial_no like %1$s or A.name like %1$s or A.url like %1$s  or C.serial_no like %1$s or C.name like %1$s or A.remark like %1$s)", "'%"+entityRelatedObject.getString("kewwords")+"%'"));
+				}
+
 				if (entityRelatedObject.containsKey("interfaceCatalogIds") && StringUtils.isNotBlank(entityRelatedObject.getString("interfaceCatalogIds"))) {
 					String interfaceCatalogIds = entityRelatedObject.get("interfaceCatalogIds").toString().replaceAll(",", "','");
 					selectBuffer.append(" and B.catalog_id in('").append(interfaceCatalogIds).append("')");
 				}
 				if (entityRelatedObject.containsKey("tableName") && StringUtils.isNotBlank(entityRelatedObject.getString("tableName")))
 					selectBuffer.append(" and A.table_name like '%").append(entityRelatedObject.getString("tableName")).append("%'");
+
 				if (entityRelatedObject.containsKey("url") && StringUtils.isNotBlank(entityRelatedObject.getString("url")))
 					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString("url")).append("%'");
 				if (entityRelatedObject.containsKey("remark") && StringUtils.isNotBlank(entityRelatedObject.getString("remark")))
@@ -249,6 +256,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			String domainId = null;
 			String id = Tools.getUUID();
 			Byte isPublicCode = SymbolicConstant.DCODE_BOOLEAN_T;
+			Byte isGenerateCode = SymbolicConstant.DCODE_BOOLEAN_T;
 			String name = null;
 			String remark = null;
 			String serialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
@@ -271,6 +279,8 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			if (StringUtils.isBlank(url))
 				continue;
 
+			if (!handlerMethod.getMethod().getDeclaringClass().getSimpleName().contains("GenSwgApp"))
+				isGenerateCode = SymbolicConstant.DCODE_BOOLEAN_F;
 			// 获取JS常量文件中的变量名，并写入JS常量文件中
 			String className = handlerMethod.getMethod().getDeclaringClass().getSimpleName().replaceAll("GenSwgApp", "").replaceAll("SwgApp", "").replaceAll("Controller", "");
 			String methodName = handlerMethod.getMethod().getName();
@@ -329,7 +339,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			gpInterface.setDomainId(domainId);
 			gpInterface.setTableName(tableName);
 			gpInterface.setUrl(url);
-			gpInterface.setIsPublicCode(isPublicCode);
+			gpInterface.setIsPublicCode(isGenerateCode);
 			gpInterface.setRemark(remark);
 			gpInterface.setSerialNo(serialNo);
 			gpInterface.setTypeCode(typeCode);

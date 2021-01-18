@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,10 @@ import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpRole;
 import com.jusfoun.ent.extend.gp.GprDomainUser;
 import com.jusfoun.ent.extend.gp.GprRoleDomain;
+import com.jusfoun.ent.extend.gp.GprRoleInterface;
 import com.jusfoun.ent.extend.gp.GprRoleModule;
 import com.jusfoun.ent.parameter.gp.GpRoleParameter;
+import com.jusfoun.ent.parameter.gp.GprRoleModuleParameter;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.SymbolicConstant;
 
@@ -150,59 +153,6 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel update(@RequestBody GpRole jsonData) {
 		ResultModel result = gpRoleUntBll.update(jsonData);
-
-		// 先删除再插入
-		gprRoleModuleSplBll.deleteByRoleId(jsonData.getId());
-		gprRoleDomainSplBll.deleteByRoleId(jsonData.getId());
-
-		ArrayList<GprRoleModule> gprRoleModuleList = new ArrayList<GprRoleModule>();
-		ArrayList<GprRoleDomain> gprRoleDomainList = new ArrayList<GprRoleDomain>();
-		ArrayList<GprDomainUser> gprDomainUserList = new ArrayList<GprDomainUser>();
-
-		//插入角色功能模块关系表
-		if (StringUtils.isNotBlank(jsonData.getModuleIds())) {
-			String[] moduleIdArray = jsonData.getModuleIds().split(",");
-			for (String moduleId : moduleIdArray) {
-				GprRoleModule gprRoleModule = new GprRoleModule();
-				gprRoleModule.setRoleId(jsonData.getId());
-				gprRoleModule.setModuleId(moduleId);
-				gprRoleModule.setIsEnableCode(SymbolicConstant.DCODE_BOOLEAN_T);
-				gprRoleModuleList.add(gprRoleModule);
-
-			}
-		}
-		gprRoleModuleUntBll.add(gprRoleModuleList);
-		
-		//插入角色用户关系
-		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
-			String[] moduleIdArray = jsonData.getDomainIds().split(",");
-			for (String domainId : moduleIdArray) {
-				GprRoleDomain gprRoleDomain = new GprRoleDomain();
-				gprRoleDomain.setRoleId(jsonData.getId());
-				gprRoleDomain.setDomainId(domainId);
-				gprRoleDomain.setIsEnableCode(SymbolicConstant.DCODE_BOOLEAN_T);
-				gprRoleDomainList.add(gprRoleDomain);
-
-			}
-		}
-		gprRoleDomainUntBll.add(gprRoleDomainList);
-
-		//插入用户应用领域关系，先 获取这个角色下的用户和应用领域，再插入
-		String sql = String.format(SymbolicConstant.SQL_SELECT_USER_DOMAIN_BY_ROLE, jsonData.getId());
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("Sql", sql);
-		ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
-		List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
-		for (Map<String, Object> domainId : domainIdList) {
-			GprDomainUser gprDomainUser = new GprDomainUser();
-			gprDomainUser.setDomainId(domainId.get("domain_id").toString());
-			gprDomainUser.setUserId(domainId.get("user_id").toString());
-			gprDomainUserList.add(gprDomainUser);
-		}
-
-			gprDomainUserUntBll.add(gprDomainUserList);
-		
-		
 		return result;
 	}
 
@@ -211,6 +161,26 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	@RequestMapping(value = "/updateList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateList(@RequestBody GpRoleParameter.UpdateList jsonData) {
 		ResultModel result = gpRoleUntBll.updateList(jsonData);
+
+		return result;
+	}
+
+	@ApiOperation(value = "删除应用功能权限", notes = "删除功能权限")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
+	@RequestMapping(value = "/deleteModuleAuthority", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel deleteModuleAuthority(@RequestBody GprRoleModuleParameter.DeleteByCompositeIdList jsonData) {
+		ResultModel result = gprRoleModuleUntBll.deleteByCompositeIdList(jsonData.getEntityList());
+
+		return result;
+	}
+
+	@ApiOperation(value = "查询功能权限", notes = "查询某一角色的功能权限")
+	@ApiImplicitParam(paramType = "path", name = "roleId", value = "角色ID", required = true, dataType = "String")
+	@RequestMapping(value = "/getListByRoleId/{roleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getListByRoleId(@PathVariable("roleId") String roleId) {
+		ResultModel result = gprRoleModuleUntBll.getListByRoleId(roleId);
+		List<GprRoleInterface> roleInterfaceList = (List<GprRoleInterface>) result.getData();
+		result.setData(roleInterfaceList.stream().filter(gprRoleInterface -> gprRoleInterface.getIsEnableCode() == SymbolicConstant.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
 
 		return result;
 	}
@@ -280,7 +250,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer(SymbolicConstant.SQL_SELECT_ROLE_GET_LIST);
-	
+
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 

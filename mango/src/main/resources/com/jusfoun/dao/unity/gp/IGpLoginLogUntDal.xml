@@ -204,7 +204,29 @@
 		<include refid="Base_Column_List" />
 		from gp_login_log where user_id = #{userId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gp_login_log
+		where 1=1
 
+   and domain_id in
+		<foreach collection="list" item="gpLoginLog" index="index" open="(" close=")" separator=",">
+				#{gpLoginLog.domainId,jdbcType=VARCHAR}
+		</foreach>
+   and user_id in
+		<foreach collection="list" item="gpLoginLog" index="index" open="(" close=")" separator=",">
+				#{gpLoginLog.userId,jdbcType=VARCHAR}
+		</foreach>
+   and login_log_id in
+		<foreach collection="list" item="gpLoginLog" index="index" open="(" close=")" separator=",">
+				#{gpLoginLog.loginLogId,jdbcType=VARCHAR}
+		</foreach>
+   and id in
+		<foreach collection="list" item="gpLoginLog" index="index" open="(" close=")" separator=",">
+				#{gpLoginLog.id,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_login_log
@@ -214,26 +236,19 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpLoginLog" >
     update gp_login_log
     <set >
-                  <if test="browser != null  and browser != '' " >
-                     browser = #{browser,jdbcType=VARCHAR},
-                  </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
                   </if>
-                  <if test="duration != null ">
-                     duration = #{duration,jdbcType=INTEGER},
+                  <if test="userId != null  and userId != '' " >
+                     user_id = #{userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="ip != null  and ip != '' " >
-                     ip = #{ip,jdbcType=VARCHAR},
-                  </if>
-                  <if test="ipAddress != null  and ipAddress != '' " >
-                     ip_address = #{ipAddress,jdbcType=VARCHAR},
-                  </if>
-                  <if test="isSuccessCode != null ">
-                     is_success_code = #{isSuccessCode,jdbcType=TINYINT},
+                  <if test="userName != null  and userName != '' " >
+                     user_name = #{userName,jdbcType=VARCHAR},
                   </if>
                   <if test="loginTime != null ">
                      login_time = #{loginTime,jdbcType=TIMESTAMP},
@@ -244,20 +259,29 @@
                   <if test="logoutTypeCode != null ">
                      logout_type_code = #{logoutTypeCode,jdbcType=TINYINT},
                   </if>
-                  <if test="os != null  and os != '' " >
-                     os = #{os,jdbcType=VARCHAR},
+                  <if test="duration != null ">
+                     duration = #{duration,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
+                  <if test="ip != null  and ip != '' " >
+                     ip = #{ip,jdbcType=VARCHAR},
+                  </if>
+                  <if test="ipAddress != null  and ipAddress != '' " >
+                     ip_address = #{ipAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="browser != null  and browser != '' " >
+                     browser = #{browser,jdbcType=VARCHAR},
                   </if>
                   <if test="resolution != null  and resolution != '' " >
                      resolution = #{resolution,jdbcType=VARCHAR},
                   </if>
-                  <if test="userId != null  and userId != '' " >
-                     user_id = #{userId,jdbcType=VARCHAR},
+                  <if test="os != null  and os != '' " >
+                     os = #{os,jdbcType=VARCHAR},
                   </if>
-                  <if test="userName != null  and userName != '' " >
-                     user_name = #{userName,jdbcType=VARCHAR},
+                  <if test="isSuccessCode != null ">
+                     is_success_code = #{isSuccessCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -266,23 +290,14 @@
 <update id="updateList">
     update gp_login_log
     <set >
-                  <if test="t.browser != null  and t.browser != '' " >
-                     browser = #{t.browser,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.duration != null ">
-                     duration = #{t.duration,jdbcType=INTEGER},
+                  <if test="t.userId != null  and t.userId != '' " >
+                     user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.ip != null  and t.ip != '' " >
-                     ip = #{t.ip,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ipAddress != null  and t.ipAddress != '' " >
-                     ip_address = #{t.ipAddress,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isSuccessCode != null ">
-                     is_success_code = #{t.isSuccessCode,jdbcType=TINYINT},
+                  <if test="t.userName != null  and t.userName != '' " >
+                     user_name = #{t.userName,jdbcType=VARCHAR},
                   </if>
                   <if test="t.loginTime != null ">
                      login_time = #{t.loginTime,jdbcType=TIMESTAMP},
@@ -293,20 +308,29 @@
                   <if test="t.logoutTypeCode != null ">
                      logout_type_code = #{t.logoutTypeCode,jdbcType=TINYINT},
                   </if>
-                  <if test="t.os != null  and t.os != '' " >
-                     os = #{t.os,jdbcType=VARCHAR},
+                  <if test="t.duration != null ">
+                     duration = #{t.duration,jdbcType=INTEGER},
                   </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
+                  <if test="t.ip != null  and t.ip != '' " >
+                     ip = #{t.ip,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.ipAddress != null  and t.ipAddress != '' " >
+                     ip_address = #{t.ipAddress,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.browser != null  and t.browser != '' " >
+                     browser = #{t.browser,jdbcType=VARCHAR},
                   </if>
                   <if test="t.resolution != null  and t.resolution != '' " >
                      resolution = #{t.resolution,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.userId != null  and t.userId != '' " >
-                     user_id = #{t.userId,jdbcType=VARCHAR},
+                  <if test="t.os != null  and t.os != '' " >
+                     os = #{t.os,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.userName != null  and t.userName != '' " >
-                     user_name = #{t.userName,jdbcType=VARCHAR},
+                  <if test="t.isSuccessCode != null ">
+                     is_success_code = #{t.isSuccessCode,jdbcType=TINYINT},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -320,17 +344,6 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_login_log
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="browser =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.browser != null and gpLoginLog.browser  != ''  and gpLoginLog.browser  != '-1' ">
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.browser,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpLoginLog.browser != null  and gpLoginLog.browser  == '-1' ">
-                     when id=#{gpLoginLog.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
                   <if test="gpLoginLog.domainId != null and gpLoginLog.domainId  != ''  and gpLoginLog.domainId  != '-1' ">
@@ -340,6 +353,49 @@
                      when id=#{gpLoginLog.id} then null
                   </if>
                   
+              </foreach>
+         </trim>
+         <trim prefix="user_id =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.userId != null and gpLoginLog.userId  != ''  and gpLoginLog.userId  != '-1' ">
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.userId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpLoginLog.userId != null  and gpLoginLog.userId  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="user_name =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.userName != null and gpLoginLog.userName  != ''  and gpLoginLog.userName  != '-1' ">
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.userName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpLoginLog.userName != null  and gpLoginLog.userName  == '-1' ">
+                     when id=#{gpLoginLog.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="login_time =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.loginTime != null " >
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.loginTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="logout_time =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.logoutTime != null " >
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.logoutTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="logout_type_code =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.logoutTypeCode != null " >
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.logoutTypeCode,jdbcType=TINYINT}
+                  </if>
               </foreach>
          </trim>
          <trim prefix="duration =case" suffix="end,">
@@ -371,51 +427,12 @@
                   
               </foreach>
          </trim>
-         <trim prefix="is_success_code =case" suffix="end,">
+         <trim prefix="browser =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.isSuccessCode != null " >
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.isSuccessCode,jdbcType=TINYINT}
+                  <if test="gpLoginLog.browser != null and gpLoginLog.browser  != ''  and gpLoginLog.browser  != '-1' ">
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.browser,jdbcType=VARCHAR}
                   </if>
-              </foreach>
-         </trim>
-         <trim prefix="login_time =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.loginTime != null " >
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.loginTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="logout_time =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.logoutTime != null " >
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.logoutTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="logout_type_code =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.logoutTypeCode != null " >
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.logoutTypeCode,jdbcType=TINYINT}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="os =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.os != null and gpLoginLog.os  != ''  and gpLoginLog.os  != '-1' ">
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.os,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpLoginLog.os != null  and gpLoginLog.os  == '-1' ">
-                     when id=#{gpLoginLog.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
-         <trim prefix="remark =case" suffix="end,">
-              <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.remark != null and gpLoginLog.remark  != ''  and gpLoginLog.remark  != '-1' ">
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.remark,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpLoginLog.remark != null  and gpLoginLog.remark  == '-1' ">
+                  <if test="gpLoginLog.browser != null  and gpLoginLog.browser  == '-1' ">
                      when id=#{gpLoginLog.id} then null
                   </if>
                   
@@ -432,23 +449,30 @@
                   
               </foreach>
          </trim>
-         <trim prefix="user_id =case" suffix="end,">
+         <trim prefix="os =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.userId != null and gpLoginLog.userId  != ''  and gpLoginLog.userId  != '-1' ">
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.userId,jdbcType=VARCHAR}
+                  <if test="gpLoginLog.os != null and gpLoginLog.os  != ''  and gpLoginLog.os  != '-1' ">
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.os,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpLoginLog.userId != null  and gpLoginLog.userId  == '-1' ">
+                  <if test="gpLoginLog.os != null  and gpLoginLog.os  == '-1' ">
                      when id=#{gpLoginLog.id} then null
                   </if>
                   
               </foreach>
          </trim>
-         <trim prefix="user_name =case" suffix="end,">
+         <trim prefix="is_success_code =case" suffix="end,">
               <foreach collection="list" item="gpLoginLog" index="index">
-                  <if test="gpLoginLog.userName != null and gpLoginLog.userName  != ''  and gpLoginLog.userName  != '-1' ">
-                     when id=#{gpLoginLog.id} then #{gpLoginLog.userName,jdbcType=VARCHAR}
+                  <if test="gpLoginLog.isSuccessCode != null " >
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.isSuccessCode,jdbcType=TINYINT}
                   </if>
-                  <if test="gpLoginLog.userName != null  and gpLoginLog.userName  == '-1' ">
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpLoginLog" index="index">
+                  <if test="gpLoginLog.remark != null and gpLoginLog.remark  != ''  and gpLoginLog.remark  != '-1' ">
+                     when id=#{gpLoginLog.id} then #{gpLoginLog.remark,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpLoginLog.remark != null  and gpLoginLog.remark  == '-1' ">
                      when id=#{gpLoginLog.id} then null
                   </if>
                   
@@ -466,44 +490,35 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_login_log
         <trim prefix="(" suffix=")" suffixOverrides="," >
-browser,
-domain_id,
-duration,
 id,
-ip,
-ip_address,
-is_success_code,
+domain_id,
+user_id,
+user_name,
 login_time,
 logout_time,
 logout_type_code,
-os,
-remark,
+duration,
+ip,
+ip_address,
+browser,
 resolution,
-user_id,
-user_name,
+os,
+is_success_code,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="gpLoginLog" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                     #{gpLoginLog.browser ,jdbcType=VARCHAR},
-                  
+              #{gpLoginLog.id ,jdbcType=VARCHAR},
                   
                      #{gpLoginLog.domainId ,jdbcType=VARCHAR},
                   
                   
-                    #{gpLoginLog.duration,jdbcType=INTEGER},
-            
-              #{gpLoginLog.id ,jdbcType=VARCHAR},
-                  
-                     #{gpLoginLog.ip ,jdbcType=VARCHAR},
+                     #{gpLoginLog.userId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpLoginLog.ipAddress ,jdbcType=VARCHAR},
+                     #{gpLoginLog.userName ,jdbcType=VARCHAR},
                   
-                  
-                    #{gpLoginLog.isSuccessCode,jdbcType=TINYINT},
-            
                   
                     #{gpLoginLog.loginTime,jdbcType=TIMESTAMP},
             
@@ -514,19 +529,28 @@ user_name,
                     #{gpLoginLog.logoutTypeCode,jdbcType=TINYINT},
             
                   
-                     #{gpLoginLog.os ,jdbcType=VARCHAR},
+                    #{gpLoginLog.duration,jdbcType=INTEGER},
+            
+                  
+                     #{gpLoginLog.ip ,jdbcType=VARCHAR},
                   
                   
-                     #{gpLoginLog.remark ,jdbcType=VARCHAR},
+                     #{gpLoginLog.ipAddress ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpLoginLog.browser ,jdbcType=VARCHAR},
                   
                   
                      #{gpLoginLog.resolution ,jdbcType=VARCHAR},
                   
                   
-                     #{gpLoginLog.userId ,jdbcType=VARCHAR},
+                     #{gpLoginLog.os ,jdbcType=VARCHAR},
                   
                   
-                     #{gpLoginLog.userName ,jdbcType=VARCHAR},
+                    #{gpLoginLog.isSuccessCode,jdbcType=TINYINT},
+            
+                  
+                     #{gpLoginLog.remark ,jdbcType=VARCHAR},
                   
       </trim>
     </foreach>

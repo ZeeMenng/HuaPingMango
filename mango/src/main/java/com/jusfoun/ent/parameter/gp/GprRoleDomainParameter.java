@@ -3,6 +3,7 @@ package com.jusfoun.ent.parameter.gp;
 import java.util.*;
 
 import com.jusfoun.ent.extend.gp.GprRoleDomain;
+import com.jusfoun.ent.extend.gp.GprRoleModule;
 import com.jusfoun.ent.generate.gp.GprRoleDomainGenEnt;
 import com.jusfoun.ent.parameter.base.BaseParameter;
 
@@ -35,7 +36,67 @@ public class GprRoleDomainParameter extends BaseParameter {
 		}
 
 	}
+	
+	
 
+	@ApiModel(value = "GprRoleDomainAddByCompositeIdList", description = "批量添加GprRoleDomain所需要复合主键参数")
+	public static class AddByCompositeIdList {
+
+		@ApiModelProperty(value = "要添加的记录列表 ", required = false)
+		private ArrayList<GprRoleDomain> gprRoleDomainEntityList = new ArrayList<GprRoleDomain>();
+	
+		@ApiModelProperty(value = "要添加的记录列表 ", required = false)
+		private ArrayList<GprRoleModule> gprRoleModuleEntityList = new ArrayList<GprRoleModule>();
+
+		public ArrayList<GprRoleDomain> getGprRoleDomainEntityList() {
+			return gprRoleDomainEntityList;
+		}
+
+		public void setGprRoleDomainEntityList(ArrayList<GprRoleDomain> gprRoleDomainEntityList) {
+			this.gprRoleDomainEntityList = gprRoleDomainEntityList;
+		}
+
+		public ArrayList<GprRoleModule> getGprRoleModuleEntityList() {
+			return gprRoleModuleEntityList;
+		}
+
+		public void setGprRoleModuleEntityList(ArrayList<GprRoleModule> gprRoleModuleEntityList) {
+			this.gprRoleModuleEntityList = gprRoleModuleEntityList;
+		}
+
+	
+
+	}
+	
+	@ApiModel(value = "GprRoleDomainDeleteByCompositeIdList", description = "批量删除GprRoleDomain所需要复合主键参数")
+	public static class DeleteByCompositeIdList {
+
+		@ApiModelProperty(value = "要删除的记录列表 ", required = false)
+		private ArrayList<GprRoleDomain> gprRoleDomainEntityList = new ArrayList<GprRoleDomain>();
+	
+		@ApiModelProperty(value = "要删除的记录列表 ", required = false)
+		private ArrayList<GprRoleModule> gprRoleModuleEntityList = new ArrayList<GprRoleModule>();
+
+		public ArrayList<GprRoleDomain> getGprRoleDomainEntityList() {
+			return gprRoleDomainEntityList;
+		}
+
+		public void setGprRoleDomainEntityList(ArrayList<GprRoleDomain> gprRoleDomainEntityList) {
+			this.gprRoleDomainEntityList = gprRoleDomainEntityList;
+		}
+
+		public ArrayList<GprRoleModule> getGprRoleModuleEntityList() {
+			return gprRoleModuleEntityList;
+		}
+
+		public void setGprRoleModuleEntityList(ArrayList<GprRoleModule> gprRoleModuleEntityList) {
+			this.gprRoleModuleEntityList = gprRoleModuleEntityList;
+		}
+
+	
+
+	}
+	
 	@ApiModel(value = "GprRoleDomainDeleteByIdList", description = "批量删除GprRoleDomain所需参数")
 	public static class DeleteByIdList extends BaseParameter.BaseParamDeleteByIdList {
 

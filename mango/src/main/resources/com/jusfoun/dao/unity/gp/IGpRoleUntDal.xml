@@ -79,7 +79,7 @@
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_role
@@ -89,17 +89,19 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpRole" >
     update gp_role
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -111,14 +113,14 @@
 <update id="updateList">
     update gp_role
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="t.name != null  and t.name != '' " >
                      name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -135,13 +137,6 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_role
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpRole" index="index">
-                  <if test="gpRole.addTime != null " >
-                     when id=#{gpRole.id} then #{gpRole.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpRole" index="index">
                   <if test="gpRole.name != null and gpRole.name  != ''  and gpRole.name  != '-1' ">
@@ -164,6 +159,13 @@
                   
               </foreach>
          </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpRole" index="index">
+                  <if test="gpRole.addTime != null " >
+                     when id=#{gpRole.id} then #{gpRole.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="update_time =case" suffix="end,">
               <foreach collection="list" item="gpRole" index="index">
                   <if test="gpRole.updateTime != null " >
@@ -183,18 +185,15 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
 id,
 name,
 remark,
+add_time,
 update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpRole" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpRole.addTime,jdbcType=TIMESTAMP},
-            
               #{gpRole.id ,jdbcType=VARCHAR},
                   
                      #{gpRole.name ,jdbcType=VARCHAR},
@@ -202,6 +201,9 @@ update_time,
                   
                      #{gpRole.remark ,jdbcType=VARCHAR},
                   
+                  
+                    #{gpRole.addTime,jdbcType=TIMESTAMP},
+            
                   
                     #{gpRole.updateTime,jdbcType=TIMESTAMP},
             

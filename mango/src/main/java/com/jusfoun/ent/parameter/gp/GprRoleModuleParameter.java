@@ -2,6 +2,7 @@ package com.jusfoun.ent.parameter.gp;
 
 import java.util.*;
 
+import com.jusfoun.ent.extend.gp.GprRoleInterface;
 import com.jusfoun.ent.extend.gp.GprRoleModule;
 import com.jusfoun.ent.generate.gp.GprRoleModuleGenEnt;
 import com.jusfoun.ent.parameter.base.BaseParameter;
@@ -41,6 +42,23 @@ public class GprRoleModuleParameter extends BaseParameter {
 
 	}
 
+
+	@ApiModel(value = "GprRoleModuleDeleteByCompositeIdList", description = "批量删除GprRoleModule所复合主键参数")
+	public static class DeleteByCompositeIdList {
+
+		@ApiModelProperty(value = "要删除的记录列表 ", required = false)
+		private ArrayList<GprRoleModule> entityList = new ArrayList<GprRoleModule>();
+
+		public ArrayList<GprRoleModule> getEntityList() {
+			return entityList;
+		}
+
+		public void setEntityList(ArrayList<GprRoleModule> entityList) {
+			this.entityList = entityList;
+		}
+
+	}
+	
 	@ApiModel(value = "GprRoleModuleUpdateList", description = "批量修改GprRoleModule所需参数")
 	public static class UpdateList extends BaseParameter.BaseParamUpdateList {
 

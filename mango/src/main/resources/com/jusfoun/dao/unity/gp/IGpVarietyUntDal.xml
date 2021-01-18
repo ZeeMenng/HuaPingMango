@@ -166,7 +166,7 @@
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_variety
@@ -176,35 +176,22 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpVariety" >
     update gp_variety
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="addUserId != null  and addUserId != '' " >
-                     add_user_id = #{addUserId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="cycleTime != null ">
-                     cycle_time = #{cycleTime,jdbcType=INTEGER},
-                  </if>
-                  <if test="describes != null  and describes != '' " >
-                     describes = #{describes,jdbcType=VARCHAR},
-                  </if>
                   <if test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="parentId != null  and parentId != '' " >
                      parent_id = #{parentId,jdbcType=VARCHAR},
                   </if>
-                  <if test="priority != null ">
-                     priority = #{priority,jdbcType=INTEGER},
-                  </if>
                   <if test="relationId != null  and relationId != '' " >
                      relation_id = #{relationId,jdbcType=VARCHAR},
                   </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
+                  <if test="describes != null  and describes != '' " >
+                     describes = #{describes,jdbcType=VARCHAR},
                   </if>
                   <if test="resourceId != null  and resourceId != '' " >
                      resource_id = #{resourceId,jdbcType=VARCHAR},
@@ -218,6 +205,21 @@
                   <if test="stutasText != null  and stutasText != '' " >
                      stutas_text = #{stutasText,jdbcType=VARCHAR},
                   </if>
+                  <if test="cycleTime != null ">
+                     cycle_time = #{cycleTime,jdbcType=INTEGER},
+                  </if>
+                  <if test="priority != null ">
+                     priority = #{priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addUserId != null  and addUserId != '' " >
+                     add_user_id = #{addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
                   </if>
@@ -228,32 +230,17 @@
 <update id="updateList">
     update gp_variety
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.addUserId != null  and t.addUserId != '' " >
-                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cycleTime != null ">
-                     cycle_time = #{t.cycleTime,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.describes != null  and t.describes != '' " >
-                     describes = #{t.describes,jdbcType=VARCHAR},
-                  </if>
                   <if test="t.name != null  and t.name != '' " >
                      name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.parentId != null  and t.parentId != '' " >
                      parent_id = #{t.parentId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.priority != null ">
-                     priority = #{t.priority,jdbcType=INTEGER},
-                  </if>
                   <if test="t.relationId != null  and t.relationId != '' " >
                      relation_id = #{t.relationId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
+                  <if test="t.describes != null  and t.describes != '' " >
+                     describes = #{t.describes,jdbcType=VARCHAR},
                   </if>
                   <if test="t.resourceId != null  and t.resourceId != '' " >
                      resource_id = #{t.resourceId,jdbcType=VARCHAR},
@@ -266,6 +253,21 @@
                   </if>
                   <if test="t.stutasText != null  and t.stutasText != '' " >
                      stutas_text = #{t.stutasText,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.cycleTime != null ">
+                     cycle_time = #{t.cycleTime,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.priority != null ">
+                     priority = #{t.priority,jdbcType=INTEGER},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addUserId != null  and t.addUserId != '' " >
+                     add_user_id = #{t.addUserId,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -282,42 +284,6 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_variety
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.addTime != null " >
-                     when id=#{gpVariety.id} then #{gpVariety.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="add_user_id =case" suffix="end,">
-              <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.addUserId != null and gpVariety.addUserId  != ''  and gpVariety.addUserId  != '-1' ">
-                     when id=#{gpVariety.id} then #{gpVariety.addUserId,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpVariety.addUserId != null  and gpVariety.addUserId  == '-1' ">
-                     when id=#{gpVariety.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
-         <trim prefix="cycle_time =case" suffix="end,">
-              <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.cycleTime != null " >
-                     when id=#{gpVariety.id} then #{gpVariety.cycleTime,jdbcType=INTEGER}
-                  </if>
-              </foreach>
-         </trim>
-         <trim prefix="describes =case" suffix="end,">
-              <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.describes != null and gpVariety.describes  != ''  and gpVariety.describes  != '-1' ">
-                     when id=#{gpVariety.id} then #{gpVariety.describes,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpVariety.describes != null  and gpVariety.describes  == '-1' ">
-                     when id=#{gpVariety.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
                   <if test="gpVariety.name != null and gpVariety.name  != ''  and gpVariety.name  != '-1' ">
@@ -340,13 +306,6 @@
                   
               </foreach>
          </trim>
-         <trim prefix="priority =case" suffix="end,">
-              <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.priority != null " >
-                     when id=#{gpVariety.id} then #{gpVariety.priority,jdbcType=INTEGER}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="relation_id =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
                   <if test="gpVariety.relationId != null and gpVariety.relationId  != ''  and gpVariety.relationId  != '-1' ">
@@ -358,12 +317,12 @@
                   
               </foreach>
          </trim>
-         <trim prefix="remark =case" suffix="end,">
+         <trim prefix="describes =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
-                  <if test="gpVariety.remark != null and gpVariety.remark  != ''  and gpVariety.remark  != '-1' ">
-                     when id=#{gpVariety.id} then #{gpVariety.remark,jdbcType=VARCHAR}
+                  <if test="gpVariety.describes != null and gpVariety.describes  != ''  and gpVariety.describes  != '-1' ">
+                     when id=#{gpVariety.id} then #{gpVariety.describes,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpVariety.remark != null  and gpVariety.remark  == '-1' ">
+                  <if test="gpVariety.describes != null  and gpVariety.describes  == '-1' ">
                      when id=#{gpVariety.id} then null
                   </if>
                   
@@ -409,6 +368,49 @@
                   
               </foreach>
          </trim>
+         <trim prefix="cycle_time =case" suffix="end,">
+              <foreach collection="list" item="gpVariety" index="index">
+                  <if test="gpVariety.cycleTime != null " >
+                     when id=#{gpVariety.id} then #{gpVariety.cycleTime,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="priority =case" suffix="end,">
+              <foreach collection="list" item="gpVariety" index="index">
+                  <if test="gpVariety.priority != null " >
+                     when id=#{gpVariety.id} then #{gpVariety.priority,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpVariety" index="index">
+                  <if test="gpVariety.remark != null and gpVariety.remark  != ''  and gpVariety.remark  != '-1' ">
+                     when id=#{gpVariety.id} then #{gpVariety.remark,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpVariety.remark != null  and gpVariety.remark  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="add_user_id =case" suffix="end,">
+              <foreach collection="list" item="gpVariety" index="index">
+                  <if test="gpVariety.addUserId != null and gpVariety.addUserId  != ''  and gpVariety.addUserId  != '-1' ">
+                     when id=#{gpVariety.id} then #{gpVariety.addUserId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpVariety.addUserId != null  and gpVariety.addUserId  == '-1' ">
+                     when id=#{gpVariety.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpVariety" index="index">
+                  <if test="gpVariety.addTime != null " >
+                     when id=#{gpVariety.id} then #{gpVariety.addTime,jdbcType=TIMESTAMP}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="update_time =case" suffix="end,">
               <foreach collection="list" item="gpVariety" index="index">
                   <if test="gpVariety.updateTime != null " >
@@ -428,37 +430,25 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_variety
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
-add_user_id,
-cycle_time,
-describes,
 id,
 name,
 parent_id,
-priority,
 relation_id,
-remark,
+describes,
 resource_id,
 resource_url,
 stutas_code,
 stutas_text,
+cycle_time,
+priority,
+remark,
+add_user_id,
+add_time,
 update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpVariety" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpVariety.addTime,jdbcType=TIMESTAMP},
-            
-                  
-                     #{gpVariety.addUserId ,jdbcType=VARCHAR},
-                  
-                  
-                    #{gpVariety.cycleTime,jdbcType=INTEGER},
-            
-                  
-                     #{gpVariety.describes ,jdbcType=VARCHAR},
-                  
               #{gpVariety.id ,jdbcType=VARCHAR},
                   
                      #{gpVariety.name ,jdbcType=VARCHAR},
@@ -467,13 +457,10 @@ update_time,
                      #{gpVariety.parentId ,jdbcType=VARCHAR},
                   
                   
-                    #{gpVariety.priority,jdbcType=INTEGER},
-            
-                  
                      #{gpVariety.relationId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpVariety.remark ,jdbcType=VARCHAR},
+                     #{gpVariety.describes ,jdbcType=VARCHAR},
                   
                   
                      #{gpVariety.resourceId ,jdbcType=VARCHAR},
@@ -487,6 +474,21 @@ update_time,
                   
                      #{gpVariety.stutasText ,jdbcType=VARCHAR},
                   
+                  
+                    #{gpVariety.cycleTime,jdbcType=INTEGER},
+            
+                  
+                    #{gpVariety.priority,jdbcType=INTEGER},
+            
+                  
+                     #{gpVariety.remark ,jdbcType=VARCHAR},
+                  
+                  
+                     #{gpVariety.addUserId ,jdbcType=VARCHAR},
+                  
+                  
+                    #{gpVariety.addTime,jdbcType=TIMESTAMP},
+            
                   
                     #{gpVariety.updateTime,jdbcType=TIMESTAMP},
             

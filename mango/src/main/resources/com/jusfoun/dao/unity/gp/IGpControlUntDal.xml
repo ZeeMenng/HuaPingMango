@@ -153,7 +153,25 @@
 		<include refid="Base_Column_List" />
 		from gp_control where page_id = #{pageId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gp_control
+		where 1=1
 
+   and domain_id in
+		<foreach collection="list" item="gpControl" index="index" open="(" close=")" separator=",">
+				#{gpControl.domainId,jdbcType=VARCHAR}
+		</foreach>
+   and page_id in
+		<foreach collection="list" item="gpControl" index="index" open="(" close=")" separator=",">
+				#{gpControl.pageId,jdbcType=VARCHAR}
+		</foreach>
+   and control_id in
+		<foreach collection="list" item="gpControl" index="index" open="(" close=")" separator=",">
+				#{gpControl.controlId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_control
@@ -163,17 +181,13 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpControl" >
     update gp_control
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
-                     name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="pageId != null  and pageId != '' " >
                      page_id = #{pageId,jdbcType=VARCHAR},
@@ -181,11 +195,17 @@
                   <if test="pageUrl != null  and pageUrl != '' " >
                      page_url = #{pageUrl,jdbcType=VARCHAR},
                   </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -197,14 +217,8 @@
 <update id="updateList">
     update gp_control
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name != null  and t.name != '' " >
-                     name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.pageId != null  and t.pageId != '' " >
                      page_id = #{t.pageId,jdbcType=VARCHAR},
@@ -212,11 +226,17 @@
                   <if test="t.pageUrl != null  and t.pageUrl != '' " >
                      page_url = #{t.pageUrl,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.serialNo != null  and t.serialNo != '' " >
                      serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -233,30 +253,12 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_control
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
-              <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.addTime != null " >
-                     when id=#{gpControl.id} then #{gpControl.addTime,jdbcType=TIMESTAMP}
-                  </if>
-              </foreach>
-         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
                   <if test="gpControl.domainId != null and gpControl.domainId  != ''  and gpControl.domainId  != '-1' ">
                      when id=#{gpControl.id} then #{gpControl.domainId,jdbcType=VARCHAR}
                   </if>
                   <if test="gpControl.domainId != null  and gpControl.domainId  == '-1' ">
-                     when id=#{gpControl.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
-         <trim prefix="name =case" suffix="end,">
-              <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.name != null and gpControl.name  != ''  and gpControl.name  != '-1' ">
-                     when id=#{gpControl.id} then #{gpControl.name,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpControl.name != null  and gpControl.name  == '-1' ">
                      when id=#{gpControl.id} then null
                   </if>
                   
@@ -284,12 +286,12 @@
                   
               </foreach>
          </trim>
-         <trim prefix="remark =case" suffix="end,">
+         <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpControl" index="index">
-                  <if test="gpControl.remark != null and gpControl.remark  != ''  and gpControl.remark  != '-1' ">
-                     when id=#{gpControl.id} then #{gpControl.remark,jdbcType=VARCHAR}
+                  <if test="gpControl.name != null and gpControl.name  != ''  and gpControl.name  != '-1' ">
+                     when id=#{gpControl.id} then #{gpControl.name,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpControl.remark != null  and gpControl.remark  == '-1' ">
+                  <if test="gpControl.name != null  and gpControl.name  == '-1' ">
                      when id=#{gpControl.id} then null
                   </if>
                   
@@ -304,6 +306,24 @@
                      when id=#{gpControl.id} then null
                   </if>
                   
+              </foreach>
+         </trim>
+         <trim prefix="remark =case" suffix="end,">
+              <foreach collection="list" item="gpControl" index="index">
+                  <if test="gpControl.remark != null and gpControl.remark  != ''  and gpControl.remark  != '-1' ">
+                     when id=#{gpControl.id} then #{gpControl.remark,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpControl.remark != null  and gpControl.remark  == '-1' ">
+                     when id=#{gpControl.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpControl" index="index">
+                  <if test="gpControl.addTime != null " >
+                     when id=#{gpControl.id} then #{gpControl.addTime,jdbcType=TIMESTAMP}
+                  </if>
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
@@ -325,28 +345,22 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_control
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
-domain_id,
 id,
-name,
+domain_id,
 page_id,
 page_url,
-remark,
+name,
 serial_no,
+remark,
+add_time,
 update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpControl" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpControl.addTime,jdbcType=TIMESTAMP},
-            
-                  
-                     #{gpControl.domainId ,jdbcType=VARCHAR},
-                  
               #{gpControl.id ,jdbcType=VARCHAR},
                   
-                     #{gpControl.name ,jdbcType=VARCHAR},
+                     #{gpControl.domainId ,jdbcType=VARCHAR},
                   
                   
                      #{gpControl.pageId ,jdbcType=VARCHAR},
@@ -355,11 +369,17 @@ update_time,
                      #{gpControl.pageUrl ,jdbcType=VARCHAR},
                   
                   
-                     #{gpControl.remark ,jdbcType=VARCHAR},
+                     #{gpControl.name ,jdbcType=VARCHAR},
                   
                   
                      #{gpControl.serialNo ,jdbcType=VARCHAR},
                   
+                  
+                     #{gpControl.remark ,jdbcType=VARCHAR},
+                  
+                  
+                    #{gpControl.addTime,jdbcType=TIMESTAMP},
+            
                   
                     #{gpControl.updateTime,jdbcType=TIMESTAMP},
             

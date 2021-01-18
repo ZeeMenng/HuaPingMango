@@ -1,36 +1,36 @@
 var selectRows = new Array();
+//树形菜单是否实施变化 
+var IS_IMMEDIATE = true;
 var txtActive;
 // 所有DOM元素加载之前执行登录校验
-(function() {
+(function () {
 	if (!validateLogin()) {
 		return false;
 	}
 })(jQuery);
 // 验证插件中加入手机号校验功能
-jQuery.validator.addMethod("phone", function(value, element) {
+jQuery.validator.addMethod("phone", function (value, element) {
 	var length = value.length;
 	var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
 	return this.optional(element) || (length == 11 && mobile.test(value));
 }, "请填写正确的手机号码");
-$(document).ready(function() {
+$(document).ready(function () {
 	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
 		return true;
 	}
 	$("#batchEditButton").prop("class", "hidden");
 
-	
-	
 	// 注销按钮
-	$("#aLogout").click(function() {
+	$("#aLogout").click(function () {
 		var ajaxParamter = {
-			"url" : "/oauth/logout",
-			"data" : {},
-			"type" : "GET",
-			"async" : true,
-			"success" : function(resultData) {
+			"url": "/oauth/logout",
+			"data": {},
+			"type": "GET",
+			"async": true,
+			"success": function (resultData) {
 				if (!resultData["isSuccess"]) {
 					layer.alert("退出操作出错！" + resultData["resultMessage"], {
-						icon : 6
+						icon: 6
 					});
 					return false;
 				}
@@ -54,7 +54,7 @@ $(document).ready(function() {
 	var checked_count = 0;
 	var num = 0;
 	num = $("#contentTable input[name='childCheckbox']").length;
-	$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+	$("#contentTable input[name='childCheckbox']").each(function (i, n) {
 		var recordId = $(this).closest("tr").attr("id");
 		if ($(this).get(0).checked == true) {
 			checked_count++;
@@ -69,48 +69,48 @@ $(document).ready(function() {
 
 	if (jQuery().datepicker) {
 		$('.date-picker').datepicker({
-			language : 'zh-CN',
-			todayBtn : "linked",
-			autoclose : true,
-			rtl : App.isRTL(),
-			format : "yyyy-mm-dd",
-			fontAwesome : true,
-			orientation : "left",
-			todayHighlight : true,
+			language: 'zh-CN',
+			todayBtn: "linked",
+			autoclose: true,
+			rtl: App.isRTL(),
+			format: "yyyy-mm-dd",
+			fontAwesome: true,
+			orientation: "left",
+			todayHighlight: true,
 		});
 
 		initMessage();
 	}
 	if (jQuery().datetimepicker) {
 		$(".form-datetime").datetimepicker({
-			language : 'zh-CN',
-			format : "yyyy-mm-dd hh:ii P"
+			language: 'zh-CN',
+			format: "yyyy-mm-dd hh:ii P"
 
 		});
 	}
 	$(".form_datetime").datetimepicker({
-		language : 'zh-CN',
-		todayBtn : 1,
-		autoclose : true,
-		isRTL : App.isRTL(),
-		format : "yyyy-mm-dd hh:ii",
-		fontAwesome : true,
-		todayHighlight : true,
-		pickerPosition : (App.isRTL() ? "bottom-right" : "bottom-left")
+		language: 'zh-CN',
+		todayBtn: 1,
+		autoclose: true,
+		isRTL: App.isRTL(),
+		format: "yyyy-mm-dd hh:ii",
+		fontAwesome: true,
+		todayHighlight: true,
+		pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
 	});
 
 	initNavbar();
-	layui.use([ 'layer', 'form' ], function() {
+	layui.use(['layer', 'form'], function () {
 		var layer = layui.layer, form = layui.form;
 	});
 	initPageSizeSelect();
 	initLinkMenu();
 	initCheckbox();
 	// 左侧搜索匹配激活状态
-	$("body").on("keyup", ".searchInput", function(e) {
+	$("body").on("keyup", ".searchInput", function (e) {
 		var val = $(this).val();
 		var txts = $('.badge').prev('.title');
-		txts.each(function(i, v) {
+		txts.each(function (i, v) {
 			var valAll = $(v).text();
 			var liParent = $(v).parent().parent().parent().parent();
 			var liParent2 = $(v).parent().parent();
@@ -133,29 +133,29 @@ $(document).ready(function() {
 });
 
 function initPageSizeSelect() {
-	var selectData = [ {
-		value : 5,
-		text : 5
+	var selectData = [{
+		value: 5,
+		text: 5
 	}, {
-		value : 10,
-		text : 10
+		value: 10,
+		text: 10
 	}, {
-		value : 15,
-		text : 15
+		value: 15,
+		text: 15
 	}, {
-		value : 30,
-		text : 30
+		value: 30,
+		text: 30
 	}, {
-		value : 50,
-		text : 50
+		value: 50,
+		text: 50
 	},
-	// {
-	// value: 'All',
-	// text: '所有'
-	// }
+		// {
+		// value: 'All',
+		// text: '所有'
+		// }
 	];
 
-	$.each(selectData, function(i, n) {
+	$.each(selectData, function (i, n) {
 		$("#pageSizeSelect").append("<option value='" + n["value"] + "'>" + n["text"] + "</option>");
 	});
 
@@ -164,9 +164,8 @@ function initPageSizeSelect() {
 function initCheckbox() {
 
 	// 设置单条记录的checkbox单击事件
-	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
+	$("#contentTable").on("click", "input[name='childCheckbox']", function (event) {
 		var recordId = $(this).closest("tr").attr("id");
-
 		// 选中记录，则将记录添加到数组中
 		if ($(this).get(0).checked) {
 			if ($.inArray(recordId, selectRows) == -1)
@@ -177,26 +176,28 @@ function initCheckbox() {
 		}
 	});
 
-	$("#contentTable").on("click", "input[name='headerCheckbox']", function(event) {
+	$("#contentTable").on("click", "input[name='headerCheckbox']", function (event) {
 		if ($(this).get(0).checked) {
-			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+			$("#contentTable input[name='childCheckbox']").each(function (i, n) {
 				var recordId = $(this).closest("tr").attr("id");
 				$(this).get(0).checked = true;
-				if ($.inArray(recordId, selectRows) == -1)
-					selectRows.push(recordId);
-
+				if ($.inArray(recordId, selectRows) == -1){
+				selectRows.push(recordId);
+				}
 			});
 		} else {
-			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+			$("#contentTable input[name='childCheckbox']").each(function (i, n) {
 				var recordId = $(this).closest("tr").attr("id");
 				$(this).get(0).checked = false;
-				if ($.inArray(recordId, selectRows) != -1)
+				if ($.inArray(recordId, selectRows) != -1){
 					selectRows.splice($.inArray(recordId, selectRows), 1);
+				}
 			});
+			
 		}
 	});
 	// 增加非全选判断，非全选时父checkbox不选中
-	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
+	$("#contentTable").on("click", "input[name='childCheckbox']", function (event) {
 		/*
 		 * if ($("#contentTable input[name='headerCheckbox']").is(':checked')) {
 		 * $("#contentTable
@@ -205,7 +206,7 @@ function initCheckbox() {
 		var checked_count = 0;
 		var num = 0;
 		num = $("#contentTable input[name='childCheckbox']").length;
-		$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+		$("#contentTable input[name='childCheckbox']").each(function (i, n) {
 			var recordId = $(this).closest("tr").attr("id");
 			if ($(this).get(0).checked == true) {
 				checked_count++;
@@ -221,12 +222,12 @@ function initCheckbox() {
 }
 
 function initNavbar() {
-	$("#navbarIndexA").click(function() {
+	$("#navbarIndexA").click(function () {
 		window.location = GP_INDEX;
 		return false;
 	});
 
-	$("#navbarListA").click(function() {
+	$("#navbarListA").click(function () {
 		var href = window.location.href;
 
 		var beginIndex = href.lastIndexOf('/') + 1;
@@ -251,17 +252,17 @@ function initLinkMenu() {
 	var userInfo = JSON.parse(localStorage.getItem("token"));
 	var userName = userInfo.userName;
 	var ajaxParamter = {
-		"url" : RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
-		"type" : "GET",
-		"data" : "jsonData=" + encodeURIComponent(JSON.stringify({
-			"domainId" : DOMAIN_ID_GP
+		"url": RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
+		"type": "GET",
+		"data": "jsonData=" + encodeURIComponent(JSON.stringify({
+			"domainId": DOMAIN_ID_GP
 		})),
-		"async" : true,
-		"success" : function(result) {
+		"async": true,
+		"success": function (result) {
 			total = result.totalCount;
 			var data = result.data;
-			$.each(data, function(i, n) {
-				
+			$.each(data, function (i, n) {
+
 				if (n["level"] == "1") {
 					var menu = $("#firstLevelMenuLi").clone();
 					menu.attr("id", n["id"]);
@@ -273,7 +274,7 @@ function initLinkMenu() {
 
 			});
 
-			$.each(data, function(i, n) {
+			$.each(data, function (i, n) {
 				if (n["level"] == "2") {
 					{
 						var secondLevelMenu = $("#secondeLevelMenuLi").clone();
@@ -302,7 +303,7 @@ function initLinkMenu() {
 				}
 			});
 
-			$.each(data, function(i, n) {
+			$.each(data, function (i, n) {
 				if (n["level"] == "3") {
 					{
 						var thirdLevelMenu = $("#thirdLevelMenuLi").clone();
@@ -336,7 +337,7 @@ function initLinkMenu() {
 						}
 
 						/** * 左侧导航菜单隐藏事件 */
-						$("#linkMenuUl .sidebar-toggler").click(function() {
+						$("#linkMenuUl .sidebar-toggler").click(function () {
 							if ($("#linkMenuUl").hasClass("page-sidebar-menu-closed")) {
 								$(".search-wrap").show();
 							} else {
@@ -373,20 +374,20 @@ function initLinkMenu() {
  */
 function initQueryForm(pageParam, ajaxParam, operationParam) {
 	$("#" + pageParam.formId).unbind("submit");
-	$("#" + pageParam.formId).submit(function(e) {
+	$("#" + pageParam.formId).submit(function (e) {
 		e.preventDefault();
 		// 执行查询动作要重新初始化pageIndex和pageSize
 		ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
 		ajaxParam.submitData.pageSize = DEFAULT_PAGE_SIZE;
 		return executeQuery(pageParam, ajaxParam, operationParam);
 	});
-	$("#resetButton").click(function(e) {
+	$("#resetButton").click(function (e) {
 		e.preventDefault();
 		$("#" + pageParam.formId)[0].reset();
 		$("input[type='hidden']").val("");
 		$(".selectpicker").selectpicker({
-			noneSelectedText : '请选择，可多选……',
-			width : ''
+			noneSelectedText: '请选择，可多选……',
+			width: ''
 		});
 		$(".selectpicker").selectpicker("refresh");
 		selectRows = new Array();
@@ -398,7 +399,7 @@ function initQueryForm(pageParam, ajaxParam, operationParam) {
 	$("#" + pageParam.formId).submit();
 }
 
-$("#submitButton").click(function(e) {
+$("#submitButton").click(function (e) {
 	initQueryForm(pageParam, ajaxParam, operationParam);
 });
 
@@ -416,7 +417,7 @@ function executeQuery(pageParam, ajaxParam, operationParam) {
 	var formData = $("#" + pageParam.formId).serializeArray();
 	// 将查询条件和其它请求参数组装
 	if (ajaxParam.submitData != null)
-		$.each(formData, function(i, n) {
+		$.each(formData, function (i, n) {
 			ajaxParam.submitData.entityRelated[formData[i].name] = formData[i].value;
 		});
 	initNewGrid(pageParam, ajaxParam, operationParam);
@@ -456,10 +457,10 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
 
 	var orderListArray = new Array();
 	$("#" + pageParam.tableId + " th").unbind("click");
-	$("#" + pageParam.tableId + " th:gt(1):not(:last)").click(function() {
+	$("#" + pageParam.tableId + " th:gt(1):not(:last)").click(function () {
 		var orderColumn = {
-			"isASC" : null,
-			"columnName" : $(this).attr("columnName")
+			"isASC": null,
+			"columnName": $(this).attr("columnName")
 		};
 
 		if ($(this).attr("class") == "sorting") {
@@ -480,7 +481,7 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
 		if (orderColumn.isASC != null)
 			orderListArray = orderListArray.prepend(orderColumn);
 
-		$("#" + pageParam.tableId + " th").each(function() {
+		$("#" + pageParam.tableId + " th").each(function () {
 			if ($(this).attr("sortBy") == null || $(this).attr("sortBy") == '')
 				return true;
 
@@ -521,19 +522,19 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 	var pageCount = 0;
 
 	ajaxParam.submitData.page = {
-		"pageIndex" : pageIndex,
-		"pageSize" : pageSize
+		"pageIndex": pageIndex,
+		"pageSize": pageSize
 	};
 
 	var submitDataString = JSON.stringify(ajaxParam.submitData);
 
 	// 此处应该是同步请求才精确，否则无法保证pageCountText始终有正确的值，这个稍后改
 	var ajaxParamter = {
-		"url" : ajaxParam.url,
-		"type" : ajaxParam.type,
-		"data" : "jsonData=" + submitDataString,
-		"async" : true,
-		"success" : function(message) {
+		"url": ajaxParam.url,
+		"type": ajaxParam.type,
+		"data": "jsonData=" + submitDataString,
+		"async": true,
+		"success": function (message) {
 			total = message.totalCount;
 			var data = message.data;
 			pageIndex = parseInt(pageIndex);
@@ -555,7 +556,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 				}
 			}
 			$("#" + pageParam.tableId).append("<tbody");
-			$.each(data, function(a, n) {
+			$.each(data, function (a, n) {
 
 				var row = "<tr> class='odd gradeX'";
 				row += "<td><label class='mt-checkbox mt-checkbox-single mt-checkbox-outline'>";
@@ -595,7 +596,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 				// 第一次遍历，插入操作按钮
 				if (operationParam != null && operationParam.length != 0) {
 					row += "<td>&nbsp;&nbsp;"
-					$.each(operationParam, function(b, m) {
+					$.each(operationParam, function (b, m) {
 						// 如果visibleFunction方法参数返回的是false，则不显示操作按钮
 						if (m.visibleFunction != null)
 							if (!m.visibleFunction(n))
@@ -621,7 +622,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 					// 兼容之前的获取记录主键写法
 					n.recordId = n["id"];
 					// 第二次遍历，给操作按钮添加相应事件，把整条记录的所有参数返回
-					$.each(operationParam, function(b, m) {
+					$.each(operationParam, function (b, m) {
 						row.find("#" + m.operationText).unbind("click");
 						row.find("#" + m.operationText).click(n, m.clickFunction);
 					});
@@ -650,17 +651,18 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 			$("#pageCountHidden").val(pageCount);
 			$("#totalCountSpan").text(total);
 			$("#pageIndexSpan").text(pageIndex + "/" + pageCount);
-
 			// 判断列头的复选框是否被选择,如果当前页所有的列都被选择,则复选框处于选中状态
 			var isSelectAll = true;
 			if ($("#contentTable input[name='childCheckbox']").length == 0)// 如果一条数据都没有，也不能选中
 				isSelectAll = false;
 			else
-				$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+				$("#contentTable input[name='childCheckbox']").each(function (i, n) {
 					var recordId = $(n).closest("tr").attr("id");
-					if ($.inArray(recordId, selectRows) == -1)
+					if ($.inArray(recordId, selectRows) == -1){
 						isSelectAll = false;
-					return false;
+						return false;
+					}
+					return true;
 				});
 			if (isSelectAll)
 				$("#contentTable input[name='headerCheckbox']").get(0).checked = true;
@@ -677,14 +679,14 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 }
 
 function containsColumn(array, item) {
-	for ( var i in array)
+	for (var i in array)
 		if (array[i].columnName == item.columnName)
 			return i
 
 	return -1;
 }
 
-Array.prototype.prepend = function(needle) {
+Array.prototype.prepend = function (needle) {
 	var a = this.slice(0);
 
 	// 使用unshift方法向a开头添加item
@@ -717,7 +719,7 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 	var pageIndex = ajaxParam.submitData.pageIndex;
 
 	// 第一页
-	$("#firstA").click(function() {
+	$("#firstA").click(function () {
 		if (ajaxParam.submitData.pageIndex != 1) {
 			ajaxParam.submitData.pageIndex = 1;
 			pageClick(pageParam, ajaxParam, operationParam);
@@ -725,7 +727,7 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 	});
 
 	// 上一页
-	$("#prviousA").click(function() {
+	$("#prviousA").click(function () {
 		if (ajaxParam.submitData.pageIndex != 1) {
 			ajaxParam.submitData.pageIndex--;
 			pageClick(pageParam, ajaxParam, operationParam);
@@ -733,7 +735,7 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 	});
 
 	// 最后一页
-	$("#lastA").click(function() {
+	$("#lastA").click(function () {
 		var pageCount = $("#pageCountHidden").val();
 		if (ajaxParam.submitData.pageIndex != pageCount) {
 			ajaxParam.submitData.pageIndex = pageCount;
@@ -742,7 +744,7 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 	});
 
 	// 下一页
-	$("#nextA").click(function() {
+	$("#nextA").click(function () {
 		var pageCount = $("#pageCountHidden").val();
 		if (ajaxParam.submitData.pageIndex != pageCount) {
 			ajaxParam.submitData.pageIndex++;
@@ -750,7 +752,7 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 		}
 	});
 
-	$("#pageSizeSelect").change(function() {
+	$("#pageSizeSelect").change(function () {
 
 		ajaxParam.submitData.pageSize = $("#pageSizeSelect").val();
 		ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
@@ -758,11 +760,11 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 	});
 
 	// 跳转到
-	$("#gotoPageText").keyup(function() {
+	$("#gotoPageText").keyup(function () {
 		// if (event.keyCode == 13)
 		gotoPage(pageParam, ajaxParam, operationParam);
 	});
-	$("#gotoPageButton").click(function() {
+	$("#gotoPageButton").click(function () {
 		gotoPage(pageParam, ajaxParam, operationParam);
 	});
 
@@ -789,27 +791,27 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 function initTopRightButton(pageParam, ajaxParam, operationParam) {
 	// 处理表格右上角的通用按键单击事件
 	$("#addButton").unbind("click");
-	$("#addButton").click(function() {
+	$("#addButton").click(function () {
 		window.location.href = pageParam.addPage.url;
 	});
 	$("#batchDeleteButton").unbind("click");
-	$("#batchDeleteButton").click(function() {
+	$("#batchDeleteButton").click(function () {
 		if (selectRows.length == 0) {
 			layer.alert('请选择要删除的记录！', {
-				icon : 6
+				icon: 6
 			});
 			return false;
 		}
 
 		layer.confirm('您确定要删除这' + selectRows.length + '条记录？', {
-			btn : [ '确定', '取消' ]
-		}, function() {
+			btn: ['确定', '取消']
+		}, function () {
 			layer.closeAll('dialog');
 			ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
 			ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
 			pageParam.deleteListInterface.type = "POST";
 			pageParam.deleteListInterface.submitData = {
-				idList : selectRows
+				idList: selectRows
 			};
 
 			deleteRecordList(pageParam, ajaxParam, operationParam);
@@ -819,10 +821,10 @@ function initTopRightButton(pageParam, ajaxParam, operationParam) {
 
 	});
 	$("#batchEditButton").unbind("click");
-	$("#batchEditButton").click(function() {
+	$("#batchEditButton").click(function () {
 		if (selectRows.length == 0) {
 			layer.alert('请选择要修改的记录！', {
-				icon : 6
+				icon: 6
 			});
 			return false;
 		}
@@ -831,25 +833,25 @@ function initTopRightButton(pageParam, ajaxParam, operationParam) {
 		date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
 		Cookies.remove("selectRows");
 		Cookies.set("selectRows", selectRows, {
-			path : '/',
-			expires : date
+			path: '/',
+			expires: date
 		});
 		pageParam.editPage.selectRows = selectRows;
 
 		popUpPage(pageParam.editPage);
 	});
 	$("#batchExportButton").unbind("click");
-	$("#batchExportButton").click(function() {
+	$("#batchExportButton").click(function () {
 
 		var excelJsonData = {
-			"columnInfo" : ajaxParam.columnInfo,
-			"selectRows" : selectRows
+			"columnInfo": ajaxParam.columnInfo,
+			"selectRows": selectRows
 		};
 
 		$.extend(excelJsonData, ajaxParam.submitData);
 		if (selectRows.length == 0)
 			layer.msg('未选择要导出的记录，默认导出当前页……', {
-				time : 1500
+				time: 1500
 			});
 		// 如果有选择删除分页信息，默认导出最大分页值，由后台常量控制SQLQUERY_KEYWORDS_PAGESIZE_MAX
 		else
@@ -875,14 +877,14 @@ function deleteRecord(pageParam, ajaxParam, operationParam) {
 		type = "GET";
 
 	var ajaxParamter = {
-		"url" : url,
-		"data" : submitData,
-		"type" : type,
-		"async" : true,
-		"success" : function(resultData) {
+		"url": url,
+		"data": submitData,
+		"type": type,
+		"async": true,
+		"success": function (resultData) {
 			if (!resultData["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
@@ -932,14 +934,14 @@ function deleteRecordList(pageParam, ajaxParam, operationParam) {
 	}
 
 	var ajaxParamter = {
-		"url" : url,
-		"data" : submitData,
-		"type" : type,
-		"async" : true,
-		"success" : function(resultData) {
+		"url": url,
+		"data": submitData,
+		"type": type,
+		"async": true,
+		"success": function (resultData) {
 			if (!resultData["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
@@ -997,18 +999,18 @@ function initDropDownList(selectParam, ajaxParam) {
 		submitData = JSON.stringify(submitData);
 
 	var ajaxParamter = {
-		"url" : ajaxParam.url,
-		"data" : submitData,
-		"type" : type,
-		"async" : false,
-		"success" : function(message) {
+		"url": ajaxParam.url,
+		"data": submitData,
+		"type": type,
+		"async": false,
+		"success": function (message) {
 			if (!message["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
-			$.each(message.data, function(i, n) {
+			$.each(message.data, function (i, n) {
 				$("#" + selectParam.selectId).append("<option value='" + n[selectParam.valueField] + "'>" + n[selectParam.textField] + "</option>");
 			});
 
@@ -1041,28 +1043,28 @@ function initRadioList(radioParam, ajaxParam) {
 		submitData = JSON.stringify(submitData);
 
 	var ajaxParamter = {
-		"url" : ajaxParam.url,
-		"data" : submitData,
-		"type" : type,
-		"async" : false,
-		"success" : function(message) {
+		"url": ajaxParam.url,
+		"data": submitData,
+		"type": type,
+		"async": false,
+		"success": function (message) {
 			if (!message["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
-			$.each(message.data, function(i, n) {
-				var html="<label class='mt-radio'>";
-				html+="<input type='radio' name='";
-				html+=radioParam.name;
-				html+="' value='" ;
-				html+= n[radioParam.valueField];
-				html+= "'>";
-				html+=n[radioParam.textField];
-				html+="<span></span>";
-				html+="</label>";
-				
+			$.each(message.data, function (i, n) {
+				var html = "<label class='mt-radio'>";
+				html += "<input type='radio' name='";
+				html += radioParam.name;
+				html += "' value='";
+				html += n[radioParam.valueField];
+				html += "'>";
+				html += n[radioParam.textField];
+				html += "<span></span>";
+				html += "</label>";
+
 				$("#" + radioParam.containerId).append(html);
 			});
 
@@ -1078,7 +1080,7 @@ function initRadioList(radioParam, ajaxParam) {
 
 function initCommonFormPage(formId, ajaxParam) {
 
-	$("#backButton").click(function() {
+	$("#backButton").click(function () {
 		self.location = ajaxParam.backUrl;
 	});
 	var id = request(RECORD_ID);
@@ -1086,17 +1088,17 @@ function initCommonFormPage(formId, ajaxParam) {
 	if (id != undefined && id != null && $("#textRecordId") != undefined && $("#textRecordId") != null)
 		$("#textRecordId").val(id);
 
-	$("#submitButton").click(function() {
+	$("#submitButton").click(function () {
 		var formString = form.serializeArray();
 		$.ajax({
-			type : "POST",
-			dataType : "JSON",
-			data : formString,
-			url : ajaxParam.ajaxUrl,
-			success : function(message) {
+			type: "POST",
+			dataType: "JSON",
+			data: formString,
+			url: ajaxParam.ajaxUrl,
+			success: function (message) {
 				if (!message["isSuccess"]) {
 					layer.alert(message["resultMessage"], {
-						icon : 6
+						icon: 6
 					});
 					return false;
 				}
@@ -1104,7 +1106,7 @@ function initCommonFormPage(formId, ajaxParam) {
 				window.location.href = ajaxParam.overTargetUrl;
 				return false;
 			},
-			error : ajaxErrorFunction
+			error: ajaxErrorFunction
 		});
 
 	});
@@ -1119,7 +1121,7 @@ function universalAjax(ajaxParameter) {
 
 	if (ajaxParameter.url == null) {
 		layer.alert("请求链接不能为空！", {
-			icon : 6
+			icon: 6
 		});
 		return;
 	}
@@ -1140,8 +1142,8 @@ function universalAjax(ajaxParameter) {
 	if (ajaxParameter.headers == null) {
 		var dataStr = localStorage.getItem("token");
 		ajaxParameter.headers = {
-			"Authorization" : "Bearer " + JSON.parse(dataStr).accessToken,
-			"ClientId" : JSON.parse(dataStr).clientId
+			"Authorization": "Bearer " + JSON.parse(dataStr).accessToken,
+			"ClientId": JSON.parse(dataStr).clientId
 		};
 	}
 
@@ -1151,16 +1153,16 @@ function universalAjax(ajaxParameter) {
 	url = INTERFACE_SERVER + url;
 
 	$.ajax({
-		url : url,
-		type : ajaxParameter.type,
-		contentType : ajaxParameter.contentType,
-		headers : ajaxParameter.headers,
-		data : data,
-		dataType : ajaxParameter.dataType,
-		async : ajaxParameter.async,
-		error : ajaxParameter.error,
-		beforeSend : ajaxParameter.beforeSend,
-		success : ajaxParameter.success
+		url: url,
+		type: ajaxParameter.type,
+		contentType: ajaxParameter.contentType,
+		headers: ajaxParameter.headers,
+		data: data,
+		dataType: ajaxParameter.dataType,
+		async: ajaxParameter.async,
+		error: ajaxParameter.error,
+		beforeSend: ajaxParameter.beforeSend,
+		success: ajaxParameter.success
 	});
 }
 
@@ -1190,11 +1192,11 @@ function popUpPage(pageParam) {
 		offsetRight = pageParam.offsetRight;
 
 	layer.open({
-		type : 2,
-		title : pageParam.title,
-		content : pageParam.url,
-		area : [ width, height ],
-		offset : [ offsetTop, offsetRight ]
+		type: 2,
+		title: pageParam.title,
+		content: pageParam.url,
+		area: [width, height],
+		offset: [offsetTop, offsetRight]
 	});
 }
 
@@ -1225,11 +1227,11 @@ function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
 		var result = JSON.parse(XMLHttpRequest.responseText)
 		layer.alert(result.resultMessage, {
-			icon : 6
+			icon: 6
 		});
 	} else {
 		layer.alert("调用后台接口时出现错误！" + textStatus + " " + errorThrown, {
-			icon : 6
+			icon: 6
 		});
 	}
 }
@@ -1318,8 +1320,8 @@ function initAddPage(pageParam, ajaxParam) {
 	var successMessage = $('.alert-success', formAdd);
 	var resultAjaxData;
 
-	formAdd.on("submit", function() {
-		for ( var e in CKEDITOR.instances)
+	formAdd.on("submit", function () {
+		for (var e in CKEDITOR.instances)
 			CKEDITOR.instances[e].updateElement();
 		dynamicRules(pageParam);
 		lengthVerificationRules(pageParam);
@@ -1327,27 +1329,27 @@ function initAddPage(pageParam, ajaxParam) {
 	});
 
 	formAdd.validate({
-		errorClass : "help-block",
-		rules : pageParam.validateRules,
-		messages : pageParam.validateMessages,
-		ignore : '',
-		errorPlacement : function(e, r) {
+		errorClass: "help-block",
+		rules: pageParam.validateRules,
+		messages: pageParam.validateMessages,
+		ignore: '',
+		errorPlacement: function (e, r) {
 
 			r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
 		},
-		highlight : function(element) {
+		highlight: function (element) {
 			$(element).closest('.element-group').addClass('has-error');
 		},
 
-		unhighlight : function(element) {
+		unhighlight: function (element) {
 			$(element).closest('.element-group').removeClass('has-error');
 		},
 
-		success : function(label) {
+		success: function (label) {
 			label.closest('.element-group').removeClass('has-error');
 		},
 
-		submitHandler : function(form) {
+		submitHandler: function (form) {
 			if (!dynamicRules(pageParam)) {
 				return;
 			}
@@ -1365,7 +1367,7 @@ function initAddPage(pageParam, ajaxParam) {
 			var formData = formAdd.serializeArray();
 			// 将查询条件和其它请求参数组装
 			if (ajaxParam.submitData != null)
-				$.each(formData, function(i, n) {
+				$.each(formData, function (i, n) {
 					var propertyName = getPropertyName(formData[i].name)
 					ajaxParam.submitData[propertyName] = formData[i].value;
 				});
@@ -1383,7 +1385,7 @@ function initAddPage(pageParam, ajaxParam) {
 			if (ajaxParam.async == null)
 				ajaxParam.async = true;
 			if (ajaxParam.success == null)
-				ajaxParam.success = function(resultData) {
+				ajaxParam.success = function (resultData) {
 					resultAjaxData = resultData;
 					if (!resultData["isSuccess"]) {
 						alert(resultData["resultMessage"]);
@@ -1391,7 +1393,7 @@ function initAddPage(pageParam, ajaxParam) {
 					}
 
 					layer.msg('记录添加成功，即将跳回列表页……', {
-						time : 1000
+						time: 1000
 					});
 					setTimeout("$('#navbarListA').click();", 1100);
 
@@ -1400,14 +1402,14 @@ function initAddPage(pageParam, ajaxParam) {
 				ajaxParam.error = ajaxErrorFunction;
 
 			var ajaxParamter = {
-				"url" : ajaxParam.url,
-				"data" : ajaxParam.submitData,
-				"dataType" : ajaxParam.dataType,
-				"contentType" : ajaxParam.contentType,
-				"type" : ajaxParam.type,
-				"async" : ajaxParam.sync,
-				"success" : ajaxParam.success,
-				"error" : ajaxParam.error
+				"url": ajaxParam.url,
+				"data": ajaxParam.submitData,
+				"dataType": ajaxParam.dataType,
+				"contentType": ajaxParam.contentType,
+				"type": ajaxParam.type,
+				"async": ajaxParam.sync,
+				"success": ajaxParam.success,
+				"error": ajaxParam.error
 			};
 
 			universalAjax(ajaxParamter);
@@ -1415,7 +1417,7 @@ function initAddPage(pageParam, ajaxParam) {
 
 	});
 
-	$("#buttonBack").click(function() {
+	$("#buttonBack").click(function () {
 		history.back();
 		return false;
 	});
@@ -1457,8 +1459,8 @@ function initEditPage(pageParam, ajaxParam) {
 		pageParam.validateRules = {};
 	}
 
-	formEdit.on("submit", function() {
-		for ( var e in CKEDITOR.instances)
+	formEdit.on("submit", function () {
+		for (var e in CKEDITOR.instances)
 			CKEDITOR.instances[e].updateElement();
 		dynamicRules(pageParam);
 		lengthVerificationRules(pageParam);
@@ -1466,26 +1468,26 @@ function initEditPage(pageParam, ajaxParam) {
 	});
 
 	formEdit.validate({
-		errorClass : 'help-block',
-		rules : pageParam.validateRules,
-		messages : pageParam.validateMessages,
-		ignore : '',
-		errorPlacement : function(e, r) {
+		errorClass: 'help-block',
+		rules: pageParam.validateRules,
+		messages: pageParam.validateMessages,
+		ignore: '',
+		errorPlacement: function (e, r) {
 
 			r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
 		},
-		highlight : function(element) {
+		highlight: function (element) {
 			$(element).closest('.element-group').addClass('has-error');
 		},
 
-		unhighlight : function(element) {
+		unhighlight: function (element) {
 			$(element).closest('.element-group').removeClass('has-error');
 		},
-		success : function(label) {
+		success: function (label) {
 			label.closest('.element-group').removeClass('has-error');
 		},
 
-		submitHandler : function(form) {
+		submitHandler: function (form) {
 
 			if (!dynamicRules(pageParam)) {
 				return;
@@ -1505,7 +1507,7 @@ function initEditPage(pageParam, ajaxParam) {
 			var formData = formEdit.serializeArray();
 			// 将查询条件和其它请求参数组装
 			if (ajaxParam.submitData != null)
-				$.each(formData, function(i, n) {
+				$.each(formData, function (i, n) {
 					var propertyName = getPropertyName(formData[i].name);
 					ajaxParam.submitData[propertyName] = formData[i].value;
 				});
@@ -1517,8 +1519,8 @@ function initEditPage(pageParam, ajaxParam) {
 
 			if (isUpdateList) {
 				ajaxParam.submitData = {
-					"entity" : ajaxParam.submitData,
-					"idList" : JSON.parse(selectRowsCookie)
+					"entity": ajaxParam.submitData,
+					"idList": JSON.parse(selectRowsCookie)
 				};
 				ajaxParam.url = ajaxParam.updateListUrl;
 			}
@@ -1532,14 +1534,14 @@ function initEditPage(pageParam, ajaxParam) {
 			if (ajaxParam.async == null)
 				ajaxParam.async = true;
 			if (ajaxParam.success == null)
-				ajaxParam.success = function(resultData) {
+				ajaxParam.success = function (resultData) {
 					if (!resultData["isSuccess"]) {
 						alert(resultData["resultMessage"]);
 						return false;
 					}
 
 					layer.msg('记录修改成功，即将跳回列表页……', {
-						time : 1000
+						time: 1000
 					});
 
 					if (isUpdateList) {
@@ -1554,20 +1556,20 @@ function initEditPage(pageParam, ajaxParam) {
 				ajaxParam.error = ajaxErrorFunction;
 
 			var ajaxParamter = {
-				"url" : ajaxParam.url,
-				"data" : ajaxParam.submitData,
-				"dataType" : ajaxParam.dataType,
-				"contentType" : ajaxParam.contentType,
-				"type" : ajaxParam.type,
-				"async" : ajaxParam.async,
-				"success" : ajaxParam.success,
-				"error" : ajaxParam.error
+				"url": ajaxParam.url,
+				"data": ajaxParam.submitData,
+				"dataType": ajaxParam.dataType,
+				"contentType": ajaxParam.contentType,
+				"type": ajaxParam.type,
+				"async": ajaxParam.async,
+				"success": ajaxParam.success,
+				"error": ajaxParam.error
 			};
 			universalAjax(ajaxParamter);
 		}
 	});
 
-	$("#buttonBack").click(function() {
+	$("#buttonBack").click(function () {
 		history.back();
 		return false;
 	});
@@ -1578,7 +1580,7 @@ function initEditPage(pageParam, ajaxParam) {
 		$(".page-header").remove();
 		$(".page-bar").remove();
 		$(".page-footer").remove();
-		$("#buttonBack").click(function() {
+		$("#buttonBack").click(function () {
 
 			closeLayer();
 
@@ -1589,10 +1591,10 @@ function initEditPage(pageParam, ajaxParam) {
 
 	// 初始化页面标签
 	var ajaxParamter = {
-		"url" : ajaxParam.getModelUrl + "/" + id,
-		"type" : "GET",
-		"async" : true,
-		"success" : function(resultData) {
+		"url": ajaxParam.getModelUrl + "/" + id,
+		"type": "GET",
+		"async": true,
+		"success": function (resultData) {
 			resultAjaxData = resultData;
 			if (!resultData["isSuccess"]) {
 				alert(resultData["resultMessage"]);
@@ -1627,27 +1629,27 @@ function initEditPage(pageParam, ajaxParam) {
 				var value = ajaxData[prop];
 
 				switch (prefix) {
-				case "hidden":
-					$("[name='" + fieldName + "']").val(value);
-					break;
-				case "text":
-					$("[name='" + fieldName + "']").val(value);
-					break;
-				case "select":
-					$("select[name='" + fieldName + "']").val(value);
-					break;
-				case "radio":
-					if (value != null)
+					case "hidden":
+						$("[name='" + fieldName + "']").val(value);
+						break;
+					case "text":
+						$("[name='" + fieldName + "']").val(value);
+						break;
+					case "select":
+						$("select[name='" + fieldName + "']").val(value);
+						break;
+					case "radio":
+						if (value != null)
+							$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
+						break;
+					case "textarea":
+						$("textarea[name='" + fieldName + "']").val(value);
+						break;
+					case "checkbox":
 						$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-					break;
-				case "textarea":
-					$("textarea[name='" + fieldName + "']").val(value);
-					break;
-				case "checkbox":
-					$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-					break;
-				default:
-					break;
+						break;
+					default:
+						break;
 				}
 			}
 		}
@@ -1680,7 +1682,7 @@ function closeLayer() {
  *            ajax参数
  */
 function initDetailPage(pageParam, ajaxParamter) {
-	$("#buttonBack").click(function() {
+	$("#buttonBack").click(function () {
 		history.back();
 		return false;
 	});
@@ -1688,13 +1690,13 @@ function initDetailPage(pageParam, ajaxParamter) {
 	var resultAjaxData;
 	if (id == null) {
 		layer.alert("未能获取到主键信息……", {
-			icon : 6
+			icon: 6
 		});
 		return;
 	}
 	if (ajaxParamter.url == null) {
 		layer.alert("请求的链接地址不能为空……", {
-			icon : 6
+			icon: 6
 		});
 		return;
 	}
@@ -1706,22 +1708,22 @@ function initDetailPage(pageParam, ajaxParamter) {
 	if (ajaxParamter.async == null)
 		ajaxParamter.async = true;
 	if (ajaxParamter.success == null)
-		ajaxParamter.success = function(resultData) {
+		ajaxParamter.success = function (resultData) {
 			if (!resultData["isSuccess"]) {
 				layer.alert(resultData["resultMessage"], {
-					icon : 6
+					icon: 6
 				});
 				return;
 			}
 
-			$("#" + pageParam.formId + " label").each(function(i, n) {
+			$("#" + pageParam.formId + " label").each(function (i, n) {
 				// 遍历指定form表单中的所有label标签
 				var fieldId = $(n).attr("id");
 				var prefix = fieldId.substr(5);
 				prefix = prefix.substr(0, 1).toLowerCase() + prefix.substr(1);
 				$(n).html(resultData.data[prefix]);
 			});
-			$("#" + pageParam.formId + " img").each(function(i, n) {
+			$("#" + pageParam.formId + " img").each(function (i, n) {
 				// 遍历指定form表单中的所有图像标签
 				var fieldId = $(n).attr("id");
 				var prefix = fieldId.substr(3);
@@ -1755,7 +1757,7 @@ function initAutoComplete(itemParam, ajaxParam) {
 	var autoCompleteCache = {};
 	// 失去输入焦点后，如果显示值为空，则同时清空隐藏值
 	$("#" + itemParam.textFieldInputId).unbind("blur");
-	$("#" + itemParam.textFieldInputId).bind("blur", function() {
+	$("#" + itemParam.textFieldInputId).bind("blur", function () {
 		if ($("#" + itemParam.textFieldInputId).val() == "") {
 			$("#" + itemParam.textFieldInputId).val("");
 			$("#" + itemParam.valueFieldInputId).val("");
@@ -1769,16 +1771,16 @@ function initAutoComplete(itemParam, ajaxParam) {
 	});
 
 	$("#" + itemParam.textFieldInputId).autocomplete({
-		minLength : 2,
-		autoFocus : true,
-		source : function(request, response) {
+		minLength: 2,
+		autoFocus: true,
+		source: function (request, response) {
 			var term = request.term;
 			if (term in autoCompleteCache) {
-				response($.map(autoCompleteCache[term], function(item) {
+				response($.map(autoCompleteCache[term], function (item) {
 					return {
-						value : item[itemParam.textField],
-						label : item[itemParam.textField],
-						submitValue : item[itemParam.valueField]
+						value: item[itemParam.textField],
+						label: item[itemParam.textField],
+						submitValue: item[itemParam.valueField]
 					}
 				}));
 				return;
@@ -1787,16 +1789,16 @@ function initAutoComplete(itemParam, ajaxParam) {
 			ajaxParam.jsonData.entityRelated.autoCompleteKey = request.term;
 
 			var ajaxParamter = {
-				"url" : ajaxParam.url + "?jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.jsonData)),
-				"async" : true,
-				"type" : "GET",
-				"success" : function(resultData) {
+				"url": ajaxParam.url + "?jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.jsonData)),
+				"async": true,
+				"type": "GET",
+				"success": function (resultData) {
 					autoCompleteCache[term] = resultData.data;
-					response($.map(resultData.data, function(item) {
+					response($.map(resultData.data, function (item) {
 						return {
-							value : item[itemParam.textField],
-							label : item[itemParam.textField],
-							submitValue : item[itemParam.valueField]
+							value: item[itemParam.textField],
+							label: item[itemParam.textField],
+							submitValue: item[itemParam.valueField]
 						}
 					}));
 				}
@@ -1804,7 +1806,7 @@ function initAutoComplete(itemParam, ajaxParam) {
 			universalAjax(ajaxParamter);
 
 		},
-		select : function(e, ui) {
+		select: function (e, ui) {
 			$("#" + itemParam.valueFieldInputId).val(ui.item.submitValue);
 		}
 	});
@@ -1876,7 +1878,7 @@ function validateLogin(resultCode) {
 		location.href = '../lo/Login.html';
 		return fasle;
 	}
-	$("#goHome").click(function() {
+	$("#goHome").click(function () {
 		location.href = HOME_PATH + RP_ININDEX
 	});
 
@@ -1904,17 +1906,17 @@ function initMessage() {
 	$("#userName").text(userInfo.userName);
 
 	var ajaxParameter = {
-		"url" : "/extend/swagger/gp/gprMessageUser/getSysListByJsonData",
-		"data" : "jsonData=" + JSON.stringify({
-			"entityRelated" : {
-				"userName" : token.userName,
-				"userId" : token.userId
+		"url": "/extend/swagger/gp/gprMessageUser/getSysListByJsonData",
+		"data": "jsonData=" + JSON.stringify({
+			"entityRelated": {
+				"userName": token.userName,
+				"userId": token.userId
 			}
 		}),
-		"dataType" : "json",
-		"type" : "GET",
-		"async" : false,
-		"success" : function(res) {
+		"dataType": "json",
+		"type": "GET",
+		"async": false,
+		"success": function (res) {
 			if (!validateLogin(res.resultCode))
 				return false;
 			if (res.totalCount == 0) {
@@ -1940,17 +1942,17 @@ function initMessage() {
 	universalAjax(ajaxParameter);
 
 	ajaxParameter = {
-		"url" : "/extend/swagger/gp/gprMessageUser/getUserListByJsonData",
-		"dataType" : "json",
-		"type" : "GET",
-		"async" : false,
-		"data" : "jsonData=" + JSON.stringify({
-			"entityRelated" : {
-				"userName" : token.userName,
-				"userId" : token.userId
+		"url": "/extend/swagger/gp/gprMessageUser/getUserListByJsonData",
+		"dataType": "json",
+		"type": "GET",
+		"async": false,
+		"data": "jsonData=" + JSON.stringify({
+			"entityRelated": {
+				"userName": token.userName,
+				"userId": token.userId
 			}
 		}),
-		success : function(res) {
+		success: function (res) {
 			if (res.totalCount == 0) {
 				$("#header_inbox_bar .dropdown-menu").hide();
 				$("#header_inbox_bar .badge").hide();
@@ -1973,25 +1975,25 @@ function initMessage() {
 function initAddFileInput() {
 	// 初始化上传控件的样式
 	var $Control = $("#fileIcons").fileinput({
-		language : 'zh',
-		theme : 'fa',
-		showRemove : false,
-		showZoom : false,
-		showDrag : false,
-		showUpload : false,
-		showCaption : false,
-		ajaxSettings : {
-			headers : {
-				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
+		language: 'zh',
+		theme: 'fa',
+		showRemove: false,
+		showZoom: false,
+		showDrag: false,
+		showUpload: false,
+		showCaption: false,
+		ajaxSettings: {
+			headers: {
+				'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
 			}
 		},
-		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-		uploadAsync : true,
-		browseClass : "btn btn-primary btn-lg",
-		fileType : "image",
-		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
-		overwriteInitial : false,
-		initialPreviewAsData : true
+		uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
+		uploadAsync: true,
+		browseClass: "btn btn-primary btn-lg",
+		fileType: "image",
+		previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+		overwriteInitial: false,
+		initialPreviewAsData: true
 
 	});
 	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
@@ -2002,62 +2004,62 @@ function initEditFileInput(IconIdArray, IconPathArray) {
 	if (IconIdArray != null & IconPathArray != null) {
 		for (var i = 0; i < IconIdArray.length; i++) {
 			initialPreviewConfigArray[i] = {
-				url : INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
+				url: INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
 			};
 		}
 	}
 	// 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
-	 $("#fileIcons").fileinput('destroy');
-	 $("#fileIcons").unbind('on');
-	 
-	 
+	$("#fileIcons").fileinput('destroy');
+	$("#fileIcons").unbind('on');
+
+
 	var $Control = $("#fileIcons").fileinput({
-		language : 'zh',
-		theme : 'fa',
-		showRemove : false,
-		showZoom : false,
-		showDrag : false,
-		showUpload : false,
-		showCaption : false,
-		ajaxSettings : {
-			headers : {
-				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
+		language: 'zh',
+		theme: 'fa',
+		showRemove: false,
+		showZoom: false,
+		showDrag: false,
+		showUpload: false,
+		showCaption: false,
+		ajaxSettings: {
+			headers: {
+				'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
 			}
 		},
-		uploadUrl : INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-		uploadAsync : true,
-		browseClass : "btn btn-primary btn-lg",
-		fileType : "image",
-		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
-		overwriteInitial : false,
-		initialPreviewAsData : true,
-		initialPreview : IconPathArray,
-		initialPreviewConfig : initialPreviewConfigArray
+		uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
+		uploadAsync: true,
+		browseClass: "btn btn-primary btn-lg",
+		fileType: "image",
+		previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+		overwriteInitial: false,
+		initialPreviewAsData: true,
+		initialPreview: IconPathArray,
+		initialPreviewConfig: initialPreviewConfigArray
 	});
 	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
 }
 
 // 多文件上传控制 刚进入新增页面 初始化
 function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePathsControl) {
-	$(fileControl).on('filepreupload', function(event, data, previewId, index) {
+	$(fileControl).on('filepreupload', function (event, data, previewId, index) {
 		for (var i = 0; i < data.files.length; i++) {
 			var file = data.files[i];
 			if (file.name.length > 100) {
 				layer.alert("文件名不能超过100个字符！" + data.result.resultMessage, {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
 			if (file.name.indexOf(',') != -1) {
 				layer.alert("文件名中不能包含字符“,”" + data.result.resultMessage, {
-					icon : 6
+					icon: 6
 				});
 				return false;
 			}
 		}
-	}).on('filebatchselected', function(event, data, id, index) {
+	}).on('filebatchselected', function (event, data, id, index) {
 		$(this).fileinput("upload");
-	}).on("fileuploaded", function(event, data, previewId, index) {
+	}).on("fileuploaded", function (event, data, previewId, index) {
 
 		// 清除元素
 		$("#fileTitleImage-error").remove();
@@ -2065,7 +2067,7 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 		var gpResource = data.response.data;
 		if (!data.response.isSuccess) {
 			layer.alert("上传标题图片出错！" + data.response.resultMessage, {
-				icon : 6
+				icon: 6
 			});
 			return false;
 		}
@@ -2087,7 +2089,7 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 		$("#" + hiddenResourceIdsControl).val(resourceIdList);
 		$("#" + hiddenResourcePathsControl).val(resourcePathList);
 		return true;
-	}).on('filebatchuploadcomplete', function(event, files, extra) {
+	}).on('filebatchuploadcomplete', function (event, files, extra) {
 		var resourceIdList = $("#" + hiddenResourceIdsControl).val();
 		var resourcePathList = $("#" + hiddenResourcePathsControl).val();
 		if (resourceIdList.endsWith(","))
@@ -2101,7 +2103,7 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 
 		$("#" + hiddenResourceIdsControl).val(resourceIdList);
 		$("#" + hiddenResourcePathsControl).val(resourcePathList);
-	}).on("filesuccessremove", function(event, id, index) {
+	}).on("filesuccessremove", function (event, id, index) {
 
 		var resourceIdList = $("#" + hiddenResourceIdsControl).val();
 		var resourceId = $("#" + id).attr("resourceId");
@@ -2122,13 +2124,13 @@ function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePath
 			resourcePathList = resourcePathList.replace(resourcePath, "");
 
 		$("#" + hiddenResourcePathsControl).val(resourcePathList);
-	}).on('fileremoved', function(event, id, index) {
+	}).on('fileremoved', function (event, id, index) {
 
-	}).on('filedeleted', function(event, key, jqXHR, data) {
+	}).on('filedeleted', function (event, key, jqXHR, data) {
 		var result = jqXHR.responseJSON;
 		if (!result.isSuccess) {
 			layer.alert("删除图片出错！" + result.resultMessage, {
-				icon : 6
+				icon: 6
 			});
 			return false;
 		}
@@ -2168,52 +2170,52 @@ function initDetailTree(treeParam) {
 
 	// 组织机构树形结构begin
 	var setting = {
-		check : {
-			enable : false
+		check: {
+			enable: false
 		},
-		view : {
-			showIcon : false,
-			showLine : true,
-			selectedMulti : false
+		view: {
+			showIcon: false,
+			showLine: true,
+			selectedMulti: false
 		},
 
-		data : {
-			simpleData : {
-				enable : true,
-				idKey : "id",
-				pIdKey : "fartherId"
+		data: {
+			simpleData: {
+				enable: true,
+				idKey: "id",
+				pIdKey: "fartherId"
 			}
 		}
 	};
-	
 
-	var treeNodes=[];
-	if(treeParam.initNodes)
-		treeNodes=treeParam.initNodes;
+
+	var treeNodes = [];
+	if (treeParam.initNodes)
+		treeNodes = treeParam.initNodes;
 	var ajaxParamter = {
-		"url" : treeParam.url,
-		"type" : "GET",
-		"async" : true,
-		"success" : function(resultData) {
+		"url": treeParam.url,
+		"type": "GET",
+		"async": true,
+		"success": function (resultData) {
 			treeNodes = treeNodes.concat(resultData.data);
-			
+
 			// 将一级功能模块的fartherId都变为应用领域的ID，级别变为0，否则功能模块无法依附应用领域
-			$.each(treeNodes, function(index, value) {
-				if(value.fartherId==null){
-					value.level=0;
-					value.fartherId=value.domainId;
-					treeNodes[index]=value;
+			$.each(treeNodes, function (index, value) {
+				if (value.fartherId == null) {
+					value.level = 0;
+					value.fartherId = value.domainId;
+					treeNodes[index] = value;
 				}
 			});
 			var orgnaizationTree = $.fn.zTree.init($("#" + treeParam.container), setting, treeNodes);
 
-				$.each(treeNodes, function(index, value) {
-					
-					if (treeParam.expandNodeLevel == null || value.level < treeParam.expandNodeLevel) {
-						var node = orgnaizationTree.getNodeByParam("id", value.id);
-						orgnaizationTree.expandNode(node, true);// 展开指定节点
-					}
-				});
+			$.each(treeNodes, function (index, value) {
+
+				if (treeParam.expandNodeLevel == null || value.level < treeParam.expandNodeLevel) {
+					var node = orgnaizationTree.getNodeByParam("id", value.id);
+					orgnaizationTree.expandNode(node, true);// 展开指定节点
+				}
+			});
 		}
 	};
 
@@ -2225,7 +2227,7 @@ function initDetailTree(treeParam) {
 var className = "dark";
 var newCount = 1;
 function addHoverDom(treeId, treeNode) {
-	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var sObj = $("#" + treeNode.tId + "_span");
 	if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
 		return;
@@ -2233,11 +2235,11 @@ function addHoverDom(treeId, treeNode) {
 	sObj.after(addStr);
 	var btn = $("#addBtn_" + treeNode.tId);
 	if (btn)
-		btn.bind("click", function() {
+		btn.bind("click", function () {
 			var newNode = {
-				id : (100 + newCount),
-				fartherId : treeNode.id,
-				name : "new node" + (newCount++)
+				id: (100 + newCount),
+				fartherId: treeNode.id,
+				name: "new node" + (newCount++)
 			};
 			zTree.addNodes(treeNode, newNode);
 			var treeNodes = new Array();
@@ -2260,10 +2262,10 @@ function showRenameBtn(treeId, treeNode) {
 function beforeDrag(treeId, treeNodes) {
 	for (var i = 0, l = treeNodes.length; i < l; i++) {
 		var pid = treeNodes[i].fartherId;
-		var level=treeNodes[i].level;
-		if ((pid == "root" || pid == null || pid == "null")&level==0) {
+		var level = treeNodes[i].level;
+		if ((pid == "root" || pid == null || pid == "null") & level == 0) {
 			layer.msg('根节点不能移动……', {
-				time : 1000
+				time: 1000
 			});
 			return false;
 		}
@@ -2272,21 +2274,20 @@ function beforeDrag(treeId, treeNodes) {
 }
 function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 
-	if(targetNode.level==0){
+	if (targetNode.level == 0) {
 		layer.msg('根节点为应用领域，不能移动到根节点……', {
-			time : 1000
+			time: 1000
 		});
 		return false;
 	}
 	return true;
 };
 
-var IS_IMMEDIATE = true;
 
 function onDrop(event, treeId, treeNodes, targetNode, moveType) {
-	
-	updateModulesData(treeId, treeNodes, 'DROP',targetNode,moveType);
-	
+
+	updateModulesData(treeId, treeNodes, 'DROP', targetNode, moveType);
+
 };
 
 function beforeEditName(treeId, treeNode) {
@@ -2301,11 +2302,11 @@ function beforeEditName(treeId, treeNode) {
 }
 function beforeRemove(treeId, treeNode) {
 	className = (className === "dark" ? "" : "dark");
-	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	zTree.selectNode(treeNode);
 	layer.confirm('您确定要删除节点  ' + treeNode.name + ' 吗？', {
-		btn : [ '确定', '取消' ]
-	}, function(index) {
+		btn: ['确定', '取消']
+	}, function (index) {
 		// 手动处理删除逻辑
 		layer.close(index);
 		zTree.removeNode(treeNode);
@@ -2322,11 +2323,11 @@ function onRemove(e, treeId, treeNode) {
 function beforeRename(treeId, treeNode, newName, isCancel) {
 	className = (className === "dark" ? "" : "dark");
 	if (newName.length == 0) {
-		setTimeout(function() {
+		setTimeout(function () {
 			var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 			zTree.cancelEditName();
 			layer.alert("节点名称不能为空。", {
-				icon : 6
+				icon: 6
 			});
 		}, 0);
 		return false;
@@ -2338,11 +2339,11 @@ function onRename(e, treeId, treeNode, isCancel) {
 	treeNodes.push(treeNode);
 	updateModulesData(treeId, treeNodes, 'UPDATE');
 }
-function beforeClick(treeId, treeNode,clickFlag) {
-	
-	if(treeNode.level==0){
+function beforeClick(treeId, treeNode, clickFlag) {
+
+	if (treeNode.level == 0) {
 		layer.msg('根节点为应用领域，不能修改……', {
-			time : 1000
+			time: 1000
 		});
 		return false;
 	}
@@ -2351,39 +2352,39 @@ function beforeClick(treeId, treeNode,clickFlag) {
 function onClick(e, treeId, treeNode) {
 	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 	var pageParam = {
-		formId : "formEdit",
-		validateRules : {
-			textDomainId : {
-				required : true
+		formId: "formEdit",
+		validateRules: {
+			textDomainId: {
+				required: true
 			},
-			textName : {
-				required : true
+			textName: {
+				required: true
 			},
-			selectLevelCode : {
-				required : true
+			selectLevelCode: {
+				required: true
 			},
-			textPriority : {
-				digits : true
+			textPriority: {
+				digits: true
 			}
 		}
 	};
 	var ajaxParam = {
-		recordId : treeNode.id,
-		getModelAsync : false,
-		url : zTree.setting.url.updateUrl,
-		getModelUrl :zTree.setting.url.getModelUrl ,
-		submitData : {}
+		recordId: treeNode.id,
+		getModelAsync: false,
+		url: zTree.setting.url.updateUrl,
+		getModelUrl: zTree.setting.url.getModelUrl,
+		submitData: {}
 	};
-	
+
 	var initResult = initZTreeEditForm(pageParam, ajaxParam);
 	if (!initResult.isSuccess) {
 		layer.alert("查询信息错误" + initResult.resultMessage, {
-			icon : 6
+			icon: 6
 		});
 		return;
 	}
-	if (initResult.data.iconIds != null){
-		 initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
+	if (initResult.data.iconIds != null) {
+		initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 	}
 }
 
@@ -2394,50 +2395,50 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 	var successMessage = $('.alert-success', formEdit);
 	var selectRowsCookie = Cookies.get("selectRows");
 	var id = ajaxParam.recordId;
-	
+
 	// 添加重置按钮事件，重置的动作类似于重新加载
 	$("#buttonReset").unbind('click');
-	$("#buttonReset").click(function(){
+	$("#buttonReset").click(function () {
 		var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
-		var selectNodes=zTree.getSelectedNodes();
-		if(selectNodes!=null&&selectNodes.length!=0)
+		var selectNodes = zTree.getSelectedNodes();
+		if (selectNodes != null && selectNodes.length != 0)
 			$('#' + selectNodes[0].tId + '_a').trigger('click');
-		
+
 		layer.msg('表单已重置……', {
-			time : 1000
+			time: 1000
 		});
 	});
 
-	formEdit.on("submit", function() {
-		for ( var e in CKEDITOR.instances)
+	formEdit.on("submit", function () {
+		for (var e in CKEDITOR.instances)
 			CKEDITOR.instances[e].updateElement();
 	});
 
 	formEdit.validate({
-		errorClass : 'help-block',
-		rules : pageParam.validateRules,
-		messages : pageParam.validateMessages,
-		ignore : '',
-		errorPlacement : function(e, r) {
+		errorClass: 'help-block',
+		rules: pageParam.validateRules,
+		messages: pageParam.validateMessages,
+		ignore: '',
+		errorPlacement: function (e, r) {
 			r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
 		},
-		highlight : function(element) {
+		highlight: function (element) {
 			$(element).closest('.element-group').addClass('has-error');
 		},
 
-		unhighlight : function(element) {
+		unhighlight: function (element) {
 			$(element).closest('.element-group').removeClass('has-error');
 		},
-		success : function(label) {
+		success: function (label) {
 			label.closest('.element-group').removeClass('has-error');
 		},
 
-		submitHandler : function(form) {
+		submitHandler: function (form) {
 
 			var formData = formEdit.serializeArray();
 			// 将查询条件和其它请求参数组装
 			if (ajaxParam.submitData != null)
-				$.each(formData, function(i, n) {
+				$.each(formData, function (i, n) {
 					var propertyName = getPropertyName(formData[i].name);
 					ajaxParam.submitData[propertyName] = formData[i].value;
 				});
@@ -2456,53 +2457,53 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 			if (ajaxParam.async == null)
 				ajaxParam.async = true;
 			if (ajaxParam.success == null)
-				ajaxParam.success = function(resultData) {
+				ajaxParam.success = function (resultData) {
 					if (!resultData["isSuccess"]) {
 						alert(resultData["resultMessage"]);
 						return false;
 					}
-					
+
 					// 更新当前节点，也可以用zTree.refresh();
 					var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 					var node = zTree.getNodeByParam("id", ajaxParam.recordId);
-					node.name=$("#textName").val();
+					node.name = $("#textName").val();
 					zTree.updateNode(node)
-					
+
 					layer.msg('记录修改成功……', {
-						time : 1000
+						time: 1000
 					});
-					
+
 					// 修改成功后要清空submitData函数，否则再次修改会出错
-					ajaxParam.submitData={};
+					ajaxParam.submitData = {};
 				};
 			if (ajaxParam.error == null)
 				ajaxParam.error = ajaxErrorFunction;
 
 			var ajaxParamter = {
-				"url" : ajaxParam.url,
-				"data" : ajaxParam.submitData,
-				"dataType" : ajaxParam.dataType,
-				"contentType" : ajaxParam.contentType,
-				"type" : ajaxParam.type,
-				"async" : ajaxParam.async,
-				"success" : ajaxParam.success,
-				"error" : ajaxParam.error
+				"url": ajaxParam.url,
+				"data": ajaxParam.submitData,
+				"dataType": ajaxParam.dataType,
+				"contentType": ajaxParam.contentType,
+				"type": ajaxParam.type,
+				"async": ajaxParam.async,
+				"success": ajaxParam.success,
+				"error": ajaxParam.error
 			};
 			universalAjax(ajaxParamter);
 		}
 	});
 
-	$("#buttonBack").click(function() {
+	$("#buttonBack").click(function () {
 		history.back();
 		return false;
 	});
 
 	// 初始化页面标签
 	var ajaxParamter = {
-		"url" : ajaxParam.getModelUrl + "/" + id,
-		"type" : "GET",
-		"async" : true,
-		"success" : function(resultData) {
+		"url": ajaxParam.getModelUrl + "/" + id,
+		"type": "GET",
+		"async": true,
+		"success": function (resultData) {
 			resultAjaxData = resultData;
 			if (!resultData["isSuccess"]) {
 				alert(resultData["resultMessage"]);
@@ -2537,27 +2538,27 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 				var value = ajaxData[prop];
 
 				switch (prefix) {
-				case "hidden":
-					$("[name='" + fieldName + "']").val(value);
-					break;
-				case "text":
-					$("[name='" + fieldName + "']").val(value);
-					break;
-				case "select":
-					$("select[name='" + fieldName + "']").val(value);
-					break;
-				case "radio":
-					if (value != null)
+					case "hidden":
+						$("[name='" + fieldName + "']").val(value);
+						break;
+					case "text":
+						$("[name='" + fieldName + "']").val(value);
+						break;
+					case "select":
+						$("select[name='" + fieldName + "']").val(value);
+						break;
+					case "radio":
+						if (value != null)
+							$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
+						break;
+					case "textarea":
+						$("textarea[name='" + fieldName + "']").val(value);
+						break;
+					case "checkbox":
 						$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-					break;
-				case "textarea":
-					$("textarea[name='" + fieldName + "']").val(value);
-					break;
-				case "checkbox":
-					$("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-					break;
-				default:
-					break;
+						break;
+					default:
+						break;
 				}
 			}
 		}
@@ -2572,10 +2573,10 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 
 }
 
-function updateModulesData(treeId, treeNodes, action,targetNode,moveType) {
+function updateModulesData(treeId, treeNodes, action, targetNode, moveType) {
 
 	if (IS_IMMEDIATE) {
-		immediateUpdate(treeId, treeNodes, action,targetNode,moveType);
+		immediateUpdate(treeId, treeNodes, action, targetNode, moveType);
 		return;
 	}
 
@@ -2583,57 +2584,57 @@ function updateModulesData(treeId, treeNodes, action,targetNode,moveType) {
 	var zTreeNodes = zTree.getNodes();
 	var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
 	// 修改数组长度为1，以达到删除其它节点只保留根目录节点的目的，因为根目录中已经用嵌套方式包含所有节点。
-	zTreeNodesJsonArray.length=1;
+	zTreeNodesJsonArray.length = 1;
 	var infoData = JSON.stringify(zTreeNodesJsonArray);
 	$("#hiddenModules").val(infoData);
 }
 
-function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
+function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
 	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var treeNodesArray = zTree.transformToArray(treeNodes);
 
 	var ajaxParamter = {
-		"async" : true,
-		"type" : "POST",
-		"success" : function(resultData) {
+		"async": true,
+		"type": "POST",
+		"success": function (resultData) {
 			// 添加成功更新当前系统ID
 			if (action == "ADD") {
 				treeNodes[0].id = resultData.objectId;
 				zTree.updateNode(treeNodes[0])
 			}
-			
+
 			// 更新成功右侧名称同步更改
 			if (action == "UPDATE") {
 				$("#textName").val(treeNodes[0].name);
 			}
-			
+
 			layer.msg('数据已实时更新……', {
-				time : 1500
+				time: 1500
 			});
 		}
 	};
 	var cascade = $("input[name='cascadeTypeCodeRadio']:checked").val();
 	var rootNode = getCurrentRootNode(treeNodesArray[0]);
 	if (action == "ADD") {
-		
+
 		var zTreeNodeJson = {
-			id : null,
-			cascadeTypeCode : cascade,
-			name : treeNodesArray[0].name,
-			fartherId : treeNodesArray[0].fartherId,
-			level:(rootNode.isDomain?treeNodesArray[0].level:treeNodesArray[0].level+1),
-			priority : treeNodesArray[0].getIndex(),
-			categoryCode:1,
-			categoryText:'按业务分类'
+			id: null,
+			cascadeTypeCode: cascade,
+			name: treeNodesArray[0].name,
+			fartherId: treeNodesArray[0].fartherId,
+			level: (rootNode.isDomain ? treeNodesArray[0].level : treeNodesArray[0].level + 1),
+			priority: treeNodesArray[0].getIndex(),
+			categoryCode: 1,
+			categoryText: '按业务分类'
 		}
-		
+
 		// 如果根节点是应用领域
-		if(rootNode.isDomain!=null&&rootNode.isDomain){
-		zTreeNodeJson.domainId =rootNode.id;
-		zTreeNodeJson.domainName =rootNode.name;
-		zTreeNodeJson.fartherId=null; 		
+		if (rootNode.isDomain != null && rootNode.isDomain) {
+			zTreeNodeJson.domainId = rootNode.id;
+			zTreeNodeJson.domainName = rootNode.name;
+			zTreeNodeJson.fartherId = null;
 		}
-		
+
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
 		ajaxParamter.url = zTree.setting.url.addUrl;
 	}
@@ -2641,99 +2642,98 @@ function immediateUpdate(treeId, treeNodes, action,targetNode,moveType) {
 	else if (action == "DELETE") {
 
 		var idArray = new Array();
-		
-		$.each(treeNodesArray, function(i, v) {
+
+		$.each(treeNodesArray, function (i, v) {
 			idArray.push(v.id)
 		});
 		var submitData = {
-			idList : idArray,
-			cascadeTypeCode : cascade
+			idList: idArray,
+			cascadeTypeCode: cascade
 		};
 		ajaxParamter.type = 'POST';
 		ajaxParamter.data = JSON.stringify(submitData);
 		ajaxParamter.url = zTree.setting.url.deleteListUrl;
-	}else if (action = "UPDATE") {
-		var zTreeNodeJsonArray = new Array(); 
-		
+	} else if (action = "UPDATE") {
+		var zTreeNodeJsonArray = new Array();
+
 		var zTreeNodeJson = {
-			id :  treeNodesArray[0].id,
-			name : treeNodesArray[0].name,
-			fartherId : treeNodesArray[0].fartherId,
-			level:(rootNode.isDomain?treeNodesArray[0].level:treeNodesArray[0].level+1),
-			priority : treeNodesArray[0].getIndex()
+			id: treeNodesArray[0].id,
+			name: treeNodesArray[0].name,
+			fartherId: treeNodesArray[0].fartherId,
+			level: (rootNode.isDomain ? treeNodesArray[0].level : treeNodesArray[0].level + 1),
+			priority: treeNodesArray[0].getIndex()
 		}
 		ajaxParamter.data = JSON.stringify(zTreeNodeJson);
 		ajaxParamter.url = zTree.setting.url.updateUrl;
-		
+
 	}
 	else if (action = "DROP") {
 		var treeNodesBrotherArray = new Array();
 		var zTreeNodeJsonArray = new Array();
 
 		// 如果是拖拽动作，而且拖拽到根节点
-		if(targetNode==null||treeNodes[0].level == 0){
-			var treeNodesBrotherArray=zTree.getNodesByParam("fartherId", null, null);
+		if (targetNode == null || treeNodes[0].level == 0) {
+			var treeNodesBrotherArray = zTree.getNodesByParam("fartherId", null, null);
 		}
 		// 如果是拖拽动作，而且没有拖拽到根节点，有更简单的逻辑可以实现这个功能，就是取自己节点的父节点后再取所有子节点，但这样在数量大的时候可能会影响效率
-		else
-		{
+		else {
 			// 如果拖拽成为目标节点的子级节点
-			if(moveType =="inner"){
-				 treeNodesBrotherArray=zTree.getNodesByParam("fartherId", targetNode.id, null);
-		
+			if (moveType == "inner") {
+				treeNodesBrotherArray = zTree.getNodesByParam("fartherId", targetNode.id, null);
+
 			}
-			else if(moveType =="prev"||moveType =="next"){
-				function zTreeFilterPrev(node){
-					 return (node.fartherId == targetNode.fartherId && (node.getIndex()>=(targetNode.getIndex()<2?0:targetNode.getIndex()-1)));
+			else if (moveType == "prev" || moveType == "next") {
+				function zTreeFilterPrev(node) {
+					return (node.fartherId == targetNode.fartherId && (node.getIndex() >= (targetNode.getIndex() < 2 ? 0 : targetNode.getIndex() - 1)));
 				}
-				
-				treeNodesBrotherArray=zTree.getNodesByFilter(zTreeFilterPrev); 
+
+				treeNodesBrotherArray = zTree.getNodesByFilter(zTreeFilterPrev);
 			}
 		}
-		
-		$.each(treeNodesBrotherArray, function(i, v) {
+
+		$.each(treeNodesBrotherArray, function (i, v) {
 			var zTreeNodeJson = {
-				id : v.id,
-				cascadeTypeCode : cascade,
-				domainId : v.domainId,
-				name : v.name,
-				fartherId : v.fartherId,
-				level:(rootNode.isDomain?v.level:v.level+1),
-				priority : v.getIndex(),
-				categoryCode:1,
-				categoryText:'按业务分类'
+				id: v.id,
+				cascadeTypeCode: cascade,
+				domainId: v.domainId,
+				name: v.name,
+				fartherId: v.fartherId,
+				level: (rootNode.isDomain ? v.level : v.level + 1),
+				priority: v.getIndex(),
+				categoryCode: 1,
+				categoryText: '按业务分类'
 			}
-			//如果为功能模块的拖拽，要特别处理
-			if(v.domainId!=null&&v.level==1){
-				zTreeNodeJson.fartherId=null;
+			// 如果为功能模块的拖拽，要特别处理
+			if (v.domainId != null && v.level == 1) {
+				zTreeNodeJson.fartherId = null;
 			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
 		});
 		// 拖拽节点的子点级别可能发生变化
-		
+
 		var treeNodesChildArray = zTree.transformToArray(treeNodes[0].children);
-		$.each(treeNodesChildArray, function(i, v) {
+		$.each(treeNodesChildArray, function (i, v) {
 			var zTreeNodeJson = {
-				id : v.id,
-				cascadeTypeCode : cascade,
-				domainId : v.domainId,
-				name : v.name,
-				fartherId : v.fartherId,
-				level:(rootNode.isDomain?v.level:v.level+1),
-				priority : v.getIndex(),
-				categoryCode:1,
-				categoryText:'按业务分类'
+				id: v.id,
+				cascadeTypeCode: cascade,
+				domainId: v.domainId,
+				name: v.name,
+				fartherId: v.fartherId,
+				level: (rootNode.isDomain ? v.level : v.level + 1),
+				priority: v.getIndex(),
+				categoryCode: 1,
+				categoryText: '按业务分类'
 			}
 			zTreeNodeJsonArray.push(zTreeNodeJson);
-			});
-		
+		});
+
 		var submitData = {
-				entityList : zTreeNodeJsonArray
-			}
-			ajaxParamter.data = JSON.stringify(submitData);
-			ajaxParamter.url = zTree.setting.url.updateListUrl;
+			entityList: zTreeNodeJsonArray
+		}
+		ajaxParamter.data = JSON.stringify(submitData);
+		ajaxParamter.url = zTree.setting.url.updateListUrl;
 	}
-      
+
 	universalAjax(ajaxParamter);
 
 }

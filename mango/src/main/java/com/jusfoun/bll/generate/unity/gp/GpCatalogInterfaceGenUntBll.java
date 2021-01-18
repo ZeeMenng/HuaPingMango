@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/11/5 20:16:08
+ * @updateDate 2021/1/4 14:18:23
  * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 业务逻辑处理类，扩展自BaseUntBll<GpCatalogInterface>，自动生成。
  */
 public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> {
@@ -146,90 +146,7 @@ public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> 
 		}
 		return result;
 	}
- 	public ResultModel deleteByFartherId(String fartherId) {
-		return deleteByFartherId(fartherId, isLogRead);
-	}
-
-	public ResultModel deleteByFartherId(String fartherId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(fartherId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据外键，删除中间表数据。");
-
-			int i = gpCatalogInterfaceUntDal.deleteByFartherId( fartherId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel getListByFartherId(String fartherId) {
-		return getListByFartherId(fartherId, isLogRead);
-	}
-
-	public ResultModel getListByFartherId(String fartherId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(fartherId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
-			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
-			result.setRemark("根据外键，查询中间表。");
-
-			List<GpCatalogInterface> modelList = gpCatalogInterfaceUntDal.getListByFartherId(fartherId);
-
-			result.setReturnValue(JSONArray.fromObject(modelList).toString());
-			result.setData(modelList);
-			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
+  
 
 }
 

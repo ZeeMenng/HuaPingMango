@@ -109,7 +109,21 @@
 		<include refid="Base_Column_List" />
 		from gpr_role_interface where role_id = #{roleId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_role_interface
+		where 1=1
 
+   and interface_id in
+		<foreach collection="list" item="gprRoleInterface" index="index" open="(" close=")" separator=",">
+				#{gprRoleInterface.interfaceId,jdbcType=VARCHAR}
+		</foreach>
+   and role_id in
+		<foreach collection="list" item="gprRoleInterface" index="index" open="(" close=")" separator=",">
+				#{gprRoleInterface.roleId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_role_interface
@@ -119,17 +133,19 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRoleInterface" >
     update gpr_role_interface
     <set >
+                  <if test="roleId != null  and roleId != '' " >
+                     role_id = #{roleId,jdbcType=VARCHAR},
+                  </if>
                   <if test="interfaceId != null  and interfaceId != '' " >
                      interface_id = #{interfaceId,jdbcType=VARCHAR},
                   </if>
                   <if test="isEnableCode != null ">
                      is_enable_code = #{isEnableCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="roleId != null  and roleId != '' " >
-                     role_id = #{roleId,jdbcType=VARCHAR},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -138,14 +154,14 @@
 <update id="updateList">
     update gpr_role_interface
     <set >
+                  <if test="t.roleId != null  and t.roleId != '' " >
+                     role_id = #{t.roleId,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.interfaceId != null  and t.interfaceId != '' " >
                      interface_id = #{t.interfaceId,jdbcType=VARCHAR},
                   </if>
                   <if test="t.isEnableCode != null ">
                      is_enable_code = #{t.isEnableCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.roleId != null  and t.roleId != '' " >
-                     role_id = #{t.roleId,jdbcType=VARCHAR},
                   </if>
    </set>
 	
@@ -159,6 +175,17 @@
 <update id="updateListWithDff"  parameterType="list">
     update gpr_role_interface
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="role_id =case" suffix="end,">
+              <foreach collection="list" item="gprRoleInterface" index="index">
+                  <if test="gprRoleInterface.roleId != null and gprRoleInterface.roleId  != ''  and gprRoleInterface.roleId  != '-1' ">
+                     when id=#{gprRoleInterface.id} then #{gprRoleInterface.roleId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gprRoleInterface.roleId != null  and gprRoleInterface.roleId  == '-1' ">
+                     when id=#{gprRoleInterface.id} then null
+                  </if>
+                  
+              </foreach>
+         </trim>
          <trim prefix="interface_id =case" suffix="end,">
               <foreach collection="list" item="gprRoleInterface" index="index">
                   <if test="gprRoleInterface.interfaceId != null and gprRoleInterface.interfaceId  != ''  and gprRoleInterface.interfaceId  != '-1' ">
@@ -177,17 +204,6 @@
                   </if>
               </foreach>
          </trim>
-         <trim prefix="role_id =case" suffix="end,">
-              <foreach collection="list" item="gprRoleInterface" index="index">
-                  <if test="gprRoleInterface.roleId != null and gprRoleInterface.roleId  != ''  and gprRoleInterface.roleId  != '-1' ">
-                     when id=#{gprRoleInterface.id} then #{gprRoleInterface.roleId,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gprRoleInterface.roleId != null  and gprRoleInterface.roleId  == '-1' ">
-                     when id=#{gprRoleInterface.id} then null
-                  </if>
-                  
-              </foreach>
-         </trim>
     </trim>
     where id in
 		<foreach collection="list" item="gprRoleInterface" index="index" open="(" close=")" separator=",">
@@ -201,23 +217,23 @@
     replace into gpr_role_interface
         <trim prefix="(" suffix=")" suffixOverrides="," >
 id,
+role_id,
 interface_id,
 is_enable_code,
-role_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprRoleInterface" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gprRoleInterface.id ,jdbcType=VARCHAR},
                   
+                     #{gprRoleInterface.roleId ,jdbcType=VARCHAR},
+                  
+                  
                      #{gprRoleInterface.interfaceId ,jdbcType=VARCHAR},
                   
                   
                     #{gprRoleInterface.isEnableCode,jdbcType=TINYINT},
             
-                  
-                     #{gprRoleInterface.roleId ,jdbcType=VARCHAR},
-                  
       </trim>
     </foreach>
   </insert>

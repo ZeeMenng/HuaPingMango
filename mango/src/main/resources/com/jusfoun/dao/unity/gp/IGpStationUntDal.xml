@@ -125,7 +125,7 @@
 		<include refid="Base_Column_List" />
 		from gp_station where organization_id = #{organizationId,jdbcType=VARCHAR}
 	</select>
-
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gp_station
@@ -135,26 +135,28 @@
 		</foreach>
 	</delete>
   
+  
+  
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpStation" >
     update gp_station
     <set >
-                  <if test="addTime != null ">
-                     add_time = #{addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="name != null  and name != '' " >
-                     name = #{name,jdbcType=VARCHAR},
+                  <if test="serialNo != null  and serialNo != '' " >
+                     serial_no = #{serialNo,jdbcType=VARCHAR},
                   </if>
                   <if test="organizationId != null  and organizationId != '' " >
                      organization_id = #{organizationId,jdbcType=VARCHAR},
                   </if>
-                  <if test="remark != null  and remark != '' " >
-                     remark = #{remark,jdbcType=VARCHAR},
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="responsibility != null  and responsibility != '' " >
                      responsibility = #{responsibility,jdbcType=VARCHAR},
                   </if>
-                  <if test="serialNo != null  and serialNo != '' " >
-                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  <if test="remark != null  and remark != '' " >
+                     remark = #{remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="updateTime != null ">
                      update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -166,23 +168,23 @@
 <update id="updateList">
     update gp_station
     <set >
-                  <if test="t.addTime != null ">
-                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.name != null  and t.name != '' " >
-                     name = #{t.name,jdbcType=VARCHAR},
+                  <if test="t.serialNo != null  and t.serialNo != '' " >
+                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
                   </if>
                   <if test="t.organizationId != null  and t.organizationId != '' " >
                      organization_id = #{t.organizationId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.remark != null  and t.remark != '' " >
-                     remark = #{t.remark,jdbcType=VARCHAR},
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.responsibility != null  and t.responsibility != '' " >
                      responsibility = #{t.responsibility,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.serialNo != null  and t.serialNo != '' " >
-                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  <if test="t.remark != null  and t.remark != '' " >
+                     remark = #{t.remark,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
                   <if test="t.updateTime != null ">
                      update_time = #{t.updateTime,jdbcType=TIMESTAMP},
@@ -199,19 +201,12 @@
 <update id="updateListWithDff"  parameterType="list">
     update gp_station
 		<trim prefix="set" suffixOverrides=",">
-         <trim prefix="add_time =case" suffix="end,">
+         <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="gpStation" index="index">
-                  <if test="gpStation.addTime != null " >
-                     when id=#{gpStation.id} then #{gpStation.addTime,jdbcType=TIMESTAMP}
+                  <if test="gpStation.serialNo != null and gpStation.serialNo  != ''  and gpStation.serialNo  != '-1' ">
+                     when id=#{gpStation.id} then #{gpStation.serialNo,jdbcType=VARCHAR}
                   </if>
-              </foreach>
-         </trim>
-         <trim prefix="name =case" suffix="end,">
-              <foreach collection="list" item="gpStation" index="index">
-                  <if test="gpStation.name != null and gpStation.name  != ''  and gpStation.name  != '-1' ">
-                     when id=#{gpStation.id} then #{gpStation.name,jdbcType=VARCHAR}
-                  </if>
-                  <if test="gpStation.name != null  and gpStation.name  == '-1' ">
+                  <if test="gpStation.serialNo != null  and gpStation.serialNo  == '-1' ">
                      when id=#{gpStation.id} then null
                   </if>
                   
@@ -228,12 +223,12 @@
                   
               </foreach>
          </trim>
-         <trim prefix="remark =case" suffix="end,">
+         <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="gpStation" index="index">
-                  <if test="gpStation.remark != null and gpStation.remark  != ''  and gpStation.remark  != '-1' ">
-                     when id=#{gpStation.id} then #{gpStation.remark,jdbcType=VARCHAR}
+                  <if test="gpStation.name != null and gpStation.name  != ''  and gpStation.name  != '-1' ">
+                     when id=#{gpStation.id} then #{gpStation.name,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpStation.remark != null  and gpStation.remark  == '-1' ">
+                  <if test="gpStation.name != null  and gpStation.name  == '-1' ">
                      when id=#{gpStation.id} then null
                   </if>
                   
@@ -250,15 +245,22 @@
                   
               </foreach>
          </trim>
-         <trim prefix="serial_no =case" suffix="end,">
+         <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpStation" index="index">
-                  <if test="gpStation.serialNo != null and gpStation.serialNo  != ''  and gpStation.serialNo  != '-1' ">
-                     when id=#{gpStation.id} then #{gpStation.serialNo,jdbcType=VARCHAR}
+                  <if test="gpStation.remark != null and gpStation.remark  != ''  and gpStation.remark  != '-1' ">
+                     when id=#{gpStation.id} then #{gpStation.remark,jdbcType=VARCHAR}
                   </if>
-                  <if test="gpStation.serialNo != null  and gpStation.serialNo  == '-1' ">
+                  <if test="gpStation.remark != null  and gpStation.remark  == '-1' ">
                      when id=#{gpStation.id} then null
                   </if>
                   
+              </foreach>
+         </trim>
+         <trim prefix="add_time =case" suffix="end,">
+              <foreach collection="list" item="gpStation" index="index">
+                  <if test="gpStation.addTime != null " >
+                     when id=#{gpStation.id} then #{gpStation.addTime,jdbcType=TIMESTAMP}
+                  </if>
               </foreach>
          </trim>
          <trim prefix="update_time =case" suffix="end,">
@@ -280,37 +282,37 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gp_station
         <trim prefix="(" suffix=")" suffixOverrides="," >
-add_time,
 id,
-name,
-organization_id,
-remark,
-responsibility,
 serial_no,
+organization_id,
+name,
+responsibility,
+remark,
+add_time,
 update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpStation" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-                  
-                    #{gpStation.addTime,jdbcType=TIMESTAMP},
-            
               #{gpStation.id ,jdbcType=VARCHAR},
                   
-                     #{gpStation.name ,jdbcType=VARCHAR},
+                     #{gpStation.serialNo ,jdbcType=VARCHAR},
                   
                   
                      #{gpStation.organizationId ,jdbcType=VARCHAR},
                   
                   
-                     #{gpStation.remark ,jdbcType=VARCHAR},
+                     #{gpStation.name ,jdbcType=VARCHAR},
                   
                   
                      #{gpStation.responsibility ,jdbcType=VARCHAR},
                   
                   
-                     #{gpStation.serialNo ,jdbcType=VARCHAR},
+                     #{gpStation.remark ,jdbcType=VARCHAR},
                   
+                  
+                    #{gpStation.addTime,jdbcType=TIMESTAMP},
+            
                   
                     #{gpStation.updateTime,jdbcType=TIMESTAMP},
             

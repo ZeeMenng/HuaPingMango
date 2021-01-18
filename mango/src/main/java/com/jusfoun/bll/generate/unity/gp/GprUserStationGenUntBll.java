@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/10/13 20:02:08
+ * @updateDate 2021/1/4 14:18:23
  * @description 用户所属岗位。 业务逻辑处理类，扩展自BaseUntBll<GprUserStation>，自动生成。
  */
 public class GprUserStationGenUntBll extends BaseUntBll<GprUserStation> {
@@ -400,7 +400,57 @@ public class GprUserStationGenUntBll extends BaseUntBll<GprUserStation> {
 
 		return result;
 	}
+ 
+ 	public ResultModel deleteByCompositeIdList(ArrayList<GprUserStation> gprUserStationList) {
+		return deleteByCompositeIdList(gprUserStationList, isLogWrite);
+	}
 
+	public ResultModel deleteByCompositeIdList(ArrayList<GprUserStation> gprUserStationList, boolean isLog) {
+		ResultModel result = new ResultModel();
+		if (gprUserStationList == null || gprUserStationList.isEmpty()) {
+			result.setResultCode(OperResult.ADDLIST_F.getCode());
+			result.setResultMessage("传入的为空数组！");
+			return result;
+		}
+
+		try {
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(JSONArray.fromObject(gprUserStationList).toString());
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETELIST.getCode());
+			result.setOperTypeText(OperType.DELETELIST.getText());
+			result.setRemark("");
+
+			int i = gprUserStationUntDal.deleteByCompositeIdList(gprUserStationList);
+
+			result.setReturnValue(String.valueOf(i));
+			result.setData(null);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETELIST_S.getCode());
+			result.setResultMessage(OperResult.DELETELIST_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (i != gprUserStationList.size()) {
+				result.setResultMessage(OperResult.DELETELIST_S.getText() + "要删除的记录中有些已被删除。");
+			}
+		} catch (Exception e) {
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETELIST_F.getCode());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setReturnValue(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		} finally {
+			if (isLog)
+				operationLogDal.add(result);
+		}
+
+		return result;
+
+	}
+   
+  
 
 }
 

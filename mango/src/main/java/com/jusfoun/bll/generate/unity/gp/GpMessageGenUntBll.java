@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+﻿package com.jusfoun.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/10/13 20:02:11
+ * @updateDate 2021/1/4 14:18:25
  * @description 系统消息。 业务逻辑处理类，扩展自BaseUntBll<GpMessage>，自动生成。
  */
 public class GpMessageGenUntBll extends BaseUntBll<GpMessage> {
@@ -273,7 +273,7 @@ public class GpMessageGenUntBll extends BaseUntBll<GpMessage> {
 
 		return result;
 	}
-
+  
 
 }
 

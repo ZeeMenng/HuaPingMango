@@ -9,8 +9,6 @@ import com.jusfoun.ent.parameter.base.BaseParameter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-
-
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
@@ -38,6 +36,22 @@ public class GprRoleInterfaceParameter extends BaseParameter {
 
 	@ApiModel(value = "GprRoleInterfaceDeleteByIdList", description = "批量删除GprRoleInterface所需参数")
 	public static class DeleteByIdList extends BaseParameter.BaseParamDeleteByIdList {
+
+	}
+
+	@ApiModel(value = "GprRoleInterfaceDeleteByCompositeIdList", description = "批量删除GprRoleInterface所复合主键参数")
+	public static class DeleteByCompositeIdList {
+
+		@ApiModelProperty(value = "要删除的记录列表 ", required = false)
+		private ArrayList<GprRoleInterface> entityList = new ArrayList<GprRoleInterface>();
+
+		public ArrayList<GprRoleInterface> getEntityList() {
+			return entityList;
+		}
+
+		public void setEntityList(ArrayList<GprRoleInterface> entityList) {
+			this.entityList = entityList;
+		}
 
 	}
 
@@ -72,16 +86,9 @@ public class GprRoleInterfaceParameter extends BaseParameter {
 		}
 
 		@ApiModel(value = "GprRoleInterfaceGetListEntityRelated", description = "模糊查询GprRoleInterface所需的参数，实体类相关。")
-		public static class EntityRelated extends GprRoleInterfaceGenEnt{
-        
+		public static class EntityRelated extends GprRoleInterfaceGenEnt {
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

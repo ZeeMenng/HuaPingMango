@@ -101,7 +101,21 @@
 		<include refid="Base_Column_List" />
 		from gpr_domain_user where user_id = #{userId,jdbcType=VARCHAR}
 	</select>
+        
+ 	<delete id="deleteByCompositeIdList" parameterType="list">
+		delete from gpr_domain_user
+		where 1=1
 
+   and domain_id in
+		<foreach collection="list" item="gprDomainUser" index="index" open="(" close=")" separator=",">
+				#{gprDomainUser.domainId,jdbcType=VARCHAR}
+		</foreach>
+   and user_id in
+		<foreach collection="list" item="gprDomainUser" index="index" open="(" close=")" separator=",">
+				#{gprDomainUser.userId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+        
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete from gpr_domain_user
@@ -110,6 +124,8 @@
 			#{id }
 		</foreach>
 	</delete>
+  
+  
   
   <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprDomainUser" >
     update gpr_domain_user
@@ -179,17 +195,17 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into gpr_domain_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
-domain_id,
 id,
+domain_id,
 user_id,
     </trim>
     VALUES
     <foreach collection="list" item="gprDomainUser" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
+              #{gprDomainUser.id ,jdbcType=VARCHAR},
                   
                      #{gprDomainUser.domainId ,jdbcType=VARCHAR},
                   
-              #{gprDomainUser.id ,jdbcType=VARCHAR},
                   
                      #{gprDomainUser.userId ,jdbcType=VARCHAR},
                   
