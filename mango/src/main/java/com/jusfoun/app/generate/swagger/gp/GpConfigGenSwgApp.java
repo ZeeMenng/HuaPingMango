@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/18 19:49:31
+ * @updateDate 2021/1/19 11:57:32
  * @description 配置项信息。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpConfigGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.serial_no serialNo,A.code code,A.text text,A.default_value defaultValue,A.value_type valueType,A.priority priority,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_config A inner join gp_config B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.serial_no serialNo,A.code code,A.name name,A.default_value defaultValue,A.value_type valueType,A.priority priority,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_config A inner join gp_config B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -196,8 +196,8 @@ public class GpConfigGenSwgApp extends BaseSwgApp {
 					selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
 				if (entityRelatedObject.containsKey("code") && StringUtils.isNotBlank(entityRelatedObject.getString("code")))
 					selectBuffer.append(" and A.code like '%").append(entityRelatedObject.getString("code")).append("%'");
-				if (entityRelatedObject.containsKey("text") && StringUtils.isNotBlank(entityRelatedObject.getString("text")))
-					selectBuffer.append(" and A.text like '%").append(entityRelatedObject.getString("text")).append("%'");
+				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
+					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 			}
 
 			if (jsonObject.containsKey("page")) {

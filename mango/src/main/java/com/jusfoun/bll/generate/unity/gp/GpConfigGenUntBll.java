@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/18 19:49:32
+ * @updateDate 2021/1/19 11:57:32
  * @description 配置项信息。 业务逻辑处理类，扩展自BaseUntBll<GpConfig>，自动生成。
  */
 public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {

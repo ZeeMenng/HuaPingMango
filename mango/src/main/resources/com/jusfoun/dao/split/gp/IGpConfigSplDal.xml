@@ -5,8 +5,8 @@
   <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpConfig" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
-              <result column="code" property="code" jdbcType="TINYINT" />
-              <result column="text" property="text" jdbcType="VARCHAR" />
+              <result column="code" property="code" jdbcType="VARCHAR" />
+              <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="default_value" property="defaultValue" jdbcType="VARCHAR" />
               <result column="value_type" property="valueType" jdbcType="VARCHAR" />
               <result column="priority" property="priority" jdbcType="INTEGER" />
@@ -16,7 +16,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,serial_no,code,text,default_value,value_type,priority,remark,add_time,update_time
+        id,serial_no,code,name,default_value,value_type,priority,remark,add_time,update_time
   </sql>
   
   <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpConfig" >
@@ -30,11 +30,12 @@
               serial_no,
           </if>
       
-          <if test="code != null " >
+          <if test="code != null and code != '' " >
               code,
           </if>
-          <if test="text != null and text != '' " >
-              text,
+      
+          <if test="name != null and name != '' " >
+              name,
           </if>
       
           <if test="defaultValue != null and defaultValue != '' " >
@@ -66,11 +67,11 @@
           <if test="serialNo != null and serialNo != '' " >
               #{serialNo,jdbcType=VARCHAR},
           </if>
-          <if test="code != null " >
-              #{code,jdbcType=TINYINT},
+          <if test="code != null and code != '' " >
+              #{code,jdbcType=VARCHAR},
           </if>
-          <if test="text != null and text != '' " >
-              #{text,jdbcType=VARCHAR},
+          <if test="name != null and name != '' " >
+              #{name,jdbcType=VARCHAR},
           </if>
           <if test="defaultValue != null and defaultValue != '' " >
               #{defaultValue,jdbcType=VARCHAR},
@@ -110,10 +111,10 @@
           #{gpConfig.serialNo,jdbcType=VARCHAR},
 
       
-          #{gpConfig.code,jdbcType=TINYINT},
+          #{gpConfig.code,jdbcType=VARCHAR},
 
       
-          #{gpConfig.text,jdbcType=VARCHAR},
+          #{gpConfig.name,jdbcType=VARCHAR},
 
       
           #{gpConfig.defaultValue,jdbcType=VARCHAR},
@@ -159,11 +160,11 @@
                   <if test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
                   </if>
-                  <if test="code != null ">
-                     code = #{code,jdbcType=TINYINT},
+                  <if test="code != null  and code != '' " >
+                     code = #{code,jdbcType=VARCHAR},
                   </if>
-                  <if test="text != null  and text != '' " >
-                     text = #{text,jdbcType=VARCHAR},
+                  <if test="name != null  and name != '' " >
+                     name = #{name,jdbcType=VARCHAR},
                   </if>
                   <if test="defaultValue != null  and defaultValue != '' " >
                      default_value = #{defaultValue,jdbcType=VARCHAR},
@@ -193,11 +194,11 @@
                   <if test="t.serialNo != null  and t.serialNo != '' " >
                      serial_no = #{t.serialNo,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.code != null ">
-                     code = #{t.code,jdbcType=TINYINT},
+                  <if test="t.code != null  and t.code != '' " >
+                     code = #{t.code,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.text != null  and t.text != '' " >
-                     text = #{t.text,jdbcType=VARCHAR},
+                  <if test="t.name != null  and t.name != '' " >
+                     name = #{t.name,jdbcType=VARCHAR},
                   </if>
                   <if test="t.defaultValue != null  and t.defaultValue != '' " >
                      default_value = #{t.defaultValue,jdbcType=VARCHAR},
@@ -246,20 +247,23 @@
 		<if test="EntityRelated.endAddTime != null ">
 				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
 		</if>
+		<if test="EntityRelated.code != null and EntityRelated.code != '' ">
+ 				and  code LIKE CONCAT('%',#{EntityRelated.code,jdbcType=VARCHAR},'%') 
+		</if>
 		<if test="EntityRelated.defaultValue != null and EntityRelated.defaultValue != '' ">
  				and  default_value LIKE CONCAT('%',#{EntityRelated.defaultValue,jdbcType=VARCHAR},'%') 
 		</if>
 		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
 				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
 		</if>
+		<if test="EntityRelated.name != null and EntityRelated.name != '' ">
+ 				and  name LIKE CONCAT('%',#{EntityRelated.name,jdbcType=VARCHAR},'%') 
+		</if>
 		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
  				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
 		</if>
 		<if test="EntityRelated.serialNo != null and EntityRelated.serialNo != '' ">
  				and  serial_no LIKE CONCAT('%',#{EntityRelated.serialNo,jdbcType=VARCHAR},'%') 
-		</if>
-		<if test="EntityRelated.text != null and EntityRelated.text != '' ">
- 				and  text LIKE CONCAT('%',#{EntityRelated.text,jdbcType=VARCHAR},'%') 
 		</if>
 		<if test="EntityRelated.beginUpdateTime != null ">
 				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 

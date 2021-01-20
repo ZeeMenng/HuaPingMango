@@ -12,7 +12,7 @@ import com.jusfoun.ent.extend.gp.GpConfig;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/18 19:49:33
+ * @updateDate 2021/1/19 11:24:12
  * @description 扩展自实体类IBaseUntDal<GprConfigUser>，可手动更改。用户配置信息。
  */
 

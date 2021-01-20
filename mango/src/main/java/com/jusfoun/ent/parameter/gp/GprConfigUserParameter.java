@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/18 19:49:24
+ * @updateDate 2021/1/19 11:24:07
  * @description 实体类GprConfigUserParameter，方法参数，自动生成。用户配置信息。
  */
 
@@ -73,6 +73,50 @@ public class GprConfigUserParameter extends BaseParameter {
 
 		@ApiModel(value = "GprConfigUserGetListEntityRelated", description = "模糊查询GprConfigUser所需的参数，实体类相关。")
 		public static class EntityRelated extends GprConfigUserGenEnt{
+        
+        @ApiModelProperty(value="记录创建时间。查询起止时间。",required=false)
+		private Date beginAddTime;
+
+        @ApiModelProperty(value="记录创建时间。查询结束时间。",required=false)
+		private Date endAddTime;
+
+        @ApiModelProperty(value="记录最后一次修改时间。查询起止时间。",required=false)
+		private Date beginUpdateTime;
+
+        @ApiModelProperty(value="记录最后一次修改时间。查询结束时间。",required=false)
+		private Date endUpdateTime;
+
+		public Date getBeginAddTime() {
+			return this.beginAddTime;
+		}
+        
+		public void setBeginAddTime(Date beginAddTime) {
+			this.beginAddTime = beginAddTime;
+		}
+        
+        public Date getEndAddTime() {
+			return this.endAddTime;
+		}
+        
+		public void setEndAddTime(Date endAddTime) {
+			this.endAddTime = endAddTime;
+		}
+        
+		public Date getBeginUpdateTime() {
+			return this.beginUpdateTime;
+		}
+        
+		public void setBeginUpdateTime(Date beginUpdateTime) {
+			this.beginUpdateTime = beginUpdateTime;
+		}
+        
+        public Date getEndUpdateTime() {
+			return this.endUpdateTime;
+		}
+        
+		public void setEndUpdateTime(Date endUpdateTime) {
+			this.endUpdateTime = endUpdateTime;
+		}
         
 		}
 	}

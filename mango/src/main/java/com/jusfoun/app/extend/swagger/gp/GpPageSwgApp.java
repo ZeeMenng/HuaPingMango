@@ -23,6 +23,7 @@ import com.jusfoun.app.generate.swagger.gp.GpPageGenSwgApp;
 import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpPage;
 import com.jusfoun.ent.parameter.gp.GpPageParameter;
+import com.jusfoun.set.enumer.DomainEnum;
 import com.jusfoun.set.exception.GlobalException;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.DictionaryUtil;
@@ -272,8 +273,8 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 				if (!urls.contains(path)) {
 					GpPage jsonData = new GpPage();
 					jsonData.setId(Tools.getUUID());
-					jsonData.setDomainId(Tools.getUUID());
-					jsonData.setName("芒果");
+					jsonData.setDomainId(DomainEnum.GP.getId());
+					jsonData.setName(DomainEnum.GP.getName());
 					jsonData.setUrl(path);
 					jsonData.setAddTime(new Date());
 					jsonData.setIsPublicCode((byte) 0);

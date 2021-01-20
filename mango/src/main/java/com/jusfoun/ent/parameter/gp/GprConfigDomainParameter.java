@@ -2,8 +2,8 @@
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.gp.GpConfig;
-import com.jusfoun.ent.generate.gp.GpConfigGenEnt;
+import com.jusfoun.ent.extend.gp.GprConfigDomain;
+import com.jusfoun.ent.generate.gp.GprConfigDomainGenEnt;
 import com.jusfoun.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
@@ -14,50 +14,50 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/19 11:57:32
- * @description 实体类GpConfigParameter，方法参数，自动生成。配置项信息。
+ * @updateDate 2021/1/20 10:44:14
+ * @description 实体类GprConfigDomainParameter，方法参数，自动生成。应用领域配置信息。
  */
 
-public class GpConfigParameter extends BaseParameter {
+public class GprConfigDomainParameter extends BaseParameter {
 
-	@ApiModel(value = "GpConfigAddList", description = "批量添加GpConfig所需参数")
+	@ApiModel(value = "GprConfigDomainAddList", description = "批量添加GprConfigDomain所需参数")
 	public static class AddList extends BaseParameter.BaseParamAddList {
 
 		@ApiModelProperty(value = "要新增的记录列表 ", required = false)
-		private ArrayList<GpConfig> entityList = new ArrayList<GpConfig>();
+		private ArrayList<GprConfigDomain> entityList = new ArrayList<GprConfigDomain>();
 
-		public ArrayList<GpConfig> getEntityList() {
+		public ArrayList<GprConfigDomain> getEntityList() {
 			return entityList;
 		}
 
-		public void setEntityList(ArrayList<GpConfig> entityList) {
+		public void setEntityList(ArrayList<GprConfigDomain> entityList) {
 			this.entityList = entityList;
 		}
 
 	}
 
-	@ApiModel(value = "GpConfigDeleteByIdList", description = "批量删除GpConfig所需参数")
+	@ApiModel(value = "GprConfigDomainDeleteByIdList", description = "批量删除GprConfigDomain所需参数")
 	public static class DeleteByIdList extends BaseParameter.BaseParamDeleteByIdList {
 
 	}
 
-	@ApiModel(value = "GpConfigUpdateList", description = "批量修改GpConfig所需参数")
+	@ApiModel(value = "GprConfigDomainUpdateList", description = "批量修改GprConfigDomain所需参数")
 	public static class UpdateList extends BaseParameter.BaseParamUpdateList {
 
 		@ApiModelProperty(value = "要修改为的信息承载实体 ", required = false)
-		private GpConfig entity = new GpConfig();
+		private GprConfigDomain entity = new GprConfigDomain();
 
-		public GpConfig getEntity() {
+		public GprConfigDomain getEntity() {
 			return entity;
 		}
 
-		public void setEntity(GpConfig entity) {
+		public void setEntity(GprConfigDomain entity) {
 			this.entity = entity;
 		}
 
 	}
 
-	@ApiModel(value = "GpConfigGetList", description = "模糊查询GpConfig所需参数")
+	@ApiModel(value = "GprConfigDomainGetList", description = "模糊查询GprConfigDomain所需参数")
 	public static class GetList extends BaseParameter.BaseParamGetList {
 
 		@ApiModelProperty(value = "实体相关的查询条件 ", required = false)
@@ -71,8 +71,8 @@ public class GpConfigParameter extends BaseParameter {
 			this.entityRelated = entityRelated;
 		}
 
-		@ApiModel(value = "GpConfigGetListEntityRelated", description = "模糊查询GpConfig所需的参数，实体类相关。")
-		public static class EntityRelated extends GpConfigGenEnt{
+		@ApiModel(value = "GprConfigDomainGetListEntityRelated", description = "模糊查询GprConfigDomain所需的参数，实体类相关。")
+		public static class EntityRelated extends GprConfigDomainGenEnt{
         
         @ApiModelProperty(value="记录创建时间。查询起止时间。",required=false)
 		private Date beginAddTime;

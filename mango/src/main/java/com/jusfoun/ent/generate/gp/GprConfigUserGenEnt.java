@@ -15,19 +15,23 @@ import com.jusfoun.ent.extend.gp.GpConfig;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/18 19:49:35
+ * @updateDate 2021/1/19 11:24:16
  * @description 实体类GprConfigUserGenEnt，自动生成。用户配置信息。
  */
 
 public class GprConfigUserGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    @ApiModelProperty(value="记录创建时间。",hidden=false,required=false)
+    private Date addTime;
     @ApiModelProperty(value="配置项。外键，引用配置项表（config）的主键。",hidden=false,required=false)
     private String configId;
     @ApiModelProperty(value="配置项值。",hidden=false,required=false)
     private String configValue;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
+    @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
+    private Date updateTime;
     @ApiModelProperty(value="用户。外键，引用用户表（user）的主键。",hidden=false,required=false)
     private String userId;
 
@@ -40,6 +44,20 @@ public class GprConfigUserGenEnt extends BaseEnt implements Serializable {
     //父子表均为自身时
 
 
+	/**
+	 * get方法。记录创建时间。
+	 */
+	public Date getAddTime() {
+		return this.addTime;
+	}
+
+	/**
+	 * set方法。记录创建时间。
+	 */
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+    
 	/**
 	 * get方法。配置项。外键，引用配置项表（config）的主键。
 	 */
@@ -80,6 +98,20 @@ public class GprConfigUserGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+    
+	/**
+	 * get方法。记录最后一次修改时间。
+	 */
+	public Date getUpdateTime() {
+		return this.updateTime;
+	}
+
+	/**
+	 * set方法。记录最后一次修改时间。
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
     
 	/**

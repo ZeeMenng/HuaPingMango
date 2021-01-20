@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.gp.IGprConfigUntDal;
+import com.jusfoun.dao.unity.gp.IGprConfigDomainUntDal;
 import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GprConfig;
-import com.jusfoun.ent.parameter.gp.GprConfigParameter;
+import com.jusfoun.ent.extend.gp.GprConfigDomain;
+import com.jusfoun.ent.parameter.gp.GprConfigDomainParameter;
 import com.jusfoun.set.enumer.OperResult;
 import com.jusfoun.set.enumer.OperType;
 import com.jusfoun.set.exception.GlobalException;
@@ -28,20 +28,20 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/18 19:49:32
- * @description 应用领域配置信息。 业务逻辑处理类，扩展自BaseUntBll<GprConfig>，自动生成。
+ * @updateDate 2021/1/20 10:44:19
+ * @description 应用领域配置信息。 业务逻辑处理类，扩展自BaseUntBll<GprConfigDomain>，自动生成。
  */
-public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
+public class GprConfigDomainGenUntBll extends BaseUntBll<GprConfigDomain> {
 
 	@Autowired
-	protected IGprConfigUntDal gprConfigUntDal;
+	protected IGprConfigDomainUntDal gprConfigDomainUntDal;
 
 
-	public ResultModel updateList(GprConfigParameter.UpdateList updateListParam) {
+	public ResultModel updateList(GprConfigDomainParameter.UpdateList updateListParam) {
 		return updateList(updateListParam, isLogWrite);
 	}
 
-	public ResultModel updateList(GprConfigParameter.UpdateList updateListParam, boolean isLog) {
+	public ResultModel updateList(GprConfigDomainParameter.UpdateList updateListParam, boolean isLog) {
 
 		ResultModel result = new ResultModel();
 
@@ -85,11 +85,11 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 		return result;
 	}
 
-	public ResultModel getList(GprConfigParameter.GetList getListParam) {
+	public ResultModel getList(GprConfigDomainParameter.GetList getListParam) {
 		return getList(getListParam, isLogRead);
 	}
 
-	public ResultModel getList(GprConfigParameter.GetList getListParam, boolean isLog) {
+	public ResultModel getList(GprConfigDomainParameter.GetList getListParam, boolean isLog) {
 		ResultModel result = new ResultModel();
 
 		try {
@@ -106,9 +106,9 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 			result.setRemark("");
 			
 
-			GprConfigParameter.GetList.EntityRelated entityRelated = getListParam.getEntityRelated();
-			GprConfigParameter.GetList.Page page = getListParam.getPage();
-			ArrayList<GprConfigParameter.GetList.Order> orderList = getListParam.getOrderList();
+			GprConfigDomainParameter.GetList.EntityRelated entityRelated = getListParam.getEntityRelated();
+			GprConfigDomainParameter.GetList.Page page = getListParam.getPage();
+			ArrayList<GprConfigDomainParameter.GetList.Order> orderList = getListParam.getOrderList();
 
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (entityRelated != null)
@@ -122,9 +122,9 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 
 			PageHelper.startPage(page.getPageIndex(), page.getPageSize());
 
-			List<GprConfig> list = baseUntDal.getList(map);
-			PageInfo<GprConfig> pageInfo = new PageInfo<GprConfig>(list);
-			List<GprConfig> modelList = pageInfo.getList();
+			List<GprConfigDomain> list = baseUntDal.getList(map);
+			PageInfo<GprConfigDomain> pageInfo = new PageInfo<GprConfigDomain>(list);
+			List<GprConfigDomain> modelList = pageInfo.getList();
 
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
@@ -147,22 +147,22 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 		return result;
 	}
  
- 	public ResultModel deleteByBusinessId(String businessId) {
-		return deleteByBusinessId(businessId, isLogRead);
+ 	public ResultModel deleteByDomainId(String domainId) {
+		return deleteByDomainId(domainId, isLogRead);
 	}
 
-	public ResultModel deleteByBusinessId(String businessId, boolean isLog) {
+	public ResultModel deleteByDomainId(String domainId, boolean isLog) {
 		ResultModel result = new ResultModel();
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
+			result.setIncomeValue(domainId);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据外键，删除中间表数据。");
 
-			int i = gprConfigUntDal.deleteByBusinessId( businessId);
+			int i = gprConfigDomainUntDal.deleteByDomainId( domainId);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -188,23 +188,23 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 	}
 
 
- 	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList) {
-		return deleteByBusinessIdList(businessIdList, isLogRead);
+ 	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList) {
+		return deleteByDomainIdList(domainIdList, isLogRead);
 	}
 
-	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList, boolean isLog) {
+	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList, boolean isLog) {
 		ResultModel result = new ResultModel();
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject( businessIdList).toString());
+			result.setIncomeValue(JSONArray.fromObject( domainIdList).toString());
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
 			result.setRemark("根据外键列表，批量删除本表数据。");
 
-			int i = gprConfigUntDal.deleteByBusinessIdList(businessIdList);
+			int i = gprConfigDomainUntDal.deleteByDomainIdList(domainIdList);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -230,22 +230,22 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 	}
 
 
-	public ResultModel getListByBusinessId(String businessId) {
-		return getListByBusinessId(businessId, isLogRead);
+	public ResultModel getListByDomainId(String domainId) {
+		return getListByDomainId(domainId, isLogRead);
 	}
 
-	public ResultModel getListByBusinessId(String businessId, boolean isLog) {
+	public ResultModel getListByDomainId(String domainId, boolean isLog) {
 		ResultModel result = new ResultModel();
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
+			result.setIncomeValue(domainId);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
 			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
 			result.setRemark("根据外键，查询中间表。");
 
-			List<GprConfig> modelList = gprConfigUntDal.getListByBusinessId(businessId);
+			List<GprConfigDomain> modelList = gprConfigDomainUntDal.getListByDomainId(domainId);
 
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
@@ -289,7 +289,7 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据外键，删除中间表数据。");
 
-			int i = gprConfigUntDal.deleteByConfigId( configId);
+			int i = gprConfigDomainUntDal.deleteByConfigId( configId);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -331,7 +331,7 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 			result.setOperTypeText(OperType.DELETELIST.getText());
 			result.setRemark("根据外键列表，批量删除本表数据。");
 
-			int i = gprConfigUntDal.deleteByConfigIdList(configIdList);
+			int i = gprConfigDomainUntDal.deleteByConfigIdList(configIdList);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -372,7 +372,7 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
 			result.setRemark("根据外键，查询中间表。");
 
-			List<GprConfig> modelList = gprConfigUntDal.getListByConfigId(configId);
+			List<GprConfigDomain> modelList = gprConfigDomainUntDal.getListByConfigId(configId);
 
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
@@ -401,267 +401,13 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 		return result;
 	}
  
- 	public ResultModel deleteByBusinessId(String businessId) {
-		return deleteByBusinessId(businessId, isLogRead);
+ 	public ResultModel deleteByCompositeIdList(ArrayList<GprConfigDomain> gprConfigDomainList) {
+		return deleteByCompositeIdList(gprConfigDomainList, isLogWrite);
 	}
 
-	public ResultModel deleteByBusinessId(String businessId, boolean isLog) {
+	public ResultModel deleteByCompositeIdList(ArrayList<GprConfigDomain> gprConfigDomainList, boolean isLog) {
 		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据外键，删除中间表数据。");
-
-			int i = gprConfigUntDal.deleteByBusinessId( businessId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-
- 	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList) {
-		return deleteByBusinessIdList(businessIdList, isLogRead);
-	}
-
-	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject( businessIdList).toString());
-			result.setObjectId("");
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETELIST.getCode());
-			result.setOperTypeText(OperType.DELETELIST.getText());
-			result.setRemark("根据外键列表，批量删除本表数据。");
-
-			int i = gprConfigUntDal.deleteByBusinessIdList(businessIdList);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETELIST_S.getCode());
-			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-
-	public ResultModel getListByBusinessId(String businessId) {
-		return getListByBusinessId(businessId, isLogRead);
-	}
-
-	public ResultModel getListByBusinessId(String businessId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
-			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
-			result.setRemark("根据外键，查询中间表。");
-
-			List<GprConfig> modelList = gprConfigUntDal.getListByBusinessId(businessId);
-
-			result.setReturnValue(JSONArray.fromObject(modelList).toString());
-			result.setData(modelList);
-			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
- 
- 	public ResultModel deleteByBusinessId(String businessId) {
-		return deleteByBusinessId(businessId, isLogRead);
-	}
-
-	public ResultModel deleteByBusinessId(String businessId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据外键，删除中间表数据。");
-
-			int i = gprConfigUntDal.deleteByBusinessId( businessId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-
- 	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList) {
-		return deleteByBusinessIdList(businessIdList, isLogRead);
-	}
-
-	public ResultModel deleteByBusinessIdList(ArrayList<String> businessIdList, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject( businessIdList).toString());
-			result.setObjectId("");
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETELIST.getCode());
-			result.setOperTypeText(OperType.DELETELIST.getText());
-			result.setRemark("根据外键列表，批量删除本表数据。");
-
-			int i = gprConfigUntDal.deleteByBusinessIdList(businessIdList);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETELIST_S.getCode());
-			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-
-	public ResultModel getListByBusinessId(String businessId) {
-		return getListByBusinessId(businessId, isLogRead);
-	}
-
-	public ResultModel getListByBusinessId(String businessId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(businessId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
-			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
-			result.setRemark("根据外键，查询中间表。");
-
-			List<GprConfig> modelList = gprConfigUntDal.getListByBusinessId(businessId);
-
-			result.setReturnValue(JSONArray.fromObject(modelList).toString());
-			result.setData(modelList);
-			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
- 
- 	public ResultModel deleteByCompositeIdList(ArrayList<GprConfig> gprConfigList) {
-		return deleteByCompositeIdList(gprConfigList, isLogWrite);
-	}
-
-	public ResultModel deleteByCompositeIdList(ArrayList<GprConfig> gprConfigList, boolean isLog) {
-		ResultModel result = new ResultModel();
-		if (gprConfigList == null || gprConfigList.isEmpty()) {
+		if (gprConfigDomainList == null || gprConfigDomainList.isEmpty()) {
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage("传入的为空数组！");
 			return result;
@@ -669,14 +415,14 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 
 		try {
 			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject(gprConfigList).toString());
+			result.setIncomeValue(JSONArray.fromObject(gprConfigDomainList).toString());
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
 			result.setRemark("");
 
-			int i = gprConfigUntDal.deleteByCompositeIdList(gprConfigList);
+			int i = gprConfigDomainUntDal.deleteByCompositeIdList(gprConfigDomainList);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(null);
@@ -684,7 +430,7 @@ public class GprConfigGenUntBll extends BaseUntBll<GprConfig> {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != gprConfigList.size()) {
+			if (i != gprConfigDomainList.size()) {
 				result.setResultMessage(OperResult.DELETELIST_S.getText() + "要删除的记录中有些已被删除。");
 			}
 		} catch (Exception e) {

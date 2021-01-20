@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/18 19:49:31
+ * @updateDate 2021/1/19 11:24:09
  * @description 用户配置信息。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GprConfigUserGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.config_id configId,A.user_id userId,A.config_value configValue  from gpr_config_user A inner join gpr_config_user B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.config_id configId,A.config_value configValue,A.user_id userId,A.add_time addTime,A.update_time updateTime  from gpr_config_user A inner join gpr_config_user B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -194,6 +194,10 @@ public class GprConfigUserGenSwgApp extends BaseSwgApp {
                 
 				if (entityRelatedObject.containsKey("configValue") && StringUtils.isNotBlank(entityRelatedObject.getString("configValue")))
 					selectBuffer.append(" and A.config_value like '%").append(entityRelatedObject.getString("configValue")).append("%'");
+				if (entityRelatedObject.containsKey("addTime") && StringUtils.isNotBlank(entityRelatedObject.getString("addTime")))
+					selectBuffer.append(" and A.add_time like '%").append(entityRelatedObject.getString("addTime")).append("%'");
+				if (entityRelatedObject.containsKey("updateTime") && StringUtils.isNotBlank(entityRelatedObject.getString("updateTime")))
+					selectBuffer.append(" and A.update_time like '%").append(entityRelatedObject.getString("updateTime")).append("%'");
 			}
 
 			if (jsonObject.containsKey("page")) {

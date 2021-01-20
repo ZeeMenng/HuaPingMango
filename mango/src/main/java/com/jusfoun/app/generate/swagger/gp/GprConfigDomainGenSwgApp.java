@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.gp.GprConfigSplBll;
-import com.jusfoun.bll.extend.unity.gp.GprConfigUntBll;
-import com.jusfoun.ent.extend.gp.GprConfig;
+import com.jusfoun.bll.extend.split.gp.GprConfigDomainSplBll;
+import com.jusfoun.bll.extend.unity.gp.GprConfigDomainUntBll;
+import com.jusfoun.ent.extend.gp.GprConfigDomain;
 import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.gp.GprConfigParameter;
+import com.jusfoun.ent.parameter.gp.GprConfigDomainParameter;
 import com.jusfoun.utl.DateUtils;
 import com.jusfoun.utl.SymbolicConstant;
 
@@ -34,36 +34,36 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/18 19:49:31
+ * @updateDate 2021/1/20 10:44:19
  * @description 应用领域配置信息。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
-@Api(value = "GprConfig",tags="应用领域配置信息。")
-@RequestMapping(value = "/generate/swagger/gp/gprConfig")
-public class GprConfigGenSwgApp extends BaseSwgApp {
+@Api(value = "GprConfigDomain",tags="应用领域配置信息。")
+@RequestMapping(value = "/generate/swagger/gp/gprConfigDomain")
+public class GprConfigDomainGenSwgApp extends BaseSwgApp {
 
 	@Autowired
-	@Qualifier("gprConfigUntBll")
-	protected GprConfigUntBll gprConfigUntBll;
+	@Qualifier("gprConfigDomainUntBll")
+	protected GprConfigDomainUntBll gprConfigDomainUntBll;
 
 	@Autowired
-	@Qualifier("gprConfigSplBll")
-	protected GprConfigSplBll gprConfigSplBll;
+	@Qualifier("gprConfigDomainSplBll")
+	protected GprConfigDomainSplBll gprConfigDomainSplBll;
 
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GprConfig") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GprConfigDomain") })
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel add(@RequestBody GprConfig jsonData) {
-		ResultModel result = gprConfigUntBll.add(jsonData);
+	public ResultModel add(@RequestBody GprConfigDomain jsonData) {
+		ResultModel result = gprConfigDomainUntBll.add(jsonData);
 
 		return result;
 	}
 
 	@ApiOperation(value = "批量新增", notes = "新增多条记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigAddList") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigDomainAddList") })
 	@RequestMapping(value = "/addList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel addList(@RequestBody GprConfigParameter.AddList jsonData) {
-		ResultModel result = gprConfigUntBll.add(jsonData.getEntityList());
+	public ResultModel addList(@RequestBody GprConfigDomainParameter.AddList jsonData) {
+		ResultModel result = gprConfigDomainUntBll.add(jsonData.getEntityList());
 
 		return result;
 	}
@@ -72,7 +72,7 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		ResultModel result = gprConfigUntBll.delete(id);
+		ResultModel result = gprConfigDomainUntBll.delete(id);
 
 		return result;
 	}
@@ -81,54 +81,54 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteByPath(@PathVariable("id") String id) {
-		ResultModel result = gprConfigUntBll.delete(id);
+		ResultModel result = gprConfigDomainUntBll.delete(id);
 
 		return result;
 	}
 
 	@ApiOperation(value = "批量删除", notes = "根据主键列表批量删除相应记录")
-	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GprConfigDeleteByIdList")
+	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GprConfigDomainDeleteByIdList")
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel deleteList(@RequestBody GprConfigParameter.DeleteByIdList jsonData) {
-		ResultModel result = gprConfigUntBll.deleteByIdList(jsonData.getIdList());
+	public ResultModel deleteList(@RequestBody GprConfigDomainParameter.DeleteByIdList jsonData) {
+		ResultModel result = gprConfigDomainUntBll.deleteByIdList(jsonData.getIdList());
 
 		return result;
 	}
 
 	@ApiOperation(value = "修改记录", notes = "修改指定记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GprConfig") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GprConfigDomain") })
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel update(@RequestBody GprConfig jsonData) {
-		ResultModel result = gprConfigUntBll.update(jsonData);
+	public ResultModel update(@RequestBody GprConfigDomain jsonData) {
+		ResultModel result = gprConfigDomainUntBll.update(jsonData);
 
 		return result;
 	}
 
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表和要修改为的信息承载实体", required = true, dataType = "GprConfigUpdateList") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表和要修改为的信息承载实体", required = true, dataType = "GprConfigDomainUpdateList") })
 	@RequestMapping(value = "/updateList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updateList(@RequestBody GprConfigParameter.UpdateList jsonData) {
-		ResultModel result = gprConfigUntBll.updateList(jsonData);
+	public ResultModel updateList(@RequestBody GprConfigDomainParameter.UpdateList jsonData) {
+		ResultModel result = gprConfigDomainUntBll.updateList(jsonData);
 
 		return result;
 	}
     
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigAddList") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigDomainAddList") })
 	@RequestMapping(value = "/updateListWithDff", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDff(@RequestBody GprConfigParameter.AddList jsonData) {
-		ResultModel result = gprConfigUntBll.updateListWithDff(jsonData.getEntityList());
+    public ResultModel updateListWithDff(@RequestBody GprConfigDomainParameter.AddList jsonData) {
+		ResultModel result = gprConfigDomainUntBll.updateListWithDff(jsonData.getEntityList());
 
 		return result;
 	}
     
     
     @ApiOperation(value = "批量修改", notes = "同时修改多条记录、多个属性为不同值,如果没有此条记录则执行新增")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigAddList") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "GprConfigDomainAddList") })
 	@RequestMapping(value = "/updateListWithDffOrAdd", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultModel updateListWithDffOrAdd(@RequestBody GprConfigParameter.AddList jsonData) {
-		ResultModel result = gprConfigUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
+    public ResultModel updateListWithDffOrAdd(@RequestBody GprConfigDomainParameter.AddList jsonData) {
+		ResultModel result = gprConfigDomainUntBll.updateListWithDffOrAdd(jsonData.getEntityList());
 
 		return result;
 	}
@@ -138,7 +138,7 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getModel(@RequestParam String id) {
-		ResultModel result = gprConfigUntBll.getModel(id);
+		ResultModel result = gprConfigDomainUntBll.getModel(id);
 
 		return result;
 	}
@@ -147,17 +147,17 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getModelByPath(@PathVariable("id") String id) {
-		ResultModel result = gprConfigUntBll.getModel(id);
+		ResultModel result = gprConfigDomainUntBll.getModel(id);
 
 		return result;
 	}
 
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，查询参数", required = true, dataType = "GprConfigGetList") })
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，查询参数", required = true, dataType = "GprConfigDomainGetList") })
 	@RequestMapping(value = "/getList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel getList(@RequestBody GprConfigParameter.GetList jsonData) {
+	public ResultModel getList(@RequestBody GprConfigDomainParameter.GetList jsonData) {
 		// 处理业务与返回数据
-		ResultModel result = gprConfigUntBll.getList(jsonData);
+		ResultModel result = gprConfigDomainUntBll.getList(jsonData);
 
 		return result;
 	}
@@ -173,7 +173,7 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.config_id configId,A.business_id businessId,A.config_value configValue  from gpr_config A inner join gpr_config B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.config_id configId,A.domain_id domainId,A.config_value configValue,A.add_time addTime,A.update_time updateTime  from gpr_config_domain A inner join gpr_config_domain B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -194,6 +194,10 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
                 
 				if (entityRelatedObject.containsKey("configValue") && StringUtils.isNotBlank(entityRelatedObject.getString("configValue")))
 					selectBuffer.append(" and A.config_value like '%").append(entityRelatedObject.getString("configValue")).append("%'");
+				if (entityRelatedObject.containsKey("addTime") && StringUtils.isNotBlank(entityRelatedObject.getString("addTime")))
+					selectBuffer.append(" and A.add_time like '%").append(entityRelatedObject.getString("addTime")).append("%'");
+				if (entityRelatedObject.containsKey("updateTime") && StringUtils.isNotBlank(entityRelatedObject.getString("updateTime")))
+					selectBuffer.append(" and A.update_time like '%").append(entityRelatedObject.getString("updateTime")).append("%'");
 			}
 
 			if (jsonObject.containsKey("page")) {
@@ -216,7 +220,7 @@ public class GprConfigGenSwgApp extends BaseSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 
-		resultModel = gprConfigUntBll.getListBySQL(map);
+		resultModel = gprConfigDomainUntBll.getListBySQL(map);
 
 		return resultModel;
 	}

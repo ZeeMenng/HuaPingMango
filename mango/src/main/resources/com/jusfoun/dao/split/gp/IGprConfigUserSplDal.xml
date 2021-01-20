@@ -5,12 +5,14 @@
   <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprConfigUser" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="config_id" property="configId" jdbcType="VARCHAR" />
-              <result column="user_id" property="userId" jdbcType="VARCHAR" />
               <result column="config_value" property="configValue" jdbcType="VARCHAR" />
+              <result column="user_id" property="userId" jdbcType="VARCHAR" />
+              <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,config_id,user_id,config_value
+        id,config_id,config_value,user_id,add_time,update_time
   </sql>
   
   <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprConfigUser" >
@@ -24,14 +26,20 @@
               config_id,
           </if>
       
-          <if test="userId != null and userId != '' " >
-              user_id,
-          </if>
-      
           <if test="configValue != null and configValue != '' " >
               config_value,
           </if>
       
+          <if test="userId != null and userId != '' " >
+              user_id,
+          </if>
+      
+          <if test="addTime != null " >
+              add_time,
+          </if>
+          <if test="updateTime != null " >
+              update_time,
+          </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -40,11 +48,17 @@
           <if test="configId != null and configId != '' " >
               #{configId,jdbcType=VARCHAR},
           </if>
+          <if test="configValue != null and configValue != '' " >
+              #{configValue,jdbcType=VARCHAR},
+          </if>
           <if test="userId != null and userId != '' " >
               #{userId,jdbcType=VARCHAR},
           </if>
-          <if test="configValue != null and configValue != '' " >
-              #{configValue,jdbcType=VARCHAR},
+          <if test="addTime != null " >
+              #{addTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
           </if>
     </trim>
   </insert>
@@ -66,10 +80,16 @@
           #{gprConfigUser.configId,jdbcType=VARCHAR},
 
       
+          #{gprConfigUser.configValue,jdbcType=VARCHAR},
+
+      
           #{gprConfigUser.userId,jdbcType=VARCHAR},
 
       
-          #{gprConfigUser.configValue,jdbcType=VARCHAR},
+          #{gprConfigUser.addTime,jdbcType=TIMESTAMP},
+
+      
+          #{gprConfigUser.updateTime,jdbcType=TIMESTAMP},
 
 
         </trim>
@@ -97,11 +117,17 @@
                   <if test="configId != null  and configId != '' " >
                      config_id = #{configId,jdbcType=VARCHAR},
                   </if>
+                  <if test="configValue != null  and configValue != '' " >
+                     config_value = #{configValue,jdbcType=VARCHAR},
+                  </if>
                   <if test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="configValue != null  and configValue != '' " >
-                     config_value = #{configValue,jdbcType=VARCHAR},
+                  <if test="addTime != null ">
+                     add_time = #{addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -113,11 +139,17 @@
                   <if test="t.configId != null  and t.configId != '' " >
                      config_id = #{t.configId,jdbcType=VARCHAR},
                   </if>
+                  <if test="t.configValue != null  and t.configValue != '' " >
+                     config_value = #{t.configValue,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.userId != null  and t.userId != '' " >
                      user_id = #{t.userId,jdbcType=VARCHAR},
                   </if>
-                  <if test="t.configValue != null  and t.configValue != '' " >
-                     config_value = #{t.configValue,jdbcType=VARCHAR},
+                  <if test="t.addTime != null ">
+                     add_time = #{t.addTime,jdbcType=TIMESTAMP},
+                  </if>
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -142,6 +174,12 @@
 			and id LIKE CONCAT('%',#{EntityRelated.id,jdbcType=VARCHAR},'%')
 		</if>
 
+		<if test="EntityRelated.beginAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)>=unix_timestamp(#{EntityRelated.beginAddTime})]]> 
+		</if>
+		<if test="EntityRelated.endAddTime != null ">
+				<![CDATA[ AND  unix_timestamp(add_time)<unix_timestamp(#{EntityRelated.endAddTime})]]> 
+		</if>
 		<if test="EntityRelated.configId != null and EntityRelated.configId != '' ">
 				and config_id = #{EntityRelated.configId,jdbcType=VARCHAR} 
 		</if>
@@ -150,6 +188,12 @@
 		</if>
 		<if test="EntityRelated.id != null and EntityRelated.id != '' ">
 				and id = #{EntityRelated.id,jdbcType=VARCHAR} 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
 		</if>
 		<if test="EntityRelated.userId != null and EntityRelated.userId != '' ">
 				and user_id = #{EntityRelated.userId,jdbcType=VARCHAR} 
