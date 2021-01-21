@@ -227,6 +227,9 @@ public class SymbolicConstant {
 	// 应用配置列表模糊查询
 	public static final String SQL_SELECT_DOMAIN_CONFIG_LIST = "select A.id id,A.config_value configValue,A.update_time updateTime,B.code code,B.name name,C.name domainName  from gpr_config_domain A inner join gp_config B on A.config_id=B.id inner join gp_domain C on A.domain_id=C.id WHERE 1=1 ";
 
+	// 根据用户ID和应用领域ID查询当前用户在当前应用领域下的配置项
+	public static final String SQL_SELECT_USER_CONFIG_LIST = "select A.id configId,A.code code,IFNULL( C.config_value, IFNULL( B.config_value, A.default_value ) ) configValue from gp_config A inner join gpr_config_domain B on A.id=b.config_id  left join gpr_config_user C on A.id=C.config_id  where  B.domain_id='%s' and (C.user_id='%s' or C.user_id is null)";
+
 	// 用于生成记录号serialNo的、雪花算法（Snowflake）的开始时间（2020/9/17
 	// 17:38:36）及dataCentId和workerId暂时写成固定
 	public static final long SNOWFLAKE_SERIAL_NO_STARTTIME = 1600335516000L;

@@ -33,7 +33,8 @@ $(document).ready(function() {
 		}
 	});
 	$("#login").click(function() {
-		var userName = $("#username").val(), password = $("#password").val();
+		var userName = $("#username").val();
+		var password = $("#password").val();
 		// 判断记住密码选项是否勾选，如勾选，记录cookie，如未勾选，删除cookie
 		if ($('#remember').prop('checked')) {
 			Cookies("remember", "true", {
@@ -69,7 +70,7 @@ $(document).ready(function() {
 		if (userName && password) {
 			// 查询内容列表
 			var submitData = {
-				"client_id" : "032769fd7e376c04fb13c66419a72598",
+				"client_id" : DOMAIN_ID_GP,
 				"grant_type" : "password",
 				"username" : userName,
 				"password" : password
@@ -242,6 +243,7 @@ function getData(ajaxParam) {
 		"success" : function(res) {
 			if (res.isSuccess) {
 				storeData(res.data);
+				getDomainConfig();
 				window.location.href = '../in/Index.html';
 				window.event.returnValue = false;
 			} else {
@@ -249,6 +251,27 @@ function getData(ajaxParam) {
 			}
 		}
 	});
+}
+
+function getDomainConfig() {
+
+	var ajaxParameter = {
+		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
+		"type" : "GET",
+		"async" : false,
+		"success" : function(result) {
+			// 使用Cookien无法保存，数据量太大，用localStorage代替
+			var date = new Date();
+			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
+			Cookies.remove("userConfig");
+			Cookies.set("userConfig", result.data, {
+				path : '/',
+				expires : date
+			});
+		}
+	};
+	universalAjax(ajaxParameter);
+
 }
 
 function storeData(data) {

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jusfoun.app.generate.swagger.gp.GprDomainUserGenSwgApp;
 
-
 /**
  * @author Zee
  * @createDate 2017/05/22 15:10:18
@@ -17,6 +16,3 @@ import com.jusfoun.app.generate.swagger.gp.GprDomainUserGenSwgApp;
 public class GprDomainUserSwgApp extends GprDomainUserGenSwgApp {
 
 }
-
-
-

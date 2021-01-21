@@ -140,7 +140,7 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 					selectBuffer.append(" order by ");
 				for (int i = 0; i < orderListArray.size(); i++) {
 					JSONObject orderColumnObject = orderListArray.getJSONObject(i);
-					selectBuffer.append("A." + orderColumnObject.getString("columnName"));
+					selectBuffer.append(orderColumnObject.getString("columnName"));
 					selectBuffer.append(orderColumnObject.getBoolean("isASC") ? " ASC" : " DESC");
 					selectBuffer.append((i + 1) == orderListArray.size() ? " " : " ,");
 				}
@@ -154,6 +154,7 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 		return resultModel;
 	}
 
+	
 	@ApiOperation(value = "查询Key是否重复", notes = "查询Key是否重复")
 	@RequestMapping(value = "/isUniqueCode", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel isUniqueCode() {
