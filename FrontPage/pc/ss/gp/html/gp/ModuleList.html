@@ -39,25 +39,6 @@
 		}
 		initAutoComplete(itemParam, ajaxParam);
 
-		var ajaxParamBoolean = {
-			url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_CASCADE
-		};
-
-		// 初始化是否级联单选按钮组
-		var radioParam = {
-			containerId : "cascadeContainerDiv",
-			name : "cascadeTypeCodeRadio",
-			textField : "text",
-			valueField : "code"
-		};
-
-		initRadioList(radioParam, ajaxParamBoolean);
-
-		//暂时默认全部级联，禁用其它选项
-		$("input[name='cascadeTypeCodeRadio'][value=0]").attr("checked", true);
-		$("input[name='cascadeTypeCodeRadio'][value!=0]").attr("disabled", true);
-		$("input[name='cascadeTypeCodeRadio'][value!=0]").parent().addClass("mt-radio-disabled");
-
 		var jsonData = {
 			"entityRelated" : {
 

@@ -243,7 +243,7 @@ function getData(ajaxParam) {
 		"success" : function(res) {
 			if (res.isSuccess) {
 				storeData(res.data);
-				getDomainConfig();
+				setDomainConfig();
 				window.location.href = '../in/Index.html';
 				window.event.returnValue = false;
 			} else {
@@ -251,27 +251,6 @@ function getData(ajaxParam) {
 			}
 		}
 	});
-}
-
-function getDomainConfig() {
-
-	var ajaxParameter = {
-		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
-		"type" : "GET",
-		"async" : false,
-		"success" : function(result) {
-			// 使用Cookien无法保存，数据量太大，用localStorage代替
-			var date = new Date();
-			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
-			Cookies.remove("userConfig");
-			Cookies.set("userConfig", result.data, {
-				path : '/',
-				expires : date
-			});
-		}
-	};
-	universalAjax(ajaxParameter);
-
 }
 
 function storeData(data) {

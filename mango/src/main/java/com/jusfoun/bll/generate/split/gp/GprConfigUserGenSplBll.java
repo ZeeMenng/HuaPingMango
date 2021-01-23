@@ -17,6 +17,8 @@ public class GprConfigUserGenSplBll extends BaseSplBll {
 
 	@Autowired
 	protected IGprConfigUserSplDal gprConfigUserSplDal;
+	
+	
 
 }
 

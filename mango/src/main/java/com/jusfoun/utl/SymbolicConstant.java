@@ -230,6 +230,12 @@ public class SymbolicConstant {
 	// 根据用户ID和应用领域ID查询当前用户在当前应用领域下的配置项
 	public static final String SQL_SELECT_USER_CONFIG_LIST = "select A.id configId,A.code code,IFNULL( C.config_value, IFNULL( B.config_value, A.default_value ) ) configValue from gp_config A inner join gpr_config_domain B on A.id=b.config_id  left join gpr_config_user C on A.id=C.config_id  where  B.domain_id='%s' and (C.user_id='%s' or C.user_id is null)";
 
+	// 根据config_id和user_id查询gpr_config_user表，判断记录是否存在
+	public static final String SQL_SELECT_USER_CONFIG_UNIQUE = "select id from  gpr_config_user where config_id='%s' and user_id='%s' ";
+
+	//查询服务目录
+	public static final String SQL_SELECT_INTERFACE_CATALOG_LIST = "select A.id id,A.name name,A.serial_no serialNo,A.level level,A.farther_id fartherId,A.priority priority,A.category_code categoryCode,A.category_text categoryText,A.remark remark  from gp_catalog_interface A inner join gp_catalog_interface B on A.id=B.id where 1=1"; 
+	
 	// 用于生成记录号serialNo的、雪花算法（Snowflake）的开始时间（2020/9/17
 	// 17:38:36）及dataCentId和workerId暂时写成固定
 	public static final long SNOWFLAKE_SERIAL_NO_STARTTIME = 1600335516000L;

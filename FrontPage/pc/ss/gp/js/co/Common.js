@@ -1,5 +1,5 @@
 var selectRows = new Array();
-//树形菜单是否实施变化 
+// 树形菜单是否实施变化
 var IS_IMMEDIATE = true;
 var txtActive;
 // 所有DOM元素加载之前执行登录校验
@@ -15,6 +15,13 @@ jQuery.validator.addMethod("phone", function (value, element) {
 	return this.optional(element) || (length == 11 && mobile.test(value));
 }, "请填写正确的手机号码");
 $(document).ready(function () {
+	
+	var userConfig=getUserConfigByCode("pageSize");
+
+		if(userConfig)
+	 DEFAULT_PAGE_SIZE=userConfig.configValue;
+		
+
 	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
 		return true;
 	}
@@ -131,6 +138,82 @@ $(document).ready(function () {
 		})
 	})
 });
+
+
+/**
+ * @author Zee
+ * @createDate 2021年1月22日 下午4:22:16
+ * @updateDate 2021年1月22日 下午4:22:16
+ * @description 获取并设置Cookie当前用户在当前应用领域下的配置
+ */
+function setDomainConfig() {
+
+	var ajaxParameter = {
+		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
+		"type" : "GET",
+		"async" : false,
+		"success" : function(result) {
+			// 使用Cookien无法保存，数据量太大，用localStorage代替
+			var date = new Date();
+			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
+			Cookies.remove("userConfig");
+			Cookies.set("userConfig", result.data, {
+				path : '/',
+				expires : date
+			});
+		}
+	};
+	universalAjax(ajaxParameter);
+
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年1月22日 下午2:50:39
+ * @updateDate 2021年1月22日 下午2:50:39
+ * @description 根据Key获取用户配置
+ */
+function getUserConfigByCode(code) {
+	var userConfigListCookie = Cookies.get('userConfig');
+	var userConfig = null;
+	if (userConfigListCookie) {
+		var userConfigList = JSON.parse(userConfigListCookie);
+
+		$.each(userConfigList, function(i, n) {
+			if (n.code == code) {
+				userConfig = n;
+				return false;
+			}
+		});
+	}
+	return userConfig;
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年1月22日 下午3:13:09
+ * @updateDate 2021年1月22日 下午3:13:09
+ * @description 更新用户配置
+ */
+function updateUserConfig(userConfig) {
+	var ajaxParamter = {
+		"url" : RU_GPRCONFIGUSER_ADDORUPDATE,
+		"data" : JSON.stringify({
+			configId : userConfig.configId,
+			configValue : userConfig.configValue
+		}),
+		"success" : function(resultData) {
+			// 后台更新成功后，重新初始化本地Cookie
+			setDomainConfig();
+		}
+	};
+
+	universalAjax(ajaxParamter);
+}
+
+	
+
+
 
 function initPageSizeSelect() {
 	var selectData = [{
@@ -756,6 +839,11 @@ function bindPageButton(pageParam, ajaxParam, operationParam) {
 
 		ajaxParam.submitData.pageSize = $("#pageSizeSelect").val();
 		ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
+	
+		var userConfig=getUserConfigByCode("pageSize");
+		userConfig.configValue=ajaxParam.submitData.pageSize
+		updateUserConfig(userConfig);
+		
 		pageClick(pageParam, ajaxParam, operationParam);
 	});
 
@@ -2350,8 +2438,9 @@ function beforeClick(treeId, treeNode, clickFlag) {
 	return true;
 }
 function onClick(e, treeId, treeNode) {
-	var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+	var zTree = $.fn.zTree.getZTreeObj(treeId);
 	var pageParam = {
+			treeId:treeId,
 		formId: "formEdit",
 		validateRules: {
 			textDomainId: {
@@ -2395,11 +2484,11 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 	var successMessage = $('.alert-success', formEdit);
 	var selectRowsCookie = Cookies.get("selectRows");
 	var id = ajaxParam.recordId;
-
+	
 	// 添加重置按钮事件，重置的动作类似于重新加载
 	$("#buttonReset").unbind('click');
 	$("#buttonReset").click(function () {
-		var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+		var zTree = $.fn.zTree.getZTreeObj(pageParam.treeId);
 		var selectNodes = zTree.getSelectedNodes();
 		if (selectNodes != null && selectNodes.length != 0)
 			$('#' + selectNodes[0].tId + '_a').trigger('click');
@@ -2464,7 +2553,7 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 					}
 
 					// 更新当前节点，也可以用zTree.refresh();
-					var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
+					var zTree = $.fn.zTree.getZTreeObj(pageParam.treeId);
 					var node = zTree.getNodeByParam("id", ajaxParam.recordId);
 					node.name = $("#textName").val();
 					zTree.updateNode(node)
@@ -2647,8 +2736,7 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
 			idArray.push(v.id)
 		});
 		var submitData = {
-			idList: idArray,
-			cascadeTypeCode: cascade
+			idList: idArray
 		};
 		ajaxParamter.type = 'POST';
 		ajaxParamter.data = JSON.stringify(submitData);
@@ -2694,7 +2782,6 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
 		$.each(treeNodesBrotherArray, function (i, v) {
 			var zTreeNodeJson = {
 				id: v.id,
-				cascadeTypeCode: cascade,
 				domainId: v.domainId,
 				name: v.name,
 				fartherId: v.fartherId,
@@ -2715,7 +2802,6 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
 		$.each(treeNodesChildArray, function (i, v) {
 			var zTreeNodeJson = {
 				id: v.id,
-				cascadeTypeCode: cascade,
 				domainId: v.domainId,
 				name: v.name,
 				fartherId: v.fartherId,

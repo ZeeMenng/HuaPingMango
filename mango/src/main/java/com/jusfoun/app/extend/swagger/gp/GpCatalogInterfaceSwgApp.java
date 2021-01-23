@@ -1,7 +1,10 @@
 package com.jusfoun.app.extend.swagger.gp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +16,13 @@ import com.jusfoun.ent.custom.ResultModel;
 import com.jusfoun.ent.extend.gp.GpCatalogInterface;
 import com.jusfoun.ent.parameter.gp.GpCatalogInterfaceParameter;
 import com.jusfoun.utl.ClassFieldNullable;
+import com.jusfoun.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -54,4 +60,74 @@ public class GpCatalogInterfaceSwgApp extends GpCatalogInterfaceGenSwgApp {
 		return result;
 	}
 
+	
+	
+	 
+		@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
+		@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResultModel getListByJsonData() {
+			ResultModel resultModel = new ResultModel();
+
+			String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+			if (StringUtils.isBlank(jsonData))
+				return resultModel;
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			StringBuffer selectBuffer = new StringBuffer();
+			selectBuffer.append(SymbolicConstant.SQL_SELECT_INTERFACE_CATALOG_LIST);
+	        
+	        if (!StringUtils.isBlank(jsonData)) {
+				JSONObject jsonObject = JSONObject.fromObject(jsonData);
+
+				if (jsonObject.containsKey("selectRows")) {
+					JSONArray selectRowsArray = jsonObject.getJSONArray("selectRows");
+					if (selectRowsArray.size() > 0) {
+						selectBuffer.append(" and A.id in('");
+						for (int i = 0; i < selectRowsArray.size(); i++) {
+							selectBuffer.append(i == selectRowsArray.size() - 1 ? selectRowsArray.getString(i) + "'" : selectRowsArray.getString(i) + "','");
+						}
+						selectBuffer.append(")");
+					}
+				}
+
+				if (jsonObject.containsKey("entityRelated")) {
+					JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+	                
+					if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
+						selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
+					if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))
+						selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
+					if (entityRelatedObject.containsKey("level") && StringUtils.isNotBlank(entityRelatedObject.getString("level")))
+						selectBuffer.append(" and A.level like '%").append(entityRelatedObject.getString("level")).append("%'");
+					if (entityRelatedObject.containsKey("categoryCode") && StringUtils.isNotBlank(entityRelatedObject.getString("categoryCode")))
+						selectBuffer.append(" and A.category_code = '").append(entityRelatedObject.getString("categoryCode")).append("'");
+					
+				}
+
+				if (jsonObject.containsKey("page")) {
+					JSONObject pageObject = jsonObject.getJSONObject("page");
+					map.put("Page", pageObject);
+				}
+
+				if (jsonObject.containsKey("orderList")) {
+					JSONArray orderListArray = jsonObject.getJSONArray("orderList");
+					if (orderListArray.size() != 0)
+						selectBuffer.append(" order by ");
+					for (int i = 0; i < orderListArray.size(); i++) {
+						JSONObject orderColumnObject = orderListArray.getJSONObject(i);
+						selectBuffer.append("A." + orderColumnObject.getString("columnName"));
+						selectBuffer.append(orderColumnObject.getBoolean("isASC") ? " ASC" : " DESC");
+						selectBuffer.append((i + 1) == orderListArray.size() ? " " : " ,");
+					}
+				}
+			}
+
+			map.put("Sql", selectBuffer.toString());
+
+			resultModel = gpCatalogInterfaceUntBll.getListBySQL(map);
+
+			return resultModel;
+		}
+
+	
 }

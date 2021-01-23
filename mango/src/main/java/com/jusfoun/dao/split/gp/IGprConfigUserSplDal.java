@@ -7,8 +7,6 @@ import java.util.Map;
 import com.jusfoun.dao.split.base.IBaseSplDal;
 import com.jusfoun.ent.extend.gp.GprConfigUser;
 
-
-
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
@@ -28,6 +26,8 @@ public interface IGprConfigUserSplDal extends IBaseSplDal {
 
 	public int update(GprConfigUser gprConfigUser);
 
+	public int updateByCompositeId(GprConfigUser gprConfigUser);
+
 	public GprConfigUser getModel(String id);
 
 	public List<GprConfigUser> getList(Map<String, Object> map);
@@ -35,8 +35,3 @@ public interface IGprConfigUserSplDal extends IBaseSplDal {
 	public List<Map<String, Object>> getListBySQL(String sql);
 
 }
-
-
-
-
-

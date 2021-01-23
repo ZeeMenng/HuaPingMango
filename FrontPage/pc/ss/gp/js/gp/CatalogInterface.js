@@ -2,107 +2,112 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2020/10/21 21:21:11
- * @description  接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 相关页面的js方法。
+ * @description 接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
+ *              相关页面的js方法。
  */
 
 $(document).ready(function() {
+});
 
-	
-	//初始化列表页主体部分，包括查询条件表单及数据表格等。
-	var pageParam = {
-		formId : "queryBuilderForm",
-		tableId : "contentTable",
-		editPage : {
-			title : "批量修改表单",
-			url : RP_GPCATALOGINTERFACE_EDIT
-		},
-		detailPage : {
-			url : RP_GPCATALOGINTERFACE_DETAIL
-		},
-		addPage : {
-			url : RP_GPCATALOGINTERFACE_ADD
-		},
-		deleteInterface : {
-			url : RU_GPCATALOGINTERFACE_DELETE
-		},
-		deleteListInterface : {
-			url : RU_GPCATALOGINTERFACE_DELETELIST
-		}
+function initUlCatalogCategoryTree(catalogCategoryCode) {
 
+	var jsonData = {
+		"entityRelated" : {
+			categoryCode : catalogCategoryCode
+		},
+		"orderList" : [ {
+			"columnName" : "priority",
+			"isASC" : true
+		} ]
 	};
-	var ajaxParam = {
-		url : RU_GPCATALOGINTERFACE_GETLISTBYJSONDATA,
-		type : "GET",
-		submitData : {
-			"entityRelated" : {
+	// 树形结构begin
+	var setting = {
+		check : {
+			enable : false
+		},
+		view : {
+			addHoverDom : addHoverDom,
+			removeHoverDom : removeHoverDom,
+			selectedMulti : true,
+			dblClickExpand : false
+		},
+		edit : {
+			enable : true,
+			editNameSelectAll : true
+		},
+		url : {
+			addUrl : RU_GPCATALOGINTERFACE_ADD,
+			deleteListUrl : RU_GPCATALOGINTERFACE_DELETELIST,
+			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
+			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
+			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
+		},
 
-			},
-			"orderList" : [ {
-				"columnName" : "id",
-				"isASC" : true
-			} ],
-			"page" : {
-				"pageIndex" : DEFAULT_PAGE_INDEX,
-				"pageSize" : DEFAULT_PAGE_SIZE
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "fartherId"
 			}
 		},
-		columnInfo : [ 
-        
-			 {
-			"columnName" : "name",
-			"columnText" : "类别名称",
-			"style" : "text-align:left",
-			"linkFunction" : function(event) {
-				var href = RP_GPCATALOGINTERFACE_DETAIL + "?" + RECORD_ID + "=" + event.id;
-				return href;
-			},
-			}, 
-			 {
-			"columnName" : "level",
-			"columnText" : "级别",
-			"style" : "text-align:left",
-			}, 
-			 {
-			"columnName" : "remark",
-			"columnText" : "备注",
-			"style" : "text-align:left",
-			}, 
-        
-       ]
+		callback : {
+			beforeRemove : beforeRemove,
+			beforeRename : beforeRename,
+			onDrop : onDrop,
+			onRemove : onRemove,
+			onRename : onRename,
+			onClick : onClick
+
+		}
 	};
 
-	var operationParam = [ {
-		"operationText" : "修改",
-		"buttonClass" : "yellow",
-		"iconClass" : "fa fa-pencil-square-o",
-		"clickFunction" : function(event) {
-			window.location.href = pageParam.editPage.url + "?" + RECORD_ID + "=" + event.data.id;
-		}
-	}, {
-		"operationText" : "删除",
-		"buttonClass" : "red",
-		"iconClass" : "fa fa-trash-o",
-		"clickFunction" : function(event) {
-			layer.confirm('您确定要删除当前记录？', {
-				btn : [ '确定', '取消' ]
-			}, function() {
-				layer.closeAll('dialog');
-				ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
-				ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
-				pageParam.deleteInterface.url = RU_GPCATALOGINTERFACE_DELETE;
-				pageParam.deleteInterface.type = "GET";
-				pageParam.deleteInterface.submitData = {
-					"id" : event.data.id,
-				};
-				deleteRecord(pageParam, ajaxParam, operationParam);
-			});
-		},
-		"visibleFunction" : function(recordData) {
-			if (recordData.status == "1")
-				return false;
-			return true;
-		}
+	var zNodes = [ {
+		id : null,
+		pId : 0,
+		name : "根节点",
+		open : true
 	} ];
-	initQueryForm(pageParam, ajaxParam, operationParam);
 
-});
+	$.fn.zTree.init($("#ulCatalogCategoryTree"), setting, zNodes);
+
+	var ajaxParamter = {
+		"url" : RU_GPCATALOGINTERFACE_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(jsonData),
+		"async" : true,
+		"type" : "GET",
+		"success" : function(resultData) {
+			if (resultData.totalCount == 0)
+				return false
+			var moduleTree = $.fn.zTree.getZTreeObj("ulCatalogCategoryTree");
+			zNodes = resultData.data;
+			// 
+			for (i = 0; i < zNodes.length; i++) {
+				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+				zNodes[i].iconSkin = "diy02";
+			}
+			$.fn.zTree.init($("#ulCatalogCategoryTree"), setting, zNodes);
+
+			$(".ztree .level0 a").attr("style", "cursor:default")
+
+			// 树形菜单加上 F2快捷键
+			$("#ulCatalogCategoryTree").on("keydown", "li", function(event) {
+				if (event.keyCode == 113) {
+					var node = moduleTree.getNodeByTId($(this).attr("id"));
+					if (node.isHover && !node.isDomain)
+						moduleTree.editName(node);
+					else if (node.isHover && node.level != 0)
+						moduleTree.editName(node);
+				}
+			});
+			// 展开节点
+			$.each(zNodes, function(index, value) {
+				if (value.level < 2) {
+					var node = moduleTree.getNodeByParam("id", value.id);
+					moduleTree.expandNode(node, true);// 展开指定节点
+				}
+			});
+
+			fuzzySearch("ulCatalogCategoryTree", '#textInterfaceCatalogTreeSearch', null, true); // 初始化模糊搜索方法
+		}
+	};
+	universalAjax(ajaxParamter);
+}

@@ -53,7 +53,7 @@ function initUlInterfaceCatalogTree() {
 
 	var jsonData = {
 		"entityRelated" : {
-
+		
 		},
 		"orderList" : [ {
 			"columnName" : "priority",
@@ -201,27 +201,26 @@ function initUlEditInterfaceCatalogTree() {
 			}
 		},
 		callback : {
-			beforeCheck:function(treeId, treeNode){
-				
-				if(treeNode.children&&treeNode.children.length>0){
+			beforeCheck : function(treeId, treeNode) {
+
+				if (treeNode.children && treeNode.children.length > 0) {
 					layer.msg('请选择叶子节点……', {
 						time : 1500
 					});
 					return false;
-					
+
 				}
-				
+
 			},
 			onCheck : function(event, treeId, treeNode) {
 				var zTree = $.fn.zTree.getZTreeObj(treeId);
-				
+
 				// 单选
 				if (treeNode.checked) {
 					zTree.checkAllNodes(false);
 					zTree.checkNode(treeNode, true, true, false);
 				}
 
-			
 				var gprCatalogInterfaceList = [];
 				$.each(selectRows, function(a, b) {
 					var gprCatalogInterface = {};
@@ -363,7 +362,7 @@ function initInterfaceTable() {
 		} ]
 	};
 
-	var operationParam = [ ];
+	var operationParam = [];
 	initQueryForm(pageParam, ajaxParam, operationParam);
 
 	$("#updateInterfaceConstantsButton").click(function() {
@@ -422,4 +421,3 @@ function updatePageConstant() {
 
 	universalAjax(ajaxParamter);
 }
-
