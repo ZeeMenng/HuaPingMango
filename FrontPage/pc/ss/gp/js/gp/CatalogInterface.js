@@ -65,7 +65,9 @@ function initUlCatalogCategoryTree(catalogCategoryCode) {
 		id : null,
 		pId : 0,
 		name : "根节点",
-		open : true
+		open : true,
+		categoryCode : $("input[name='catalogTypeCodeRadio']:checked").val(),
+		categoryText : $("input[name='catalogTypeCodeRadio']:checked").text()
 	} ];
 
 	$.fn.zTree.init($("#ulCatalogCategoryTree"), setting, zNodes);
@@ -92,10 +94,7 @@ function initUlCatalogCategoryTree(catalogCategoryCode) {
 			$("#ulCatalogCategoryTree").on("keydown", "li", function(event) {
 				if (event.keyCode == 113) {
 					var node = moduleTree.getNodeByTId($(this).attr("id"));
-					if (node.isHover && !node.isDomain)
-						moduleTree.editName(node);
-					else if (node.isHover && node.level != 0)
-						moduleTree.editName(node);
+					moduleTree.editName(node);
 				}
 			});
 			// 展开节点

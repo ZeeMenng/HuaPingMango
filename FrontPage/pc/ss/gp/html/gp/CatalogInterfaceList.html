@@ -61,7 +61,7 @@
 
 		//暂时默认全部级联，禁用其它选项
 		$("input[name='catalogTypeCodeRadio'][value=1]").attr("checked", true);
-		$("input[name='catalogTypeCodeRadio']").change();
+		$("input[name='catalogTypeCodeRadio'][value=1]").change();
 
 		initEditFileInput();
 	});
