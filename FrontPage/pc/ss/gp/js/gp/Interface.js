@@ -53,7 +53,7 @@ function initUlInterfaceCatalogTree() {
 
 	var jsonData = {
 		"entityRelated" : {
-		
+			categoryCode : 1
 		},
 		"orderList" : [ {
 			"columnName" : "priority",

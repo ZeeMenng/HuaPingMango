@@ -327,10 +327,10 @@ embed {
 }
 
 /** 登录页后添加样式  ***/
-.login{
-    background: url(../img/loginBg.png) no-repeat center center;
-    background-size: 100% 100%;
-    overflow: auto;
+.login {
+	background: url(../img/loginBg.png) no-repeat center center;
+	background-size: 100% 100%;
+	overflow: auto;
 }
 
 html, body {
@@ -351,18 +351,18 @@ html, body {
 	margin-top: 0 !important;
 }
 
-.form-actions{
-    height: auto;
+.form-actions {
+	height: auto;
 }
 
-#login{
-    display: block;
-    height: 60px;
-    line-height: 60px;
-    width: 100%;
-    padding:0!important;
-    margin: 0px auto;
-    font-size: 16px;
+#login {
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	width: 100%;
+	padding: 0 !important;
+	margin: 0px auto;
+	font-size: 16px;
 }
 
 .create-account {
@@ -379,7 +379,143 @@ html, body {
 
 /** Ztree显示外围边框 ***/
 ul.ztree {
-    margin-top: 10px;
-    border: 1px solid #c2cad8;
-   
+	margin-top: 10px;
+	border: 1px solid #c2cad8;
 }
+
+/**************** Font Awesome ***************************/
+.icon-cog, .icon-envelope-o, .icon-file-o, .icon-user-secret, .icon-link,
+	.icon-sitemap, .icon-warning, .icon-list-alt, .icon-flag,
+	.icon-terminal, .icon-globe, .icon-skyatlas, .icon-street-view,
+	.icon-compass, .icon-cubes, .icon-book, .icon-building,
+	.icon-map-marker, .icon-user-md, .icon-users, .icon-houzz,
+	.icon-user-solid, .icon-database, .icon-newspaper-o,
+	.icon-external-link, .icon-puzzle-piece, .icon-adn,
+	.icon-circle-o-notch {
+	font-family: FontAwesome;
+	speak: none;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased
+}
+
+.icon-cog:before {
+	content: "\f013";
+}
+
+.icon-envelope-o:before {
+	content: "\f003";
+}
+
+.icon-file-o:before {
+	content: "\f0c5";
+}
+
+.icon-user-secret:before {
+	content: "\f21b";
+}
+
+.icon-link:before {
+	content: "\f0c1";
+}
+
+.icon-sitemap:before {
+	content: "\f0e8";
+}
+
+.icon-warning:before {
+	content: "\f071";
+}
+
+.icon-list-alt:before {
+	content: "\f022";
+}
+
+.icon-flag:before {
+	content: "\f024";
+}
+
+.icon-terminal:before {
+	content: "\f120";
+}
+
+.icon-newspaper-o:before {
+	content: "\f1ea";
+}
+
+.icon-globe:before {
+	content: "\f0ac";
+}
+
+.icon-street-view:before {
+	content: "\f21d";
+}
+
+.icon-skyatlas:before {
+	content: "\f216";
+}
+
+.icon-compass:before {
+	content: "\f14e";
+}
+
+.icon-cubes:before {
+	content: "\f1b3";
+}
+
+.icon-book:before {
+	content: "\f02d";
+}
+
+.icon-building:before {
+	content: "\f1ad";
+}
+
+.icon-map-marker:before {
+	content: "\f041";
+}
+
+.icon-user-md:before {
+	content: "\f0f0";
+}
+
+.icon-user-solid:before {
+	content: "\f007";
+}
+
+.icon-users:before {
+	content: "\f0c0";
+}
+
+.icon-users:before {
+	content: "\f0c0";
+}
+
+.icon-houzz:before {
+	content: "\f27c";
+}
+
+.icon-database:before {
+	content: "\f1c0";
+}
+
+.icon-external-link:before {
+	content: "\f08e";
+}
+
+.icon-puzzle-piece:before {
+	content: "\f12e";
+}
+
+.icon-adn:before {
+	content: "\f170";
+}
+
+.icon-circle-o-notch {
+	content: "\f1ce";
+}
+
+/**************** Font Awesome ***************************/
