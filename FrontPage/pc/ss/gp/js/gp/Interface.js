@@ -302,7 +302,7 @@ function initUlEditInterfaceCatalogTree() {
 	universalAjax(ajaxParamter);
 }
 
-function initInterfaceTable() {
+function initInterfaceTable(diplayOpeationButton) {
 	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
@@ -334,7 +334,7 @@ function initInterfaceTable() {
 		submitData : {
 			"entityRelated" : {},
 			"orderList" : [ {
-				"columnName" : "A.add_time",
+				"columnName" : "A.update_time",
 				"isASC" : false
 			} ],
 			"page" : {
@@ -356,13 +356,51 @@ function initInterfaceTable() {
 		}, {
 			"columnName" : "url",
 			"columnText" : "访问路径",
-			"width" : "330px",
+			"width" : "250px",
+			"style" : "text-align:left"
+
+		}, {
+			"columnName" : "updateTime",
+			"columnText" : "更新时间",
 			"style" : "text-align:left"
 
 		} ]
 	};
-
 	var operationParam = [];
+	if (diplayOpeationButton)
+		operationParam = [ {
+			"operationText" : "修改",
+			"buttonClass" : "yellow",
+			"iconClass" : "fa fa-pencil-square-o",
+			"clickFunction" : function(event) {
+				window.location.href = pageParam.editPage.url + "?" + RECORD_ID + "=" + event.data.id;
+			}
+		}, {
+			"operationText" : "删除",
+			"buttonClass" : "red",
+			"iconClass" : "fa fa-trash-o",
+			"clickFunction" : function(event) {
+				layer.confirm('您确定要删除当前记录？', {
+					btn : [ '确定', '取消' ]
+				}, function() {
+					layer.closeAll('dialog');
+					ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
+					ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
+					pageParam.deleteInterface.url = RU_GPROLE_DELETE;
+					pageParam.deleteInterface.type = "GET";
+					pageParam.deleteInterface.submitData = {
+						"id" : event.data.id,
+					};
+					deleteRecord(pageParam, ajaxParam, operationParam);
+				});
+			},
+			"visibleFunction" : function(recordData) {
+				if (recordData.status == "1")
+					return false;
+				return true;
+			}
+		} ];
+
 	initQueryForm(pageParam, ajaxParam, operationParam);
 
 	$("#updateInterfaceConstantsButton").click(function() {

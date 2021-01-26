@@ -537,7 +537,11 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
 
     var orderListArray = new Array();
     $("#" + pageParam.tableId + " th").unbind("click");
-    $("#" + pageParam.tableId + " th:gt(1):not(:last)").click(function () {
+    // 如果没有操作按钮，所有列均可有点击排序，如果有操作按钮最后一列不能排序
+    var $sortTh= $("#" + pageParam.tableId + " th:gt(1):not(:last)");
+   if(operationParam!=null&&operationParam.length==0)
+	   $sortTh= $("#" + pageParam.tableId + " th:gt(1)");
+   $sortTh.click(function () {
         var orderColumn = {
             "isASC": null,
             "columnName": $(this).attr("columnName")
