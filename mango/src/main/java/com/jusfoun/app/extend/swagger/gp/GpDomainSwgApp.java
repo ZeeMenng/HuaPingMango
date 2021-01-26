@@ -84,13 +84,12 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 
 		ResultModel result = new ResultModel();
 		result = gpDomainUntBll.add(jsonData);
-		
+
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
 			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(result.getObjectId(), modules);
 			result = gpModuleSplBll.add(moduleList);
 		}
-		
 
 		// 图标列表
 		if (StringUtils.isNotBlank(jsonData.getIconIds())) {
@@ -234,7 +233,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 
 		return result;
 	}
-	
+
 	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -306,6 +305,9 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
 
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(  A.name like %1$s or A.com like %1$s )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))

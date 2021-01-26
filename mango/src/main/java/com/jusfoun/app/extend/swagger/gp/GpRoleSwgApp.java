@@ -267,6 +267,10 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(  A.name like %1$s or A.remark like %1$s )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
+
 				if (entityRelatedObject.containsKey("selectDomainId") && StringUtils.isNotBlank(entityRelatedObject.getString("selectDomainId")))
 					selectBuffer.append(" and B.domain_id ='").append(entityRelatedObject.getString("selectDomainId")).append("'");
 				if (entityRelatedObject.containsKey("textName") && StringUtils.isNotBlank(entityRelatedObject.getString("textName")))

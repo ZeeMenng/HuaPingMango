@@ -112,7 +112,9 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(  A.user_name like %1$s or A.ip like %1$s or A.browser like %1$s or A.os like %1$s )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
 				if (entityRelatedObject.containsKey("userName") && StringUtils.isNotBlank(entityRelatedObject.getString("userName")))
 					selectBuffer.append(" and A.user_name like '%").append(entityRelatedObject.getString("userName")).append("%'");
 				if (entityRelatedObject.containsKey("ip") && StringUtils.isNotBlank(entityRelatedObject.getString("ip")))

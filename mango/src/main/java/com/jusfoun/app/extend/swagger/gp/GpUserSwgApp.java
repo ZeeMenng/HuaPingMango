@@ -441,7 +441,9 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(  A.user_name like %1$s or A.real_name like %1$s or A.phone like %1$s or A.email like %1$s  )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
 				if (entityRelatedObject.containsKey("userName") && StringUtils.isNotBlank(entityRelatedObject.getString("userName")))
 					selectBuffer.append(" and A.user_name like '%").append(entityRelatedObject.getString("userName")).append("%'");
 				if (entityRelatedObject.containsKey("phone") && StringUtils.isNotBlank(entityRelatedObject.getString("phone")))

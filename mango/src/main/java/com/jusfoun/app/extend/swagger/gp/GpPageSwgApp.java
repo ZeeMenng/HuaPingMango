@@ -135,6 +135,12 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
+				
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(  A.name like %1$s or A.url like %1$s )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
+
+				
 				// 模糊匹配下拉框使用的关键字
 				if (entityRelatedObject.containsKey(SymbolicConstant.AUTOCOMPLETE_KEY) && StringUtils.isNotBlank(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)))
 					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)).append("%'");

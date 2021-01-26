@@ -156,7 +156,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
 
 				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
-					selectBuffer.append(String.format(" and( A.serial_no like %1$s or A.name like %1$s or A.url like %1$s  or C.serial_no like %1$s or C.name like %1$s or A.remark like %1$s)", "'%"+entityRelatedObject.getString("kewwords")+"%'"));
+					selectBuffer.append(String.format(" and( A.name like %1$s or A.url like %1$s  or C.serial_no like %1$s or C.name like %1$s or A.remark like %1$s)", "'%"+entityRelatedObject.getString("kewwords")+"%'"));
 				}
 
 				if (entityRelatedObject.containsKey("interfaceCatalogIds") && StringUtils.isNotBlank(entityRelatedObject.getString("interfaceCatalogIds"))) {

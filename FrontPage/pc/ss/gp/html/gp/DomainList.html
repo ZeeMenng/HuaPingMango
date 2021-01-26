@@ -59,11 +59,7 @@
 					var href = RP_GPDOMAIN_DETAIL + "?" + RECORD_ID + "=" + event.id;
 					return href;
 				},
-			}, {
-				"columnName" : "serialNo",
-				"columnText" : "领域编号",
-				"style" : "text-align:left",
-			}, {
+			},  {
 				"columnName" : "com",
 				"columnText" : "领域域名",
 				"style" : "text-align:left",
@@ -79,7 +75,7 @@
 				"width" : "120px"
 			} ]
 		};
-		
+
 		var operationParam = [ {
 			"operationText" : "修改",
 			"buttonClass" : "yellow",
@@ -134,12 +130,11 @@
 				</div>
 				<div class="col-md-12 portlet light bordered">
 					<form class="portlet-body form form-inline form-body" role="form" id="queryBuilderForm">
-						<label class="control-label">领域名称：</label>
-						<input class="form-control " id="textName" name="name" size="10" type="text" />
-						<label class="control-label">领域编号：</label>
-						<input class="form-control " id="textSerialNo" name="serialNo" size="10" type="text" />
-						<label class="control-label">领域域名：</label>
-						<input class="form-control " id="textCom" name="com" size="10" type="text" />
+
+
+						<label class="control-label">关键词：</label>
+						<input class="form-control " id="textKeywords" name="kewwords" size="45" type="text" placeholder="可输入 /名称/编号 ……" />
+
 						<div class="search-button">
 							<button type="submit" class="btn red-mint" id="submitButton">
 								<i class="fa fa-search"></i>

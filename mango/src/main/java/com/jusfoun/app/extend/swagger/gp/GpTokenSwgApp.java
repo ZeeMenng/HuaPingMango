@@ -39,7 +39,7 @@ public class GpTokenSwgApp extends GpTokenGenSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.login_log_id loginLogId,A.domain_id domainId,A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A inner join gp_token B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A inner join gp_token B on A.id=B.id where 1=1 ");
 
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -57,7 +57,9 @@ public class GpTokenSwgApp extends GpTokenGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-
+				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
+					selectBuffer.append(String.format(" and(A.access_token like %1$s or A.user_name like %1$s)", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
+				}
 				if (entityRelatedObject.containsKey("userName") && StringUtils.isNotBlank(entityRelatedObject.getString("userName")))
 					selectBuffer.append(" and A.user_name like '%").append(entityRelatedObject.getString("userName")).append("%'");
 				if (entityRelatedObject.containsKey("accessToken") && StringUtils.isNotBlank(entityRelatedObject.getString("accessToken")))

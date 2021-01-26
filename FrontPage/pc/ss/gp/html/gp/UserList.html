@@ -82,15 +82,9 @@
 				"style" : "text-align:left",
 				"width" : "120px"
 			},
-
 			{
 				"columnName" : "addTime",
-				"columnText" : "添加时间",
-				"style" : "text-align:center",
-				"width" : "120px"
-			}, {
-				"columnName" : "updateTime",
-				"columnText" : "更新时间",
+				"columnText" : "注册时间",
 				"style" : "text-align:center",
 				"width" : "120px"
 			}
@@ -138,7 +132,7 @@
 	<!--#include file="/pc/ss/gp/html/cl/Top.html"-->
 	<div class="page-container page-content-wrapper">
 		<!--#include file="/pc/ss/gp/html/cl/Menu.html"-->
-		<div class="page-content" >
+		<div class="page-content">
 			<div class="row">
 				<div class="col-md-12 page-bar page-bar-height  portlet ">
 					<ul class="page-breadcrumb">
@@ -154,11 +148,9 @@
 
 				<div class="col-md-12 portlet light bordered">
 					<form class="portlet-body form form-inline form-body" role="form" id="queryBuilderForm">
-						<label class="control-label">登录账号：</label>
-						<input class="form-control " id="textUserName" name="userName" size="10" type="text" />
-						<label class="control-label">电话号码：</label>
-						<input class="form-control " id="textPhone" name="phone" size="10" type="text" />
-
+							<label class="control-label">关键词：</label>
+						<input class="form-control " id="textKeywords" name="kewwords" size="35" type="text" placeholder="可输入 /账号/姓名/电话/邮箱 ……" />
+		
 						<label class="control-label">组织机构：</label>
 						<input class="form-control " id="textOrganizationName" name="organizationName" size="10" type="text" />
 
