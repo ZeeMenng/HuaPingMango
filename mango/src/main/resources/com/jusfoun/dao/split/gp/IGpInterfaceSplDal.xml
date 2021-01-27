@@ -79,7 +79,6 @@
 		</trim>
 	</insert>
 
-
 	<insert id="addList" parameterType="list">
 		insert into gp_interface
 		<trim prefix="(" suffix=")">
@@ -109,7 +108,6 @@
 		delete a,b from gp_interface a left join gpr_role_interface b on a.id=b.interface_id
 		where a.domain_id = #{domainId,jdbcType=VARCHAR}
 	</delete>
-
 
 	<delete id="deleteByIdList" parameterType="list">
 		delete a,b from gp_interface a left join gpr_role_interface b on a.id=b.interface_id
@@ -200,8 +198,6 @@
 		from gp_interface
 		where url = #{url,jdbcType=VARCHAR}
 	</select>
-
-
 
 	<select id="getList" resultMap="BaseResultMap" parameterType="map">
 		select

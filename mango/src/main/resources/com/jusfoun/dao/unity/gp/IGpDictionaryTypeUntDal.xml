@@ -67,6 +67,32 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_dictionary_type
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpDictionaryType" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpDictionaryType.id,jdbcType=VARCHAR},
+          #{gpDictionaryType.name,jdbcType=VARCHAR},
+          #{gpDictionaryType.remark,jdbcType=VARCHAR},
+          #{gpDictionaryType.constantName,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+name=values(name),
+remark=values(remark),
+constant_name=values(constant_name)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_dictionary_type
         where  id = #{id,jdbcType=VARCHAR}

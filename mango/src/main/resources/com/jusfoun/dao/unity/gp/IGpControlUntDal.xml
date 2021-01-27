@@ -110,6 +110,42 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_control
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpControl" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpControl.id,jdbcType=VARCHAR},
+          #{gpControl.domainId,jdbcType=VARCHAR},
+          #{gpControl.pageId,jdbcType=VARCHAR},
+          #{gpControl.pageUrl,jdbcType=VARCHAR},
+          #{gpControl.name,jdbcType=VARCHAR},
+          #{gpControl.serialNo,jdbcType=VARCHAR},
+          #{gpControl.remark,jdbcType=VARCHAR},
+          #{gpControl.addTime,jdbcType=TIMESTAMP},
+          #{gpControl.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+page_id=values(page_id),
+page_url=values(page_url),
+name=values(name),
+serial_no=values(serial_no),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_control
         where  id = #{id,jdbcType=VARCHAR}

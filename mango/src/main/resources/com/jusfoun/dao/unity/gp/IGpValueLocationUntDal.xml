@@ -102,6 +102,40 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_value_location
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpValueLocation" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpValueLocation.id,jdbcType=VARCHAR},
+          #{gpValueLocation.columnValue,jdbcType=VARCHAR},
+          #{gpValueLocation.originTableName,jdbcType=VARCHAR},
+          #{gpValueLocation.targetColumnName,jdbcType=VARCHAR},
+          #{gpValueLocation.targetTableName,jdbcType=VARCHAR},
+          #{gpValueLocation.targetRecordId,jdbcType=VARCHAR},
+          #{gpValueLocation.remarks,jdbcType=VARCHAR},
+          #{gpValueLocation.addTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+column_value=values(column_value),
+origin_table_name=values(origin_table_name),
+target_column_name=values(target_column_name),
+target_table_name=values(target_table_name),
+target_record_id=values(target_record_id),
+remarks=values(remarks),
+add_time=values(add_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_value_location
         where  id = #{id,jdbcType=VARCHAR}

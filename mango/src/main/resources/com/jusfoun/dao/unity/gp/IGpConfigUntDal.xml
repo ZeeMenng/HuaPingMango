@@ -118,6 +118,44 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_config
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpConfig" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpConfig.id,jdbcType=VARCHAR},
+          #{gpConfig.serialNo,jdbcType=VARCHAR},
+          #{gpConfig.code,jdbcType=VARCHAR},
+          #{gpConfig.name,jdbcType=VARCHAR},
+          #{gpConfig.defaultValue,jdbcType=VARCHAR},
+          #{gpConfig.valueType,jdbcType=VARCHAR},
+          #{gpConfig.priority,jdbcType=INTEGER},
+          #{gpConfig.remark,jdbcType=VARCHAR},
+          #{gpConfig.addTime,jdbcType=TIMESTAMP},
+          #{gpConfig.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+code=values(code),
+name=values(name),
+default_value=values(default_value),
+value_type=values(value_type),
+priority=values(priority),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_config
         where  id = #{id,jdbcType=VARCHAR}

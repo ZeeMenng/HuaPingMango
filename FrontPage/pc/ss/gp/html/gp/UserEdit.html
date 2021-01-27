@@ -160,15 +160,15 @@
 		$("#hiddenOldQq").val(initResult.data.qq);
 		$("#hiddenOldEmail").val(initResult.data.email);
 
-
 		if (initResult.data.roleIds != null) {
 			$("#selectRoleIds").selectpicker('val', initResult.data.roleIds.split(","));
 			$('#selectRoleIds').selectpicker('refresh');
 		}
 		initTreeNodes("treeContainer", false);
 		var orgnaizationZTree = $.fn.zTree.getZTreeObj("treeContainer");
-		if (initResult.data.orgIds != null) {
+		if (initResult.data.orgIds != null && initResult.data.orgIds != "") {
 			var organizationArray = initResult.data.orgIds.split(",");
+
 			$.each(organizationArray, function(index, value) {
 				var node = orgnaizationZTree.getNodeByParam("id", value);
 				orgnaizationZTree.checkNode(node, true, false);
@@ -319,7 +319,7 @@
 													</div>
 												</div>
 											</div>
-									
+
 											<div class="form-group">
 												<div class="element-group left">
 													<label for="textRoleName" class="control-label col-md-2"> 应用角色 </label>

@@ -110,6 +110,42 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_message
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpMessage" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpMessage.id,jdbcType=VARCHAR},
+          #{gpMessage.userId,jdbcType=VARCHAR},
+          #{gpMessage.userName,jdbcType=VARCHAR},
+          #{gpMessage.title,jdbcType=VARCHAR},
+          #{gpMessage.content,jdbcType=VARCHAR},
+          #{gpMessage.typeCode,jdbcType=TINYINT},
+          #{gpMessage.typeText,jdbcType=VARCHAR},
+          #{gpMessage.remark,jdbcType=VARCHAR},
+          #{gpMessage.addTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+user_id=values(user_id),
+user_name=values(user_name),
+title=values(title),
+content=values(content),
+type_code=values(type_code),
+type_text=values(type_text),
+remark=values(remark),
+add_time=values(add_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_message
         where  id = #{id,jdbcType=VARCHAR}

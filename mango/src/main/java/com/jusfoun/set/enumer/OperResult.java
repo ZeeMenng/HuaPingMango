@@ -16,7 +16,7 @@ public enum OperResult {
 	//
 	ADD_S(999900, "添加记录成功！"),
 	//
-	ADDLIST_S(999800, "批量添加成功！"),
+	ADDLIST_S(999800, "批量添加成功！"), ADDLISTWIDTHDFFORADD_S(999600, "批量新增或修改记录为不同值成功！"),
 	//
 	DELETE_S(989900, "删除记录成功！"),
 
@@ -42,7 +42,7 @@ public enum OperResult {
 	//
 	ADD_F(999901, "添加记录出错！"),
 	//
-	ADDLIST_F(999801, "批量添加出错！"),
+	ADDLIST_F(999801, "批量添加出错！"), ADDLISTWIDTHDFFORADD_F(999601, "批量新增或修改记录为不同值失败！"),
 	//
 	DELETE_F(989901, "删除记录出错！"),
 	//

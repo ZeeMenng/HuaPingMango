@@ -197,6 +197,62 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_organization
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpOrganization" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpOrganization.id,jdbcType=VARCHAR},
+          #{gpOrganization.serialNo,jdbcType=VARCHAR},
+          #{gpOrganization.name,jdbcType=VARCHAR},
+          #{gpOrganization.shortName,jdbcType=VARCHAR},
+          #{gpOrganization.typeCode,jdbcType=TINYINT},
+          #{gpOrganization.typeText,jdbcType=VARCHAR},
+          #{gpOrganization.levelCode,jdbcType=TINYINT},
+          #{gpOrganization.levelText,jdbcType=VARCHAR},
+          #{gpOrganization.fartherId,jdbcType=VARCHAR},
+          #{gpOrganization.priority,jdbcType=INTEGER},
+          #{gpOrganization.phone,jdbcType=VARCHAR},
+          #{gpOrganization.email,jdbcType=VARCHAR},
+          #{gpOrganization.fax,jdbcType=VARCHAR},
+          #{gpOrganization.postcode,jdbcType=VARCHAR},
+          #{gpOrganization.address,jdbcType=VARCHAR},
+          #{gpOrganization.responsibility,jdbcType=VARCHAR},
+          #{gpOrganization.remark,jdbcType=VARCHAR},
+          #{gpOrganization.addTime,jdbcType=TIMESTAMP},
+          #{gpOrganization.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+name=values(name),
+short_name=values(short_name),
+type_code=values(type_code),
+type_text=values(type_text),
+level_code=values(level_code),
+level_text=values(level_text),
+farther_id=values(farther_id),
+priority=values(priority),
+phone=values(phone),
+email=values(email),
+fax=values(fax),
+postcode=values(postcode),
+address=values(address),
+responsibility=values(responsibility),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_organization
         where  id = #{id,jdbcType=VARCHAR}

@@ -126,6 +126,46 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_interface
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpInterface" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpInterface.id,jdbcType=VARCHAR},
+          #{gpInterface.serialNo,jdbcType=VARCHAR},
+          #{gpInterface.domainId,jdbcType=VARCHAR},
+          #{gpInterface.name,jdbcType=VARCHAR},
+          #{gpInterface.tableName,jdbcType=VARCHAR},
+          #{gpInterface.isPublicCode,jdbcType=TINYINT},
+          #{gpInterface.typeCode,jdbcType=TINYINT},
+          #{gpInterface.url,jdbcType=VARCHAR},
+          #{gpInterface.remark,jdbcType=VARCHAR},
+          #{gpInterface.addTime,jdbcType=TIMESTAMP},
+          #{gpInterface.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+domain_id=values(domain_id),
+name=values(name),
+table_name=values(table_name),
+is_public_code=values(is_public_code),
+type_code=values(type_code),
+url=values(url),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_interface
         where  id = #{id,jdbcType=VARCHAR}

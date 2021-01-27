@@ -161,6 +161,54 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_login_log
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpLoginLog" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpLoginLog.id,jdbcType=VARCHAR},
+          #{gpLoginLog.domainId,jdbcType=VARCHAR},
+          #{gpLoginLog.userId,jdbcType=VARCHAR},
+          #{gpLoginLog.userName,jdbcType=VARCHAR},
+          #{gpLoginLog.loginTime,jdbcType=TIMESTAMP},
+          #{gpLoginLog.logoutTime,jdbcType=TIMESTAMP},
+          #{gpLoginLog.logoutTypeCode,jdbcType=TINYINT},
+          #{gpLoginLog.duration,jdbcType=INTEGER},
+          #{gpLoginLog.ip,jdbcType=VARCHAR},
+          #{gpLoginLog.ipAddress,jdbcType=VARCHAR},
+          #{gpLoginLog.browser,jdbcType=VARCHAR},
+          #{gpLoginLog.resolution,jdbcType=VARCHAR},
+          #{gpLoginLog.os,jdbcType=VARCHAR},
+          #{gpLoginLog.isSuccessCode,jdbcType=TINYINT},
+          #{gpLoginLog.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+user_id=values(user_id),
+user_name=values(user_name),
+login_time=values(login_time),
+logout_time=values(logout_time),
+logout_type_code=values(logout_type_code),
+duration=values(duration),
+ip=values(ip),
+ip_address=values(ip_address),
+browser=values(browser),
+resolution=values(resolution),
+os=values(os),
+is_success_code=values(is_success_code),
+remark=values(remark)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_login_log
         where  id = #{id,jdbcType=VARCHAR}

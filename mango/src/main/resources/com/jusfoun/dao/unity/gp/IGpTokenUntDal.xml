@@ -135,6 +135,48 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_token
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpToken" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpToken.id,jdbcType=VARCHAR},
+          #{gpToken.domainId,jdbcType=VARCHAR},
+          #{gpToken.userId,jdbcType=VARCHAR},
+          #{gpToken.userName,jdbcType=VARCHAR},
+          #{gpToken.accessToken,jdbcType=VARCHAR},
+          #{gpToken.aDeadTime,jdbcType=TIMESTAMP},
+          #{gpToken.refreshToken,jdbcType=VARCHAR},
+          #{gpToken.rDeadTime,jdbcType=TIMESTAMP},
+          #{gpToken.secret,jdbcType=VARCHAR},
+          #{gpToken.remark,jdbcType=VARCHAR},
+          #{gpToken.addTime,jdbcType=TIMESTAMP},
+          #{gpToken.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+user_id=values(user_id),
+user_name=values(user_name),
+access_token=values(access_token),
+a_dead_time=values(a_dead_time),
+refresh_token=values(refresh_token),
+r_dead_time=values(r_dead_time),
+secret=values(secret),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_token
         where  id = #{id,jdbcType=VARCHAR}

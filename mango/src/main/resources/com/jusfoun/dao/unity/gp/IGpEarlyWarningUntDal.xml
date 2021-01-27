@@ -160,6 +160,54 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_early_warning
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpEarlyWarning" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpEarlyWarning.id,jdbcType=VARCHAR},
+          #{gpEarlyWarning.growthId,jdbcType=VARCHAR},
+          #{gpEarlyWarning.growthName,jdbcType=VARCHAR},
+          #{gpEarlyWarning.beginDate,jdbcType=VARCHAR},
+          #{gpEarlyWarning.endDate,jdbcType=VARCHAR},
+          #{gpEarlyWarning.warningType,jdbcType=INTEGER},
+          #{gpEarlyWarning.warningName,jdbcType=VARCHAR},
+          #{gpEarlyWarning.maxVal,jdbcType=DOUBLE},
+          #{gpEarlyWarning.minVal,jdbcType=DOUBLE},
+          #{gpEarlyWarning.tipsMess,jdbcType=VARCHAR},
+          #{gpEarlyWarning.stutasCode,jdbcType=TINYINT},
+          #{gpEarlyWarning.stutasText,jdbcType=VARCHAR},
+          #{gpEarlyWarning.remark,jdbcType=VARCHAR},
+          #{gpEarlyWarning.addTime,jdbcType=TIMESTAMP},
+          #{gpEarlyWarning.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+growth_id=values(growth_id),
+growth_name=values(growth_name),
+begin_date=values(begin_date),
+end_date=values(end_date),
+warning_type=values(warning_type),
+warning_name=values(warning_name),
+max_val=values(max_val),
+min_val=values(min_val),
+tips_mess=values(tips_mess),
+stutas_code=values(stutas_code),
+stutas_text=values(stutas_text),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_early_warning
         where  id = #{id,jdbcType=VARCHAR}

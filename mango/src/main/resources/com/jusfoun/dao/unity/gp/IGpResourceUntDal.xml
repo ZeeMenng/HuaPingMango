@@ -136,6 +136,48 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_resource
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpResource" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpResource.id,jdbcType=VARCHAR},
+          #{gpResource.domainId,jdbcType=VARCHAR},
+          #{gpResource.moduleId,jdbcType=VARCHAR},
+          #{gpResource.pageId,jdbcType=VARCHAR},
+          #{gpResource.userId,jdbcType=VARCHAR},
+          #{gpResource.originalName,jdbcType=VARCHAR},
+          #{gpResource.newName,jdbcType=VARCHAR},
+          #{gpResource.extension,jdbcType=VARCHAR},
+          #{gpResource.path,jdbcType=VARCHAR},
+          #{gpResource.priority,jdbcType=INTEGER},
+          #{gpResource.size,jdbcType=BIGINT},
+          #{gpResource.addTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+module_id=values(module_id),
+page_id=values(page_id),
+user_id=values(user_id),
+original_name=values(original_name),
+new_name=values(new_name),
+extension=values(extension),
+path=values(path),
+priority=values(priority),
+size=values(size),
+add_time=values(add_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_resource
         where  id = #{id,jdbcType=VARCHAR}

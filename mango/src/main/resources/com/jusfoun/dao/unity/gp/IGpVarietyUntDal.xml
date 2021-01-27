@@ -161,6 +161,54 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_variety
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpVariety" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpVariety.id,jdbcType=VARCHAR},
+          #{gpVariety.name,jdbcType=VARCHAR},
+          #{gpVariety.parentId,jdbcType=VARCHAR},
+          #{gpVariety.relationId,jdbcType=VARCHAR},
+          #{gpVariety.describes,jdbcType=VARCHAR},
+          #{gpVariety.resourceId,jdbcType=VARCHAR},
+          #{gpVariety.resourceUrl,jdbcType=VARCHAR},
+          #{gpVariety.stutasCode,jdbcType=TINYINT},
+          #{gpVariety.stutasText,jdbcType=VARCHAR},
+          #{gpVariety.cycleTime,jdbcType=INTEGER},
+          #{gpVariety.priority,jdbcType=INTEGER},
+          #{gpVariety.remark,jdbcType=VARCHAR},
+          #{gpVariety.addUserId,jdbcType=VARCHAR},
+          #{gpVariety.addTime,jdbcType=TIMESTAMP},
+          #{gpVariety.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+name=values(name),
+parent_id=values(parent_id),
+relation_id=values(relation_id),
+describes=values(describes),
+resource_id=values(resource_id),
+resource_url=values(resource_url),
+stutas_code=values(stutas_code),
+stutas_text=values(stutas_text),
+cycle_time=values(cycle_time),
+priority=values(priority),
+remark=values(remark),
+add_user_id=values(add_user_id),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_variety
         where  id = #{id,jdbcType=VARCHAR}

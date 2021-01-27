@@ -156,7 +156,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
 
 				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
-					selectBuffer.append(String.format(" and( A.name like %1$s or A.url like %1$s  or C.serial_no like %1$s or C.name like %1$s or A.remark like %1$s)", "'%"+entityRelatedObject.getString("kewwords")+"%'"));
+					selectBuffer.append(String.format(" and( A.name like %1$s or A.url like %1$s  or C.serial_no like %1$s or C.name like %1$s or A.remark like %1$s)", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
 				}
 
 				if (entityRelatedObject.containsKey("interfaceCatalogIds") && StringUtils.isNotBlank(entityRelatedObject.getString("interfaceCatalogIds"))) {
@@ -339,11 +339,16 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			gpInterface.setDomainId(domainId);
 			gpInterface.setTableName(tableName);
 			gpInterface.setUrl(url);
-			gpInterface.setIsPublicCode(isGenerateCode);
+
 			gpInterface.setRemark(remark);
 			gpInterface.setSerialNo(serialNo);
 			gpInterface.setTypeCode(typeCode);
 			gpInterface.setUpdateTime(updateTime);
+
+			// 如果是POST接口，设为非公共接口
+			if (typeCode == InterfaceType.POST.getCode())
+				isPublicCode = SymbolicConstant.DCODE_BOOLEAN_F;
+			gpInterface.setIsPublicCode(isPublicCode);
 
 			// 如果包含，说明是修改记录
 			for (Map<String, Object> interfaceMap : interfaceList) {
@@ -351,6 +356,9 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 					gpInterface.setId(interfaceMap.get("id").toString());
 					if (interfaceMap.get("serial_no") != null)
 						gpInterface.setSerialNo(interfaceMap.get("serial_no").toString());
+					if (interfaceMap.get("is_public_code") != null)
+						gpInterface.setIsPublicCode(Byte.valueOf(interfaceMap.get("is_public_code").toString()));
+
 					gpInterface.setAddTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(interfaceMap.get("add_time").toString()));
 					break;
 				}
@@ -360,7 +368,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 		}
 
-		result = gpInterfaceUntBll.updateListWithDffOrAdd(gpInterfaceList);
+		result = gpInterfaceUntBll.addListWithDffOrAdd(gpInterfaceList);
 
 		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 		result.setResultMessage("接口记录更新成功……");

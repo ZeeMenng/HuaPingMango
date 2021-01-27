@@ -85,6 +85,36 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_oper_log_login
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpOperLogLogin" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpOperLogLogin.id,jdbcType=VARCHAR},
+          #{gpOperLogLogin.operLogId,jdbcType=VARCHAR},
+          #{gpOperLogLogin.loginLogId,jdbcType=VARCHAR},
+          #{gpOperLogLogin.userId,jdbcType=VARCHAR},
+          #{gpOperLogLogin.userName,jdbcType=VARCHAR},
+          #{gpOperLogLogin.tokenId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+oper_log_id=values(oper_log_id),
+login_log_id=values(login_log_id),
+user_id=values(user_id),
+user_name=values(user_name),
+token_id=values(token_id)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_oper_log_login
         where  id = #{id,jdbcType=VARCHAR}

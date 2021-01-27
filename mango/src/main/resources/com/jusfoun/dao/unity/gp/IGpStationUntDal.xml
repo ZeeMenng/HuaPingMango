@@ -101,6 +101,40 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_station
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpStation" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpStation.id,jdbcType=VARCHAR},
+          #{gpStation.serialNo,jdbcType=VARCHAR},
+          #{gpStation.organizationId,jdbcType=VARCHAR},
+          #{gpStation.name,jdbcType=VARCHAR},
+          #{gpStation.responsibility,jdbcType=VARCHAR},
+          #{gpStation.remark,jdbcType=VARCHAR},
+          #{gpStation.addTime,jdbcType=TIMESTAMP},
+          #{gpStation.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+organization_id=values(organization_id),
+name=values(name),
+responsibility=values(responsibility),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_station
         where  id = #{id,jdbcType=VARCHAR}

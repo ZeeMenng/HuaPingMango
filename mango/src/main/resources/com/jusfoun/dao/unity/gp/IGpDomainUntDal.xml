@@ -101,6 +101,40 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_domain
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpDomain" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpDomain.id,jdbcType=VARCHAR},
+          #{gpDomain.serialNo,jdbcType=VARCHAR},
+          #{gpDomain.name,jdbcType=VARCHAR},
+          #{gpDomain.com,jdbcType=VARCHAR},
+          #{gpDomain.iconResource,jdbcType=VARCHAR},
+          #{gpDomain.remark,jdbcType=VARCHAR},
+          #{gpDomain.addTime,jdbcType=TIMESTAMP},
+          #{gpDomain.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+name=values(name),
+com=values(com),
+icon_resource=values(icon_resource),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_domain
         where  id = #{id,jdbcType=VARCHAR}

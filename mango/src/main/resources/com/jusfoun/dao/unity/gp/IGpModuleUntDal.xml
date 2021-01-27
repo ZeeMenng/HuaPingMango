@@ -153,6 +153,52 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_module
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpModule" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpModule.id,jdbcType=VARCHAR},
+          #{gpModule.domainId,jdbcType=VARCHAR},
+          #{gpModule.name,jdbcType=VARCHAR},
+          #{gpModule.serialNo,jdbcType=VARCHAR},
+          #{gpModule.level,jdbcType=TINYINT},
+          #{gpModule.fartherId,jdbcType=VARCHAR},
+          #{gpModule.priority,jdbcType=INTEGER},
+          #{gpModule.pageId,jdbcType=VARCHAR},
+          #{gpModule.pageUrl,jdbcType=VARCHAR},
+          #{gpModule.style,jdbcType=VARCHAR},
+          #{gpModule.iconResource,jdbcType=VARCHAR},
+          #{gpModule.remark,jdbcType=VARCHAR},
+          #{gpModule.addTime,jdbcType=TIMESTAMP},
+          #{gpModule.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+name=values(name),
+serial_no=values(serial_no),
+level=values(level),
+farther_id=values(farther_id),
+priority=values(priority),
+page_id=values(page_id),
+page_url=values(page_url),
+style=values(style),
+icon_resource=values(icon_resource),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_module
         where  id = #{id,jdbcType=VARCHAR}

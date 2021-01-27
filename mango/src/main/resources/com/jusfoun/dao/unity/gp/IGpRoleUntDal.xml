@@ -74,6 +74,34 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_role
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpRole" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpRole.id,jdbcType=VARCHAR},
+          #{gpRole.name,jdbcType=VARCHAR},
+          #{gpRole.remark,jdbcType=VARCHAR},
+          #{gpRole.addTime,jdbcType=TIMESTAMP},
+          #{gpRole.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+name=values(name),
+remark=values(remark),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_role
         where  id = #{id,jdbcType=VARCHAR}

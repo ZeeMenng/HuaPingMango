@@ -25,7 +25,7 @@ import net.sf.json.JSONObject;
  */
 @Service("gpInterfaceSplBll")
 public class GpInterfaceSplBll extends GpInterfaceGenSplBll {
-
+	
 	public ResultModel delete(String id) {
 		return delete(id, isLogWrite);
 	}

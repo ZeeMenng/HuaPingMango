@@ -92,6 +92,38 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_page
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpPage" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpPage.id,jdbcType=VARCHAR},
+          #{gpPage.domainId,jdbcType=VARCHAR},
+          #{gpPage.name,jdbcType=VARCHAR},
+          #{gpPage.url,jdbcType=VARCHAR},
+          #{gpPage.remark,jdbcType=VARCHAR},
+          #{gpPage.addTime,jdbcType=TIMESTAMP},
+          #{gpPage.isPublicCode,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+name=values(name),
+url=values(url),
+remark=values(remark),
+add_time=values(add_time),
+is_public_code=values(is_public_code)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_page
         where  id = #{id,jdbcType=VARCHAR}

@@ -152,6 +152,52 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_oper_log
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpOperLog" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpOperLog.id,jdbcType=VARCHAR},
+          #{gpOperLog.domainId,jdbcType=VARCHAR},
+          #{gpOperLog.objectId,jdbcType=VARCHAR},
+          #{gpOperLog.operTypeCode,jdbcType=TINYINT},
+          #{gpOperLog.operTypeText,jdbcType=VARCHAR},
+          #{gpOperLog.tableName,jdbcType=VARCHAR},
+          #{gpOperLog.totalCount,jdbcType=BIGINT},
+          #{gpOperLog.incomeValue,jdbcType=VARCHAR},
+          #{gpOperLog.returnValue,jdbcType=VARCHAR},
+          #{gpOperLog.isSuccessCode,jdbcType=TINYINT},
+          #{gpOperLog.resultCode,jdbcType=INTEGER},
+          #{gpOperLog.resultMessage,jdbcType=VARCHAR},
+          #{gpOperLog.remark,jdbcType=VARCHAR},
+          #{gpOperLog.addTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+object_id=values(object_id),
+oper_type_code=values(oper_type_code),
+oper_type_text=values(oper_type_text),
+table_name=values(table_name),
+total_count=values(total_count),
+income_value=values(income_value),
+return_value=values(return_value),
+is_success_code=values(is_success_code),
+result_code=values(result_code),
+result_message=values(result_message),
+remark=values(remark),
+add_time=values(add_time)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_oper_log
         where  id = #{id,jdbcType=VARCHAR}

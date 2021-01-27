@@ -22,6 +22,8 @@ public interface IGpInterfaceSplDal extends IBaseSplDal {
 
 	public int addList(ArrayList<GpInterface> gpInterfaceList);
 
+	public int addListWithDffOrAdd(ArrayList<GpInterface> gpInterfaceList);
+	
 	public int delete(String id);
 	
 	public int deleteByDomainId(String domainId);

@@ -119,6 +119,44 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gp_region_country
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gpRegionCountry" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gpRegionCountry.id,jdbcType=VARCHAR},
+          #{gpRegionCountry.isoCode,jdbcType=VARCHAR},
+          #{gpRegionCountry.chineseName,jdbcType=VARCHAR},
+          #{gpRegionCountry.englishName,jdbcType=VARCHAR},
+          #{gpRegionCountry.abbreviation,jdbcType=VARCHAR},
+          #{gpRegionCountry.isDisplayCode,jdbcType=TINYINT},
+          #{gpRegionCountry.longitude,jdbcType=VARCHAR},
+          #{gpRegionCountry.latitude,jdbcType=VARCHAR},
+          #{gpRegionCountry.area,jdbcType=INTEGER},
+          #{gpRegionCountry.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+iso_code=values(iso_code),
+chinese_name=values(chinese_name),
+english_name=values(english_name),
+abbreviation=values(abbreviation),
+is_display_code=values(is_display_code),
+longitude=values(longitude),
+latitude=values(latitude),
+area=values(area),
+remark=values(remark)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gp_region_country
         where  id = #{id,jdbcType=VARCHAR}
