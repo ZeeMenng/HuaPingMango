@@ -26,9 +26,10 @@ function initRoleInfo() {
 		getModelUrl : RU_GPROLE_GETMODELBYPATH,
 		submitData : {},
 		success : function(resultData) {
-			layer.msg('修改成功……', {
+			layer.msg(resultData.resultMessage, {
 				time : 1000
 			});
+			
 		}
 	};
 	initResult = initEditPage(pageParam, ajaxParam);

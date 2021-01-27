@@ -32,7 +32,6 @@ import com.jusfoun.utl.SymbolicConstant;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<Object> handleExceptions(Exception exception, WebRequest request) {
 
@@ -44,6 +43,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		if (exception instanceof GlobalException) {
 			GlobalException globalException = (GlobalException) exception;
 			result = globalException.getResultModel();
+			if (result.getResultMessage().contains("Data truncation: Data too long for column ")) {
+				result.setResultMessage("请控制输入长度……");
+			}
 		} else {
 			logger.error(exception.getMessage(), exception);
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);

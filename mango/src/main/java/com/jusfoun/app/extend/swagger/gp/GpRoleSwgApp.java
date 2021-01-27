@@ -91,6 +91,41 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	@Qualifier("gprRoleDomainSplBll")
 	protected GprRoleDomainSplBll gprRoleDomainSplBll;
 
+	@ApiOperation(value = "新增记录", notes = "新增单条记录")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpRole") })
+	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel add(@RequestBody GpRole jsonData) {
+		ResultModel result = gpRoleUntBll.add(jsonData);
+		ArrayList<GprRoleModule> gprRoleModuleList = new ArrayList<GprRoleModule>();
+		ArrayList<GprRoleDomain> gprRoleDomainList = new ArrayList<GprRoleDomain>();
+
+		if (StringUtils.isNotBlank(jsonData.getModuleIds())) {
+			String[] moduleIdArray = jsonData.getModuleIds().split(",");
+			for (String moduleId : moduleIdArray) {
+				GprRoleModule gprRoleModule = new GprRoleModule();
+				gprRoleModule.setRoleId(jsonData.getId());
+				gprRoleModule.setModuleId(moduleId);
+				gprRoleModuleList.add(gprRoleModule);
+
+			}
+		}
+		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
+			String[] moduleIdArray = jsonData.getDomainIds().split(",");
+			for (String domainId : moduleIdArray) {
+				GprRoleDomain gprRoleDomain = new GprRoleDomain();
+				gprRoleDomain.setRoleId(jsonData.getId());
+				gprRoleDomain.setDomainId(domainId);
+				gprRoleDomainList.add(gprRoleDomain);
+
+			}
+		}
+
+		gprRoleModuleUntBll.add(gprRoleModuleList);
+		gprRoleDomainUntBll.add(gprRoleDomainList);
+
+		return result;
+	}
+	
 	@ApiOperation(value = "删除记录", notes = "根据主键删除相应记录")
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -105,12 +140,29 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 		return result;
 	}
 
+	@ApiOperation(value = "删除应用功能权限", notes = "删除功能权限")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
+	@RequestMapping(value = "/deleteModuleAuthority", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel deleteModuleAuthority(@RequestBody GprRoleModuleParameter.DeleteByCompositeIdList jsonData) {
+		ResultModel result = gprRoleModuleUntBll.deleteByCompositeIdList(jsonData.getEntityList());
+
+		return result;
+	}
+
 	@ApiOperation(value = "批量删除", notes = "根据主键列表批量删除相应记录")
 	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GpRoleDeleteByIdList")
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteList(@RequestBody GpRoleParameter.DeleteByIdList jsonData) {
 
 		ResultModel result = gpRoleUntBll.deleteByIdList(jsonData.getIdList());
+		return result;
+	}
+	
+	@ApiOperation(value = "修改记录", notes = "修改指定记录")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
+	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel update(@RequestBody GpRole jsonData) {
+		ResultModel result = gpRoleUntBll.update(jsonData);
 		return result;
 	}
 
@@ -148,28 +200,11 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 		return result;
 	}
 
-	@ApiOperation(value = "修改记录", notes = "修改指定记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
-	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel update(@RequestBody GpRole jsonData) {
-		ResultModel result = gpRoleUntBll.update(jsonData);
-		return result;
-	}
-
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表和要修改为的信息承载实体", required = true, dataType = "GpRoleUpdateList") })
 	@RequestMapping(value = "/updateList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateList(@RequestBody GpRoleParameter.UpdateList jsonData) {
 		ResultModel result = gpRoleUntBll.updateList(jsonData);
-
-		return result;
-	}
-
-	@ApiOperation(value = "删除应用功能权限", notes = "删除功能权限")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
-	@RequestMapping(value = "/deleteModuleAuthority", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel deleteModuleAuthority(@RequestBody GprRoleModuleParameter.DeleteByCompositeIdList jsonData) {
-		ResultModel result = gprRoleModuleUntBll.deleteByCompositeIdList(jsonData.getEntityList());
 
 		return result;
 	}
@@ -184,42 +219,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		return result;
 	}
-
-	@ApiOperation(value = "新增记录", notes = "新增单条记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpRole") })
-	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel add(@RequestBody GpRole jsonData) {
-		ResultModel result = gpRoleUntBll.add(jsonData);
-		ArrayList<GprRoleModule> gprRoleModuleList = new ArrayList<GprRoleModule>();
-		ArrayList<GprRoleDomain> gprRoleDomainList = new ArrayList<GprRoleDomain>();
-
-		if (StringUtils.isNotBlank(jsonData.getModuleIds())) {
-			String[] moduleIdArray = jsonData.getModuleIds().split(",");
-			for (String moduleId : moduleIdArray) {
-				GprRoleModule gprRoleModule = new GprRoleModule();
-				gprRoleModule.setRoleId(jsonData.getId());
-				gprRoleModule.setModuleId(moduleId);
-				gprRoleModuleList.add(gprRoleModule);
-
-			}
-		}
-		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
-			String[] moduleIdArray = jsonData.getDomainIds().split(",");
-			for (String domainId : moduleIdArray) {
-				GprRoleDomain gprRoleDomain = new GprRoleDomain();
-				gprRoleDomain.setRoleId(jsonData.getId());
-				gprRoleDomain.setDomainId(domainId);
-				gprRoleDomainList.add(gprRoleDomain);
-
-			}
-		}
-
-		gprRoleModuleUntBll.add(gprRoleModuleList);
-		gprRoleDomainUntBll.add(gprRoleDomainList);
-
-		return result;
-	}
-
+	
 	@RequestMapping(value = "/getRoleListByDomainId/{domainId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getRoleListByDomainId(@PathVariable("domainId") String domainId) {
 
