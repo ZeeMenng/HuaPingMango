@@ -1456,6 +1456,8 @@ function initAddPage(pageParam, ajaxParam) {
             var formData = formAdd.serializeArray();
             // 将查询条件和其它请求参数组装
             if (ajaxParam.submitData != null)
+            	if(typeof ajaxParam.submitData=="string")// 处理重复提交时反复转换的问题
+            		ajaxParam.submitData=JSON.parse(ajaxParam.submitData);
                 $.each(formData, function (i, n) {
                     var propertyName = getPropertyName(formData[i].name)
                     ajaxParam.submitData[propertyName] = formData[i].value;
@@ -1468,6 +1470,7 @@ function initAddPage(pageParam, ajaxParam) {
             if (ajaxParam.contentType === "application/json;charset=utf-8")
                 ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
             if (ajaxParam.contentType === "application/x-www-form-urlencoded")
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
                 ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
             if (ajaxParam.dataType == null)
                 ajaxParam.dataType = "JSON";
@@ -1596,6 +1599,8 @@ function initEditPage(pageParam, ajaxParam) {
             var formData = formEdit.serializeArray();
             // 将查询条件和其它请求参数组装
             if (ajaxParam.submitData != null)
+            	if(typeof ajaxParam.submitData=="string")// 处理重复提交时反复转换的问题
+            		ajaxParam.submitData=JSON.parse(ajaxParam.submitData);
                 $.each(formData, function (i, n) {
                     var propertyName = getPropertyName(formData[i].name);
                     ajaxParam.submitData[propertyName] = formData[i].value;
@@ -1614,7 +1619,8 @@ function initEditPage(pageParam, ajaxParam) {
                 ajaxParam.url = ajaxParam.updateListUrl;
             }
             if (ajaxParam.contentType === "application/json;charset=utf-8")
-                ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
+            		ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
             // 提交富文本数据，如果包含特殊符号"&"，到后台的数据会被截断，所以用encodeURIComponent。
             if (ajaxParam.contentType === "application/x-www-form-urlencoded")
                 ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
@@ -2664,15 +2670,42 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 }
 
 function updateModulesData(treeId, treeNodes, action, targetNode, moveType) {
-
+	
+	   var zTree = $.fn.zTree.getZTreeObj(treeId);
+	    var zTreeNodes = zTree.getNodes();
+	    var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
+	
+	if(zTreeNodesJsonArray[0].level>5)
+		{
+		 layer.msg('树形菜单不能超过5级……', {
+             time: 1500
+         });
+		 return false;
+		}
+	
+	var nodeName = zTreeNodesJsonArray[0].name.length;   
+	var blen = 0;   
+	for(i=0; i<l; i++) {   
+	if ((str.charCodeAt(i) & 0xff00) != 0) {   
+	blen ++;   
+	}   
+	blen ++;   
+	}  
+	
+	if(nodeName.length>100)
+	{
+	 layer.msg('节点名称不能超过50个汉字……', {
+         time: 1500
+     });
+	 return false;
+	}
+	
     if (IS_IMMEDIATE) {
         immediateUpdate(treeId, treeNodes, action, targetNode, moveType);
         return;
     }
 
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var zTreeNodes = zTree.getNodes();
-    var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
+ 
     // 修改数组长度为1，以达到删除其它节点只保留根目录节点的目的，因为根目录中已经用嵌套方式包含所有节点。
     zTreeNodesJsonArray.length = 1;
     var infoData = JSON.stringify(zTreeNodesJsonArray);
