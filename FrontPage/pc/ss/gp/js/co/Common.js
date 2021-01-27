@@ -1466,8 +1466,10 @@ function initAddPage(pageParam, ajaxParam) {
             if (ajaxParam.contentType == null)
                 ajaxParam.contentType = "application/json;charset=utf-8";
             if (ajaxParam.contentType === "application/json;charset=utf-8")
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
                 ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
             if (ajaxParam.contentType === "application/x-www-form-urlencoded")
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
                 ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
             if (ajaxParam.dataType == null)
                 ajaxParam.dataType = "JSON";
@@ -1614,9 +1616,11 @@ function initEditPage(pageParam, ajaxParam) {
                 ajaxParam.url = ajaxParam.updateListUrl;
             }
             if (ajaxParam.contentType === "application/json;charset=utf-8")
-                ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
+            		ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
             // 提交富文本数据，如果包含特殊符号"&"，到后台的数据会被截断，所以用encodeURIComponent。
             if (ajaxParam.contentType === "application/x-www-form-urlencoded")
+            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
                 ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
             if (ajaxParam.dataType == null)
                 ajaxParam.dataType = "JSON";
@@ -2664,15 +2668,32 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 }
 
 function updateModulesData(treeId, treeNodes, action, targetNode, moveType) {
-
+	
+	   var zTree = $.fn.zTree.getZTreeObj(treeId);
+	    var zTreeNodes = zTree.getNodes();
+	    var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
+	
+	if(zTreeNodesJsonArray[0].level>5)
+		{
+		 layer.msg('树形菜单不能超过5级……', {
+             time: 1500
+         });
+		 return false;
+		}
+	if(zTreeNodesJsonArray[0].name.length>50)
+	{
+	 layer.msg('节点名称不能超过50个字符……', {
+         time: 1500
+     });
+	 return false;
+	}
+	
     if (IS_IMMEDIATE) {
         immediateUpdate(treeId, treeNodes, action, targetNode, moveType);
         return;
     }
 
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var zTreeNodes = zTree.getNodes();
-    var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
+ 
     // 修改数组长度为1，以达到删除其它节点只保留根目录节点的目的，因为根目录中已经用嵌套方式包含所有节点。
     zTreeNodesJsonArray.length = 1;
     var infoData = JSON.stringify(zTreeNodesJsonArray);
