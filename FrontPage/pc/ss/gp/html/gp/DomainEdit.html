@@ -85,7 +85,7 @@
 				$.fn.zTree.init($("#ulModuleTree"), setting, zNodes);
 				var moduleTree = $.fn.zTree.getZTreeObj("ulModuleTree");
 				$.each(zNodes, function(index, value) {
-					if (value.level < 3) {
+					if (value.level < 2) {
 						var node = moduleTree.getNodeByParam("id", value.id);
 						moduleTree.expandNode(node, true);// 展开指定节点
 					}

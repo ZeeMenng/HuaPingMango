@@ -316,8 +316,10 @@ public class Tools {
 			GpModule module = new GpModule();
 			JSONObject jsonObject = JSONObject.fromObject(moduleJSONArray.get(i));
 			byte level = ((Integer) (jsonObject.getInt("level"))).byteValue();
-			if (StringUtils.isEmpty((module.getId())))
+			if (StringUtils.isEmpty((jsonObject.getString("id"))))
 				module.setId(Tools.getUUID());
+			else
+				module.setId(jsonObject.getString("id"));
 			module.setFartherId(parentId);
 			module.setPriority(i);
 			module.setDomainId(domainId);
