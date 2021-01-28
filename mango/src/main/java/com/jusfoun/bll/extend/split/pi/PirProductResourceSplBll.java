@@ -1,15 +1,15 @@
-package com.jusfoun.bll.extend.split.pi;
+package com.zee.bll.extend.split.pi;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.pi.PirProductResourceGenSplBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.split.pi.PirProductResourceGenSplBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 
 /**

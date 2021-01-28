@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiContentTxtSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiContentTxtSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentTxt" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentTxt" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="txt" property="txt" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,content_id,txt,txt1,txt2,txt3
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentTxt" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentTxt" >
     insert into pi_content_txt
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -113,7 +113,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentTxt" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentTxt" >
     update pi_content_txt
     <set >
                   <if test="contentId != null  and contentId != '' " >

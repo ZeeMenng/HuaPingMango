@@ -1,4 +1,4 @@
-package com.jusfoun.set.enumer;
+package com.zee.set.enumer;
 
 public enum DictionaryEnum {
 

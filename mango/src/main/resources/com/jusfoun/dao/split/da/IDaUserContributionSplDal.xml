@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaUserContributionSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaUserContributionSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaUserContribution" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaUserContribution" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="price_times" property="priceTimes" jdbcType="INTEGER" />
               <result column="price_num" property="priceNum" jdbcType="INTEGER" />
@@ -19,7 +19,7 @@
         id,price_times,price_num,yield_times,yield_num,farm_oper_times,farm_oper_num,user_id,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaUserContribution" >
     insert into da_user_contribution
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -149,7 +149,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaUserContribution" >
     update da_user_contribution
     <set >
                   <if test="priceTimes != null ">

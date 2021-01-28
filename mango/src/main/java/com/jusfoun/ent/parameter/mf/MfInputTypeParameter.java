@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.mf;
+package com.zee.ent.parameter.mf;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.mf.MfInputType;
-import com.jusfoun.ent.generate.mf.MfInputTypeGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.mf.MfInputType;
+import com.zee.ent.generate.mf.MfInputTypeGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

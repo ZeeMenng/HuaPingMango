@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfForpriceSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfForpriceSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfForprice" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfForprice" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,date_time,region_code,region_name,actual_amount,forecast_amount
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfForprice" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfForprice" >
     insert into mf_forprice
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -111,7 +111,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfForprice" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfForprice" >
     update mf_forprice
     <set >
                   <if test="dateTime != null  and dateTime != '' " >

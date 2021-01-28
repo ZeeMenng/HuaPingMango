@@ -1,9 +1,9 @@
-package com.jusfoun.bll.generate.split.pi;
+package com.zee.bll.generate.split.pi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jusfoun.bll.generate.split.base.BaseSplBll;
-import com.jusfoun.dao.split.pi.IPiChannelCountSplDal;
+import com.zee.bll.generate.split.base.BaseSplBll;
+import com.zee.dao.split.pi.IPiChannelCountSplDal;
 
 
 

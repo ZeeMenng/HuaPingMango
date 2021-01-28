@@ -1,4 +1,4 @@
-package com.jusfoun.utl.service;
+package com.zee.utl.service;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.unity.da.DaUserContributionUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaUserContribution;
-import com.jusfoun.utl.BeanUtil;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.unity.da.DaUserContributionUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaUserContribution;
+import com.zee.utl.BeanUtil;
+import com.zee.utl.SymbolicConstant;
 
 @Component
 public class DaUserContributionUtil extends BaseSwgApp {

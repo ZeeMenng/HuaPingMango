@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:18
+ * @updateDate 2021/1/28 16:10:03
  * @description 实体类PiProductRecommendGenEnt，自动生成。企业推介产品表
  */
 
@@ -24,33 +22,37 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="数据入库时间",hidden=false,required=false)
     private Date addTime;
-    @ApiModelProperty(value="产品品牌",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String brand;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="是否推荐,0:否，1：是",hidden=false,required=true)
     private Byte isRecommend;
-    @ApiModelProperty(value="电商链接",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String mallInterlinkage;
-    @ApiModelProperty(value="产品名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="单价，标准单位：元/千克",hidden=false,required=false)
     private BigDecimal perPriceUnit;
     @ApiModelProperty(value="发布时间",hidden=false,required=false)
     private Date releaseTime;
-    @ApiModelProperty(value="备注",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String remark;
     @ApiModelProperty(value="售价，标准单位：元",hidden=false,required=false)
     private BigDecimal sellingPrice;
     @ApiModelProperty(value="产品类型：对应数据字典表（dictionary）中的编码字段（code） 1：鲜果，2，加工品",allowableValues="0,1",hidden=false,required=false)
     private Byte typeCode;
-    @ApiModelProperty(value="产品类型：对应数据字典表（dictionary）中的编码字段（code） 1：鲜果，2，加工品",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String typeText;
     @ApiModelProperty(value="产品重量，标准单位：千克",hidden=false,required=false)
     private BigDecimal weight;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。数据入库时间
@@ -67,28 +69,28 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产品品牌
+	 * get方法。
 	 */
 	public String getBrand() {
 		return this.brand;
 	}
 
 	/**
-	 * set方法。产品品牌
+	 * set方法。
 	 */
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -109,28 +111,28 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。电商链接
+	 * get方法。
 	 */
 	public String getMallInterlinkage() {
 		return this.mallInterlinkage;
 	}
 
 	/**
-	 * set方法。电商链接
+	 * set方法。
 	 */
 	public void setMallInterlinkage(String mallInterlinkage) {
 		this.mallInterlinkage = mallInterlinkage;
 	}
     
 	/**
-	 * get方法。产品名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。产品名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -165,14 +167,14 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。备注
+	 * get方法。
 	 */
 	public String getRemark() {
 		return this.remark;
 	}
 
 	/**
-	 * set方法。备注
+	 * set方法。
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
@@ -207,14 +209,14 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产品类型：对应数据字典表（dictionary）中的编码字段（code） 1：鲜果，2，加工品
+	 * get方法。
 	 */
 	public String getTypeText() {
 		return this.typeText;
 	}
 
 	/**
-	 * set方法。产品类型：对应数据字典表（dictionary）中的编码字段（code） 1：鲜果，2，加工品
+	 * set方法。
 	 */
 	public void setTypeText(String typeText) {
 		this.typeText = typeText;
@@ -235,7 +237,14 @@ public class PiProductRecommendGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

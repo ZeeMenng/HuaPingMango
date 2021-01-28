@@ -1,6 +1,6 @@
-package com.jusfoun.dao.split.base;
+package com.zee.dao.split.base;
 
-import com.jusfoun.dao.base.IBaseDao;
+import com.zee.dao.base.IBaseDao;
 
 public interface IBaseSplDal extends IBaseDao {
 

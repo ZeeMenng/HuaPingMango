@@ -1,9 +1,9 @@
-package com.jusfoun.ent.extend.pi;
+package com.zee.ent.extend.pi;
 
 import java.util.Date;
 
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.generate.pi.PiExpertGenEnt;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.generate.pi.PiExpertGenEnt;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

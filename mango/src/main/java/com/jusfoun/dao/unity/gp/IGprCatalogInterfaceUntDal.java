@@ -1,10 +1,10 @@
-﻿package com.jusfoun.dao.unity.gp;
+﻿package com.zee.dao.unity.gp;
 
 import java.util.List;
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.gp.GprCatalogInterface;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
-import com.jusfoun.ent.extend.gp.GpInterface;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.gp.GprCatalogInterface;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.extend.gp.GpInterface;
 
 
 
@@ -12,7 +12,7 @@ import com.jusfoun.ent.extend.gp.GpInterface;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/4 14:18:29
+ * @updateDate 2021/1/28 16:07:37
  * @description 扩展自实体类IBaseUntDal<GprCatalogInterface>，可手动更改。后台接口所属分类。
  */
 
@@ -31,7 +31,7 @@ public interface IGprCatalogInterfaceUntDal extends IBaseUntDal<GprCatalogInterf
 
 	public List<GprCatalogInterface> getListByInterfaceId(String  interfaceId);
         
- public int deleteByCompositeIdList(List<GprCatalogInterface> gprCatalogInterfaceList);   
+	public int deleteByCompositeIdList(List<GprCatalogInterface> gprCatalogInterfaceList);   
    
 
    

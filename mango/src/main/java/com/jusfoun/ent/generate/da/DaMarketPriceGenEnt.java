@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:26
+ * @updateDate 2021/1/28 16:09:03
  * @description 实体类DaMarketPriceGenEnt，自动生成。市场价格数据表
  */
 
@@ -28,7 +26,7 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal acreCostPriceUnit;
     @ApiModelProperty(value="亩成本价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte acreCostPriceUnitCode;
-    @ApiModelProperty(value="亩成本价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String acreCostPriceUnitText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal averagePrice;
@@ -36,7 +34,7 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal averagePriceUnit;
     @ApiModelProperty(value="平均价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte averagePriceUnitCode;
-    @ApiModelProperty(value="平均价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String averagePriceUnitText;
     @ApiModelProperty(value="芒果平均单颗重（g）",hidden=false,required=false)
     private BigDecimal averageWeight;
@@ -46,13 +44,13 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal bottomPriceUnit;
     @ApiModelProperty(value="最低价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte bottomPriceUnitCode;
-    @ApiModelProperty(value="最低价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String bottomPriceUnitText;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
     @ApiModelProperty(value="电商价格",hidden=false,required=false)
     private BigDecimal eCommercePrice;
@@ -60,7 +58,7 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal eCommercePriceUnit;
     @ApiModelProperty(value="电商价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte eCommercePriceUnitCode;
-    @ApiModelProperty(value="电商价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String eCommercePriceUnitText;
     @ApiModelProperty(value="田头价格",hidden=false,required=false)
     private BigDecimal fieldPrice;
@@ -68,13 +66,13 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal fieldPriceUnit;
     @ApiModelProperty(value="田头价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte fieldPriceUnitCode;
-    @ApiModelProperty(value="田头价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String fieldPriceUnitText;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="芒果等级",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String mangoGrade;
-    @ApiModelProperty(value="名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="价格",hidden=false,required=false)
     private BigDecimal perPrice;
@@ -82,15 +80,15 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal perPriceUnit;
     @ApiModelProperty(value="成交单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte perPriceUnitCode;
-    @ApiModelProperty(value="成交单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String perPriceUnitText;
     @ApiModelProperty(value="价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤",allowableValues="0,1",hidden=false,required=false)
     private Byte priceRangeCode;
-    @ApiModelProperty(value="价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String priceRangeText;
     @ApiModelProperty(value="价格类型:对应数据字典表（dictionary）中的编码字段（code）1：田头价，2：批发价，3:零售价",allowableValues="0,1",hidden=false,required=false)
     private Byte priceTypeCode;
-    @ApiModelProperty(value="价格类型文本:对应数据字典表（dictionary）中的编码字段（code）1：田头价，2：批发价，3:零售价",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String priceTypeText;
     @ApiModelProperty(value="零售价格",hidden=false,required=false)
     private BigDecimal retailPrice;
@@ -98,11 +96,11 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal retailPriceUnit;
     @ApiModelProperty(value="零售价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte retailPriceUnitCode;
-    @ApiModelProperty(value="零售价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String retailPriceUnitText;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal topPrice;
@@ -110,7 +108,7 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal topPriceUnit;
     @ApiModelProperty(value="最高价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte topPriceUnitCode;
-    @ApiModelProperty(value="最高价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String topPriceUnitText;
     @ApiModelProperty(value="批发价格",hidden=false,required=false)
     private BigDecimal tradePrice;
@@ -118,13 +116,17 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
     private BigDecimal tradePriceUnit;
     @ApiModelProperty(value="批发价单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte tradePriceUnitCode;
-    @ApiModelProperty(value="批发价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String tradePriceUnitText;
-    @ApiModelProperty(value="年份",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String year;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。亩成本价
@@ -169,14 +171,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。亩成本价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getAcreCostPriceUnitText() {
 		return this.acreCostPriceUnitText;
 	}
 
 	/**
-	 * set方法。亩成本价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setAcreCostPriceUnitText(String acreCostPriceUnitText) {
 		this.acreCostPriceUnitText = acreCostPriceUnitText;
@@ -225,14 +227,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。平均价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getAveragePriceUnitText() {
 		return this.averagePriceUnitText;
 	}
 
 	/**
-	 * set方法。平均价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setAveragePriceUnitText(String averagePriceUnitText) {
 		this.averagePriceUnitText = averagePriceUnitText;
@@ -295,28 +297,28 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。最低价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getBottomPriceUnitText() {
 		return this.bottomPriceUnitText;
 	}
 
 	/**
-	 * set方法。最低价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setBottomPriceUnitText(String bottomPriceUnitText) {
 		this.bottomPriceUnitText = bottomPriceUnitText;
 	}
     
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -337,14 +339,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
@@ -393,14 +395,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。电商价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getECommercePriceUnitText() {
 		return this.eCommercePriceUnitText;
 	}
 
 	/**
-	 * set方法。电商价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setECommercePriceUnitText(String eCommercePriceUnitText) {
 		this.eCommercePriceUnitText = eCommercePriceUnitText;
@@ -449,56 +451,56 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。田头价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getFieldPriceUnitText() {
 		return this.fieldPriceUnitText;
 	}
 
 	/**
-	 * set方法。田头价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setFieldPriceUnitText(String fieldPriceUnitText) {
 		this.fieldPriceUnitText = fieldPriceUnitText;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。芒果等级
+	 * get方法。
 	 */
 	public String getMangoGrade() {
 		return this.mangoGrade;
 	}
 
 	/**
-	 * set方法。芒果等级
+	 * set方法。
 	 */
 	public void setMangoGrade(String mangoGrade) {
 		this.mangoGrade = mangoGrade;
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -547,14 +549,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。成交单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getPerPriceUnitText() {
 		return this.perPriceUnitText;
 	}
 
 	/**
-	 * set方法。成交单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setPerPriceUnitText(String perPriceUnitText) {
 		this.perPriceUnitText = perPriceUnitText;
@@ -575,14 +577,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * get方法。
 	 */
 	public String getPriceRangeText() {
 		return this.priceRangeText;
 	}
 
 	/**
-	 * set方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/斤，2：5-10元/斤，3：10-15元/斤，4：15-20元/斤，5：20元以上/斤
+	 * set方法。
 	 */
 	public void setPriceRangeText(String priceRangeText) {
 		this.priceRangeText = priceRangeText;
@@ -603,14 +605,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。价格类型文本:对应数据字典表（dictionary）中的编码字段（code）1：田头价，2：批发价，3:零售价
+	 * get方法。
 	 */
 	public String getPriceTypeText() {
 		return this.priceTypeText;
 	}
 
 	/**
-	 * set方法。价格类型文本:对应数据字典表（dictionary）中的编码字段（code）1：田头价，2：批发价，3:零售价
+	 * set方法。
 	 */
 	public void setPriceTypeText(String priceTypeText) {
 		this.priceTypeText = priceTypeText;
@@ -659,14 +661,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。零售价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getRetailPriceUnitText() {
 		return this.retailPriceUnitText;
 	}
 
 	/**
-	 * set方法。零售价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setRetailPriceUnitText(String retailPriceUnitText) {
 		this.retailPriceUnitText = retailPriceUnitText;
@@ -687,14 +689,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
@@ -743,14 +745,14 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。最高价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getTopPriceUnitText() {
 		return this.topPriceUnitText;
 	}
 
 	/**
-	 * set方法。最高价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setTopPriceUnitText(String topPriceUnitText) {
 		this.topPriceUnitText = topPriceUnitText;
@@ -799,35 +801,42 @@ public class DaMarketPriceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。批发价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getTradePriceUnitText() {
 		return this.tradePriceUnitText;
 	}
 
 	/**
-	 * set方法。批发价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setTradePriceUnitText(String tradePriceUnitText) {
 		this.tradePriceUnitText = tradePriceUnitText;
 	}
     
 	/**
-	 * get方法。年份
+	 * get方法。
 	 */
 	public String getYear() {
 		return this.year;
 	}
 
 	/**
-	 * set方法。年份
+	 * set方法。
 	 */
 	public void setYear(String year) {
 		this.year = year;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

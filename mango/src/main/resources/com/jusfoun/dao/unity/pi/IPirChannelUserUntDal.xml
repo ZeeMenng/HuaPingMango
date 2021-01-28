@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPirChannelUserUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPirChannelUserUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirChannelUser" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirChannelUser" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="user_id" property="userId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,channel_id,user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirChannelUser" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirChannelUser" >
     insert into pir_channel_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pir_channel_user
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -51,27 +50,45 @@
     	<foreach collection="list" item="pirChannelUser" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{pirChannelUser.id,jdbcType=VARCHAR},
-
-      
           #{pirChannelUser.channelId,jdbcType=VARCHAR},
-
-      
           #{pirChannelUser.userId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pir_channel_user
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pir_channel_user
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirChannelUser" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{pirChannelUser.id,jdbcType=VARCHAR},
+          #{pirChannelUser.channelId,jdbcType=VARCHAR},
+          #{pirChannelUser.userId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+user_id=values(user_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pir_channel_user
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pir_channel_user
 		where id  in
@@ -80,7 +97,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirChannelUser" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirChannelUser" >
     update pir_channel_user
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -116,21 +135,29 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="pirChannelUser" index="index">
-                  <if test="pirChannelUser.channelId != null and pirChannelUser.channelId  != '' " >
+                  <if test="pirChannelUser.channelId != null and pirChannelUser.channelId  != ''  and pirChannelUser.channelId  != '-1' ">
                      when id=#{pirChannelUser.id} then #{pirChannelUser.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChannelUser.channelId != null  and pirChannelUser.channelId  == '-1' ">
+                     when id=#{pirChannelUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="pirChannelUser" index="index">
-                  <if test="pirChannelUser.userId != null and pirChannelUser.userId  != '' " >
+                  <if test="pirChannelUser.userId != null and pirChannelUser.userId  != ''  and pirChannelUser.userId  != '-1' ">
                      when id=#{pirChannelUser.id} then #{pirChannelUser.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChannelUser.userId != null  and pirChannelUser.userId  == '-1' ">
+                     when id=#{pirChannelUser.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="pirChannelUser" index="index" open="(" close=")" separator=",">
 			#{pirChannelUser.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -140,24 +167,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pir_channel_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
+id,
+channel_id,
+user_id,
     </trim>
     VALUES
     <foreach collection="list" item="pirChannelUser" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{pirChannelUser.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{pirChannelUser.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{pirChannelUser.userId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

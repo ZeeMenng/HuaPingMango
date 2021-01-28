@@ -1,50 +1,52 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.zee.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:56
+ * @updateDate 2021/1/28 16:09:30
  * @description 实体类MfFormatrixGenEnt，自动生成。波士顿矩阵
  */
 
 public class MfFormatrixGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="价格涨跌,单位：元/千克",hidden=false,required=false)
     private BigDecimal priceChange;
-    @ApiModelProperty(value="地区名code 0-全国",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String regionCode;
-    @ApiModelProperty(value="地区名  0-全国",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String regionName;
     @ApiModelProperty(value="价格变化率",hidden=false,required=false)
     private BigDecimal returnChange;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -65,28 +67,28 @@ public class MfFormatrixGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。地区名code 0-全国
+	 * get方法。
 	 */
 	public String getRegionCode() {
 		return this.regionCode;
 	}
 
 	/**
-	 * set方法。地区名code 0-全国
+	 * set方法。
 	 */
 	public void setRegionCode(String regionCode) {
 		this.regionCode = regionCode;
 	}
     
 	/**
-	 * get方法。地区名  0-全国
+	 * get方法。
 	 */
 	public String getRegionName() {
 		return this.regionName;
 	}
 
 	/**
-	 * set方法。地区名  0-全国
+	 * set方法。
 	 */
 	public void setRegionName(String regionName) {
 		this.regionName = regionName;
@@ -107,7 +109,14 @@ public class MfFormatrixGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

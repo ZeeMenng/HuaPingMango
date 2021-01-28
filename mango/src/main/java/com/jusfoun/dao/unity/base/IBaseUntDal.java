@@ -1,4 +1,4 @@
-package com.jusfoun.dao.unity.base;
+package com.zee.dao.unity.base;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.jusfoun.dao.base.IBaseDao;
+import com.zee.dao.base.IBaseDao;
 
 public interface IBaseUntDal<T extends Serializable> extends IBaseDao {
 

@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,16 +6,16 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GpMessage;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.extend.gp.GpInterface;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/10/21 21:21:14
+ * @updateDate 2021/1/28 16:09:13
  * @description 实体类GprCatalogInterfaceGenEnt，自动生成。后台接口所属分类。
  */
 
@@ -30,8 +30,8 @@ public class GprCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
     private String interfaceId;
 
    //本表做为子表时，父表实体对象
-    private  GpDomain gpDomain;
-    private  GpMessage gpMessage;
+    private  GpCatalogInterface gpCatalogInterface;
+    private  GpInterface gpInterface;
 
     //本表做为父表时，子表数据列表
 
@@ -87,31 +87,31 @@ public class GprCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 
 
 	/**
-	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 * get方法。本表做为子表时，父表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
 	 */
-	public GpDomain getGpDomain() {
-		return this.gpDomain;
+	public GpCatalogInterface getGpCatalogInterface() {
+		return this.gpCatalogInterface;
 	}
 
 	/**
-	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 * set方法。本表做为子表时，父表实体对象。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
 	 */
-	public void setGpDomain(GpDomain gpDomain) {
-		this.gpDomain = gpDomain;
+	public void setGpCatalogInterface(GpCatalogInterface gpCatalogInterface) {
+		this.gpCatalogInterface = gpCatalogInterface;
 	}
 
 	/**
-	 * get方法。本表做为子表时，父表实体对象。系统消息。
+	 * get方法。本表做为子表时，父表实体对象。系统接口。
 	 */
-	public GpMessage getGpMessage() {
-		return this.gpMessage;
+	public GpInterface getGpInterface() {
+		return this.gpInterface;
 	}
 
 	/**
-	 * set方法。本表做为子表时，父表实体对象。系统消息。
+	 * set方法。本表做为子表时，父表实体对象。系统接口。
 	 */
-	public void setGpMessage(GpMessage gpMessage) {
-		this.gpMessage = gpMessage;
+	public void setGpInterface(GpInterface gpInterface) {
+		this.gpInterface = gpInterface;
 	}
 
 

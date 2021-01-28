@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaMarketPriceUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaMarketPriceUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaMarketPrice" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaMarketPrice" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -59,7 +59,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,price_type_code,price_type_text,per_price,per_price_unit_code,per_price_unit_text,per_price_unit,average_price,average_price_unit_code,average_price_unit_text,average_price_unit,price_range_code,price_range_text,bottom_price,bottom_price_unit_code,bottom_price_unit_text,bottom_price_unit,top_price,top_price_unit_code,top_price_unit_text,top_price_unit,year,acre_cost_price,acre_cost_price_unit_code,acre_cost_price_unit_text,acre_cost_price_unit,field_price,field_price_unit_code,field_price_unit_text,field_price_unit,retail_price,retail_price_unit_code,retail_price_unit_text,retail_price_unit,trade_price,trade_price_unit_code,trade_price_unit_text,trade_price_unit,e_commerce_price,e_commerce_price_unit_code,e_commerce_price_unit_text,e_commerce_price_unit,average_weight,mango_grade
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaMarketPrice" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaMarketPrice" >
     insert into da_market_price
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -385,8 +385,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_market_price
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -395,168 +394,186 @@
     	<foreach collection="list" item="daMarketPrice" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daMarketPrice.id,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.name,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.strainsCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.strainsText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.priceTypeCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.priceTypeText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.perPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.perPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.averagePrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.averagePriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.priceRangeCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.priceRangeText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.bottomPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.bottomPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.topPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.topPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.year,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.acreCostPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.fieldPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.fieldPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.retailPrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.retailPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.tradePrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.tradePriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daMarketPrice.eCommercePriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.averageWeight,jdbcType=NUMERIC},
-
-      
           #{daMarketPrice.mangoGrade,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_market_price
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_market_price
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daMarketPrice" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daMarketPrice.id,jdbcType=VARCHAR},
+          #{daMarketPrice.commonFieldId,jdbcType=VARCHAR},
+          #{daMarketPrice.name,jdbcType=VARCHAR},
+          #{daMarketPrice.cropTypeCode,jdbcType=TINYINT},
+          #{daMarketPrice.cropTypeText,jdbcType=VARCHAR},
+          #{daMarketPrice.strainsCode,jdbcType=TINYINT},
+          #{daMarketPrice.strainsText,jdbcType=VARCHAR},
+          #{daMarketPrice.priceTypeCode,jdbcType=TINYINT},
+          #{daMarketPrice.priceTypeText,jdbcType=VARCHAR},
+          #{daMarketPrice.perPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.perPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.averagePrice,jdbcType=NUMERIC},
+          #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.averagePriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.priceRangeCode,jdbcType=TINYINT},
+          #{daMarketPrice.priceRangeText,jdbcType=VARCHAR},
+          #{daMarketPrice.bottomPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.bottomPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.topPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.topPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.year,jdbcType=VARCHAR},
+          #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.acreCostPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.fieldPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.fieldPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.retailPrice,jdbcType=NUMERIC},
+          #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.retailPriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.tradePrice,jdbcType=NUMERIC},
+          #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.tradePriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC},
+          #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT},
+          #{daMarketPrice.eCommercePriceUnitText,jdbcType=VARCHAR},
+          #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC},
+          #{daMarketPrice.averageWeight,jdbcType=NUMERIC},
+          #{daMarketPrice.mangoGrade,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+price_type_code=values(price_type_code),
+price_type_text=values(price_type_text),
+per_price=values(per_price),
+per_price_unit_code=values(per_price_unit_code),
+per_price_unit_text=values(per_price_unit_text),
+per_price_unit=values(per_price_unit),
+average_price=values(average_price),
+average_price_unit_code=values(average_price_unit_code),
+average_price_unit_text=values(average_price_unit_text),
+average_price_unit=values(average_price_unit),
+price_range_code=values(price_range_code),
+price_range_text=values(price_range_text),
+bottom_price=values(bottom_price),
+bottom_price_unit_code=values(bottom_price_unit_code),
+bottom_price_unit_text=values(bottom_price_unit_text),
+bottom_price_unit=values(bottom_price_unit),
+top_price=values(top_price),
+top_price_unit_code=values(top_price_unit_code),
+top_price_unit_text=values(top_price_unit_text),
+top_price_unit=values(top_price_unit),
+year=values(year),
+acre_cost_price=values(acre_cost_price),
+acre_cost_price_unit_code=values(acre_cost_price_unit_code),
+acre_cost_price_unit_text=values(acre_cost_price_unit_text),
+acre_cost_price_unit=values(acre_cost_price_unit),
+field_price=values(field_price),
+field_price_unit_code=values(field_price_unit_code),
+field_price_unit_text=values(field_price_unit_text),
+field_price_unit=values(field_price_unit),
+retail_price=values(retail_price),
+retail_price_unit_code=values(retail_price_unit_code),
+retail_price_unit_text=values(retail_price_unit_text),
+retail_price_unit=values(retail_price_unit),
+trade_price=values(trade_price),
+trade_price_unit_code=values(trade_price_unit_code),
+trade_price_unit_text=values(trade_price_unit_text),
+trade_price_unit=values(trade_price_unit),
+e_commerce_price=values(e_commerce_price),
+e_commerce_price_unit_code=values(e_commerce_price_unit_code),
+e_commerce_price_unit_text=values(e_commerce_price_unit_text),
+e_commerce_price_unit=values(e_commerce_price_unit),
+average_weight=values(average_weight),
+mango_grade=values(mango_grade)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_market_price
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_market_price
 		where id  in
@@ -565,7 +582,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaMarketPrice" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaMarketPrice" >
     update da_market_price
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -883,16 +902,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.commonFieldId != null and daMarketPrice.commonFieldId  != '' " >
+                  <if test="daMarketPrice.commonFieldId != null and daMarketPrice.commonFieldId  != ''  and daMarketPrice.commonFieldId  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.commonFieldId != null  and daMarketPrice.commonFieldId  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.name != null and daMarketPrice.name  != '' " >
+                  <if test="daMarketPrice.name != null and daMarketPrice.name  != ''  and daMarketPrice.name  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.name != null  and daMarketPrice.name  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -904,9 +931,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.cropTypeText != null and daMarketPrice.cropTypeText  != '' " >
+                  <if test="daMarketPrice.cropTypeText != null and daMarketPrice.cropTypeText  != ''  and daMarketPrice.cropTypeText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.cropTypeText != null  and daMarketPrice.cropTypeText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -918,9 +949,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.strainsText != null and daMarketPrice.strainsText  != '' " >
+                  <if test="daMarketPrice.strainsText != null and daMarketPrice.strainsText  != ''  and daMarketPrice.strainsText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.strainsText != null  and daMarketPrice.strainsText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="price_type_code =case" suffix="end,">
@@ -932,9 +967,13 @@
          </trim>
          <trim prefix="price_type_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.priceTypeText != null and daMarketPrice.priceTypeText  != '' " >
+                  <if test="daMarketPrice.priceTypeText != null and daMarketPrice.priceTypeText  != ''  and daMarketPrice.priceTypeText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.priceTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.priceTypeText != null  and daMarketPrice.priceTypeText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="per_price =case" suffix="end,">
@@ -953,9 +992,13 @@
          </trim>
          <trim prefix="per_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.perPriceUnitText != null and daMarketPrice.perPriceUnitText  != '' " >
+                  <if test="daMarketPrice.perPriceUnitText != null and daMarketPrice.perPriceUnitText  != ''  and daMarketPrice.perPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.perPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.perPriceUnitText != null  and daMarketPrice.perPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="per_price_unit =case" suffix="end,">
@@ -981,9 +1024,13 @@
          </trim>
          <trim prefix="average_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.averagePriceUnitText != null and daMarketPrice.averagePriceUnitText  != '' " >
+                  <if test="daMarketPrice.averagePriceUnitText != null and daMarketPrice.averagePriceUnitText  != ''  and daMarketPrice.averagePriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.averagePriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.averagePriceUnitText != null  and daMarketPrice.averagePriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="average_price_unit =case" suffix="end,">
@@ -1002,9 +1049,13 @@
          </trim>
          <trim prefix="price_range_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.priceRangeText != null and daMarketPrice.priceRangeText  != '' " >
+                  <if test="daMarketPrice.priceRangeText != null and daMarketPrice.priceRangeText  != ''  and daMarketPrice.priceRangeText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.priceRangeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.priceRangeText != null  and daMarketPrice.priceRangeText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="bottom_price =case" suffix="end,">
@@ -1023,9 +1074,13 @@
          </trim>
          <trim prefix="bottom_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.bottomPriceUnitText != null and daMarketPrice.bottomPriceUnitText  != '' " >
+                  <if test="daMarketPrice.bottomPriceUnitText != null and daMarketPrice.bottomPriceUnitText  != ''  and daMarketPrice.bottomPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.bottomPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.bottomPriceUnitText != null  and daMarketPrice.bottomPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="bottom_price_unit =case" suffix="end,">
@@ -1051,9 +1106,13 @@
          </trim>
          <trim prefix="top_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.topPriceUnitText != null and daMarketPrice.topPriceUnitText  != '' " >
+                  <if test="daMarketPrice.topPriceUnitText != null and daMarketPrice.topPriceUnitText  != ''  and daMarketPrice.topPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.topPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.topPriceUnitText != null  and daMarketPrice.topPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="top_price_unit =case" suffix="end,">
@@ -1065,9 +1124,13 @@
          </trim>
          <trim prefix="year =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.year != null and daMarketPrice.year  != '' " >
+                  <if test="daMarketPrice.year != null and daMarketPrice.year  != ''  and daMarketPrice.year  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.year,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.year != null  and daMarketPrice.year  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="acre_cost_price =case" suffix="end,">
@@ -1086,9 +1149,13 @@
          </trim>
          <trim prefix="acre_cost_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.acreCostPriceUnitText != null and daMarketPrice.acreCostPriceUnitText  != '' " >
+                  <if test="daMarketPrice.acreCostPriceUnitText != null and daMarketPrice.acreCostPriceUnitText  != ''  and daMarketPrice.acreCostPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.acreCostPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.acreCostPriceUnitText != null  and daMarketPrice.acreCostPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="acre_cost_price_unit =case" suffix="end,">
@@ -1114,9 +1181,13 @@
          </trim>
          <trim prefix="field_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.fieldPriceUnitText != null and daMarketPrice.fieldPriceUnitText  != '' " >
+                  <if test="daMarketPrice.fieldPriceUnitText != null and daMarketPrice.fieldPriceUnitText  != ''  and daMarketPrice.fieldPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.fieldPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.fieldPriceUnitText != null  and daMarketPrice.fieldPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="field_price_unit =case" suffix="end,">
@@ -1142,9 +1213,13 @@
          </trim>
          <trim prefix="retail_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.retailPriceUnitText != null and daMarketPrice.retailPriceUnitText  != '' " >
+                  <if test="daMarketPrice.retailPriceUnitText != null and daMarketPrice.retailPriceUnitText  != ''  and daMarketPrice.retailPriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.retailPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.retailPriceUnitText != null  and daMarketPrice.retailPriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="retail_price_unit =case" suffix="end,">
@@ -1170,9 +1245,13 @@
          </trim>
          <trim prefix="trade_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.tradePriceUnitText != null and daMarketPrice.tradePriceUnitText  != '' " >
+                  <if test="daMarketPrice.tradePriceUnitText != null and daMarketPrice.tradePriceUnitText  != ''  and daMarketPrice.tradePriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.tradePriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.tradePriceUnitText != null  and daMarketPrice.tradePriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="trade_price_unit =case" suffix="end,">
@@ -1198,9 +1277,13 @@
          </trim>
          <trim prefix="e_commerce_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.eCommercePriceUnitText != null and daMarketPrice.eCommercePriceUnitText  != '' " >
+                  <if test="daMarketPrice.eCommercePriceUnitText != null and daMarketPrice.eCommercePriceUnitText  != ''  and daMarketPrice.eCommercePriceUnitText  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.eCommercePriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.eCommercePriceUnitText != null  and daMarketPrice.eCommercePriceUnitText  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="e_commerce_price_unit =case" suffix="end,">
@@ -1219,14 +1302,18 @@
          </trim>
          <trim prefix="mango_grade =case" suffix="end,">
               <foreach collection="list" item="daMarketPrice" index="index">
-                  <if test="daMarketPrice.mangoGrade != null and daMarketPrice.mangoGrade  != '' " >
+                  <if test="daMarketPrice.mangoGrade != null and daMarketPrice.mangoGrade  != ''  and daMarketPrice.mangoGrade  != '-1' ">
                      when id=#{daMarketPrice.id} then #{daMarketPrice.mangoGrade,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMarketPrice.mangoGrade != null  and daMarketPrice.mangoGrade  == '-1' ">
+                     when id=#{daMarketPrice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daMarketPrice" index="index" open="(" close=")" separator=",">
 			#{daMarketPrice.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -1236,306 +1323,208 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_market_price
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="priceTypeCode  != null " >
-              price_type_code,
-          </if>
-          <if test="priceTypeText  != null and priceTypeText  != '' " >
-              price_type_text,
-          </if>
-          <if test="perPrice  != null " >
-              per_price,
-          </if>
-          <if test="perPriceUnitCode  != null " >
-              per_price_unit_code,
-          </if>
-          <if test="perPriceUnitText  != null and perPriceUnitText  != '' " >
-              per_price_unit_text,
-          </if>
-          <if test="perPriceUnit  != null " >
-              per_price_unit,
-          </if>
-          <if test="averagePrice  != null " >
-              average_price,
-          </if>
-          <if test="averagePriceUnitCode  != null " >
-              average_price_unit_code,
-          </if>
-          <if test="averagePriceUnitText  != null and averagePriceUnitText  != '' " >
-              average_price_unit_text,
-          </if>
-          <if test="averagePriceUnit  != null " >
-              average_price_unit,
-          </if>
-          <if test="priceRangeCode  != null " >
-              price_range_code,
-          </if>
-          <if test="priceRangeText  != null and priceRangeText  != '' " >
-              price_range_text,
-          </if>
-          <if test="bottomPrice  != null " >
-              bottom_price,
-          </if>
-          <if test="bottomPriceUnitCode  != null " >
-              bottom_price_unit_code,
-          </if>
-          <if test="bottomPriceUnitText  != null and bottomPriceUnitText  != '' " >
-              bottom_price_unit_text,
-          </if>
-          <if test="bottomPriceUnit  != null " >
-              bottom_price_unit,
-          </if>
-          <if test="topPrice  != null " >
-              top_price,
-          </if>
-          <if test="topPriceUnitCode  != null " >
-              top_price_unit_code,
-          </if>
-          <if test="topPriceUnitText  != null and topPriceUnitText  != '' " >
-              top_price_unit_text,
-          </if>
-          <if test="topPriceUnit  != null " >
-              top_price_unit,
-          </if>
-          <if test="year  != null and year  != '' " >
-              year,
-          </if>
-          <if test="acreCostPrice  != null " >
-              acre_cost_price,
-          </if>
-          <if test="acreCostPriceUnitCode  != null " >
-              acre_cost_price_unit_code,
-          </if>
-          <if test="acreCostPriceUnitText  != null and acreCostPriceUnitText  != '' " >
-              acre_cost_price_unit_text,
-          </if>
-          <if test="acreCostPriceUnit  != null " >
-              acre_cost_price_unit,
-          </if>
-          <if test="fieldPrice  != null " >
-              field_price,
-          </if>
-          <if test="fieldPriceUnitCode  != null " >
-              field_price_unit_code,
-          </if>
-          <if test="fieldPriceUnitText  != null and fieldPriceUnitText  != '' " >
-              field_price_unit_text,
-          </if>
-          <if test="fieldPriceUnit  != null " >
-              field_price_unit,
-          </if>
-          <if test="retailPrice  != null " >
-              retail_price,
-          </if>
-          <if test="retailPriceUnitCode  != null " >
-              retail_price_unit_code,
-          </if>
-          <if test="retailPriceUnitText  != null and retailPriceUnitText  != '' " >
-              retail_price_unit_text,
-          </if>
-          <if test="retailPriceUnit  != null " >
-              retail_price_unit,
-          </if>
-          <if test="tradePrice  != null " >
-              trade_price,
-          </if>
-          <if test="tradePriceUnitCode  != null " >
-              trade_price_unit_code,
-          </if>
-          <if test="tradePriceUnitText  != null and tradePriceUnitText  != '' " >
-              trade_price_unit_text,
-          </if>
-          <if test="tradePriceUnit  != null " >
-              trade_price_unit,
-          </if>
-          <if test="eCommercePrice  != null " >
-              e_commerce_price,
-          </if>
-          <if test="eCommercePriceUnitCode  != null " >
-              e_commerce_price_unit_code,
-          </if>
-          <if test="eCommercePriceUnitText  != null and eCommercePriceUnitText  != '' " >
-              e_commerce_price_unit_text,
-          </if>
-          <if test="eCommercePriceUnit  != null " >
-              e_commerce_price_unit,
-          </if>
-          <if test="averageWeight  != null " >
-              average_weight,
-          </if>
-          <if test="mangoGrade  != null and mangoGrade  != '' " >
-              mango_grade,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+price_type_code,
+price_type_text,
+per_price,
+per_price_unit_code,
+per_price_unit_text,
+per_price_unit,
+average_price,
+average_price_unit_code,
+average_price_unit_text,
+average_price_unit,
+price_range_code,
+price_range_text,
+bottom_price,
+bottom_price_unit_code,
+bottom_price_unit_text,
+bottom_price_unit,
+top_price,
+top_price_unit_code,
+top_price_unit_text,
+top_price_unit,
+year,
+acre_cost_price,
+acre_cost_price_unit_code,
+acre_cost_price_unit_text,
+acre_cost_price_unit,
+field_price,
+field_price_unit_code,
+field_price_unit_text,
+field_price_unit,
+retail_price,
+retail_price_unit_code,
+retail_price_unit_text,
+retail_price_unit,
+trade_price,
+trade_price_unit_code,
+trade_price_unit_text,
+trade_price_unit,
+e_commerce_price,
+e_commerce_price_unit_code,
+e_commerce_price_unit_text,
+e_commerce_price_unit,
+average_weight,
+mango_grade,
     </trim>
     VALUES
     <foreach collection="list" item="daMarketPrice" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daMarketPrice.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daMarketPrice.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daMarketPrice.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daMarketPrice.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daMarketPrice.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daMarketPrice.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daMarketPrice.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priceTypeCode != null ">
+                  
+                  
                     #{daMarketPrice.priceTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.priceTypeText  != null  and t.priceTypeText != '' " >
+            
+                  
                      #{daMarketPrice.priceTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.perPrice != null ">
+                  
+                  
                     #{daMarketPrice.perPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.perPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.perPriceUnitText  != null  and t.perPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.perPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.perPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.perPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.averagePrice != null ">
+            
+                  
                     #{daMarketPrice.averagePrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.averagePriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.averagePriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.averagePriceUnitText  != null  and t.averagePriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.averagePriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.averagePriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.averagePriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.priceRangeCode != null ">
+            
+                  
                     #{daMarketPrice.priceRangeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.priceRangeText  != null  and t.priceRangeText != '' " >
+            
+                  
                      #{daMarketPrice.priceRangeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.bottomPrice != null ">
+                  
+                  
                     #{daMarketPrice.bottomPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.bottomPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.bottomPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.bottomPriceUnitText  != null  and t.bottomPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.bottomPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.bottomPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.bottomPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.topPrice != null ">
+            
+                  
                     #{daMarketPrice.topPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.topPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.topPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.topPriceUnitText  != null  and t.topPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.topPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.topPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.topPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.year  != null  and t.year != '' " >
+            
+                  
                      #{daMarketPrice.year ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.acreCostPrice != null ">
+                  
+                  
                     #{daMarketPrice.acreCostPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.acreCostPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.acreCostPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.acreCostPriceUnitText  != null  and t.acreCostPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.acreCostPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.acreCostPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.acreCostPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.fieldPrice != null ">
+            
+                  
                     #{daMarketPrice.fieldPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.fieldPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.fieldPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.fieldPriceUnitText  != null  and t.fieldPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.fieldPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fieldPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.fieldPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.retailPrice != null ">
+            
+                  
                     #{daMarketPrice.retailPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.retailPriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.retailPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.retailPriceUnitText  != null  and t.retailPriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.retailPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.retailPriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.retailPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.tradePrice != null ">
+            
+                  
                     #{daMarketPrice.tradePrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.tradePriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.tradePriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.tradePriceUnitText  != null  and t.tradePriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.tradePriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tradePriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.tradePriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.eCommercePrice != null ">
+            
+                  
                     #{daMarketPrice.eCommercePrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.eCommercePriceUnitCode != null ">
+            
+                  
                     #{daMarketPrice.eCommercePriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.eCommercePriceUnitText  != null  and t.eCommercePriceUnitText != '' " >
+            
+                  
                      #{daMarketPrice.eCommercePriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.eCommercePriceUnit != null ">
+                  
+                  
                     #{daMarketPrice.eCommercePriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.averageWeight != null ">
+            
+                  
                     #{daMarketPrice.averageWeight,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.mangoGrade  != null  and t.mangoGrade != '' " >
+            
+                  
                      #{daMarketPrice.mangoGrade ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

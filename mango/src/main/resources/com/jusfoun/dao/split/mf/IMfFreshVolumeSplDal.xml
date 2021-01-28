@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfFreshVolumeSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfFreshVolumeSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfFreshVolume" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="actual_amount" property="actualAmount" jdbcType="NUMERIC" />
@@ -15,7 +15,7 @@
         id,date_time,actual_amount,forecast_amount,actual_volume,forecast_volume
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfFreshVolume" >
     insert into mf_fresh_volume
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -109,7 +109,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfFreshVolume" >
     update mf_fresh_volume
     <set >
                   <if test="dateTime != null  and dateTime != '' " >

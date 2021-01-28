@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.base;
+package com.zee.bll.generate.unity.base;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -12,18 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.base.BaseBll;
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.ClassUtil;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.PageHelperUtil;
-import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.base.BaseBll;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.ClassUtil;
+import com.zee.utl.DateUtils;
+import com.zee.utl.PageHelperUtil;
+import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

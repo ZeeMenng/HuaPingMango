@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirInteractionImageSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirInteractionImageSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirInteractionImage" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirInteractionImage" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="interaction_id" property="interactionId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,interaction_id,resource_id,is_title_img_code
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirInteractionImage" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirInteractionImage" >
     insert into pir_interaction_image
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -90,7 +90,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirInteractionImage" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirInteractionImage" >
     update pir_interaction_image
     <set >
                   <if test="interactionId != null  and interactionId != '' " >

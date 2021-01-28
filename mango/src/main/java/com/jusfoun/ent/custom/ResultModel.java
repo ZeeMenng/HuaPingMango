@@ -1,8 +1,8 @@
-package com.jusfoun.ent.custom;
+package com.zee.ent.custom;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jusfoun.ent.extend.gp.GpOperLog;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.ent.extend.gp.GpOperLog;
+import com.zee.utl.SymbolicConstant;
 
 @JsonIgnoreProperties({ "addTime", "domainId", "id", "isSuccessValue", "incomeValue", "operTypeCode", "operTypeText", "remark", "returnValue", "tableName" })
 public class ResultModel extends GpOperLog {

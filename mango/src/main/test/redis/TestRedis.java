@@ -7,8 +7,8 @@
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //import org.springframework.test.context.web.WebAppConfiguration;
 //
-//import com.jusfoun.app.start.Starter;
-//import com.jusfoun.utl.RedisUtil;
+//import com.zee.app.start.Starter;
+//import com.zee.utl.RedisUtil;
 //
 ///**
 // * @author lxy

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirContentVideoSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirContentVideoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirContentVideo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,content_id,resource_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirContentVideo" >
     insert into pir_content_video
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -80,7 +80,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirContentVideo" >
     update pir_content_video
     <set >
                   <if test="contentId != null  and contentId != '' " >

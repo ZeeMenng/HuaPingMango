@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterprisePropertyInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterprisePropertyInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,enterprise_id,enterprise_name,year,total_assets,total_current_assets,total_liabilities,total_owners_equity,operating_income,operating_costs,operating_profit,total_profit,net_profit,assets_interest_rate,equity_interest_rate,gross_profit_margin,before_year_total_assets,before_year_operating_income,before_year_total_liabilities,total_current_quick,fixed_assets,invisible_assets_net_alue,update_time,update_user_id,flag_code,flag_text,source_create_time,currency,datasource_code,created_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
     insert into da_enterprise_property_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -357,7 +357,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
     update da_enterprise_property_info
     <set >
                   <if test="id != null  and id != '' " >

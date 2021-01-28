@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiAdvertisingUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiAdvertisingUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAdvertising" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiAdvertising" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
         id,serial_no,domain_id,name,title,resouce_id,resource_path,width,height,target_code,target_url,space_code,category_code,weight,display_count,click_count,start_time,end_time,remark,is_enabled_code,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiAdvertising" >
     insert into pi_advertising
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -180,8 +180,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_advertising
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -190,84 +189,102 @@
     	<foreach collection="list" item="piAdvertising" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piAdvertising.id,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.serialNo,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.domainId,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.name,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.title,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.resouceId,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.resourcePath,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.width,jdbcType=INTEGER},
-
-      
           #{piAdvertising.height,jdbcType=INTEGER},
-
-      
           #{piAdvertising.targetCode,jdbcType=TINYINT},
-
-      
           #{piAdvertising.targetUrl,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.spaceCode,jdbcType=TINYINT},
-
-      
           #{piAdvertising.categoryCode,jdbcType=TINYINT},
-
-      
           #{piAdvertising.weight,jdbcType=INTEGER},
-
-      
           #{piAdvertising.displayCount,jdbcType=BIGINT},
-
-      
           #{piAdvertising.clickCount,jdbcType=BIGINT},
-
-      
           #{piAdvertising.startTime,jdbcType=TIMESTAMP},
-
-      
           #{piAdvertising.endTime,jdbcType=TIMESTAMP},
-
-      
           #{piAdvertising.remark,jdbcType=VARCHAR},
-
-      
           #{piAdvertising.isEnabledCode,jdbcType=TINYINT},
-
-      
           #{piAdvertising.addTime,jdbcType=TIMESTAMP},
-
-      
           #{piAdvertising.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_advertising
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_advertising
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piAdvertising" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piAdvertising.id,jdbcType=VARCHAR},
+          #{piAdvertising.serialNo,jdbcType=VARCHAR},
+          #{piAdvertising.domainId,jdbcType=VARCHAR},
+          #{piAdvertising.name,jdbcType=VARCHAR},
+          #{piAdvertising.title,jdbcType=VARCHAR},
+          #{piAdvertising.resouceId,jdbcType=VARCHAR},
+          #{piAdvertising.resourcePath,jdbcType=VARCHAR},
+          #{piAdvertising.width,jdbcType=INTEGER},
+          #{piAdvertising.height,jdbcType=INTEGER},
+          #{piAdvertising.targetCode,jdbcType=TINYINT},
+          #{piAdvertising.targetUrl,jdbcType=VARCHAR},
+          #{piAdvertising.spaceCode,jdbcType=TINYINT},
+          #{piAdvertising.categoryCode,jdbcType=TINYINT},
+          #{piAdvertising.weight,jdbcType=INTEGER},
+          #{piAdvertising.displayCount,jdbcType=BIGINT},
+          #{piAdvertising.clickCount,jdbcType=BIGINT},
+          #{piAdvertising.startTime,jdbcType=TIMESTAMP},
+          #{piAdvertising.endTime,jdbcType=TIMESTAMP},
+          #{piAdvertising.remark,jdbcType=VARCHAR},
+          #{piAdvertising.isEnabledCode,jdbcType=TINYINT},
+          #{piAdvertising.addTime,jdbcType=TIMESTAMP},
+          #{piAdvertising.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+domain_id=values(domain_id),
+name=values(name),
+title=values(title),
+resouce_id=values(resouce_id),
+resource_path=values(resource_path),
+width=values(width),
+height=values(height),
+target_code=values(target_code),
+target_url=values(target_url),
+space_code=values(space_code),
+category_code=values(category_code),
+weight=values(weight),
+display_count=values(display_count),
+click_count=values(click_count),
+start_time=values(start_time),
+end_time=values(end_time),
+remark=values(remark),
+is_enabled_code=values(is_enabled_code),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_advertising
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_advertising
 		where id  in
@@ -276,7 +293,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiAdvertising" >
     update pi_advertising
     <set >
                   <if test="serialNo != null  and serialNo != '' " >
@@ -426,44 +445,68 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.serialNo != null and piAdvertising.serialNo  != '' " >
+                  <if test="piAdvertising.serialNo != null and piAdvertising.serialNo  != ''  and piAdvertising.serialNo  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.serialNo != null  and piAdvertising.serialNo  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.domainId != null and piAdvertising.domainId  != '' " >
+                  <if test="piAdvertising.domainId != null and piAdvertising.domainId  != ''  and piAdvertising.domainId  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.domainId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.domainId != null  and piAdvertising.domainId  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.name != null and piAdvertising.name  != '' " >
+                  <if test="piAdvertising.name != null and piAdvertising.name  != ''  and piAdvertising.name  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.name != null  and piAdvertising.name  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.title != null and piAdvertising.title  != '' " >
+                  <if test="piAdvertising.title != null and piAdvertising.title  != ''  and piAdvertising.title  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.title,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.title != null  and piAdvertising.title  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resouce_id =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.resouceId != null and piAdvertising.resouceId  != '' " >
+                  <if test="piAdvertising.resouceId != null and piAdvertising.resouceId  != ''  and piAdvertising.resouceId  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.resouceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.resouceId != null  and piAdvertising.resouceId  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_path =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.resourcePath != null and piAdvertising.resourcePath  != '' " >
+                  <if test="piAdvertising.resourcePath != null and piAdvertising.resourcePath  != ''  and piAdvertising.resourcePath  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.resourcePath,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.resourcePath != null  and piAdvertising.resourcePath  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="width =case" suffix="end,">
@@ -489,9 +532,13 @@
          </trim>
          <trim prefix="target_url =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.targetUrl != null and piAdvertising.targetUrl  != '' " >
+                  <if test="piAdvertising.targetUrl != null and piAdvertising.targetUrl  != ''  and piAdvertising.targetUrl  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.targetUrl,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.targetUrl != null  and piAdvertising.targetUrl  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="space_code =case" suffix="end,">
@@ -545,9 +592,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="piAdvertising" index="index">
-                  <if test="piAdvertising.remark != null and piAdvertising.remark  != '' " >
+                  <if test="piAdvertising.remark != null and piAdvertising.remark  != ''  and piAdvertising.remark  != '-1' ">
                      when id=#{piAdvertising.id} then #{piAdvertising.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAdvertising.remark != null  and piAdvertising.remark  == '-1' ">
+                     when id=#{piAdvertising.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_enabled_code =case" suffix="end,">
@@ -573,7 +624,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piAdvertising" index="index" open="(" close=")" separator=",">
 			#{piAdvertising.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -583,138 +634,96 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_advertising
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="serialNo  != null and serialNo  != '' " >
-              serial_no,
-          </if>
-          <if test="domainId  != null and domainId  != '' " >
-              domain_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="title  != null and title  != '' " >
-              title,
-          </if>
-          <if test="resouceId  != null and resouceId  != '' " >
-              resouce_id,
-          </if>
-          <if test="resourcePath  != null and resourcePath  != '' " >
-              resource_path,
-          </if>
-          <if test="width  != null " >
-              width,
-          </if>
-          <if test="height  != null " >
-              height,
-          </if>
-          <if test="targetCode  != null " >
-              target_code,
-          </if>
-          <if test="targetUrl  != null and targetUrl  != '' " >
-              target_url,
-          </if>
-          <if test="spaceCode  != null " >
-              space_code,
-          </if>
-          <if test="categoryCode  != null " >
-              category_code,
-          </if>
-          <if test="weight  != null " >
-              weight,
-          </if>
-          <if test="displayCount  != null " >
-              display_count,
-          </if>
-          <if test="clickCount  != null " >
-              click_count,
-          </if>
-          <if test="startTime  != null " >
-              start_time,
-          </if>
-          <if test="endTime  != null " >
-              end_time,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="isEnabledCode  != null " >
-              is_enabled_code,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
+id,
+serial_no,
+domain_id,
+name,
+title,
+resouce_id,
+resource_path,
+width,
+height,
+target_code,
+target_url,
+space_code,
+category_code,
+weight,
+display_count,
+click_count,
+start_time,
+end_time,
+remark,
+is_enabled_code,
+add_time,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="piAdvertising" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piAdvertising.id ,jdbcType=VARCHAR},
-                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                  
                      #{piAdvertising.serialNo ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.domainId  != null  and t.domainId != '' " >
+                  
+                  
                      #{piAdvertising.domainId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{piAdvertising.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.title  != null  and t.title != '' " >
+                  
+                  
                      #{piAdvertising.title ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resouceId  != null  and t.resouceId != '' " >
+                  
+                  
                      #{piAdvertising.resouceId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resourcePath  != null  and t.resourcePath != '' " >
+                  
+                  
                      #{piAdvertising.resourcePath ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.width != null ">
+                  
+                  
                     #{piAdvertising.width,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.height != null ">
+            
+                  
                     #{piAdvertising.height,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.targetCode != null ">
+            
+                  
                     #{piAdvertising.targetCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.targetUrl  != null  and t.targetUrl != '' " >
+            
+                  
                      #{piAdvertising.targetUrl ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.spaceCode != null ">
+                  
+                  
                     #{piAdvertising.spaceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.categoryCode != null ">
+            
+                  
                     #{piAdvertising.categoryCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.weight != null ">
+            
+                  
                     #{piAdvertising.weight,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.displayCount != null ">
+            
+                  
                     #{piAdvertising.displayCount,jdbcType=BIGINT},
-                  </if>
-                  <if test="t.clickCount != null ">
+            
+                  
                     #{piAdvertising.clickCount,jdbcType=BIGINT},
-                  </if>
-                  <if test="t.startTime != null ">
+            
+                  
                     #{piAdvertising.startTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.endTime != null ">
+            
+                  
                     #{piAdvertising.endTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{piAdvertising.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isEnabledCode != null ">
+                  
+                  
                     #{piAdvertising.isEnabledCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.addTime != null ">
+            
+                  
                     #{piAdvertising.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{piAdvertising.updateTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

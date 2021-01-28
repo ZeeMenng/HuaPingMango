@@ -1,11 +1,11 @@
-package com.jusfoun.dao.split.da;
+package com.zee.dao.split.da;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jusfoun.dao.split.base.IBaseSplDal;
-import com.jusfoun.ent.extend.da.DaCheckCollection;
+import com.zee.dao.split.base.IBaseSplDal;
+import com.zee.ent.extend.da.DaCheckCollection;
 
 
 

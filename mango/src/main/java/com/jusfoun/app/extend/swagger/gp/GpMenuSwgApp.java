@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpMenuGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpModuleUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpPageUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpMenu;
-import com.jusfoun.ent.parameter.gp.GpMenuParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.gp.GpMenuGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpModuleUntBll;
+import com.zee.bll.extend.unity.gp.GpPageUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpMenu;
+import com.zee.ent.parameter.gp.GpMenuParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 /**
  * @author Zee

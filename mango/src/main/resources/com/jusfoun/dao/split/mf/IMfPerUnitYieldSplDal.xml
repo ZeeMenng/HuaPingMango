@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfPerUnitYieldSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfPerUnitYieldSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfPerUnitYield" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfPerUnitYield" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="actual_volume" property="actualVolume" jdbcType="NUMERIC" />
               <result column="forecast_volume" property="forecastVolume" jdbcType="NUMERIC" />
@@ -13,7 +13,7 @@
         id,actual_volume,forecast_volume,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfPerUnitYield" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfPerUnitYield" >
     insert into mf_per_unit_yield
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -89,7 +89,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfPerUnitYield" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfPerUnitYield" >
     update mf_per_unit_yield
     <set >
                   <if test="actualVolume != null ">

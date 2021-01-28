@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.security.Key;
 import java.util.Random;
@@ -6,8 +6,8 @@ import java.util.Random;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.exception.GlobalException;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.exception.GlobalException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

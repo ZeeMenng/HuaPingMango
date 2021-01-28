@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiProductRecommendGenSwgApp;
-import com.jusfoun.bll.extend.split.pi.PirProductResourceSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.bll.extend.unity.pi.PirEnterpriseProductUntBll;
-import com.jusfoun.bll.extend.unity.pi.PirProductResourceUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.pi.PiProductRecommend;
-import com.jusfoun.ent.extend.pi.PirEnterpriseProduct;
-import com.jusfoun.ent.extend.pi.PirProductResource;
-import com.jusfoun.set.enumer.ProductImgTypeEnum;
-import com.jusfoun.set.enumer.RecommendProductType;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.app.generate.swagger.pi.PiProductRecommendGenSwgApp;
+import com.zee.bll.extend.split.pi.PirProductResourceSplBll;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.bll.extend.unity.pi.PirEnterpriseProductUntBll;
+import com.zee.bll.extend.unity.pi.PirProductResourceUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.pi.PiProductRecommend;
+import com.zee.ent.extend.pi.PirEnterpriseProduct;
+import com.zee.ent.extend.pi.PirProductResource;
+import com.zee.set.enumer.ProductImgTypeEnum;
+import com.zee.set.enumer.RecommendProductType;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

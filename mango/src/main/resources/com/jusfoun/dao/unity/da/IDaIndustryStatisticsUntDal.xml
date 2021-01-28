@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaIndustryStatisticsUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaIndustryStatisticsUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIndustryStatistics" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -53,7 +53,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,grow_area,grow_area_code,grow_area_text,grow_area_unit,grow_household,organic_area,organic_area_code,organic_area_text,organic_area_unit,output,output_total_code,output_total_text,output_total_unit,output_per,output_per_total_code,output_per_total_text,output_per_total_unit,output_value,output_value_code,output_value_text,output_value_unit,wholesale_sales,wholesale_sales_code,wholesale_sales_text,wholesale_sales_unit,online_sales,online_sales_code,online_sales_text,online_sales_unit,online_saleamount,online_saleamount_code,online_saleamount_text,online_saleamountl_unit,fruithanging_area,fruithanging_area_code,fruithanging_area_text,fruithanging_area_unit
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIndustryStatistics" >
     insert into da_industry_statistics
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -339,8 +339,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_industry_statistics
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -349,150 +348,168 @@
     	<foreach collection="list" item="daIndustryStatistics" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daIndustryStatistics.id,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.name,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.strainsCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.strainsText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.growArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.growAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.growAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.growAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.growHousehold,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.organicArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.organicAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.organicAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.organicAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.output,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.outputTotalCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.outputTotalText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.outputTotalUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.outputPer,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.outputPerTotalCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.outputPerTotalText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.outputPerTotalUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.outputValue,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.outputValueCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.outputValueText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.outputValueUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.wholesaleSales,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.wholesaleSalesCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.wholesaleSalesText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.wholesaleSalesUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.onlineSales,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.onlineSalesCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.onlineSalesText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.onlineSalesUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.onlineSaleamount,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.onlineSaleamountCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.onlineSaleamountText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.onlineSaleamountlUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.fruithangingArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryStatistics.fruithangingAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryStatistics.fruithangingAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryStatistics.fruithangingAreaUnit,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_industry_statistics
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_industry_statistics
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIndustryStatistics" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daIndustryStatistics.id,jdbcType=VARCHAR},
+          #{daIndustryStatistics.commonFieldId,jdbcType=VARCHAR},
+          #{daIndustryStatistics.name,jdbcType=VARCHAR},
+          #{daIndustryStatistics.cropTypeCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.cropTypeText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.strainsCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.strainsText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.growArea,jdbcType=NUMERIC},
+          #{daIndustryStatistics.growAreaCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.growAreaText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.growAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.growHousehold,jdbcType=NUMERIC},
+          #{daIndustryStatistics.organicArea,jdbcType=NUMERIC},
+          #{daIndustryStatistics.organicAreaCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.organicAreaText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.organicAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.output,jdbcType=NUMERIC},
+          #{daIndustryStatistics.outputTotalCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.outputTotalText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.outputTotalUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.outputPer,jdbcType=NUMERIC},
+          #{daIndustryStatistics.outputPerTotalCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.outputPerTotalText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.outputPerTotalUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.outputValue,jdbcType=NUMERIC},
+          #{daIndustryStatistics.outputValueCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.outputValueText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.outputValueUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.wholesaleSales,jdbcType=NUMERIC},
+          #{daIndustryStatistics.wholesaleSalesCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.wholesaleSalesText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.wholesaleSalesUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.onlineSales,jdbcType=NUMERIC},
+          #{daIndustryStatistics.onlineSalesCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.onlineSalesText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.onlineSalesUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.onlineSaleamount,jdbcType=NUMERIC},
+          #{daIndustryStatistics.onlineSaleamountCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.onlineSaleamountText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.onlineSaleamountlUnit,jdbcType=NUMERIC},
+          #{daIndustryStatistics.fruithangingArea,jdbcType=NUMERIC},
+          #{daIndustryStatistics.fruithangingAreaCode,jdbcType=TINYINT},
+          #{daIndustryStatistics.fruithangingAreaText,jdbcType=VARCHAR},
+          #{daIndustryStatistics.fruithangingAreaUnit,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+grow_area=values(grow_area),
+grow_area_code=values(grow_area_code),
+grow_area_text=values(grow_area_text),
+grow_area_unit=values(grow_area_unit),
+grow_household=values(grow_household),
+organic_area=values(organic_area),
+organic_area_code=values(organic_area_code),
+organic_area_text=values(organic_area_text),
+organic_area_unit=values(organic_area_unit),
+output=values(output),
+output_total_code=values(output_total_code),
+output_total_text=values(output_total_text),
+output_total_unit=values(output_total_unit),
+output_per=values(output_per),
+output_per_total_code=values(output_per_total_code),
+output_per_total_text=values(output_per_total_text),
+output_per_total_unit=values(output_per_total_unit),
+output_value=values(output_value),
+output_value_code=values(output_value_code),
+output_value_text=values(output_value_text),
+output_value_unit=values(output_value_unit),
+wholesale_sales=values(wholesale_sales),
+wholesale_sales_code=values(wholesale_sales_code),
+wholesale_sales_text=values(wholesale_sales_text),
+wholesale_sales_unit=values(wholesale_sales_unit),
+online_sales=values(online_sales),
+online_sales_code=values(online_sales_code),
+online_sales_text=values(online_sales_text),
+online_sales_unit=values(online_sales_unit),
+online_saleamount=values(online_saleamount),
+online_saleamount_code=values(online_saleamount_code),
+online_saleamount_text=values(online_saleamount_text),
+online_saleamountl_unit=values(online_saleamountl_unit),
+fruithanging_area=values(fruithanging_area),
+fruithanging_area_code=values(fruithanging_area_code),
+fruithanging_area_text=values(fruithanging_area_text),
+fruithanging_area_unit=values(fruithanging_area_unit)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_industry_statistics
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_industry_statistics
 		where id  in
@@ -501,7 +518,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIndustryStatistics" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIndustryStatistics" >
     update da_industry_statistics
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -783,16 +802,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.commonFieldId != null and daIndustryStatistics.commonFieldId  != '' " >
+                  <if test="daIndustryStatistics.commonFieldId != null and daIndustryStatistics.commonFieldId  != ''  and daIndustryStatistics.commonFieldId  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.commonFieldId != null  and daIndustryStatistics.commonFieldId  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.name != null and daIndustryStatistics.name  != '' " >
+                  <if test="daIndustryStatistics.name != null and daIndustryStatistics.name  != ''  and daIndustryStatistics.name  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.name != null  and daIndustryStatistics.name  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -804,9 +831,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.cropTypeText != null and daIndustryStatistics.cropTypeText  != '' " >
+                  <if test="daIndustryStatistics.cropTypeText != null and daIndustryStatistics.cropTypeText  != ''  and daIndustryStatistics.cropTypeText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.cropTypeText != null  and daIndustryStatistics.cropTypeText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -818,9 +849,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.strainsText != null and daIndustryStatistics.strainsText  != '' " >
+                  <if test="daIndustryStatistics.strainsText != null and daIndustryStatistics.strainsText  != ''  and daIndustryStatistics.strainsText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.strainsText != null  and daIndustryStatistics.strainsText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="grow_area =case" suffix="end,">
@@ -839,9 +874,13 @@
          </trim>
          <trim prefix="grow_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.growAreaText != null and daIndustryStatistics.growAreaText  != '' " >
+                  <if test="daIndustryStatistics.growAreaText != null and daIndustryStatistics.growAreaText  != ''  and daIndustryStatistics.growAreaText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.growAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.growAreaText != null  and daIndustryStatistics.growAreaText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="grow_area_unit =case" suffix="end,">
@@ -874,9 +913,13 @@
          </trim>
          <trim prefix="organic_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.organicAreaText != null and daIndustryStatistics.organicAreaText  != '' " >
+                  <if test="daIndustryStatistics.organicAreaText != null and daIndustryStatistics.organicAreaText  != ''  and daIndustryStatistics.organicAreaText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.organicAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.organicAreaText != null  and daIndustryStatistics.organicAreaText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="organic_area_unit =case" suffix="end,">
@@ -902,9 +945,13 @@
          </trim>
          <trim prefix="output_total_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.outputTotalText != null and daIndustryStatistics.outputTotalText  != '' " >
+                  <if test="daIndustryStatistics.outputTotalText != null and daIndustryStatistics.outputTotalText  != ''  and daIndustryStatistics.outputTotalText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.outputTotalText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.outputTotalText != null  and daIndustryStatistics.outputTotalText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output_total_unit =case" suffix="end,">
@@ -930,9 +977,13 @@
          </trim>
          <trim prefix="output_per_total_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.outputPerTotalText != null and daIndustryStatistics.outputPerTotalText  != '' " >
+                  <if test="daIndustryStatistics.outputPerTotalText != null and daIndustryStatistics.outputPerTotalText  != ''  and daIndustryStatistics.outputPerTotalText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.outputPerTotalText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.outputPerTotalText != null  and daIndustryStatistics.outputPerTotalText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output_per_total_unit =case" suffix="end,">
@@ -958,9 +1009,13 @@
          </trim>
          <trim prefix="output_value_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.outputValueText != null and daIndustryStatistics.outputValueText  != '' " >
+                  <if test="daIndustryStatistics.outputValueText != null and daIndustryStatistics.outputValueText  != ''  and daIndustryStatistics.outputValueText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.outputValueText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.outputValueText != null  and daIndustryStatistics.outputValueText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output_value_unit =case" suffix="end,">
@@ -986,9 +1041,13 @@
          </trim>
          <trim prefix="wholesale_sales_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.wholesaleSalesText != null and daIndustryStatistics.wholesaleSalesText  != '' " >
+                  <if test="daIndustryStatistics.wholesaleSalesText != null and daIndustryStatistics.wholesaleSalesText  != ''  and daIndustryStatistics.wholesaleSalesText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.wholesaleSalesText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.wholesaleSalesText != null  and daIndustryStatistics.wholesaleSalesText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="wholesale_sales_unit =case" suffix="end,">
@@ -1014,9 +1073,13 @@
          </trim>
          <trim prefix="online_sales_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.onlineSalesText != null and daIndustryStatistics.onlineSalesText  != '' " >
+                  <if test="daIndustryStatistics.onlineSalesText != null and daIndustryStatistics.onlineSalesText  != ''  and daIndustryStatistics.onlineSalesText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.onlineSalesText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.onlineSalesText != null  and daIndustryStatistics.onlineSalesText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="online_sales_unit =case" suffix="end,">
@@ -1042,9 +1105,13 @@
          </trim>
          <trim prefix="online_saleamount_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.onlineSaleamountText != null and daIndustryStatistics.onlineSaleamountText  != '' " >
+                  <if test="daIndustryStatistics.onlineSaleamountText != null and daIndustryStatistics.onlineSaleamountText  != ''  and daIndustryStatistics.onlineSaleamountText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.onlineSaleamountText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.onlineSaleamountText != null  and daIndustryStatistics.onlineSaleamountText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="online_saleamountl_unit =case" suffix="end,">
@@ -1070,9 +1137,13 @@
          </trim>
          <trim prefix="fruithanging_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryStatistics" index="index">
-                  <if test="daIndustryStatistics.fruithangingAreaText != null and daIndustryStatistics.fruithangingAreaText  != '' " >
+                  <if test="daIndustryStatistics.fruithangingAreaText != null and daIndustryStatistics.fruithangingAreaText  != ''  and daIndustryStatistics.fruithangingAreaText  != '-1' ">
                      when id=#{daIndustryStatistics.id} then #{daIndustryStatistics.fruithangingAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryStatistics.fruithangingAreaText != null  and daIndustryStatistics.fruithangingAreaText  == '-1' ">
+                     when id=#{daIndustryStatistics.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="fruithanging_area_unit =case" suffix="end,">
@@ -1084,7 +1155,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daIndustryStatistics" index="index" open="(" close=")" separator=",">
 			#{daIndustryStatistics.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -1094,270 +1165,184 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_industry_statistics
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="growArea  != null " >
-              grow_area,
-          </if>
-          <if test="growAreaCode  != null " >
-              grow_area_code,
-          </if>
-          <if test="growAreaText  != null and growAreaText  != '' " >
-              grow_area_text,
-          </if>
-          <if test="growAreaUnit  != null " >
-              grow_area_unit,
-          </if>
-          <if test="growHousehold  != null " >
-              grow_household,
-          </if>
-          <if test="organicArea  != null " >
-              organic_area,
-          </if>
-          <if test="organicAreaCode  != null " >
-              organic_area_code,
-          </if>
-          <if test="organicAreaText  != null and organicAreaText  != '' " >
-              organic_area_text,
-          </if>
-          <if test="organicAreaUnit  != null " >
-              organic_area_unit,
-          </if>
-          <if test="output  != null " >
-              output,
-          </if>
-          <if test="outputTotalCode  != null " >
-              output_total_code,
-          </if>
-          <if test="outputTotalText  != null and outputTotalText  != '' " >
-              output_total_text,
-          </if>
-          <if test="outputTotalUnit  != null " >
-              output_total_unit,
-          </if>
-          <if test="outputPer  != null " >
-              output_per,
-          </if>
-          <if test="outputPerTotalCode  != null " >
-              output_per_total_code,
-          </if>
-          <if test="outputPerTotalText  != null and outputPerTotalText  != '' " >
-              output_per_total_text,
-          </if>
-          <if test="outputPerTotalUnit  != null " >
-              output_per_total_unit,
-          </if>
-          <if test="outputValue  != null " >
-              output_value,
-          </if>
-          <if test="outputValueCode  != null " >
-              output_value_code,
-          </if>
-          <if test="outputValueText  != null and outputValueText  != '' " >
-              output_value_text,
-          </if>
-          <if test="outputValueUnit  != null " >
-              output_value_unit,
-          </if>
-          <if test="wholesaleSales  != null " >
-              wholesale_sales,
-          </if>
-          <if test="wholesaleSalesCode  != null " >
-              wholesale_sales_code,
-          </if>
-          <if test="wholesaleSalesText  != null and wholesaleSalesText  != '' " >
-              wholesale_sales_text,
-          </if>
-          <if test="wholesaleSalesUnit  != null " >
-              wholesale_sales_unit,
-          </if>
-          <if test="onlineSales  != null " >
-              online_sales,
-          </if>
-          <if test="onlineSalesCode  != null " >
-              online_sales_code,
-          </if>
-          <if test="onlineSalesText  != null and onlineSalesText  != '' " >
-              online_sales_text,
-          </if>
-          <if test="onlineSalesUnit  != null " >
-              online_sales_unit,
-          </if>
-          <if test="onlineSaleamount  != null " >
-              online_saleamount,
-          </if>
-          <if test="onlineSaleamountCode  != null " >
-              online_saleamount_code,
-          </if>
-          <if test="onlineSaleamountText  != null and onlineSaleamountText  != '' " >
-              online_saleamount_text,
-          </if>
-          <if test="onlineSaleamountlUnit  != null " >
-              online_saleamountl_unit,
-          </if>
-          <if test="fruithangingArea  != null " >
-              fruithanging_area,
-          </if>
-          <if test="fruithangingAreaCode  != null " >
-              fruithanging_area_code,
-          </if>
-          <if test="fruithangingAreaText  != null and fruithangingAreaText  != '' " >
-              fruithanging_area_text,
-          </if>
-          <if test="fruithangingAreaUnit  != null " >
-              fruithanging_area_unit,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+grow_area,
+grow_area_code,
+grow_area_text,
+grow_area_unit,
+grow_household,
+organic_area,
+organic_area_code,
+organic_area_text,
+organic_area_unit,
+output,
+output_total_code,
+output_total_text,
+output_total_unit,
+output_per,
+output_per_total_code,
+output_per_total_text,
+output_per_total_unit,
+output_value,
+output_value_code,
+output_value_text,
+output_value_unit,
+wholesale_sales,
+wholesale_sales_code,
+wholesale_sales_text,
+wholesale_sales_unit,
+online_sales,
+online_sales_code,
+online_sales_text,
+online_sales_unit,
+online_saleamount,
+online_saleamount_code,
+online_saleamount_text,
+online_saleamountl_unit,
+fruithanging_area,
+fruithanging_area_code,
+fruithanging_area_text,
+fruithanging_area_unit,
     </trim>
     VALUES
     <foreach collection="list" item="daIndustryStatistics" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daIndustryStatistics.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daIndustryStatistics.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daIndustryStatistics.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daIndustryStatistics.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daIndustryStatistics.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daIndustryStatistics.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daIndustryStatistics.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growArea != null ">
+                  
+                  
                     #{daIndustryStatistics.growArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.growAreaCode != null ">
+            
+                  
                     #{daIndustryStatistics.growAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.growAreaText  != null  and t.growAreaText != '' " >
+            
+                  
                      #{daIndustryStatistics.growAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growAreaUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.growAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.growHousehold != null ">
+            
+                  
                     #{daIndustryStatistics.growHousehold,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.organicArea != null ">
+            
+                  
                     #{daIndustryStatistics.organicArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.organicAreaCode != null ">
+            
+                  
                     #{daIndustryStatistics.organicAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.organicAreaText  != null  and t.organicAreaText != '' " >
+            
+                  
                      #{daIndustryStatistics.organicAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.organicAreaUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.organicAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.output != null ">
+            
+                  
                     #{daIndustryStatistics.output,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputTotalCode != null ">
+            
+                  
                     #{daIndustryStatistics.outputTotalCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.outputTotalText  != null  and t.outputTotalText != '' " >
+            
+                  
                      #{daIndustryStatistics.outputTotalText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.outputTotalUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.outputTotalUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputPer != null ">
+            
+                  
                     #{daIndustryStatistics.outputPer,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputPerTotalCode != null ">
+            
+                  
                     #{daIndustryStatistics.outputPerTotalCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.outputPerTotalText  != null  and t.outputPerTotalText != '' " >
+            
+                  
                      #{daIndustryStatistics.outputPerTotalText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.outputPerTotalUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.outputPerTotalUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputValue != null ">
+            
+                  
                     #{daIndustryStatistics.outputValue,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputValueCode != null ">
+            
+                  
                     #{daIndustryStatistics.outputValueCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.outputValueText  != null  and t.outputValueText != '' " >
+            
+                  
                      #{daIndustryStatistics.outputValueText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.outputValueUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.outputValueUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.wholesaleSales != null ">
+            
+                  
                     #{daIndustryStatistics.wholesaleSales,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.wholesaleSalesCode != null ">
+            
+                  
                     #{daIndustryStatistics.wholesaleSalesCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.wholesaleSalesText  != null  and t.wholesaleSalesText != '' " >
+            
+                  
                      #{daIndustryStatistics.wholesaleSalesText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.wholesaleSalesUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.wholesaleSalesUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.onlineSales != null ">
+            
+                  
                     #{daIndustryStatistics.onlineSales,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.onlineSalesCode != null ">
+            
+                  
                     #{daIndustryStatistics.onlineSalesCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.onlineSalesText  != null  and t.onlineSalesText != '' " >
+            
+                  
                      #{daIndustryStatistics.onlineSalesText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.onlineSalesUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.onlineSalesUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.onlineSaleamount != null ">
+            
+                  
                     #{daIndustryStatistics.onlineSaleamount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.onlineSaleamountCode != null ">
+            
+                  
                     #{daIndustryStatistics.onlineSaleamountCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.onlineSaleamountText  != null  and t.onlineSaleamountText != '' " >
+            
+                  
                      #{daIndustryStatistics.onlineSaleamountText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.onlineSaleamountlUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.onlineSaleamountlUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.fruithangingArea != null ">
+            
+                  
                     #{daIndustryStatistics.fruithangingArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.fruithangingAreaCode != null ">
+            
+                  
                     #{daIndustryStatistics.fruithangingAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.fruithangingAreaText  != null  and t.fruithangingAreaText != '' " >
+            
+                  
                      #{daIndustryStatistics.fruithangingAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fruithangingAreaUnit != null ">
+                  
+                  
                     #{daIndustryStatistics.fruithangingAreaUnit,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.nodes.Document;
@@ -12,13 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import com.jusfoun.bll.extend.unity.da.DaCommonFieldUntBll;
-import com.jusfoun.bll.extend.unity.da.DaMarketPriceUntBll;
-import com.jusfoun.bll.extend.unity.da.DaWholesaleMarketUntBll;
-import com.jusfoun.ent.extend.da.DaCommonField;
-import com.jusfoun.ent.extend.da.DaMarketPrice;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.bll.extend.unity.da.DaCommonFieldUntBll;
+import com.zee.bll.extend.unity.da.DaMarketPriceUntBll;
+import com.zee.bll.extend.unity.da.DaWholesaleMarketUntBll;
+import com.zee.ent.extend.da.DaCommonField;
+import com.zee.ent.extend.da.DaMarketPrice;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

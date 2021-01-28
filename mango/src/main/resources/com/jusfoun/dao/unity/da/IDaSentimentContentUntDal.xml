@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaSentimentContentUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaSentimentContentUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentContent" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="article_id" property="articleId" jdbcType="VARCHAR" />
               <result column="txt" property="txt" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,article_id,txt,txt1,txt2,txt3
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentContent" >
     insert into da_sentiment_content
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -65,8 +65,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_sentiment_content
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -75,36 +74,54 @@
     	<foreach collection="list" item="daSentimentContent" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daSentimentContent.id,jdbcType=VARCHAR},
-
-      
           #{daSentimentContent.articleId,jdbcType=VARCHAR},
-
-      
           #{daSentimentContent.txt,jdbcType=VARCHAR},
-
-      
           #{daSentimentContent.txt1,jdbcType=VARCHAR},
-
-      
           #{daSentimentContent.txt2,jdbcType=VARCHAR},
-
-      
           #{daSentimentContent.txt3,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_sentiment_content
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_sentiment_content
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentContent" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daSentimentContent.id,jdbcType=VARCHAR},
+          #{daSentimentContent.articleId,jdbcType=VARCHAR},
+          #{daSentimentContent.txt,jdbcType=VARCHAR},
+          #{daSentimentContent.txt1,jdbcType=VARCHAR},
+          #{daSentimentContent.txt2,jdbcType=VARCHAR},
+          #{daSentimentContent.txt3,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+article_id=values(article_id),
+txt=values(txt),
+txt1=values(txt1),
+txt2=values(txt2),
+txt3=values(txt3)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_sentiment_content
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_sentiment_content
 		where id  in
@@ -113,7 +130,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentContent" >
     update da_sentiment_content
     <set >
                   <if test="articleId != null  and articleId != '' " >
@@ -167,42 +186,62 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="article_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentContent" index="index">
-                  <if test="daSentimentContent.articleId != null and daSentimentContent.articleId  != '' " >
+                  <if test="daSentimentContent.articleId != null and daSentimentContent.articleId  != ''  and daSentimentContent.articleId  != '-1' ">
                      when id=#{daSentimentContent.id} then #{daSentimentContent.articleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentContent.articleId != null  and daSentimentContent.articleId  == '-1' ">
+                     when id=#{daSentimentContent.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt =case" suffix="end,">
               <foreach collection="list" item="daSentimentContent" index="index">
-                  <if test="daSentimentContent.txt != null and daSentimentContent.txt  != '' " >
+                  <if test="daSentimentContent.txt != null and daSentimentContent.txt  != ''  and daSentimentContent.txt  != '-1' ">
                      when id=#{daSentimentContent.id} then #{daSentimentContent.txt,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentContent.txt != null  and daSentimentContent.txt  == '-1' ">
+                     when id=#{daSentimentContent.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt1 =case" suffix="end,">
               <foreach collection="list" item="daSentimentContent" index="index">
-                  <if test="daSentimentContent.txt1 != null and daSentimentContent.txt1  != '' " >
+                  <if test="daSentimentContent.txt1 != null and daSentimentContent.txt1  != ''  and daSentimentContent.txt1  != '-1' ">
                      when id=#{daSentimentContent.id} then #{daSentimentContent.txt1,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentContent.txt1 != null  and daSentimentContent.txt1  == '-1' ">
+                     when id=#{daSentimentContent.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt2 =case" suffix="end,">
               <foreach collection="list" item="daSentimentContent" index="index">
-                  <if test="daSentimentContent.txt2 != null and daSentimentContent.txt2  != '' " >
+                  <if test="daSentimentContent.txt2 != null and daSentimentContent.txt2  != ''  and daSentimentContent.txt2  != '-1' ">
                      when id=#{daSentimentContent.id} then #{daSentimentContent.txt2,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentContent.txt2 != null  and daSentimentContent.txt2  == '-1' ">
+                     when id=#{daSentimentContent.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt3 =case" suffix="end,">
               <foreach collection="list" item="daSentimentContent" index="index">
-                  <if test="daSentimentContent.txt3 != null and daSentimentContent.txt3  != '' " >
+                  <if test="daSentimentContent.txt3 != null and daSentimentContent.txt3  != ''  and daSentimentContent.txt3  != '-1' ">
                      when id=#{daSentimentContent.id} then #{daSentimentContent.txt3,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentContent.txt3 != null  and daSentimentContent.txt3  == '-1' ">
+                     when id=#{daSentimentContent.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daSentimentContent" index="index" open="(" close=")" separator=",">
 			#{daSentimentContent.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -212,42 +251,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_sentiment_content
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="articleId  != null and articleId  != '' " >
-              article_id,
-          </if>
-          <if test="txt  != null and txt  != '' " >
-              txt,
-          </if>
-          <if test="txt1  != null and txt1  != '' " >
-              txt1,
-          </if>
-          <if test="txt2  != null and txt2  != '' " >
-              txt2,
-          </if>
-          <if test="txt3  != null and txt3  != '' " >
-              txt3,
-          </if>
+id,
+article_id,
+txt,
+txt1,
+txt2,
+txt3,
     </trim>
     VALUES
     <foreach collection="list" item="daSentimentContent" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daSentimentContent.id ,jdbcType=VARCHAR},
-                  <if test="t.articleId  != null  and t.articleId != '' " >
+                  
                      #{daSentimentContent.articleId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt  != null  and t.txt != '' " >
+                  
+                  
                      #{daSentimentContent.txt ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt1  != null  and t.txt1 != '' " >
+                  
+                  
                      #{daSentimentContent.txt1 ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt2  != null  and t.txt2 != '' " >
+                  
+                  
                      #{daSentimentContent.txt2 ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt3  != null  and t.txt3 != '' " >
+                  
+                  
                      #{daSentimentContent.txt3 ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

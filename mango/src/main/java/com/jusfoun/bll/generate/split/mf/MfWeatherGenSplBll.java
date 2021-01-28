@@ -1,9 +1,9 @@
-package com.jusfoun.bll.generate.split.mf;
+package com.zee.bll.generate.split.mf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jusfoun.bll.generate.split.base.BaseSplBll;
-import com.jusfoun.dao.split.mf.IMfWeatherSplDal;
+import com.zee.bll.generate.split.base.BaseSplBll;
+import com.zee.dao.split.mf.IMfWeatherSplDal;
 
 
 

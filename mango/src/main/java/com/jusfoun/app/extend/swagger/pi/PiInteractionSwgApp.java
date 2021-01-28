@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,18 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.extend.swagger.gp.GpResourceSwgApp;
-import com.jusfoun.app.generate.swagger.pi.PiInteractionGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
-import com.jusfoun.bll.extend.unity.pi.PiInteractionUntBll;
-import com.jusfoun.bll.extend.unity.pi.PirInteractionImageUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.ent.extend.pi.PiInteraction;
-import com.jusfoun.ent.extend.pi.PirInteractionImage;
-import com.jusfoun.ent.parameter.pi.PiInteractionParameter;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.app.extend.swagger.gp.GpResourceSwgApp;
+import com.zee.app.generate.swagger.pi.PiInteractionGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpUserUntBll;
+import com.zee.bll.extend.unity.pi.PiInteractionUntBll;
+import com.zee.bll.extend.unity.pi.PirInteractionImageUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.ent.extend.pi.PiInteraction;
+import com.zee.ent.extend.pi.PirInteractionImage;
+import com.zee.ent.parameter.pi.PiInteractionParameter;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

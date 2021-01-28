@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfWeatherSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfWeatherSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfWeather" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfWeather" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="warning_num" property="warningNum" jdbcType="INTEGER" />
               <result column="weather_threshold" property="weatherThreshold" jdbcType="INTEGER" />
@@ -13,7 +13,7 @@
         id,warning_num,weather_threshold,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfWeather" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfWeather" >
     insert into mf_weather
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -89,7 +89,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfWeather" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfWeather" >
     update mf_weather
     <set >
                   <if test="warningNum != null ">

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
@@ -89,7 +89,7 @@
         id,common_field_id,organization_id,enterprise_name,enterprise_code,registration_mark,archives_number,society_credit_id,register_status_text,register_status_code,register_type_text,register_type_code,statistics_Department_number,found_date,corporation_name,corporation_identity_card,corporation_mobile,linkman,linkman_mobile,landline_telephone,enterprise_type_text,enterprise_type_code,enterprise_nature_code,enterprise_nature_text,industry_type_code,industry_type_text,registered_capital,paidin_capital,address,enterprise_address,enterprise_phone,administrative_area,region_code,region_text,measure_longitude,measure_latitude,establish_date,approval_date,business_duetime,longdistance_number,administration_number,business_scope,professional_activity,enterprise_control,organization_type_text,organization_type_code,industry_activity,industry_code,industry_text,risk_grade,risk_value,category_code,category_text,risk_tags_code,risk_tags_text,funnel_tags_code,funnel_tags_text,core_code,core_text,person_scale,money_scale,year_they,is_corporate_champion_type_code,is_corporate_champion_type_text,scale_enterprise_type_code,email,scale_enterprise_type_text,summary,description,zip_code,telautogram,is_recommend,organization_code,manage_status,trade_text,registry_office,logo_resource_id,logo_resource_path,is_cooperative_code,is_cooperative_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseInfo" >
     insert into da_enterprise_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -900,7 +900,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseInfo" >
     update da_enterprise_info
     <set >
                   <if test="id != null  and id != '' " >

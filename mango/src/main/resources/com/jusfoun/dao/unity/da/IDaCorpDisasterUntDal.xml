@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaCorpDisasterUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaCorpDisasterUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCorpDisaster" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaCorpDisaster" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -29,7 +29,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,disaster_type_code,disaster_type_text,disaster_area,disaster_area_unit_code,disaster_area_unit_text,disaster_area_unit,disaster_lose,disaster_lose_unit_code,disaster_lose_unit_text,disaster_lose_unit,disaster_level_code,disaster_level_text,weather
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCorpDisaster" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaCorpDisaster" >
     insert into da_corp_disaster
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -167,8 +167,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_corp_disaster
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -177,78 +176,96 @@
     	<foreach collection="list" item="daCorpDisaster" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daCorpDisaster.id,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.name,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.strainsCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.strainsText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.disasterTypeCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.disasterTypeText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.disasterArea,jdbcType=NUMERIC},
-
-      
           #{daCorpDisaster.disasterAreaUnitCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.disasterAreaUnitText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.disasterAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daCorpDisaster.disasterLose,jdbcType=NUMERIC},
-
-      
           #{daCorpDisaster.disasterLoseUnitCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.disasterLoseUnitText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.disasterLoseUnit,jdbcType=NUMERIC},
-
-      
           #{daCorpDisaster.disasterLevelCode,jdbcType=TINYINT},
-
-      
           #{daCorpDisaster.disasterLevelText,jdbcType=VARCHAR},
-
-      
           #{daCorpDisaster.weather,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_corp_disaster
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_corp_disaster
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCorpDisaster" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daCorpDisaster.id,jdbcType=VARCHAR},
+          #{daCorpDisaster.commonFieldId,jdbcType=VARCHAR},
+          #{daCorpDisaster.name,jdbcType=VARCHAR},
+          #{daCorpDisaster.cropTypeCode,jdbcType=TINYINT},
+          #{daCorpDisaster.cropTypeText,jdbcType=VARCHAR},
+          #{daCorpDisaster.strainsCode,jdbcType=TINYINT},
+          #{daCorpDisaster.strainsText,jdbcType=VARCHAR},
+          #{daCorpDisaster.disasterTypeCode,jdbcType=TINYINT},
+          #{daCorpDisaster.disasterTypeText,jdbcType=VARCHAR},
+          #{daCorpDisaster.disasterArea,jdbcType=NUMERIC},
+          #{daCorpDisaster.disasterAreaUnitCode,jdbcType=TINYINT},
+          #{daCorpDisaster.disasterAreaUnitText,jdbcType=VARCHAR},
+          #{daCorpDisaster.disasterAreaUnit,jdbcType=NUMERIC},
+          #{daCorpDisaster.disasterLose,jdbcType=NUMERIC},
+          #{daCorpDisaster.disasterLoseUnitCode,jdbcType=TINYINT},
+          #{daCorpDisaster.disasterLoseUnitText,jdbcType=VARCHAR},
+          #{daCorpDisaster.disasterLoseUnit,jdbcType=NUMERIC},
+          #{daCorpDisaster.disasterLevelCode,jdbcType=TINYINT},
+          #{daCorpDisaster.disasterLevelText,jdbcType=VARCHAR},
+          #{daCorpDisaster.weather,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+disaster_type_code=values(disaster_type_code),
+disaster_type_text=values(disaster_type_text),
+disaster_area=values(disaster_area),
+disaster_area_unit_code=values(disaster_area_unit_code),
+disaster_area_unit_text=values(disaster_area_unit_text),
+disaster_area_unit=values(disaster_area_unit),
+disaster_lose=values(disaster_lose),
+disaster_lose_unit_code=values(disaster_lose_unit_code),
+disaster_lose_unit_text=values(disaster_lose_unit_text),
+disaster_lose_unit=values(disaster_lose_unit),
+disaster_level_code=values(disaster_level_code),
+disaster_level_text=values(disaster_level_text),
+weather=values(weather)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_corp_disaster
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_corp_disaster
 		where id  in
@@ -257,7 +274,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCorpDisaster" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaCorpDisaster" >
     update da_corp_disaster
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -395,16 +414,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.commonFieldId != null and daCorpDisaster.commonFieldId  != '' " >
+                  <if test="daCorpDisaster.commonFieldId != null and daCorpDisaster.commonFieldId  != ''  and daCorpDisaster.commonFieldId  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.commonFieldId != null  and daCorpDisaster.commonFieldId  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.name != null and daCorpDisaster.name  != '' " >
+                  <if test="daCorpDisaster.name != null and daCorpDisaster.name  != ''  and daCorpDisaster.name  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.name != null  and daCorpDisaster.name  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -416,9 +443,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.cropTypeText != null and daCorpDisaster.cropTypeText  != '' " >
+                  <if test="daCorpDisaster.cropTypeText != null and daCorpDisaster.cropTypeText  != ''  and daCorpDisaster.cropTypeText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.cropTypeText != null  and daCorpDisaster.cropTypeText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -430,9 +461,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.strainsText != null and daCorpDisaster.strainsText  != '' " >
+                  <if test="daCorpDisaster.strainsText != null and daCorpDisaster.strainsText  != ''  and daCorpDisaster.strainsText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.strainsText != null  and daCorpDisaster.strainsText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="disaster_type_code =case" suffix="end,">
@@ -444,9 +479,13 @@
          </trim>
          <trim prefix="disaster_type_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.disasterTypeText != null and daCorpDisaster.disasterTypeText  != '' " >
+                  <if test="daCorpDisaster.disasterTypeText != null and daCorpDisaster.disasterTypeText  != ''  and daCorpDisaster.disasterTypeText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.disasterTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.disasterTypeText != null  and daCorpDisaster.disasterTypeText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="disaster_area =case" suffix="end,">
@@ -465,9 +504,13 @@
          </trim>
          <trim prefix="disaster_area_unit_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.disasterAreaUnitText != null and daCorpDisaster.disasterAreaUnitText  != '' " >
+                  <if test="daCorpDisaster.disasterAreaUnitText != null and daCorpDisaster.disasterAreaUnitText  != ''  and daCorpDisaster.disasterAreaUnitText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.disasterAreaUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.disasterAreaUnitText != null  and daCorpDisaster.disasterAreaUnitText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="disaster_area_unit =case" suffix="end,">
@@ -493,9 +536,13 @@
          </trim>
          <trim prefix="disaster_lose_unit_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.disasterLoseUnitText != null and daCorpDisaster.disasterLoseUnitText  != '' " >
+                  <if test="daCorpDisaster.disasterLoseUnitText != null and daCorpDisaster.disasterLoseUnitText  != ''  and daCorpDisaster.disasterLoseUnitText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.disasterLoseUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.disasterLoseUnitText != null  and daCorpDisaster.disasterLoseUnitText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="disaster_lose_unit =case" suffix="end,">
@@ -514,21 +561,29 @@
          </trim>
          <trim prefix="disaster_level_text =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.disasterLevelText != null and daCorpDisaster.disasterLevelText  != '' " >
+                  <if test="daCorpDisaster.disasterLevelText != null and daCorpDisaster.disasterLevelText  != ''  and daCorpDisaster.disasterLevelText  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.disasterLevelText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.disasterLevelText != null  and daCorpDisaster.disasterLevelText  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="weather =case" suffix="end,">
               <foreach collection="list" item="daCorpDisaster" index="index">
-                  <if test="daCorpDisaster.weather != null and daCorpDisaster.weather  != '' " >
+                  <if test="daCorpDisaster.weather != null and daCorpDisaster.weather  != ''  and daCorpDisaster.weather  != '-1' ">
                      when id=#{daCorpDisaster.id} then #{daCorpDisaster.weather,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCorpDisaster.weather != null  and daCorpDisaster.weather  == '-1' ">
+                     when id=#{daCorpDisaster.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daCorpDisaster" index="index" open="(" close=")" separator=",">
 			#{daCorpDisaster.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -538,126 +593,88 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_corp_disaster
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="disasterTypeCode  != null " >
-              disaster_type_code,
-          </if>
-          <if test="disasterTypeText  != null and disasterTypeText  != '' " >
-              disaster_type_text,
-          </if>
-          <if test="disasterArea  != null " >
-              disaster_area,
-          </if>
-          <if test="disasterAreaUnitCode  != null " >
-              disaster_area_unit_code,
-          </if>
-          <if test="disasterAreaUnitText  != null and disasterAreaUnitText  != '' " >
-              disaster_area_unit_text,
-          </if>
-          <if test="disasterAreaUnit  != null " >
-              disaster_area_unit,
-          </if>
-          <if test="disasterLose  != null " >
-              disaster_lose,
-          </if>
-          <if test="disasterLoseUnitCode  != null " >
-              disaster_lose_unit_code,
-          </if>
-          <if test="disasterLoseUnitText  != null and disasterLoseUnitText  != '' " >
-              disaster_lose_unit_text,
-          </if>
-          <if test="disasterLoseUnit  != null " >
-              disaster_lose_unit,
-          </if>
-          <if test="disasterLevelCode  != null " >
-              disaster_level_code,
-          </if>
-          <if test="disasterLevelText  != null and disasterLevelText  != '' " >
-              disaster_level_text,
-          </if>
-          <if test="weather  != null and weather  != '' " >
-              weather,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+disaster_type_code,
+disaster_type_text,
+disaster_area,
+disaster_area_unit_code,
+disaster_area_unit_text,
+disaster_area_unit,
+disaster_lose,
+disaster_lose_unit_code,
+disaster_lose_unit_text,
+disaster_lose_unit,
+disaster_level_code,
+disaster_level_text,
+weather,
     </trim>
     VALUES
     <foreach collection="list" item="daCorpDisaster" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daCorpDisaster.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daCorpDisaster.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daCorpDisaster.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daCorpDisaster.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daCorpDisaster.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daCorpDisaster.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daCorpDisaster.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.disasterTypeCode != null ">
+                  
+                  
                     #{daCorpDisaster.disasterTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.disasterTypeText  != null  and t.disasterTypeText != '' " >
+            
+                  
                      #{daCorpDisaster.disasterTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.disasterArea != null ">
+                  
+                  
                     #{daCorpDisaster.disasterArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.disasterAreaUnitCode != null ">
+            
+                  
                     #{daCorpDisaster.disasterAreaUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.disasterAreaUnitText  != null  and t.disasterAreaUnitText != '' " >
+            
+                  
                      #{daCorpDisaster.disasterAreaUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.disasterAreaUnit != null ">
+                  
+                  
                     #{daCorpDisaster.disasterAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.disasterLose != null ">
+            
+                  
                     #{daCorpDisaster.disasterLose,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.disasterLoseUnitCode != null ">
+            
+                  
                     #{daCorpDisaster.disasterLoseUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.disasterLoseUnitText  != null  and t.disasterLoseUnitText != '' " >
+            
+                  
                      #{daCorpDisaster.disasterLoseUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.disasterLoseUnit != null ">
+                  
+                  
                     #{daCorpDisaster.disasterLoseUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.disasterLevelCode != null ">
+            
+                  
                     #{daCorpDisaster.disasterLevelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.disasterLevelText  != null  and t.disasterLevelText != '' " >
+            
+                  
                      #{daCorpDisaster.disasterLevelText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.weather  != null  and t.weather != '' " >
+                  
+                  
                      #{daCorpDisaster.weather ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

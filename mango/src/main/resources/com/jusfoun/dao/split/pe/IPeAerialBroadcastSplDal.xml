@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pe.IPeAerialBroadcastSplDal" >
+<mapper namespace="com.zee.dao.split.pe.IPeAerialBroadcastSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pe.PeAerialBroadcast" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
               <result column="title" property="title" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
         id,resource_id,title,contet,page_view,activity,small_resource_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+  <insert id="add" parameterType="com.zee.ent.extend.pe.PeAerialBroadcast" >
     insert into pe_aerial_broadcast
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -122,7 +122,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pe.PeAerialBroadcast" >
+  <update id="update" parameterType="com.zee.ent.extend.pe.PeAerialBroadcast" >
     update pe_aerial_broadcast
     <set >
                   <if test="resourceId != null  and resourceId != '' " >

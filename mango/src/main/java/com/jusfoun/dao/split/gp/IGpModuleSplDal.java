@@ -1,4 +1,4 @@
-package com.jusfoun.dao.split.gp;
+package com.zee.dao.split.gp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.jusfoun.dao.split.base.IBaseSplDal;
-import com.jusfoun.ent.extend.gp.GpModule;
+import com.zee.dao.split.base.IBaseSplDal;
+import com.zee.ent.extend.gp.GpModule;
 
 /**
  * @author Zee

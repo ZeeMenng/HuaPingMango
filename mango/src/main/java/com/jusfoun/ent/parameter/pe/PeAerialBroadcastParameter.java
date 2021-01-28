@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.pe;
+package com.zee.ent.parameter.pe;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.pe.PeAerialBroadcast;
-import com.jusfoun.ent.generate.pe.PeAerialBroadcastGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.pe.PeAerialBroadcast;
+import com.zee.ent.generate.pe.PeAerialBroadcastGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

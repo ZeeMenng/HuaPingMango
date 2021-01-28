@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -28,20 +28,20 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import com.jusfoun.app.generate.swagger.gp.GpInterfaceGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.parameter.gp.GpInterfaceParameter;
-import com.jusfoun.set.enumer.DomainEnum;
-import com.jusfoun.set.enumer.InterfaceType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.CamelCaseUtl;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.DictionaryUtil;
-import com.jusfoun.utl.FileUtil;
-import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.app.generate.swagger.gp.GpInterfaceGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.parameter.gp.GpInterfaceParameter;
+import com.zee.set.enumer.DomainEnum;
+import com.zee.set.enumer.InterfaceType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.CamelCaseUtl;
+import com.zee.utl.DateUtils;
+import com.zee.utl.DictionaryUtil;
+import com.zee.utl.FileUtil;
+import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

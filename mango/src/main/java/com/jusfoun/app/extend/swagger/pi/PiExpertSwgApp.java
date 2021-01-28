@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.extend.swagger.gp.GpResourceSwgApp;
-import com.jusfoun.app.generate.swagger.pi.PiExpertGenSwgApp;
-import com.jusfoun.bll.extend.split.gp.GprUserIconSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpResourceUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprUserIconUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprUserRoleUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpResource;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.ent.extend.gp.GprUserIcon;
-import com.jusfoun.ent.extend.gp.GprUserRole;
-import com.jusfoun.ent.extend.pi.PiExpert;
-import com.jusfoun.ent.parameter.pi.PiExpertParameter;
-import com.jusfoun.set.enumer.RoleEnum;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.extend.swagger.gp.GpResourceSwgApp;
+import com.zee.app.generate.swagger.pi.PiExpertGenSwgApp;
+import com.zee.bll.extend.split.gp.GprUserIconSplBll;
+import com.zee.bll.extend.unity.gp.GpResourceUntBll;
+import com.zee.bll.extend.unity.gp.GpUserUntBll;
+import com.zee.bll.extend.unity.gp.GprUserIconUntBll;
+import com.zee.bll.extend.unity.gp.GprUserRoleUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpResource;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.ent.extend.gp.GprUserIcon;
+import com.zee.ent.extend.gp.GprUserRole;
+import com.zee.ent.extend.pi.PiExpert;
+import com.zee.ent.parameter.pi.PiExpertParameter;
+import com.zee.set.enumer.RoleEnum;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

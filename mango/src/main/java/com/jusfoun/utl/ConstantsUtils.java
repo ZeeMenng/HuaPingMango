@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,14 +20,14 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryTypeUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpInterfaceUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpPageUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.extend.gp.GpPage;
-import com.jusfoun.set.enumer.InterfaceType;
-import com.jusfoun.set.enumer.OperResult;
+import com.zee.bll.extend.unity.gp.GpDictionaryTypeUntBll;
+import com.zee.bll.extend.unity.gp.GpInterfaceUntBll;
+import com.zee.bll.extend.unity.gp.GpPageUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.extend.gp.GpPage;
+import com.zee.set.enumer.InterfaceType;
+import com.zee.set.enumer.OperResult;
 
 import net.sf.json.JSONObject;
 

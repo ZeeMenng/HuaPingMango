@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,18 +6,15 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GpModule;
-import com.jusfoun.ent.extend.gp.GpPage;
-import com.jusfoun.ent.extend.gp.GprResource;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GprResource;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:16
+ * @updateDate 2021/1/28 16:09:27
  * @description 实体类GpResourceGenEnt，自动生成。文件信息。
  */
 
@@ -50,9 +47,6 @@ public class GpResourceGenEnt extends BaseEnt implements Serializable {
     private String userId;
 
    //本表做为子表时，父表实体对象
-    private  GpDomain gpDomain;
-    private  GpModule gpModule;
-    private  GpPage gpPage;
 
     //本表做为父表时，子表数据列表
     private ArrayList<GprResource> gprResourceList;   
@@ -247,48 +241,6 @@ public class GpResourceGenEnt extends BaseEnt implements Serializable {
 
 
 
-
-	/**
-	 * get方法。本表做为子表时，父表实体对象。应用领域。
-	 */
-	public GpDomain getGpDomain() {
-		return this.gpDomain;
-	}
-
-	/**
-	 * set方法。本表做为子表时，父表实体对象。应用领域。
-	 */
-	public void setGpDomain(GpDomain gpDomain) {
-		this.gpDomain = gpDomain;
-	}
-
-	/**
-	 * get方法。本表做为子表时，父表实体对象。功能模块。
-	 */
-	public GpModule getGpModule() {
-		return this.gpModule;
-	}
-
-	/**
-	 * set方法。本表做为子表时，父表实体对象。功能模块。
-	 */
-	public void setGpModule(GpModule gpModule) {
-		this.gpModule = gpModule;
-	}
-
-	/**
-	 * get方法。本表做为子表时，父表实体对象。系统页面。
-	 */
-	public GpPage getGpPage() {
-		return this.gpPage;
-	}
-
-	/**
-	 * set方法。本表做为子表时，父表实体对象。系统页面。
-	 */
-	public void setGpPage(GpPage gpPage) {
-		this.gpPage = gpPage;
-	}
 
 
 

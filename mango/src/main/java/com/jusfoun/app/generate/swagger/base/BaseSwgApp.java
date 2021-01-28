@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.base;
+package com.zee.app.generate.swagger.base;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,10 +20,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.FileCopyUtils;
 
-import com.jusfoun.app.base.BaseApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.base.BaseApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.utl.SymbolicConstant;
 
 import net.sf.json.JSONArray;
 

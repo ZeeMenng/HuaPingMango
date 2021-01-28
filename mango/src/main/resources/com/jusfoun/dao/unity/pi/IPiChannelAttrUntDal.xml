@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelAttrUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiChannelAttrUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelAttr" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelAttr" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,channel_id,attr_name,attr_value
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelAttr" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelAttr" >
     insert into pi_channel_attr
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -49,8 +49,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_channel_attr
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -59,30 +58,48 @@
     	<foreach collection="list" item="piChannelAttr" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piChannelAttr.id,jdbcType=VARCHAR},
-
-      
           #{piChannelAttr.channelId,jdbcType=VARCHAR},
-
-      
           #{piChannelAttr.attrName,jdbcType=VARCHAR},
-
-      
           #{piChannelAttr.attrValue,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_channel_attr
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_channel_attr
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelAttr" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piChannelAttr.id,jdbcType=VARCHAR},
+          #{piChannelAttr.channelId,jdbcType=VARCHAR},
+          #{piChannelAttr.attrName,jdbcType=VARCHAR},
+          #{piChannelAttr.attrValue,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+attr_name=values(attr_name),
+attr_value=values(attr_value)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_channel_attr
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_channel_attr
 		where id  in
@@ -91,7 +108,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelAttr" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelAttr" >
     update pi_channel_attr
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -133,28 +152,40 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piChannelAttr" index="index">
-                  <if test="piChannelAttr.channelId != null and piChannelAttr.channelId  != '' " >
+                  <if test="piChannelAttr.channelId != null and piChannelAttr.channelId  != ''  and piChannelAttr.channelId  != '-1' ">
                      when id=#{piChannelAttr.id} then #{piChannelAttr.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelAttr.channelId != null  and piChannelAttr.channelId  == '-1' ">
+                     when id=#{piChannelAttr.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="attr_name =case" suffix="end,">
               <foreach collection="list" item="piChannelAttr" index="index">
-                  <if test="piChannelAttr.attrName != null and piChannelAttr.attrName  != '' " >
+                  <if test="piChannelAttr.attrName != null and piChannelAttr.attrName  != ''  and piChannelAttr.attrName  != '-1' ">
                      when id=#{piChannelAttr.id} then #{piChannelAttr.attrName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelAttr.attrName != null  and piChannelAttr.attrName  == '-1' ">
+                     when id=#{piChannelAttr.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="attr_value =case" suffix="end,">
               <foreach collection="list" item="piChannelAttr" index="index">
-                  <if test="piChannelAttr.attrValue != null and piChannelAttr.attrValue  != '' " >
+                  <if test="piChannelAttr.attrValue != null and piChannelAttr.attrValue  != ''  and piChannelAttr.attrValue  != '-1' ">
                      when id=#{piChannelAttr.id} then #{piChannelAttr.attrValue,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelAttr.attrValue != null  and piChannelAttr.attrValue  == '-1' ">
+                     when id=#{piChannelAttr.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piChannelAttr" index="index" open="(" close=")" separator=",">
 			#{piChannelAttr.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -164,30 +195,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_channel_attr
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="attrName  != null and attrName  != '' " >
-              attr_name,
-          </if>
-          <if test="attrValue  != null and attrValue  != '' " >
-              attr_value,
-          </if>
+id,
+channel_id,
+attr_name,
+attr_value,
     </trim>
     VALUES
     <foreach collection="list" item="piChannelAttr" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piChannelAttr.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{piChannelAttr.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.attrName  != null  and t.attrName != '' " >
+                  
+                  
                      #{piChannelAttr.attrName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.attrValue  != null  and t.attrValue != '' " >
+                  
+                  
                      #{piChannelAttr.attrValue ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

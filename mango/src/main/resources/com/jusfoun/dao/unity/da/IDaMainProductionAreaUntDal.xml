@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaMainProductionAreaUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaMainProductionAreaUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaMainProductionArea" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaMainProductionArea" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         id,common_field_id,name,content,longitude,latitude,region_code,region_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaMainProductionArea" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaMainProductionArea" >
     insert into da_main_production_area
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -81,8 +81,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_main_production_area
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -91,42 +90,60 @@
     	<foreach collection="list" item="daMainProductionArea" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daMainProductionArea.id,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.name,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.content,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.longitude,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.latitude,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.regionCode,jdbcType=VARCHAR},
-
-      
           #{daMainProductionArea.regionText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_main_production_area
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_main_production_area
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daMainProductionArea" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daMainProductionArea.id,jdbcType=VARCHAR},
+          #{daMainProductionArea.commonFieldId,jdbcType=VARCHAR},
+          #{daMainProductionArea.name,jdbcType=VARCHAR},
+          #{daMainProductionArea.content,jdbcType=VARCHAR},
+          #{daMainProductionArea.longitude,jdbcType=VARCHAR},
+          #{daMainProductionArea.latitude,jdbcType=VARCHAR},
+          #{daMainProductionArea.regionCode,jdbcType=VARCHAR},
+          #{daMainProductionArea.regionText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+content=values(content),
+longitude=values(longitude),
+latitude=values(latitude),
+region_code=values(region_code),
+region_text=values(region_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_main_production_area
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_main_production_area
 		where id  in
@@ -135,7 +152,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaMainProductionArea" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaMainProductionArea" >
     update da_main_production_area
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -201,56 +220,84 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.commonFieldId != null and daMainProductionArea.commonFieldId  != '' " >
+                  <if test="daMainProductionArea.commonFieldId != null and daMainProductionArea.commonFieldId  != ''  and daMainProductionArea.commonFieldId  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.commonFieldId != null  and daMainProductionArea.commonFieldId  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.name != null and daMainProductionArea.name  != '' " >
+                  <if test="daMainProductionArea.name != null and daMainProductionArea.name  != ''  and daMainProductionArea.name  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.name != null  and daMainProductionArea.name  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.content != null and daMainProductionArea.content  != '' " >
+                  <if test="daMainProductionArea.content != null and daMainProductionArea.content  != ''  and daMainProductionArea.content  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.content,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.content != null  and daMainProductionArea.content  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.longitude != null and daMainProductionArea.longitude  != '' " >
+                  <if test="daMainProductionArea.longitude != null and daMainProductionArea.longitude  != ''  and daMainProductionArea.longitude  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.longitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.longitude != null  and daMainProductionArea.longitude  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.latitude != null and daMainProductionArea.latitude  != '' " >
+                  <if test="daMainProductionArea.latitude != null and daMainProductionArea.latitude  != ''  and daMainProductionArea.latitude  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.latitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.latitude != null  and daMainProductionArea.latitude  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_code =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.regionCode != null and daMainProductionArea.regionCode  != '' " >
+                  <if test="daMainProductionArea.regionCode != null and daMainProductionArea.regionCode  != ''  and daMainProductionArea.regionCode  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.regionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.regionCode != null  and daMainProductionArea.regionCode  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_text =case" suffix="end,">
               <foreach collection="list" item="daMainProductionArea" index="index">
-                  <if test="daMainProductionArea.regionText != null and daMainProductionArea.regionText  != '' " >
+                  <if test="daMainProductionArea.regionText != null and daMainProductionArea.regionText  != ''  and daMainProductionArea.regionText  != '-1' ">
                      when id=#{daMainProductionArea.id} then #{daMainProductionArea.regionText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daMainProductionArea.regionText != null  and daMainProductionArea.regionText  == '-1' ">
+                     when id=#{daMainProductionArea.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daMainProductionArea" index="index" open="(" close=")" separator=",">
 			#{daMainProductionArea.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -260,54 +307,40 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_main_production_area
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="content  != null and content  != '' " >
-              content,
-          </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
-          </if>
-          <if test="latitude  != null and latitude  != '' " >
-              latitude,
-          </if>
-          <if test="regionCode  != null and regionCode  != '' " >
-              region_code,
-          </if>
-          <if test="regionText  != null and regionText  != '' " >
-              region_text,
-          </if>
+id,
+common_field_id,
+name,
+content,
+longitude,
+latitude,
+region_code,
+region_text,
     </trim>
     VALUES
     <foreach collection="list" item="daMainProductionArea" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daMainProductionArea.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daMainProductionArea.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daMainProductionArea.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.content  != null  and t.content != '' " >
+                  
+                  
                      #{daMainProductionArea.content ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
+                  
+                  
                      #{daMainProductionArea.longitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.latitude  != null  and t.latitude != '' " >
+                  
+                  
                      #{daMainProductionArea.latitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                  
+                  
                      #{daMainProductionArea.regionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionText  != null  and t.regionText != '' " >
+                  
+                  
                      #{daMainProductionArea.regionText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

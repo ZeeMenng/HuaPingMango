@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaIndustryBasicinfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaIndustryBasicinfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIndustryBasicinfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIndustryBasicinfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
@@ -45,7 +45,7 @@
         id,common_field_id,crop_type_code,crop_type_text,strains_code,strains_text,name,crop_total_area,crop_total_area_code,crop_total_area_text,crop_total_area_unit,crop_fruit_area,crop_fruit_area_code,crop_fruit_area_text,crop_fruit_area_unit,crop_graft_area,crop_graft_area_code,crop_graft_area_text,crop_graft_area_unit,ngrafted_tree_area,ngrafted_tree_area_code,ngrafted_tree_area_text,ngrafted_tree_area_unit,ngrafted_youngtree_area,ngrafted_youngtree_area_code,ngrafted_youngtree_area_text,ngrafted_youngtree_area_unit,land_area,land_area_code,land_area_text,land_area_unit,grow_area,grow_area_code,grow_area_text,grow_area_unit,develop_variety
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIndustryBasicinfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIndustryBasicinfo" >
     insert into da_industry_basicinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -282,8 +282,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_industry_basicinfo
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -292,126 +291,144 @@
     	<foreach collection="list" item="daIndustryBasicinfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daIndustryBasicinfo.id,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.strainsCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.strainsText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.name,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.cropTotalArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.cropTotalAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.cropTotalAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.cropTotalAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.cropFruitArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.cropFruitAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.cropFruitAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.cropFruitAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.cropGraftArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.cropGraftAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.cropGraftAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.cropGraftAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.ngraftedTreeArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.ngraftedTreeAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.ngraftedTreeAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.ngraftedTreeAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.ngraftedYoungtreeArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.ngraftedYoungtreeAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.ngraftedYoungtreeAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.ngraftedYoungtreeAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.landArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.landAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.landAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.landAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.growArea,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.growAreaCode,jdbcType=TINYINT},
-
-      
           #{daIndustryBasicinfo.growAreaText,jdbcType=VARCHAR},
-
-      
           #{daIndustryBasicinfo.growAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIndustryBasicinfo.developVariety,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_industry_basicinfo
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_industry_basicinfo
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIndustryBasicinfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daIndustryBasicinfo.id,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.commonFieldId,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.cropTypeCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.cropTypeText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.strainsCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.strainsText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.name,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.cropTotalArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.cropTotalAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.cropTotalAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.cropTotalAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.cropFruitArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.cropFruitAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.cropFruitAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.cropFruitAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.cropGraftArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.cropGraftAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.cropGraftAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.cropGraftAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.ngraftedTreeArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.ngraftedTreeAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.ngraftedTreeAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.ngraftedTreeAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.ngraftedYoungtreeArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.ngraftedYoungtreeAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.ngraftedYoungtreeAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.ngraftedYoungtreeAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.landArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.landAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.landAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.landAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.growArea,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.growAreaCode,jdbcType=TINYINT},
+          #{daIndustryBasicinfo.growAreaText,jdbcType=VARCHAR},
+          #{daIndustryBasicinfo.growAreaUnit,jdbcType=NUMERIC},
+          #{daIndustryBasicinfo.developVariety,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+name=values(name),
+crop_total_area=values(crop_total_area),
+crop_total_area_code=values(crop_total_area_code),
+crop_total_area_text=values(crop_total_area_text),
+crop_total_area_unit=values(crop_total_area_unit),
+crop_fruit_area=values(crop_fruit_area),
+crop_fruit_area_code=values(crop_fruit_area_code),
+crop_fruit_area_text=values(crop_fruit_area_text),
+crop_fruit_area_unit=values(crop_fruit_area_unit),
+crop_graft_area=values(crop_graft_area),
+crop_graft_area_code=values(crop_graft_area_code),
+crop_graft_area_text=values(crop_graft_area_text),
+crop_graft_area_unit=values(crop_graft_area_unit),
+ngrafted_tree_area=values(ngrafted_tree_area),
+ngrafted_tree_area_code=values(ngrafted_tree_area_code),
+ngrafted_tree_area_text=values(ngrafted_tree_area_text),
+ngrafted_tree_area_unit=values(ngrafted_tree_area_unit),
+ngrafted_youngtree_area=values(ngrafted_youngtree_area),
+ngrafted_youngtree_area_code=values(ngrafted_youngtree_area_code),
+ngrafted_youngtree_area_text=values(ngrafted_youngtree_area_text),
+ngrafted_youngtree_area_unit=values(ngrafted_youngtree_area_unit),
+land_area=values(land_area),
+land_area_code=values(land_area_code),
+land_area_text=values(land_area_text),
+land_area_unit=values(land_area_unit),
+grow_area=values(grow_area),
+grow_area_code=values(grow_area_code),
+grow_area_text=values(grow_area_text),
+grow_area_unit=values(grow_area_unit),
+develop_variety=values(develop_variety)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_industry_basicinfo
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_industry_basicinfo
 		where id  in
@@ -420,7 +437,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIndustryBasicinfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIndustryBasicinfo" >
     update da_industry_basicinfo
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -654,9 +673,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.commonFieldId != null and daIndustryBasicinfo.commonFieldId  != '' " >
+                  <if test="daIndustryBasicinfo.commonFieldId != null and daIndustryBasicinfo.commonFieldId  != ''  and daIndustryBasicinfo.commonFieldId  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.commonFieldId != null  and daIndustryBasicinfo.commonFieldId  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -668,9 +691,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.cropTypeText != null and daIndustryBasicinfo.cropTypeText  != '' " >
+                  <if test="daIndustryBasicinfo.cropTypeText != null and daIndustryBasicinfo.cropTypeText  != ''  and daIndustryBasicinfo.cropTypeText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.cropTypeText != null  and daIndustryBasicinfo.cropTypeText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -682,16 +709,24 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.strainsText != null and daIndustryBasicinfo.strainsText  != '' " >
+                  <if test="daIndustryBasicinfo.strainsText != null and daIndustryBasicinfo.strainsText  != ''  and daIndustryBasicinfo.strainsText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.strainsText != null  and daIndustryBasicinfo.strainsText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.name != null and daIndustryBasicinfo.name  != '' " >
+                  <if test="daIndustryBasicinfo.name != null and daIndustryBasicinfo.name  != ''  and daIndustryBasicinfo.name  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.name != null  and daIndustryBasicinfo.name  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_total_area =case" suffix="end,">
@@ -710,9 +745,13 @@
          </trim>
          <trim prefix="crop_total_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.cropTotalAreaText != null and daIndustryBasicinfo.cropTotalAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.cropTotalAreaText != null and daIndustryBasicinfo.cropTotalAreaText  != ''  and daIndustryBasicinfo.cropTotalAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.cropTotalAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.cropTotalAreaText != null  and daIndustryBasicinfo.cropTotalAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_total_area_unit =case" suffix="end,">
@@ -738,9 +777,13 @@
          </trim>
          <trim prefix="crop_fruit_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.cropFruitAreaText != null and daIndustryBasicinfo.cropFruitAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.cropFruitAreaText != null and daIndustryBasicinfo.cropFruitAreaText  != ''  and daIndustryBasicinfo.cropFruitAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.cropFruitAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.cropFruitAreaText != null  and daIndustryBasicinfo.cropFruitAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_fruit_area_unit =case" suffix="end,">
@@ -766,9 +809,13 @@
          </trim>
          <trim prefix="crop_graft_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.cropGraftAreaText != null and daIndustryBasicinfo.cropGraftAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.cropGraftAreaText != null and daIndustryBasicinfo.cropGraftAreaText  != ''  and daIndustryBasicinfo.cropGraftAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.cropGraftAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.cropGraftAreaText != null  and daIndustryBasicinfo.cropGraftAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_graft_area_unit =case" suffix="end,">
@@ -794,9 +841,13 @@
          </trim>
          <trim prefix="ngrafted_tree_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.ngraftedTreeAreaText != null and daIndustryBasicinfo.ngraftedTreeAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.ngraftedTreeAreaText != null and daIndustryBasicinfo.ngraftedTreeAreaText  != ''  and daIndustryBasicinfo.ngraftedTreeAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.ngraftedTreeAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.ngraftedTreeAreaText != null  and daIndustryBasicinfo.ngraftedTreeAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="ngrafted_tree_area_unit =case" suffix="end,">
@@ -822,9 +873,13 @@
          </trim>
          <trim prefix="ngrafted_youngtree_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.ngraftedYoungtreeAreaText != null and daIndustryBasicinfo.ngraftedYoungtreeAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.ngraftedYoungtreeAreaText != null and daIndustryBasicinfo.ngraftedYoungtreeAreaText  != ''  and daIndustryBasicinfo.ngraftedYoungtreeAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.ngraftedYoungtreeAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.ngraftedYoungtreeAreaText != null  and daIndustryBasicinfo.ngraftedYoungtreeAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="ngrafted_youngtree_area_unit =case" suffix="end,">
@@ -850,9 +905,13 @@
          </trim>
          <trim prefix="land_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.landAreaText != null and daIndustryBasicinfo.landAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.landAreaText != null and daIndustryBasicinfo.landAreaText  != ''  and daIndustryBasicinfo.landAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.landAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.landAreaText != null  and daIndustryBasicinfo.landAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="land_area_unit =case" suffix="end,">
@@ -878,9 +937,13 @@
          </trim>
          <trim prefix="grow_area_text =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.growAreaText != null and daIndustryBasicinfo.growAreaText  != '' " >
+                  <if test="daIndustryBasicinfo.growAreaText != null and daIndustryBasicinfo.growAreaText  != ''  and daIndustryBasicinfo.growAreaText  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.growAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.growAreaText != null  and daIndustryBasicinfo.growAreaText  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="grow_area_unit =case" suffix="end,">
@@ -892,14 +955,18 @@
          </trim>
          <trim prefix="develop_variety =case" suffix="end,">
               <foreach collection="list" item="daIndustryBasicinfo" index="index">
-                  <if test="daIndustryBasicinfo.developVariety != null and daIndustryBasicinfo.developVariety  != '' " >
+                  <if test="daIndustryBasicinfo.developVariety != null and daIndustryBasicinfo.developVariety  != ''  and daIndustryBasicinfo.developVariety  != '-1' ">
                      when id=#{daIndustryBasicinfo.id} then #{daIndustryBasicinfo.developVariety,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIndustryBasicinfo.developVariety != null  and daIndustryBasicinfo.developVariety  == '-1' ">
+                     when id=#{daIndustryBasicinfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daIndustryBasicinfo" index="index" open="(" close=")" separator=",">
 			#{daIndustryBasicinfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -909,222 +976,152 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_industry_basicinfo
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTotalArea  != null " >
-              crop_total_area,
-          </if>
-          <if test="cropTotalAreaCode  != null " >
-              crop_total_area_code,
-          </if>
-          <if test="cropTotalAreaText  != null and cropTotalAreaText  != '' " >
-              crop_total_area_text,
-          </if>
-          <if test="cropTotalAreaUnit  != null " >
-              crop_total_area_unit,
-          </if>
-          <if test="cropFruitArea  != null " >
-              crop_fruit_area,
-          </if>
-          <if test="cropFruitAreaCode  != null " >
-              crop_fruit_area_code,
-          </if>
-          <if test="cropFruitAreaText  != null and cropFruitAreaText  != '' " >
-              crop_fruit_area_text,
-          </if>
-          <if test="cropFruitAreaUnit  != null " >
-              crop_fruit_area_unit,
-          </if>
-          <if test="cropGraftArea  != null " >
-              crop_graft_area,
-          </if>
-          <if test="cropGraftAreaCode  != null " >
-              crop_graft_area_code,
-          </if>
-          <if test="cropGraftAreaText  != null and cropGraftAreaText  != '' " >
-              crop_graft_area_text,
-          </if>
-          <if test="cropGraftAreaUnit  != null " >
-              crop_graft_area_unit,
-          </if>
-          <if test="ngraftedTreeArea  != null " >
-              ngrafted_tree_area,
-          </if>
-          <if test="ngraftedTreeAreaCode  != null " >
-              ngrafted_tree_area_code,
-          </if>
-          <if test="ngraftedTreeAreaText  != null and ngraftedTreeAreaText  != '' " >
-              ngrafted_tree_area_text,
-          </if>
-          <if test="ngraftedTreeAreaUnit  != null " >
-              ngrafted_tree_area_unit,
-          </if>
-          <if test="ngraftedYoungtreeArea  != null " >
-              ngrafted_youngtree_area,
-          </if>
-          <if test="ngraftedYoungtreeAreaCode  != null " >
-              ngrafted_youngtree_area_code,
-          </if>
-          <if test="ngraftedYoungtreeAreaText  != null and ngraftedYoungtreeAreaText  != '' " >
-              ngrafted_youngtree_area_text,
-          </if>
-          <if test="ngraftedYoungtreeAreaUnit  != null " >
-              ngrafted_youngtree_area_unit,
-          </if>
-          <if test="landArea  != null " >
-              land_area,
-          </if>
-          <if test="landAreaCode  != null " >
-              land_area_code,
-          </if>
-          <if test="landAreaText  != null and landAreaText  != '' " >
-              land_area_text,
-          </if>
-          <if test="landAreaUnit  != null " >
-              land_area_unit,
-          </if>
-          <if test="growArea  != null " >
-              grow_area,
-          </if>
-          <if test="growAreaCode  != null " >
-              grow_area_code,
-          </if>
-          <if test="growAreaText  != null and growAreaText  != '' " >
-              grow_area_text,
-          </if>
-          <if test="growAreaUnit  != null " >
-              grow_area_unit,
-          </if>
-          <if test="developVariety  != null and developVariety  != '' " >
-              develop_variety,
-          </if>
+id,
+common_field_id,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+name,
+crop_total_area,
+crop_total_area_code,
+crop_total_area_text,
+crop_total_area_unit,
+crop_fruit_area,
+crop_fruit_area_code,
+crop_fruit_area_text,
+crop_fruit_area_unit,
+crop_graft_area,
+crop_graft_area_code,
+crop_graft_area_text,
+crop_graft_area_unit,
+ngrafted_tree_area,
+ngrafted_tree_area_code,
+ngrafted_tree_area_text,
+ngrafted_tree_area_unit,
+ngrafted_youngtree_area,
+ngrafted_youngtree_area_code,
+ngrafted_youngtree_area_text,
+ngrafted_youngtree_area_unit,
+land_area,
+land_area_code,
+land_area_text,
+land_area_unit,
+grow_area,
+grow_area_code,
+grow_area_text,
+grow_area_unit,
+develop_variety,
     </trim>
     VALUES
     <foreach collection="list" item="daIndustryBasicinfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daIndustryBasicinfo.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daIndustryBasicinfo.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daIndustryBasicinfo.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daIndustryBasicinfo.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daIndustryBasicinfo.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTotalArea != null ">
+                  
+                  
                     #{daIndustryBasicinfo.cropTotalArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cropTotalAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.cropTotalAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTotalAreaText  != null  and t.cropTotalAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.cropTotalAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTotalAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.cropTotalAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cropFruitArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.cropFruitArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cropFruitAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.cropFruitAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropFruitAreaText  != null  and t.cropFruitAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.cropFruitAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropFruitAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.cropFruitAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cropGraftArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.cropGraftArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cropGraftAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.cropGraftAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropGraftAreaText  != null  and t.cropGraftAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.cropGraftAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropGraftAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.cropGraftAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.ngraftedTreeArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.ngraftedTreeArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.ngraftedTreeAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.ngraftedTreeAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.ngraftedTreeAreaText  != null  and t.ngraftedTreeAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.ngraftedTreeAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ngraftedTreeAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.ngraftedTreeAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.ngraftedYoungtreeArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.ngraftedYoungtreeArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.ngraftedYoungtreeAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.ngraftedYoungtreeAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.ngraftedYoungtreeAreaText  != null  and t.ngraftedYoungtreeAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.ngraftedYoungtreeAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ngraftedYoungtreeAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.ngraftedYoungtreeAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.landArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.landArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.landAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.landAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.landAreaText  != null  and t.landAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.landAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.landAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.landAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.growArea != null ">
+            
+                  
                     #{daIndustryBasicinfo.growArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.growAreaCode != null ">
+            
+                  
                     #{daIndustryBasicinfo.growAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.growAreaText  != null  and t.growAreaText != '' " >
+            
+                  
                      #{daIndustryBasicinfo.growAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.growAreaUnit != null ">
+                  
+                  
                     #{daIndustryBasicinfo.growAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.developVariety  != null  and t.developVariety != '' " >
+            
+                  
                      #{daIndustryBasicinfo.developVariety ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,8 +1,8 @@
-﻿package com.jusfoun.ent.extend.gp;
+﻿package com.zee.ent.extend.gp;
 
 import java.util.Date;
 
-import com.jusfoun.ent.generate.gp.GprConfigDomainGenEnt;
+import com.zee.ent.generate.gp.GprConfigDomainGenEnt;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaImportExportSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaImportExportSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaImportExport" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaImportExport" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -49,7 +49,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,product_name,import_amount,import_amount_unit_code,import_amount_unit_text,import_amount_unit,import_volume,import_volume_unit_code,import_volume_unit_text,import_volume_unit,import_price,import_price_unit_code,import_price_unit_text,import_price_unit,import_time,import_country_code,import_country_text,import_enterprise,export_amount,export_amount_unit_code,export_amount_unit_text,export_amount_unit,export_volume,export_volume_unit_code,export_volume_unit_text,export_volume_unit,export_price,export_price_unit_code,export_price_unit_text,export_price_unit,export_time,export_country_code,export_country_text,export_enterprise
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaImportExport" >
     insert into da_import_export
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -465,7 +465,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaImportExport" >
     update da_import_export
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >

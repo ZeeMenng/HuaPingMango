@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.zee.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.gp.GpCatalogInterfaceSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpCatalogInterfaceUntBll;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.gp.GpCatalogInterfaceParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.split.gp.GpCatalogInterfaceSplBll;
+import com.zee.bll.extend.unity.gp.GpCatalogInterfaceUntBll;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.parameter.gp.GpCatalogInterfaceParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/11/5 20:16:08
+ * @updateDate 2021/1/28 16:06:35
  * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

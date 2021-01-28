@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,16 +6,17 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.extend.gp.GprCatalogInterface;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/11/5 20:16:09
+ * @updateDate 2021/1/28 16:09:19
  * @description 实体类GpCatalogInterfaceGenEnt，自动生成。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
  */
 
@@ -30,7 +31,7 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
     private String fartherId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="类别层级。类别在层级关系中所属等级。",hidden=false,required=false)
+    @ApiModelProperty(value="类别层级。类别在层级关系中所属等级，从1开始。",hidden=false,required=false)
     private Byte level;
     @ApiModelProperty(value="类别名称。",hidden=false,required=false)
     private String name;
@@ -44,6 +45,7 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
    //本表做为子表时，父表实体对象
 
     //本表做为父表时，子表数据列表
+    private ArrayList<GprCatalogInterface> gprCatalogInterfaceList;   
 
     //父子表均为自身时
     private  GpCatalogInterface gpCatalogInterface;
@@ -107,14 +109,14 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。类别层级。类别在层级关系中所属等级。
+	 * get方法。类别层级。类别在层级关系中所属等级，从1开始。
 	 */
 	public Byte getLevel() {
 		return this.level;
 	}
 
 	/**
-	 * set方法。类别层级。类别在层级关系中所属等级。
+	 * set方法。类别层级。类别在层级关系中所属等级，从1开始。
 	 */
 	public void setLevel(Byte level) {
 		this.level = level;
@@ -178,6 +180,20 @@ public class GpCatalogInterfaceGenEnt extends BaseEnt implements Serializable {
     
 
 
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。后台接口所属分类。
+	 */
+	public ArrayList<GprCatalogInterface> getGprCatalogInterfaceList() {
+		return this.gprCatalogInterfaceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。后台接口所属分类。
+	 */
+	public void setGprCatalogInterfaceList(ArrayList<GprCatalogInterface> gprCatalogInterfaceList) {
+		this.gprCatalogInterfaceList = gprCatalogInterfaceList;
+	}
 
 
 

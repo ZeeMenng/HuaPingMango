@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirEnterpriseProductSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirEnterpriseProductSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirEnterpriseProduct" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirEnterpriseProduct" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="product_id" property="productId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,enterprise_id,product_id,priority
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirEnterpriseProduct" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirEnterpriseProduct" >
     insert into pir_enterprise_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -90,7 +90,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirEnterpriseProduct" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirEnterpriseProduct" >
     update pir_enterprise_product
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >

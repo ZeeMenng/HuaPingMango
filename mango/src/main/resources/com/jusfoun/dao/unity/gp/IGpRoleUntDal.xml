@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpRoleUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpRoleUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpRole" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpRole" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,name,remark,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpRole" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpRole" >
     insert into gp_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -119,7 +119,7 @@ update_time=values(update_time)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpRole" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpRole" >
     update gp_role
     <set >
                   <if test="name != null  and name != '' " >

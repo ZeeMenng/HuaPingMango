@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiContentTypeSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiContentTypeSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentType" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentType" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="img_width" property="imgWidth" jdbcType="INTEGER" />
@@ -15,7 +15,7 @@
         id,name,img_width,img_height,has_image,is_disabled
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentType" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentType" >
     insert into pi_content_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -109,7 +109,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentType" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentType" >
     update pi_content_type
     <set >
                   <if test="name != null  and name != '' " >

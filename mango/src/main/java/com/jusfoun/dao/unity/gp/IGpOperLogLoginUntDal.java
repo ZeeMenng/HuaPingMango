@@ -1,12 +1,12 @@
-﻿package com.jusfoun.dao.unity.gp;
+﻿package com.zee.dao.unity.gp;
 
 import java.util.List;
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.gp.GpOperLogLogin;
-import com.jusfoun.ent.extend.gp.GpLoginLog;
-import com.jusfoun.ent.extend.gp.GpOperLog;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GpUser;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.gp.GpOperLogLogin;
+import com.zee.ent.extend.gp.GpLoginLog;
+import com.zee.ent.extend.gp.GpOperLog;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GpUser;
 
 
 
@@ -14,7 +14,7 @@ import com.jusfoun.ent.extend.gp.GpUser;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/4 14:18:36
+ * @updateDate 2021/1/28 16:07:48
  * @description 扩展自实体类IBaseUntDal<GpOperLogLogin>，可手动更改。登录用户操作日志。
  */
 
@@ -45,7 +45,7 @@ public interface IGpOperLogLoginUntDal extends IBaseUntDal<GpOperLogLogin> {
 
 	public List<GpOperLogLogin> getListByUserId(String  userId);
         
- public int deleteByCompositeIdList(List<GpOperLogLogin> gpOperLogLoginList);   
+	public int deleteByCompositeIdList(List<GpOperLogLogin> gpOperLogLoginList);   
    
 
    

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterprisePersonInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterprisePersonInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         id,enterprise_id,enterprise_name,name,position,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
     insert into da_enterprise_person_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -126,7 +126,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
     update da_enterprise_person_info
     <set >
                   <if test="id != null  and id != '' " >

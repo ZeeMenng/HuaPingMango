@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,23 +6,24 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpLoginLog;
-import com.jusfoun.ent.extend.gp.GpMessage;
-import com.jusfoun.ent.extend.gp.GpOperLogLogin;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GprDomainUser;
-import com.jusfoun.ent.extend.gp.GprMessageUser;
-import com.jusfoun.ent.extend.gp.GprUserOrganization;
-import com.jusfoun.ent.extend.gp.GprUserRole;
-import com.jusfoun.ent.extend.gp.GprUserStation;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpLoginLog;
+import com.zee.ent.extend.gp.GpMessage;
+import com.zee.ent.extend.gp.GpOperLogLogin;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GprDomainUser;
+import com.zee.ent.extend.gp.GprMessageUser;
+import com.zee.ent.extend.gp.GprUserOrganization;
+import com.zee.ent.extend.gp.GprUserRole;
+import com.zee.ent.extend.gp.GprUserStation;
+import com.zee.ent.extend.gp.GprConfigUser;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:17
+ * @updateDate 2021/1/28 16:09:29
  * @description 实体类GpUserGenEnt，自动生成。系统用户。
  */
 
@@ -84,6 +85,7 @@ public class GpUserGenEnt extends BaseEnt implements Serializable {
     private ArrayList<GprUserOrganization> gprUserOrganizationList;   
     private ArrayList<GprUserRole> gprUserRoleList;   
     private ArrayList<GprUserStation> gprUserStationList;   
+    private ArrayList<GprConfigUser> gprConfigUserList;   
 
     //父子表均为自身时
 
@@ -509,6 +511,20 @@ public class GpUserGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setGprUserStationList(ArrayList<GprUserStation> gprUserStationList) {
 		this.gprUserStationList = gprUserStationList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。用户配置信息。
+	 */
+	public ArrayList<GprConfigUser> getGprConfigUserList() {
+		return this.gprConfigUserList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。用户配置信息。
+	 */
+	public void setGprConfigUserList(ArrayList<GprConfigUser> gprConfigUserList) {
+		this.gprConfigUserList = gprConfigUserList;
 	}
 
 

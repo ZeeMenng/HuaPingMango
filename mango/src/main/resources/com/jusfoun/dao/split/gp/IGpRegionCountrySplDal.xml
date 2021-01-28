@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpRegionCountrySplDal" >
+<mapper namespace="com.zee.dao.split.gp.IGpRegionCountrySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpRegionCountry" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpRegionCountry" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="iso_code" property="isoCode" jdbcType="VARCHAR" />
               <result column="chinese_name" property="chineseName" jdbcType="VARCHAR" />
@@ -18,7 +18,7 @@
         id,iso_code,chinese_name,english_name,is_display_code,longitude,latitude,area,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpRegionCountry" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpRegionCountry" >
     insert into gp_region_country
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -144,7 +144,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpRegionCountry" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpRegionCountry" >
     update gp_region_country
     <set >
                   <if test="isoCode != null  and isoCode != '' " >

@@ -1,30 +1,28 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.zee.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:01
+ * @updateDate 2021/1/28 16:09:37
  * @description 实体类MfProcessYieldGenEnt，自动生成。加工品产量建模表
  */
 
 public class MfProcessYieldGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="按年，存YYYY，如2018",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String dateTime;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="产值实际值，单位，元",hidden=false,required=false)
     private BigDecimal outputValueActual;
@@ -32,39 +30,43 @@ public class MfProcessYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal outputValueForecast;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）加工品品种  1：芒果汁，2：芒果干，3：芒果醋，4：芒果果酒，5：芒果果粉，6：芒果冻，7：芒果酱",allowableValues="0,1",hidden=false,required=false)
     private Byte processStrainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）加工品品种文本  1：芒果汁，2：芒果干，3：芒果醋，4：芒果果酒，5：芒果果粉，6：芒果冻，7：芒果酱",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String processStrainsText;
     @ApiModelProperty(value="产量实际值，单位 千克",hidden=false,required=false)
     private BigDecimal yieldActual;
     @ApiModelProperty(value="产量预测值，单位，千克",hidden=false,required=false)
     private BigDecimal yieldForecast;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。按年，存YYYY，如2018
+	 * get方法。
 	 */
 	public String getDateTime() {
 		return this.dateTime;
 	}
 
 	/**
-	 * set方法。按年，存YYYY，如2018
+	 * set方法。
 	 */
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -113,14 +115,14 @@ public class MfProcessYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）加工品品种文本  1：芒果汁，2：芒果干，3：芒果醋，4：芒果果酒，5：芒果果粉，6：芒果冻，7：芒果酱
+	 * get方法。
 	 */
 	public String getProcessStrainsText() {
 		return this.processStrainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）加工品品种文本  1：芒果汁，2：芒果干，3：芒果醋，4：芒果果酒，5：芒果果粉，6：芒果冻，7：芒果酱
+	 * set方法。
 	 */
 	public void setProcessStrainsText(String processStrainsText) {
 		this.processStrainsText = processStrainsText;
@@ -155,7 +157,14 @@ public class MfProcessYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

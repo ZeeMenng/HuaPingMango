@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import java.io.IOException;
 import java.util.ArrayList;

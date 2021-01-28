@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiChannelExtSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiChannelExtSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelExt" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,channel_id,channel_name,final_step,after_check,is_static_channel,is_static_content,is_access_by_dir,is_list_child,page_size,channel_rule,content_rule,link,tpl_channel,tpl_content,title_img,content_img,has_title_img,has_content_img,title_img_width,title_img_height,content_img_width,content_img_height,comment_control,allow_updown,is_blank,title,keywords,description,allow_share,allow_score
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelExt" >
     insert into pi_channel_ext
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -374,7 +374,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelExt" >
     update pi_channel_ext
     <set >
                   <if test="channelId != null  and channelId != '' " >

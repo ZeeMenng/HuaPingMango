@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfProcessMaterialConsumeSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfProcessMaterialConsumeSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="actual_amount" property="actualAmount" jdbcType="NUMERIC" />
               <result column="forecast_amount" property="forecastAmount" jdbcType="NUMERIC" />
@@ -15,7 +15,7 @@
         id,actual_amount,forecast_amount,scale_actual,scale_forecast,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
     insert into mf_process_material_consume
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -109,7 +109,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
     update mf_process_material_consume
     <set >
                   <if test="actualAmount != null ">

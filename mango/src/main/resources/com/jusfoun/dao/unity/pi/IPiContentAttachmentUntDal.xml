@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiContentAttachmentUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiContentAttachmentUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentAttachment" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentAttachment" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="priority" property="priority" jdbcType="INTEGER" />
@@ -16,7 +16,7 @@
         id,content_id,priority,attachment_path,attachment_name,filename,download_count
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentAttachment" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentAttachment" >
     insert into pi_content_attachment
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -71,8 +71,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_content_attachment
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -81,39 +80,57 @@
     	<foreach collection="list" item="piContentAttachment" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piContentAttachment.id,jdbcType=VARCHAR},
-
-      
           #{piContentAttachment.contentId,jdbcType=VARCHAR},
-
-      
           #{piContentAttachment.priority,jdbcType=INTEGER},
-
-      
           #{piContentAttachment.attachmentPath,jdbcType=VARCHAR},
-
-      
           #{piContentAttachment.attachmentName,jdbcType=VARCHAR},
-
-      
           #{piContentAttachment.filename,jdbcType=VARCHAR},
-
-      
           #{piContentAttachment.downloadCount,jdbcType=INTEGER},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_content_attachment
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_content_attachment
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentAttachment" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piContentAttachment.id,jdbcType=VARCHAR},
+          #{piContentAttachment.contentId,jdbcType=VARCHAR},
+          #{piContentAttachment.priority,jdbcType=INTEGER},
+          #{piContentAttachment.attachmentPath,jdbcType=VARCHAR},
+          #{piContentAttachment.attachmentName,jdbcType=VARCHAR},
+          #{piContentAttachment.filename,jdbcType=VARCHAR},
+          #{piContentAttachment.downloadCount,jdbcType=INTEGER},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+content_id=values(content_id),
+priority=values(priority),
+attachment_path=values(attachment_path),
+attachment_name=values(attachment_name),
+filename=values(filename),
+download_count=values(download_count)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_content_attachment
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_content_attachment
 		where id  in
@@ -122,7 +139,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentAttachment" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentAttachment" >
     update pi_content_attachment
     <set >
                   <if test="contentId != null  and contentId != '' " >
@@ -182,9 +201,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="content_id =case" suffix="end,">
               <foreach collection="list" item="piContentAttachment" index="index">
-                  <if test="piContentAttachment.contentId != null and piContentAttachment.contentId  != '' " >
+                  <if test="piContentAttachment.contentId != null and piContentAttachment.contentId  != ''  and piContentAttachment.contentId  != '-1' ">
                      when id=#{piContentAttachment.id} then #{piContentAttachment.contentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentAttachment.contentId != null  and piContentAttachment.contentId  == '-1' ">
+                     when id=#{piContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -196,23 +219,35 @@
          </trim>
          <trim prefix="attachment_path =case" suffix="end,">
               <foreach collection="list" item="piContentAttachment" index="index">
-                  <if test="piContentAttachment.attachmentPath != null and piContentAttachment.attachmentPath  != '' " >
+                  <if test="piContentAttachment.attachmentPath != null and piContentAttachment.attachmentPath  != ''  and piContentAttachment.attachmentPath  != '-1' ">
                      when id=#{piContentAttachment.id} then #{piContentAttachment.attachmentPath,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentAttachment.attachmentPath != null  and piContentAttachment.attachmentPath  == '-1' ">
+                     when id=#{piContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="attachment_name =case" suffix="end,">
               <foreach collection="list" item="piContentAttachment" index="index">
-                  <if test="piContentAttachment.attachmentName != null and piContentAttachment.attachmentName  != '' " >
+                  <if test="piContentAttachment.attachmentName != null and piContentAttachment.attachmentName  != ''  and piContentAttachment.attachmentName  != '-1' ">
                      when id=#{piContentAttachment.id} then #{piContentAttachment.attachmentName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentAttachment.attachmentName != null  and piContentAttachment.attachmentName  == '-1' ">
+                     when id=#{piContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="filename =case" suffix="end,">
               <foreach collection="list" item="piContentAttachment" index="index">
-                  <if test="piContentAttachment.filename != null and piContentAttachment.filename  != '' " >
+                  <if test="piContentAttachment.filename != null and piContentAttachment.filename  != ''  and piContentAttachment.filename  != '-1' ">
                      when id=#{piContentAttachment.id} then #{piContentAttachment.filename,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentAttachment.filename != null  and piContentAttachment.filename  == '-1' ">
+                     when id=#{piContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="download_count =case" suffix="end,">
@@ -224,7 +259,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piContentAttachment" index="index" open="(" close=")" separator=",">
 			#{piContentAttachment.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -234,48 +269,36 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_content_attachment
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="contentId  != null and contentId  != '' " >
-              content_id,
-          </if>
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="attachmentPath  != null and attachmentPath  != '' " >
-              attachment_path,
-          </if>
-          <if test="attachmentName  != null and attachmentName  != '' " >
-              attachment_name,
-          </if>
-          <if test="filename  != null and filename  != '' " >
-              filename,
-          </if>
-          <if test="downloadCount  != null " >
-              download_count,
-          </if>
+id,
+content_id,
+priority,
+attachment_path,
+attachment_name,
+filename,
+download_count,
     </trim>
     VALUES
     <foreach collection="list" item="piContentAttachment" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piContentAttachment.id ,jdbcType=VARCHAR},
-                  <if test="t.contentId  != null  and t.contentId != '' " >
+                  
                      #{piContentAttachment.contentId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
+                  
+                  
                     #{piContentAttachment.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.attachmentPath  != null  and t.attachmentPath != '' " >
+            
+                  
                      #{piContentAttachment.attachmentPath ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.attachmentName  != null  and t.attachmentName != '' " >
+                  
+                  
                      #{piContentAttachment.attachmentName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.filename  != null  and t.filename != '' " >
+                  
+                  
                      #{piContentAttachment.filename ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.downloadCount != null ">
+                  
+                  
                     #{piContentAttachment.downloadCount,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

@@ -1,4 +1,4 @@
-package com.jusfoun.app.custom;
+package com.zee.app.custom;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.unity.da.DaIotMonitorDataUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.unity.da.DaIotMonitorDataUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 import com.mongodb.client.MongoCollection;
 
 import net.sf.json.JSONObject;

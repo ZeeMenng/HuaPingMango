@@ -1,9 +1,9 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GprRolePageGenSwgApp;
+import com.zee.app.generate.swagger.gp.GprRolePageGenSwgApp;
 
 
 /**

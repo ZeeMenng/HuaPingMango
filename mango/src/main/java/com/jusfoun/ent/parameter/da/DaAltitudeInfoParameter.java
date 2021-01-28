@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.da;
+package com.zee.ent.parameter.da;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.da.DaAltitudeInfo;
-import com.jusfoun.ent.generate.da.DaAltitudeInfoGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.da.DaAltitudeInfo;
+import com.zee.ent.generate.da.DaAltitudeInfoGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

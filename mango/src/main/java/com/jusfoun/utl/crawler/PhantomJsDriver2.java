@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;

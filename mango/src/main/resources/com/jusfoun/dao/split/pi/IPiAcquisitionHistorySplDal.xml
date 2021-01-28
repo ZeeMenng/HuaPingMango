@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiAcquisitionHistorySplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiAcquisitionHistorySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiAcquisitionHistory" >
               <id column="id" property="id" jdbcType="INTEGER" />
               <result column="acquisition_id" property="acquisitionId" jdbcType="VARCHAR" />
               <result column="channel_url" property="channelUrl" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
         id,acquisition_id,channel_url,content_url,title,description,content_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiAcquisitionHistory" >
     insert into pi_acquisition_history
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null " >
@@ -123,7 +123,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAcquisitionHistory" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiAcquisitionHistory" >
     update pi_acquisition_history
     <set >
                   <if test="acquisitionId != null  and acquisitionId != '' " >

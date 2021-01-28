@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfForpriceUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfForpriceUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfForprice" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfForprice" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,date_time,region_code,region_name,actual_amount,forecast_amount
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfForprice" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfForprice" >
     insert into mf_forprice
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -63,8 +63,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_forprice
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -73,36 +72,54 @@
     	<foreach collection="list" item="mfForprice" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfForprice.id,jdbcType=VARCHAR},
-
-      
           #{mfForprice.dateTime,jdbcType=VARCHAR},
-
-      
           #{mfForprice.regionCode,jdbcType=VARCHAR},
-
-      
           #{mfForprice.regionName,jdbcType=VARCHAR},
-
-      
           #{mfForprice.actualAmount,jdbcType=NUMERIC},
-
-      
           #{mfForprice.forecastAmount,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_forprice
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_forprice
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfForprice" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfForprice.id,jdbcType=VARCHAR},
+          #{mfForprice.dateTime,jdbcType=VARCHAR},
+          #{mfForprice.regionCode,jdbcType=VARCHAR},
+          #{mfForprice.regionName,jdbcType=VARCHAR},
+          #{mfForprice.actualAmount,jdbcType=NUMERIC},
+          #{mfForprice.forecastAmount,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+date_time=values(date_time),
+region_code=values(region_code),
+region_name=values(region_name),
+actual_amount=values(actual_amount),
+forecast_amount=values(forecast_amount)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_forprice
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_forprice
 		where id  in
@@ -111,7 +128,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfForprice" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfForprice" >
     update mf_forprice
     <set >
                   <if test="dateTime != null  and dateTime != '' " >
@@ -165,23 +184,35 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfForprice" index="index">
-                  <if test="mfForprice.dateTime != null and mfForprice.dateTime  != '' " >
+                  <if test="mfForprice.dateTime != null and mfForprice.dateTime  != ''  and mfForprice.dateTime  != '-1' ">
                      when id=#{mfForprice.id} then #{mfForprice.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfForprice.dateTime != null  and mfForprice.dateTime  == '-1' ">
+                     when id=#{mfForprice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_code =case" suffix="end,">
               <foreach collection="list" item="mfForprice" index="index">
-                  <if test="mfForprice.regionCode != null and mfForprice.regionCode  != '' " >
+                  <if test="mfForprice.regionCode != null and mfForprice.regionCode  != ''  and mfForprice.regionCode  != '-1' ">
                      when id=#{mfForprice.id} then #{mfForprice.regionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfForprice.regionCode != null  and mfForprice.regionCode  == '-1' ">
+                     when id=#{mfForprice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_name =case" suffix="end,">
               <foreach collection="list" item="mfForprice" index="index">
-                  <if test="mfForprice.regionName != null and mfForprice.regionName  != '' " >
+                  <if test="mfForprice.regionName != null and mfForprice.regionName  != ''  and mfForprice.regionName  != '-1' ">
                      when id=#{mfForprice.id} then #{mfForprice.regionName,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfForprice.regionName != null  and mfForprice.regionName  == '-1' ">
+                     when id=#{mfForprice.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="actual_amount =case" suffix="end,">
@@ -200,7 +231,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfForprice" index="index" open="(" close=")" separator=",">
 			#{mfForprice.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -210,42 +241,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_forprice
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
-          <if test="regionCode  != null and regionCode  != '' " >
-              region_code,
-          </if>
-          <if test="regionName  != null and regionName  != '' " >
-              region_name,
-          </if>
-          <if test="actualAmount  != null " >
-              actual_amount,
-          </if>
-          <if test="forecastAmount  != null " >
-              forecast_amount,
-          </if>
+id,
+date_time,
+region_code,
+region_name,
+actual_amount,
+forecast_amount,
     </trim>
     VALUES
     <foreach collection="list" item="mfForprice" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfForprice.id ,jdbcType=VARCHAR},
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+                  
                      #{mfForprice.dateTime ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                  
+                  
                      #{mfForprice.regionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionName  != null  and t.regionName != '' " >
+                  
+                  
                      #{mfForprice.regionName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.actualAmount != null ">
+                  
+                  
                     #{mfForprice.actualAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.forecastAmount != null ">
+            
+                  
                     #{mfForprice.forecastAmount,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

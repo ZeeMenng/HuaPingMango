@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelExtUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiChannelExtUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelExt" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,channel_id,channel_name,final_step,after_check,is_static_channel,is_static_content,is_access_by_dir,is_list_child,page_size,channel_rule,content_rule,link,tpl_channel,tpl_content,title_img,content_img,has_title_img,has_content_img,title_img_width,title_img_height,content_img_width,content_img_height,comment_control,allow_updown,is_blank,title,keywords,description,allow_share,allow_score
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelExt" >
     insert into pi_channel_ext
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -251,8 +251,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_channel_ext
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -261,111 +260,129 @@
     	<foreach collection="list" item="piChannelExt" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piChannelExt.id,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.channelId,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.channelName,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.finalStep,jdbcType=TINYINT},
-
-      
           #{piChannelExt.afterCheck,jdbcType=TINYINT},
-
-      
           #{piChannelExt.isStaticChannel,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.isStaticContent,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.isAccessByDir,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.isListChild,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.pageSize,jdbcType=INTEGER},
-
-      
           #{piChannelExt.channelRule,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.contentRule,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.link,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.tplChannel,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.tplContent,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.titleImg,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.contentImg,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.hasTitleImg,jdbcType=TINYINT},
-
-      
           #{piChannelExt.hasContentImg,jdbcType=TINYINT},
-
-      
           #{piChannelExt.titleImgWidth,jdbcType=INTEGER},
-
-      
           #{piChannelExt.titleImgHeight,jdbcType=INTEGER},
-
-      
           #{piChannelExt.contentImgWidth,jdbcType=INTEGER},
-
-      
           #{piChannelExt.contentImgHeight,jdbcType=INTEGER},
-
-      
           #{piChannelExt.commentControl,jdbcType=INTEGER},
-
-      
           #{piChannelExt.allowUpdown,jdbcType=TINYINT},
-
-      
           #{piChannelExt.isBlank,jdbcType=TINYINT},
-
-      
           #{piChannelExt.title,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.keywords,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.description,jdbcType=VARCHAR},
-
-      
           #{piChannelExt.allowShare,jdbcType=TINYINT},
-
-      
           #{piChannelExt.allowScore,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_channel_ext
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_channel_ext
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelExt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piChannelExt.id,jdbcType=VARCHAR},
+          #{piChannelExt.channelId,jdbcType=VARCHAR},
+          #{piChannelExt.channelName,jdbcType=VARCHAR},
+          #{piChannelExt.finalStep,jdbcType=TINYINT},
+          #{piChannelExt.afterCheck,jdbcType=TINYINT},
+          #{piChannelExt.isStaticChannel,jdbcType=VARCHAR},
+          #{piChannelExt.isStaticContent,jdbcType=VARCHAR},
+          #{piChannelExt.isAccessByDir,jdbcType=VARCHAR},
+          #{piChannelExt.isListChild,jdbcType=VARCHAR},
+          #{piChannelExt.pageSize,jdbcType=INTEGER},
+          #{piChannelExt.channelRule,jdbcType=VARCHAR},
+          #{piChannelExt.contentRule,jdbcType=VARCHAR},
+          #{piChannelExt.link,jdbcType=VARCHAR},
+          #{piChannelExt.tplChannel,jdbcType=VARCHAR},
+          #{piChannelExt.tplContent,jdbcType=VARCHAR},
+          #{piChannelExt.titleImg,jdbcType=VARCHAR},
+          #{piChannelExt.contentImg,jdbcType=VARCHAR},
+          #{piChannelExt.hasTitleImg,jdbcType=TINYINT},
+          #{piChannelExt.hasContentImg,jdbcType=TINYINT},
+          #{piChannelExt.titleImgWidth,jdbcType=INTEGER},
+          #{piChannelExt.titleImgHeight,jdbcType=INTEGER},
+          #{piChannelExt.contentImgWidth,jdbcType=INTEGER},
+          #{piChannelExt.contentImgHeight,jdbcType=INTEGER},
+          #{piChannelExt.commentControl,jdbcType=INTEGER},
+          #{piChannelExt.allowUpdown,jdbcType=TINYINT},
+          #{piChannelExt.isBlank,jdbcType=TINYINT},
+          #{piChannelExt.title,jdbcType=VARCHAR},
+          #{piChannelExt.keywords,jdbcType=VARCHAR},
+          #{piChannelExt.description,jdbcType=VARCHAR},
+          #{piChannelExt.allowShare,jdbcType=TINYINT},
+          #{piChannelExt.allowScore,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+channel_name=values(channel_name),
+final_step=values(final_step),
+after_check=values(after_check),
+is_static_channel=values(is_static_channel),
+is_static_content=values(is_static_content),
+is_access_by_dir=values(is_access_by_dir),
+is_list_child=values(is_list_child),
+page_size=values(page_size),
+channel_rule=values(channel_rule),
+content_rule=values(content_rule),
+link=values(link),
+tpl_channel=values(tpl_channel),
+tpl_content=values(tpl_content),
+title_img=values(title_img),
+content_img=values(content_img),
+has_title_img=values(has_title_img),
+has_content_img=values(has_content_img),
+title_img_width=values(title_img_width),
+title_img_height=values(title_img_height),
+content_img_width=values(content_img_width),
+content_img_height=values(content_img_height),
+comment_control=values(comment_control),
+allow_updown=values(allow_updown),
+is_blank=values(is_blank),
+title=values(title),
+keywords=values(keywords),
+description=values(description),
+allow_share=values(allow_share),
+allow_score=values(allow_score)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_channel_ext
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_channel_ext
 		where id  in
@@ -374,7 +391,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelExt" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelExt" >
     update pi_channel_ext
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -578,16 +597,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.channelId != null and piChannelExt.channelId  != '' " >
+                  <if test="piChannelExt.channelId != null and piChannelExt.channelId  != ''  and piChannelExt.channelId  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.channelId != null  and piChannelExt.channelId  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="channel_name =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.channelName != null and piChannelExt.channelName  != '' " >
+                  <if test="piChannelExt.channelName != null and piChannelExt.channelName  != ''  and piChannelExt.channelName  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.channelName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.channelName != null  and piChannelExt.channelName  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="final_step =case" suffix="end,">
@@ -606,30 +633,46 @@
          </trim>
          <trim prefix="is_static_channel =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.isStaticChannel != null and piChannelExt.isStaticChannel  != '' " >
+                  <if test="piChannelExt.isStaticChannel != null and piChannelExt.isStaticChannel  != ''  and piChannelExt.isStaticChannel  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.isStaticChannel,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.isStaticChannel != null  and piChannelExt.isStaticChannel  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_static_content =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.isStaticContent != null and piChannelExt.isStaticContent  != '' " >
+                  <if test="piChannelExt.isStaticContent != null and piChannelExt.isStaticContent  != ''  and piChannelExt.isStaticContent  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.isStaticContent,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.isStaticContent != null  and piChannelExt.isStaticContent  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_access_by_dir =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.isAccessByDir != null and piChannelExt.isAccessByDir  != '' " >
+                  <if test="piChannelExt.isAccessByDir != null and piChannelExt.isAccessByDir  != ''  and piChannelExt.isAccessByDir  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.isAccessByDir,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.isAccessByDir != null  and piChannelExt.isAccessByDir  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_list_child =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.isListChild != null and piChannelExt.isListChild  != '' " >
+                  <if test="piChannelExt.isListChild != null and piChannelExt.isListChild  != ''  and piChannelExt.isListChild  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.isListChild,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.isListChild != null  and piChannelExt.isListChild  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="page_size =case" suffix="end,">
@@ -641,51 +684,79 @@
          </trim>
          <trim prefix="channel_rule =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.channelRule != null and piChannelExt.channelRule  != '' " >
+                  <if test="piChannelExt.channelRule != null and piChannelExt.channelRule  != ''  and piChannelExt.channelRule  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.channelRule,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.channelRule != null  and piChannelExt.channelRule  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content_rule =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.contentRule != null and piChannelExt.contentRule  != '' " >
+                  <if test="piChannelExt.contentRule != null and piChannelExt.contentRule  != ''  and piChannelExt.contentRule  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.contentRule,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.contentRule != null  and piChannelExt.contentRule  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="link =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.link != null and piChannelExt.link  != '' " >
+                  <if test="piChannelExt.link != null and piChannelExt.link  != ''  and piChannelExt.link  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.link,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.link != null  and piChannelExt.link  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tpl_channel =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.tplChannel != null and piChannelExt.tplChannel  != '' " >
+                  <if test="piChannelExt.tplChannel != null and piChannelExt.tplChannel  != ''  and piChannelExt.tplChannel  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.tplChannel,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.tplChannel != null  and piChannelExt.tplChannel  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tpl_content =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.tplContent != null and piChannelExt.tplContent  != '' " >
+                  <if test="piChannelExt.tplContent != null and piChannelExt.tplContent  != ''  and piChannelExt.tplContent  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.tplContent,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.tplContent != null  and piChannelExt.tplContent  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title_img =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.titleImg != null and piChannelExt.titleImg  != '' " >
+                  <if test="piChannelExt.titleImg != null and piChannelExt.titleImg  != ''  and piChannelExt.titleImg  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.titleImg,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.titleImg != null  and piChannelExt.titleImg  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content_img =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.contentImg != null and piChannelExt.contentImg  != '' " >
+                  <if test="piChannelExt.contentImg != null and piChannelExt.contentImg  != ''  and piChannelExt.contentImg  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.contentImg,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.contentImg != null  and piChannelExt.contentImg  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="has_title_img =case" suffix="end,">
@@ -753,23 +824,35 @@
          </trim>
          <trim prefix="title =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.title != null and piChannelExt.title  != '' " >
+                  <if test="piChannelExt.title != null and piChannelExt.title  != ''  and piChannelExt.title  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.title,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.title != null  and piChannelExt.title  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="keywords =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.keywords != null and piChannelExt.keywords  != '' " >
+                  <if test="piChannelExt.keywords != null and piChannelExt.keywords  != ''  and piChannelExt.keywords  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.keywords,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.keywords != null  and piChannelExt.keywords  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="description =case" suffix="end,">
               <foreach collection="list" item="piChannelExt" index="index">
-                  <if test="piChannelExt.description != null and piChannelExt.description  != '' " >
+                  <if test="piChannelExt.description != null and piChannelExt.description  != ''  and piChannelExt.description  != '-1' ">
                      when id=#{piChannelExt.id} then #{piChannelExt.description,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelExt.description != null  and piChannelExt.description  == '-1' ">
+                     when id=#{piChannelExt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="allow_share =case" suffix="end,">
@@ -788,7 +871,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piChannelExt" index="index" open="(" close=")" separator=",">
 			#{piChannelExt.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -798,192 +881,132 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_channel_ext
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="channelName  != null and channelName  != '' " >
-              channel_name,
-          </if>
-          <if test="finalStep  != null " >
-              final_step,
-          </if>
-          <if test="afterCheck  != null " >
-              after_check,
-          </if>
-          <if test="isStaticChannel  != null and isStaticChannel  != '' " >
-              is_static_channel,
-          </if>
-          <if test="isStaticContent  != null and isStaticContent  != '' " >
-              is_static_content,
-          </if>
-          <if test="isAccessByDir  != null and isAccessByDir  != '' " >
-              is_access_by_dir,
-          </if>
-          <if test="isListChild  != null and isListChild  != '' " >
-              is_list_child,
-          </if>
-          <if test="pageSize  != null " >
-              page_size,
-          </if>
-          <if test="channelRule  != null and channelRule  != '' " >
-              channel_rule,
-          </if>
-          <if test="contentRule  != null and contentRule  != '' " >
-              content_rule,
-          </if>
-          <if test="link  != null and link  != '' " >
-              link,
-          </if>
-          <if test="tplChannel  != null and tplChannel  != '' " >
-              tpl_channel,
-          </if>
-          <if test="tplContent  != null and tplContent  != '' " >
-              tpl_content,
-          </if>
-          <if test="titleImg  != null and titleImg  != '' " >
-              title_img,
-          </if>
-          <if test="contentImg  != null and contentImg  != '' " >
-              content_img,
-          </if>
-          <if test="hasTitleImg  != null " >
-              has_title_img,
-          </if>
-          <if test="hasContentImg  != null " >
-              has_content_img,
-          </if>
-          <if test="titleImgWidth  != null " >
-              title_img_width,
-          </if>
-          <if test="titleImgHeight  != null " >
-              title_img_height,
-          </if>
-          <if test="contentImgWidth  != null " >
-              content_img_width,
-          </if>
-          <if test="contentImgHeight  != null " >
-              content_img_height,
-          </if>
-          <if test="commentControl  != null " >
-              comment_control,
-          </if>
-          <if test="allowUpdown  != null " >
-              allow_updown,
-          </if>
-          <if test="isBlank  != null " >
-              is_blank,
-          </if>
-          <if test="title  != null and title  != '' " >
-              title,
-          </if>
-          <if test="keywords  != null and keywords  != '' " >
-              keywords,
-          </if>
-          <if test="description  != null and description  != '' " >
-              description,
-          </if>
-          <if test="allowShare  != null " >
-              allow_share,
-          </if>
-          <if test="allowScore  != null " >
-              allow_score,
-          </if>
+id,
+channel_id,
+channel_name,
+final_step,
+after_check,
+is_static_channel,
+is_static_content,
+is_access_by_dir,
+is_list_child,
+page_size,
+channel_rule,
+content_rule,
+link,
+tpl_channel,
+tpl_content,
+title_img,
+content_img,
+has_title_img,
+has_content_img,
+title_img_width,
+title_img_height,
+content_img_width,
+content_img_height,
+comment_control,
+allow_updown,
+is_blank,
+title,
+keywords,
+description,
+allow_share,
+allow_score,
     </trim>
     VALUES
     <foreach collection="list" item="piChannelExt" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piChannelExt.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{piChannelExt.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.channelName  != null  and t.channelName != '' " >
+                  
+                  
                      #{piChannelExt.channelName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.finalStep != null ">
+                  
+                  
                     #{piChannelExt.finalStep,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.afterCheck != null ">
+            
+                  
                     #{piChannelExt.afterCheck,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isStaticChannel  != null  and t.isStaticChannel != '' " >
+            
+                  
                      #{piChannelExt.isStaticChannel ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isStaticContent  != null  and t.isStaticContent != '' " >
+                  
+                  
                      #{piChannelExt.isStaticContent ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isAccessByDir  != null  and t.isAccessByDir != '' " >
+                  
+                  
                      #{piChannelExt.isAccessByDir ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isListChild  != null  and t.isListChild != '' " >
+                  
+                  
                      #{piChannelExt.isListChild ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.pageSize != null ">
+                  
+                  
                     #{piChannelExt.pageSize,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.channelRule  != null  and t.channelRule != '' " >
+            
+                  
                      #{piChannelExt.channelRule ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.contentRule  != null  and t.contentRule != '' " >
+                  
+                  
                      #{piChannelExt.contentRule ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.link  != null  and t.link != '' " >
+                  
+                  
                      #{piChannelExt.link ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tplChannel  != null  and t.tplChannel != '' " >
+                  
+                  
                      #{piChannelExt.tplChannel ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tplContent  != null  and t.tplContent != '' " >
+                  
+                  
                      #{piChannelExt.tplContent ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.titleImg  != null  and t.titleImg != '' " >
+                  
+                  
                      #{piChannelExt.titleImg ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.contentImg  != null  and t.contentImg != '' " >
+                  
+                  
                      #{piChannelExt.contentImg ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.hasTitleImg != null ">
+                  
+                  
                     #{piChannelExt.hasTitleImg,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.hasContentImg != null ">
+            
+                  
                     #{piChannelExt.hasContentImg,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.titleImgWidth != null ">
+            
+                  
                     #{piChannelExt.titleImgWidth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.titleImgHeight != null ">
+            
+                  
                     #{piChannelExt.titleImgHeight,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.contentImgWidth != null ">
+            
+                  
                     #{piChannelExt.contentImgWidth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.contentImgHeight != null ">
+            
+                  
                     #{piChannelExt.contentImgHeight,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.commentControl != null ">
+            
+                  
                     #{piChannelExt.commentControl,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.allowUpdown != null ">
+            
+                  
                     #{piChannelExt.allowUpdown,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isBlank != null ">
+            
+                  
                     #{piChannelExt.isBlank,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.title  != null  and t.title != '' " >
+            
+                  
                      #{piChannelExt.title ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.keywords  != null  and t.keywords != '' " >
+                  
+                  
                      #{piChannelExt.keywords ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.description  != null  and t.description != '' " >
+                  
+                  
                      #{piChannelExt.description ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.allowShare != null ">
+                  
+                  
                     #{piChannelExt.allowShare,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.allowScore != null ">
+            
+                  
                     #{piChannelExt.allowScore,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

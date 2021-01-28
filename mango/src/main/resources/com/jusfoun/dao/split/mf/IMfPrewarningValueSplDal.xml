@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfPrewarningValueSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfPrewarningValueSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfPrewarningValue" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="entry_violation" property="entryViolation" jdbcType="INTEGER" />
               <result column="quality_feedback" property="qualityFeedback" jdbcType="INTEGER" />
@@ -16,7 +16,7 @@
         id,entry_violation,quality_feedback,agricultural_capital_punishment,quality_spot_check_disqualification,creator,create_date
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfPrewarningValue" >
     insert into mf_prewarning_value
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -118,7 +118,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfPrewarningValue" >
     update mf_prewarning_value
     <set >
                   <if test="entryViolation != null ">

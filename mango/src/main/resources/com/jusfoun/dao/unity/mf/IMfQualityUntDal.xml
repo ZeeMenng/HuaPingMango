@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfQualityUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfQualityUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfQuality" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfQuality" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="index_num" property="indexNum" jdbcType="INTEGER" />
               <result column="level_code" property="levelCode" jdbcType="TINYINT" />
@@ -14,7 +14,7 @@
         id,index_num,level_code,level_text,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfQuality" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfQuality" >
     insert into mf_quality
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -55,8 +55,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_quality
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -65,33 +64,51 @@
     	<foreach collection="list" item="mfQuality" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfQuality.id,jdbcType=VARCHAR},
-
-      
           #{mfQuality.indexNum,jdbcType=INTEGER},
-
-      
           #{mfQuality.levelCode,jdbcType=TINYINT},
-
-      
           #{mfQuality.levelText,jdbcType=VARCHAR},
-
-      
           #{mfQuality.dateTime,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_quality
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_quality
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfQuality" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfQuality.id,jdbcType=VARCHAR},
+          #{mfQuality.indexNum,jdbcType=INTEGER},
+          #{mfQuality.levelCode,jdbcType=TINYINT},
+          #{mfQuality.levelText,jdbcType=VARCHAR},
+          #{mfQuality.dateTime,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+index_num=values(index_num),
+level_code=values(level_code),
+level_text=values(level_text),
+date_time=values(date_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_quality
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_quality
 		where id  in
@@ -100,7 +117,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfQuality" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfQuality" >
     update mf_quality
     <set >
                   <if test="indexNum != null ">
@@ -162,21 +181,29 @@
          </trim>
          <trim prefix="level_text =case" suffix="end,">
               <foreach collection="list" item="mfQuality" index="index">
-                  <if test="mfQuality.levelText != null and mfQuality.levelText  != '' " >
+                  <if test="mfQuality.levelText != null and mfQuality.levelText  != ''  and mfQuality.levelText  != '-1' ">
                      when id=#{mfQuality.id} then #{mfQuality.levelText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfQuality.levelText != null  and mfQuality.levelText  == '-1' ">
+                     when id=#{mfQuality.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfQuality" index="index">
-                  <if test="mfQuality.dateTime != null and mfQuality.dateTime  != '' " >
+                  <if test="mfQuality.dateTime != null and mfQuality.dateTime  != ''  and mfQuality.dateTime  != '-1' ">
                      when id=#{mfQuality.id} then #{mfQuality.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfQuality.dateTime != null  and mfQuality.dateTime  == '-1' ">
+                     when id=#{mfQuality.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfQuality" index="index" open="(" close=")" separator=",">
 			#{mfQuality.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -186,36 +213,28 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_quality
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="indexNum  != null " >
-              index_num,
-          </if>
-          <if test="levelCode  != null " >
-              level_code,
-          </if>
-          <if test="levelText  != null and levelText  != '' " >
-              level_text,
-          </if>
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
+id,
+index_num,
+level_code,
+level_text,
+date_time,
     </trim>
     VALUES
     <foreach collection="list" item="mfQuality" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfQuality.id ,jdbcType=VARCHAR},
-                  <if test="t.indexNum != null ">
+                  
                     #{mfQuality.indexNum,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.levelCode != null ">
+            
+                  
                     #{mfQuality.levelCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.levelText  != null  and t.levelText != '' " >
+            
+                  
                      #{mfQuality.levelText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+                  
+                  
                      #{mfQuality.dateTime ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

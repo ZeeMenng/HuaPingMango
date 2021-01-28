@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.gp;
+﻿package com.zee.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.gp.GpInterfaceSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpInterfaceUntBll;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.gp.GpInterfaceParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.split.gp.GpInterfaceSplBll;
+import com.zee.bll.extend.unity.gp.GpInterfaceUntBll;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.parameter.gp.GpInterfaceParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/9/10 14:48:42
+ * @updateDate 2021/1/28 16:06:35
  * @description 系统接口。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

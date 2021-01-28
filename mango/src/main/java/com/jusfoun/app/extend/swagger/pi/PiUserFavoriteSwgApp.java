@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiUserFavoriteGenSwgApp;
-import com.jusfoun.bll.extend.unity.pi.PiUserFavoriteUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.pi.PiUserFavorite;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.pi.PiUserFavoriteGenSwgApp;
+import com.zee.bll.extend.unity.pi.PiUserFavoriteUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.pi.PiUserFavorite;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;

@@ -1,48 +1,46 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:23
+ * @updateDate 2021/1/28 16:09:01
  * @description 实体类DaInputGenEnt，自动生成。投入品信息表
  */
 
 public class DaInputGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="基地名称，基地信息表的基地id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String baseName;
-    @ApiModelProperty(value="品牌名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String brandName;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String commonFieldId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="投入品名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String inputName;
     @ApiModelProperty(value="投入品类型:对应数据字典表（dictionary）中的编码字段（code）1：种子，2：农药，3：化肥",allowableValues="0,1",hidden=false,required=false)
     private Byte inputTypeCode;
-    @ApiModelProperty(value="投入品类型:文本，对应数据字典表（dictionary）中的文本字段（text）1：种子，2：农药，3：化肥",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String inputTypeText;
-    @ApiModelProperty(value="名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
-    @ApiModelProperty(value="使用对象名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String objectName;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal perCost;
@@ -50,7 +48,7 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
     private BigDecimal perCostUnit;
     @ApiModelProperty(value="成本单位:对应数据字典表（dictionary）中的编码字段（code）1：元/亩",allowableValues="0,1",hidden=false,required=false)
     private Byte perCostUnitCode;
-    @ApiModelProperty(value="成本单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/亩",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String perCostUnitText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal perPrice;
@@ -58,7 +56,7 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
     private BigDecimal perPriceUnit;
     @ApiModelProperty(value="单价单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：元/吨，3：元/千克，4：美元/吨",allowableValues="0,1",hidden=false,required=false)
     private Byte perPriceUnitCode;
-    @ApiModelProperty(value="单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：元/吨，3：元/千克，4：美元/吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String perPriceUnitText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal procurementTotal;
@@ -66,13 +64,13 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
     private BigDecimal procurementTotalUnit;
     @ApiModelProperty(value="采购总量单位:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte procurementTotalUnitCode;
-    @ApiModelProperty(value="采购总量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String procurementTotalUnitText;
-    @ApiModelProperty(value="采购点",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String purchasePoint;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal useAmount;
@@ -80,49 +78,53 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
     private BigDecimal useAmountUnit;
     @ApiModelProperty(value="使用量单位:对应数据字典表（dictionary）中的编码字段（code），1：千克/亩，2：克/亩",allowableValues="0,1",hidden=false,required=false)
     private Byte useAmountUnitCode;
-    @ApiModelProperty(value="使用量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克/亩，2：克/亩",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String useAmountUnitText;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。基地名称，基地信息表的基地id
+	 * get方法。
 	 */
 	public String getBaseName() {
 		return this.baseName;
 	}
 
 	/**
-	 * set方法。基地名称，基地信息表的基地id
+	 * set方法。
 	 */
 	public void setBaseName(String baseName) {
 		this.baseName = baseName;
 	}
     
 	/**
-	 * get方法。品牌名称
+	 * get方法。
 	 */
 	public String getBrandName() {
 		return this.brandName;
 	}
 
 	/**
-	 * set方法。品牌名称
+	 * set方法。
 	 */
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
     
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -143,42 +145,42 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。投入品名称
+	 * get方法。
 	 */
 	public String getInputName() {
 		return this.inputName;
 	}
 
 	/**
-	 * set方法。投入品名称
+	 * set方法。
 	 */
 	public void setInputName(String inputName) {
 		this.inputName = inputName;
@@ -199,42 +201,42 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。投入品类型:文本，对应数据字典表（dictionary）中的文本字段（text）1：种子，2：农药，3：化肥
+	 * get方法。
 	 */
 	public String getInputTypeText() {
 		return this.inputTypeText;
 	}
 
 	/**
-	 * set方法。投入品类型:文本，对应数据字典表（dictionary）中的文本字段（text）1：种子，2：农药，3：化肥
+	 * set方法。
 	 */
 	public void setInputTypeText(String inputTypeText) {
 		this.inputTypeText = inputTypeText;
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
     
 	/**
-	 * get方法。使用对象名称
+	 * get方法。
 	 */
 	public String getObjectName() {
 		return this.objectName;
 	}
 
 	/**
-	 * set方法。使用对象名称
+	 * set方法。
 	 */
 	public void setObjectName(String objectName) {
 		this.objectName = objectName;
@@ -283,14 +285,14 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。成本单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/亩
+	 * get方法。
 	 */
 	public String getPerCostUnitText() {
 		return this.perCostUnitText;
 	}
 
 	/**
-	 * set方法。成本单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/亩
+	 * set方法。
 	 */
 	public void setPerCostUnitText(String perCostUnitText) {
 		this.perCostUnitText = perCostUnitText;
@@ -339,14 +341,14 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：元/吨，3：元/千克，4：美元/吨
+	 * get方法。
 	 */
 	public String getPerPriceUnitText() {
 		return this.perPriceUnitText;
 	}
 
 	/**
-	 * set方法。单价单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：元/吨，3：元/千克，4：美元/吨
+	 * set方法。
 	 */
 	public void setPerPriceUnitText(String perPriceUnitText) {
 		this.perPriceUnitText = perPriceUnitText;
@@ -395,28 +397,28 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。采购总量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getProcurementTotalUnitText() {
 		return this.procurementTotalUnitText;
 	}
 
 	/**
-	 * set方法。采购总量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setProcurementTotalUnitText(String procurementTotalUnitText) {
 		this.procurementTotalUnitText = procurementTotalUnitText;
 	}
     
 	/**
-	 * get方法。采购点
+	 * get方法。
 	 */
 	public String getPurchasePoint() {
 		return this.purchasePoint;
 	}
 
 	/**
-	 * set方法。采购点
+	 * set方法。
 	 */
 	public void setPurchasePoint(String purchasePoint) {
 		this.purchasePoint = purchasePoint;
@@ -437,14 +439,14 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
@@ -493,21 +495,28 @@ public class DaInputGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。使用量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克/亩，2：克/亩
+	 * get方法。
 	 */
 	public String getUseAmountUnitText() {
 		return this.useAmountUnitText;
 	}
 
 	/**
-	 * set方法。使用量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克/亩，2：克/亩
+	 * set方法。
 	 */
 	public void setUseAmountUnitText(String useAmountUnitText) {
 		this.useAmountUnitText = useAmountUnitText;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

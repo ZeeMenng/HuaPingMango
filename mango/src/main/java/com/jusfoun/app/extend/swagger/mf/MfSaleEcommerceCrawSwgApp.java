@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.mf;
+package com.zee.app.extend.swagger.mf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.mf.MfSaleEcommerceCrawGenSwgApp;
-import com.jusfoun.bll.extend.unity.da.DaCommonFieldUntBll;
-import com.jusfoun.bll.extend.unity.da.DaSaleFreshUntBll;
-import com.jusfoun.bll.extend.unity.mf.MfSaleEcommerceCrawUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaCommonField;
-import com.jusfoun.ent.extend.da.DaMarketPrice;
-import com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw;
-import com.jusfoun.ent.parameter.da.DaMarketPriceParameter;
-import com.jusfoun.utl.BeanUtil;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.mf.MfSaleEcommerceCrawGenSwgApp;
+import com.zee.bll.extend.unity.da.DaCommonFieldUntBll;
+import com.zee.bll.extend.unity.da.DaSaleFreshUntBll;
+import com.zee.bll.extend.unity.mf.MfSaleEcommerceCrawUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaCommonField;
+import com.zee.ent.extend.da.DaMarketPrice;
+import com.zee.ent.extend.mf.MfSaleEcommerceCraw;
+import com.zee.ent.parameter.da.DaMarketPriceParameter;
+import com.zee.utl.BeanUtil;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

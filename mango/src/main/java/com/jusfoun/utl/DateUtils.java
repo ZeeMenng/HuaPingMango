@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

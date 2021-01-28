@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpResourceUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpResourceUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpResource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpResource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="module_id" property="moduleId" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
         id,domain_id,module_id,page_id,user_id,original_name,new_name,extension,path,priority,size,add_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpResource" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpResource" >
     insert into gp_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -183,85 +183,6 @@ add_time=values(add_time)
         where  id = #{id,jdbcType=VARCHAR}
     </delete>
 
-	<delete id="deleteByDomainId" parameterType="java.lang.String">
-    	delete from gp_resource
-    	where domain_id = #{domainId,jdbcType=VARCHAR}
-    </delete>
-    
-   <delete id="deleteByDomainIdList" parameterType="list">
-		delete from gp_resource
-		where domain_id  in
-		<foreach collection="list" item="DomainId " index="index" open="(" close=")" separator=",">
-			#{DomainId }
-		</foreach>
-	</delete>
-    
-    
-    <select id="getListByDomainId" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from gp_resource where domain_id = #{domainId,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByModuleId" parameterType="java.lang.String">
-    	delete from gp_resource
-    	where module_id = #{moduleId,jdbcType=VARCHAR}
-    </delete>
-    
-   <delete id="deleteByModuleIdList" parameterType="list">
-		delete from gp_resource
-		where module_id  in
-		<foreach collection="list" item="ModuleId " index="index" open="(" close=")" separator=",">
-			#{ModuleId }
-		</foreach>
-	</delete>
-    
-    
-    <select id="getListByModuleId" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from gp_resource where module_id = #{moduleId,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPageId" parameterType="java.lang.String">
-    	delete from gp_resource
-    	where page_id = #{pageId,jdbcType=VARCHAR}
-    </delete>
-    
-   <delete id="deleteByPageIdList" parameterType="list">
-		delete from gp_resource
-		where page_id  in
-		<foreach collection="list" item="PageId " index="index" open="(" close=")" separator=",">
-			#{PageId }
-		</foreach>
-	</delete>
-    
-    
-    <select id="getListByPageId" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from gp_resource where page_id = #{pageId,jdbcType=VARCHAR}
-	</select>
-        
- 	<delete id="deleteByCompositeIdList" parameterType="list">
-		delete from gp_resource
-		where 1=1
-
-   and domain_id in
-		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
-				#{gpResource.domainId,jdbcType=VARCHAR}
-		</foreach>
-   and module_id in
-		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
-				#{gpResource.moduleId,jdbcType=VARCHAR}
-		</foreach>
-   and page_id in
-		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
-				#{gpResource.pageId,jdbcType=VARCHAR}
-		</foreach>
-   and resource_id in
-		<foreach collection="list" item="gpResource" index="index" open="(" close=")" separator=",">
-				#{gpResource.resourceId,jdbcType=VARCHAR}
-		</foreach>
-	</delete>
         
 
 	<delete id="deleteByIdList" parameterType="list">
@@ -274,7 +195,7 @@ add_time=values(add_time)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpResource" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpResource" >
     update gp_resource
     <set >
                   <if test="domainId != null  and domainId != '' " >

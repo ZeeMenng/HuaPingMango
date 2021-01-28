@@ -1,4 +1,4 @@
-package com.jusfoun.dao.base;
+package com.zee.dao.base;
 
 
 public interface IBaseDao {

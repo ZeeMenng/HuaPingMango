@@ -1,9 +1,9 @@
-package com.jusfoun.bll.generate.split.gp;
+package com.zee.bll.generate.split.gp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jusfoun.bll.generate.split.base.BaseSplBll;
-import com.jusfoun.dao.split.gp.IGprUserOrganizationSplDal;
+import com.zee.bll.generate.split.base.BaseSplBll;
+import com.zee.dao.split.gp.IGprUserOrganizationSplDal;
 
 
 

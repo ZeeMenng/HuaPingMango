@@ -1,20 +1,26 @@
-package com.jusfoun.dao.unity.pi;
+﻿package com.zee.dao.unity.pi;
 
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.pi.PirContentGroupView;
+import java.util.List;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.pi.PirContentGroupView;
+
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2020/8/11 11:42:48
+ * @updateDate 2021/1/28 16:07:56
  * @description 扩展自实体类IBaseUntDal<PirContentGroupView>，可手动更改。CMS内容浏览会员组关联表
  */
 
 public interface IPirContentGroupViewUntDal extends IBaseUntDal<PirContentGroupView> {
 
+   
+
+   
 }
+
 
 
 

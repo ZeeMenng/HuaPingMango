@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirProductResourceSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirProductResourceSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirProductResource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirProductResource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="product_id" property="productId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,product_id,resource_id,type
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirProductResource" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirProductResource" >
     insert into pir_product_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -96,7 +96,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirProductResource" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirProductResource" >
     update pir_product_resource
     <set >
                   <if test="productId != null  and productId != '' " >

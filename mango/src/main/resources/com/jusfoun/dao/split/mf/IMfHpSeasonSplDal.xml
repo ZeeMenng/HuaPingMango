@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfHpSeasonSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfHpSeasonSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfHpSeason" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,date_time,region_code,region_name,undulation
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfHpSeason" >
     insert into mf_hp_season
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -101,7 +101,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfHpSeason" >
     update mf_hp_season
     <set >
                   <if test="dateTime != null  and dateTime != '' " >

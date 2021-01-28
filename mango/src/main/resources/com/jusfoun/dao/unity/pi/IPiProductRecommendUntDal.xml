@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiProductRecommendUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiProductRecommendUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiProductRecommend" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiProductRecommend" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="type_code" property="typeCode" jdbcType="TINYINT" />
               <result column="type_text" property="typeText" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
         id,type_code,type_text,name,brand,weight,selling_price,per_price_unit,mall_interlinkage,release_time,add_time,is_recommend,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiProductRecommend" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiProductRecommend" >
     insert into pi_product_recommend
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -114,8 +114,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_product_recommend
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -124,57 +123,75 @@
     	<foreach collection="list" item="piProductRecommend" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piProductRecommend.id,jdbcType=VARCHAR},
-
-      
           #{piProductRecommend.typeCode,jdbcType=TINYINT},
-
-      
           #{piProductRecommend.typeText,jdbcType=VARCHAR},
-
-      
           #{piProductRecommend.name,jdbcType=VARCHAR},
-
-      
           #{piProductRecommend.brand,jdbcType=VARCHAR},
-
-      
           #{piProductRecommend.weight,jdbcType=NUMERIC},
-
-      
           #{piProductRecommend.sellingPrice,jdbcType=NUMERIC},
-
-      
           #{piProductRecommend.perPriceUnit,jdbcType=NUMERIC},
-
-      
           #{piProductRecommend.mallInterlinkage,jdbcType=VARCHAR},
-
-      
           #{piProductRecommend.releaseTime,jdbcType=TIMESTAMP},
-
-      
           #{piProductRecommend.addTime,jdbcType=TIMESTAMP},
-
-      
           #{piProductRecommend.isRecommend,jdbcType=TINYINT},
-
-      
           #{piProductRecommend.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_product_recommend
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_product_recommend
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piProductRecommend" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piProductRecommend.id,jdbcType=VARCHAR},
+          #{piProductRecommend.typeCode,jdbcType=TINYINT},
+          #{piProductRecommend.typeText,jdbcType=VARCHAR},
+          #{piProductRecommend.name,jdbcType=VARCHAR},
+          #{piProductRecommend.brand,jdbcType=VARCHAR},
+          #{piProductRecommend.weight,jdbcType=NUMERIC},
+          #{piProductRecommend.sellingPrice,jdbcType=NUMERIC},
+          #{piProductRecommend.perPriceUnit,jdbcType=NUMERIC},
+          #{piProductRecommend.mallInterlinkage,jdbcType=VARCHAR},
+          #{piProductRecommend.releaseTime,jdbcType=TIMESTAMP},
+          #{piProductRecommend.addTime,jdbcType=TIMESTAMP},
+          #{piProductRecommend.isRecommend,jdbcType=TINYINT},
+          #{piProductRecommend.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+type_code=values(type_code),
+type_text=values(type_text),
+name=values(name),
+brand=values(brand),
+weight=values(weight),
+selling_price=values(selling_price),
+per_price_unit=values(per_price_unit),
+mall_interlinkage=values(mall_interlinkage),
+release_time=values(release_time),
+add_time=values(add_time),
+is_recommend=values(is_recommend),
+remark=values(remark)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_product_recommend
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_product_recommend
 		where id  in
@@ -183,7 +200,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiProductRecommend" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiProductRecommend" >
     update pi_product_recommend
     <set >
                   <if test="typeCode != null ">
@@ -286,23 +305,35 @@
          </trim>
          <trim prefix="type_text =case" suffix="end,">
               <foreach collection="list" item="piProductRecommend" index="index">
-                  <if test="piProductRecommend.typeText != null and piProductRecommend.typeText  != '' " >
+                  <if test="piProductRecommend.typeText != null and piProductRecommend.typeText  != ''  and piProductRecommend.typeText  != '-1' ">
                      when id=#{piProductRecommend.id} then #{piProductRecommend.typeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="piProductRecommend.typeText != null  and piProductRecommend.typeText  == '-1' ">
+                     when id=#{piProductRecommend.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="piProductRecommend" index="index">
-                  <if test="piProductRecommend.name != null and piProductRecommend.name  != '' " >
+                  <if test="piProductRecommend.name != null and piProductRecommend.name  != ''  and piProductRecommend.name  != '-1' ">
                      when id=#{piProductRecommend.id} then #{piProductRecommend.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="piProductRecommend.name != null  and piProductRecommend.name  == '-1' ">
+                     when id=#{piProductRecommend.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="brand =case" suffix="end,">
               <foreach collection="list" item="piProductRecommend" index="index">
-                  <if test="piProductRecommend.brand != null and piProductRecommend.brand  != '' " >
+                  <if test="piProductRecommend.brand != null and piProductRecommend.brand  != ''  and piProductRecommend.brand  != '-1' ">
                      when id=#{piProductRecommend.id} then #{piProductRecommend.brand,jdbcType=VARCHAR}
                   </if>
+                  <if test="piProductRecommend.brand != null  and piProductRecommend.brand  == '-1' ">
+                     when id=#{piProductRecommend.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="weight =case" suffix="end,">
@@ -328,9 +359,13 @@
          </trim>
          <trim prefix="mall_interlinkage =case" suffix="end,">
               <foreach collection="list" item="piProductRecommend" index="index">
-                  <if test="piProductRecommend.mallInterlinkage != null and piProductRecommend.mallInterlinkage  != '' " >
+                  <if test="piProductRecommend.mallInterlinkage != null and piProductRecommend.mallInterlinkage  != ''  and piProductRecommend.mallInterlinkage  != '-1' ">
                      when id=#{piProductRecommend.id} then #{piProductRecommend.mallInterlinkage,jdbcType=VARCHAR}
                   </if>
+                  <if test="piProductRecommend.mallInterlinkage != null  and piProductRecommend.mallInterlinkage  == '-1' ">
+                     when id=#{piProductRecommend.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="release_time =case" suffix="end,">
@@ -356,14 +391,18 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="piProductRecommend" index="index">
-                  <if test="piProductRecommend.remark != null and piProductRecommend.remark  != '' " >
+                  <if test="piProductRecommend.remark != null and piProductRecommend.remark  != ''  and piProductRecommend.remark  != '-1' ">
                      when id=#{piProductRecommend.id} then #{piProductRecommend.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="piProductRecommend.remark != null  and piProductRecommend.remark  == '-1' ">
+                     when id=#{piProductRecommend.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piProductRecommend" index="index" open="(" close=")" separator=",">
 			#{piProductRecommend.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -373,84 +412,60 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_product_recommend
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="typeCode  != null " >
-              type_code,
-          </if>
-          <if test="typeText  != null and typeText  != '' " >
-              type_text,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="brand  != null and brand  != '' " >
-              brand,
-          </if>
-          <if test="weight  != null " >
-              weight,
-          </if>
-          <if test="sellingPrice  != null " >
-              selling_price,
-          </if>
-          <if test="perPriceUnit  != null " >
-              per_price_unit,
-          </if>
-          <if test="mallInterlinkage  != null and mallInterlinkage  != '' " >
-              mall_interlinkage,
-          </if>
-          <if test="releaseTime  != null " >
-              release_time,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="isRecommend  != null " >
-              is_recommend,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+id,
+type_code,
+type_text,
+name,
+brand,
+weight,
+selling_price,
+per_price_unit,
+mall_interlinkage,
+release_time,
+add_time,
+is_recommend,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="piProductRecommend" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piProductRecommend.id ,jdbcType=VARCHAR},
-                  <if test="t.typeCode != null ">
+                  
                     #{piProductRecommend.typeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.typeText  != null  and t.typeText != '' " >
+            
+                  
                      #{piProductRecommend.typeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{piProductRecommend.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.brand  != null  and t.brand != '' " >
+                  
+                  
                      #{piProductRecommend.brand ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.weight != null ">
+                  
+                  
                     #{piProductRecommend.weight,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.sellingPrice != null ">
+            
+                  
                     #{piProductRecommend.sellingPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perPriceUnit != null ">
+            
+                  
                     #{piProductRecommend.perPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.mallInterlinkage  != null  and t.mallInterlinkage != '' " >
+            
+                  
                      #{piProductRecommend.mallInterlinkage ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.releaseTime != null ">
+                  
+                  
                     #{piProductRecommend.releaseTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.addTime != null ">
+            
+                  
                     #{piProductRecommend.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.isRecommend != null ">
+            
+                  
                     #{piProductRecommend.isRecommend,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{piProductRecommend.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

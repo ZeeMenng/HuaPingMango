@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.unity.mf;
+package com.zee.bll.extend.unity.mf;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.unity.mf.MfProcessYieldGenUntBll;
+import com.zee.bll.generate.unity.mf.MfProcessYieldGenUntBll;
 
 
 /**

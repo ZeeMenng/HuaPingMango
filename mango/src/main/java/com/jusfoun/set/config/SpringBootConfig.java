@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -14,12 +14,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-import com.jusfoun.set.interceptor.AccessTokenVerifyInterceptor;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.set.interceptor.AccessTokenVerifyInterceptor;
+import com.zee.utl.SymbolicConstant;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.jusfoun.app.**.gp.**", "com.jusfoun.app.**.pi.**", "com.jusfoun.set.**"})
+@ComponentScan(basePackages = { "com.zee.app.**.gp.**", "com.zee.app.**.pi.**", "com.zee.set.**"})
 public class SpringBootConfig extends WebMvcAutoConfigurationAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

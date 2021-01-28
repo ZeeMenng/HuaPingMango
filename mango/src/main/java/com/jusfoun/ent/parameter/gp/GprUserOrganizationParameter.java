@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.gp;
+package com.zee.ent.parameter.gp;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.gp.GprUserOrganization;
-import com.jusfoun.ent.generate.gp.GprUserOrganizationGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.gp.GprUserOrganization;
+import com.zee.ent.generate.gp.GprUserOrganizationGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

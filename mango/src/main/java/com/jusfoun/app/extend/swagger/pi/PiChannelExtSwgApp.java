@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiChannelExtGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
+import com.zee.app.generate.swagger.pi.PiChannelExtGenSwgApp;
+import com.zee.ent.custom.ResultModel;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

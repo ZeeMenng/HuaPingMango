@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.util.ListUtils;
 
-import com.jusfoun.bll.extend.unity.da.DaCrawlerUntBll;
-import com.jusfoun.ent.extend.da.DaCrawler;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.bll.extend.unity.da.DaCrawlerUntBll;
+import com.zee.ent.extend.da.DaCrawler;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

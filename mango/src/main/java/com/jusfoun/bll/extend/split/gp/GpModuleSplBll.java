@@ -1,4 +1,4 @@
-package com.jusfoun.bll.extend.split.gp;
+package com.zee.bll.extend.split.gp;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -9,19 +9,19 @@ import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.gp.GpModuleGenSplBll;
-import com.jusfoun.dao.split.gp.IGpMenuSplDal;
-import com.jusfoun.dao.split.gp.IGprModulePageSplDal;
-import com.jusfoun.dao.split.gp.IGprRoleModuleSplDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpMenu;
-import com.jusfoun.ent.extend.gp.GpModule;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.split.gp.GpModuleGenSplBll;
+import com.zee.dao.split.gp.IGpMenuSplDal;
+import com.zee.dao.split.gp.IGprModulePageSplDal;
+import com.zee.dao.split.gp.IGprRoleModuleSplDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpMenu;
+import com.zee.ent.extend.gp.GpModule;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

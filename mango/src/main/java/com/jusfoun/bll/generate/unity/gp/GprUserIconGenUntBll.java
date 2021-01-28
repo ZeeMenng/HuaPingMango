@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.gp;
+package com.zee.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.gp.IGprUserIconUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GprUserIcon;
-import com.jusfoun.ent.parameter.gp.GprUserIconParameter;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.unity.base.BaseUntBll;
+import com.zee.dao.unity.gp.IGprUserIconUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GprUserIcon;
+import com.zee.ent.parameter.gp.GprUserIconParameter;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

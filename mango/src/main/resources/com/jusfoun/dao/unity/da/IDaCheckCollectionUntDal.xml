@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaCheckCollectionUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaCheckCollectionUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCheckCollection" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaCheckCollection" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
@@ -23,7 +23,7 @@
         id,common_field_id,crop_type_code,crop_type_text,strains_code,strains_text,sample_name,name,sample_no,sample_date,sample_place,sample_personnel,check_project,check_project_code
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCheckCollection" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaCheckCollection" >
     insert into da_check_collection
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -125,8 +125,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_check_collection
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -135,60 +134,78 @@
     	<foreach collection="list" item="daCheckCollection" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daCheckCollection.id,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daCheckCollection.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.strainsCode,jdbcType=TINYINT},
-
-      
           #{daCheckCollection.strainsText,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.sampleName,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.name,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.sampleNo,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.sampleDate,jdbcType=TIMESTAMP},
-
-      
           #{daCheckCollection.samplePlace,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.samplePersonnel,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.checkProject,jdbcType=VARCHAR},
-
-      
           #{daCheckCollection.checkProjectCode,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_check_collection
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_check_collection
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCheckCollection" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daCheckCollection.id,jdbcType=VARCHAR},
+          #{daCheckCollection.commonFieldId,jdbcType=VARCHAR},
+          #{daCheckCollection.cropTypeCode,jdbcType=TINYINT},
+          #{daCheckCollection.cropTypeText,jdbcType=VARCHAR},
+          #{daCheckCollection.strainsCode,jdbcType=TINYINT},
+          #{daCheckCollection.strainsText,jdbcType=VARCHAR},
+          #{daCheckCollection.sampleName,jdbcType=VARCHAR},
+          #{daCheckCollection.name,jdbcType=VARCHAR},
+          #{daCheckCollection.sampleNo,jdbcType=VARCHAR},
+          #{daCheckCollection.sampleDate,jdbcType=TIMESTAMP},
+          #{daCheckCollection.samplePlace,jdbcType=VARCHAR},
+          #{daCheckCollection.samplePersonnel,jdbcType=VARCHAR},
+          #{daCheckCollection.checkProject,jdbcType=VARCHAR},
+          #{daCheckCollection.checkProjectCode,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+sample_name=values(sample_name),
+name=values(name),
+sample_no=values(sample_no),
+sample_date=values(sample_date),
+sample_place=values(sample_place),
+sample_personnel=values(sample_personnel),
+check_project=values(check_project),
+check_project_code=values(check_project_code)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_check_collection
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_check_collection
 		where id  in
@@ -197,7 +214,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCheckCollection" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaCheckCollection" >
     update da_check_collection
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -299,9 +318,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.commonFieldId != null and daCheckCollection.commonFieldId  != '' " >
+                  <if test="daCheckCollection.commonFieldId != null and daCheckCollection.commonFieldId  != ''  and daCheckCollection.commonFieldId  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.commonFieldId != null  and daCheckCollection.commonFieldId  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -313,9 +336,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.cropTypeText != null and daCheckCollection.cropTypeText  != '' " >
+                  <if test="daCheckCollection.cropTypeText != null and daCheckCollection.cropTypeText  != ''  and daCheckCollection.cropTypeText  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.cropTypeText != null  and daCheckCollection.cropTypeText  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -327,30 +354,46 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.strainsText != null and daCheckCollection.strainsText  != '' " >
+                  <if test="daCheckCollection.strainsText != null and daCheckCollection.strainsText  != ''  and daCheckCollection.strainsText  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.strainsText != null  and daCheckCollection.strainsText  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sample_name =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.sampleName != null and daCheckCollection.sampleName  != '' " >
+                  <if test="daCheckCollection.sampleName != null and daCheckCollection.sampleName  != ''  and daCheckCollection.sampleName  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.sampleName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.sampleName != null  and daCheckCollection.sampleName  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.name != null and daCheckCollection.name  != '' " >
+                  <if test="daCheckCollection.name != null and daCheckCollection.name  != ''  and daCheckCollection.name  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.name != null  and daCheckCollection.name  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sample_no =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.sampleNo != null and daCheckCollection.sampleNo  != '' " >
+                  <if test="daCheckCollection.sampleNo != null and daCheckCollection.sampleNo  != ''  and daCheckCollection.sampleNo  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.sampleNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.sampleNo != null  and daCheckCollection.sampleNo  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sample_date =case" suffix="end,">
@@ -362,23 +405,35 @@
          </trim>
          <trim prefix="sample_place =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.samplePlace != null and daCheckCollection.samplePlace  != '' " >
+                  <if test="daCheckCollection.samplePlace != null and daCheckCollection.samplePlace  != ''  and daCheckCollection.samplePlace  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.samplePlace,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.samplePlace != null  and daCheckCollection.samplePlace  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sample_personnel =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.samplePersonnel != null and daCheckCollection.samplePersonnel  != '' " >
+                  <if test="daCheckCollection.samplePersonnel != null and daCheckCollection.samplePersonnel  != ''  and daCheckCollection.samplePersonnel  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.samplePersonnel,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.samplePersonnel != null  and daCheckCollection.samplePersonnel  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="check_project =case" suffix="end,">
               <foreach collection="list" item="daCheckCollection" index="index">
-                  <if test="daCheckCollection.checkProject != null and daCheckCollection.checkProject  != '' " >
+                  <if test="daCheckCollection.checkProject != null and daCheckCollection.checkProject  != ''  and daCheckCollection.checkProject  != '-1' ">
                      when id=#{daCheckCollection.id} then #{daCheckCollection.checkProject,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCheckCollection.checkProject != null  and daCheckCollection.checkProject  == '-1' ">
+                     when id=#{daCheckCollection.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="check_project_code =case" suffix="end,">
@@ -390,7 +445,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daCheckCollection" index="index" open="(" close=")" separator=",">
 			#{daCheckCollection.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -400,90 +455,64 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_check_collection
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="sampleName  != null and sampleName  != '' " >
-              sample_name,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="sampleNo  != null and sampleNo  != '' " >
-              sample_no,
-          </if>
-          <if test="sampleDate  != null " >
-              sample_date,
-          </if>
-          <if test="samplePlace  != null and samplePlace  != '' " >
-              sample_place,
-          </if>
-          <if test="samplePersonnel  != null and samplePersonnel  != '' " >
-              sample_personnel,
-          </if>
-          <if test="checkProject  != null and checkProject  != '' " >
-              check_project,
-          </if>
-          <if test="checkProjectCode  != null " >
-              check_project_code,
-          </if>
+id,
+common_field_id,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+sample_name,
+name,
+sample_no,
+sample_date,
+sample_place,
+sample_personnel,
+check_project,
+check_project_code,
     </trim>
     VALUES
     <foreach collection="list" item="daCheckCollection" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daCheckCollection.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daCheckCollection.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daCheckCollection.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daCheckCollection.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daCheckCollection.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daCheckCollection.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sampleName  != null  and t.sampleName != '' " >
+                  
+                  
                      #{daCheckCollection.sampleName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daCheckCollection.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sampleNo  != null  and t.sampleNo != '' " >
+                  
+                  
                      #{daCheckCollection.sampleNo ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sampleDate != null ">
+                  
+                  
                     #{daCheckCollection.sampleDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.samplePlace  != null  and t.samplePlace != '' " >
+            
+                  
                      #{daCheckCollection.samplePlace ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.samplePersonnel  != null  and t.samplePersonnel != '' " >
+                  
+                  
                      #{daCheckCollection.samplePersonnel ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.checkProject  != null  and t.checkProject != '' " >
+                  
+                  
                      #{daCheckCollection.checkProject ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.checkProjectCode != null ">
+                  
+                  
                     #{daCheckCollection.checkProjectCode,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

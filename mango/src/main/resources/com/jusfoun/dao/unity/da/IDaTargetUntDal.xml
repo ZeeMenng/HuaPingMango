@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaTargetUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaTargetUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaTarget" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaTarget" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
               <result column="target_name" property="targetName" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
         id,serial_no,target_name,target_unit_code,target_unit_text,target_html_code,target_html_text,html_value,remark,add_user_id,add_time,status_code,status_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaTarget" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaTarget" >
     insert into da_target
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -117,8 +117,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_target
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -127,57 +126,75 @@
     	<foreach collection="list" item="daTarget" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daTarget.id,jdbcType=VARCHAR},
-
-      
           #{daTarget.serialNo,jdbcType=VARCHAR},
-
-      
           #{daTarget.targetName,jdbcType=VARCHAR},
-
-      
           #{daTarget.targetUnitCode,jdbcType=TINYINT},
-
-      
           #{daTarget.targetUnitText,jdbcType=VARCHAR},
-
-      
           #{daTarget.targetHtmlCode,jdbcType=TINYINT},
-
-      
           #{daTarget.targetHtmlText,jdbcType=VARCHAR},
-
-      
           #{daTarget.htmlValue,jdbcType=VARCHAR},
-
-      
           #{daTarget.remark,jdbcType=VARCHAR},
-
-      
           #{daTarget.addUserId,jdbcType=VARCHAR},
-
-      
           #{daTarget.addTime,jdbcType=TIMESTAMP},
-
-      
           #{daTarget.statusCode,jdbcType=TINYINT},
-
-      
           #{daTarget.statusText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_target
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_target
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daTarget" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daTarget.id,jdbcType=VARCHAR},
+          #{daTarget.serialNo,jdbcType=VARCHAR},
+          #{daTarget.targetName,jdbcType=VARCHAR},
+          #{daTarget.targetUnitCode,jdbcType=TINYINT},
+          #{daTarget.targetUnitText,jdbcType=VARCHAR},
+          #{daTarget.targetHtmlCode,jdbcType=TINYINT},
+          #{daTarget.targetHtmlText,jdbcType=VARCHAR},
+          #{daTarget.htmlValue,jdbcType=VARCHAR},
+          #{daTarget.remark,jdbcType=VARCHAR},
+          #{daTarget.addUserId,jdbcType=VARCHAR},
+          #{daTarget.addTime,jdbcType=TIMESTAMP},
+          #{daTarget.statusCode,jdbcType=TINYINT},
+          #{daTarget.statusText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+serial_no=values(serial_no),
+target_name=values(target_name),
+target_unit_code=values(target_unit_code),
+target_unit_text=values(target_unit_text),
+target_html_code=values(target_html_code),
+target_html_text=values(target_html_text),
+html_value=values(html_value),
+remark=values(remark),
+add_user_id=values(add_user_id),
+add_time=values(add_time),
+status_code=values(status_code),
+status_text=values(status_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_target
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_target
 		where id  in
@@ -186,7 +203,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaTarget" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaTarget" >
     update da_target
     <set >
                   <if test="serialNo != null  and serialNo != '' " >
@@ -282,16 +301,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="serial_no =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.serialNo != null and daTarget.serialNo  != '' " >
+                  <if test="daTarget.serialNo != null and daTarget.serialNo  != ''  and daTarget.serialNo  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.serialNo,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.serialNo != null  and daTarget.serialNo  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_name =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.targetName != null and daTarget.targetName  != '' " >
+                  <if test="daTarget.targetName != null and daTarget.targetName  != ''  and daTarget.targetName  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.targetName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.targetName != null  and daTarget.targetName  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_unit_code =case" suffix="end,">
@@ -303,9 +330,13 @@
          </trim>
          <trim prefix="target_unit_text =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.targetUnitText != null and daTarget.targetUnitText  != '' " >
+                  <if test="daTarget.targetUnitText != null and daTarget.targetUnitText  != ''  and daTarget.targetUnitText  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.targetUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.targetUnitText != null  and daTarget.targetUnitText  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="target_html_code =case" suffix="end,">
@@ -317,30 +348,46 @@
          </trim>
          <trim prefix="target_html_text =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.targetHtmlText != null and daTarget.targetHtmlText  != '' " >
+                  <if test="daTarget.targetHtmlText != null and daTarget.targetHtmlText  != ''  and daTarget.targetHtmlText  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.targetHtmlText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.targetHtmlText != null  and daTarget.targetHtmlText  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="html_value =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.htmlValue != null and daTarget.htmlValue  != '' " >
+                  <if test="daTarget.htmlValue != null and daTarget.htmlValue  != ''  and daTarget.htmlValue  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.htmlValue,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.htmlValue != null  and daTarget.htmlValue  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.remark != null and daTarget.remark  != '' " >
+                  <if test="daTarget.remark != null and daTarget.remark  != ''  and daTarget.remark  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.remark != null  and daTarget.remark  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_user_id =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.addUserId != null and daTarget.addUserId  != '' " >
+                  <if test="daTarget.addUserId != null and daTarget.addUserId  != ''  and daTarget.addUserId  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.addUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.addUserId != null  and daTarget.addUserId  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -359,14 +406,18 @@
          </trim>
          <trim prefix="status_text =case" suffix="end,">
               <foreach collection="list" item="daTarget" index="index">
-                  <if test="daTarget.statusText != null and daTarget.statusText  != '' " >
+                  <if test="daTarget.statusText != null and daTarget.statusText  != ''  and daTarget.statusText  != '-1' ">
                      when id=#{daTarget.id} then #{daTarget.statusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daTarget.statusText != null  and daTarget.statusText  == '-1' ">
+                     when id=#{daTarget.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daTarget" index="index" open="(" close=")" separator=",">
 			#{daTarget.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -376,84 +427,60 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_target
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="serialNo  != null and serialNo  != '' " >
-              serial_no,
-          </if>
-          <if test="targetName  != null and targetName  != '' " >
-              target_name,
-          </if>
-          <if test="targetUnitCode  != null " >
-              target_unit_code,
-          </if>
-          <if test="targetUnitText  != null and targetUnitText  != '' " >
-              target_unit_text,
-          </if>
-          <if test="targetHtmlCode  != null " >
-              target_html_code,
-          </if>
-          <if test="targetHtmlText  != null and targetHtmlText  != '' " >
-              target_html_text,
-          </if>
-          <if test="htmlValue  != null and htmlValue  != '' " >
-              html_value,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addUserId  != null and addUserId  != '' " >
-              add_user_id,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="statusCode  != null " >
-              status_code,
-          </if>
-          <if test="statusText  != null and statusText  != '' " >
-              status_text,
-          </if>
+id,
+serial_no,
+target_name,
+target_unit_code,
+target_unit_text,
+target_html_code,
+target_html_text,
+html_value,
+remark,
+add_user_id,
+add_time,
+status_code,
+status_text,
     </trim>
     VALUES
     <foreach collection="list" item="daTarget" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daTarget.id ,jdbcType=VARCHAR},
-                  <if test="t.serialNo  != null  and t.serialNo != '' " >
+                  
                      #{daTarget.serialNo ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.targetName  != null  and t.targetName != '' " >
+                  
+                  
                      #{daTarget.targetName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.targetUnitCode != null ">
+                  
+                  
                     #{daTarget.targetUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.targetUnitText  != null  and t.targetUnitText != '' " >
+            
+                  
                      #{daTarget.targetUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.targetHtmlCode != null ">
+                  
+                  
                     #{daTarget.targetHtmlCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.targetHtmlText  != null  and t.targetHtmlText != '' " >
+            
+                  
                      #{daTarget.targetHtmlText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.htmlValue  != null  and t.htmlValue != '' " >
+                  
+                  
                      #{daTarget.htmlValue ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{daTarget.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addUserId  != null  and t.addUserId != '' " >
+                  
+                  
                      #{daTarget.addUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
+                  
+                  
                     #{daTarget.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.statusCode != null ">
+            
+                  
                     #{daTarget.statusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.statusText  != null  and t.statusText != '' " >
+            
+                  
                      #{daTarget.statusText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

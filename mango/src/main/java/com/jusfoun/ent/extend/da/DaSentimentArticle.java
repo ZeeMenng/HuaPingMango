@@ -1,9 +1,9 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.generate.da.DaSentimentArticleGenEnt;
+import com.zee.ent.generate.da.DaSentimentArticleGenEnt;
 
 /**
  * @author Zee

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpDictionarySplDal" >
+<mapper namespace="com.zee.dao.split.gp.IGpDictionarySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpDictionary" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpDictionary" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="type_id" property="typeId" jdbcType="VARCHAR" />
               <result column="code" property="code" jdbcType="TINYINT" />
@@ -15,7 +15,7 @@
         id,type_id,code,text,priority,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpDictionary" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpDictionary" >
     insert into gp_dictionary
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -111,7 +111,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDictionary" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpDictionary" >
     update gp_dictionary
     <set >
                   <if test="typeId != null  and typeId != '' " >

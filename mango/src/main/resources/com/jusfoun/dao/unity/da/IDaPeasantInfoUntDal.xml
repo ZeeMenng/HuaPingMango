@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaPeasantInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaPeasantInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaPeasantInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
         id,common_field_id,id_number,address,mobile_type,peasant_type_code,peasant_type_text,enterprise_name,mobile_operate_code,mobile_operate_text,user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaPeasantInfo" >
     insert into da_peasant_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -103,8 +103,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_peasant_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -113,51 +112,69 @@
     	<foreach collection="list" item="daPeasantInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daPeasantInfo.id,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.idNumber,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.address,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.mobileType,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.peasantTypeCode,jdbcType=TINYINT},
-
-      
           #{daPeasantInfo.peasantTypeText,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.mobileOperateCode,jdbcType=TINYINT},
-
-      
           #{daPeasantInfo.mobileOperateText,jdbcType=VARCHAR},
-
-      
           #{daPeasantInfo.userId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_peasant_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_peasant_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daPeasantInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daPeasantInfo.id,jdbcType=VARCHAR},
+          #{daPeasantInfo.commonFieldId,jdbcType=VARCHAR},
+          #{daPeasantInfo.idNumber,jdbcType=VARCHAR},
+          #{daPeasantInfo.address,jdbcType=VARCHAR},
+          #{daPeasantInfo.mobileType,jdbcType=VARCHAR},
+          #{daPeasantInfo.peasantTypeCode,jdbcType=TINYINT},
+          #{daPeasantInfo.peasantTypeText,jdbcType=VARCHAR},
+          #{daPeasantInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daPeasantInfo.mobileOperateCode,jdbcType=TINYINT},
+          #{daPeasantInfo.mobileOperateText,jdbcType=VARCHAR},
+          #{daPeasantInfo.userId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+id_number=values(id_number),
+address=values(address),
+mobile_type=values(mobile_type),
+peasant_type_code=values(peasant_type_code),
+peasant_type_text=values(peasant_type_text),
+enterprise_name=values(enterprise_name),
+mobile_operate_code=values(mobile_operate_code),
+mobile_operate_text=values(mobile_operate_text),
+user_id=values(user_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_peasant_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_peasant_info
 		where id  in
@@ -166,7 +183,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaPeasantInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaPeasantInfo" >
     update da_peasant_info
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -250,30 +269,46 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.commonFieldId != null and daPeasantInfo.commonFieldId  != '' " >
+                  <if test="daPeasantInfo.commonFieldId != null and daPeasantInfo.commonFieldId  != ''  and daPeasantInfo.commonFieldId  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.commonFieldId != null  and daPeasantInfo.commonFieldId  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="id_number =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.idNumber != null and daPeasantInfo.idNumber  != '' " >
+                  <if test="daPeasantInfo.idNumber != null and daPeasantInfo.idNumber  != ''  and daPeasantInfo.idNumber  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.idNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.idNumber != null  and daPeasantInfo.idNumber  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.address != null and daPeasantInfo.address  != '' " >
+                  <if test="daPeasantInfo.address != null and daPeasantInfo.address  != ''  and daPeasantInfo.address  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.address != null  and daPeasantInfo.address  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="mobile_type =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.mobileType != null and daPeasantInfo.mobileType  != '' " >
+                  <if test="daPeasantInfo.mobileType != null and daPeasantInfo.mobileType  != ''  and daPeasantInfo.mobileType  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.mobileType,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.mobileType != null  and daPeasantInfo.mobileType  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="peasant_type_code =case" suffix="end,">
@@ -285,16 +320,24 @@
          </trim>
          <trim prefix="peasant_type_text =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.peasantTypeText != null and daPeasantInfo.peasantTypeText  != '' " >
+                  <if test="daPeasantInfo.peasantTypeText != null and daPeasantInfo.peasantTypeText  != ''  and daPeasantInfo.peasantTypeText  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.peasantTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.peasantTypeText != null  and daPeasantInfo.peasantTypeText  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.enterpriseName != null and daPeasantInfo.enterpriseName  != '' " >
+                  <if test="daPeasantInfo.enterpriseName != null and daPeasantInfo.enterpriseName  != ''  and daPeasantInfo.enterpriseName  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.enterpriseName != null  and daPeasantInfo.enterpriseName  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="mobile_operate_code =case" suffix="end,">
@@ -306,21 +349,29 @@
          </trim>
          <trim prefix="mobile_operate_text =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.mobileOperateText != null and daPeasantInfo.mobileOperateText  != '' " >
+                  <if test="daPeasantInfo.mobileOperateText != null and daPeasantInfo.mobileOperateText  != ''  and daPeasantInfo.mobileOperateText  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.mobileOperateText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.mobileOperateText != null  and daPeasantInfo.mobileOperateText  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="daPeasantInfo" index="index">
-                  <if test="daPeasantInfo.userId != null and daPeasantInfo.userId  != '' " >
+                  <if test="daPeasantInfo.userId != null and daPeasantInfo.userId  != ''  and daPeasantInfo.userId  != '-1' ">
                      when id=#{daPeasantInfo.id} then #{daPeasantInfo.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daPeasantInfo.userId != null  and daPeasantInfo.userId  == '-1' ">
+                     when id=#{daPeasantInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daPeasantInfo" index="index" open="(" close=")" separator=",">
 			#{daPeasantInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -330,72 +381,52 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_peasant_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="idNumber  != null and idNumber  != '' " >
-              id_number,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="mobileType  != null and mobileType  != '' " >
-              mobile_type,
-          </if>
-          <if test="peasantTypeCode  != null " >
-              peasant_type_code,
-          </if>
-          <if test="peasantTypeText  != null and peasantTypeText  != '' " >
-              peasant_type_text,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="mobileOperateCode  != null " >
-              mobile_operate_code,
-          </if>
-          <if test="mobileOperateText  != null and mobileOperateText  != '' " >
-              mobile_operate_text,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
+id,
+common_field_id,
+id_number,
+address,
+mobile_type,
+peasant_type_code,
+peasant_type_text,
+enterprise_name,
+mobile_operate_code,
+mobile_operate_text,
+user_id,
     </trim>
     VALUES
     <foreach collection="list" item="daPeasantInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daPeasantInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daPeasantInfo.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.idNumber  != null  and t.idNumber != '' " >
+                  
+                  
                      #{daPeasantInfo.idNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
+                  
+                  
                      #{daPeasantInfo.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.mobileType  != null  and t.mobileType != '' " >
+                  
+                  
                      #{daPeasantInfo.mobileType ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.peasantTypeCode != null ">
+                  
+                  
                     #{daPeasantInfo.peasantTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.peasantTypeText  != null  and t.peasantTypeText != '' " >
+            
+                  
                      #{daPeasantInfo.peasantTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daPeasantInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.mobileOperateCode != null ">
+                  
+                  
                     #{daPeasantInfo.mobileOperateCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.mobileOperateText  != null  and t.mobileOperateText != '' " >
+            
+                  
                      #{daPeasantInfo.mobileOperateText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{daPeasantInfo.userId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

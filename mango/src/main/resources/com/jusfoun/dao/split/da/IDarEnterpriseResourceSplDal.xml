@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDarEnterpriseResourceSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDarEnterpriseResourceSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DarEnterpriseResource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,enterprise_id,resource_id,type_code
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DarEnterpriseResource" >
     insert into dar_enterprise_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -90,7 +90,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DarEnterpriseResource" >
     update dar_enterprise_resource
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >

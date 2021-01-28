@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.generate.unity.gp;
+﻿package com.zee.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.gp.IGprRolePageUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GprRolePage;
-import com.jusfoun.ent.parameter.gp.GprRolePageParameter;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.unity.base.BaseUntBll;
+import com.zee.dao.unity.gp.IGprRolePageUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GprRolePage;
+import com.zee.ent.parameter.gp.GprRolePageParameter;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/4 14:18:22
+ * @updateDate 2021/1/28 16:07:05
  * @description 角色拥有的页面权限。 业务逻辑处理类，扩展自BaseUntBll<GprRolePage>，自动生成。
  */
 public class GprRolePageGenUntBll extends BaseUntBll<GprRolePage> {

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfSaleEcommerceCrawUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfSaleEcommerceCrawUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfSaleEcommerceCraw" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
@@ -37,7 +37,7 @@
         id,common_field_id,crop_type_code,crop_type_text,strains_code,strains_text,ecommerce_code,ecommerce_text,sale_price,sale_price_code,sale_price_text,sale_price_unit,price_range_code,price_range_text,sale_amount,sale_amount_code,sale_amount_text,sale_amount_unit,weight_specification_code,weight_specification_text,sale_volume,sale_volume_unit_code,sale_volume_unit_text,sale_volume_unit,product_area_code,product_area_text,sale_area_code,sale_area_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfSaleEcommerceCraw" >
     insert into mf_sale_ecommerce_craw
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -227,8 +227,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_sale_ecommerce_craw
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -237,102 +236,120 @@
     	<foreach collection="list" item="mfSaleEcommerceCraw" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfSaleEcommerceCraw.id,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.strainsCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.strainsText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.ecommerceCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.ecommerceText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.salePrice,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.salePriceCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.salePriceText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.salePriceUnit,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.priceRangeCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.priceRangeText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleAmount,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.saleAmountCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.saleAmountText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleAmountUnit,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.weightSpecificationCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.weightSpecificationText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleVolume,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.saleVolumeUnitCode,jdbcType=TINYINT},
-
-      
           #{mfSaleEcommerceCraw.saleVolumeUnitText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleVolumeUnit,jdbcType=NUMERIC},
-
-      
           #{mfSaleEcommerceCraw.productAreaCode,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.productAreaText,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleAreaCode,jdbcType=VARCHAR},
-
-      
           #{mfSaleEcommerceCraw.saleAreaText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_sale_ecommerce_craw
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_sale_ecommerce_craw
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfSaleEcommerceCraw" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfSaleEcommerceCraw.id,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.commonFieldId,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.cropTypeCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.cropTypeText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.strainsCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.strainsText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.ecommerceCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.ecommerceText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.salePrice,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.salePriceCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.salePriceText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.salePriceUnit,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.priceRangeCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.priceRangeText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleAmount,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.saleAmountCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.saleAmountText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleAmountUnit,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.weightSpecificationCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.weightSpecificationText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleVolume,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.saleVolumeUnitCode,jdbcType=TINYINT},
+          #{mfSaleEcommerceCraw.saleVolumeUnitText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleVolumeUnit,jdbcType=NUMERIC},
+          #{mfSaleEcommerceCraw.productAreaCode,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.productAreaText,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleAreaCode,jdbcType=VARCHAR},
+          #{mfSaleEcommerceCraw.saleAreaText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+ecommerce_code=values(ecommerce_code),
+ecommerce_text=values(ecommerce_text),
+sale_price=values(sale_price),
+sale_price_code=values(sale_price_code),
+sale_price_text=values(sale_price_text),
+sale_price_unit=values(sale_price_unit),
+price_range_code=values(price_range_code),
+price_range_text=values(price_range_text),
+sale_amount=values(sale_amount),
+sale_amount_code=values(sale_amount_code),
+sale_amount_text=values(sale_amount_text),
+sale_amount_unit=values(sale_amount_unit),
+weight_specification_code=values(weight_specification_code),
+weight_specification_text=values(weight_specification_text),
+sale_volume=values(sale_volume),
+sale_volume_unit_code=values(sale_volume_unit_code),
+sale_volume_unit_text=values(sale_volume_unit_text),
+sale_volume_unit=values(sale_volume_unit),
+product_area_code=values(product_area_code),
+product_area_text=values(product_area_text),
+sale_area_code=values(sale_area_code),
+sale_area_text=values(sale_area_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_sale_ecommerce_craw
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_sale_ecommerce_craw
 		where id  in
@@ -341,7 +358,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfSaleEcommerceCraw" >
     update mf_sale_ecommerce_craw
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -527,9 +546,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.commonFieldId != null and mfSaleEcommerceCraw.commonFieldId  != '' " >
+                  <if test="mfSaleEcommerceCraw.commonFieldId != null and mfSaleEcommerceCraw.commonFieldId  != ''  and mfSaleEcommerceCraw.commonFieldId  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.commonFieldId != null  and mfSaleEcommerceCraw.commonFieldId  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -541,9 +564,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.cropTypeText != null and mfSaleEcommerceCraw.cropTypeText  != '' " >
+                  <if test="mfSaleEcommerceCraw.cropTypeText != null and mfSaleEcommerceCraw.cropTypeText  != ''  and mfSaleEcommerceCraw.cropTypeText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.cropTypeText != null  and mfSaleEcommerceCraw.cropTypeText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -555,9 +582,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.strainsText != null and mfSaleEcommerceCraw.strainsText  != '' " >
+                  <if test="mfSaleEcommerceCraw.strainsText != null and mfSaleEcommerceCraw.strainsText  != ''  and mfSaleEcommerceCraw.strainsText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.strainsText != null  and mfSaleEcommerceCraw.strainsText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="ecommerce_code =case" suffix="end,">
@@ -569,9 +600,13 @@
          </trim>
          <trim prefix="ecommerce_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.ecommerceText != null and mfSaleEcommerceCraw.ecommerceText  != '' " >
+                  <if test="mfSaleEcommerceCraw.ecommerceText != null and mfSaleEcommerceCraw.ecommerceText  != ''  and mfSaleEcommerceCraw.ecommerceText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.ecommerceText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.ecommerceText != null  and mfSaleEcommerceCraw.ecommerceText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_price =case" suffix="end,">
@@ -590,9 +625,13 @@
          </trim>
          <trim prefix="sale_price_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.salePriceText != null and mfSaleEcommerceCraw.salePriceText  != '' " >
+                  <if test="mfSaleEcommerceCraw.salePriceText != null and mfSaleEcommerceCraw.salePriceText  != ''  and mfSaleEcommerceCraw.salePriceText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.salePriceText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.salePriceText != null  and mfSaleEcommerceCraw.salePriceText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_price_unit =case" suffix="end,">
@@ -611,9 +650,13 @@
          </trim>
          <trim prefix="price_range_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.priceRangeText != null and mfSaleEcommerceCraw.priceRangeText  != '' " >
+                  <if test="mfSaleEcommerceCraw.priceRangeText != null and mfSaleEcommerceCraw.priceRangeText  != ''  and mfSaleEcommerceCraw.priceRangeText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.priceRangeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.priceRangeText != null  and mfSaleEcommerceCraw.priceRangeText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_amount =case" suffix="end,">
@@ -632,9 +675,13 @@
          </trim>
          <trim prefix="sale_amount_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.saleAmountText != null and mfSaleEcommerceCraw.saleAmountText  != '' " >
+                  <if test="mfSaleEcommerceCraw.saleAmountText != null and mfSaleEcommerceCraw.saleAmountText  != ''  and mfSaleEcommerceCraw.saleAmountText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.saleAmountText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.saleAmountText != null  and mfSaleEcommerceCraw.saleAmountText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_amount_unit =case" suffix="end,">
@@ -653,9 +700,13 @@
          </trim>
          <trim prefix="weight_specification_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.weightSpecificationText != null and mfSaleEcommerceCraw.weightSpecificationText  != '' " >
+                  <if test="mfSaleEcommerceCraw.weightSpecificationText != null and mfSaleEcommerceCraw.weightSpecificationText  != ''  and mfSaleEcommerceCraw.weightSpecificationText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.weightSpecificationText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.weightSpecificationText != null  and mfSaleEcommerceCraw.weightSpecificationText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_volume =case" suffix="end,">
@@ -674,9 +725,13 @@
          </trim>
          <trim prefix="sale_volume_unit_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.saleVolumeUnitText != null and mfSaleEcommerceCraw.saleVolumeUnitText  != '' " >
+                  <if test="mfSaleEcommerceCraw.saleVolumeUnitText != null and mfSaleEcommerceCraw.saleVolumeUnitText  != ''  and mfSaleEcommerceCraw.saleVolumeUnitText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.saleVolumeUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.saleVolumeUnitText != null  and mfSaleEcommerceCraw.saleVolumeUnitText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_volume_unit =case" suffix="end,">
@@ -688,35 +743,51 @@
          </trim>
          <trim prefix="product_area_code =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.productAreaCode != null and mfSaleEcommerceCraw.productAreaCode  != '' " >
+                  <if test="mfSaleEcommerceCraw.productAreaCode != null and mfSaleEcommerceCraw.productAreaCode  != ''  and mfSaleEcommerceCraw.productAreaCode  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.productAreaCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.productAreaCode != null  and mfSaleEcommerceCraw.productAreaCode  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_area_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.productAreaText != null and mfSaleEcommerceCraw.productAreaText  != '' " >
+                  <if test="mfSaleEcommerceCraw.productAreaText != null and mfSaleEcommerceCraw.productAreaText  != ''  and mfSaleEcommerceCraw.productAreaText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.productAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.productAreaText != null  and mfSaleEcommerceCraw.productAreaText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_area_code =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.saleAreaCode != null and mfSaleEcommerceCraw.saleAreaCode  != '' " >
+                  <if test="mfSaleEcommerceCraw.saleAreaCode != null and mfSaleEcommerceCraw.saleAreaCode  != ''  and mfSaleEcommerceCraw.saleAreaCode  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.saleAreaCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.saleAreaCode != null  and mfSaleEcommerceCraw.saleAreaCode  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_area_text =case" suffix="end,">
               <foreach collection="list" item="mfSaleEcommerceCraw" index="index">
-                  <if test="mfSaleEcommerceCraw.saleAreaText != null and mfSaleEcommerceCraw.saleAreaText  != '' " >
+                  <if test="mfSaleEcommerceCraw.saleAreaText != null and mfSaleEcommerceCraw.saleAreaText  != ''  and mfSaleEcommerceCraw.saleAreaText  != '-1' ">
                      when id=#{mfSaleEcommerceCraw.id} then #{mfSaleEcommerceCraw.saleAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfSaleEcommerceCraw.saleAreaText != null  and mfSaleEcommerceCraw.saleAreaText  == '-1' ">
+                     when id=#{mfSaleEcommerceCraw.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfSaleEcommerceCraw" index="index" open="(" close=")" separator=",">
 			#{mfSaleEcommerceCraw.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -726,174 +797,120 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_sale_ecommerce_craw
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="ecommerceCode  != null " >
-              ecommerce_code,
-          </if>
-          <if test="ecommerceText  != null and ecommerceText  != '' " >
-              ecommerce_text,
-          </if>
-          <if test="salePrice  != null " >
-              sale_price,
-          </if>
-          <if test="salePriceCode  != null " >
-              sale_price_code,
-          </if>
-          <if test="salePriceText  != null and salePriceText  != '' " >
-              sale_price_text,
-          </if>
-          <if test="salePriceUnit  != null " >
-              sale_price_unit,
-          </if>
-          <if test="priceRangeCode  != null " >
-              price_range_code,
-          </if>
-          <if test="priceRangeText  != null and priceRangeText  != '' " >
-              price_range_text,
-          </if>
-          <if test="saleAmount  != null " >
-              sale_amount,
-          </if>
-          <if test="saleAmountCode  != null " >
-              sale_amount_code,
-          </if>
-          <if test="saleAmountText  != null and saleAmountText  != '' " >
-              sale_amount_text,
-          </if>
-          <if test="saleAmountUnit  != null " >
-              sale_amount_unit,
-          </if>
-          <if test="weightSpecificationCode  != null " >
-              weight_specification_code,
-          </if>
-          <if test="weightSpecificationText  != null and weightSpecificationText  != '' " >
-              weight_specification_text,
-          </if>
-          <if test="saleVolume  != null " >
-              sale_volume,
-          </if>
-          <if test="saleVolumeUnitCode  != null " >
-              sale_volume_unit_code,
-          </if>
-          <if test="saleVolumeUnitText  != null and saleVolumeUnitText  != '' " >
-              sale_volume_unit_text,
-          </if>
-          <if test="saleVolumeUnit  != null " >
-              sale_volume_unit,
-          </if>
-          <if test="productAreaCode  != null and productAreaCode  != '' " >
-              product_area_code,
-          </if>
-          <if test="productAreaText  != null and productAreaText  != '' " >
-              product_area_text,
-          </if>
-          <if test="saleAreaCode  != null and saleAreaCode  != '' " >
-              sale_area_code,
-          </if>
-          <if test="saleAreaText  != null and saleAreaText  != '' " >
-              sale_area_text,
-          </if>
+id,
+common_field_id,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+ecommerce_code,
+ecommerce_text,
+sale_price,
+sale_price_code,
+sale_price_text,
+sale_price_unit,
+price_range_code,
+price_range_text,
+sale_amount,
+sale_amount_code,
+sale_amount_text,
+sale_amount_unit,
+weight_specification_code,
+weight_specification_text,
+sale_volume,
+sale_volume_unit_code,
+sale_volume_unit_text,
+sale_volume_unit,
+product_area_code,
+product_area_text,
+sale_area_code,
+sale_area_text,
     </trim>
     VALUES
     <foreach collection="list" item="mfSaleEcommerceCraw" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfSaleEcommerceCraw.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{mfSaleEcommerceCraw.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ecommerceCode != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.ecommerceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.ecommerceText  != null  and t.ecommerceText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.ecommerceText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.salePrice != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.salePrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.salePriceCode != null ">
+            
+                  
                     #{mfSaleEcommerceCraw.salePriceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.salePriceText  != null  and t.salePriceText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.salePriceText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.salePriceUnit != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.salePriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.priceRangeCode != null ">
+            
+                  
                     #{mfSaleEcommerceCraw.priceRangeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.priceRangeText  != null  and t.priceRangeText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.priceRangeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAmount != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.saleAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleAmountCode != null ">
+            
+                  
                     #{mfSaleEcommerceCraw.saleAmountCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.saleAmountText  != null  and t.saleAmountText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.saleAmountText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAmountUnit != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.saleAmountUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.weightSpecificationCode != null ">
+            
+                  
                     #{mfSaleEcommerceCraw.weightSpecificationCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.weightSpecificationText  != null  and t.weightSpecificationText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.weightSpecificationText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleVolume != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.saleVolume,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleVolumeUnitCode != null ">
+            
+                  
                     #{mfSaleEcommerceCraw.saleVolumeUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.saleVolumeUnitText  != null  and t.saleVolumeUnitText != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.saleVolumeUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleVolumeUnit != null ">
+                  
+                  
                     #{mfSaleEcommerceCraw.saleVolumeUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.productAreaCode  != null  and t.productAreaCode != '' " >
+            
+                  
                      #{mfSaleEcommerceCraw.productAreaCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productAreaText  != null  and t.productAreaText != '' " >
+                  
+                  
                      #{mfSaleEcommerceCraw.productAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAreaCode  != null  and t.saleAreaCode != '' " >
+                  
+                  
                      #{mfSaleEcommerceCraw.saleAreaCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAreaText  != null  and t.saleAreaText != '' " >
+                  
+                  
                      #{mfSaleEcommerceCraw.saleAreaText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

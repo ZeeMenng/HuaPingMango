@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.mf;
+package com.zee.ent.extend.mf;
 
-import com.jusfoun.ent.generate.mf.MfProcessYieldGenEnt;
+import com.zee.ent.generate.mf.MfProcessYieldGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

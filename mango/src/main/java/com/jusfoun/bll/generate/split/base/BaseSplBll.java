@@ -1,6 +1,6 @@
-package com.jusfoun.bll.generate.split.base;
+package com.zee.bll.generate.split.base;
 
-import com.jusfoun.bll.base.BaseBll;
+import com.zee.bll.base.BaseBll;
 
 public class BaseSplBll extends BaseBll {
 

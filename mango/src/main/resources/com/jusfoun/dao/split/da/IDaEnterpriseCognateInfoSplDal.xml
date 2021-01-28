@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseCognateInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseCognateInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseCognateInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseCognateInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
         id,enterprise_id,enterprise_name,cognate_enterprise_id,cognate_enterprise_name,cognate_type_code,cognate_type_text,datasource_code,created_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCognateInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseCognateInfo" >
     insert into da_enterprise_cognate_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -154,7 +154,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCognateInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseCognateInfo" >
     update da_enterprise_cognate_info
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >

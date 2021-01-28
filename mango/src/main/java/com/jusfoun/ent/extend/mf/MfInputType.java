@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.mf;
+package com.zee.ent.extend.mf;
 
-import com.jusfoun.ent.generate.mf.MfInputTypeGenEnt;
+import com.zee.ent.generate.mf.MfInputTypeGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

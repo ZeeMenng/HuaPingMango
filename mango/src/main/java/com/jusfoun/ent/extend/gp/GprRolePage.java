@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.gp;
+package com.zee.ent.extend.gp;
 
-import com.jusfoun.ent.generate.gp.GprRolePageGenEnt;
+import com.zee.ent.generate.gp.GprRolePageGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaIdentificationInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaIdentificationInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIdentificationInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIdentificationInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
         id,common_field_id,name,base_name,address,crop_type_code,crop_type_text,strains_code,strains_text,produce_name,identification_type_code,identification_type_text,identification_area,identification_area_code,identification_area_text,identification_area_unit,produce_summation,produce_summation_unit_code,produce_summation_unit_text,produce_summation_unit,process_time,longitude,latitude
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIdentificationInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIdentificationInfo" >
     insert into da_identification_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -191,8 +191,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_identification_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -201,87 +200,105 @@
     	<foreach collection="list" item="daIdentificationInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daIdentificationInfo.id,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.name,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.baseName,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.address,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daIdentificationInfo.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.strainsCode,jdbcType=TINYINT},
-
-      
           #{daIdentificationInfo.strainsText,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.produceName,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.identificationTypeCode,jdbcType=TINYINT},
-
-      
           #{daIdentificationInfo.identificationTypeText,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.identificationArea,jdbcType=NUMERIC},
-
-      
           #{daIdentificationInfo.identificationAreaCode,jdbcType=TINYINT},
-
-      
           #{daIdentificationInfo.identificationAreaText,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.identificationAreaUnit,jdbcType=NUMERIC},
-
-      
           #{daIdentificationInfo.produceSummation,jdbcType=NUMERIC},
-
-      
           #{daIdentificationInfo.produceSummationUnitCode,jdbcType=TINYINT},
-
-      
           #{daIdentificationInfo.produceSummationUnitText,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.produceSummationUnit,jdbcType=NUMERIC},
-
-      
           #{daIdentificationInfo.processTime,jdbcType=TIMESTAMP},
-
-      
           #{daIdentificationInfo.longitude,jdbcType=VARCHAR},
-
-      
           #{daIdentificationInfo.latitude,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_identification_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_identification_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIdentificationInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daIdentificationInfo.id,jdbcType=VARCHAR},
+          #{daIdentificationInfo.commonFieldId,jdbcType=VARCHAR},
+          #{daIdentificationInfo.name,jdbcType=VARCHAR},
+          #{daIdentificationInfo.baseName,jdbcType=VARCHAR},
+          #{daIdentificationInfo.address,jdbcType=VARCHAR},
+          #{daIdentificationInfo.cropTypeCode,jdbcType=TINYINT},
+          #{daIdentificationInfo.cropTypeText,jdbcType=VARCHAR},
+          #{daIdentificationInfo.strainsCode,jdbcType=TINYINT},
+          #{daIdentificationInfo.strainsText,jdbcType=VARCHAR},
+          #{daIdentificationInfo.produceName,jdbcType=VARCHAR},
+          #{daIdentificationInfo.identificationTypeCode,jdbcType=TINYINT},
+          #{daIdentificationInfo.identificationTypeText,jdbcType=VARCHAR},
+          #{daIdentificationInfo.identificationArea,jdbcType=NUMERIC},
+          #{daIdentificationInfo.identificationAreaCode,jdbcType=TINYINT},
+          #{daIdentificationInfo.identificationAreaText,jdbcType=VARCHAR},
+          #{daIdentificationInfo.identificationAreaUnit,jdbcType=NUMERIC},
+          #{daIdentificationInfo.produceSummation,jdbcType=NUMERIC},
+          #{daIdentificationInfo.produceSummationUnitCode,jdbcType=TINYINT},
+          #{daIdentificationInfo.produceSummationUnitText,jdbcType=VARCHAR},
+          #{daIdentificationInfo.produceSummationUnit,jdbcType=NUMERIC},
+          #{daIdentificationInfo.processTime,jdbcType=TIMESTAMP},
+          #{daIdentificationInfo.longitude,jdbcType=VARCHAR},
+          #{daIdentificationInfo.latitude,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+base_name=values(base_name),
+address=values(address),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+produce_name=values(produce_name),
+identification_type_code=values(identification_type_code),
+identification_type_text=values(identification_type_text),
+identification_area=values(identification_area),
+identification_area_code=values(identification_area_code),
+identification_area_text=values(identification_area_text),
+identification_area_unit=values(identification_area_unit),
+produce_summation=values(produce_summation),
+produce_summation_unit_code=values(produce_summation_unit_code),
+produce_summation_unit_text=values(produce_summation_unit_text),
+produce_summation_unit=values(produce_summation_unit),
+process_time=values(process_time),
+longitude=values(longitude),
+latitude=values(latitude)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_identification_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_identification_info
 		where id  in
@@ -290,7 +307,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIdentificationInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIdentificationInfo" >
     update da_identification_info
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -446,30 +465,46 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.commonFieldId != null and daIdentificationInfo.commonFieldId  != '' " >
+                  <if test="daIdentificationInfo.commonFieldId != null and daIdentificationInfo.commonFieldId  != ''  and daIdentificationInfo.commonFieldId  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.commonFieldId != null  and daIdentificationInfo.commonFieldId  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.name != null and daIdentificationInfo.name  != '' " >
+                  <if test="daIdentificationInfo.name != null and daIdentificationInfo.name  != ''  and daIdentificationInfo.name  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.name != null  and daIdentificationInfo.name  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="base_name =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.baseName != null and daIdentificationInfo.baseName  != '' " >
+                  <if test="daIdentificationInfo.baseName != null and daIdentificationInfo.baseName  != ''  and daIdentificationInfo.baseName  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.baseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.baseName != null  and daIdentificationInfo.baseName  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.address != null and daIdentificationInfo.address  != '' " >
+                  <if test="daIdentificationInfo.address != null and daIdentificationInfo.address  != ''  and daIdentificationInfo.address  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.address != null  and daIdentificationInfo.address  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -481,9 +516,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.cropTypeText != null and daIdentificationInfo.cropTypeText  != '' " >
+                  <if test="daIdentificationInfo.cropTypeText != null and daIdentificationInfo.cropTypeText  != ''  and daIdentificationInfo.cropTypeText  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.cropTypeText != null  and daIdentificationInfo.cropTypeText  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -495,16 +534,24 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.strainsText != null and daIdentificationInfo.strainsText  != '' " >
+                  <if test="daIdentificationInfo.strainsText != null and daIdentificationInfo.strainsText  != ''  and daIdentificationInfo.strainsText  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.strainsText != null  and daIdentificationInfo.strainsText  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="produce_name =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.produceName != null and daIdentificationInfo.produceName  != '' " >
+                  <if test="daIdentificationInfo.produceName != null and daIdentificationInfo.produceName  != ''  and daIdentificationInfo.produceName  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.produceName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.produceName != null  and daIdentificationInfo.produceName  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="identification_type_code =case" suffix="end,">
@@ -516,9 +563,13 @@
          </trim>
          <trim prefix="identification_type_text =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.identificationTypeText != null and daIdentificationInfo.identificationTypeText  != '' " >
+                  <if test="daIdentificationInfo.identificationTypeText != null and daIdentificationInfo.identificationTypeText  != ''  and daIdentificationInfo.identificationTypeText  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.identificationTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.identificationTypeText != null  and daIdentificationInfo.identificationTypeText  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="identification_area =case" suffix="end,">
@@ -537,9 +588,13 @@
          </trim>
          <trim prefix="identification_area_text =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.identificationAreaText != null and daIdentificationInfo.identificationAreaText  != '' " >
+                  <if test="daIdentificationInfo.identificationAreaText != null and daIdentificationInfo.identificationAreaText  != ''  and daIdentificationInfo.identificationAreaText  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.identificationAreaText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.identificationAreaText != null  and daIdentificationInfo.identificationAreaText  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="identification_area_unit =case" suffix="end,">
@@ -565,9 +620,13 @@
          </trim>
          <trim prefix="produce_summation_unit_text =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.produceSummationUnitText != null and daIdentificationInfo.produceSummationUnitText  != '' " >
+                  <if test="daIdentificationInfo.produceSummationUnitText != null and daIdentificationInfo.produceSummationUnitText  != ''  and daIdentificationInfo.produceSummationUnitText  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.produceSummationUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.produceSummationUnitText != null  and daIdentificationInfo.produceSummationUnitText  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="produce_summation_unit =case" suffix="end,">
@@ -586,21 +645,29 @@
          </trim>
          <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.longitude != null and daIdentificationInfo.longitude  != '' " >
+                  <if test="daIdentificationInfo.longitude != null and daIdentificationInfo.longitude  != ''  and daIdentificationInfo.longitude  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.longitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.longitude != null  and daIdentificationInfo.longitude  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
               <foreach collection="list" item="daIdentificationInfo" index="index">
-                  <if test="daIdentificationInfo.latitude != null and daIdentificationInfo.latitude  != '' " >
+                  <if test="daIdentificationInfo.latitude != null and daIdentificationInfo.latitude  != ''  and daIdentificationInfo.latitude  != '-1' ">
                      when id=#{daIdentificationInfo.id} then #{daIdentificationInfo.latitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIdentificationInfo.latitude != null  and daIdentificationInfo.latitude  == '-1' ">
+                     when id=#{daIdentificationInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daIdentificationInfo" index="index" open="(" close=")" separator=",">
 			#{daIdentificationInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -610,144 +677,100 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_identification_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="baseName  != null and baseName  != '' " >
-              base_name,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="produceName  != null and produceName  != '' " >
-              produce_name,
-          </if>
-          <if test="identificationTypeCode  != null " >
-              identification_type_code,
-          </if>
-          <if test="identificationTypeText  != null and identificationTypeText  != '' " >
-              identification_type_text,
-          </if>
-          <if test="identificationArea  != null " >
-              identification_area,
-          </if>
-          <if test="identificationAreaCode  != null " >
-              identification_area_code,
-          </if>
-          <if test="identificationAreaText  != null and identificationAreaText  != '' " >
-              identification_area_text,
-          </if>
-          <if test="identificationAreaUnit  != null " >
-              identification_area_unit,
-          </if>
-          <if test="produceSummation  != null " >
-              produce_summation,
-          </if>
-          <if test="produceSummationUnitCode  != null " >
-              produce_summation_unit_code,
-          </if>
-          <if test="produceSummationUnitText  != null and produceSummationUnitText  != '' " >
-              produce_summation_unit_text,
-          </if>
-          <if test="produceSummationUnit  != null " >
-              produce_summation_unit,
-          </if>
-          <if test="processTime  != null " >
-              process_time,
-          </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
-          </if>
-          <if test="latitude  != null and latitude  != '' " >
-              latitude,
-          </if>
+id,
+common_field_id,
+name,
+base_name,
+address,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+produce_name,
+identification_type_code,
+identification_type_text,
+identification_area,
+identification_area_code,
+identification_area_text,
+identification_area_unit,
+produce_summation,
+produce_summation_unit_code,
+produce_summation_unit_text,
+produce_summation_unit,
+process_time,
+longitude,
+latitude,
     </trim>
     VALUES
     <foreach collection="list" item="daIdentificationInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daIdentificationInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daIdentificationInfo.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daIdentificationInfo.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.baseName  != null  and t.baseName != '' " >
+                  
+                  
                      #{daIdentificationInfo.baseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
+                  
+                  
                      #{daIdentificationInfo.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daIdentificationInfo.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daIdentificationInfo.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daIdentificationInfo.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daIdentificationInfo.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.produceName  != null  and t.produceName != '' " >
+                  
+                  
                      #{daIdentificationInfo.produceName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.identificationTypeCode != null ">
+                  
+                  
                     #{daIdentificationInfo.identificationTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.identificationTypeText  != null  and t.identificationTypeText != '' " >
+            
+                  
                      #{daIdentificationInfo.identificationTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.identificationArea != null ">
+                  
+                  
                     #{daIdentificationInfo.identificationArea,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.identificationAreaCode != null ">
+            
+                  
                     #{daIdentificationInfo.identificationAreaCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.identificationAreaText  != null  and t.identificationAreaText != '' " >
+            
+                  
                      #{daIdentificationInfo.identificationAreaText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.identificationAreaUnit != null ">
+                  
+                  
                     #{daIdentificationInfo.identificationAreaUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.produceSummation != null ">
+            
+                  
                     #{daIdentificationInfo.produceSummation,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.produceSummationUnitCode != null ">
+            
+                  
                     #{daIdentificationInfo.produceSummationUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.produceSummationUnitText  != null  and t.produceSummationUnitText != '' " >
+            
+                  
                      #{daIdentificationInfo.produceSummationUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.produceSummationUnit != null ">
+                  
+                  
                     #{daIdentificationInfo.produceSummationUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.processTime != null ">
+            
+                  
                     #{daIdentificationInfo.processTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
+            
+                  
                      #{daIdentificationInfo.longitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.latitude  != null  and t.latitude != '' " >
+                  
+                  
                      #{daIdentificationInfo.latitude ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

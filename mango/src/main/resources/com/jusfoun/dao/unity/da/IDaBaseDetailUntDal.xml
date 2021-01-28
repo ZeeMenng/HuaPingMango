@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaBaseDetailUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaBaseDetailUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaBaseDetail" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaBaseDetail" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="detail_code" property="detailCode" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
         id,common_field_id,detail_code,detail_name,base_id,base_code,area_detail,output,product_id,product_name,creator,create_date,regenerator,update_date,del_flag,extra,planted
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaBaseDetail" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaBaseDetail" >
     insert into da_base_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -149,8 +149,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_base_detail
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -159,69 +158,87 @@
     	<foreach collection="list" item="daBaseDetail" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daBaseDetail.id,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.detailCode,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.detailName,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.baseId,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.baseCode,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.areaDetail,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.output,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.productId,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.productName,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.creator,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.createDate,jdbcType=TIMESTAMP},
-
-      
           #{daBaseDetail.regenerator,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.updateDate,jdbcType=TIMESTAMP},
-
-      
           #{daBaseDetail.delFlag,jdbcType=TINYINT},
-
-      
           #{daBaseDetail.extra,jdbcType=VARCHAR},
-
-      
           #{daBaseDetail.planted,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_base_detail
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_base_detail
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daBaseDetail" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daBaseDetail.id,jdbcType=VARCHAR},
+          #{daBaseDetail.commonFieldId,jdbcType=VARCHAR},
+          #{daBaseDetail.detailCode,jdbcType=VARCHAR},
+          #{daBaseDetail.detailName,jdbcType=VARCHAR},
+          #{daBaseDetail.baseId,jdbcType=VARCHAR},
+          #{daBaseDetail.baseCode,jdbcType=VARCHAR},
+          #{daBaseDetail.areaDetail,jdbcType=VARCHAR},
+          #{daBaseDetail.output,jdbcType=VARCHAR},
+          #{daBaseDetail.productId,jdbcType=VARCHAR},
+          #{daBaseDetail.productName,jdbcType=VARCHAR},
+          #{daBaseDetail.creator,jdbcType=VARCHAR},
+          #{daBaseDetail.createDate,jdbcType=TIMESTAMP},
+          #{daBaseDetail.regenerator,jdbcType=VARCHAR},
+          #{daBaseDetail.updateDate,jdbcType=TIMESTAMP},
+          #{daBaseDetail.delFlag,jdbcType=TINYINT},
+          #{daBaseDetail.extra,jdbcType=VARCHAR},
+          #{daBaseDetail.planted,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+detail_code=values(detail_code),
+detail_name=values(detail_name),
+base_id=values(base_id),
+base_code=values(base_code),
+area_detail=values(area_detail),
+output=values(output),
+product_id=values(product_id),
+product_name=values(product_name),
+creator=values(creator),
+create_date=values(create_date),
+regenerator=values(regenerator),
+update_date=values(update_date),
+del_flag=values(del_flag),
+extra=values(extra),
+planted=values(planted)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_base_detail
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_base_detail
 		where id  in
@@ -230,7 +247,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaBaseDetail" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaBaseDetail" >
     update da_base_detail
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -350,72 +369,112 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.commonFieldId != null and daBaseDetail.commonFieldId  != '' " >
+                  <if test="daBaseDetail.commonFieldId != null and daBaseDetail.commonFieldId  != ''  and daBaseDetail.commonFieldId  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.commonFieldId != null  and daBaseDetail.commonFieldId  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="detail_code =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.detailCode != null and daBaseDetail.detailCode  != '' " >
+                  <if test="daBaseDetail.detailCode != null and daBaseDetail.detailCode  != ''  and daBaseDetail.detailCode  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.detailCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.detailCode != null  and daBaseDetail.detailCode  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="detail_name =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.detailName != null and daBaseDetail.detailName  != '' " >
+                  <if test="daBaseDetail.detailName != null and daBaseDetail.detailName  != ''  and daBaseDetail.detailName  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.detailName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.detailName != null  and daBaseDetail.detailName  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="base_id =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.baseId != null and daBaseDetail.baseId  != '' " >
+                  <if test="daBaseDetail.baseId != null and daBaseDetail.baseId  != ''  and daBaseDetail.baseId  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.baseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.baseId != null  and daBaseDetail.baseId  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="base_code =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.baseCode != null and daBaseDetail.baseCode  != '' " >
+                  <if test="daBaseDetail.baseCode != null and daBaseDetail.baseCode  != ''  and daBaseDetail.baseCode  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.baseCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.baseCode != null  and daBaseDetail.baseCode  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="area_detail =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.areaDetail != null and daBaseDetail.areaDetail  != '' " >
+                  <if test="daBaseDetail.areaDetail != null and daBaseDetail.areaDetail  != ''  and daBaseDetail.areaDetail  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.areaDetail,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.areaDetail != null  and daBaseDetail.areaDetail  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.output != null and daBaseDetail.output  != '' " >
+                  <if test="daBaseDetail.output != null and daBaseDetail.output  != ''  and daBaseDetail.output  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.output,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.output != null  and daBaseDetail.output  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_id =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.productId != null and daBaseDetail.productId  != '' " >
+                  <if test="daBaseDetail.productId != null and daBaseDetail.productId  != ''  and daBaseDetail.productId  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.productId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.productId != null  and daBaseDetail.productId  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_name =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.productName != null and daBaseDetail.productName  != '' " >
+                  <if test="daBaseDetail.productName != null and daBaseDetail.productName  != ''  and daBaseDetail.productName  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.productName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.productName != null  and daBaseDetail.productName  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="creator =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.creator != null and daBaseDetail.creator  != '' " >
+                  <if test="daBaseDetail.creator != null and daBaseDetail.creator  != ''  and daBaseDetail.creator  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.creator,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.creator != null  and daBaseDetail.creator  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="create_date =case" suffix="end,">
@@ -427,9 +486,13 @@
          </trim>
          <trim prefix="regenerator =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.regenerator != null and daBaseDetail.regenerator  != '' " >
+                  <if test="daBaseDetail.regenerator != null and daBaseDetail.regenerator  != ''  and daBaseDetail.regenerator  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.regenerator,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.regenerator != null  and daBaseDetail.regenerator  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="update_date =case" suffix="end,">
@@ -448,9 +511,13 @@
          </trim>
          <trim prefix="extra =case" suffix="end,">
               <foreach collection="list" item="daBaseDetail" index="index">
-                  <if test="daBaseDetail.extra != null and daBaseDetail.extra  != '' " >
+                  <if test="daBaseDetail.extra != null and daBaseDetail.extra  != ''  and daBaseDetail.extra  != '-1' ">
                      when id=#{daBaseDetail.id} then #{daBaseDetail.extra,jdbcType=VARCHAR}
                   </if>
+                  <if test="daBaseDetail.extra != null  and daBaseDetail.extra  == '-1' ">
+                     when id=#{daBaseDetail.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="planted =case" suffix="end,">
@@ -462,7 +529,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daBaseDetail" index="index" open="(" close=")" separator=",">
 			#{daBaseDetail.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -472,108 +539,76 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_base_detail
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="detailCode  != null and detailCode  != '' " >
-              detail_code,
-          </if>
-          <if test="detailName  != null and detailName  != '' " >
-              detail_name,
-          </if>
-          <if test="baseId  != null and baseId  != '' " >
-              base_id,
-          </if>
-          <if test="baseCode  != null and baseCode  != '' " >
-              base_code,
-          </if>
-          <if test="areaDetail  != null and areaDetail  != '' " >
-              area_detail,
-          </if>
-          <if test="output  != null and output  != '' " >
-              output,
-          </if>
-          <if test="productId  != null and productId  != '' " >
-              product_id,
-          </if>
-          <if test="productName  != null and productName  != '' " >
-              product_name,
-          </if>
-          <if test="creator  != null and creator  != '' " >
-              creator,
-          </if>
-          <if test="createDate  != null " >
-              create_date,
-          </if>
-          <if test="regenerator  != null and regenerator  != '' " >
-              regenerator,
-          </if>
-          <if test="updateDate  != null " >
-              update_date,
-          </if>
-          <if test="delFlag  != null " >
-              del_flag,
-          </if>
-          <if test="extra  != null and extra  != '' " >
-              extra,
-          </if>
-          <if test="planted  != null " >
-              planted,
-          </if>
+id,
+common_field_id,
+detail_code,
+detail_name,
+base_id,
+base_code,
+area_detail,
+output,
+product_id,
+product_name,
+creator,
+create_date,
+regenerator,
+update_date,
+del_flag,
+extra,
+planted,
     </trim>
     VALUES
     <foreach collection="list" item="daBaseDetail" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daBaseDetail.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daBaseDetail.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.detailCode  != null  and t.detailCode != '' " >
+                  
+                  
                      #{daBaseDetail.detailCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.detailName  != null  and t.detailName != '' " >
+                  
+                  
                      #{daBaseDetail.detailName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.baseId  != null  and t.baseId != '' " >
+                  
+                  
                      #{daBaseDetail.baseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.baseCode  != null  and t.baseCode != '' " >
+                  
+                  
                      #{daBaseDetail.baseCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.areaDetail  != null  and t.areaDetail != '' " >
+                  
+                  
                      #{daBaseDetail.areaDetail ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.output  != null  and t.output != '' " >
+                  
+                  
                      #{daBaseDetail.output ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productId  != null  and t.productId != '' " >
+                  
+                  
                      #{daBaseDetail.productId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productName  != null  and t.productName != '' " >
+                  
+                  
                      #{daBaseDetail.productName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.creator  != null  and t.creator != '' " >
+                  
+                  
                      #{daBaseDetail.creator ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createDate != null ">
+                  
+                  
                     #{daBaseDetail.createDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.regenerator  != null  and t.regenerator != '' " >
+            
+                  
                      #{daBaseDetail.regenerator ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.updateDate != null ">
+                  
+                  
                     #{daBaseDetail.updateDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.delFlag != null ">
+            
+                  
                     #{daBaseDetail.delFlag,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.extra  != null  and t.extra != '' " >
+            
+                  
                      #{daBaseDetail.extra ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.planted != null ">
+                  
+                  
                     #{daBaseDetail.planted,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

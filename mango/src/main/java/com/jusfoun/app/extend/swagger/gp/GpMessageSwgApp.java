@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpMessageGenSwgApp;
-import com.jusfoun.bll.extend.split.gp.GprMessageUserSplBll;
-import com.jusfoun.bll.extend.unity.gp.GprDomainMessageUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprMessageUserUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpMessage;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.ent.extend.gp.GprMessageUser;
-import com.jusfoun.ent.parameter.gp.GpMessageParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.gp.GpMessageGenSwgApp;
+import com.zee.bll.extend.split.gp.GprMessageUserSplBll;
+import com.zee.bll.extend.unity.gp.GprDomainMessageUntBll;
+import com.zee.bll.extend.unity.gp.GprMessageUserUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpMessage;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.ent.extend.gp.GprMessageUser;
+import com.zee.ent.parameter.gp.GpMessageParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

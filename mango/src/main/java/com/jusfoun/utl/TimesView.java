@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -13,7 +13,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.jusfoun.ent.custom.ResultModel;
+import com.zee.ent.custom.ResultModel;
 
 public class TimesView {
 	

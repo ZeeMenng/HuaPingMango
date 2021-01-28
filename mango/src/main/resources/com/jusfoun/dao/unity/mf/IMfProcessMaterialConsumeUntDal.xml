@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfProcessMaterialConsumeUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfProcessMaterialConsumeUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="actual_amount" property="actualAmount" jdbcType="NUMERIC" />
               <result column="forecast_amount" property="forecastAmount" jdbcType="NUMERIC" />
@@ -15,7 +15,7 @@
         id,actual_amount,forecast_amount,scale_actual,scale_forecast,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
     insert into mf_process_material_consume
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -61,8 +61,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_process_material_consume
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -71,36 +70,54 @@
     	<foreach collection="list" item="mfProcessMaterialConsume" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfProcessMaterialConsume.id,jdbcType=VARCHAR},
-
-      
           #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC},
-
-      
           #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC},
-
-      
           #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC},
-
-      
           #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC},
-
-      
           #{mfProcessMaterialConsume.dateTime,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_process_material_consume
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_process_material_consume
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfProcessMaterialConsume" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfProcessMaterialConsume.id,jdbcType=VARCHAR},
+          #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC},
+          #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC},
+          #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC},
+          #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC},
+          #{mfProcessMaterialConsume.dateTime,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+actual_amount=values(actual_amount),
+forecast_amount=values(forecast_amount),
+scale_actual=values(scale_actual),
+scale_forecast=values(scale_forecast),
+date_time=values(date_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_process_material_consume
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_process_material_consume
 		where id  in
@@ -109,7 +126,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProcessMaterialConsume" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfProcessMaterialConsume" >
     update mf_process_material_consume
     <set >
                   <if test="actualAmount != null ">
@@ -191,14 +210,18 @@
          </trim>
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfProcessMaterialConsume" index="index">
-                  <if test="mfProcessMaterialConsume.dateTime != null and mfProcessMaterialConsume.dateTime  != '' " >
+                  <if test="mfProcessMaterialConsume.dateTime != null and mfProcessMaterialConsume.dateTime  != ''  and mfProcessMaterialConsume.dateTime  != '-1' ">
                      when id=#{mfProcessMaterialConsume.id} then #{mfProcessMaterialConsume.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfProcessMaterialConsume.dateTime != null  and mfProcessMaterialConsume.dateTime  == '-1' ">
+                     when id=#{mfProcessMaterialConsume.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfProcessMaterialConsume" index="index" open="(" close=")" separator=",">
 			#{mfProcessMaterialConsume.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -208,42 +231,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_process_material_consume
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="actualAmount  != null " >
-              actual_amount,
-          </if>
-          <if test="forecastAmount  != null " >
-              forecast_amount,
-          </if>
-          <if test="scaleActual  != null " >
-              scale_actual,
-          </if>
-          <if test="scaleForecast  != null " >
-              scale_forecast,
-          </if>
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
+id,
+actual_amount,
+forecast_amount,
+scale_actual,
+scale_forecast,
+date_time,
     </trim>
     VALUES
     <foreach collection="list" item="mfProcessMaterialConsume" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfProcessMaterialConsume.id ,jdbcType=VARCHAR},
-                  <if test="t.actualAmount != null ">
+                  
                     #{mfProcessMaterialConsume.actualAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.forecastAmount != null ">
+            
+                  
                     #{mfProcessMaterialConsume.forecastAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.scaleActual != null ">
+            
+                  
                     #{mfProcessMaterialConsume.scaleActual,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.scaleForecast != null ">
+            
+                  
                     #{mfProcessMaterialConsume.scaleForecast,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+            
+                  
                      #{mfProcessMaterialConsume.dateTime ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

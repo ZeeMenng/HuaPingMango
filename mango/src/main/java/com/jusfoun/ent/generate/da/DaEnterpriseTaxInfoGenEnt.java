@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:18
+ * @updateDate 2021/1/28 16:08:56
  * @description 实体类DaEnterpriseTaxInfoGenEnt，自动生成。企业税务信息表
  */
 
@@ -26,33 +24,37 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
     private Date createdTime;
     @ApiModelProperty(value="数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入",allowableValues="0,1",hidden=false,required=false)
     private Byte datasourceCode;
-    @ApiModelProperty(value="企业id。外键。对应企业信息表enterprise主键。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String enterpriseId;
-    @ApiModelProperty(value="企业名称。对应企业信息表（enterprise）字段（enterprise_name）。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String enterpriseName;
-    @ApiModelProperty(value="主键",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="备注",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String remark;
-    @ApiModelProperty(value="纳税人识别号",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String taxCode;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal taxMoney;
-    @ApiModelProperty(value="纳税机关",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String taxOrgan;
     @ApiModelProperty(value="纳税人状态。   编码，对应数据字典表（dictionary）中的编码字段（code)  不确定具体类型   0：其他",allowableValues="0,1",hidden=false,required=false)
     private Byte taxPersonStatusCode;
-    @ApiModelProperty(value="纳税人状态。文本，对应数据字典表（dictionary）中的文本字段（name） 不确定具体类型   0：其他",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String taxPersonStatusText;
     @ApiModelProperty(value="纳税状态。  编码，对应数据字典表（dictionary）中的编码字段（code）   不确定具体类型    0：其他",allowableValues="0,1",hidden=false,required=false)
     private Byte taxStatusCode;
-    @ApiModelProperty(value="纳税状态。文本，对应数据字典表（dictionary）中的文本字段（name）     不确定具体类型   0：其他",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String taxStatusText;
     @ApiModelProperty(value="纳税时间",hidden=false,required=false)
     private Date taxTime;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。创建时间
@@ -83,70 +85,70 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。企业id。外键。对应企业信息表enterprise主键。
+	 * get方法。
 	 */
 	public String getEnterpriseId() {
 		return this.enterpriseId;
 	}
 
 	/**
-	 * set方法。企业id。外键。对应企业信息表enterprise主键。
+	 * set方法。
 	 */
 	public void setEnterpriseId(String enterpriseId) {
 		this.enterpriseId = enterpriseId;
 	}
     
 	/**
-	 * get方法。企业名称。对应企业信息表（enterprise）字段（enterprise_name）。
+	 * get方法。
 	 */
 	public String getEnterpriseName() {
 		return this.enterpriseName;
 	}
 
 	/**
-	 * set方法。企业名称。对应企业信息表（enterprise）字段（enterprise_name）。
+	 * set方法。
 	 */
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
 	}
     
 	/**
-	 * get方法。主键
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。备注
+	 * get方法。
 	 */
 	public String getRemark() {
 		return this.remark;
 	}
 
 	/**
-	 * set方法。备注
+	 * set方法。
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
     
 	/**
-	 * get方法。纳税人识别号
+	 * get方法。
 	 */
 	public String getTaxCode() {
 		return this.taxCode;
 	}
 
 	/**
-	 * set方法。纳税人识别号
+	 * set方法。
 	 */
 	public void setTaxCode(String taxCode) {
 		this.taxCode = taxCode;
@@ -167,14 +169,14 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。纳税机关
+	 * get方法。
 	 */
 	public String getTaxOrgan() {
 		return this.taxOrgan;
 	}
 
 	/**
-	 * set方法。纳税机关
+	 * set方法。
 	 */
 	public void setTaxOrgan(String taxOrgan) {
 		this.taxOrgan = taxOrgan;
@@ -195,14 +197,14 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。纳税人状态。文本，对应数据字典表（dictionary）中的文本字段（name） 不确定具体类型   0：其他
+	 * get方法。
 	 */
 	public String getTaxPersonStatusText() {
 		return this.taxPersonStatusText;
 	}
 
 	/**
-	 * set方法。纳税人状态。文本，对应数据字典表（dictionary）中的文本字段（name） 不确定具体类型   0：其他
+	 * set方法。
 	 */
 	public void setTaxPersonStatusText(String taxPersonStatusText) {
 		this.taxPersonStatusText = taxPersonStatusText;
@@ -223,14 +225,14 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。纳税状态。文本，对应数据字典表（dictionary）中的文本字段（name）     不确定具体类型   0：其他
+	 * get方法。
 	 */
 	public String getTaxStatusText() {
 		return this.taxStatusText;
 	}
 
 	/**
-	 * set方法。纳税状态。文本，对应数据字典表（dictionary）中的文本字段（name）     不确定具体类型   0：其他
+	 * set方法。
 	 */
 	public void setTaxStatusText(String taxStatusText) {
 		this.taxStatusText = taxStatusText;
@@ -251,7 +253,14 @@ public class DaEnterpriseTaxInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

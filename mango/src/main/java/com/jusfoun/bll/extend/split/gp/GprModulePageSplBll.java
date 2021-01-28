@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.split.gp;
+package com.zee.bll.extend.split.gp;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.gp.GprModulePageGenSplBll;
+import com.zee.bll.generate.split.gp.GprModulePageGenSplBll;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import us.codecraft.webmagic.proxy.Proxy;
 

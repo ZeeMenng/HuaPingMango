@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:11
+ * @updateDate 2021/1/28 16:09:50
  * @description 实体类PiAdvertisingGenEnt，自动生成。CMS广告表
  */
 
@@ -30,7 +28,7 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
     private long clickCount;
     @ApiModelProperty(value="展现次数。",hidden=false,required=true)
     private long displayCount;
-    @ApiModelProperty(value="应用领域。外键，引用应用领域表（domain）的主键。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String domainId;
     @ApiModelProperty(value="结束时间。",hidden=false,required=false)
     private Date endTime;
@@ -40,15 +38,15 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
     private String id;
     @ApiModelProperty(value="是否启用。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。默认值0。",allowableValues="0,1",hidden=false,required=true)
     private Byte isEnabledCode;
-    @ApiModelProperty(value="广告名称。",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
-    @ApiModelProperty(value="备注字段。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String remark;
-    @ApiModelProperty(value="图标。外键，引用资源表（Resource）的主键。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String resouceId;
-    @ApiModelProperty(value="资源路径。和资源表（resource）的路径字段（path）对应。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String resourcePath;
-    @ApiModelProperty(value="广告编号。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String serialNo;
     @ApiModelProperty(value="广告版位。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种版位：1资讯版热点中的通栏广告，2数据版首页中的导航栏。",allowableValues="0,1",hidden=false,required=true)
     private Byte spaceCode;
@@ -56,9 +54,9 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
     private Date startTime;
     @ApiModelProperty(value="打开方式。编码，对应数据字典表（dictionary）中的编码字段（code）。目前先定义两种方式：1_self相同的框架或者窗口中打开，2_blank在新窗口中打开。",allowableValues="0,1",hidden=false,required=false)
     private Byte targetCode;
-    @ApiModelProperty(value="目标链接。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String targetUrl;
-    @ApiModelProperty(value="标题。鼠标滑过时的显示。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String title;
     @ApiModelProperty(value="记录修改时间。",hidden=false,required=false)
     private Date updateTime;
@@ -66,9 +64,13 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
     private Integer weight;
     @ApiModelProperty(value="展示宽度。",hidden=false,required=false)
     private Integer width;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。记录添加时间。
@@ -127,14 +129,14 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。应用领域。外键，引用应用领域表（domain）的主键。
+	 * get方法。
 	 */
 	public String getDomainId() {
 		return this.domainId;
 	}
 
 	/**
-	 * set方法。应用领域。外键，引用应用领域表（domain）的主键。
+	 * set方法。
 	 */
 	public void setDomainId(String domainId) {
 		this.domainId = domainId;
@@ -197,70 +199,70 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。广告名称。
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。广告名称。
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
     
 	/**
-	 * get方法。备注字段。
+	 * get方法。
 	 */
 	public String getRemark() {
 		return this.remark;
 	}
 
 	/**
-	 * set方法。备注字段。
+	 * set方法。
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
     
 	/**
-	 * get方法。图标。外键，引用资源表（Resource）的主键。
+	 * get方法。
 	 */
 	public String getResouceId() {
 		return this.resouceId;
 	}
 
 	/**
-	 * set方法。图标。外键，引用资源表（Resource）的主键。
+	 * set方法。
 	 */
 	public void setResouceId(String resouceId) {
 		this.resouceId = resouceId;
 	}
     
 	/**
-	 * get方法。资源路径。和资源表（resource）的路径字段（path）对应。
+	 * get方法。
 	 */
 	public String getResourcePath() {
 		return this.resourcePath;
 	}
 
 	/**
-	 * set方法。资源路径。和资源表（resource）的路径字段（path）对应。
+	 * set方法。
 	 */
 	public void setResourcePath(String resourcePath) {
 		this.resourcePath = resourcePath;
 	}
     
 	/**
-	 * get方法。广告编号。
+	 * get方法。
 	 */
 	public String getSerialNo() {
 		return this.serialNo;
 	}
 
 	/**
-	 * set方法。广告编号。
+	 * set方法。
 	 */
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
@@ -309,28 +311,28 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。目标链接。
+	 * get方法。
 	 */
 	public String getTargetUrl() {
 		return this.targetUrl;
 	}
 
 	/**
-	 * set方法。目标链接。
+	 * set方法。
 	 */
 	public void setTargetUrl(String targetUrl) {
 		this.targetUrl = targetUrl;
 	}
     
 	/**
-	 * get方法。标题。鼠标滑过时的显示。
+	 * get方法。
 	 */
 	public String getTitle() {
 		return this.title;
 	}
 
 	/**
-	 * set方法。标题。鼠标滑过时的显示。
+	 * set方法。
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -379,7 +381,14 @@ public class PiAdvertisingGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

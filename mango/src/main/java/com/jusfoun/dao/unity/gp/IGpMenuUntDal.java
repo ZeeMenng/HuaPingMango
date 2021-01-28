@@ -1,7 +1,7 @@
-package com.jusfoun.dao.unity.gp;
+package com.zee.dao.unity.gp;
 
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.gp.GpMenu;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.gp.GpMenu;
 
 
 

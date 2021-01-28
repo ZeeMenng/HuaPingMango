@@ -1,4 +1,4 @@
-package com.jusfoun.set.interceptor;
+package com.zee.set.interceptor;
 
 import java.util.Properties;
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseTaxInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseTaxInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         id,enterprise_id,enterprise_name,tax_code,tax_organ,tax_person_status_code,tax_person_status_text,tax_status_code,tax_status_text,tax_money,tax_time,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
     insert into da_enterprise_tax_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -188,7 +188,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
     update da_enterprise_tax_info
     <set >
                   <if test="id != null  and id != '' " >

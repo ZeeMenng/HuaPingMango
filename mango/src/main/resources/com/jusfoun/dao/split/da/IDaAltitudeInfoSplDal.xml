@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaAltitudeInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaAltitudeInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaAltitudeInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaAltitudeInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,common_field_id,name,altitude,average_temperature
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaAltitudeInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaAltitudeInfo" >
     insert into da_altitude_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -100,7 +100,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaAltitudeInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaAltitudeInfo" >
     update da_altitude_info
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirContentChannelSplDal">
+<mapper namespace="com.zee.dao.split.pi.IPirContentChannelSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentChannel">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirContentChannel">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="channel_id" property="channelId" jdbcType="VARCHAR" />
 		<result column="content_id" property="contentId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
 		id,channel_id,content_id
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentChannel">
+	<insert id="add" parameterType="com.zee.ent.extend.pi.PirContentChannel">
 		insert into pir_content_channel
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -85,7 +85,7 @@
 		</foreach>
 	</delete>
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentChannel">
+	<update id="update" parameterType="com.zee.ent.extend.pi.PirContentChannel">
 		update pir_content_channel
 		<set>
 			<if test="channelId != null  and channelId != '' ">

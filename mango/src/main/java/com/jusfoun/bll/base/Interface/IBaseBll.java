@@ -1,4 +1,4 @@
-package com.jusfoun.bll.base.Interface;
+package com.zee.bll.base.Interface;
 
 public interface IBaseBll {
 

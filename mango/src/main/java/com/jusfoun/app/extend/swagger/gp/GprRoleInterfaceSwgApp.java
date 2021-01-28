@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GprRoleInterfaceGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GprRoleInterface;
-import com.jusfoun.ent.parameter.gp.GprRoleInterfaceParameter;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.gp.GprRoleInterfaceGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GprRoleInterface;
+import com.zee.ent.parameter.gp.GprRoleInterfaceParameter;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseLoanInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaEnterpriseLoanInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         id,enterprise_id,enterprise_name,loan_date,loan_money,loan_type_code,loan_type_text,loan_status,loan_status_text,overdue_status_code,overdue_status_text,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
     insert into da_enterprise_loan_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -122,8 +122,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_enterprise_loan_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -132,60 +131,78 @@
     	<foreach collection="list" item="daEnterpriseLoanInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daEnterpriseLoanInfo.id,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.enterpriseId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.loanDate,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseLoanInfo.loanMoney,jdbcType=NUMERIC},
-
-      
           #{daEnterpriseLoanInfo.loanTypeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseLoanInfo.loanTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.loanStatus,jdbcType=TINYINT},
-
-      
           #{daEnterpriseLoanInfo.loanStatusText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.overdueStatusCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseLoanInfo.overdueStatusText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.datasourceCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseLoanInfo.remark,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseLoanInfo.createdTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_enterprise_loan_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_enterprise_loan_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseLoanInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daEnterpriseLoanInfo.id,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.enterpriseId,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.loanDate,jdbcType=TIMESTAMP},
+          #{daEnterpriseLoanInfo.loanMoney,jdbcType=NUMERIC},
+          #{daEnterpriseLoanInfo.loanTypeCode,jdbcType=TINYINT},
+          #{daEnterpriseLoanInfo.loanTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.loanStatus,jdbcType=TINYINT},
+          #{daEnterpriseLoanInfo.loanStatusText,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.overdueStatusCode,jdbcType=TINYINT},
+          #{daEnterpriseLoanInfo.overdueStatusText,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.datasourceCode,jdbcType=TINYINT},
+          #{daEnterpriseLoanInfo.remark,jdbcType=VARCHAR},
+          #{daEnterpriseLoanInfo.createdTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+enterprise_id=values(enterprise_id),
+enterprise_name=values(enterprise_name),
+loan_date=values(loan_date),
+loan_money=values(loan_money),
+loan_type_code=values(loan_type_code),
+loan_type_text=values(loan_type_text),
+loan_status=values(loan_status),
+loan_status_text=values(loan_status_text),
+overdue_status_code=values(overdue_status_code),
+overdue_status_text=values(overdue_status_text),
+datasource_code=values(datasource_code),
+remark=values(remark),
+created_time=values(created_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_enterprise_loan_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_enterprise_loan_info
 		where id  in
@@ -194,7 +211,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
     update da_enterprise_loan_info
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >
@@ -296,16 +315,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.enterpriseId != null and daEnterpriseLoanInfo.enterpriseId  != '' " >
+                  <if test="daEnterpriseLoanInfo.enterpriseId != null and daEnterpriseLoanInfo.enterpriseId  != ''  and daEnterpriseLoanInfo.enterpriseId  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.enterpriseId != null  and daEnterpriseLoanInfo.enterpriseId  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.enterpriseName != null and daEnterpriseLoanInfo.enterpriseName  != '' " >
+                  <if test="daEnterpriseLoanInfo.enterpriseName != null and daEnterpriseLoanInfo.enterpriseName  != ''  and daEnterpriseLoanInfo.enterpriseName  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.enterpriseName != null  and daEnterpriseLoanInfo.enterpriseName  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="loan_date =case" suffix="end,">
@@ -331,9 +358,13 @@
          </trim>
          <trim prefix="loan_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.loanTypeText != null and daEnterpriseLoanInfo.loanTypeText  != '' " >
+                  <if test="daEnterpriseLoanInfo.loanTypeText != null and daEnterpriseLoanInfo.loanTypeText  != ''  and daEnterpriseLoanInfo.loanTypeText  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.loanTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.loanTypeText != null  and daEnterpriseLoanInfo.loanTypeText  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="loan_status =case" suffix="end,">
@@ -345,9 +376,13 @@
          </trim>
          <trim prefix="loan_status_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.loanStatusText != null and daEnterpriseLoanInfo.loanStatusText  != '' " >
+                  <if test="daEnterpriseLoanInfo.loanStatusText != null and daEnterpriseLoanInfo.loanStatusText  != ''  and daEnterpriseLoanInfo.loanStatusText  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.loanStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.loanStatusText != null  and daEnterpriseLoanInfo.loanStatusText  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="overdue_status_code =case" suffix="end,">
@@ -359,9 +394,13 @@
          </trim>
          <trim prefix="overdue_status_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.overdueStatusText != null and daEnterpriseLoanInfo.overdueStatusText  != '' " >
+                  <if test="daEnterpriseLoanInfo.overdueStatusText != null and daEnterpriseLoanInfo.overdueStatusText  != ''  and daEnterpriseLoanInfo.overdueStatusText  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.overdueStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.overdueStatusText != null  and daEnterpriseLoanInfo.overdueStatusText  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="datasource_code =case" suffix="end,">
@@ -373,9 +412,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseLoanInfo" index="index">
-                  <if test="daEnterpriseLoanInfo.remark != null and daEnterpriseLoanInfo.remark  != '' " >
+                  <if test="daEnterpriseLoanInfo.remark != null and daEnterpriseLoanInfo.remark  != ''  and daEnterpriseLoanInfo.remark  != '-1' ">
                      when id=#{daEnterpriseLoanInfo.id} then #{daEnterpriseLoanInfo.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseLoanInfo.remark != null  and daEnterpriseLoanInfo.remark  == '-1' ">
+                     when id=#{daEnterpriseLoanInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="created_time =case" suffix="end,">
@@ -387,7 +430,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daEnterpriseLoanInfo" index="index" open="(" close=")" separator=",">
 			#{daEnterpriseLoanInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -397,90 +440,64 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_enterprise_loan_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="enterpriseId  != null and enterpriseId  != '' " >
-              enterprise_id,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="loanDate  != null " >
-              loan_date,
-          </if>
-          <if test="loanMoney  != null " >
-              loan_money,
-          </if>
-          <if test="loanTypeCode  != null " >
-              loan_type_code,
-          </if>
-          <if test="loanTypeText  != null and loanTypeText  != '' " >
-              loan_type_text,
-          </if>
-          <if test="loanStatus  != null " >
-              loan_status,
-          </if>
-          <if test="loanStatusText  != null and loanStatusText  != '' " >
-              loan_status_text,
-          </if>
-          <if test="overdueStatusCode  != null " >
-              overdue_status_code,
-          </if>
-          <if test="overdueStatusText  != null and overdueStatusText  != '' " >
-              overdue_status_text,
-          </if>
-          <if test="datasourceCode  != null " >
-              datasource_code,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="createdTime  != null " >
-              created_time,
-          </if>
+id,
+enterprise_id,
+enterprise_name,
+loan_date,
+loan_money,
+loan_type_code,
+loan_type_text,
+loan_status,
+loan_status_text,
+overdue_status_code,
+overdue_status_text,
+datasource_code,
+remark,
+created_time,
     </trim>
     VALUES
     <foreach collection="list" item="daEnterpriseLoanInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daEnterpriseLoanInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                  
                      #{daEnterpriseLoanInfo.enterpriseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daEnterpriseLoanInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.loanDate != null ">
+                  
+                  
                     #{daEnterpriseLoanInfo.loanDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.loanMoney != null ">
+            
+                  
                     #{daEnterpriseLoanInfo.loanMoney,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.loanTypeCode != null ">
+            
+                  
                     #{daEnterpriseLoanInfo.loanTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.loanTypeText  != null  and t.loanTypeText != '' " >
+            
+                  
                      #{daEnterpriseLoanInfo.loanTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.loanStatus != null ">
+                  
+                  
                     #{daEnterpriseLoanInfo.loanStatus,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.loanStatusText  != null  and t.loanStatusText != '' " >
+            
+                  
                      #{daEnterpriseLoanInfo.loanStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.overdueStatusCode != null ">
+                  
+                  
                     #{daEnterpriseLoanInfo.overdueStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.overdueStatusText  != null  and t.overdueStatusText != '' " >
+            
+                  
                      #{daEnterpriseLoanInfo.overdueStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.datasourceCode != null ">
+                  
+                  
                     #{daEnterpriseLoanInfo.datasourceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daEnterpriseLoanInfo.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createdTime != null ">
+                  
+                  
                     #{daEnterpriseLoanInfo.createdTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

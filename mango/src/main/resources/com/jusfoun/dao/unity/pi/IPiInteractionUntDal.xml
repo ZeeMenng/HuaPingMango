@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiInteractionUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiInteractionUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiInteraction" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiInteraction" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="interaction_type" property="interactionType" jdbcType="TINYINT" />
               <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
         id,interaction_type,nick_name,real_name,job,phone,email,qq,region_id,region_name,title,req_content,res_user_id,res_content,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id,auditer_time,add_time,update_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiInteraction" >
     insert into pi_interaction
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -188,8 +188,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_interaction
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -198,84 +197,102 @@
     	<foreach collection="list" item="piInteraction" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piInteraction.id,jdbcType=VARCHAR},
-
-      
           #{piInteraction.interactionType,jdbcType=TINYINT},
-
-      
           #{piInteraction.nickName,jdbcType=VARCHAR},
-
-      
           #{piInteraction.realName,jdbcType=VARCHAR},
-
-      
           #{piInteraction.job,jdbcType=VARCHAR},
-
-      
           #{piInteraction.phone,jdbcType=VARCHAR},
-
-      
           #{piInteraction.email,jdbcType=VARCHAR},
-
-      
           #{piInteraction.qq,jdbcType=VARCHAR},
-
-      
           #{piInteraction.regionId,jdbcType=VARCHAR},
-
-      
           #{piInteraction.regionName,jdbcType=VARCHAR},
-
-      
           #{piInteraction.title,jdbcType=VARCHAR},
-
-      
           #{piInteraction.reqContent,jdbcType=VARCHAR},
-
-      
           #{piInteraction.resUserId,jdbcType=VARCHAR},
-
-      
           #{piInteraction.resContent,jdbcType=VARCHAR},
-
-      
           #{piInteraction.auditStatusCode,jdbcType=TINYINT},
-
-      
           #{piInteraction.auditStatusText,jdbcType=VARCHAR},
-
-      
           #{piInteraction.auditerSuggestion,jdbcType=VARCHAR},
-
-      
           #{piInteraction.auditerUserId,jdbcType=VARCHAR},
-
-      
           #{piInteraction.auditerTime,jdbcType=TIMESTAMP},
-
-      
           #{piInteraction.addTime,jdbcType=TIMESTAMP},
-
-      
           #{piInteraction.updateTime,jdbcType=TIMESTAMP},
-
-      
           #{piInteraction.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_interaction
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_interaction
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piInteraction" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piInteraction.id,jdbcType=VARCHAR},
+          #{piInteraction.interactionType,jdbcType=TINYINT},
+          #{piInteraction.nickName,jdbcType=VARCHAR},
+          #{piInteraction.realName,jdbcType=VARCHAR},
+          #{piInteraction.job,jdbcType=VARCHAR},
+          #{piInteraction.phone,jdbcType=VARCHAR},
+          #{piInteraction.email,jdbcType=VARCHAR},
+          #{piInteraction.qq,jdbcType=VARCHAR},
+          #{piInteraction.regionId,jdbcType=VARCHAR},
+          #{piInteraction.regionName,jdbcType=VARCHAR},
+          #{piInteraction.title,jdbcType=VARCHAR},
+          #{piInteraction.reqContent,jdbcType=VARCHAR},
+          #{piInteraction.resUserId,jdbcType=VARCHAR},
+          #{piInteraction.resContent,jdbcType=VARCHAR},
+          #{piInteraction.auditStatusCode,jdbcType=TINYINT},
+          #{piInteraction.auditStatusText,jdbcType=VARCHAR},
+          #{piInteraction.auditerSuggestion,jdbcType=VARCHAR},
+          #{piInteraction.auditerUserId,jdbcType=VARCHAR},
+          #{piInteraction.auditerTime,jdbcType=TIMESTAMP},
+          #{piInteraction.addTime,jdbcType=TIMESTAMP},
+          #{piInteraction.updateTime,jdbcType=TIMESTAMP},
+          #{piInteraction.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+interaction_type=values(interaction_type),
+nick_name=values(nick_name),
+real_name=values(real_name),
+job=values(job),
+phone=values(phone),
+email=values(email),
+qq=values(qq),
+region_id=values(region_id),
+region_name=values(region_name),
+title=values(title),
+req_content=values(req_content),
+res_user_id=values(res_user_id),
+res_content=values(res_content),
+audit_status_code=values(audit_status_code),
+audit_status_text=values(audit_status_text),
+auditer_suggestion=values(auditer_suggestion),
+auditer_user_id=values(auditer_user_id),
+auditer_time=values(auditer_time),
+add_time=values(add_time),
+update_time=values(update_time),
+remark=values(remark)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_interaction
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_interaction
 		where id  in
@@ -284,7 +301,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiInteraction" >
     update pi_interaction
     <set >
                   <if test="interactionType != null ">
@@ -441,86 +460,134 @@
          </trim>
          <trim prefix="nick_name =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.nickName != null and piInteraction.nickName  != '' " >
+                  <if test="piInteraction.nickName != null and piInteraction.nickName  != ''  and piInteraction.nickName  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.nickName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.nickName != null  and piInteraction.nickName  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="real_name =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.realName != null and piInteraction.realName  != '' " >
+                  <if test="piInteraction.realName != null and piInteraction.realName  != ''  and piInteraction.realName  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.realName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.realName != null  and piInteraction.realName  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="job =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.job != null and piInteraction.job  != '' " >
+                  <if test="piInteraction.job != null and piInteraction.job  != ''  and piInteraction.job  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.job,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.job != null  and piInteraction.job  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="phone =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.phone != null and piInteraction.phone  != '' " >
+                  <if test="piInteraction.phone != null and piInteraction.phone  != ''  and piInteraction.phone  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.phone,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.phone != null  and piInteraction.phone  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="email =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.email != null and piInteraction.email  != '' " >
+                  <if test="piInteraction.email != null and piInteraction.email  != ''  and piInteraction.email  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.email,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.email != null  and piInteraction.email  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="qq =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.qq != null and piInteraction.qq  != '' " >
+                  <if test="piInteraction.qq != null and piInteraction.qq  != ''  and piInteraction.qq  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.qq,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.qq != null  and piInteraction.qq  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_id =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.regionId != null and piInteraction.regionId  != '' " >
+                  <if test="piInteraction.regionId != null and piInteraction.regionId  != ''  and piInteraction.regionId  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.regionId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.regionId != null  and piInteraction.regionId  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_name =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.regionName != null and piInteraction.regionName  != '' " >
+                  <if test="piInteraction.regionName != null and piInteraction.regionName  != ''  and piInteraction.regionName  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.regionName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.regionName != null  and piInteraction.regionName  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.title != null and piInteraction.title  != '' " >
+                  <if test="piInteraction.title != null and piInteraction.title  != ''  and piInteraction.title  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.title,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.title != null  and piInteraction.title  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="req_content =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.reqContent != null and piInteraction.reqContent  != '' " >
+                  <if test="piInteraction.reqContent != null and piInteraction.reqContent  != ''  and piInteraction.reqContent  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.reqContent,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.reqContent != null  and piInteraction.reqContent  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="res_user_id =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.resUserId != null and piInteraction.resUserId  != '' " >
+                  <if test="piInteraction.resUserId != null and piInteraction.resUserId  != ''  and piInteraction.resUserId  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.resUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.resUserId != null  and piInteraction.resUserId  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="res_content =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.resContent != null and piInteraction.resContent  != '' " >
+                  <if test="piInteraction.resContent != null and piInteraction.resContent  != ''  and piInteraction.resContent  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.resContent,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.resContent != null  and piInteraction.resContent  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="audit_status_code =case" suffix="end,">
@@ -532,23 +599,35 @@
          </trim>
          <trim prefix="audit_status_text =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.auditStatusText != null and piInteraction.auditStatusText  != '' " >
+                  <if test="piInteraction.auditStatusText != null and piInteraction.auditStatusText  != ''  and piInteraction.auditStatusText  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.auditStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.auditStatusText != null  and piInteraction.auditStatusText  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_suggestion =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.auditerSuggestion != null and piInteraction.auditerSuggestion  != '' " >
+                  <if test="piInteraction.auditerSuggestion != null and piInteraction.auditerSuggestion  != ''  and piInteraction.auditerSuggestion  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.auditerSuggestion,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.auditerSuggestion != null  and piInteraction.auditerSuggestion  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_user_id =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.auditerUserId != null and piInteraction.auditerUserId  != '' " >
+                  <if test="piInteraction.auditerUserId != null and piInteraction.auditerUserId  != ''  and piInteraction.auditerUserId  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.auditerUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.auditerUserId != null  and piInteraction.auditerUserId  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_time =case" suffix="end,">
@@ -574,14 +653,18 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="piInteraction" index="index">
-                  <if test="piInteraction.remark != null and piInteraction.remark  != '' " >
+                  <if test="piInteraction.remark != null and piInteraction.remark  != ''  and piInteraction.remark  != '-1' ">
                      when id=#{piInteraction.id} then #{piInteraction.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="piInteraction.remark != null  and piInteraction.remark  == '-1' ">
+                     when id=#{piInteraction.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piInteraction" index="index" open="(" close=")" separator=",">
 			#{piInteraction.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -591,138 +674,96 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_interaction
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="interactionType  != null " >
-              interaction_type,
-          </if>
-          <if test="nickName  != null and nickName  != '' " >
-              nick_name,
-          </if>
-          <if test="realName  != null and realName  != '' " >
-              real_name,
-          </if>
-          <if test="job  != null and job  != '' " >
-              job,
-          </if>
-          <if test="phone  != null and phone  != '' " >
-              phone,
-          </if>
-          <if test="email  != null and email  != '' " >
-              email,
-          </if>
-          <if test="qq  != null and qq  != '' " >
-              qq,
-          </if>
-          <if test="regionId  != null and regionId  != '' " >
-              region_id,
-          </if>
-          <if test="regionName  != null and regionName  != '' " >
-              region_name,
-          </if>
-          <if test="title  != null and title  != '' " >
-              title,
-          </if>
-          <if test="reqContent  != null and reqContent  != '' " >
-              req_content,
-          </if>
-          <if test="resUserId  != null and resUserId  != '' " >
-              res_user_id,
-          </if>
-          <if test="resContent  != null and resContent  != '' " >
-              res_content,
-          </if>
-          <if test="auditStatusCode  != null " >
-              audit_status_code,
-          </if>
-          <if test="auditStatusText  != null and auditStatusText  != '' " >
-              audit_status_text,
-          </if>
-          <if test="auditerSuggestion  != null and auditerSuggestion  != '' " >
-              auditer_suggestion,
-          </if>
-          <if test="auditerUserId  != null and auditerUserId  != '' " >
-              auditer_user_id,
-          </if>
-          <if test="auditerTime  != null " >
-              auditer_time,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+id,
+interaction_type,
+nick_name,
+real_name,
+job,
+phone,
+email,
+qq,
+region_id,
+region_name,
+title,
+req_content,
+res_user_id,
+res_content,
+audit_status_code,
+audit_status_text,
+auditer_suggestion,
+auditer_user_id,
+auditer_time,
+add_time,
+update_time,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="piInteraction" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piInteraction.id ,jdbcType=VARCHAR},
-                  <if test="t.interactionType != null ">
+                  
                     #{piInteraction.interactionType,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.nickName  != null  and t.nickName != '' " >
+            
+                  
                      #{piInteraction.nickName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.realName  != null  and t.realName != '' " >
+                  
+                  
                      #{piInteraction.realName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.job  != null  and t.job != '' " >
+                  
+                  
                      #{piInteraction.job ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.phone  != null  and t.phone != '' " >
+                  
+                  
                      #{piInteraction.phone ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.email  != null  and t.email != '' " >
+                  
+                  
                      #{piInteraction.email ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.qq  != null  and t.qq != '' " >
+                  
+                  
                      #{piInteraction.qq ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionId  != null  and t.regionId != '' " >
+                  
+                  
                      #{piInteraction.regionId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionName  != null  and t.regionName != '' " >
+                  
+                  
                      #{piInteraction.regionName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.title  != null  and t.title != '' " >
+                  
+                  
                      #{piInteraction.title ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.reqContent  != null  and t.reqContent != '' " >
+                  
+                  
                      #{piInteraction.reqContent ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resUserId  != null  and t.resUserId != '' " >
+                  
+                  
                      #{piInteraction.resUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resContent  != null  and t.resContent != '' " >
+                  
+                  
                      #{piInteraction.resContent ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditStatusCode != null ">
+                  
+                  
                     #{piInteraction.auditStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.auditStatusText  != null  and t.auditStatusText != '' " >
+            
+                  
                      #{piInteraction.auditStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerSuggestion  != null  and t.auditerSuggestion != '' " >
+                  
+                  
                      #{piInteraction.auditerSuggestion ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerUserId  != null  and t.auditerUserId != '' " >
+                  
+                  
                      #{piInteraction.auditerUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerTime != null ">
+                  
+                  
                     #{piInteraction.auditerTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.addTime != null ">
+            
+                  
                     #{piInteraction.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{piInteraction.updateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{piInteraction.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.pi;
+package com.zee.ent.extend.pi;
 
-import com.jusfoun.ent.generate.pi.PiChannelExtGenEnt;
+import com.zee.ent.generate.pi.PiChannelExtGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpOperLogLoginUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpOperLogLoginUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpOperLogLogin" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpOperLogLogin" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="oper_log_id" property="operLogId" jdbcType="VARCHAR" />
               <result column="login_log_id" property="loginLogId" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,oper_log_id,login_log_id,user_id,user_name,token_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpOperLogLogin" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpOperLogLogin" >
     insert into gp_oper_log_login
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -230,7 +230,7 @@ token_id=values(token_id)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpOperLogLogin" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpOperLogLogin" >
     update gp_oper_log_login
     <set >
                   <if test="operLogId != null  and operLogId != '' " >

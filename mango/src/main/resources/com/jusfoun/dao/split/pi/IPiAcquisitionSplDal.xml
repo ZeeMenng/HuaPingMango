@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiAcquisitionSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiAcquisitionSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiAcquisition" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="site_id" property="siteId" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
@@ -58,7 +58,7 @@
         id,site_id,channel_id,type_id,user_id,acq_name,start_time,end_time,status,curr_num,curr_item,total_item,pause_time,page_encoding,plan_list,dynamic_addr,dynamic_start,dynamic_end,linkset_start,linkset_end,link_start,link_end,title_start,title_end,keywords_start,keywords_end,description_start,description_end,content_start,content_end,pagination_start,pagination_end,queue,repeat_check_type,img_acqu,content_prefix,img_prefix,view_start,view_end,view_id_start,view_id_end,view_link,releaseTime_start,releaseTime_end,author_start,author_end,origin_start,origin_end,releaseTime_format
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiAcquisition" >
     insert into pi_acquisition
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -575,7 +575,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiAcquisition" >
     update pi_acquisition
     <set >
                   <if test="siteId != null  and siteId != '' " >

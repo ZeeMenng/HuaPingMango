@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseCertificateInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseCertificateInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseCertificateInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="cer_name" property="cerName" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
         id,cer_name,enterprise_id,enterprise_name,order_by,start_date,end_date,organ,content,certificate_status_code,certificate_status_text,certificate_type_code,certificate_type_text,publicity_time,detail,datasource_code,remark,created_time,file_no,file_resource_id,file_resource_path
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseCertificateInfo" >
     insert into da_enterprise_certificate_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -271,7 +271,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseCertificateInfo" >
     update da_enterprise_certificate_info
     <set >
                   <if test="cerName != null  and cerName != '' " >

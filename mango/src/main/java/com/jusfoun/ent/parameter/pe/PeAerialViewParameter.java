@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.pe;
+package com.zee.ent.parameter.pe;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.pe.PeAerialView;
-import com.jusfoun.ent.generate.pe.PeAerialViewGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.pe.PeAerialView;
+import com.zee.ent.generate.pe.PeAerialViewGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.mf;
+package com.zee.app.extend.swagger.mf;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.mf.MfProcessYieldGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpDictionary;
-import com.jusfoun.ent.parameter.base.BaseParameter;
-import com.jusfoun.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
-import com.jusfoun.ent.parameter.gp.GpDictionaryParameter;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.mf.MfProcessYieldGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpDictionary;
+import com.zee.ent.parameter.base.BaseParameter;
+import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
+import com.zee.ent.parameter.gp.GpDictionaryParameter;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
 

@@ -1,4 +1,4 @@
-package com.jusfoun.app.base;
+package com.zee.app.base;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;

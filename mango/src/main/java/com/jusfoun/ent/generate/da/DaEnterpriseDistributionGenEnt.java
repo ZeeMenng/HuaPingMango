@@ -1,11 +1,11 @@
-package com.jusfoun.ent.generate.da;
+package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
 
-import com.jusfoun.ent.base.BaseEnt;
+import com.zee.ent.base.BaseEnt;
 
 import io.swagger.annotations.ApiModelProperty;
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpOperLogUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpOperLogUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpOperLog" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpOperLog" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="object_id" property="objectId" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         id,domain_id,object_id,oper_type_code,oper_type_text,table_name,total_count,income_value,return_value,is_success_code,result_code,result_message,remark,add_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpOperLog" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpOperLog" >
     insert into gp_oper_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -234,7 +234,7 @@ add_time=values(add_time)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpOperLog" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpOperLog" >
     update gp_oper_log
     <set >
                   <if test="domainId != null  and domainId != '' " >

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiChannelModelSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiChannelModelSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelModel" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelModel" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="model_id" property="modelId" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,channel_id,model_id,tpl_content,priority
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelModel" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelModel" >
     insert into pi_channel_model
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -101,7 +101,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelModel" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelModel" >
     update pi_channel_model
     <set >
                   <if test="channelId != null  and channelId != '' " >

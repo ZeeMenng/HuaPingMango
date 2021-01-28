@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaGrowCostUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaGrowCostUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaGrowCost" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaGrowCost" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,input_cost,input_cost_unit_code,input_cost_unit_text,input_cost_unit,artificial_cost,artificial_cost_unit_code,artificial_cost_unit_text,artificial_cost_unit,other_cost,other_cost_unit_code,other_cost_unit_text,other_cost_unit,total_cost,total_cost_unit_code,total_cost_unit_text,total_cost_unit,acre_cost,acre_cost_unit_code,acre_cost_unit_text,acre_cost_unit,catty_cost,catty_cost_unit_code,catty_cost_unit_text,catty_cost_unit
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaGrowCost" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaGrowCost" >
     insert into da_grow_cost
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -245,8 +245,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_grow_cost
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -255,111 +254,129 @@
     	<foreach collection="list" item="daGrowCost" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daGrowCost.id,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.name,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.strainsCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.strainsText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.inputCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.inputCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.inputCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.inputCostUnit,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.artificialCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.artificialCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.artificialCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.artificialCostUnit,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.otherCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.otherCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.otherCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.otherCostUnit,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.totalCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.totalCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.totalCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.totalCostUnit,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.acreCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.acreCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.acreCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.acreCostUnit,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.cattyCost,jdbcType=NUMERIC},
-
-      
           #{daGrowCost.cattyCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daGrowCost.cattyCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daGrowCost.cattyCostUnit,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_grow_cost
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_grow_cost
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daGrowCost" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daGrowCost.id,jdbcType=VARCHAR},
+          #{daGrowCost.commonFieldId,jdbcType=VARCHAR},
+          #{daGrowCost.name,jdbcType=VARCHAR},
+          #{daGrowCost.cropTypeCode,jdbcType=TINYINT},
+          #{daGrowCost.cropTypeText,jdbcType=VARCHAR},
+          #{daGrowCost.strainsCode,jdbcType=TINYINT},
+          #{daGrowCost.strainsText,jdbcType=VARCHAR},
+          #{daGrowCost.inputCost,jdbcType=NUMERIC},
+          #{daGrowCost.inputCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.inputCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.inputCostUnit,jdbcType=NUMERIC},
+          #{daGrowCost.artificialCost,jdbcType=NUMERIC},
+          #{daGrowCost.artificialCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.artificialCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.artificialCostUnit,jdbcType=NUMERIC},
+          #{daGrowCost.otherCost,jdbcType=NUMERIC},
+          #{daGrowCost.otherCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.otherCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.otherCostUnit,jdbcType=NUMERIC},
+          #{daGrowCost.totalCost,jdbcType=NUMERIC},
+          #{daGrowCost.totalCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.totalCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.totalCostUnit,jdbcType=NUMERIC},
+          #{daGrowCost.acreCost,jdbcType=NUMERIC},
+          #{daGrowCost.acreCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.acreCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.acreCostUnit,jdbcType=NUMERIC},
+          #{daGrowCost.cattyCost,jdbcType=NUMERIC},
+          #{daGrowCost.cattyCostUnitCode,jdbcType=TINYINT},
+          #{daGrowCost.cattyCostUnitText,jdbcType=VARCHAR},
+          #{daGrowCost.cattyCostUnit,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+input_cost=values(input_cost),
+input_cost_unit_code=values(input_cost_unit_code),
+input_cost_unit_text=values(input_cost_unit_text),
+input_cost_unit=values(input_cost_unit),
+artificial_cost=values(artificial_cost),
+artificial_cost_unit_code=values(artificial_cost_unit_code),
+artificial_cost_unit_text=values(artificial_cost_unit_text),
+artificial_cost_unit=values(artificial_cost_unit),
+other_cost=values(other_cost),
+other_cost_unit_code=values(other_cost_unit_code),
+other_cost_unit_text=values(other_cost_unit_text),
+other_cost_unit=values(other_cost_unit),
+total_cost=values(total_cost),
+total_cost_unit_code=values(total_cost_unit_code),
+total_cost_unit_text=values(total_cost_unit_text),
+total_cost_unit=values(total_cost_unit),
+acre_cost=values(acre_cost),
+acre_cost_unit_code=values(acre_cost_unit_code),
+acre_cost_unit_text=values(acre_cost_unit_text),
+acre_cost_unit=values(acre_cost_unit),
+catty_cost=values(catty_cost),
+catty_cost_unit_code=values(catty_cost_unit_code),
+catty_cost_unit_text=values(catty_cost_unit_text),
+catty_cost_unit=values(catty_cost_unit)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_grow_cost
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_grow_cost
 		where id  in
@@ -368,7 +385,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaGrowCost" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaGrowCost" >
     update da_grow_cost
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -572,16 +591,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.commonFieldId != null and daGrowCost.commonFieldId  != '' " >
+                  <if test="daGrowCost.commonFieldId != null and daGrowCost.commonFieldId  != ''  and daGrowCost.commonFieldId  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.commonFieldId != null  and daGrowCost.commonFieldId  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.name != null and daGrowCost.name  != '' " >
+                  <if test="daGrowCost.name != null and daGrowCost.name  != ''  and daGrowCost.name  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.name != null  and daGrowCost.name  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -593,9 +620,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.cropTypeText != null and daGrowCost.cropTypeText  != '' " >
+                  <if test="daGrowCost.cropTypeText != null and daGrowCost.cropTypeText  != ''  and daGrowCost.cropTypeText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.cropTypeText != null  and daGrowCost.cropTypeText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -607,9 +638,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.strainsText != null and daGrowCost.strainsText  != '' " >
+                  <if test="daGrowCost.strainsText != null and daGrowCost.strainsText  != ''  and daGrowCost.strainsText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.strainsText != null  and daGrowCost.strainsText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="input_cost =case" suffix="end,">
@@ -628,9 +663,13 @@
          </trim>
          <trim prefix="input_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.inputCostUnitText != null and daGrowCost.inputCostUnitText  != '' " >
+                  <if test="daGrowCost.inputCostUnitText != null and daGrowCost.inputCostUnitText  != ''  and daGrowCost.inputCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.inputCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.inputCostUnitText != null  and daGrowCost.inputCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="input_cost_unit =case" suffix="end,">
@@ -656,9 +695,13 @@
          </trim>
          <trim prefix="artificial_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.artificialCostUnitText != null and daGrowCost.artificialCostUnitText  != '' " >
+                  <if test="daGrowCost.artificialCostUnitText != null and daGrowCost.artificialCostUnitText  != ''  and daGrowCost.artificialCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.artificialCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.artificialCostUnitText != null  and daGrowCost.artificialCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="artificial_cost_unit =case" suffix="end,">
@@ -684,9 +727,13 @@
          </trim>
          <trim prefix="other_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.otherCostUnitText != null and daGrowCost.otherCostUnitText  != '' " >
+                  <if test="daGrowCost.otherCostUnitText != null and daGrowCost.otherCostUnitText  != ''  and daGrowCost.otherCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.otherCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.otherCostUnitText != null  and daGrowCost.otherCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="other_cost_unit =case" suffix="end,">
@@ -712,9 +759,13 @@
          </trim>
          <trim prefix="total_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.totalCostUnitText != null and daGrowCost.totalCostUnitText  != '' " >
+                  <if test="daGrowCost.totalCostUnitText != null and daGrowCost.totalCostUnitText  != ''  and daGrowCost.totalCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.totalCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.totalCostUnitText != null  and daGrowCost.totalCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="total_cost_unit =case" suffix="end,">
@@ -740,9 +791,13 @@
          </trim>
          <trim prefix="acre_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.acreCostUnitText != null and daGrowCost.acreCostUnitText  != '' " >
+                  <if test="daGrowCost.acreCostUnitText != null and daGrowCost.acreCostUnitText  != ''  and daGrowCost.acreCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.acreCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.acreCostUnitText != null  and daGrowCost.acreCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="acre_cost_unit =case" suffix="end,">
@@ -768,9 +823,13 @@
          </trim>
          <trim prefix="catty_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daGrowCost" index="index">
-                  <if test="daGrowCost.cattyCostUnitText != null and daGrowCost.cattyCostUnitText  != '' " >
+                  <if test="daGrowCost.cattyCostUnitText != null and daGrowCost.cattyCostUnitText  != ''  and daGrowCost.cattyCostUnitText  != '-1' ">
                      when id=#{daGrowCost.id} then #{daGrowCost.cattyCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daGrowCost.cattyCostUnitText != null  and daGrowCost.cattyCostUnitText  == '-1' ">
+                     when id=#{daGrowCost.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="catty_cost_unit =case" suffix="end,">
@@ -782,7 +841,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daGrowCost" index="index" open="(" close=")" separator=",">
 			#{daGrowCost.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -792,192 +851,132 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_grow_cost
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="inputCost  != null " >
-              input_cost,
-          </if>
-          <if test="inputCostUnitCode  != null " >
-              input_cost_unit_code,
-          </if>
-          <if test="inputCostUnitText  != null and inputCostUnitText  != '' " >
-              input_cost_unit_text,
-          </if>
-          <if test="inputCostUnit  != null " >
-              input_cost_unit,
-          </if>
-          <if test="artificialCost  != null " >
-              artificial_cost,
-          </if>
-          <if test="artificialCostUnitCode  != null " >
-              artificial_cost_unit_code,
-          </if>
-          <if test="artificialCostUnitText  != null and artificialCostUnitText  != '' " >
-              artificial_cost_unit_text,
-          </if>
-          <if test="artificialCostUnit  != null " >
-              artificial_cost_unit,
-          </if>
-          <if test="otherCost  != null " >
-              other_cost,
-          </if>
-          <if test="otherCostUnitCode  != null " >
-              other_cost_unit_code,
-          </if>
-          <if test="otherCostUnitText  != null and otherCostUnitText  != '' " >
-              other_cost_unit_text,
-          </if>
-          <if test="otherCostUnit  != null " >
-              other_cost_unit,
-          </if>
-          <if test="totalCost  != null " >
-              total_cost,
-          </if>
-          <if test="totalCostUnitCode  != null " >
-              total_cost_unit_code,
-          </if>
-          <if test="totalCostUnitText  != null and totalCostUnitText  != '' " >
-              total_cost_unit_text,
-          </if>
-          <if test="totalCostUnit  != null " >
-              total_cost_unit,
-          </if>
-          <if test="acreCost  != null " >
-              acre_cost,
-          </if>
-          <if test="acreCostUnitCode  != null " >
-              acre_cost_unit_code,
-          </if>
-          <if test="acreCostUnitText  != null and acreCostUnitText  != '' " >
-              acre_cost_unit_text,
-          </if>
-          <if test="acreCostUnit  != null " >
-              acre_cost_unit,
-          </if>
-          <if test="cattyCost  != null " >
-              catty_cost,
-          </if>
-          <if test="cattyCostUnitCode  != null " >
-              catty_cost_unit_code,
-          </if>
-          <if test="cattyCostUnitText  != null and cattyCostUnitText  != '' " >
-              catty_cost_unit_text,
-          </if>
-          <if test="cattyCostUnit  != null " >
-              catty_cost_unit,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+input_cost,
+input_cost_unit_code,
+input_cost_unit_text,
+input_cost_unit,
+artificial_cost,
+artificial_cost_unit_code,
+artificial_cost_unit_text,
+artificial_cost_unit,
+other_cost,
+other_cost_unit_code,
+other_cost_unit_text,
+other_cost_unit,
+total_cost,
+total_cost_unit_code,
+total_cost_unit_text,
+total_cost_unit,
+acre_cost,
+acre_cost_unit_code,
+acre_cost_unit_text,
+acre_cost_unit,
+catty_cost,
+catty_cost_unit_code,
+catty_cost_unit_text,
+catty_cost_unit,
     </trim>
     VALUES
     <foreach collection="list" item="daGrowCost" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daGrowCost.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daGrowCost.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daGrowCost.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daGrowCost.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daGrowCost.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daGrowCost.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daGrowCost.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.inputCost != null ">
+                  
+                  
                     #{daGrowCost.inputCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.inputCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.inputCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.inputCostUnitText  != null  and t.inputCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.inputCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.inputCostUnit != null ">
+                  
+                  
                     #{daGrowCost.inputCostUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.artificialCost != null ">
+            
+                  
                     #{daGrowCost.artificialCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.artificialCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.artificialCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.artificialCostUnitText  != null  and t.artificialCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.artificialCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.artificialCostUnit != null ">
+                  
+                  
                     #{daGrowCost.artificialCostUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.otherCost != null ">
+            
+                  
                     #{daGrowCost.otherCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.otherCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.otherCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.otherCostUnitText  != null  and t.otherCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.otherCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.otherCostUnit != null ">
+                  
+                  
                     #{daGrowCost.otherCostUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalCost != null ">
+            
+                  
                     #{daGrowCost.totalCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.totalCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.totalCostUnitText  != null  and t.totalCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.totalCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.totalCostUnit != null ">
+                  
+                  
                     #{daGrowCost.totalCostUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.acreCost != null ">
+            
+                  
                     #{daGrowCost.acreCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.acreCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.acreCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.acreCostUnitText  != null  and t.acreCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.acreCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.acreCostUnit != null ">
+                  
+                  
                     #{daGrowCost.acreCostUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cattyCost != null ">
+            
+                  
                     #{daGrowCost.cattyCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.cattyCostUnitCode != null ">
+            
+                  
                     #{daGrowCost.cattyCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cattyCostUnitText  != null  and t.cattyCostUnitText != '' " >
+            
+                  
                      #{daGrowCost.cattyCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cattyCostUnit != null ">
+                  
+                  
                     #{daGrowCost.cattyCostUnit,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

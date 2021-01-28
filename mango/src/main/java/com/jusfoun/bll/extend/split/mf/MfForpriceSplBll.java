@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.split.mf;
+package com.zee.bll.extend.split.mf;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.mf.MfForpriceGenSplBll;
+import com.zee.bll.generate.split.mf.MfForpriceGenSplBll;
 
 
 /**

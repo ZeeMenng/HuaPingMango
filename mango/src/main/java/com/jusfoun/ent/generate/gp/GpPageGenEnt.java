@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,18 +6,18 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpControl;
-import com.jusfoun.ent.extend.gp.GpResource;
-import com.jusfoun.ent.extend.gp.GprModulePage;
-import com.jusfoun.ent.extend.gp.GprRolePage;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpControl;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.extend.gp.GprModulePage;
+import com.zee.ent.extend.gp.GprRolePage;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:15
+ * @updateDate 2021/1/28 16:09:25
  * @description 实体类GpPageGenEnt，自动生成。系统页面。
  */
 
@@ -40,10 +40,10 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
     private String url;
 
    //本表做为子表时，父表实体对象
+    private  GpDomain gpDomain;
 
     //本表做为父表时，子表数据列表
     private ArrayList<GpControl> gpControlList;   
-    private ArrayList<GpResource> gpResourceList;   
     private ArrayList<GprModulePage> gprModulePageList;   
     private ArrayList<GprRolePage> gprRolePageList;   
 
@@ -166,20 +166,6 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
 	}
 
 	/**
-	 * get方法。本表做为父表时，子表实体对象。文件信息。
-	 */
-	public ArrayList<GpResource> getGpResourceList() {
-		return this.gpResourceList;
-	}
-
-	/**
-	 * set方法。本表做为父表时，子表实体对象。文件信息。
-	 */
-	public void setGpResourceList(ArrayList<GpResource> gpResourceList) {
-		this.gpResourceList = gpResourceList;
-	}
-
-	/**
 	 * get方法。本表做为父表时，子表实体对象。功能模块所包含的页面。
 	 */
 	public ArrayList<GprModulePage> getGprModulePageList() {
@@ -209,6 +195,20 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
 
 
 
+
+	/**
+	 * get方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public GpDomain getGpDomain() {
+		return this.gpDomain;
+	}
+
+	/**
+	 * set方法。本表做为子表时，父表实体对象。应用领域。
+	 */
+	public void setGpDomain(GpDomain gpDomain) {
+		this.gpDomain = gpDomain;
+	}
 
 
 

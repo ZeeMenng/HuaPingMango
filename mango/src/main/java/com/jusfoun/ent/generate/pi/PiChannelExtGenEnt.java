@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:13
+ * @updateDate 2021/1/28 16:09:52
  * @description 实体类PiChannelExtGenEnt，自动生成。CMS栏目内容表
  */
 
@@ -32,21 +30,21 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
     private Byte allowUpdown;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String channelId;
-    @ApiModelProperty(value="名称",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String channelName;
-    @ApiModelProperty(value="栏目页生成规则",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String channelRule;
     @ApiModelProperty(value="评论(0:匿名;1:会员;2:关闭)",hidden=false,required=true)
     private Integer commentControl;
-    @ApiModelProperty(value="内容图",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String contentImg;
     @ApiModelProperty(value="内容内容图高度",hidden=false,required=true)
     private Integer contentImgHeight;
     @ApiModelProperty(value="内容内容图宽度",hidden=false,required=true)
     private Integer contentImgWidth;
-    @ApiModelProperty(value="内容页生成规则",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String contentRule;
-    @ApiModelProperty(value="DESCRIPTION",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String description;
     @ApiModelProperty(value="终审级别",hidden=false,required=false)
     private Byte finalStep;
@@ -54,39 +52,43 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
     private Byte hasContentImg;
     @ApiModelProperty(value="内容是否有缩略图",hidden=false,required=true)
     private Byte hasTitleImg;
-    @ApiModelProperty(value="主键",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="是否使用目录访问",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String isAccessByDir;
     @ApiModelProperty(value="是否新窗口打开",hidden=false,required=true)
     private Byte isBlank;
-    @ApiModelProperty(value="是否使用子栏目列表",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String isListChild;
-    @ApiModelProperty(value="是否栏目静态化",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String isStaticChannel;
-    @ApiModelProperty(value="是否内容静态化",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String isStaticContent;
-    @ApiModelProperty(value="KEYWORDS",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String keywords;
-    @ApiModelProperty(value="外部链接",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String link;
     @ApiModelProperty(value="每页多少条记录",hidden=false,required=true)
     private Integer pageSize;
-    @ApiModelProperty(value="TITLE",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String title;
-    @ApiModelProperty(value="缩略图",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String titleImg;
     @ApiModelProperty(value="内容标题图高度",hidden=false,required=true)
     private Integer titleImgHeight;
     @ApiModelProperty(value="内容标题图宽度",hidden=false,required=true)
     private Integer titleImgWidth;
-    @ApiModelProperty(value="栏目页模板",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String tplChannel;
-    @ApiModelProperty(value="内容页模板",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String tplContent;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。审核后(1:不能修改删除;2:修改后退回;3:修改后不变)
@@ -159,28 +161,28 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getChannelName() {
 		return this.channelName;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setChannelName(String channelName) {
 		this.channelName = channelName;
 	}
     
 	/**
-	 * get方法。栏目页生成规则
+	 * get方法。
 	 */
 	public String getChannelRule() {
 		return this.channelRule;
 	}
 
 	/**
-	 * set方法。栏目页生成规则
+	 * set方法。
 	 */
 	public void setChannelRule(String channelRule) {
 		this.channelRule = channelRule;
@@ -201,14 +203,14 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。内容图
+	 * get方法。
 	 */
 	public String getContentImg() {
 		return this.contentImg;
 	}
 
 	/**
-	 * set方法。内容图
+	 * set方法。
 	 */
 	public void setContentImg(String contentImg) {
 		this.contentImg = contentImg;
@@ -243,28 +245,28 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。内容页生成规则
+	 * get方法。
 	 */
 	public String getContentRule() {
 		return this.contentRule;
 	}
 
 	/**
-	 * set方法。内容页生成规则
+	 * set方法。
 	 */
 	public void setContentRule(String contentRule) {
 		this.contentRule = contentRule;
 	}
     
 	/**
-	 * get方法。DESCRIPTION
+	 * get方法。
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 
 	/**
-	 * set方法。DESCRIPTION
+	 * set方法。
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -313,28 +315,28 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。主键
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。是否使用目录访问
+	 * get方法。
 	 */
 	public String getIsAccessByDir() {
 		return this.isAccessByDir;
 	}
 
 	/**
-	 * set方法。是否使用目录访问
+	 * set方法。
 	 */
 	public void setIsAccessByDir(String isAccessByDir) {
 		this.isAccessByDir = isAccessByDir;
@@ -355,70 +357,70 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。是否使用子栏目列表
+	 * get方法。
 	 */
 	public String getIsListChild() {
 		return this.isListChild;
 	}
 
 	/**
-	 * set方法。是否使用子栏目列表
+	 * set方法。
 	 */
 	public void setIsListChild(String isListChild) {
 		this.isListChild = isListChild;
 	}
     
 	/**
-	 * get方法。是否栏目静态化
+	 * get方法。
 	 */
 	public String getIsStaticChannel() {
 		return this.isStaticChannel;
 	}
 
 	/**
-	 * set方法。是否栏目静态化
+	 * set方法。
 	 */
 	public void setIsStaticChannel(String isStaticChannel) {
 		this.isStaticChannel = isStaticChannel;
 	}
     
 	/**
-	 * get方法。是否内容静态化
+	 * get方法。
 	 */
 	public String getIsStaticContent() {
 		return this.isStaticContent;
 	}
 
 	/**
-	 * set方法。是否内容静态化
+	 * set方法。
 	 */
 	public void setIsStaticContent(String isStaticContent) {
 		this.isStaticContent = isStaticContent;
 	}
     
 	/**
-	 * get方法。KEYWORDS
+	 * get方法。
 	 */
 	public String getKeywords() {
 		return this.keywords;
 	}
 
 	/**
-	 * set方法。KEYWORDS
+	 * set方法。
 	 */
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
     
 	/**
-	 * get方法。外部链接
+	 * get方法。
 	 */
 	public String getLink() {
 		return this.link;
 	}
 
 	/**
-	 * set方法。外部链接
+	 * set方法。
 	 */
 	public void setLink(String link) {
 		this.link = link;
@@ -439,28 +441,28 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。TITLE
+	 * get方法。
 	 */
 	public String getTitle() {
 		return this.title;
 	}
 
 	/**
-	 * set方法。TITLE
+	 * set方法。
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
     
 	/**
-	 * get方法。缩略图
+	 * get方法。
 	 */
 	public String getTitleImg() {
 		return this.titleImg;
 	}
 
 	/**
-	 * set方法。缩略图
+	 * set方法。
 	 */
 	public void setTitleImg(String titleImg) {
 		this.titleImg = titleImg;
@@ -495,35 +497,42 @@ public class PiChannelExtGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。栏目页模板
+	 * get方法。
 	 */
 	public String getTplChannel() {
 		return this.tplChannel;
 	}
 
 	/**
-	 * set方法。栏目页模板
+	 * set方法。
 	 */
 	public void setTplChannel(String tplChannel) {
 		this.tplChannel = tplChannel;
 	}
     
 	/**
-	 * get方法。内容页模板
+	 * get方法。
 	 */
 	public String getTplContent() {
 		return this.tplContent;
 	}
 
 	/**
-	 * set方法。内容页模板
+	 * set方法。
 	 */
 	public void setTplContent(String tplContent) {
 		this.tplContent = tplContent;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

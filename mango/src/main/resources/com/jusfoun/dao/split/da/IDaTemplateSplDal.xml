@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaTemplateSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaTemplateSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaTemplate" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaTemplate" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
               <result column="service_type_code" property="serviceTypeCode" jdbcType="TINYINT" />
@@ -15,7 +15,7 @@
         id,serial_no,service_type_code,service_type_text,template_name,common_field_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaTemplate" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaTemplate" >
     insert into da_template
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -112,7 +112,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaTemplate" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaTemplate" >
     update da_template
     <set >
                   <if test="serialNo != null  and serialNo != '' " >

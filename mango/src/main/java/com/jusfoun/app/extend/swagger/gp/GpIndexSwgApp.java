@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiChannelCountGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpLoginLogUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprUserOrganizationUntBll;
-import com.jusfoun.bll.extend.unity.pi.PiChannelCountUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.pi.PiChannelCountGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpLoginLogUntBll;
+import com.zee.bll.extend.unity.gp.GprUserOrganizationUntBll;
+import com.zee.bll.extend.unity.pi.PiChannelCountUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

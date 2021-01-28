@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,24 +6,25 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpControl;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.extend.gp.GpLoginLog;
-import com.jusfoun.ent.extend.gp.GpModule;
-import com.jusfoun.ent.extend.gp.GpOperLog;
-import com.jusfoun.ent.extend.gp.GpResource;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GprDomainMessage;
-import com.jusfoun.ent.extend.gp.GprDomainUser;
-import com.jusfoun.ent.extend.gp.GprRoleDomain;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpControl;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.extend.gp.GpLoginLog;
+import com.zee.ent.extend.gp.GpModule;
+import com.zee.ent.extend.gp.GpOperLog;
+import com.zee.ent.extend.gp.GpPage;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GprDomainMessage;
+import com.zee.ent.extend.gp.GprDomainUser;
+import com.zee.ent.extend.gp.GprRoleDomain;
+import com.zee.ent.extend.gp.GprConfigDomain;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:12
+ * @updateDate 2021/1/28 16:09:21
  * @description 实体类GpDomainGenEnt，自动生成。应用领域。
  */
 
@@ -55,11 +56,12 @@ public class GpDomainGenEnt extends BaseEnt implements Serializable {
     private ArrayList<GpLoginLog> gpLoginLogList;   
     private ArrayList<GpModule> gpModuleList;   
     private ArrayList<GpOperLog> gpOperLogList;   
-    private ArrayList<GpResource> gpResourceList;   
+    private ArrayList<GpPage> gpPageList;   
     private ArrayList<GpToken> gpTokenList;   
     private ArrayList<GprDomainMessage> gprDomainMessageList;   
     private ArrayList<GprDomainUser> gprDomainUserList;   
     private ArrayList<GprRoleDomain> gprRoleDomainList;   
+    private ArrayList<GprConfigDomain> gprConfigDomainList;   
 
     //父子表均为自身时
 
@@ -250,17 +252,17 @@ public class GpDomainGenEnt extends BaseEnt implements Serializable {
 	}
 
 	/**
-	 * get方法。本表做为父表时，子表实体对象。文件信息。
+	 * get方法。本表做为父表时，子表实体对象。系统页面。
 	 */
-	public ArrayList<GpResource> getGpResourceList() {
-		return this.gpResourceList;
+	public ArrayList<GpPage> getGpPageList() {
+		return this.gpPageList;
 	}
 
 	/**
-	 * set方法。本表做为父表时，子表实体对象。文件信息。
+	 * set方法。本表做为父表时，子表实体对象。系统页面。
 	 */
-	public void setGpResourceList(ArrayList<GpResource> gpResourceList) {
-		this.gpResourceList = gpResourceList;
+	public void setGpPageList(ArrayList<GpPage> gpPageList) {
+		this.gpPageList = gpPageList;
 	}
 
 	/**
@@ -317,6 +319,20 @@ public class GpDomainGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setGprRoleDomainList(ArrayList<GprRoleDomain> gprRoleDomainList) {
 		this.gprRoleDomainList = gprRoleDomainList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。应用领域配置信息。
+	 */
+	public ArrayList<GprConfigDomain> getGprConfigDomainList() {
+		return this.gprConfigDomainList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。应用领域配置信息。
+	 */
+	public void setGprConfigDomainList(ArrayList<GprConfigDomain> gprConfigDomainList) {
+		this.gprConfigDomainList = gprConfigDomainList;
 	}
 
 

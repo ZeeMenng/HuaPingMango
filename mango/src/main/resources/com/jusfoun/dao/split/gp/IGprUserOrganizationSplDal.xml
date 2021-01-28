@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGprUserOrganizationSplDal">
+<mapper namespace="com.zee.dao.split.gp.IGprUserOrganizationSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprUserOrganization">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprUserOrganization">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="user_id" property="userId" jdbcType="VARCHAR" />
 		<result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
 		id,user_id,organization_id
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprUserOrganization">
+	<insert id="add" parameterType="com.zee.ent.extend.gp.GprUserOrganization">
 		insert into gpr_user_organization
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -107,7 +107,7 @@
 	</delete>
 
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprUserOrganization">
+	<update id="update" parameterType="com.zee.ent.extend.gp.GprUserOrganization">
 		update gpr_user_organization
 		<set>
 			<if test="userId != null  and userId != '' ">

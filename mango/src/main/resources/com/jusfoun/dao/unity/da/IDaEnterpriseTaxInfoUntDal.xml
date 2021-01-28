@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseTaxInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaEnterpriseTaxInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         id,enterprise_id,enterprise_name,tax_code,tax_organ,tax_person_status_code,tax_person_status_text,tax_status_code,tax_status_text,tax_money,tax_time,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
     insert into da_enterprise_tax_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -123,8 +123,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_enterprise_tax_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -133,60 +132,78 @@
     	<foreach collection="list" item="daEnterpriseTaxInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daEnterpriseTaxInfo.id,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.enterpriseId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.taxCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.taxOrgan,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseTaxInfo.taxPersonStatusText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseTaxInfo.taxStatusText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC},
-
-      
           #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseTaxInfo.remark,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_enterprise_tax_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_enterprise_tax_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseTaxInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daEnterpriseTaxInfo.id,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.enterpriseId,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.taxCode,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.taxOrgan,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT},
+          #{daEnterpriseTaxInfo.taxPersonStatusText,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT},
+          #{daEnterpriseTaxInfo.taxStatusText,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC},
+          #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP},
+          #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT},
+          #{daEnterpriseTaxInfo.remark,jdbcType=VARCHAR},
+          #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+enterprise_id=values(enterprise_id),
+enterprise_name=values(enterprise_name),
+tax_code=values(tax_code),
+tax_organ=values(tax_organ),
+tax_person_status_code=values(tax_person_status_code),
+tax_person_status_text=values(tax_person_status_text),
+tax_status_code=values(tax_status_code),
+tax_status_text=values(tax_status_text),
+tax_money=values(tax_money),
+tax_time=values(tax_time),
+datasource_code=values(datasource_code),
+remark=values(remark),
+created_time=values(created_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_enterprise_tax_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_enterprise_tax_info
 		where id  in
@@ -195,7 +212,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseTaxInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseTaxInfo" >
     update da_enterprise_tax_info
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >
@@ -297,30 +316,46 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.enterpriseId != null and daEnterpriseTaxInfo.enterpriseId  != '' " >
+                  <if test="daEnterpriseTaxInfo.enterpriseId != null and daEnterpriseTaxInfo.enterpriseId  != ''  and daEnterpriseTaxInfo.enterpriseId  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.enterpriseId != null  and daEnterpriseTaxInfo.enterpriseId  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.enterpriseName != null and daEnterpriseTaxInfo.enterpriseName  != '' " >
+                  <if test="daEnterpriseTaxInfo.enterpriseName != null and daEnterpriseTaxInfo.enterpriseName  != ''  and daEnterpriseTaxInfo.enterpriseName  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.enterpriseName != null  and daEnterpriseTaxInfo.enterpriseName  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tax_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.taxCode != null and daEnterpriseTaxInfo.taxCode  != '' " >
+                  <if test="daEnterpriseTaxInfo.taxCode != null and daEnterpriseTaxInfo.taxCode  != ''  and daEnterpriseTaxInfo.taxCode  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.taxCode != null  and daEnterpriseTaxInfo.taxCode  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tax_organ =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.taxOrgan != null and daEnterpriseTaxInfo.taxOrgan  != '' " >
+                  <if test="daEnterpriseTaxInfo.taxOrgan != null and daEnterpriseTaxInfo.taxOrgan  != ''  and daEnterpriseTaxInfo.taxOrgan  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxOrgan,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.taxOrgan != null  and daEnterpriseTaxInfo.taxOrgan  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tax_person_status_code =case" suffix="end,">
@@ -332,9 +367,13 @@
          </trim>
          <trim prefix="tax_person_status_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.taxPersonStatusText != null and daEnterpriseTaxInfo.taxPersonStatusText  != '' " >
+                  <if test="daEnterpriseTaxInfo.taxPersonStatusText != null and daEnterpriseTaxInfo.taxPersonStatusText  != ''  and daEnterpriseTaxInfo.taxPersonStatusText  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxPersonStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.taxPersonStatusText != null  and daEnterpriseTaxInfo.taxPersonStatusText  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tax_status_code =case" suffix="end,">
@@ -346,9 +385,13 @@
          </trim>
          <trim prefix="tax_status_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.taxStatusText != null and daEnterpriseTaxInfo.taxStatusText  != '' " >
+                  <if test="daEnterpriseTaxInfo.taxStatusText != null and daEnterpriseTaxInfo.taxStatusText  != ''  and daEnterpriseTaxInfo.taxStatusText  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.taxStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.taxStatusText != null  and daEnterpriseTaxInfo.taxStatusText  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tax_money =case" suffix="end,">
@@ -374,9 +417,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseTaxInfo" index="index">
-                  <if test="daEnterpriseTaxInfo.remark != null and daEnterpriseTaxInfo.remark  != '' " >
+                  <if test="daEnterpriseTaxInfo.remark != null and daEnterpriseTaxInfo.remark  != ''  and daEnterpriseTaxInfo.remark  != '-1' ">
                      when id=#{daEnterpriseTaxInfo.id} then #{daEnterpriseTaxInfo.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseTaxInfo.remark != null  and daEnterpriseTaxInfo.remark  == '-1' ">
+                     when id=#{daEnterpriseTaxInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="created_time =case" suffix="end,">
@@ -388,7 +435,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daEnterpriseTaxInfo" index="index" open="(" close=")" separator=",">
 			#{daEnterpriseTaxInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -398,90 +445,64 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_enterprise_tax_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="enterpriseId  != null and enterpriseId  != '' " >
-              enterprise_id,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="taxCode  != null and taxCode  != '' " >
-              tax_code,
-          </if>
-          <if test="taxOrgan  != null and taxOrgan  != '' " >
-              tax_organ,
-          </if>
-          <if test="taxPersonStatusCode  != null " >
-              tax_person_status_code,
-          </if>
-          <if test="taxPersonStatusText  != null and taxPersonStatusText  != '' " >
-              tax_person_status_text,
-          </if>
-          <if test="taxStatusCode  != null " >
-              tax_status_code,
-          </if>
-          <if test="taxStatusText  != null and taxStatusText  != '' " >
-              tax_status_text,
-          </if>
-          <if test="taxMoney  != null " >
-              tax_money,
-          </if>
-          <if test="taxTime  != null " >
-              tax_time,
-          </if>
-          <if test="datasourceCode  != null " >
-              datasource_code,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="createdTime  != null " >
-              created_time,
-          </if>
+id,
+enterprise_id,
+enterprise_name,
+tax_code,
+tax_organ,
+tax_person_status_code,
+tax_person_status_text,
+tax_status_code,
+tax_status_text,
+tax_money,
+tax_time,
+datasource_code,
+remark,
+created_time,
     </trim>
     VALUES
     <foreach collection="list" item="daEnterpriseTaxInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daEnterpriseTaxInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                  
                      #{daEnterpriseTaxInfo.enterpriseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daEnterpriseTaxInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.taxCode  != null  and t.taxCode != '' " >
+                  
+                  
                      #{daEnterpriseTaxInfo.taxCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.taxOrgan  != null  and t.taxOrgan != '' " >
+                  
+                  
                      #{daEnterpriseTaxInfo.taxOrgan ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.taxPersonStatusCode != null ">
+                  
+                  
                     #{daEnterpriseTaxInfo.taxPersonStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.taxPersonStatusText  != null  and t.taxPersonStatusText != '' " >
+            
+                  
                      #{daEnterpriseTaxInfo.taxPersonStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.taxStatusCode != null ">
+                  
+                  
                     #{daEnterpriseTaxInfo.taxStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.taxStatusText  != null  and t.taxStatusText != '' " >
+            
+                  
                      #{daEnterpriseTaxInfo.taxStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.taxMoney != null ">
+                  
+                  
                     #{daEnterpriseTaxInfo.taxMoney,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.taxTime != null ">
+            
+                  
                     #{daEnterpriseTaxInfo.taxTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.datasourceCode != null ">
+            
+                  
                     #{daEnterpriseTaxInfo.datasourceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daEnterpriseTaxInfo.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createdTime != null ">
+                  
+                  
                     #{daEnterpriseTaxInfo.createdTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

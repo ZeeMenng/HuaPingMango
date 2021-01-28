@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfHpFluctSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfHpFluctSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfHpFluct" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfHpFluct" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
         id,date_time,region_code,region_name,dately_price,trend,undulation
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfHpFluct" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfHpFluct" >
     insert into mf_hp_fluct
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -121,7 +121,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfHpFluct" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfHpFluct" >
     update mf_hp_fluct
     <set >
                   <if test="dateTime != null  and dateTime != '' " >

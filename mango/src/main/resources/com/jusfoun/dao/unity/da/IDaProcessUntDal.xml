@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaProcessUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaProcessUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaProcess" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaProcess" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
@@ -30,7 +30,7 @@
         id,common_field_id,crop_type_code,crop_type_text,process_strains_code,process_strains_text,product_name,process_time,output_value,output_value_code,output_value_text,output_value_unit,consume_total,consume_total_code,consume_total_text,consume_total_unit,product_total,product_total_code,product_total_text,product_total_unit,name
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaProcess" >
     insert into da_process
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -173,8 +173,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_process
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -183,81 +182,99 @@
     	<foreach collection="list" item="daProcess" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daProcess.id,jdbcType=VARCHAR},
-
-      
           #{daProcess.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daProcess.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daProcess.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daProcess.processStrainsCode,jdbcType=TINYINT},
-
-      
           #{daProcess.processStrainsText,jdbcType=VARCHAR},
-
-      
           #{daProcess.productName,jdbcType=VARCHAR},
-
-      
           #{daProcess.processTime,jdbcType=TIMESTAMP},
-
-      
           #{daProcess.outputValue,jdbcType=NUMERIC},
-
-      
           #{daProcess.outputValueCode,jdbcType=TINYINT},
-
-      
           #{daProcess.outputValueText,jdbcType=VARCHAR},
-
-      
           #{daProcess.outputValueUnit,jdbcType=NUMERIC},
-
-      
           #{daProcess.consumeTotal,jdbcType=NUMERIC},
-
-      
           #{daProcess.consumeTotalCode,jdbcType=TINYINT},
-
-      
           #{daProcess.consumeTotalText,jdbcType=VARCHAR},
-
-      
           #{daProcess.consumeTotalUnit,jdbcType=NUMERIC},
-
-      
           #{daProcess.productTotal,jdbcType=NUMERIC},
-
-      
           #{daProcess.productTotalCode,jdbcType=TINYINT},
-
-      
           #{daProcess.productTotalText,jdbcType=VARCHAR},
-
-      
           #{daProcess.productTotalUnit,jdbcType=NUMERIC},
-
-      
           #{daProcess.name,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_process
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_process
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daProcess" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daProcess.id,jdbcType=VARCHAR},
+          #{daProcess.commonFieldId,jdbcType=VARCHAR},
+          #{daProcess.cropTypeCode,jdbcType=TINYINT},
+          #{daProcess.cropTypeText,jdbcType=VARCHAR},
+          #{daProcess.processStrainsCode,jdbcType=TINYINT},
+          #{daProcess.processStrainsText,jdbcType=VARCHAR},
+          #{daProcess.productName,jdbcType=VARCHAR},
+          #{daProcess.processTime,jdbcType=TIMESTAMP},
+          #{daProcess.outputValue,jdbcType=NUMERIC},
+          #{daProcess.outputValueCode,jdbcType=TINYINT},
+          #{daProcess.outputValueText,jdbcType=VARCHAR},
+          #{daProcess.outputValueUnit,jdbcType=NUMERIC},
+          #{daProcess.consumeTotal,jdbcType=NUMERIC},
+          #{daProcess.consumeTotalCode,jdbcType=TINYINT},
+          #{daProcess.consumeTotalText,jdbcType=VARCHAR},
+          #{daProcess.consumeTotalUnit,jdbcType=NUMERIC},
+          #{daProcess.productTotal,jdbcType=NUMERIC},
+          #{daProcess.productTotalCode,jdbcType=TINYINT},
+          #{daProcess.productTotalText,jdbcType=VARCHAR},
+          #{daProcess.productTotalUnit,jdbcType=NUMERIC},
+          #{daProcess.name,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+process_strains_code=values(process_strains_code),
+process_strains_text=values(process_strains_text),
+product_name=values(product_name),
+process_time=values(process_time),
+output_value=values(output_value),
+output_value_code=values(output_value_code),
+output_value_text=values(output_value_text),
+output_value_unit=values(output_value_unit),
+consume_total=values(consume_total),
+consume_total_code=values(consume_total_code),
+consume_total_text=values(consume_total_text),
+consume_total_unit=values(consume_total_unit),
+product_total=values(product_total),
+product_total_code=values(product_total_code),
+product_total_text=values(product_total_text),
+product_total_unit=values(product_total_unit),
+name=values(name)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_process
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_process
 		where id  in
@@ -266,7 +283,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaProcess" >
     update da_process
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -410,9 +429,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.commonFieldId != null and daProcess.commonFieldId  != '' " >
+                  <if test="daProcess.commonFieldId != null and daProcess.commonFieldId  != ''  and daProcess.commonFieldId  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.commonFieldId != null  and daProcess.commonFieldId  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -424,9 +447,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.cropTypeText != null and daProcess.cropTypeText  != '' " >
+                  <if test="daProcess.cropTypeText != null and daProcess.cropTypeText  != ''  and daProcess.cropTypeText  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.cropTypeText != null  and daProcess.cropTypeText  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="process_strains_code =case" suffix="end,">
@@ -438,16 +465,24 @@
          </trim>
          <trim prefix="process_strains_text =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.processStrainsText != null and daProcess.processStrainsText  != '' " >
+                  <if test="daProcess.processStrainsText != null and daProcess.processStrainsText  != ''  and daProcess.processStrainsText  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.processStrainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.processStrainsText != null  and daProcess.processStrainsText  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_name =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.productName != null and daProcess.productName  != '' " >
+                  <if test="daProcess.productName != null and daProcess.productName  != ''  and daProcess.productName  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.productName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.productName != null  and daProcess.productName  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="process_time =case" suffix="end,">
@@ -473,9 +508,13 @@
          </trim>
          <trim prefix="output_value_text =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.outputValueText != null and daProcess.outputValueText  != '' " >
+                  <if test="daProcess.outputValueText != null and daProcess.outputValueText  != ''  and daProcess.outputValueText  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.outputValueText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.outputValueText != null  and daProcess.outputValueText  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output_value_unit =case" suffix="end,">
@@ -501,9 +540,13 @@
          </trim>
          <trim prefix="consume_total_text =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.consumeTotalText != null and daProcess.consumeTotalText  != '' " >
+                  <if test="daProcess.consumeTotalText != null and daProcess.consumeTotalText  != ''  and daProcess.consumeTotalText  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.consumeTotalText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.consumeTotalText != null  and daProcess.consumeTotalText  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="consume_total_unit =case" suffix="end,">
@@ -529,9 +572,13 @@
          </trim>
          <trim prefix="product_total_text =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.productTotalText != null and daProcess.productTotalText  != '' " >
+                  <if test="daProcess.productTotalText != null and daProcess.productTotalText  != ''  and daProcess.productTotalText  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.productTotalText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.productTotalText != null  and daProcess.productTotalText  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_total_unit =case" suffix="end,">
@@ -543,14 +590,18 @@
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daProcess" index="index">
-                  <if test="daProcess.name != null and daProcess.name  != '' " >
+                  <if test="daProcess.name != null and daProcess.name  != ''  and daProcess.name  != '-1' ">
                      when id=#{daProcess.id} then #{daProcess.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daProcess.name != null  and daProcess.name  == '-1' ">
+                     when id=#{daProcess.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daProcess" index="index" open="(" close=")" separator=",">
 			#{daProcess.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -560,132 +611,92 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_process
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="processStrainsCode  != null " >
-              process_strains_code,
-          </if>
-          <if test="processStrainsText  != null and processStrainsText  != '' " >
-              process_strains_text,
-          </if>
-          <if test="productName  != null and productName  != '' " >
-              product_name,
-          </if>
-          <if test="processTime  != null " >
-              process_time,
-          </if>
-          <if test="outputValue  != null " >
-              output_value,
-          </if>
-          <if test="outputValueCode  != null " >
-              output_value_code,
-          </if>
-          <if test="outputValueText  != null and outputValueText  != '' " >
-              output_value_text,
-          </if>
-          <if test="outputValueUnit  != null " >
-              output_value_unit,
-          </if>
-          <if test="consumeTotal  != null " >
-              consume_total,
-          </if>
-          <if test="consumeTotalCode  != null " >
-              consume_total_code,
-          </if>
-          <if test="consumeTotalText  != null and consumeTotalText  != '' " >
-              consume_total_text,
-          </if>
-          <if test="consumeTotalUnit  != null " >
-              consume_total_unit,
-          </if>
-          <if test="productTotal  != null " >
-              product_total,
-          </if>
-          <if test="productTotalCode  != null " >
-              product_total_code,
-          </if>
-          <if test="productTotalText  != null and productTotalText  != '' " >
-              product_total_text,
-          </if>
-          <if test="productTotalUnit  != null " >
-              product_total_unit,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
+id,
+common_field_id,
+crop_type_code,
+crop_type_text,
+process_strains_code,
+process_strains_text,
+product_name,
+process_time,
+output_value,
+output_value_code,
+output_value_text,
+output_value_unit,
+consume_total,
+consume_total_code,
+consume_total_text,
+consume_total_unit,
+product_total,
+product_total_code,
+product_total_text,
+product_total_unit,
+name,
     </trim>
     VALUES
     <foreach collection="list" item="daProcess" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daProcess.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daProcess.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daProcess.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daProcess.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.processStrainsCode != null ">
+                  
+                  
                     #{daProcess.processStrainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.processStrainsText  != null  and t.processStrainsText != '' " >
+            
+                  
                      #{daProcess.processStrainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productName  != null  and t.productName != '' " >
+                  
+                  
                      #{daProcess.productName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.processTime != null ">
+                  
+                  
                     #{daProcess.processTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.outputValue != null ">
+            
+                  
                     #{daProcess.outputValue,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputValueCode != null ">
+            
+                  
                     #{daProcess.outputValueCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.outputValueText  != null  and t.outputValueText != '' " >
+            
+                  
                      #{daProcess.outputValueText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.outputValueUnit != null ">
+                  
+                  
                     #{daProcess.outputValueUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.consumeTotal != null ">
+            
+                  
                     #{daProcess.consumeTotal,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.consumeTotalCode != null ">
+            
+                  
                     #{daProcess.consumeTotalCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.consumeTotalText  != null  and t.consumeTotalText != '' " >
+            
+                  
                      #{daProcess.consumeTotalText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.consumeTotalUnit != null ">
+                  
+                  
                     #{daProcess.consumeTotalUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.productTotal != null ">
+            
+                  
                     #{daProcess.productTotal,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.productTotalCode != null ">
+            
+                  
                     #{daProcess.productTotalCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.productTotalText  != null  and t.productTotalText != '' " >
+            
+                  
                      #{daProcess.productTotalText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productTotalUnit != null ">
+                  
+                  
                     #{daProcess.productTotalUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+            
+                  
                      #{daProcess.name ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

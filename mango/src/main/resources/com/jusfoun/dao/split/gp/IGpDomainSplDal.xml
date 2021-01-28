@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpDomainSplDal">
+<mapper namespace="com.zee.dao.split.gp.IGpDomainSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpDomain">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpDomain">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
 		id,name,serial_no,com,remark,add_time,update_time
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpDomain">
+	<insert id="add" parameterType="com.zee.ent.extend.gp.GpDomain">
 		insert into gp_domain
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -103,7 +103,7 @@
 		</foreach>
 	</delete>
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GpDomain">
+	<update id="update" parameterType="com.zee.ent.extend.gp.GpDomain">
 		update gp_domain
 		<set>
 			<if test="name != null  and name != '' ">

@@ -1,34 +1,32 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:21
+ * @updateDate 2021/1/28 16:08:59
  * @description 实体类DaIndustryBasicinfoGenEnt，自动生成。产业基本情况表
  */
 
 public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal cropFruitArea;
     @ApiModelProperty(value="作物挂果面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte cropFruitAreaCode;
-    @ApiModelProperty(value="作物挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropFruitAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal cropFruitAreaUnit;
@@ -36,7 +34,7 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
     private BigDecimal cropGraftArea;
     @ApiModelProperty(value="作物嫁接面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte cropGraftAreaCode;
-    @ApiModelProperty(value="作物嫁接面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropGraftAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal cropGraftAreaUnit;
@@ -44,41 +42,41 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
     private BigDecimal cropTotalArea;
     @ApiModelProperty(value="作物总面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTotalAreaCode;
-    @ApiModelProperty(value="作物总面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTotalAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal cropTotalAreaUnit;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
-    @ApiModelProperty(value="拟发展品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String developVariety;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal growArea;
     @ApiModelProperty(value="海拔1500米以下准备种植品种面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte growAreaCode;
-    @ApiModelProperty(value="海拔1500米以下准备种植品种面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String growAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal growAreaUnit;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal landArea;
     @ApiModelProperty(value="海拔1500米以下土地面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte landAreaCode;
-    @ApiModelProperty(value="海拔1500米以下土地面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String landAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal landAreaUnit;
-    @ApiModelProperty(value="名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal ngraftedTreeArea;
     @ApiModelProperty(value="未嫁接大树面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte ngraftedTreeAreaCode;
-    @ApiModelProperty(value="未嫁接大树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String ngraftedTreeAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal ngraftedTreeAreaUnit;
@@ -86,27 +84,31 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
     private BigDecimal ngraftedYoungtreeArea;
     @ApiModelProperty(value="未嫁接幼树面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte ngraftedYoungtreeAreaCode;
-    @ApiModelProperty(value="未嫁接幼树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String ngraftedYoungtreeAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal ngraftedYoungtreeAreaUnit;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -141,14 +143,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。作物挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getCropFruitAreaText() {
 		return this.cropFruitAreaText;
 	}
 
 	/**
-	 * set方法。作物挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setCropFruitAreaText(String cropFruitAreaText) {
 		this.cropFruitAreaText = cropFruitAreaText;
@@ -197,14 +199,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。作物嫁接面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getCropGraftAreaText() {
 		return this.cropGraftAreaText;
 	}
 
 	/**
-	 * set方法。作物嫁接面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setCropGraftAreaText(String cropGraftAreaText) {
 		this.cropGraftAreaText = cropGraftAreaText;
@@ -253,14 +255,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。作物总面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getCropTotalAreaText() {
 		return this.cropTotalAreaText;
 	}
 
 	/**
-	 * set方法。作物总面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setCropTotalAreaText(String cropTotalAreaText) {
 		this.cropTotalAreaText = cropTotalAreaText;
@@ -295,28 +297,28 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
 	}
     
 	/**
-	 * get方法。拟发展品种
+	 * get方法。
 	 */
 	public String getDevelopVariety() {
 		return this.developVariety;
 	}
 
 	/**
-	 * set方法。拟发展品种
+	 * set方法。
 	 */
 	public void setDevelopVariety(String developVariety) {
 		this.developVariety = developVariety;
@@ -351,14 +353,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。海拔1500米以下准备种植品种面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getGrowAreaText() {
 		return this.growAreaText;
 	}
 
 	/**
-	 * set方法。海拔1500米以下准备种植品种面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setGrowAreaText(String growAreaText) {
 		this.growAreaText = growAreaText;
@@ -379,14 +381,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -421,14 +423,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。海拔1500米以下土地面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getLandAreaText() {
 		return this.landAreaText;
 	}
 
 	/**
-	 * set方法。海拔1500米以下土地面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setLandAreaText(String landAreaText) {
 		this.landAreaText = landAreaText;
@@ -449,14 +451,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -491,14 +493,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。未嫁接大树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getNgraftedTreeAreaText() {
 		return this.ngraftedTreeAreaText;
 	}
 
 	/**
-	 * set方法。未嫁接大树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setNgraftedTreeAreaText(String ngraftedTreeAreaText) {
 		this.ngraftedTreeAreaText = ngraftedTreeAreaText;
@@ -547,14 +549,14 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。未嫁接幼树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getNgraftedYoungtreeAreaText() {
 		return this.ngraftedYoungtreeAreaText;
 	}
 
 	/**
-	 * set方法。未嫁接幼树面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setNgraftedYoungtreeAreaText(String ngraftedYoungtreeAreaText) {
 		this.ngraftedYoungtreeAreaText = ngraftedYoungtreeAreaText;
@@ -589,21 +591,28 @@ public class DaIndustryBasicinfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

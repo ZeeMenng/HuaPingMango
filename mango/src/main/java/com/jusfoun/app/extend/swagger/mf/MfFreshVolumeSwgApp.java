@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.mf;
+package com.zee.app.extend.swagger.mf;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.mf.MfFreshVolumeGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.mf.MfFreshVolumeGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 import net.sf.json.JSONObject;
 
 

@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.mf;
+package com.zee.ent.extend.mf;
 
-import com.jusfoun.ent.generate.mf.MfHpFluctGenEnt;
+import com.zee.ent.generate.mf.MfHpFluctGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

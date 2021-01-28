@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaIotMonitorBasicUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaIotMonitorBasicUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIotMonitorBasic" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="hid" property="hid" jdbcType="VARCHAR" />
               <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
         id,hid,device_name,basc_code,basc_name,address,longitude,latitude,mango_type,plant_area,farmers,person,telephone,create_time,update_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIotMonitorBasic" >
     insert into da_iot_monitor_basic
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -143,8 +143,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_iot_monitor_basic
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -153,66 +152,84 @@
     	<foreach collection="list" item="daIotMonitorBasic" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daIotMonitorBasic.id,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.hid,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.deviceName,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.bascCode,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.bascName,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.address,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.longitude,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.latitude,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.mangoType,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.plantArea,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.farmers,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.person,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.telephone,jdbcType=VARCHAR},
-
-      
           #{daIotMonitorBasic.createTime,jdbcType=TIMESTAMP},
-
-      
           #{daIotMonitorBasic.updateTime,jdbcType=TIMESTAMP},
-
-      
           #{daIotMonitorBasic.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_iot_monitor_basic
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_iot_monitor_basic
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daIotMonitorBasic" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daIotMonitorBasic.id,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.hid,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.deviceName,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.bascCode,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.bascName,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.address,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.longitude,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.latitude,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.mangoType,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.plantArea,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.farmers,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.person,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.telephone,jdbcType=VARCHAR},
+          #{daIotMonitorBasic.createTime,jdbcType=TIMESTAMP},
+          #{daIotMonitorBasic.updateTime,jdbcType=TIMESTAMP},
+          #{daIotMonitorBasic.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+hid=values(hid),
+device_name=values(device_name),
+basc_code=values(basc_code),
+basc_name=values(basc_name),
+address=values(address),
+longitude=values(longitude),
+latitude=values(latitude),
+mango_type=values(mango_type),
+plant_area=values(plant_area),
+farmers=values(farmers),
+person=values(person),
+telephone=values(telephone),
+create_time=values(create_time),
+update_time=values(update_time),
+remark=values(remark)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_iot_monitor_basic
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_iot_monitor_basic
 		where id  in
@@ -221,7 +238,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIotMonitorBasic" >
     update da_iot_monitor_basic
     <set >
                   <if test="hid != null  and hid != '' " >
@@ -335,86 +354,134 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="hid =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.hid != null and daIotMonitorBasic.hid  != '' " >
+                  <if test="daIotMonitorBasic.hid != null and daIotMonitorBasic.hid  != ''  and daIotMonitorBasic.hid  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.hid,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.hid != null  and daIotMonitorBasic.hid  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="device_name =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.deviceName != null and daIotMonitorBasic.deviceName  != '' " >
+                  <if test="daIotMonitorBasic.deviceName != null and daIotMonitorBasic.deviceName  != ''  and daIotMonitorBasic.deviceName  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.deviceName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.deviceName != null  and daIotMonitorBasic.deviceName  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="basc_code =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.bascCode != null and daIotMonitorBasic.bascCode  != '' " >
+                  <if test="daIotMonitorBasic.bascCode != null and daIotMonitorBasic.bascCode  != ''  and daIotMonitorBasic.bascCode  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.bascCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.bascCode != null  and daIotMonitorBasic.bascCode  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="basc_name =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.bascName != null and daIotMonitorBasic.bascName  != '' " >
+                  <if test="daIotMonitorBasic.bascName != null and daIotMonitorBasic.bascName  != ''  and daIotMonitorBasic.bascName  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.bascName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.bascName != null  and daIotMonitorBasic.bascName  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.address != null and daIotMonitorBasic.address  != '' " >
+                  <if test="daIotMonitorBasic.address != null and daIotMonitorBasic.address  != ''  and daIotMonitorBasic.address  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.address != null  and daIotMonitorBasic.address  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.longitude != null and daIotMonitorBasic.longitude  != '' " >
+                  <if test="daIotMonitorBasic.longitude != null and daIotMonitorBasic.longitude  != ''  and daIotMonitorBasic.longitude  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.longitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.longitude != null  and daIotMonitorBasic.longitude  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.latitude != null and daIotMonitorBasic.latitude  != '' " >
+                  <if test="daIotMonitorBasic.latitude != null and daIotMonitorBasic.latitude  != ''  and daIotMonitorBasic.latitude  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.latitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.latitude != null  and daIotMonitorBasic.latitude  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="mango_type =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.mangoType != null and daIotMonitorBasic.mangoType  != '' " >
+                  <if test="daIotMonitorBasic.mangoType != null and daIotMonitorBasic.mangoType  != ''  and daIotMonitorBasic.mangoType  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.mangoType,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.mangoType != null  and daIotMonitorBasic.mangoType  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="plant_area =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.plantArea != null and daIotMonitorBasic.plantArea  != '' " >
+                  <if test="daIotMonitorBasic.plantArea != null and daIotMonitorBasic.plantArea  != ''  and daIotMonitorBasic.plantArea  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.plantArea,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.plantArea != null  and daIotMonitorBasic.plantArea  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="farmers =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.farmers != null and daIotMonitorBasic.farmers  != '' " >
+                  <if test="daIotMonitorBasic.farmers != null and daIotMonitorBasic.farmers  != ''  and daIotMonitorBasic.farmers  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.farmers,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.farmers != null  and daIotMonitorBasic.farmers  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="person =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.person != null and daIotMonitorBasic.person  != '' " >
+                  <if test="daIotMonitorBasic.person != null and daIotMonitorBasic.person  != ''  and daIotMonitorBasic.person  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.person,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.person != null  and daIotMonitorBasic.person  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="telephone =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.telephone != null and daIotMonitorBasic.telephone  != '' " >
+                  <if test="daIotMonitorBasic.telephone != null and daIotMonitorBasic.telephone  != ''  and daIotMonitorBasic.telephone  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.telephone,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.telephone != null  and daIotMonitorBasic.telephone  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="create_time =case" suffix="end,">
@@ -433,14 +500,18 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daIotMonitorBasic" index="index">
-                  <if test="daIotMonitorBasic.remark != null and daIotMonitorBasic.remark  != '' " >
+                  <if test="daIotMonitorBasic.remark != null and daIotMonitorBasic.remark  != ''  and daIotMonitorBasic.remark  != '-1' ">
                      when id=#{daIotMonitorBasic.id} then #{daIotMonitorBasic.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daIotMonitorBasic.remark != null  and daIotMonitorBasic.remark  == '-1' ">
+                     when id=#{daIotMonitorBasic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daIotMonitorBasic" index="index" open="(" close=")" separator=",">
 			#{daIotMonitorBasic.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -450,102 +521,72 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_iot_monitor_basic
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="hid  != null and hid  != '' " >
-              hid,
-          </if>
-          <if test="deviceName  != null and deviceName  != '' " >
-              device_name,
-          </if>
-          <if test="bascCode  != null and bascCode  != '' " >
-              basc_code,
-          </if>
-          <if test="bascName  != null and bascName  != '' " >
-              basc_name,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
-          </if>
-          <if test="latitude  != null and latitude  != '' " >
-              latitude,
-          </if>
-          <if test="mangoType  != null and mangoType  != '' " >
-              mango_type,
-          </if>
-          <if test="plantArea  != null and plantArea  != '' " >
-              plant_area,
-          </if>
-          <if test="farmers  != null and farmers  != '' " >
-              farmers,
-          </if>
-          <if test="person  != null and person  != '' " >
-              person,
-          </if>
-          <if test="telephone  != null and telephone  != '' " >
-              telephone,
-          </if>
-          <if test="createTime  != null " >
-              create_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+id,
+hid,
+device_name,
+basc_code,
+basc_name,
+address,
+longitude,
+latitude,
+mango_type,
+plant_area,
+farmers,
+person,
+telephone,
+create_time,
+update_time,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="daIotMonitorBasic" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daIotMonitorBasic.id ,jdbcType=VARCHAR},
-                  <if test="t.hid  != null  and t.hid != '' " >
+                  
                      #{daIotMonitorBasic.hid ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.deviceName  != null  and t.deviceName != '' " >
+                  
+                  
                      #{daIotMonitorBasic.deviceName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.bascCode  != null  and t.bascCode != '' " >
+                  
+                  
                      #{daIotMonitorBasic.bascCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.bascName  != null  and t.bascName != '' " >
+                  
+                  
                      #{daIotMonitorBasic.bascName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
+                  
+                  
                      #{daIotMonitorBasic.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
+                  
+                  
                      #{daIotMonitorBasic.longitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.latitude  != null  and t.latitude != '' " >
+                  
+                  
                      #{daIotMonitorBasic.latitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.mangoType  != null  and t.mangoType != '' " >
+                  
+                  
                      #{daIotMonitorBasic.mangoType ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.plantArea  != null  and t.plantArea != '' " >
+                  
+                  
                      #{daIotMonitorBasic.plantArea ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.farmers  != null  and t.farmers != '' " >
+                  
+                  
                      #{daIotMonitorBasic.farmers ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.person  != null  and t.person != '' " >
+                  
+                  
                      #{daIotMonitorBasic.person ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.telephone  != null  and t.telephone != '' " >
+                  
+                  
                      #{daIotMonitorBasic.telephone ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createTime != null ">
+                  
+                  
                     #{daIotMonitorBasic.createTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{daIotMonitorBasic.updateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daIotMonitorBasic.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpCatalogInterfaceSplDal" >
+<mapper namespace="com.zee.dao.split.gp.IGpCatalogInterfaceSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpCatalogInterface" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpCatalogInterface" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="code" property="code" jdbcType="VARCHAR" />
@@ -16,7 +16,7 @@
         id,name,code,level,farther_code,category_code,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpCatalogInterface" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpCatalogInterface" >
     insert into gp_catalog_interface
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -122,7 +122,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpCatalogInterface" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpCatalogInterface" >
     update gp_catalog_interface
     <set >
                   <if test="name != null  and name != '' " >

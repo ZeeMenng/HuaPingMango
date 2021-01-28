@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaProcessSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaProcessSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaProcess" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaProcess" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="crop_type_code" property="cropTypeCode" jdbcType="TINYINT" />
@@ -30,7 +30,7 @@
         id,common_field_id,crop_type_code,crop_type_text,process_strains_code,process_strains_text,product_name,process_time,output_value,output_value_code,output_value_text,output_value_unit,consume_total,consume_total_code,consume_total_text,consume_total_unit,product_total,product_total_code,product_total_text,product_total_unit,name
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaProcess" >
     insert into da_process
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -266,7 +266,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaProcess" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaProcess" >
     update da_process
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >

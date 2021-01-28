@@ -34,7 +34,7 @@ mybatis:
 # 打印sql  
 #logging:  
 # level: 
-#   com.jusfoun.dao.unity: DEBUG
+#   com.zee.dao.unity: DEBUG
 
 # MySQL config
 spring:

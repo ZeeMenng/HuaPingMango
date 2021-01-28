@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelCountUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiChannelCountUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelCount" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelCount" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="views" property="views" jdbcType="INTEGER" />
@@ -15,7 +15,7 @@
         id,channel_id,views,views_month,views_week,views_day
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelCount" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelCount" >
     insert into pi_channel_count
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -61,8 +61,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_channel_count
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -71,36 +70,54 @@
     	<foreach collection="list" item="piChannelCount" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piChannelCount.id,jdbcType=VARCHAR},
-
-      
           #{piChannelCount.channelId,jdbcType=VARCHAR},
-
-      
           #{piChannelCount.views,jdbcType=INTEGER},
-
-      
           #{piChannelCount.viewsMonth,jdbcType=INTEGER},
-
-      
           #{piChannelCount.viewsWeek,jdbcType=INTEGER},
-
-      
           #{piChannelCount.viewsDay,jdbcType=INTEGER},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_channel_count
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_channel_count
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelCount" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piChannelCount.id,jdbcType=VARCHAR},
+          #{piChannelCount.channelId,jdbcType=VARCHAR},
+          #{piChannelCount.views,jdbcType=INTEGER},
+          #{piChannelCount.viewsMonth,jdbcType=INTEGER},
+          #{piChannelCount.viewsWeek,jdbcType=INTEGER},
+          #{piChannelCount.viewsDay,jdbcType=INTEGER},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+views=values(views),
+views_month=values(views_month),
+views_week=values(views_week),
+views_day=values(views_day)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_channel_count
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_channel_count
 		where id  in
@@ -109,7 +126,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelCount" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelCount" >
     update pi_channel_count
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -163,9 +182,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piChannelCount" index="index">
-                  <if test="piChannelCount.channelId != null and piChannelCount.channelId  != '' " >
+                  <if test="piChannelCount.channelId != null and piChannelCount.channelId  != ''  and piChannelCount.channelId  != '-1' ">
                      when id=#{piChannelCount.id} then #{piChannelCount.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelCount.channelId != null  and piChannelCount.channelId  == '-1' ">
+                     when id=#{piChannelCount.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="views =case" suffix="end,">
@@ -198,7 +221,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piChannelCount" index="index" open="(" close=")" separator=",">
 			#{piChannelCount.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -208,42 +231,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_channel_count
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="views  != null " >
-              views,
-          </if>
-          <if test="viewsMonth  != null " >
-              views_month,
-          </if>
-          <if test="viewsWeek  != null " >
-              views_week,
-          </if>
-          <if test="viewsDay  != null " >
-              views_day,
-          </if>
+id,
+channel_id,
+views,
+views_month,
+views_week,
+views_day,
     </trim>
     VALUES
     <foreach collection="list" item="piChannelCount" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piChannelCount.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{piChannelCount.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.views != null ">
+                  
+                  
                     #{piChannelCount.views,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsMonth != null ">
+            
+                  
                     #{piChannelCount.viewsMonth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsWeek != null ">
+            
+                  
                     #{piChannelCount.viewsWeek,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsDay != null ">
+            
+                  
                     #{piChannelCount.viewsDay,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

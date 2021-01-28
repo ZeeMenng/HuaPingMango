@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaSentimentArticleUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaSentimentArticleUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentArticle" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
               <result column="article_name" property="articleName" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
         id,theme_id,article_name,publish_time,article_txt_id,thread_starter,url,media_type_code,media_type_text,sentiment_type_code,sentiment_type_text,view_count,datasource_code,datasource_text,serial_number,remark,add_time,update_status_code,update_user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentArticle" >
     insert into da_sentiment_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -162,8 +162,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_sentiment_article
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -172,75 +171,93 @@
     	<foreach collection="list" item="daSentimentArticle" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daSentimentArticle.id,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.themeId,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.articleName,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP},
-
-      
           #{daSentimentArticle.articleTxtId,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.threadStarter,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.url,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT},
-
-      
           #{daSentimentArticle.mediaTypeText,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT},
-
-      
           #{daSentimentArticle.sentimentTypeText,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.viewCount,jdbcType=INTEGER},
-
-      
           #{daSentimentArticle.datasourceCode,jdbcType=TINYINT},
-
-      
           #{daSentimentArticle.datasourceText,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.serialNumber,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.remark,jdbcType=VARCHAR},
-
-      
           #{daSentimentArticle.addTime,jdbcType=TIMESTAMP},
-
-      
           #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT},
-
-      
           #{daSentimentArticle.updateUserId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_sentiment_article
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_sentiment_article
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentArticle" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daSentimentArticle.id,jdbcType=VARCHAR},
+          #{daSentimentArticle.themeId,jdbcType=VARCHAR},
+          #{daSentimentArticle.articleName,jdbcType=VARCHAR},
+          #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP},
+          #{daSentimentArticle.articleTxtId,jdbcType=VARCHAR},
+          #{daSentimentArticle.threadStarter,jdbcType=VARCHAR},
+          #{daSentimentArticle.url,jdbcType=VARCHAR},
+          #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT},
+          #{daSentimentArticle.mediaTypeText,jdbcType=VARCHAR},
+          #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT},
+          #{daSentimentArticle.sentimentTypeText,jdbcType=VARCHAR},
+          #{daSentimentArticle.viewCount,jdbcType=INTEGER},
+          #{daSentimentArticle.datasourceCode,jdbcType=TINYINT},
+          #{daSentimentArticle.datasourceText,jdbcType=VARCHAR},
+          #{daSentimentArticle.serialNumber,jdbcType=VARCHAR},
+          #{daSentimentArticle.remark,jdbcType=VARCHAR},
+          #{daSentimentArticle.addTime,jdbcType=TIMESTAMP},
+          #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT},
+          #{daSentimentArticle.updateUserId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+theme_id=values(theme_id),
+article_name=values(article_name),
+publish_time=values(publish_time),
+article_txt_id=values(article_txt_id),
+thread_starter=values(thread_starter),
+url=values(url),
+media_type_code=values(media_type_code),
+media_type_text=values(media_type_text),
+sentiment_type_code=values(sentiment_type_code),
+sentiment_type_text=values(sentiment_type_text),
+view_count=values(view_count),
+datasource_code=values(datasource_code),
+datasource_text=values(datasource_text),
+serial_number=values(serial_number),
+remark=values(remark),
+add_time=values(add_time),
+update_status_code=values(update_status_code),
+update_user_id=values(update_user_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_sentiment_article
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_sentiment_article
 		where id  in
@@ -249,7 +266,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentArticle" >
     update da_sentiment_article
     <set >
                   <if test="themeId != null  and themeId != '' " >
@@ -381,16 +400,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="theme_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.themeId != null and daSentimentArticle.themeId  != '' " >
+                  <if test="daSentimentArticle.themeId != null and daSentimentArticle.themeId  != ''  and daSentimentArticle.themeId  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.themeId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.themeId != null  and daSentimentArticle.themeId  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="article_name =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.articleName != null and daSentimentArticle.articleName  != '' " >
+                  <if test="daSentimentArticle.articleName != null and daSentimentArticle.articleName  != ''  and daSentimentArticle.articleName  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.articleName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.articleName != null  and daSentimentArticle.articleName  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="publish_time =case" suffix="end,">
@@ -402,23 +429,35 @@
          </trim>
          <trim prefix="article_txt_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.articleTxtId != null and daSentimentArticle.articleTxtId  != '' " >
+                  <if test="daSentimentArticle.articleTxtId != null and daSentimentArticle.articleTxtId  != ''  and daSentimentArticle.articleTxtId  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.articleTxtId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.articleTxtId != null  and daSentimentArticle.articleTxtId  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="thread_starter =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.threadStarter != null and daSentimentArticle.threadStarter  != '' " >
+                  <if test="daSentimentArticle.threadStarter != null and daSentimentArticle.threadStarter  != ''  and daSentimentArticle.threadStarter  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.threadStarter,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.threadStarter != null  and daSentimentArticle.threadStarter  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="url =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.url != null and daSentimentArticle.url  != '' " >
+                  <if test="daSentimentArticle.url != null and daSentimentArticle.url  != ''  and daSentimentArticle.url  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.url,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.url != null  and daSentimentArticle.url  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="media_type_code =case" suffix="end,">
@@ -430,9 +469,13 @@
          </trim>
          <trim prefix="media_type_text =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.mediaTypeText != null and daSentimentArticle.mediaTypeText  != '' " >
+                  <if test="daSentimentArticle.mediaTypeText != null and daSentimentArticle.mediaTypeText  != ''  and daSentimentArticle.mediaTypeText  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.mediaTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.mediaTypeText != null  and daSentimentArticle.mediaTypeText  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sentiment_type_code =case" suffix="end,">
@@ -444,9 +487,13 @@
          </trim>
          <trim prefix="sentiment_type_text =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.sentimentTypeText != null and daSentimentArticle.sentimentTypeText  != '' " >
+                  <if test="daSentimentArticle.sentimentTypeText != null and daSentimentArticle.sentimentTypeText  != ''  and daSentimentArticle.sentimentTypeText  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.sentimentTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.sentimentTypeText != null  and daSentimentArticle.sentimentTypeText  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_count =case" suffix="end,">
@@ -465,23 +512,35 @@
          </trim>
          <trim prefix="datasource_text =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.datasourceText != null and daSentimentArticle.datasourceText  != '' " >
+                  <if test="daSentimentArticle.datasourceText != null and daSentimentArticle.datasourceText  != ''  and daSentimentArticle.datasourceText  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.datasourceText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.datasourceText != null  and daSentimentArticle.datasourceText  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="serial_number =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.serialNumber != null and daSentimentArticle.serialNumber  != '' " >
+                  <if test="daSentimentArticle.serialNumber != null and daSentimentArticle.serialNumber  != ''  and daSentimentArticle.serialNumber  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.serialNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.serialNumber != null  and daSentimentArticle.serialNumber  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.remark != null and daSentimentArticle.remark  != '' " >
+                  <if test="daSentimentArticle.remark != null and daSentimentArticle.remark  != ''  and daSentimentArticle.remark  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.remark != null  and daSentimentArticle.remark  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -500,14 +559,18 @@
          </trim>
          <trim prefix="update_user_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentArticle" index="index">
-                  <if test="daSentimentArticle.updateUserId != null and daSentimentArticle.updateUserId  != '' " >
+                  <if test="daSentimentArticle.updateUserId != null and daSentimentArticle.updateUserId  != ''  and daSentimentArticle.updateUserId  != '-1' ">
                      when id=#{daSentimentArticle.id} then #{daSentimentArticle.updateUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentArticle.updateUserId != null  and daSentimentArticle.updateUserId  == '-1' ">
+                     when id=#{daSentimentArticle.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daSentimentArticle" index="index" open="(" close=")" separator=",">
 			#{daSentimentArticle.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -517,120 +580,84 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_sentiment_article
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="themeId  != null and themeId  != '' " >
-              theme_id,
-          </if>
-          <if test="articleName  != null and articleName  != '' " >
-              article_name,
-          </if>
-          <if test="publishTime  != null " >
-              publish_time,
-          </if>
-          <if test="articleTxtId  != null and articleTxtId  != '' " >
-              article_txt_id,
-          </if>
-          <if test="threadStarter  != null and threadStarter  != '' " >
-              thread_starter,
-          </if>
-          <if test="url  != null and url  != '' " >
-              url,
-          </if>
-          <if test="mediaTypeCode  != null " >
-              media_type_code,
-          </if>
-          <if test="mediaTypeText  != null and mediaTypeText  != '' " >
-              media_type_text,
-          </if>
-          <if test="sentimentTypeCode  != null " >
-              sentiment_type_code,
-          </if>
-          <if test="sentimentTypeText  != null and sentimentTypeText  != '' " >
-              sentiment_type_text,
-          </if>
-          <if test="viewCount  != null " >
-              view_count,
-          </if>
-          <if test="datasourceCode  != null " >
-              datasource_code,
-          </if>
-          <if test="datasourceText  != null and datasourceText  != '' " >
-              datasource_text,
-          </if>
-          <if test="serialNumber  != null and serialNumber  != '' " >
-              serial_number,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateStatusCode  != null " >
-              update_status_code,
-          </if>
-          <if test="updateUserId  != null and updateUserId  != '' " >
-              update_user_id,
-          </if>
+id,
+theme_id,
+article_name,
+publish_time,
+article_txt_id,
+thread_starter,
+url,
+media_type_code,
+media_type_text,
+sentiment_type_code,
+sentiment_type_text,
+view_count,
+datasource_code,
+datasource_text,
+serial_number,
+remark,
+add_time,
+update_status_code,
+update_user_id,
     </trim>
     VALUES
     <foreach collection="list" item="daSentimentArticle" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daSentimentArticle.id ,jdbcType=VARCHAR},
-                  <if test="t.themeId  != null  and t.themeId != '' " >
+                  
                      #{daSentimentArticle.themeId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.articleName  != null  and t.articleName != '' " >
+                  
+                  
                      #{daSentimentArticle.articleName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.publishTime != null ">
+                  
+                  
                     #{daSentimentArticle.publishTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.articleTxtId  != null  and t.articleTxtId != '' " >
+            
+                  
                      #{daSentimentArticle.articleTxtId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.threadStarter  != null  and t.threadStarter != '' " >
+                  
+                  
                      #{daSentimentArticle.threadStarter ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.url  != null  and t.url != '' " >
+                  
+                  
                      #{daSentimentArticle.url ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.mediaTypeCode != null ">
+                  
+                  
                     #{daSentimentArticle.mediaTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.mediaTypeText  != null  and t.mediaTypeText != '' " >
+            
+                  
                      #{daSentimentArticle.mediaTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sentimentTypeCode != null ">
+                  
+                  
                     #{daSentimentArticle.sentimentTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.sentimentTypeText  != null  and t.sentimentTypeText != '' " >
+            
+                  
                      #{daSentimentArticle.sentimentTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewCount != null ">
+                  
+                  
                     #{daSentimentArticle.viewCount,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.datasourceCode != null ">
+            
+                  
                     #{daSentimentArticle.datasourceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.datasourceText  != null  and t.datasourceText != '' " >
+            
+                  
                      #{daSentimentArticle.datasourceText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.serialNumber  != null  and t.serialNumber != '' " >
+                  
+                  
                      #{daSentimentArticle.serialNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{daSentimentArticle.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
+                  
+                  
                     #{daSentimentArticle.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateStatusCode != null ">
+            
+                  
                     #{daSentimentArticle.updateStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.updateUserId  != null  and t.updateUserId != '' " >
+            
+                  
                      #{daSentimentArticle.updateUserId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,8 +1,8 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
 import java.util.List;
 
-import com.jusfoun.ent.generate.da.DaGrowYieldGenEnt;
+import com.zee.ent.generate.da.DaGrowYieldGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

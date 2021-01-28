@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.da;
+package com.zee.app.extend.swagger.da;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.da.DaEnterpriseCertificateInfoGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaEnterpriseCertificateInfo;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.da.DaEnterpriseCertificateInfoGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaEnterpriseCertificateInfo;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

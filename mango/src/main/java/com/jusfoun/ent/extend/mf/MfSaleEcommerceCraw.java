@@ -1,7 +1,7 @@
-package com.jusfoun.ent.extend.mf;
+package com.zee.ent.extend.mf;
 
-import com.jusfoun.ent.extend.da.DaCommonField;
-import com.jusfoun.ent.generate.mf.MfSaleEcommerceCrawGenEnt;
+import com.zee.ent.extend.da.DaCommonField;
+import com.zee.ent.generate.mf.MfSaleEcommerceCrawGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaTargetSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaTargetSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaTarget" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaTarget" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
               <result column="target_name" property="targetName" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
         id,serial_no,target_name,target_unit_code,target_unit_text,target_html_code,target_html_text,html_value,remark,add_user_id,add_time,status_code,status_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaTarget" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaTarget" >
     insert into da_target
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -186,7 +186,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaTarget" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaTarget" >
     update da_target
     <set >
                   <if test="serialNo != null  and serialNo != '' " >

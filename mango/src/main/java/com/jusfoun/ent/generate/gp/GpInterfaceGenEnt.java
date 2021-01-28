@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,16 +6,17 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GprRoleInterface;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.extend.gp.GprRoleInterface;
+import com.zee.ent.extend.gp.GprCatalogInterface;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/9/10 14:48:43
+ * @updateDate 2021/1/28 16:09:22
  * @description 实体类GpInterfaceGenEnt，自动生成。系统接口。
  */
 
@@ -34,7 +35,7 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
     private String name;
     @ApiModelProperty(value="备注字段。",hidden=false,required=false)
     private String remark;
-    @ApiModelProperty(value="接口编号。",hidden=false,required=false)
+    @ApiModelProperty(value="接口编号。",hidden=false,required=true)
     private String serialNo;
     @ApiModelProperty(value="操作主表。",hidden=false,required=false)
     private String tableName;
@@ -50,6 +51,7 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
 
     //本表做为父表时，子表数据列表
     private ArrayList<GprRoleInterface> gprRoleInterfaceList;   
+    private ArrayList<GprCatalogInterface> gprCatalogInterfaceList;   
 
     //父子表均为自身时
 
@@ -223,6 +225,20 @@ public class GpInterfaceGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setGprRoleInterfaceList(ArrayList<GprRoleInterface> gprRoleInterfaceList) {
 		this.gprRoleInterfaceList = gprRoleInterfaceList;
+	}
+
+	/**
+	 * get方法。本表做为父表时，子表实体对象。后台接口所属分类。
+	 */
+	public ArrayList<GprCatalogInterface> getGprCatalogInterfaceList() {
+		return this.gprCatalogInterfaceList;
+	}
+
+	/**
+	 * set方法。本表做为父表时，子表实体对象。后台接口所属分类。
+	 */
+	public void setGprCatalogInterfaceList(ArrayList<GprCatalogInterface> gprCatalogInterfaceList) {
+		this.gprCatalogInterfaceList = gprCatalogInterfaceList;
 	}
 
 

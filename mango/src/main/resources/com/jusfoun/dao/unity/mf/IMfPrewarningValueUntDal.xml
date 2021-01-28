@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfPrewarningValueUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfPrewarningValueUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfPrewarningValue" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="entry_violation" property="entryViolation" jdbcType="INTEGER" />
               <result column="quality_feedback" property="qualityFeedback" jdbcType="INTEGER" />
@@ -16,7 +16,7 @@
         id,entry_violation,quality_feedback,agricultural_capital_punishment,quality_spot_check_disqualification,creator,create_date
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfPrewarningValue" >
     insert into mf_prewarning_value
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -68,8 +68,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_prewarning_value
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -78,39 +77,57 @@
     	<foreach collection="list" item="mfPrewarningValue" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfPrewarningValue.id,jdbcType=VARCHAR},
-
-      
           #{mfPrewarningValue.entryViolation,jdbcType=INTEGER},
-
-      
           #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER},
-
-      
           #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER},
-
-      
           #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER},
-
-      
           #{mfPrewarningValue.creator,jdbcType=VARCHAR},
-
-      
           #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_prewarning_value
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_prewarning_value
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfPrewarningValue" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfPrewarningValue.id,jdbcType=VARCHAR},
+          #{mfPrewarningValue.entryViolation,jdbcType=INTEGER},
+          #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER},
+          #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER},
+          #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER},
+          #{mfPrewarningValue.creator,jdbcType=VARCHAR},
+          #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+entry_violation=values(entry_violation),
+quality_feedback=values(quality_feedback),
+agricultural_capital_punishment=values(agricultural_capital_punishment),
+quality_spot_check_disqualification=values(quality_spot_check_disqualification),
+creator=values(creator),
+create_date=values(create_date)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_prewarning_value
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_prewarning_value
 		where id  in
@@ -119,7 +136,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfPrewarningValue" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfPrewarningValue" >
     update mf_prewarning_value
     <set >
                   <if test="entryViolation != null ">
@@ -207,9 +226,13 @@
          </trim>
          <trim prefix="creator =case" suffix="end,">
               <foreach collection="list" item="mfPrewarningValue" index="index">
-                  <if test="mfPrewarningValue.creator != null and mfPrewarningValue.creator  != '' " >
+                  <if test="mfPrewarningValue.creator != null and mfPrewarningValue.creator  != ''  and mfPrewarningValue.creator  != '-1' ">
                      when id=#{mfPrewarningValue.id} then #{mfPrewarningValue.creator,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfPrewarningValue.creator != null  and mfPrewarningValue.creator  == '-1' ">
+                     when id=#{mfPrewarningValue.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="create_date =case" suffix="end,">
@@ -221,7 +244,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfPrewarningValue" index="index" open="(" close=")" separator=",">
 			#{mfPrewarningValue.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -231,48 +254,36 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_prewarning_value
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="entryViolation  != null " >
-              entry_violation,
-          </if>
-          <if test="qualityFeedback  != null " >
-              quality_feedback,
-          </if>
-          <if test="agriculturalCapitalPunishment  != null " >
-              agricultural_capital_punishment,
-          </if>
-          <if test="qualitySpotCheckDisqualification  != null " >
-              quality_spot_check_disqualification,
-          </if>
-          <if test="creator  != null and creator  != '' " >
-              creator,
-          </if>
-          <if test="createDate  != null " >
-              create_date,
-          </if>
+id,
+entry_violation,
+quality_feedback,
+agricultural_capital_punishment,
+quality_spot_check_disqualification,
+creator,
+create_date,
     </trim>
     VALUES
     <foreach collection="list" item="mfPrewarningValue" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfPrewarningValue.id ,jdbcType=VARCHAR},
-                  <if test="t.entryViolation != null ">
+                  
                     #{mfPrewarningValue.entryViolation,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.qualityFeedback != null ">
+            
+                  
                     #{mfPrewarningValue.qualityFeedback,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.agriculturalCapitalPunishment != null ">
+            
+                  
                     #{mfPrewarningValue.agriculturalCapitalPunishment,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.qualitySpotCheckDisqualification != null ">
+            
+                  
                     #{mfPrewarningValue.qualitySpotCheckDisqualification,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.creator  != null  and t.creator != '' " >
+            
+                  
                      #{mfPrewarningValue.creator ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createDate != null ">
+                  
+                  
                     #{mfPrewarningValue.createDate,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

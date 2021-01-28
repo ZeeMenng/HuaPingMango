@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.pi;
+package com.zee.ent.extend.pi;
 
-import com.jusfoun.ent.generate.pi.PirContentImageGenEnt;
+import com.zee.ent.generate.pi.PirContentImageGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

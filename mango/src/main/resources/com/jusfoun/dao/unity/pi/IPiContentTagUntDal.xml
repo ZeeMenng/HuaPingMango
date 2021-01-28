@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiContentTagUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiContentTagUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentTag" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentTag" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
               <result column="ref_counter" property="refCounter" jdbcType="INTEGER" />
@@ -12,7 +12,7 @@
         id,tag_name,ref_counter
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentTag" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentTag" >
     insert into pi_content_tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -40,8 +40,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_content_tag
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -50,27 +49,45 @@
     	<foreach collection="list" item="piContentTag" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piContentTag.id,jdbcType=VARCHAR},
-
-      
           #{piContentTag.tagName,jdbcType=VARCHAR},
-
-      
           #{piContentTag.refCounter,jdbcType=INTEGER},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_content_tag
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_content_tag
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentTag" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piContentTag.id,jdbcType=VARCHAR},
+          #{piContentTag.tagName,jdbcType=VARCHAR},
+          #{piContentTag.refCounter,jdbcType=INTEGER},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+tag_name=values(tag_name),
+ref_counter=values(ref_counter)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_content_tag
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_content_tag
 		where id  in
@@ -79,7 +96,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentTag" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentTag" >
     update pi_content_tag
     <set >
                   <if test="tagName != null  and tagName != '' " >
@@ -115,9 +134,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="tag_name =case" suffix="end,">
               <foreach collection="list" item="piContentTag" index="index">
-                  <if test="piContentTag.tagName != null and piContentTag.tagName  != '' " >
+                  <if test="piContentTag.tagName != null and piContentTag.tagName  != ''  and piContentTag.tagName  != '-1' ">
                      when id=#{piContentTag.id} then #{piContentTag.tagName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentTag.tagName != null  and piContentTag.tagName  == '-1' ">
+                     when id=#{piContentTag.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="ref_counter =case" suffix="end,">
@@ -129,7 +152,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piContentTag" index="index" open="(" close=")" separator=",">
 			#{piContentTag.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -139,24 +162,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_content_tag
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="tagName  != null and tagName  != '' " >
-              tag_name,
-          </if>
-          <if test="refCounter  != null " >
-              ref_counter,
-          </if>
+id,
+tag_name,
+ref_counter,
     </trim>
     VALUES
     <foreach collection="list" item="piContentTag" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piContentTag.id ,jdbcType=VARCHAR},
-                  <if test="t.tagName  != null  and t.tagName != '' " >
+                  
                      #{piContentTag.tagName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.refCounter != null ">
+                  
+                  
                     #{piContentTag.refCounter,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

@@ -1,9 +1,9 @@
-package com.jusfoun.app.extend.swagger.mf;
+package com.zee.app.extend.swagger.mf;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.mf.MfQualityInspectionRateGenSwgApp;
+import com.zee.app.generate.swagger.mf.MfQualityInspectionRateGenSwgApp;
 
 
 /**

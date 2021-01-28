@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaIotMonitorQueryDateSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaIotMonitorQueryDateSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotMonitorQueryDate" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIotMonitorQueryDate" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="last_query_date" property="lastQueryDate" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -11,7 +11,7 @@
         id,last_query_date
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorQueryDate" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIotMonitorQueryDate" >
     insert into da_iot_monitor_query_date
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -68,7 +68,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorQueryDate" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIotMonitorQueryDate" >
     update da_iot_monitor_query_date
     <set >
                   <if test="lastQueryDate != null ">

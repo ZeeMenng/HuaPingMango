@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.unity.pi;
+package com.zee.bll.extend.unity.pi;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.unity.pi.PirProductResourceGenUntBll;
+import com.zee.bll.generate.unity.pi.PirProductResourceGenUntBll;
 
 
 /**

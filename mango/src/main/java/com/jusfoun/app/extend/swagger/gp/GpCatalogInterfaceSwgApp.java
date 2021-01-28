@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpCatalogInterfaceGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
-import com.jusfoun.ent.parameter.gp.GpCatalogInterfaceParameter;
-import com.jusfoun.utl.ClassFieldNullable;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.gp.GpCatalogInterfaceGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.parameter.gp.GpCatalogInterfaceParameter;
+import com.zee.utl.ClassFieldNullable;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterprisePropertyInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaEnterprisePropertyInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,enterprise_id,enterprise_name,year,total_assets,total_current_assets,total_liabilities,total_owners_equity,operating_income,operating_costs,operating_profit,total_profit,net_profit,assets_interest_rate,equity_interest_rate,gross_profit_margin,before_year_total_assets,before_year_operating_income,before_year_total_liabilities,total_current_quick,fixed_assets,invisible_assets_net_alue,update_time,update_user_id,flag_code,flag_text,source_create_time,currency,datasource_code,created_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
     insert into da_enterprise_property_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -241,8 +241,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_enterprise_property_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -251,111 +250,129 @@
     	<foreach collection="list" item="daEnterprisePropertyInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daEnterprisePropertyInfo.id,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.enterpriseId,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.year,jdbcType=INTEGER},
-
-      
           #{daEnterprisePropertyInfo.totalAssets,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.totalCurrentAssets,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.totalLiabilities,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.totalOwnersEquity,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.operatingIncome,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.operatingCosts,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.operatingProfit,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.totalProfit,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.netProfit,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.assetsInterestRate,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.equityInterestRate,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.grossProfitMargin,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.beforeYearTotalAssets,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.beforeYearOperatingIncome,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.beforeYearTotalLiabilities,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.totalCurrentQuick,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.fixedAssets,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.invisibleAssetsNetAlue,jdbcType=NUMERIC},
-
-      
           #{daEnterprisePropertyInfo.updateTime,jdbcType=TIMESTAMP},
-
-      
           #{daEnterprisePropertyInfo.updateUserId,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.flagCode,jdbcType=TINYINT},
-
-      
           #{daEnterprisePropertyInfo.flagText,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.sourceCreateTime,jdbcType=TIMESTAMP},
-
-      
           #{daEnterprisePropertyInfo.currency,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePropertyInfo.datasourceCode,jdbcType=TINYINT},
-
-      
           #{daEnterprisePropertyInfo.createdTime,jdbcType=TIMESTAMP},
-
-      
           #{daEnterprisePropertyInfo.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_enterprise_property_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_enterprise_property_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterprisePropertyInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daEnterprisePropertyInfo.id,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.enterpriseId,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.year,jdbcType=INTEGER},
+          #{daEnterprisePropertyInfo.totalAssets,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.totalCurrentAssets,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.totalLiabilities,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.totalOwnersEquity,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.operatingIncome,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.operatingCosts,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.operatingProfit,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.totalProfit,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.netProfit,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.assetsInterestRate,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.equityInterestRate,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.grossProfitMargin,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.beforeYearTotalAssets,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.beforeYearOperatingIncome,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.beforeYearTotalLiabilities,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.totalCurrentQuick,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.fixedAssets,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.invisibleAssetsNetAlue,jdbcType=NUMERIC},
+          #{daEnterprisePropertyInfo.updateTime,jdbcType=TIMESTAMP},
+          #{daEnterprisePropertyInfo.updateUserId,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.flagCode,jdbcType=TINYINT},
+          #{daEnterprisePropertyInfo.flagText,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.sourceCreateTime,jdbcType=TIMESTAMP},
+          #{daEnterprisePropertyInfo.currency,jdbcType=VARCHAR},
+          #{daEnterprisePropertyInfo.datasourceCode,jdbcType=TINYINT},
+          #{daEnterprisePropertyInfo.createdTime,jdbcType=TIMESTAMP},
+          #{daEnterprisePropertyInfo.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+enterprise_id=values(enterprise_id),
+enterprise_name=values(enterprise_name),
+year=values(year),
+total_assets=values(total_assets),
+total_current_assets=values(total_current_assets),
+total_liabilities=values(total_liabilities),
+total_owners_equity=values(total_owners_equity),
+operating_income=values(operating_income),
+operating_costs=values(operating_costs),
+operating_profit=values(operating_profit),
+total_profit=values(total_profit),
+net_profit=values(net_profit),
+assets_interest_rate=values(assets_interest_rate),
+equity_interest_rate=values(equity_interest_rate),
+gross_profit_margin=values(gross_profit_margin),
+before_year_total_assets=values(before_year_total_assets),
+before_year_operating_income=values(before_year_operating_income),
+before_year_total_liabilities=values(before_year_total_liabilities),
+total_current_quick=values(total_current_quick),
+fixed_assets=values(fixed_assets),
+invisible_assets_net_alue=values(invisible_assets_net_alue),
+update_time=values(update_time),
+update_user_id=values(update_user_id),
+flag_code=values(flag_code),
+flag_text=values(flag_text),
+source_create_time=values(source_create_time),
+currency=values(currency),
+datasource_code=values(datasource_code),
+created_time=values(created_time),
+remark=values(remark)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_enterprise_property_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_enterprise_property_info
 		where id  in
@@ -364,7 +381,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePropertyInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterprisePropertyInfo" >
     update da_enterprise_property_info
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >
@@ -568,16 +587,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.enterpriseId != null and daEnterprisePropertyInfo.enterpriseId  != '' " >
+                  <if test="daEnterprisePropertyInfo.enterpriseId != null and daEnterprisePropertyInfo.enterpriseId  != ''  and daEnterprisePropertyInfo.enterpriseId  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.enterpriseId != null  and daEnterprisePropertyInfo.enterpriseId  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.enterpriseName != null and daEnterprisePropertyInfo.enterpriseName  != '' " >
+                  <if test="daEnterprisePropertyInfo.enterpriseName != null and daEnterprisePropertyInfo.enterpriseName  != ''  and daEnterprisePropertyInfo.enterpriseName  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.enterpriseName != null  and daEnterprisePropertyInfo.enterpriseName  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="year =case" suffix="end,">
@@ -722,9 +749,13 @@
          </trim>
          <trim prefix="update_user_id =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.updateUserId != null and daEnterprisePropertyInfo.updateUserId  != '' " >
+                  <if test="daEnterprisePropertyInfo.updateUserId != null and daEnterprisePropertyInfo.updateUserId  != ''  and daEnterprisePropertyInfo.updateUserId  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.updateUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.updateUserId != null  and daEnterprisePropertyInfo.updateUserId  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="flag_code =case" suffix="end,">
@@ -736,9 +767,13 @@
          </trim>
          <trim prefix="flag_text =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.flagText != null and daEnterprisePropertyInfo.flagText  != '' " >
+                  <if test="daEnterprisePropertyInfo.flagText != null and daEnterprisePropertyInfo.flagText  != ''  and daEnterprisePropertyInfo.flagText  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.flagText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.flagText != null  and daEnterprisePropertyInfo.flagText  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="source_create_time =case" suffix="end,">
@@ -750,9 +785,13 @@
          </trim>
          <trim prefix="currency =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.currency != null and daEnterprisePropertyInfo.currency  != '' " >
+                  <if test="daEnterprisePropertyInfo.currency != null and daEnterprisePropertyInfo.currency  != ''  and daEnterprisePropertyInfo.currency  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.currency,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.currency != null  and daEnterprisePropertyInfo.currency  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="datasource_code =case" suffix="end,">
@@ -771,14 +810,18 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePropertyInfo" index="index">
-                  <if test="daEnterprisePropertyInfo.remark != null and daEnterprisePropertyInfo.remark  != '' " >
+                  <if test="daEnterprisePropertyInfo.remark != null and daEnterprisePropertyInfo.remark  != ''  and daEnterprisePropertyInfo.remark  != '-1' ">
                      when id=#{daEnterprisePropertyInfo.id} then #{daEnterprisePropertyInfo.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePropertyInfo.remark != null  and daEnterprisePropertyInfo.remark  == '-1' ">
+                     when id=#{daEnterprisePropertyInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daEnterprisePropertyInfo" index="index" open="(" close=")" separator=",">
 			#{daEnterprisePropertyInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -788,192 +831,132 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_enterprise_property_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="enterpriseId  != null and enterpriseId  != '' " >
-              enterprise_id,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="year  != null " >
-              year,
-          </if>
-          <if test="totalAssets  != null " >
-              total_assets,
-          </if>
-          <if test="totalCurrentAssets  != null " >
-              total_current_assets,
-          </if>
-          <if test="totalLiabilities  != null " >
-              total_liabilities,
-          </if>
-          <if test="totalOwnersEquity  != null " >
-              total_owners_equity,
-          </if>
-          <if test="operatingIncome  != null " >
-              operating_income,
-          </if>
-          <if test="operatingCosts  != null " >
-              operating_costs,
-          </if>
-          <if test="operatingProfit  != null " >
-              operating_profit,
-          </if>
-          <if test="totalProfit  != null " >
-              total_profit,
-          </if>
-          <if test="netProfit  != null " >
-              net_profit,
-          </if>
-          <if test="assetsInterestRate  != null " >
-              assets_interest_rate,
-          </if>
-          <if test="equityInterestRate  != null " >
-              equity_interest_rate,
-          </if>
-          <if test="grossProfitMargin  != null " >
-              gross_profit_margin,
-          </if>
-          <if test="beforeYearTotalAssets  != null " >
-              before_year_total_assets,
-          </if>
-          <if test="beforeYearOperatingIncome  != null " >
-              before_year_operating_income,
-          </if>
-          <if test="beforeYearTotalLiabilities  != null " >
-              before_year_total_liabilities,
-          </if>
-          <if test="totalCurrentQuick  != null " >
-              total_current_quick,
-          </if>
-          <if test="fixedAssets  != null " >
-              fixed_assets,
-          </if>
-          <if test="invisibleAssetsNetAlue  != null " >
-              invisible_assets_net_alue,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
-          <if test="updateUserId  != null and updateUserId  != '' " >
-              update_user_id,
-          </if>
-          <if test="flagCode  != null " >
-              flag_code,
-          </if>
-          <if test="flagText  != null and flagText  != '' " >
-              flag_text,
-          </if>
-          <if test="sourceCreateTime  != null " >
-              source_create_time,
-          </if>
-          <if test="currency  != null and currency  != '' " >
-              currency,
-          </if>
-          <if test="datasourceCode  != null " >
-              datasource_code,
-          </if>
-          <if test="createdTime  != null " >
-              created_time,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+id,
+enterprise_id,
+enterprise_name,
+year,
+total_assets,
+total_current_assets,
+total_liabilities,
+total_owners_equity,
+operating_income,
+operating_costs,
+operating_profit,
+total_profit,
+net_profit,
+assets_interest_rate,
+equity_interest_rate,
+gross_profit_margin,
+before_year_total_assets,
+before_year_operating_income,
+before_year_total_liabilities,
+total_current_quick,
+fixed_assets,
+invisible_assets_net_alue,
+update_time,
+update_user_id,
+flag_code,
+flag_text,
+source_create_time,
+currency,
+datasource_code,
+created_time,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="daEnterprisePropertyInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daEnterprisePropertyInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                  
                      #{daEnterprisePropertyInfo.enterpriseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daEnterprisePropertyInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.year != null ">
+                  
+                  
                     #{daEnterprisePropertyInfo.year,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.totalAssets != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalAssets,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalCurrentAssets != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalCurrentAssets,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalLiabilities != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalLiabilities,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalOwnersEquity != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalOwnersEquity,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.operatingIncome != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.operatingIncome,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.operatingCosts != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.operatingCosts,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.operatingProfit != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.operatingProfit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalProfit != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalProfit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.netProfit != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.netProfit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.assetsInterestRate != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.assetsInterestRate,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.equityInterestRate != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.equityInterestRate,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.grossProfitMargin != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.grossProfitMargin,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.beforeYearTotalAssets != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.beforeYearTotalAssets,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.beforeYearOperatingIncome != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.beforeYearOperatingIncome,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.beforeYearTotalLiabilities != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.beforeYearTotalLiabilities,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.totalCurrentQuick != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.totalCurrentQuick,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.fixedAssets != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.fixedAssets,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.invisibleAssetsNetAlue != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.invisibleAssetsNetAlue,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.updateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateUserId  != null  and t.updateUserId != '' " >
+            
+                  
                      #{daEnterprisePropertyInfo.updateUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.flagCode != null ">
+                  
+                  
                     #{daEnterprisePropertyInfo.flagCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.flagText  != null  and t.flagText != '' " >
+            
+                  
                      #{daEnterprisePropertyInfo.flagText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sourceCreateTime != null ">
+                  
+                  
                     #{daEnterprisePropertyInfo.sourceCreateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.currency  != null  and t.currency != '' " >
+            
+                  
                      #{daEnterprisePropertyInfo.currency ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.datasourceCode != null ">
+                  
+                  
                     #{daEnterprisePropertyInfo.datasourceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.createdTime != null ">
+            
+                  
                     #{daEnterprisePropertyInfo.createdTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daEnterprisePropertyInfo.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

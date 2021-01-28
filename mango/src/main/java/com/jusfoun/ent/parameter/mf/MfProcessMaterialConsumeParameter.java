@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.mf;
+package com.zee.ent.parameter.mf;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.mf.MfProcessMaterialConsume;
-import com.jusfoun.ent.generate.mf.MfProcessMaterialConsumeGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.mf.MfProcessMaterialConsume;
+import com.zee.ent.generate.mf.MfProcessMaterialConsumeGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

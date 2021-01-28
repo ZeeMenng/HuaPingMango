@@ -1,7 +1,7 @@
-package com.jusfoun.dao.unity.mf;
+package com.zee.dao.unity.mf;
 
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.mf.MfMarketPriceCraw;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.mf.MfMarketPriceCraw;
 
 
 

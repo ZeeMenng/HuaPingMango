@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pe.IPeQueryMenuSplDal" >
+<mapper namespace="com.zee.dao.split.pe.IPeQueryMenuSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pe.PeQueryMenu" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="farther_id" property="fartherId" jdbcType="VARCHAR" />
               <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
         id,farther_id,menu_name,region_id,data_time_type_code,data_time_type_text,strains_code,strains_text,price_type_code,price_type_text,query_type,price_unit_code,price_unit_text,menu_level_code,menu_level_text,relation_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+  <insert id="add" parameterType="com.zee.ent.extend.pe.PeQueryMenu" >
     insert into pe_query_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -218,7 +218,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pe.PeQueryMenu" >
+  <update id="update" parameterType="com.zee.ent.extend.pe.PeQueryMenu" >
     update pe_query_menu
     <set >
                   <if test="fartherId != null  and fartherId != '' " >

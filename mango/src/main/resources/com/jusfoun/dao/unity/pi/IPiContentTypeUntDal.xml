@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiContentTypeUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiContentTypeUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentType" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentType" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="img_width" property="imgWidth" jdbcType="INTEGER" />
@@ -15,7 +15,7 @@
         id,name,img_width,img_height,has_image,is_disabled
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentType" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentType" >
     insert into pi_content_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -61,8 +61,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_content_type
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -71,36 +70,54 @@
     	<foreach collection="list" item="piContentType" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piContentType.id,jdbcType=VARCHAR},
-
-      
           #{piContentType.name,jdbcType=VARCHAR},
-
-      
           #{piContentType.imgWidth,jdbcType=INTEGER},
-
-      
           #{piContentType.imgHeight,jdbcType=INTEGER},
-
-      
           #{piContentType.hasImage,jdbcType=TINYINT},
-
-      
           #{piContentType.isDisabled,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_content_type
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_content_type
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentType" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piContentType.id,jdbcType=VARCHAR},
+          #{piContentType.name,jdbcType=VARCHAR},
+          #{piContentType.imgWidth,jdbcType=INTEGER},
+          #{piContentType.imgHeight,jdbcType=INTEGER},
+          #{piContentType.hasImage,jdbcType=TINYINT},
+          #{piContentType.isDisabled,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+name=values(name),
+img_width=values(img_width),
+img_height=values(img_height),
+has_image=values(has_image),
+is_disabled=values(is_disabled)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_content_type
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_content_type
 		where id  in
@@ -109,7 +126,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentType" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentType" >
     update pi_content_type
     <set >
                   <if test="name != null  and name != '' " >
@@ -163,9 +182,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="piContentType" index="index">
-                  <if test="piContentType.name != null and piContentType.name  != '' " >
+                  <if test="piContentType.name != null and piContentType.name  != ''  and piContentType.name  != '-1' ">
                      when id=#{piContentType.id} then #{piContentType.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentType.name != null  and piContentType.name  == '-1' ">
+                     when id=#{piContentType.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="img_width =case" suffix="end,">
@@ -198,7 +221,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piContentType" index="index" open="(" close=")" separator=",">
 			#{piContentType.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -208,42 +231,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_content_type
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="imgWidth  != null " >
-              img_width,
-          </if>
-          <if test="imgHeight  != null " >
-              img_height,
-          </if>
-          <if test="hasImage  != null " >
-              has_image,
-          </if>
-          <if test="isDisabled  != null " >
-              is_disabled,
-          </if>
+id,
+name,
+img_width,
+img_height,
+has_image,
+is_disabled,
     </trim>
     VALUES
     <foreach collection="list" item="piContentType" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piContentType.id ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
+                  
                      #{piContentType.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.imgWidth != null ">
+                  
+                  
                     #{piContentType.imgWidth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.imgHeight != null ">
+            
+                  
                     #{piContentType.imgHeight,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.hasImage != null ">
+            
+                  
                     #{piContentType.hasImage,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isDisabled != null ">
+            
+                  
                     #{piContentType.isDisabled,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

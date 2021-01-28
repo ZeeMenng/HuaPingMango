@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPirContentAttachmentUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPirContentAttachmentUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentAttachment" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirContentAttachment" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,content_id,resource_id,download_count
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentAttachment" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirContentAttachment" >
     insert into pir_content_attachment
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -48,8 +48,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pir_content_attachment
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -58,30 +57,48 @@
     	<foreach collection="list" item="pirContentAttachment" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{pirContentAttachment.id,jdbcType=VARCHAR},
-
-      
           #{pirContentAttachment.contentId,jdbcType=VARCHAR},
-
-      
           #{pirContentAttachment.resourceId,jdbcType=VARCHAR},
-
-      
           #{pirContentAttachment.downloadCount,jdbcType=INTEGER},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pir_content_attachment
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pir_content_attachment
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirContentAttachment" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{pirContentAttachment.id,jdbcType=VARCHAR},
+          #{pirContentAttachment.contentId,jdbcType=VARCHAR},
+          #{pirContentAttachment.resourceId,jdbcType=VARCHAR},
+          #{pirContentAttachment.downloadCount,jdbcType=INTEGER},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+content_id=values(content_id),
+resource_id=values(resource_id),
+download_count=values(download_count)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pir_content_attachment
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pir_content_attachment
 		where id  in
@@ -90,7 +107,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentAttachment" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirContentAttachment" >
     update pir_content_attachment
     <set >
                   <if test="contentId != null  and contentId != '' " >
@@ -132,16 +151,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="content_id =case" suffix="end,">
               <foreach collection="list" item="pirContentAttachment" index="index">
-                  <if test="pirContentAttachment.contentId != null and pirContentAttachment.contentId  != '' " >
+                  <if test="pirContentAttachment.contentId != null and pirContentAttachment.contentId  != ''  and pirContentAttachment.contentId  != '-1' ">
                      when id=#{pirContentAttachment.id} then #{pirContentAttachment.contentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirContentAttachment.contentId != null  and pirContentAttachment.contentId  == '-1' ">
+                     when id=#{pirContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="pirContentAttachment" index="index">
-                  <if test="pirContentAttachment.resourceId != null and pirContentAttachment.resourceId  != '' " >
+                  <if test="pirContentAttachment.resourceId != null and pirContentAttachment.resourceId  != ''  and pirContentAttachment.resourceId  != '-1' ">
                      when id=#{pirContentAttachment.id} then #{pirContentAttachment.resourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirContentAttachment.resourceId != null  and pirContentAttachment.resourceId  == '-1' ">
+                     when id=#{pirContentAttachment.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="download_count =case" suffix="end,">
@@ -153,7 +180,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="pirContentAttachment" index="index" open="(" close=")" separator=",">
 			#{pirContentAttachment.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -163,30 +190,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pir_content_attachment
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="contentId  != null and contentId  != '' " >
-              content_id,
-          </if>
-          <if test="resourceId  != null and resourceId  != '' " >
-              resource_id,
-          </if>
-          <if test="downloadCount  != null " >
-              download_count,
-          </if>
+id,
+content_id,
+resource_id,
+download_count,
     </trim>
     VALUES
     <foreach collection="list" item="pirContentAttachment" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{pirContentAttachment.id ,jdbcType=VARCHAR},
-                  <if test="t.contentId  != null  and t.contentId != '' " >
+                  
                      #{pirContentAttachment.contentId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+                  
+                  
                      #{pirContentAttachment.resourceId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.downloadCount != null ">
+                  
+                  
                     #{pirContentAttachment.downloadCount,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

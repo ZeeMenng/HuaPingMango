@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pe;
+﻿package com.zee.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:04
+ * @updateDate 2021/1/28 16:09:41
  * @description 实体类PeAerialBroadcastGenEnt，自动生成。鸟瞰华坪轮播图
  */
 
@@ -24,21 +22,25 @@ public class PeAerialBroadcastGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="活跃度",hidden=false,required=true)
     private Integer activity;
-    @ApiModelProperty(value="内容",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String contet;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="访问量",hidden=false,required=false)
     private Integer pageView;
-    @ApiModelProperty(value="文件信息表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String resourceId;
-    @ApiModelProperty(value="文件信息表id 小图标",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String smallResourceId;
-    @ApiModelProperty(value="标题",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String title;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。活跃度
@@ -55,28 +57,28 @@ public class PeAerialBroadcastGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。内容
+	 * get方法。
 	 */
 	public String getContet() {
 		return this.contet;
 	}
 
 	/**
-	 * set方法。内容
+	 * set方法。
 	 */
 	public void setContet(String contet) {
 		this.contet = contet;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -97,49 +99,56 @@ public class PeAerialBroadcastGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。文件信息表id
+	 * get方法。
 	 */
 	public String getResourceId() {
 		return this.resourceId;
 	}
 
 	/**
-	 * set方法。文件信息表id
+	 * set方法。
 	 */
 	public void setResourceId(String resourceId) {
 		this.resourceId = resourceId;
 	}
     
 	/**
-	 * get方法。文件信息表id 小图标
+	 * get方法。
 	 */
 	public String getSmallResourceId() {
 		return this.smallResourceId;
 	}
 
 	/**
-	 * set方法。文件信息表id 小图标
+	 * set方法。
 	 */
 	public void setSmallResourceId(String smallResourceId) {
 		this.smallResourceId = smallResourceId;
 	}
     
 	/**
-	 * get方法。标题
+	 * get方法。
 	 */
 	public String getTitle() {
 		return this.title;
 	}
 
 	/**
-	 * set方法。标题
+	 * set方法。
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

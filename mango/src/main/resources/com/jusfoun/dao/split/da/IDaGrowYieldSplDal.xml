@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaGrowYieldSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaGrowYieldSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaGrowYield" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaGrowYield" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="base_code" property="baseCode" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
         id,common_field_id,base_code,base_name,block_code,block_name,grow_area,grow_area_code,grow_area_text,grow_area_unit,crop_type_code,crop_type_text,strains_code,strains_text,improve_area,improve_area_code,improve_area_text,improve_area_unit,fruit_area,fruit_area_code,fruit_area_text,fruit_area_unit,product_total,product_total_code,product_total_text,product_total_unit,output_value,output_value_code,output_value_text,output_value_unit,peasant_count
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaGrowYield" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaGrowYield" >
     insert into da_grow_yield
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -370,7 +370,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaGrowYield" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaGrowYield" >
     update da_grow_yield
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >

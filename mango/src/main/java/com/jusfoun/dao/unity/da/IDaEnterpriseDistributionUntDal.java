@@ -1,7 +1,7 @@
-package com.jusfoun.dao.unity.da;
+package com.zee.dao.unity.da;
 
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.da.DaEnterpriseDistribution;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.da.DaEnterpriseDistribution;
 
 
 

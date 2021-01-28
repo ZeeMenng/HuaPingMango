@@ -1,4 +1,4 @@
-package com.jusfoun.utl.crawler;
+package com.zee.utl.crawler;
 
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.util.ListUtils;
-import com.jusfoun.bll.extend.unity.da.DaCrawlerUntBll;
-import com.jusfoun.ent.extend.da.DaCrawler;
-import com.jusfoun.utl.DateUtils;
+import com.zee.bll.extend.unity.da.DaCrawlerUntBll;
+import com.zee.ent.extend.da.DaCrawler;
+import com.zee.utl.DateUtils;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

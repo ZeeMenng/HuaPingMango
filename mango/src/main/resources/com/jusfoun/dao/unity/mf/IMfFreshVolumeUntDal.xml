@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfFreshVolumeUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfFreshVolumeUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfFreshVolume" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="actual_amount" property="actualAmount" jdbcType="NUMERIC" />
@@ -15,7 +15,7 @@
         id,date_time,actual_amount,forecast_amount,actual_volume,forecast_volume
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfFreshVolume" >
     insert into mf_fresh_volume
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -61,8 +61,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_fresh_volume
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -71,36 +70,54 @@
     	<foreach collection="list" item="mfFreshVolume" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfFreshVolume.id,jdbcType=VARCHAR},
-
-      
           #{mfFreshVolume.dateTime,jdbcType=VARCHAR},
-
-      
           #{mfFreshVolume.actualAmount,jdbcType=NUMERIC},
-
-      
           #{mfFreshVolume.forecastAmount,jdbcType=NUMERIC},
-
-      
           #{mfFreshVolume.actualVolume,jdbcType=NUMERIC},
-
-      
           #{mfFreshVolume.forecastVolume,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_fresh_volume
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_fresh_volume
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfFreshVolume" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfFreshVolume.id,jdbcType=VARCHAR},
+          #{mfFreshVolume.dateTime,jdbcType=VARCHAR},
+          #{mfFreshVolume.actualAmount,jdbcType=NUMERIC},
+          #{mfFreshVolume.forecastAmount,jdbcType=NUMERIC},
+          #{mfFreshVolume.actualVolume,jdbcType=NUMERIC},
+          #{mfFreshVolume.forecastVolume,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+date_time=values(date_time),
+actual_amount=values(actual_amount),
+forecast_amount=values(forecast_amount),
+actual_volume=values(actual_volume),
+forecast_volume=values(forecast_volume)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_fresh_volume
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_fresh_volume
 		where id  in
@@ -109,7 +126,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfFreshVolume" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfFreshVolume" >
     update mf_fresh_volume
     <set >
                   <if test="dateTime != null  and dateTime != '' " >
@@ -163,9 +182,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfFreshVolume" index="index">
-                  <if test="mfFreshVolume.dateTime != null and mfFreshVolume.dateTime  != '' " >
+                  <if test="mfFreshVolume.dateTime != null and mfFreshVolume.dateTime  != ''  and mfFreshVolume.dateTime  != '-1' ">
                      when id=#{mfFreshVolume.id} then #{mfFreshVolume.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfFreshVolume.dateTime != null  and mfFreshVolume.dateTime  == '-1' ">
+                     when id=#{mfFreshVolume.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="actual_amount =case" suffix="end,">
@@ -198,7 +221,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfFreshVolume" index="index" open="(" close=")" separator=",">
 			#{mfFreshVolume.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -208,42 +231,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_fresh_volume
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
-          <if test="actualAmount  != null " >
-              actual_amount,
-          </if>
-          <if test="forecastAmount  != null " >
-              forecast_amount,
-          </if>
-          <if test="actualVolume  != null " >
-              actual_volume,
-          </if>
-          <if test="forecastVolume  != null " >
-              forecast_volume,
-          </if>
+id,
+date_time,
+actual_amount,
+forecast_amount,
+actual_volume,
+forecast_volume,
     </trim>
     VALUES
     <foreach collection="list" item="mfFreshVolume" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfFreshVolume.id ,jdbcType=VARCHAR},
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+                  
                      #{mfFreshVolume.dateTime ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.actualAmount != null ">
+                  
+                  
                     #{mfFreshVolume.actualAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.forecastAmount != null ">
+            
+                  
                     #{mfFreshVolume.forecastAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.actualVolume != null ">
+            
+                  
                     #{mfFreshVolume.actualVolume,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.forecastVolume != null ">
+            
+                  
                     #{mfFreshVolume.forecastVolume,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

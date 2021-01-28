@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -28,7 +28,7 @@ import com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor;
 @Configuration
 @AutoConfigureAfter({ DataSourceConfig.class })
 @EnableTransactionManagement
-@MapperScan(basePackages = "com.jusfoun.dao")
+@MapperScan(basePackages = "com.zee.dao")
 public class MybatisConfig implements TransactionManagementConfigurer {
 
 	@Resource(name = "druidDataSource")

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaInputUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaInputUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaInput" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaInput" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <id column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -39,7 +39,7 @@
         id,common_field_id,name,object_name,base_name,crop_type_code,crop_type_text,strains_code,strains_text,input_name,input_type_code,input_type_text,brand_name,purchase_point,procurement_total,procurement_total_unit_code,procurement_total_unit_text,procurement_total_unit,use_amount,use_amount_unit_code,use_amount_unit_text,use_amount_unit,per_price,per_price_unit_code,per_price_unit_text,per_price_unit,per_cost,per_cost_unit_code,per_cost_unit_text,per_cost_unit
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaInput" >
     insert into da_input
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -242,8 +242,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_input
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -252,110 +251,128 @@
     	<foreach collection="list" item="daInput" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daInput.id,jdbcType=VARCHAR},
-
-      
           #{daInput.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daInput.name,jdbcType=VARCHAR},
-
-      
           #{daInput.objectName,jdbcType=VARCHAR},
-
-      
           #{daInput.baseName,jdbcType=VARCHAR},
-
-      
           #{daInput.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daInput.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daInput.strainsCode,jdbcType=TINYINT},
-
-      
           #{daInput.strainsText,jdbcType=VARCHAR},
-
-      
           #{daInput.inputName,jdbcType=VARCHAR},
-
-      
           #{daInput.inputTypeCode,jdbcType=TINYINT},
-
-      
           #{daInput.inputTypeText,jdbcType=VARCHAR},
-
-      
           #{daInput.brandName,jdbcType=VARCHAR},
-
-      
           #{daInput.purchasePoint,jdbcType=VARCHAR},
-
-      
           #{daInput.procurementTotal,jdbcType=NUMERIC},
-
-      
           #{daInput.procurementTotalUnitCode,jdbcType=TINYINT},
-
-      
           #{daInput.procurementTotalUnitText,jdbcType=VARCHAR},
-
-      
           #{daInput.procurementTotalUnit,jdbcType=NUMERIC},
-
-      
           #{daInput.useAmount,jdbcType=NUMERIC},
-
-      
           #{daInput.useAmountUnitCode,jdbcType=TINYINT},
-
-      
           #{daInput.useAmountUnitText,jdbcType=VARCHAR},
-
-      
           #{daInput.useAmountUnit,jdbcType=NUMERIC},
-
-      
           #{daInput.perPrice,jdbcType=NUMERIC},
-
-      
           #{daInput.perPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daInput.perPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daInput.perPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daInput.perCost,jdbcType=NUMERIC},
-
-      
           #{daInput.perCostUnitCode,jdbcType=TINYINT},
-
-      
           #{daInput.perCostUnitText,jdbcType=VARCHAR},
-
-      
           #{daInput.perCostUnit,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_input
-                 where  id = #{id,jdbcType=VARCHAR}
-                 delete from da_input
-                 where  common_field_id = #{commonFieldId,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_input
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daInput" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daInput.id,jdbcType=VARCHAR},
+          #{daInput.commonFieldId,jdbcType=VARCHAR},
+          #{daInput.name,jdbcType=VARCHAR},
+          #{daInput.objectName,jdbcType=VARCHAR},
+          #{daInput.baseName,jdbcType=VARCHAR},
+          #{daInput.cropTypeCode,jdbcType=TINYINT},
+          #{daInput.cropTypeText,jdbcType=VARCHAR},
+          #{daInput.strainsCode,jdbcType=TINYINT},
+          #{daInput.strainsText,jdbcType=VARCHAR},
+          #{daInput.inputName,jdbcType=VARCHAR},
+          #{daInput.inputTypeCode,jdbcType=TINYINT},
+          #{daInput.inputTypeText,jdbcType=VARCHAR},
+          #{daInput.brandName,jdbcType=VARCHAR},
+          #{daInput.purchasePoint,jdbcType=VARCHAR},
+          #{daInput.procurementTotal,jdbcType=NUMERIC},
+          #{daInput.procurementTotalUnitCode,jdbcType=TINYINT},
+          #{daInput.procurementTotalUnitText,jdbcType=VARCHAR},
+          #{daInput.procurementTotalUnit,jdbcType=NUMERIC},
+          #{daInput.useAmount,jdbcType=NUMERIC},
+          #{daInput.useAmountUnitCode,jdbcType=TINYINT},
+          #{daInput.useAmountUnitText,jdbcType=VARCHAR},
+          #{daInput.useAmountUnit,jdbcType=NUMERIC},
+          #{daInput.perPrice,jdbcType=NUMERIC},
+          #{daInput.perPriceUnitCode,jdbcType=TINYINT},
+          #{daInput.perPriceUnitText,jdbcType=VARCHAR},
+          #{daInput.perPriceUnit,jdbcType=NUMERIC},
+          #{daInput.perCost,jdbcType=NUMERIC},
+          #{daInput.perCostUnitCode,jdbcType=TINYINT},
+          #{daInput.perCostUnitText,jdbcType=VARCHAR},
+          #{daInput.perCostUnit,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+object_name=values(object_name),
+base_name=values(base_name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+input_name=values(input_name),
+input_type_code=values(input_type_code),
+input_type_text=values(input_type_text),
+brand_name=values(brand_name),
+purchase_point=values(purchase_point),
+procurement_total=values(procurement_total),
+procurement_total_unit_code=values(procurement_total_unit_code),
+procurement_total_unit_text=values(procurement_total_unit_text),
+procurement_total_unit=values(procurement_total_unit),
+use_amount=values(use_amount),
+use_amount_unit_code=values(use_amount_unit_code),
+use_amount_unit_text=values(use_amount_unit_text),
+use_amount_unit=values(use_amount_unit),
+per_price=values(per_price),
+per_price_unit_code=values(per_price_unit_code),
+per_price_unit_text=values(per_price_unit_text),
+per_price_unit=values(per_price_unit),
+per_cost=values(per_cost),
+per_cost_unit_code=values(per_cost_unit_code),
+per_cost_unit_text=values(per_cost_unit_text),
+per_cost_unit=values(per_cost_unit)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_input
+        where  id = #{id,jdbcType=VARCHAR}
+        delete from da_input
+        where  common_field_id = #{commonFieldId,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_input
 		where id  in
@@ -369,7 +386,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaInput" >
     update da_input
     <set >
                   <if test="name != null  and name != '' " >
@@ -567,23 +586,35 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.name != null and daInput.name  != '' " >
+                  <if test="daInput.name != null and daInput.name  != ''  and daInput.name  != '-1' ">
                      when id=#{daInput.id} then #{daInput.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.name != null  and daInput.name  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="object_name =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.objectName != null and daInput.objectName  != '' " >
+                  <if test="daInput.objectName != null and daInput.objectName  != ''  and daInput.objectName  != '-1' ">
                      when id=#{daInput.id} then #{daInput.objectName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.objectName != null  and daInput.objectName  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="base_name =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.baseName != null and daInput.baseName  != '' " >
+                  <if test="daInput.baseName != null and daInput.baseName  != ''  and daInput.baseName  != '-1' ">
                      when id=#{daInput.id} then #{daInput.baseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.baseName != null  and daInput.baseName  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -595,9 +626,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.cropTypeText != null and daInput.cropTypeText  != '' " >
+                  <if test="daInput.cropTypeText != null and daInput.cropTypeText  != ''  and daInput.cropTypeText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.cropTypeText != null  and daInput.cropTypeText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -609,16 +644,24 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.strainsText != null and daInput.strainsText  != '' " >
+                  <if test="daInput.strainsText != null and daInput.strainsText  != ''  and daInput.strainsText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.strainsText != null  and daInput.strainsText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="input_name =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.inputName != null and daInput.inputName  != '' " >
+                  <if test="daInput.inputName != null and daInput.inputName  != ''  and daInput.inputName  != '-1' ">
                      when id=#{daInput.id} then #{daInput.inputName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.inputName != null  and daInput.inputName  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="input_type_code =case" suffix="end,">
@@ -630,23 +673,35 @@
          </trim>
          <trim prefix="input_type_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.inputTypeText != null and daInput.inputTypeText  != '' " >
+                  <if test="daInput.inputTypeText != null and daInput.inputTypeText  != ''  and daInput.inputTypeText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.inputTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.inputTypeText != null  and daInput.inputTypeText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="brand_name =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.brandName != null and daInput.brandName  != '' " >
+                  <if test="daInput.brandName != null and daInput.brandName  != ''  and daInput.brandName  != '-1' ">
                      when id=#{daInput.id} then #{daInput.brandName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.brandName != null  and daInput.brandName  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="purchase_point =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.purchasePoint != null and daInput.purchasePoint  != '' " >
+                  <if test="daInput.purchasePoint != null and daInput.purchasePoint  != ''  and daInput.purchasePoint  != '-1' ">
                      when id=#{daInput.id} then #{daInput.purchasePoint,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.purchasePoint != null  and daInput.purchasePoint  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="procurement_total =case" suffix="end,">
@@ -665,9 +720,13 @@
          </trim>
          <trim prefix="procurement_total_unit_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.procurementTotalUnitText != null and daInput.procurementTotalUnitText  != '' " >
+                  <if test="daInput.procurementTotalUnitText != null and daInput.procurementTotalUnitText  != ''  and daInput.procurementTotalUnitText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.procurementTotalUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.procurementTotalUnitText != null  and daInput.procurementTotalUnitText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="procurement_total_unit =case" suffix="end,">
@@ -693,9 +752,13 @@
          </trim>
          <trim prefix="use_amount_unit_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.useAmountUnitText != null and daInput.useAmountUnitText  != '' " >
+                  <if test="daInput.useAmountUnitText != null and daInput.useAmountUnitText  != ''  and daInput.useAmountUnitText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.useAmountUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.useAmountUnitText != null  and daInput.useAmountUnitText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="use_amount_unit =case" suffix="end,">
@@ -721,9 +784,13 @@
          </trim>
          <trim prefix="per_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.perPriceUnitText != null and daInput.perPriceUnitText  != '' " >
+                  <if test="daInput.perPriceUnitText != null and daInput.perPriceUnitText  != ''  and daInput.perPriceUnitText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.perPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.perPriceUnitText != null  and daInput.perPriceUnitText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="per_price_unit =case" suffix="end,">
@@ -749,9 +816,13 @@
          </trim>
          <trim prefix="per_cost_unit_text =case" suffix="end,">
               <foreach collection="list" item="daInput" index="index">
-                  <if test="daInput.perCostUnitText != null and daInput.perCostUnitText  != '' " >
+                  <if test="daInput.perCostUnitText != null and daInput.perCostUnitText  != ''  and daInput.perCostUnitText  != '-1' ">
                      when id=#{daInput.id} then #{daInput.perCostUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daInput.perCostUnitText != null  and daInput.perCostUnitText  == '-1' ">
+                     when id=#{daInput.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="per_cost_unit =case" suffix="end,">
@@ -763,7 +834,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daInput" index="index" open="(" close=")" separator=",">
 			#{daInput.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -773,182 +844,126 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_input
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-              common_field_id ,
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="objectName  != null and objectName  != '' " >
-              object_name,
-          </if>
-          <if test="baseName  != null and baseName  != '' " >
-              base_name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="inputName  != null and inputName  != '' " >
-              input_name,
-          </if>
-          <if test="inputTypeCode  != null " >
-              input_type_code,
-          </if>
-          <if test="inputTypeText  != null and inputTypeText  != '' " >
-              input_type_text,
-          </if>
-          <if test="brandName  != null and brandName  != '' " >
-              brand_name,
-          </if>
-          <if test="purchasePoint  != null and purchasePoint  != '' " >
-              purchase_point,
-          </if>
-          <if test="procurementTotal  != null " >
-              procurement_total,
-          </if>
-          <if test="procurementTotalUnitCode  != null " >
-              procurement_total_unit_code,
-          </if>
-          <if test="procurementTotalUnitText  != null and procurementTotalUnitText  != '' " >
-              procurement_total_unit_text,
-          </if>
-          <if test="procurementTotalUnit  != null " >
-              procurement_total_unit,
-          </if>
-          <if test="useAmount  != null " >
-              use_amount,
-          </if>
-          <if test="useAmountUnitCode  != null " >
-              use_amount_unit_code,
-          </if>
-          <if test="useAmountUnitText  != null and useAmountUnitText  != '' " >
-              use_amount_unit_text,
-          </if>
-          <if test="useAmountUnit  != null " >
-              use_amount_unit,
-          </if>
-          <if test="perPrice  != null " >
-              per_price,
-          </if>
-          <if test="perPriceUnitCode  != null " >
-              per_price_unit_code,
-          </if>
-          <if test="perPriceUnitText  != null and perPriceUnitText  != '' " >
-              per_price_unit_text,
-          </if>
-          <if test="perPriceUnit  != null " >
-              per_price_unit,
-          </if>
-          <if test="perCost  != null " >
-              per_cost,
-          </if>
-          <if test="perCostUnitCode  != null " >
-              per_cost_unit_code,
-          </if>
-          <if test="perCostUnitText  != null and perCostUnitText  != '' " >
-              per_cost_unit_text,
-          </if>
-          <if test="perCostUnit  != null " >
-              per_cost_unit,
-          </if>
+id,
+common_field_id,
+name,
+object_name,
+base_name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+input_name,
+input_type_code,
+input_type_text,
+brand_name,
+purchase_point,
+procurement_total,
+procurement_total_unit_code,
+procurement_total_unit_text,
+procurement_total_unit,
+use_amount,
+use_amount_unit_code,
+use_amount_unit_text,
+use_amount_unit,
+per_price,
+per_price_unit_code,
+per_price_unit_text,
+per_price_unit,
+per_cost,
+per_cost_unit_code,
+per_cost_unit_text,
+per_cost_unit,
     </trim>
     VALUES
     <foreach collection="list" item="daInput" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daInput.id ,jdbcType=VARCHAR},
               #{daInput.commonFieldId ,jdbcType=VARCHAR},
-                  <if test="t.name  != null  and t.name != '' " >
+                  
                      #{daInput.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.objectName  != null  and t.objectName != '' " >
+                  
+                  
                      #{daInput.objectName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.baseName  != null  and t.baseName != '' " >
+                  
+                  
                      #{daInput.baseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daInput.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daInput.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daInput.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daInput.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.inputName  != null  and t.inputName != '' " >
+                  
+                  
                      #{daInput.inputName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.inputTypeCode != null ">
+                  
+                  
                     #{daInput.inputTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.inputTypeText  != null  and t.inputTypeText != '' " >
+            
+                  
                      #{daInput.inputTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.brandName  != null  and t.brandName != '' " >
+                  
+                  
                      #{daInput.brandName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.purchasePoint  != null  and t.purchasePoint != '' " >
+                  
+                  
                      #{daInput.purchasePoint ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.procurementTotal != null ">
+                  
+                  
                     #{daInput.procurementTotal,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.procurementTotalUnitCode != null ">
+            
+                  
                     #{daInput.procurementTotalUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.procurementTotalUnitText  != null  and t.procurementTotalUnitText != '' " >
+            
+                  
                      #{daInput.procurementTotalUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.procurementTotalUnit != null ">
+                  
+                  
                     #{daInput.procurementTotalUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.useAmount != null ">
+            
+                  
                     #{daInput.useAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.useAmountUnitCode != null ">
+            
+                  
                     #{daInput.useAmountUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.useAmountUnitText  != null  and t.useAmountUnitText != '' " >
+            
+                  
                      #{daInput.useAmountUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.useAmountUnit != null ">
+                  
+                  
                     #{daInput.useAmountUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perPrice != null ">
+            
+                  
                     #{daInput.perPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perPriceUnitCode != null ">
+            
+                  
                     #{daInput.perPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.perPriceUnitText  != null  and t.perPriceUnitText != '' " >
+            
+                  
                      #{daInput.perPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.perPriceUnit != null ">
+                  
+                  
                     #{daInput.perPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perCost != null ">
+            
+                  
                     #{daInput.perCost,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.perCostUnitCode != null ">
+            
+                  
                     #{daInput.perCostUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.perCostUnitText  != null  and t.perCostUnitText != '' " >
+            
+                  
                      #{daInput.perCostUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.perCostUnit != null ">
+                  
+                  
                     #{daInput.perCostUnit,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

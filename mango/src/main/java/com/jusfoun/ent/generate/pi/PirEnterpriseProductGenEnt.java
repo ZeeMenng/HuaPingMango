@@ -1,62 +1,64 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:09
+ * @updateDate 2021/1/28 16:09:48
  * @description 实体类PirEnterpriseProductGenEnt，自动生成。企业和产品中间表
  */
 
 public class PirEnterpriseProductGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="对应企业表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String enterpriseId;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="排序依据",hidden=false,required=false)
     private Integer priority;
-    @ApiModelProperty(value="引用产品（pi_product_recommend）表的主键",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productId;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。对应企业表id
+	 * get方法。
 	 */
 	public String getEnterpriseId() {
 		return this.enterpriseId;
 	}
 
 	/**
-	 * set方法。对应企业表id
+	 * set方法。
 	 */
 	public void setEnterpriseId(String enterpriseId) {
 		this.enterpriseId = enterpriseId;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -77,21 +79,28 @@ public class PirEnterpriseProductGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。引用产品（pi_product_recommend）表的主键
+	 * get方法。
 	 */
 	public String getProductId() {
 		return this.productId;
 	}
 
 	/**
-	 * set方法。引用产品（pi_product_recommend）表的主键
+	 * set方法。
 	 */
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

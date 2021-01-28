@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpDomainGenSwgApp;
-import com.jusfoun.bll.extend.split.gp.GpModuleSplBll;
-import com.jusfoun.bll.extend.split.gp.GpResourceSplBll;
-import com.jusfoun.bll.extend.split.gp.GprResourceSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpModuleUntBll;
-import com.jusfoun.bll.extend.unity.gp.GprResourceUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GpModule;
-import com.jusfoun.ent.extend.gp.GpResource;
-import com.jusfoun.ent.extend.gp.GprResource;
-import com.jusfoun.ent.parameter.gp.GpDomainParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.app.generate.swagger.gp.GpDomainGenSwgApp;
+import com.zee.bll.extend.split.gp.GpModuleSplBll;
+import com.zee.bll.extend.split.gp.GpResourceSplBll;
+import com.zee.bll.extend.split.gp.GprResourceSplBll;
+import com.zee.bll.extend.unity.gp.GpModuleUntBll;
+import com.zee.bll.extend.unity.gp.GprResourceUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.extend.gp.GpModule;
+import com.zee.ent.extend.gp.GpResource;
+import com.zee.ent.extend.gp.GprResource;
+import com.zee.ent.parameter.gp.GpDomainParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

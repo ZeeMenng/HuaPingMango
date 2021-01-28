@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.utl.SymbolicConstant;
 
 /**
  * @author Zee

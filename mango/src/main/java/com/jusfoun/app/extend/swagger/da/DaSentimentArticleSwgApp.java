@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.da;
+package com.zee.app.extend.swagger.da;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.da.DaSentimentArticleGenSwgApp;
-import com.jusfoun.bll.extend.unity.da.DaSentimentContentUntBll;
-import com.jusfoun.bll.extend.unity.da.DaSentimentThemeUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaSentimentArticle;
-import com.jusfoun.utl.MathUtil;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.da.DaSentimentArticleGenSwgApp;
+import com.zee.bll.extend.unity.da.DaSentimentContentUntBll;
+import com.zee.bll.extend.unity.da.DaSentimentThemeUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaSentimentArticle;
+import com.zee.utl.MathUtil;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 
 
 /**

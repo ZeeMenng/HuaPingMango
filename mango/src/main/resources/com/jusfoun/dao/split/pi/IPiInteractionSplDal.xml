@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiInteractionSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiInteractionSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiInteraction" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiInteraction" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="interaction_type" property="interactionType" jdbcType="TINYINT" />
               <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
         id,interaction_type,nick_name,real_name,job,phone,email,qq,region_id,region_name,title,req_content,res_user_id,res_content,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id,auditer_time,add_time,update_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiInteraction" >
     insert into pi_interaction
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -284,7 +284,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiInteraction" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiInteraction" >
     update pi_interaction
     <set >
                   <if test="interactionType != null ">

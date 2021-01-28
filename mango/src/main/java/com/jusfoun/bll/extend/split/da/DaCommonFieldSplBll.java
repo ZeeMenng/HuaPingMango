@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.split.da;
+package com.zee.bll.extend.split.da;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.da.DaCommonFieldGenSplBll;
+import com.zee.bll.generate.split.da.DaCommonFieldGenSplBll;
 
 
 /**

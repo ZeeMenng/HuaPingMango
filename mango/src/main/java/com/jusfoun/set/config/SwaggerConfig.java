@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import static com.google.common.base.Predicates.or;
 import static com.google.common.collect.Lists.newArrayList;

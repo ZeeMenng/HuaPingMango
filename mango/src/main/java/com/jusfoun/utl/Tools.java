@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jusfoun.ent.extend.gp.GpModule;
+import com.zee.ent.extend.gp.GpModule;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

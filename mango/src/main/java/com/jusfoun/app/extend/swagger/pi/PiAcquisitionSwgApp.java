@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiAcquisitionGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.bll.extend.unity.pi.PiAcquisitionUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.pi.PiAcquisition;
-import com.jusfoun.ent.extend.pi.PiContent;
-import com.jusfoun.utl.DictionaryUtil;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.pi.PiAcquisitionGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.bll.extend.unity.pi.PiAcquisitionUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.pi.PiAcquisition;
+import com.zee.ent.extend.pi.PiContent;
+import com.zee.utl.DictionaryUtil;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

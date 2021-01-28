@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiTopicUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiTopicUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiTopic" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiTopic" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="topic_name" property="topicName" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
         id,channel_id,topic_name,short_name,keywords,description,title_img,content_img,tpl_content,priority,is_recommend
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiTopic" >
     insert into pi_topic
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -103,8 +103,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_topic
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -113,51 +112,69 @@
     	<foreach collection="list" item="piTopic" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piTopic.id,jdbcType=VARCHAR},
-
-      
           #{piTopic.channelId,jdbcType=VARCHAR},
-
-      
           #{piTopic.topicName,jdbcType=VARCHAR},
-
-      
           #{piTopic.shortName,jdbcType=VARCHAR},
-
-      
           #{piTopic.keywords,jdbcType=VARCHAR},
-
-      
           #{piTopic.description,jdbcType=VARCHAR},
-
-      
           #{piTopic.titleImg,jdbcType=VARCHAR},
-
-      
           #{piTopic.contentImg,jdbcType=VARCHAR},
-
-      
           #{piTopic.tplContent,jdbcType=VARCHAR},
-
-      
           #{piTopic.priority,jdbcType=INTEGER},
-
-      
           #{piTopic.isRecommend,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_topic
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_topic
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piTopic" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piTopic.id,jdbcType=VARCHAR},
+          #{piTopic.channelId,jdbcType=VARCHAR},
+          #{piTopic.topicName,jdbcType=VARCHAR},
+          #{piTopic.shortName,jdbcType=VARCHAR},
+          #{piTopic.keywords,jdbcType=VARCHAR},
+          #{piTopic.description,jdbcType=VARCHAR},
+          #{piTopic.titleImg,jdbcType=VARCHAR},
+          #{piTopic.contentImg,jdbcType=VARCHAR},
+          #{piTopic.tplContent,jdbcType=VARCHAR},
+          #{piTopic.priority,jdbcType=INTEGER},
+          #{piTopic.isRecommend,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+topic_name=values(topic_name),
+short_name=values(short_name),
+keywords=values(keywords),
+description=values(description),
+title_img=values(title_img),
+content_img=values(content_img),
+tpl_content=values(tpl_content),
+priority=values(priority),
+is_recommend=values(is_recommend)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_topic
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_topic
 		where id  in
@@ -166,7 +183,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiTopic" >
     update pi_topic
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -250,58 +269,90 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.channelId != null and piTopic.channelId  != '' " >
+                  <if test="piTopic.channelId != null and piTopic.channelId  != ''  and piTopic.channelId  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.channelId != null  and piTopic.channelId  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="topic_name =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.topicName != null and piTopic.topicName  != '' " >
+                  <if test="piTopic.topicName != null and piTopic.topicName  != ''  and piTopic.topicName  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.topicName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.topicName != null  and piTopic.topicName  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="short_name =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.shortName != null and piTopic.shortName  != '' " >
+                  <if test="piTopic.shortName != null and piTopic.shortName  != ''  and piTopic.shortName  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.shortName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.shortName != null  and piTopic.shortName  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="keywords =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.keywords != null and piTopic.keywords  != '' " >
+                  <if test="piTopic.keywords != null and piTopic.keywords  != ''  and piTopic.keywords  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.keywords,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.keywords != null  and piTopic.keywords  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="description =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.description != null and piTopic.description  != '' " >
+                  <if test="piTopic.description != null and piTopic.description  != ''  and piTopic.description  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.description,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.description != null  and piTopic.description  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title_img =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.titleImg != null and piTopic.titleImg  != '' " >
+                  <if test="piTopic.titleImg != null and piTopic.titleImg  != ''  and piTopic.titleImg  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.titleImg,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.titleImg != null  and piTopic.titleImg  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content_img =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.contentImg != null and piTopic.contentImg  != '' " >
+                  <if test="piTopic.contentImg != null and piTopic.contentImg  != ''  and piTopic.contentImg  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.contentImg,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.contentImg != null  and piTopic.contentImg  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tpl_content =case" suffix="end,">
               <foreach collection="list" item="piTopic" index="index">
-                  <if test="piTopic.tplContent != null and piTopic.tplContent  != '' " >
+                  <if test="piTopic.tplContent != null and piTopic.tplContent  != ''  and piTopic.tplContent  != '-1' ">
                      when id=#{piTopic.id} then #{piTopic.tplContent,jdbcType=VARCHAR}
                   </if>
+                  <if test="piTopic.tplContent != null  and piTopic.tplContent  == '-1' ">
+                     when id=#{piTopic.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -320,7 +371,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piTopic" index="index" open="(" close=")" separator=",">
 			#{piTopic.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -330,72 +381,52 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_topic
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="topicName  != null and topicName  != '' " >
-              topic_name,
-          </if>
-          <if test="shortName  != null and shortName  != '' " >
-              short_name,
-          </if>
-          <if test="keywords  != null and keywords  != '' " >
-              keywords,
-          </if>
-          <if test="description  != null and description  != '' " >
-              description,
-          </if>
-          <if test="titleImg  != null and titleImg  != '' " >
-              title_img,
-          </if>
-          <if test="contentImg  != null and contentImg  != '' " >
-              content_img,
-          </if>
-          <if test="tplContent  != null and tplContent  != '' " >
-              tpl_content,
-          </if>
-          <if test="priority  != null " >
-              priority,
-          </if>
-          <if test="isRecommend  != null " >
-              is_recommend,
-          </if>
+id,
+channel_id,
+topic_name,
+short_name,
+keywords,
+description,
+title_img,
+content_img,
+tpl_content,
+priority,
+is_recommend,
     </trim>
     VALUES
     <foreach collection="list" item="piTopic" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piTopic.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{piTopic.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.topicName  != null  and t.topicName != '' " >
+                  
+                  
                      #{piTopic.topicName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.shortName  != null  and t.shortName != '' " >
+                  
+                  
                      #{piTopic.shortName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.keywords  != null  and t.keywords != '' " >
+                  
+                  
                      #{piTopic.keywords ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.description  != null  and t.description != '' " >
+                  
+                  
                      #{piTopic.description ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.titleImg  != null  and t.titleImg != '' " >
+                  
+                  
                      #{piTopic.titleImg ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.contentImg  != null  and t.contentImg != '' " >
+                  
+                  
                      #{piTopic.contentImg ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tplContent  != null  and t.tplContent != '' " >
+                  
+                  
                      #{piTopic.tplContent ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.priority != null ">
+                  
+                  
                     #{piTopic.priority,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.isRecommend != null ">
+            
+                  
                     #{piTopic.isRecommend,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

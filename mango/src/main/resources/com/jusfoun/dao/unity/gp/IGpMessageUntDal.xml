@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpMessageUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpMessageUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpMessage" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpMessage" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="user_id" property="userId" jdbcType="VARCHAR" />
               <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -18,7 +18,7 @@
         id,user_id,user_name,title,content,type_code,type_text,remark,add_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpMessage" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpMessage" >
     insert into gp_message
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -182,7 +182,7 @@ add_time=values(add_time)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpMessage" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpMessage" >
     update gp_message
     <set >
                   <if test="userId != null  and userId != '' " >

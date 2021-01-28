@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentSourceSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaSentimentSourceSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentSource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentSource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="thread_starter" property="threadStarter" jdbcType="VARCHAR" />
               <result column="media_type_code" property="mediaTypeCode" jdbcType="TINYINT" />
@@ -19,7 +19,7 @@
         id,thread_starter,media_type_code,media_type_text,website,remark,add_user_id,add_time,status_code,status_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentSource" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentSource" >
     insert into da_sentiment_source
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -154,7 +154,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentSource" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentSource" >
     update da_sentiment_source
     <set >
                   <if test="threadStarter != null  and threadStarter != '' " >

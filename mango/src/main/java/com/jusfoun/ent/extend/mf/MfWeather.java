@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.mf;
+package com.zee.ent.extend.mf;
 
-import com.jusfoun.ent.generate.mf.MfWeatherGenEnt;
+import com.zee.ent.generate.mf.MfWeatherGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

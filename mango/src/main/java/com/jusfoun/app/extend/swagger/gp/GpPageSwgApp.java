@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpPageGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpPage;
-import com.jusfoun.ent.parameter.gp.GpPageParameter;
-import com.jusfoun.set.enumer.DomainEnum;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.DictionaryUtil;
-import com.jusfoun.utl.FileUtil;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.app.generate.swagger.gp.GpPageGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpPage;
+import com.zee.ent.parameter.gp.GpPageParameter;
+import com.zee.set.enumer.DomainEnum;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.DictionaryUtil;
+import com.zee.utl.FileUtil;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

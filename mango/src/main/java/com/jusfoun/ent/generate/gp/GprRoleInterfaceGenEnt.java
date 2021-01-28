@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,16 +6,16 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.extend.gp.GpRole;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.extend.gp.GpRole;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:08
+ * @updateDate 2021/1/28 16:09:17
  * @description 实体类GprRoleInterfaceGenEnt，自动生成。角色拥有的接口权限。
  */
 
@@ -28,7 +28,7 @@ public class GprRoleInterfaceGenEnt extends BaseEnt implements Serializable {
     private String interfaceId;
     @ApiModelProperty(value="是否有权。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。默认值0。",allowableValues="0,1",hidden=false,required=false)
     private Byte isEnableCode;
-    @ApiModelProperty(value="系统角色。外键，引用应用角色表（role）的主键。",hidden=false,required=false)
+    @ApiModelProperty(value="系统角色。外键，引用系统角色表（role）的主键。",hidden=false,required=false)
     private String roleId;
 
    //本表做为子表时，父表实体对象
@@ -83,14 +83,14 @@ public class GprRoleInterfaceGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。系统角色。外键，引用应用角色表（role）的主键。
+	 * get方法。系统角色。外键，引用系统角色表（role）的主键。
 	 */
 	public String getRoleId() {
 		return this.roleId;
 	}
 
 	/**
-	 * set方法。系统角色。外键，引用应用角色表（role）的主键。
+	 * set方法。系统角色。外键，引用系统角色表（role）的主键。
 	 */
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiAdvertisingSplDal">
+<mapper namespace="com.zee.dao.split.pi.IPiAdvertisingSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAdvertising">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiAdvertising">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
 		<result column="domain_id" property="domainId" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
 		id,serial_no,domain_id,name,title,resouce_id,resource_path,width,height,target_code,space_code,category_code,weight,display_count,click_count,start_time,end_time,remark,is_enabled_code
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising">
+	<insert id="add" parameterType="com.zee.ent.extend.pi.PiAdvertising">
 		insert into pi_advertising
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -245,7 +245,7 @@
 		</foreach>
 	</delete>
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAdvertising">
+	<update id="update" parameterType="com.zee.ent.extend.pi.PiAdvertising">
 		update pi_advertising
 		<set>
 			<if test="serialNo != null  and serialNo != '' ">

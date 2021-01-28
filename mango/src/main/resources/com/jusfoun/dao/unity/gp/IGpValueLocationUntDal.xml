@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGpValueLocationUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGpValueLocationUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpValueLocation" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpValueLocation" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="column_value" property="columnValue" jdbcType="VARCHAR" />
               <result column="origin_table_name" property="originTableName" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         id,column_value,origin_table_name,target_column_name,target_table_name,target_record_id,remarks,add_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpValueLocation" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpValueLocation" >
     insert into gp_value_location
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -153,7 +153,7 @@ add_time=values(add_time)
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpValueLocation" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpValueLocation" >
     update gp_value_location
     <set >
                   <if test="columnValue != null  and columnValue != '' " >

@@ -1,4 +1,4 @@
-package com.jusfoun.set.handler;
+package com.zee.set.handler;
 
 import java.io.IOException;
 
@@ -14,9 +14,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.ent.custom.ResultModel;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.SymbolicConstant;
 
 /**
  * @author Zee

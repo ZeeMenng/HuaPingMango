@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.pe;
+package com.zee.ent.extend.pe;
 
-import com.jusfoun.ent.generate.pe.PeQueryMenuGenEnt;
+import com.zee.ent.generate.pe.PeQueryMenuGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

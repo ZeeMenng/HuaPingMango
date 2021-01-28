@@ -1,4 +1,4 @@
-package com.jusfoun.utl.task;
+package com.zee.utl.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 
-import com.jusfoun.utl.CleanJunckData;
+import com.zee.utl.CleanJunckData;
 
 @Component
 @ConditionalOnClass(CleanJunckData.class)

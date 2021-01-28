@@ -1,7 +1,7 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jusfoun.ent.generate.da.DaEnterpriseInfoGenEnt;
+import com.zee.ent.generate.da.DaEnterpriseInfoGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

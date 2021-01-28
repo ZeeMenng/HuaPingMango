@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.generate.da.DaSentimentContentGenEnt;
+import com.zee.ent.generate.da.DaSentimentContentGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

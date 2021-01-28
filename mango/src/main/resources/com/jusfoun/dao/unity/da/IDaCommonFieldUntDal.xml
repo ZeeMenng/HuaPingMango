@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaCommonFieldUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaCommonFieldUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCommonField" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaCommonField" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="data_time_type_code" property="dataTimeTypeCode" jdbcType="TINYINT" />
               <result column="data_time_type_text" property="dataTimeTypeText" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
         id,data_time_type_code,data_time_type_text,start_time,end_time,area_latitude_type_code,area_latitude_type_text,region_id,region_name,source_channel_type_code,source_channel_type_text,data_sources,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id,auditer_time,add_user_id,add_time,update_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCommonField" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaCommonField" >
     insert into da_common_field
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -176,8 +176,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_common_field
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -186,81 +185,99 @@
     	<foreach collection="list" item="daCommonField" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daCommonField.id,jdbcType=VARCHAR},
-
-      
           #{daCommonField.dataTimeTypeCode,jdbcType=TINYINT},
-
-      
           #{daCommonField.dataTimeTypeText,jdbcType=VARCHAR},
-
-      
           #{daCommonField.startTime,jdbcType=TIMESTAMP},
-
-      
           #{daCommonField.endTime,jdbcType=TIMESTAMP},
-
-      
           #{daCommonField.areaLatitudeTypeCode,jdbcType=TINYINT},
-
-      
           #{daCommonField.areaLatitudeTypeText,jdbcType=VARCHAR},
-
-      
           #{daCommonField.regionId,jdbcType=VARCHAR},
-
-      
           #{daCommonField.regionName,jdbcType=VARCHAR},
-
-      
           #{daCommonField.sourceChannelTypeCode,jdbcType=TINYINT},
-
-      
           #{daCommonField.sourceChannelTypeText,jdbcType=VARCHAR},
-
-      
           #{daCommonField.dataSources,jdbcType=VARCHAR},
-
-      
           #{daCommonField.auditStatusCode,jdbcType=TINYINT},
-
-      
           #{daCommonField.auditStatusText,jdbcType=VARCHAR},
-
-      
           #{daCommonField.auditerSuggestion,jdbcType=VARCHAR},
-
-      
           #{daCommonField.auditerUserId,jdbcType=VARCHAR},
-
-      
           #{daCommonField.auditerTime,jdbcType=TIMESTAMP},
-
-      
           #{daCommonField.addUserId,jdbcType=VARCHAR},
-
-      
           #{daCommonField.addTime,jdbcType=TIMESTAMP},
-
-      
           #{daCommonField.updateTime,jdbcType=TIMESTAMP},
-
-      
           #{daCommonField.remark,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_common_field
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_common_field
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daCommonField" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daCommonField.id,jdbcType=VARCHAR},
+          #{daCommonField.dataTimeTypeCode,jdbcType=TINYINT},
+          #{daCommonField.dataTimeTypeText,jdbcType=VARCHAR},
+          #{daCommonField.startTime,jdbcType=TIMESTAMP},
+          #{daCommonField.endTime,jdbcType=TIMESTAMP},
+          #{daCommonField.areaLatitudeTypeCode,jdbcType=TINYINT},
+          #{daCommonField.areaLatitudeTypeText,jdbcType=VARCHAR},
+          #{daCommonField.regionId,jdbcType=VARCHAR},
+          #{daCommonField.regionName,jdbcType=VARCHAR},
+          #{daCommonField.sourceChannelTypeCode,jdbcType=TINYINT},
+          #{daCommonField.sourceChannelTypeText,jdbcType=VARCHAR},
+          #{daCommonField.dataSources,jdbcType=VARCHAR},
+          #{daCommonField.auditStatusCode,jdbcType=TINYINT},
+          #{daCommonField.auditStatusText,jdbcType=VARCHAR},
+          #{daCommonField.auditerSuggestion,jdbcType=VARCHAR},
+          #{daCommonField.auditerUserId,jdbcType=VARCHAR},
+          #{daCommonField.auditerTime,jdbcType=TIMESTAMP},
+          #{daCommonField.addUserId,jdbcType=VARCHAR},
+          #{daCommonField.addTime,jdbcType=TIMESTAMP},
+          #{daCommonField.updateTime,jdbcType=TIMESTAMP},
+          #{daCommonField.remark,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+data_time_type_code=values(data_time_type_code),
+data_time_type_text=values(data_time_type_text),
+start_time=values(start_time),
+end_time=values(end_time),
+area_latitude_type_code=values(area_latitude_type_code),
+area_latitude_type_text=values(area_latitude_type_text),
+region_id=values(region_id),
+region_name=values(region_name),
+source_channel_type_code=values(source_channel_type_code),
+source_channel_type_text=values(source_channel_type_text),
+data_sources=values(data_sources),
+audit_status_code=values(audit_status_code),
+audit_status_text=values(audit_status_text),
+auditer_suggestion=values(auditer_suggestion),
+auditer_user_id=values(auditer_user_id),
+auditer_time=values(auditer_time),
+add_user_id=values(add_user_id),
+add_time=values(add_time),
+update_time=values(update_time),
+remark=values(remark)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_common_field
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_common_field
 		where id  in
@@ -269,7 +286,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCommonField" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaCommonField" >
     update da_common_field
     <set >
                   <if test="dataTimeTypeCode != null ">
@@ -420,9 +439,13 @@
          </trim>
          <trim prefix="data_time_type_text =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.dataTimeTypeText != null and daCommonField.dataTimeTypeText  != '' " >
+                  <if test="daCommonField.dataTimeTypeText != null and daCommonField.dataTimeTypeText  != ''  and daCommonField.dataTimeTypeText  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.dataTimeTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.dataTimeTypeText != null  and daCommonField.dataTimeTypeText  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="start_time =case" suffix="end,">
@@ -448,23 +471,35 @@
          </trim>
          <trim prefix="area_latitude_type_text =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.areaLatitudeTypeText != null and daCommonField.areaLatitudeTypeText  != '' " >
+                  <if test="daCommonField.areaLatitudeTypeText != null and daCommonField.areaLatitudeTypeText  != ''  and daCommonField.areaLatitudeTypeText  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.areaLatitudeTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.areaLatitudeTypeText != null  and daCommonField.areaLatitudeTypeText  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_id =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.regionId != null and daCommonField.regionId  != '' " >
+                  <if test="daCommonField.regionId != null and daCommonField.regionId  != ''  and daCommonField.regionId  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.regionId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.regionId != null  and daCommonField.regionId  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_name =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.regionName != null and daCommonField.regionName  != '' " >
+                  <if test="daCommonField.regionName != null and daCommonField.regionName  != ''  and daCommonField.regionName  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.regionName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.regionName != null  and daCommonField.regionName  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="source_channel_type_code =case" suffix="end,">
@@ -476,16 +511,24 @@
          </trim>
          <trim prefix="source_channel_type_text =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.sourceChannelTypeText != null and daCommonField.sourceChannelTypeText  != '' " >
+                  <if test="daCommonField.sourceChannelTypeText != null and daCommonField.sourceChannelTypeText  != ''  and daCommonField.sourceChannelTypeText  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.sourceChannelTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.sourceChannelTypeText != null  and daCommonField.sourceChannelTypeText  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="data_sources =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.dataSources != null and daCommonField.dataSources  != '' " >
+                  <if test="daCommonField.dataSources != null and daCommonField.dataSources  != ''  and daCommonField.dataSources  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.dataSources,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.dataSources != null  and daCommonField.dataSources  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="audit_status_code =case" suffix="end,">
@@ -497,23 +540,35 @@
          </trim>
          <trim prefix="audit_status_text =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.auditStatusText != null and daCommonField.auditStatusText  != '' " >
+                  <if test="daCommonField.auditStatusText != null and daCommonField.auditStatusText  != ''  and daCommonField.auditStatusText  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.auditStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.auditStatusText != null  and daCommonField.auditStatusText  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_suggestion =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.auditerSuggestion != null and daCommonField.auditerSuggestion  != '' " >
+                  <if test="daCommonField.auditerSuggestion != null and daCommonField.auditerSuggestion  != ''  and daCommonField.auditerSuggestion  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.auditerSuggestion,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.auditerSuggestion != null  and daCommonField.auditerSuggestion  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_user_id =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.auditerUserId != null and daCommonField.auditerUserId  != '' " >
+                  <if test="daCommonField.auditerUserId != null and daCommonField.auditerUserId  != ''  and daCommonField.auditerUserId  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.auditerUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.auditerUserId != null  and daCommonField.auditerUserId  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="auditer_time =case" suffix="end,">
@@ -525,9 +580,13 @@
          </trim>
          <trim prefix="add_user_id =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.addUserId != null and daCommonField.addUserId  != '' " >
+                  <if test="daCommonField.addUserId != null and daCommonField.addUserId  != ''  and daCommonField.addUserId  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.addUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.addUserId != null  and daCommonField.addUserId  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -546,14 +605,18 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daCommonField" index="index">
-                  <if test="daCommonField.remark != null and daCommonField.remark  != '' " >
+                  <if test="daCommonField.remark != null and daCommonField.remark  != ''  and daCommonField.remark  != '-1' ">
                      when id=#{daCommonField.id} then #{daCommonField.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daCommonField.remark != null  and daCommonField.remark  == '-1' ">
+                     when id=#{daCommonField.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daCommonField" index="index" open="(" close=")" separator=",">
 			#{daCommonField.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -563,132 +626,92 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_common_field
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="dataTimeTypeCode  != null " >
-              data_time_type_code,
-          </if>
-          <if test="dataTimeTypeText  != null and dataTimeTypeText  != '' " >
-              data_time_type_text,
-          </if>
-          <if test="startTime  != null " >
-              start_time,
-          </if>
-          <if test="endTime  != null " >
-              end_time,
-          </if>
-          <if test="areaLatitudeTypeCode  != null " >
-              area_latitude_type_code,
-          </if>
-          <if test="areaLatitudeTypeText  != null and areaLatitudeTypeText  != '' " >
-              area_latitude_type_text,
-          </if>
-          <if test="regionId  != null and regionId  != '' " >
-              region_id,
-          </if>
-          <if test="regionName  != null and regionName  != '' " >
-              region_name,
-          </if>
-          <if test="sourceChannelTypeCode  != null " >
-              source_channel_type_code,
-          </if>
-          <if test="sourceChannelTypeText  != null and sourceChannelTypeText  != '' " >
-              source_channel_type_text,
-          </if>
-          <if test="dataSources  != null and dataSources  != '' " >
-              data_sources,
-          </if>
-          <if test="auditStatusCode  != null " >
-              audit_status_code,
-          </if>
-          <if test="auditStatusText  != null and auditStatusText  != '' " >
-              audit_status_text,
-          </if>
-          <if test="auditerSuggestion  != null and auditerSuggestion  != '' " >
-              auditer_suggestion,
-          </if>
-          <if test="auditerUserId  != null and auditerUserId  != '' " >
-              auditer_user_id,
-          </if>
-          <if test="auditerTime  != null " >
-              auditer_time,
-          </if>
-          <if test="addUserId  != null and addUserId  != '' " >
-              add_user_id,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
+id,
+data_time_type_code,
+data_time_type_text,
+start_time,
+end_time,
+area_latitude_type_code,
+area_latitude_type_text,
+region_id,
+region_name,
+source_channel_type_code,
+source_channel_type_text,
+data_sources,
+audit_status_code,
+audit_status_text,
+auditer_suggestion,
+auditer_user_id,
+auditer_time,
+add_user_id,
+add_time,
+update_time,
+remark,
     </trim>
     VALUES
     <foreach collection="list" item="daCommonField" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daCommonField.id ,jdbcType=VARCHAR},
-                  <if test="t.dataTimeTypeCode != null ">
+                  
                     #{daCommonField.dataTimeTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.dataTimeTypeText  != null  and t.dataTimeTypeText != '' " >
+            
+                  
                      #{daCommonField.dataTimeTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.startTime != null ">
+                  
+                  
                     #{daCommonField.startTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.endTime != null ">
+            
+                  
                     #{daCommonField.endTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.areaLatitudeTypeCode != null ">
+            
+                  
                     #{daCommonField.areaLatitudeTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.areaLatitudeTypeText  != null  and t.areaLatitudeTypeText != '' " >
+            
+                  
                      #{daCommonField.areaLatitudeTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionId  != null  and t.regionId != '' " >
+                  
+                  
                      #{daCommonField.regionId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionName  != null  and t.regionName != '' " >
+                  
+                  
                      #{daCommonField.regionName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.sourceChannelTypeCode != null ">
+                  
+                  
                     #{daCommonField.sourceChannelTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.sourceChannelTypeText  != null  and t.sourceChannelTypeText != '' " >
+            
+                  
                      #{daCommonField.sourceChannelTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.dataSources  != null  and t.dataSources != '' " >
+                  
+                  
                      #{daCommonField.dataSources ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditStatusCode != null ">
+                  
+                  
                     #{daCommonField.auditStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.auditStatusText  != null  and t.auditStatusText != '' " >
+            
+                  
                      #{daCommonField.auditStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerSuggestion  != null  and t.auditerSuggestion != '' " >
+                  
+                  
                      #{daCommonField.auditerSuggestion ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerUserId  != null  and t.auditerUserId != '' " >
+                  
+                  
                      #{daCommonField.auditerUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.auditerTime != null ">
+                  
+                  
                     #{daCommonField.auditerTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.addUserId  != null  and t.addUserId != '' " >
+            
+                  
                      #{daCommonField.addUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
+                  
+                  
                     #{daCommonField.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{daCommonField.updateTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daCommonField.remark ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

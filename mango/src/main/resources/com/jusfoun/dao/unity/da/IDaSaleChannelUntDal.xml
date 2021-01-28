@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaSaleChannelUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaSaleChannelUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSaleChannel" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSaleChannel" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,sale_amount,sale_amount_unit_code,sale_amount_unit_text,sale_amount_unit,sale_volume,sale_volume_unit_code,sale_volume_unit_text,sale_volume_unit,sale_region_code,sale_region_text,sale_city,seller,sale_time,sale_channel_type_code,sale_channel_type_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSaleChannel" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSaleChannel" >
     insert into da_sale_channel
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -184,8 +184,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_sale_channel
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -194,84 +193,102 @@
     	<foreach collection="list" item="daSaleChannel" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daSaleChannel.id,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.name,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daSaleChannel.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.strainsCode,jdbcType=TINYINT},
-
-      
           #{daSaleChannel.strainsText,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleAmount,jdbcType=NUMERIC},
-
-      
           #{daSaleChannel.saleAmountUnitCode,jdbcType=TINYINT},
-
-      
           #{daSaleChannel.saleAmountUnitText,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleAmountUnit,jdbcType=NUMERIC},
-
-      
           #{daSaleChannel.saleVolume,jdbcType=NUMERIC},
-
-      
           #{daSaleChannel.saleVolumeUnitCode,jdbcType=TINYINT},
-
-      
           #{daSaleChannel.saleVolumeUnitText,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleVolumeUnit,jdbcType=NUMERIC},
-
-      
           #{daSaleChannel.saleRegionCode,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleRegionText,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleCity,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.seller,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleTime,jdbcType=TIMESTAMP},
-
-      
           #{daSaleChannel.saleChannelTypeCode,jdbcType=VARCHAR},
-
-      
           #{daSaleChannel.saleChannelTypeText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_sale_channel
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_sale_channel
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSaleChannel" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daSaleChannel.id,jdbcType=VARCHAR},
+          #{daSaleChannel.commonFieldId,jdbcType=VARCHAR},
+          #{daSaleChannel.name,jdbcType=VARCHAR},
+          #{daSaleChannel.cropTypeCode,jdbcType=TINYINT},
+          #{daSaleChannel.cropTypeText,jdbcType=VARCHAR},
+          #{daSaleChannel.strainsCode,jdbcType=TINYINT},
+          #{daSaleChannel.strainsText,jdbcType=VARCHAR},
+          #{daSaleChannel.saleAmount,jdbcType=NUMERIC},
+          #{daSaleChannel.saleAmountUnitCode,jdbcType=TINYINT},
+          #{daSaleChannel.saleAmountUnitText,jdbcType=VARCHAR},
+          #{daSaleChannel.saleAmountUnit,jdbcType=NUMERIC},
+          #{daSaleChannel.saleVolume,jdbcType=NUMERIC},
+          #{daSaleChannel.saleVolumeUnitCode,jdbcType=TINYINT},
+          #{daSaleChannel.saleVolumeUnitText,jdbcType=VARCHAR},
+          #{daSaleChannel.saleVolumeUnit,jdbcType=NUMERIC},
+          #{daSaleChannel.saleRegionCode,jdbcType=VARCHAR},
+          #{daSaleChannel.saleRegionText,jdbcType=VARCHAR},
+          #{daSaleChannel.saleCity,jdbcType=VARCHAR},
+          #{daSaleChannel.seller,jdbcType=VARCHAR},
+          #{daSaleChannel.saleTime,jdbcType=TIMESTAMP},
+          #{daSaleChannel.saleChannelTypeCode,jdbcType=VARCHAR},
+          #{daSaleChannel.saleChannelTypeText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+sale_amount=values(sale_amount),
+sale_amount_unit_code=values(sale_amount_unit_code),
+sale_amount_unit_text=values(sale_amount_unit_text),
+sale_amount_unit=values(sale_amount_unit),
+sale_volume=values(sale_volume),
+sale_volume_unit_code=values(sale_volume_unit_code),
+sale_volume_unit_text=values(sale_volume_unit_text),
+sale_volume_unit=values(sale_volume_unit),
+sale_region_code=values(sale_region_code),
+sale_region_text=values(sale_region_text),
+sale_city=values(sale_city),
+seller=values(seller),
+sale_time=values(sale_time),
+sale_channel_type_code=values(sale_channel_type_code),
+sale_channel_type_text=values(sale_channel_type_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_sale_channel
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_sale_channel
 		where id  in
@@ -280,7 +297,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSaleChannel" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSaleChannel" >
     update da_sale_channel
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -430,16 +449,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.commonFieldId != null and daSaleChannel.commonFieldId  != '' " >
+                  <if test="daSaleChannel.commonFieldId != null and daSaleChannel.commonFieldId  != ''  and daSaleChannel.commonFieldId  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.commonFieldId != null  and daSaleChannel.commonFieldId  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.name != null and daSaleChannel.name  != '' " >
+                  <if test="daSaleChannel.name != null and daSaleChannel.name  != ''  and daSaleChannel.name  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.name != null  and daSaleChannel.name  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -451,9 +478,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.cropTypeText != null and daSaleChannel.cropTypeText  != '' " >
+                  <if test="daSaleChannel.cropTypeText != null and daSaleChannel.cropTypeText  != ''  and daSaleChannel.cropTypeText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.cropTypeText != null  and daSaleChannel.cropTypeText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -465,9 +496,13 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.strainsText != null and daSaleChannel.strainsText  != '' " >
+                  <if test="daSaleChannel.strainsText != null and daSaleChannel.strainsText  != ''  and daSaleChannel.strainsText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.strainsText != null  and daSaleChannel.strainsText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_amount =case" suffix="end,">
@@ -486,9 +521,13 @@
          </trim>
          <trim prefix="sale_amount_unit_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleAmountUnitText != null and daSaleChannel.saleAmountUnitText  != '' " >
+                  <if test="daSaleChannel.saleAmountUnitText != null and daSaleChannel.saleAmountUnitText  != ''  and daSaleChannel.saleAmountUnitText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleAmountUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleAmountUnitText != null  and daSaleChannel.saleAmountUnitText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_amount_unit =case" suffix="end,">
@@ -514,9 +553,13 @@
          </trim>
          <trim prefix="sale_volume_unit_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleVolumeUnitText != null and daSaleChannel.saleVolumeUnitText  != '' " >
+                  <if test="daSaleChannel.saleVolumeUnitText != null and daSaleChannel.saleVolumeUnitText  != ''  and daSaleChannel.saleVolumeUnitText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleVolumeUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleVolumeUnitText != null  and daSaleChannel.saleVolumeUnitText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_volume_unit =case" suffix="end,">
@@ -528,30 +571,46 @@
          </trim>
          <trim prefix="sale_region_code =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleRegionCode != null and daSaleChannel.saleRegionCode  != '' " >
+                  <if test="daSaleChannel.saleRegionCode != null and daSaleChannel.saleRegionCode  != ''  and daSaleChannel.saleRegionCode  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleRegionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleRegionCode != null  and daSaleChannel.saleRegionCode  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_region_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleRegionText != null and daSaleChannel.saleRegionText  != '' " >
+                  <if test="daSaleChannel.saleRegionText != null and daSaleChannel.saleRegionText  != ''  and daSaleChannel.saleRegionText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleRegionText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleRegionText != null  and daSaleChannel.saleRegionText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_city =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleCity != null and daSaleChannel.saleCity  != '' " >
+                  <if test="daSaleChannel.saleCity != null and daSaleChannel.saleCity  != ''  and daSaleChannel.saleCity  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleCity,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleCity != null  and daSaleChannel.saleCity  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="seller =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.seller != null and daSaleChannel.seller  != '' " >
+                  <if test="daSaleChannel.seller != null and daSaleChannel.seller  != ''  and daSaleChannel.seller  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.seller,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.seller != null  and daSaleChannel.seller  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_time =case" suffix="end,">
@@ -563,21 +622,29 @@
          </trim>
          <trim prefix="sale_channel_type_code =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleChannelTypeCode != null and daSaleChannel.saleChannelTypeCode  != '' " >
+                  <if test="daSaleChannel.saleChannelTypeCode != null and daSaleChannel.saleChannelTypeCode  != ''  and daSaleChannel.saleChannelTypeCode  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleChannelTypeCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleChannelTypeCode != null  and daSaleChannel.saleChannelTypeCode  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="sale_channel_type_text =case" suffix="end,">
               <foreach collection="list" item="daSaleChannel" index="index">
-                  <if test="daSaleChannel.saleChannelTypeText != null and daSaleChannel.saleChannelTypeText  != '' " >
+                  <if test="daSaleChannel.saleChannelTypeText != null and daSaleChannel.saleChannelTypeText  != ''  and daSaleChannel.saleChannelTypeText  != '-1' ">
                      when id=#{daSaleChannel.id} then #{daSaleChannel.saleChannelTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSaleChannel.saleChannelTypeText != null  and daSaleChannel.saleChannelTypeText  == '-1' ">
+                     when id=#{daSaleChannel.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daSaleChannel" index="index" open="(" close=")" separator=",">
 			#{daSaleChannel.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -587,138 +654,96 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_sale_channel
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="saleAmount  != null " >
-              sale_amount,
-          </if>
-          <if test="saleAmountUnitCode  != null " >
-              sale_amount_unit_code,
-          </if>
-          <if test="saleAmountUnitText  != null and saleAmountUnitText  != '' " >
-              sale_amount_unit_text,
-          </if>
-          <if test="saleAmountUnit  != null " >
-              sale_amount_unit,
-          </if>
-          <if test="saleVolume  != null " >
-              sale_volume,
-          </if>
-          <if test="saleVolumeUnitCode  != null " >
-              sale_volume_unit_code,
-          </if>
-          <if test="saleVolumeUnitText  != null and saleVolumeUnitText  != '' " >
-              sale_volume_unit_text,
-          </if>
-          <if test="saleVolumeUnit  != null " >
-              sale_volume_unit,
-          </if>
-          <if test="saleRegionCode  != null and saleRegionCode  != '' " >
-              sale_region_code,
-          </if>
-          <if test="saleRegionText  != null and saleRegionText  != '' " >
-              sale_region_text,
-          </if>
-          <if test="saleCity  != null and saleCity  != '' " >
-              sale_city,
-          </if>
-          <if test="seller  != null and seller  != '' " >
-              seller,
-          </if>
-          <if test="saleTime  != null " >
-              sale_time,
-          </if>
-          <if test="saleChannelTypeCode  != null and saleChannelTypeCode  != '' " >
-              sale_channel_type_code,
-          </if>
-          <if test="saleChannelTypeText  != null and saleChannelTypeText  != '' " >
-              sale_channel_type_text,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+sale_amount,
+sale_amount_unit_code,
+sale_amount_unit_text,
+sale_amount_unit,
+sale_volume,
+sale_volume_unit_code,
+sale_volume_unit_text,
+sale_volume_unit,
+sale_region_code,
+sale_region_text,
+sale_city,
+seller,
+sale_time,
+sale_channel_type_code,
+sale_channel_type_text,
     </trim>
     VALUES
     <foreach collection="list" item="daSaleChannel" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daSaleChannel.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daSaleChannel.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daSaleChannel.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daSaleChannel.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daSaleChannel.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daSaleChannel.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daSaleChannel.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAmount != null ">
+                  
+                  
                     #{daSaleChannel.saleAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleAmountUnitCode != null ">
+            
+                  
                     #{daSaleChannel.saleAmountUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.saleAmountUnitText  != null  and t.saleAmountUnitText != '' " >
+            
+                  
                      #{daSaleChannel.saleAmountUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleAmountUnit != null ">
+                  
+                  
                     #{daSaleChannel.saleAmountUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleVolume != null ">
+            
+                  
                     #{daSaleChannel.saleVolume,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleVolumeUnitCode != null ">
+            
+                  
                     #{daSaleChannel.saleVolumeUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.saleVolumeUnitText  != null  and t.saleVolumeUnitText != '' " >
+            
+                  
                      #{daSaleChannel.saleVolumeUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleVolumeUnit != null ">
+                  
+                  
                     #{daSaleChannel.saleVolumeUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.saleRegionCode  != null  and t.saleRegionCode != '' " >
+            
+                  
                      #{daSaleChannel.saleRegionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleRegionText  != null  and t.saleRegionText != '' " >
+                  
+                  
                      #{daSaleChannel.saleRegionText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleCity  != null  and t.saleCity != '' " >
+                  
+                  
                      #{daSaleChannel.saleCity ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.seller  != null  and t.seller != '' " >
+                  
+                  
                      #{daSaleChannel.seller ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleTime != null ">
+                  
+                  
                     #{daSaleChannel.saleTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.saleChannelTypeCode  != null  and t.saleChannelTypeCode != '' " >
+            
+                  
                      #{daSaleChannel.saleChannelTypeCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.saleChannelTypeText  != null  and t.saleChannelTypeText != '' " >
+                  
+                  
                      #{daSaleChannel.saleChannelTypeText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

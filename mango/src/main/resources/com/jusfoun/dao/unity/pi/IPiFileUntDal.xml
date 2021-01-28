@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiFileUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiFileUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiFile" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiFile" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="file_path" property="filePath" jdbcType="VARCHAR" />
               <result column="file_name" property="fileName" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,file_path,file_name,file_isvalid,content_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiFile" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiFile" >
     insert into pi_file
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -56,8 +56,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_file
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -66,33 +65,51 @@
     	<foreach collection="list" item="piFile" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piFile.id,jdbcType=VARCHAR},
-
-      
           #{piFile.filePath,jdbcType=VARCHAR},
-
-      
           #{piFile.fileName,jdbcType=VARCHAR},
-
-      
           #{piFile.fileIsvalid,jdbcType=TINYINT},
-
-      
           #{piFile.contentId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_file
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_file
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piFile" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piFile.id,jdbcType=VARCHAR},
+          #{piFile.filePath,jdbcType=VARCHAR},
+          #{piFile.fileName,jdbcType=VARCHAR},
+          #{piFile.fileIsvalid,jdbcType=TINYINT},
+          #{piFile.contentId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+file_path=values(file_path),
+file_name=values(file_name),
+file_isvalid=values(file_isvalid),
+content_id=values(content_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_file
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_file
 		where id  in
@@ -101,7 +118,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiFile" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiFile" >
     update pi_file
     <set >
                   <if test="filePath != null  and filePath != '' " >
@@ -149,16 +168,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="file_path =case" suffix="end,">
               <foreach collection="list" item="piFile" index="index">
-                  <if test="piFile.filePath != null and piFile.filePath  != '' " >
+                  <if test="piFile.filePath != null and piFile.filePath  != ''  and piFile.filePath  != '-1' ">
                      when id=#{piFile.id} then #{piFile.filePath,jdbcType=VARCHAR}
                   </if>
+                  <if test="piFile.filePath != null  and piFile.filePath  == '-1' ">
+                     when id=#{piFile.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="file_name =case" suffix="end,">
               <foreach collection="list" item="piFile" index="index">
-                  <if test="piFile.fileName != null and piFile.fileName  != '' " >
+                  <if test="piFile.fileName != null and piFile.fileName  != ''  and piFile.fileName  != '-1' ">
                      when id=#{piFile.id} then #{piFile.fileName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piFile.fileName != null  and piFile.fileName  == '-1' ">
+                     when id=#{piFile.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="file_isvalid =case" suffix="end,">
@@ -170,14 +197,18 @@
          </trim>
          <trim prefix="content_id =case" suffix="end,">
               <foreach collection="list" item="piFile" index="index">
-                  <if test="piFile.contentId != null and piFile.contentId  != '' " >
+                  <if test="piFile.contentId != null and piFile.contentId  != ''  and piFile.contentId  != '-1' ">
                      when id=#{piFile.id} then #{piFile.contentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piFile.contentId != null  and piFile.contentId  == '-1' ">
+                     when id=#{piFile.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piFile" index="index" open="(" close=")" separator=",">
 			#{piFile.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -187,36 +218,28 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_file
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="filePath  != null and filePath  != '' " >
-              file_path,
-          </if>
-          <if test="fileName  != null and fileName  != '' " >
-              file_name,
-          </if>
-          <if test="fileIsvalid  != null " >
-              file_isvalid,
-          </if>
-          <if test="contentId  != null and contentId  != '' " >
-              content_id,
-          </if>
+id,
+file_path,
+file_name,
+file_isvalid,
+content_id,
     </trim>
     VALUES
     <foreach collection="list" item="piFile" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piFile.id ,jdbcType=VARCHAR},
-                  <if test="t.filePath  != null  and t.filePath != '' " >
+                  
                      #{piFile.filePath ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fileName  != null  and t.fileName != '' " >
+                  
+                  
                      #{piFile.fileName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.fileIsvalid != null ">
+                  
+                  
                     #{piFile.fileIsvalid,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.contentId  != null  and t.contentId != '' " >
+            
+                  
                      #{piFile.contentId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

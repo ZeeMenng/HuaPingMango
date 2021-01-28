@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaCrawlerSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaCrawlerSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaCrawler" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaCrawler" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="promo_price" property="promoPrice" jdbcType="NUMERIC" />
               <result column="price" property="price" jdbcType="NUMERIC" />
@@ -21,7 +21,7 @@
         id,promo_price,price,`from`,inventory,sell_counter,rate_counter,`name`,parameter,goods_id,source,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaCrawler" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaCrawler" >
     insert into da_crawler
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -168,7 +168,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaCrawler" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaCrawler" >
     update da_crawler
     <set >
                   <if test="id != null  and id != '' " >

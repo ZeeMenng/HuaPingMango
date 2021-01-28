@@ -1,14 +1,14 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jusfoun.set.enumer.DiAreaUnitEnum;
-import com.jusfoun.set.enumer.DiPerPriceUnitEnum;
-import com.jusfoun.set.enumer.DiWeightUnit;
-import com.jusfoun.set.enumer.DiYieldUnitEnum;
+import com.zee.set.enumer.DiAreaUnitEnum;
+import com.zee.set.enumer.DiPerPriceUnitEnum;
+import com.zee.set.enumer.DiWeightUnit;
+import com.zee.set.enumer.DiYieldUnitEnum;
 
 /**
  * @author lxy

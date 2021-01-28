@@ -1,7 +1,7 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.ent.generate.da.DaPeasantInfoGenEnt;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.ent.generate.da.DaPeasantInfoGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

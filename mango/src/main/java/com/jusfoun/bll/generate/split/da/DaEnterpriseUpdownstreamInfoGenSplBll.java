@@ -1,9 +1,9 @@
-package com.jusfoun.bll.generate.split.da;
+package com.zee.bll.generate.split.da;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jusfoun.bll.generate.split.base.BaseSplBll;
-import com.jusfoun.dao.split.da.IDaEnterpriseUpdownstreamInfoSplDal;
+import com.zee.bll.generate.split.base.BaseSplBll;
+import com.zee.dao.split.da.IDaEnterpriseUpdownstreamInfoSplDal;
 
 
 

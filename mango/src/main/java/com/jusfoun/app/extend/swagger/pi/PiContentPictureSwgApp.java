@@ -1,9 +1,9 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiContentPictureGenSwgApp;
+import com.zee.app.generate.swagger.pi.PiContentPictureGenSwgApp;
 
 
 /**

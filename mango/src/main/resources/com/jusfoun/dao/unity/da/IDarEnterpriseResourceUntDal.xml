@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDarEnterpriseResourceUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDarEnterpriseResourceUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DarEnterpriseResource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,enterprise_id,resource_id,type_code
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DarEnterpriseResource" >
     insert into dar_enterprise_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -48,8 +48,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into dar_enterprise_resource
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -58,30 +57,48 @@
     	<foreach collection="list" item="darEnterpriseResource" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{darEnterpriseResource.id,jdbcType=VARCHAR},
-
-      
           #{darEnterpriseResource.enterpriseId,jdbcType=VARCHAR},
-
-      
           #{darEnterpriseResource.resourceId,jdbcType=VARCHAR},
-
-      
           #{darEnterpriseResource.typeCode,jdbcType=TINYINT},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from dar_enterprise_resource
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into dar_enterprise_resource
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="darEnterpriseResource" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{darEnterpriseResource.id,jdbcType=VARCHAR},
+          #{darEnterpriseResource.enterpriseId,jdbcType=VARCHAR},
+          #{darEnterpriseResource.resourceId,jdbcType=VARCHAR},
+          #{darEnterpriseResource.typeCode,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+enterprise_id=values(enterprise_id),
+resource_id=values(resource_id),
+type_code=values(type_code)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from dar_enterprise_resource
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from dar_enterprise_resource
 		where id  in
@@ -90,7 +107,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DarEnterpriseResource" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DarEnterpriseResource" >
     update dar_enterprise_resource
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >
@@ -132,16 +151,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="darEnterpriseResource" index="index">
-                  <if test="darEnterpriseResource.enterpriseId != null and darEnterpriseResource.enterpriseId  != '' " >
+                  <if test="darEnterpriseResource.enterpriseId != null and darEnterpriseResource.enterpriseId  != ''  and darEnterpriseResource.enterpriseId  != '-1' ">
                      when id=#{darEnterpriseResource.id} then #{darEnterpriseResource.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="darEnterpriseResource.enterpriseId != null  and darEnterpriseResource.enterpriseId  == '-1' ">
+                     when id=#{darEnterpriseResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="darEnterpriseResource" index="index">
-                  <if test="darEnterpriseResource.resourceId != null and darEnterpriseResource.resourceId  != '' " >
+                  <if test="darEnterpriseResource.resourceId != null and darEnterpriseResource.resourceId  != ''  and darEnterpriseResource.resourceId  != '-1' ">
                      when id=#{darEnterpriseResource.id} then #{darEnterpriseResource.resourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="darEnterpriseResource.resourceId != null  and darEnterpriseResource.resourceId  == '-1' ">
+                     when id=#{darEnterpriseResource.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_code =case" suffix="end,">
@@ -153,7 +180,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="darEnterpriseResource" index="index" open="(" close=")" separator=",">
 			#{darEnterpriseResource.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -163,30 +190,24 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into dar_enterprise_resource
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="enterpriseId  != null and enterpriseId  != '' " >
-              enterprise_id,
-          </if>
-          <if test="resourceId  != null and resourceId  != '' " >
-              resource_id,
-          </if>
-          <if test="typeCode  != null " >
-              type_code,
-          </if>
+id,
+enterprise_id,
+resource_id,
+type_code,
     </trim>
     VALUES
     <foreach collection="list" item="darEnterpriseResource" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{darEnterpriseResource.id ,jdbcType=VARCHAR},
-                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                  
                      #{darEnterpriseResource.enterpriseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+                  
+                  
                      #{darEnterpriseResource.resourceId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.typeCode != null ">
+                  
+                  
                     #{darEnterpriseResource.typeCode,jdbcType=TINYINT},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

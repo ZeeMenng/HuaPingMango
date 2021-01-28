@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.pi;
+﻿package com.zee.bll.generate.unity.pi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.pi.IPirContentVideoUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.pi.PirContentVideo;
-import com.jusfoun.ent.parameter.pi.PirContentVideoParameter;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.unity.base.BaseUntBll;
+import com.zee.dao.unity.pi.IPirContentVideoUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.pi.PirContentVideo;
+import com.zee.ent.parameter.pi.PirContentVideoParameter;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/11 11:42:47
+ * @updateDate 2021/1/28 16:07:20
  * @description CMS文章内容所包含视频信息表 业务逻辑处理类，扩展自BaseUntBll<PirContentVideo>，自动生成。
  */
 public class PirContentVideoGenUntBll extends BaseUntBll<PirContentVideo> {
@@ -146,7 +146,8 @@ public class PirContentVideoGenUntBll extends BaseUntBll<PirContentVideo> {
 		}
 		return result;
 	}
-	
+  
+
 }
 
 

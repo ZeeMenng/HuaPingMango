@@ -1,110 +1,112 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:10
+ * @updateDate 2021/1/28 16:09:50
  * @description 实体类PiAcquisitionHistoryGenEnt，自动生成。CMS采集的文章历史记录表
  */
 
 public class PiAcquisitionHistoryGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="对应采集记录id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String acquisitionId;
-    @ApiModelProperty(value="栏目地址",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String channelUrl;
-    @ApiModelProperty(value="内容",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String contentId;
-    @ApiModelProperty(value="内容地址",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String contentUrl;
-    @ApiModelProperty(value="描述",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String description;
     @ApiModelProperty(value="",hidden=false,required=true)
     private Integer id;
-    @ApiModelProperty(value="标题",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String title;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。对应采集记录id
+	 * get方法。
 	 */
 	public String getAcquisitionId() {
 		return this.acquisitionId;
 	}
 
 	/**
-	 * set方法。对应采集记录id
+	 * set方法。
 	 */
 	public void setAcquisitionId(String acquisitionId) {
 		this.acquisitionId = acquisitionId;
 	}
     
 	/**
-	 * get方法。栏目地址
+	 * get方法。
 	 */
 	public String getChannelUrl() {
 		return this.channelUrl;
 	}
 
 	/**
-	 * set方法。栏目地址
+	 * set方法。
 	 */
 	public void setChannelUrl(String channelUrl) {
 		this.channelUrl = channelUrl;
 	}
     
 	/**
-	 * get方法。内容
+	 * get方法。
 	 */
 	public String getContentId() {
 		return this.contentId;
 	}
 
 	/**
-	 * set方法。内容
+	 * set方法。
 	 */
 	public void setContentId(String contentId) {
 		this.contentId = contentId;
 	}
     
 	/**
-	 * get方法。内容地址
+	 * get方法。
 	 */
 	public String getContentUrl() {
 		return this.contentUrl;
 	}
 
 	/**
-	 * set方法。内容地址
+	 * set方法。
 	 */
 	public void setContentUrl(String contentUrl) {
 		this.contentUrl = contentUrl;
 	}
     
 	/**
-	 * get方法。描述
+	 * get方法。
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 
 	/**
-	 * set方法。描述
+	 * set方法。
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -125,21 +127,28 @@ public class PiAcquisitionHistoryGenEnt extends BaseEnt implements Serializable 
 	}
     
 	/**
-	 * get方法。标题
+	 * get方法。
 	 */
 	public String getTitle() {
 		return this.title;
 	}
 
 	/**
-	 * set方法。标题
+	 * set方法。
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

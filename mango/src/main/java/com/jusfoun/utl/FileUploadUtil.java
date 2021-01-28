@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,8 +31,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
-import com.jusfoun.app.base.BaseApp;
-import com.jusfoun.ent.custom.ResultModel;
+import com.zee.app.base.BaseApp;
+import com.zee.ent.custom.ResultModel;
 
 /**
  * 上传工具类，待完善

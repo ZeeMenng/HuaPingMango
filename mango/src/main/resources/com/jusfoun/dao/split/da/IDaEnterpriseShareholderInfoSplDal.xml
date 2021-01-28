@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseShareholderInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseShareholderInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseShareholderInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseShareholderInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
         id,enterprise_id,enterprise_name,shareholder_name,nature_code,nature_text,datasource_code,subscribed_amount_sum,paid_amount_sum,share_rate,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseShareholderInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseShareholderInfo" >
     insert into da_enterprise_shareholder_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -168,7 +168,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseShareholderInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseShareholderInfo" >
     update da_enterprise_shareholder_info
     <set >
                   <if test="id != null  and id != '' " >

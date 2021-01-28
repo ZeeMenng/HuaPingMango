@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfHpSeasonUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfHpSeasonUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfHpSeason" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
               <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,date_time,region_code,region_name,undulation
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfHpSeason" >
     insert into mf_hp_season
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -56,8 +56,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_hp_season
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -66,33 +65,51 @@
     	<foreach collection="list" item="mfHpSeason" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfHpSeason.id,jdbcType=VARCHAR},
-
-      
           #{mfHpSeason.dateTime,jdbcType=VARCHAR},
-
-      
           #{mfHpSeason.regionCode,jdbcType=VARCHAR},
-
-      
           #{mfHpSeason.regionName,jdbcType=VARCHAR},
-
-      
           #{mfHpSeason.undulation,jdbcType=NUMERIC},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_hp_season
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_hp_season
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfHpSeason" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfHpSeason.id,jdbcType=VARCHAR},
+          #{mfHpSeason.dateTime,jdbcType=VARCHAR},
+          #{mfHpSeason.regionCode,jdbcType=VARCHAR},
+          #{mfHpSeason.regionName,jdbcType=VARCHAR},
+          #{mfHpSeason.undulation,jdbcType=NUMERIC},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+date_time=values(date_time),
+region_code=values(region_code),
+region_name=values(region_name),
+undulation=values(undulation)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_hp_season
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_hp_season
 		where id  in
@@ -101,7 +118,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfHpSeason" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfHpSeason" >
     update mf_hp_season
     <set >
                   <if test="dateTime != null  and dateTime != '' " >
@@ -149,23 +168,35 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfHpSeason" index="index">
-                  <if test="mfHpSeason.dateTime != null and mfHpSeason.dateTime  != '' " >
+                  <if test="mfHpSeason.dateTime != null and mfHpSeason.dateTime  != ''  and mfHpSeason.dateTime  != '-1' ">
                      when id=#{mfHpSeason.id} then #{mfHpSeason.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfHpSeason.dateTime != null  and mfHpSeason.dateTime  == '-1' ">
+                     when id=#{mfHpSeason.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_code =case" suffix="end,">
               <foreach collection="list" item="mfHpSeason" index="index">
-                  <if test="mfHpSeason.regionCode != null and mfHpSeason.regionCode  != '' " >
+                  <if test="mfHpSeason.regionCode != null and mfHpSeason.regionCode  != ''  and mfHpSeason.regionCode  != '-1' ">
                      when id=#{mfHpSeason.id} then #{mfHpSeason.regionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfHpSeason.regionCode != null  and mfHpSeason.regionCode  == '-1' ">
+                     when id=#{mfHpSeason.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_name =case" suffix="end,">
               <foreach collection="list" item="mfHpSeason" index="index">
-                  <if test="mfHpSeason.regionName != null and mfHpSeason.regionName  != '' " >
+                  <if test="mfHpSeason.regionName != null and mfHpSeason.regionName  != ''  and mfHpSeason.regionName  != '-1' ">
                      when id=#{mfHpSeason.id} then #{mfHpSeason.regionName,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfHpSeason.regionName != null  and mfHpSeason.regionName  == '-1' ">
+                     when id=#{mfHpSeason.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="undulation =case" suffix="end,">
@@ -177,7 +208,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfHpSeason" index="index" open="(" close=")" separator=",">
 			#{mfHpSeason.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -187,36 +218,28 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_hp_season
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
-          <if test="regionCode  != null and regionCode  != '' " >
-              region_code,
-          </if>
-          <if test="regionName  != null and regionName  != '' " >
-              region_name,
-          </if>
-          <if test="undulation  != null " >
-              undulation,
-          </if>
+id,
+date_time,
+region_code,
+region_name,
+undulation,
     </trim>
     VALUES
     <foreach collection="list" item="mfHpSeason" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfHpSeason.id ,jdbcType=VARCHAR},
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+                  
                      #{mfHpSeason.dateTime ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                  
+                  
                      #{mfHpSeason.regionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionName  != null  and t.regionName != '' " >
+                  
+                  
                      #{mfHpSeason.regionName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.undulation != null ">
+                  
+                  
                     #{mfHpSeason.undulation,jdbcType=NUMERIC},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

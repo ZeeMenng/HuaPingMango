@@ -1,46 +1,44 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:19
+ * @updateDate 2021/1/28 16:08:57
  * @description 实体类DaGrowYieldGenEnt，自动生成。种植数据表
  */
 
 public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="基地code",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String baseCode;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String baseName;
-    @ApiModelProperty(value="地块code",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String blockCode;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String blockName;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
     @ApiModelProperty(value="电商产值",hidden=false,required=false)
     private BigDecimal eCommerceOutputValue;
     @ApiModelProperty(value="电商产值单位，对应数据字典表（dictionary）中的编码字段（code），1：元，2：万元，3：亿元，4：美元，5：百万美元",allowableValues="0,1",hidden=false,required=false)
     private Byte eCommerceOutputValueCode;
-    @ApiModelProperty(value="电商产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String eCommerceOutputValueText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal eCommerceOutputValueUnit;
@@ -48,7 +46,7 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal eCommerceSaleTotal;
     @ApiModelProperty(value="电商销量单位，:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte eCommerceSaleTotalCode;
-    @ApiModelProperty(value="电商销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String eCommerceSaleTotalText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal eCommerceSaleTotalUnit;
@@ -56,7 +54,7 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal fruitArea;
     @ApiModelProperty(value="挂果面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte fruitAreaCode;
-    @ApiModelProperty(value="挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String fruitAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal fruitAreaUnit;
@@ -64,27 +62,27 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal growArea;
     @ApiModelProperty(value="种植面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte growAreaCode;
-    @ApiModelProperty(value="种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String growAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal growAreaUnit;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal improveArea;
     @ApiModelProperty(value="改良面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte improveAreaCode;
-    @ApiModelProperty(value="改良面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String improveAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal improveAreaUnit;
-    @ApiModelProperty(value="名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
     @ApiModelProperty(value="有机种植面积",hidden=false,required=false)
     private BigDecimal organicGrowArea;
     @ApiModelProperty(value="有机种植面积单位,对应数据字典表（dictionary）中的编码字段（code）1：亩，2：万亩，3：公顷",allowableValues="0,1",hidden=false,required=false)
     private Byte organicGrowAreaCode;
-    @ApiModelProperty(value="有机种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String organicGrowAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal organicGrowAreaUnit;
@@ -92,7 +90,7 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal outputValue;
     @ApiModelProperty(value="产值单位，对应数据字典表（dictionary）中的编码字段（code），1：元，2：万元，3：亿元，4：美元，5：百万美元",allowableValues="0,1",hidden=false,required=false)
     private Byte outputValueCode;
-    @ApiModelProperty(value="产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String outputValueText;
     @ApiModelProperty(value="标准单位：元",hidden=false,required=false)
     private BigDecimal outputValueUnit;
@@ -102,7 +100,7 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal productTotal;
     @ApiModelProperty(value="产品产量单位，:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte productTotalCode;
-    @ApiModelProperty(value="产品产量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productTotalText;
     @ApiModelProperty(value="标准单位：千克",hidden=false,required=false)
     private BigDecimal productTotalUnit;
@@ -110,29 +108,33 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
     private BigDecimal saleTotal;
     @ApiModelProperty(value="产品销量单位，:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte saleTotalCode;
-    @ApiModelProperty(value="产品销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String saleTotalText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal saleTotalUnit;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
-    @ApiModelProperty(value="年份",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String year;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。基地code
+	 * get方法。
 	 */
 	public String getBaseCode() {
 		return this.baseCode;
 	}
 
 	/**
-	 * set方法。基地code
+	 * set方法。
 	 */
 	public void setBaseCode(String baseCode) {
 		this.baseCode = baseCode;
@@ -153,14 +155,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。地块code
+	 * get方法。
 	 */
 	public String getBlockCode() {
 		return this.blockCode;
 	}
 
 	/**
-	 * set方法。地块code
+	 * set方法。
 	 */
 	public void setBlockCode(String blockCode) {
 		this.blockCode = blockCode;
@@ -181,14 +183,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -209,14 +211,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
@@ -251,14 +253,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。电商产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * get方法。
 	 */
 	public String getECommerceOutputValueText() {
 		return this.eCommerceOutputValueText;
 	}
 
 	/**
-	 * set方法。电商产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * set方法。
 	 */
 	public void setECommerceOutputValueText(String eCommerceOutputValueText) {
 		this.eCommerceOutputValueText = eCommerceOutputValueText;
@@ -307,14 +309,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。电商销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getECommerceSaleTotalText() {
 		return this.eCommerceSaleTotalText;
 	}
 
 	/**
-	 * set方法。电商销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setECommerceSaleTotalText(String eCommerceSaleTotalText) {
 		this.eCommerceSaleTotalText = eCommerceSaleTotalText;
@@ -363,14 +365,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getFruitAreaText() {
 		return this.fruitAreaText;
 	}
 
 	/**
-	 * set方法。挂果面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setFruitAreaText(String fruitAreaText) {
 		this.fruitAreaText = fruitAreaText;
@@ -419,14 +421,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getGrowAreaText() {
 		return this.growAreaText;
 	}
 
 	/**
-	 * set方法。种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setGrowAreaText(String growAreaText) {
 		this.growAreaText = growAreaText;
@@ -447,14 +449,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -489,14 +491,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。改良面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getImproveAreaText() {
 		return this.improveAreaText;
 	}
 
 	/**
-	 * set方法。改良面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setImproveAreaText(String improveAreaText) {
 		this.improveAreaText = improveAreaText;
@@ -517,14 +519,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -559,14 +561,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。有机种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * get方法。
 	 */
 	public String getOrganicGrowAreaText() {
 		return this.organicGrowAreaText;
 	}
 
 	/**
-	 * set方法。有机种植面积单位文本，对应数据字典表（dictionary）中的文本字段（text）1：亩，2：万亩，3：公顷
+	 * set方法。
 	 */
 	public void setOrganicGrowAreaText(String organicGrowAreaText) {
 		this.organicGrowAreaText = organicGrowAreaText;
@@ -615,14 +617,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * get方法。
 	 */
 	public String getOutputValueText() {
 		return this.outputValueText;
 	}
 
 	/**
-	 * set方法。产值单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * set方法。
 	 */
 	public void setOutputValueText(String outputValueText) {
 		this.outputValueText = outputValueText;
@@ -685,14 +687,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产品产量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getProductTotalText() {
 		return this.productTotalText;
 	}
 
 	/**
-	 * set方法。产品产量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setProductTotalText(String productTotalText) {
 		this.productTotalText = productTotalText;
@@ -741,14 +743,14 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产品销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getSaleTotalText() {
 		return this.saleTotalText;
 	}
 
 	/**
-	 * set方法。产品销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setSaleTotalText(String saleTotalText) {
 		this.saleTotalText = saleTotalText;
@@ -783,35 +785,42 @@ public class DaGrowYieldGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
 	}
     
 	/**
-	 * get方法。年份
+	 * get方法。
 	 */
 	public String getYear() {
 		return this.year;
 	}
 
 	/**
-	 * set方法。年份
+	 * set方法。
 	 */
 	public void setYear(String year) {
 		this.year = year;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

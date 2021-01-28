@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGprRoleModuleSplDal">
+<mapper namespace="com.zee.dao.split.gp.IGprRoleModuleSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprRoleModule">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprRoleModule">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
 		<result column="module_id" property="moduleId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 		id,role_id,module_id,is_enable_code
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprRoleModule">
+	<insert id="add" parameterType="com.zee.ent.extend.gp.GprRoleModule">
 		insert into gpr_role_module
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -100,7 +100,7 @@
 		</foreach>
 	</delete>
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRoleModule">
+	<update id="update" parameterType="com.zee.ent.extend.gp.GprRoleModule">
 		update gpr_role_module
 		<set>
 			<if test="roleId != null  and roleId != '' ">

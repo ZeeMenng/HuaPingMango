@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiAcquisitionUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiAcquisitionUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiAcquisition" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="site_id" property="siteId" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
@@ -58,7 +58,7 @@
         id,site_id,channel_id,type_id,user_id,acq_name,start_time,end_time,status,curr_num,curr_item,total_item,pause_time,page_encoding,plan_list,dynamic_addr,dynamic_start,dynamic_end,linkset_start,linkset_end,link_start,link_end,title_start,title_end,keywords_start,keywords_end,description_start,description_end,content_start,content_end,pagination_start,pagination_end,queue,repeat_check_type,img_acqu,content_prefix,img_prefix,view_start,view_end,view_id_start,view_id_end,view_link,releaseTime_start,releaseTime_end,author_start,author_end,origin_start,origin_end,releaseTime_format
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiAcquisition" >
     insert into pi_acquisition
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -398,8 +398,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_acquisition
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -408,165 +407,183 @@
     	<foreach collection="list" item="piAcquisition" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piAcquisition.id,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.siteId,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.channelId,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.typeId,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.userId,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.acqName,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.startTime,jdbcType=TIMESTAMP},
-
-      
           #{piAcquisition.endTime,jdbcType=TIMESTAMP},
-
-      
           #{piAcquisition.status,jdbcType=INTEGER},
-
-      
           #{piAcquisition.currNum,jdbcType=INTEGER},
-
-      
           #{piAcquisition.currItem,jdbcType=INTEGER},
-
-      
           #{piAcquisition.totalItem,jdbcType=INTEGER},
-
-      
           #{piAcquisition.pauseTime,jdbcType=INTEGER},
-
-      
           #{piAcquisition.pageEncoding,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.planList,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.dynamicAddr,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.dynamicStart,jdbcType=INTEGER},
-
-      
           #{piAcquisition.dynamicEnd,jdbcType=INTEGER},
-
-      
           #{piAcquisition.linksetStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.linksetEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.linkStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.linkEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.titleStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.titleEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.keywordsStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.keywordsEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.descriptionStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.descriptionEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.contentStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.contentEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.paginationStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.paginationEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.queue,jdbcType=INTEGER},
-
-      
           #{piAcquisition.repeatCheckType,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.imgAcqu,jdbcType=TINYINT},
-
-      
           #{piAcquisition.contentPrefix,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.imgPrefix,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.viewStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.viewEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.viewIdStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.viewIdEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.viewLink,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.releaseTimeStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.releaseTimeEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.authorStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.authorEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.originStart,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.originEnd,jdbcType=VARCHAR},
-
-      
           #{piAcquisition.releaseTimeFormat,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_acquisition
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_acquisition
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piAcquisition" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piAcquisition.id,jdbcType=VARCHAR},
+          #{piAcquisition.siteId,jdbcType=VARCHAR},
+          #{piAcquisition.channelId,jdbcType=VARCHAR},
+          #{piAcquisition.typeId,jdbcType=VARCHAR},
+          #{piAcquisition.userId,jdbcType=VARCHAR},
+          #{piAcquisition.acqName,jdbcType=VARCHAR},
+          #{piAcquisition.startTime,jdbcType=TIMESTAMP},
+          #{piAcquisition.endTime,jdbcType=TIMESTAMP},
+          #{piAcquisition.status,jdbcType=INTEGER},
+          #{piAcquisition.currNum,jdbcType=INTEGER},
+          #{piAcquisition.currItem,jdbcType=INTEGER},
+          #{piAcquisition.totalItem,jdbcType=INTEGER},
+          #{piAcquisition.pauseTime,jdbcType=INTEGER},
+          #{piAcquisition.pageEncoding,jdbcType=VARCHAR},
+          #{piAcquisition.planList,jdbcType=VARCHAR},
+          #{piAcquisition.dynamicAddr,jdbcType=VARCHAR},
+          #{piAcquisition.dynamicStart,jdbcType=INTEGER},
+          #{piAcquisition.dynamicEnd,jdbcType=INTEGER},
+          #{piAcquisition.linksetStart,jdbcType=VARCHAR},
+          #{piAcquisition.linksetEnd,jdbcType=VARCHAR},
+          #{piAcquisition.linkStart,jdbcType=VARCHAR},
+          #{piAcquisition.linkEnd,jdbcType=VARCHAR},
+          #{piAcquisition.titleStart,jdbcType=VARCHAR},
+          #{piAcquisition.titleEnd,jdbcType=VARCHAR},
+          #{piAcquisition.keywordsStart,jdbcType=VARCHAR},
+          #{piAcquisition.keywordsEnd,jdbcType=VARCHAR},
+          #{piAcquisition.descriptionStart,jdbcType=VARCHAR},
+          #{piAcquisition.descriptionEnd,jdbcType=VARCHAR},
+          #{piAcquisition.contentStart,jdbcType=VARCHAR},
+          #{piAcquisition.contentEnd,jdbcType=VARCHAR},
+          #{piAcquisition.paginationStart,jdbcType=VARCHAR},
+          #{piAcquisition.paginationEnd,jdbcType=VARCHAR},
+          #{piAcquisition.queue,jdbcType=INTEGER},
+          #{piAcquisition.repeatCheckType,jdbcType=VARCHAR},
+          #{piAcquisition.imgAcqu,jdbcType=TINYINT},
+          #{piAcquisition.contentPrefix,jdbcType=VARCHAR},
+          #{piAcquisition.imgPrefix,jdbcType=VARCHAR},
+          #{piAcquisition.viewStart,jdbcType=VARCHAR},
+          #{piAcquisition.viewEnd,jdbcType=VARCHAR},
+          #{piAcquisition.viewIdStart,jdbcType=VARCHAR},
+          #{piAcquisition.viewIdEnd,jdbcType=VARCHAR},
+          #{piAcquisition.viewLink,jdbcType=VARCHAR},
+          #{piAcquisition.releaseTimeStart,jdbcType=VARCHAR},
+          #{piAcquisition.releaseTimeEnd,jdbcType=VARCHAR},
+          #{piAcquisition.authorStart,jdbcType=VARCHAR},
+          #{piAcquisition.authorEnd,jdbcType=VARCHAR},
+          #{piAcquisition.originStart,jdbcType=VARCHAR},
+          #{piAcquisition.originEnd,jdbcType=VARCHAR},
+          #{piAcquisition.releaseTimeFormat,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+site_id=values(site_id),
+channel_id=values(channel_id),
+type_id=values(type_id),
+user_id=values(user_id),
+acq_name=values(acq_name),
+start_time=values(start_time),
+end_time=values(end_time),
+status=values(status),
+curr_num=values(curr_num),
+curr_item=values(curr_item),
+total_item=values(total_item),
+pause_time=values(pause_time),
+page_encoding=values(page_encoding),
+plan_list=values(plan_list),
+dynamic_addr=values(dynamic_addr),
+dynamic_start=values(dynamic_start),
+dynamic_end=values(dynamic_end),
+linkset_start=values(linkset_start),
+linkset_end=values(linkset_end),
+link_start=values(link_start),
+link_end=values(link_end),
+title_start=values(title_start),
+title_end=values(title_end),
+keywords_start=values(keywords_start),
+keywords_end=values(keywords_end),
+description_start=values(description_start),
+description_end=values(description_end),
+content_start=values(content_start),
+content_end=values(content_end),
+pagination_start=values(pagination_start),
+pagination_end=values(pagination_end),
+queue=values(queue),
+repeat_check_type=values(repeat_check_type),
+img_acqu=values(img_acqu),
+content_prefix=values(content_prefix),
+img_prefix=values(img_prefix),
+view_start=values(view_start),
+view_end=values(view_end),
+view_id_start=values(view_id_start),
+view_id_end=values(view_id_end),
+view_link=values(view_link),
+releaseTime_start=values(releaseTime_start),
+releaseTime_end=values(releaseTime_end),
+author_start=values(author_start),
+author_end=values(author_end),
+origin_start=values(origin_start),
+origin_end=values(origin_end),
+releaseTime_format=values(releaseTime_format)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_acquisition
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_acquisition
 		where id  in
@@ -575,7 +592,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiAcquisition" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiAcquisition" >
     update pi_acquisition
     <set >
                   <if test="siteId != null  and siteId != '' " >
@@ -887,37 +906,57 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="site_id =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.siteId != null and piAcquisition.siteId  != '' " >
+                  <if test="piAcquisition.siteId != null and piAcquisition.siteId  != ''  and piAcquisition.siteId  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.siteId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.siteId != null  and piAcquisition.siteId  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.channelId != null and piAcquisition.channelId  != '' " >
+                  <if test="piAcquisition.channelId != null and piAcquisition.channelId  != ''  and piAcquisition.channelId  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.channelId != null  and piAcquisition.channelId  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="type_id =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.typeId != null and piAcquisition.typeId  != '' " >
+                  <if test="piAcquisition.typeId != null and piAcquisition.typeId  != ''  and piAcquisition.typeId  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.typeId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.typeId != null  and piAcquisition.typeId  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.userId != null and piAcquisition.userId  != '' " >
+                  <if test="piAcquisition.userId != null and piAcquisition.userId  != ''  and piAcquisition.userId  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.userId != null  and piAcquisition.userId  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="acq_name =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.acqName != null and piAcquisition.acqName  != '' " >
+                  <if test="piAcquisition.acqName != null and piAcquisition.acqName  != ''  and piAcquisition.acqName  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.acqName,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.acqName != null  and piAcquisition.acqName  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="start_time =case" suffix="end,">
@@ -971,23 +1010,35 @@
          </trim>
          <trim prefix="page_encoding =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.pageEncoding != null and piAcquisition.pageEncoding  != '' " >
+                  <if test="piAcquisition.pageEncoding != null and piAcquisition.pageEncoding  != ''  and piAcquisition.pageEncoding  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.pageEncoding,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.pageEncoding != null  and piAcquisition.pageEncoding  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="plan_list =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.planList != null and piAcquisition.planList  != '' " >
+                  <if test="piAcquisition.planList != null and piAcquisition.planList  != ''  and piAcquisition.planList  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.planList,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.planList != null  and piAcquisition.planList  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="dynamic_addr =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.dynamicAddr != null and piAcquisition.dynamicAddr  != '' " >
+                  <if test="piAcquisition.dynamicAddr != null and piAcquisition.dynamicAddr  != ''  and piAcquisition.dynamicAddr  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.dynamicAddr,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.dynamicAddr != null  and piAcquisition.dynamicAddr  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="dynamic_start =case" suffix="end,">
@@ -1006,100 +1057,156 @@
          </trim>
          <trim prefix="linkset_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.linksetStart != null and piAcquisition.linksetStart  != '' " >
+                  <if test="piAcquisition.linksetStart != null and piAcquisition.linksetStart  != ''  and piAcquisition.linksetStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.linksetStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.linksetStart != null  and piAcquisition.linksetStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="linkset_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.linksetEnd != null and piAcquisition.linksetEnd  != '' " >
+                  <if test="piAcquisition.linksetEnd != null and piAcquisition.linksetEnd  != ''  and piAcquisition.linksetEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.linksetEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.linksetEnd != null  and piAcquisition.linksetEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="link_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.linkStart != null and piAcquisition.linkStart  != '' " >
+                  <if test="piAcquisition.linkStart != null and piAcquisition.linkStart  != ''  and piAcquisition.linkStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.linkStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.linkStart != null  and piAcquisition.linkStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="link_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.linkEnd != null and piAcquisition.linkEnd  != '' " >
+                  <if test="piAcquisition.linkEnd != null and piAcquisition.linkEnd  != ''  and piAcquisition.linkEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.linkEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.linkEnd != null  and piAcquisition.linkEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.titleStart != null and piAcquisition.titleStart  != '' " >
+                  <if test="piAcquisition.titleStart != null and piAcquisition.titleStart  != ''  and piAcquisition.titleStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.titleStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.titleStart != null  and piAcquisition.titleStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="title_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.titleEnd != null and piAcquisition.titleEnd  != '' " >
+                  <if test="piAcquisition.titleEnd != null and piAcquisition.titleEnd  != ''  and piAcquisition.titleEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.titleEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.titleEnd != null  and piAcquisition.titleEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="keywords_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.keywordsStart != null and piAcquisition.keywordsStart  != '' " >
+                  <if test="piAcquisition.keywordsStart != null and piAcquisition.keywordsStart  != ''  and piAcquisition.keywordsStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.keywordsStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.keywordsStart != null  and piAcquisition.keywordsStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="keywords_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.keywordsEnd != null and piAcquisition.keywordsEnd  != '' " >
+                  <if test="piAcquisition.keywordsEnd != null and piAcquisition.keywordsEnd  != ''  and piAcquisition.keywordsEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.keywordsEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.keywordsEnd != null  and piAcquisition.keywordsEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="description_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.descriptionStart != null and piAcquisition.descriptionStart  != '' " >
+                  <if test="piAcquisition.descriptionStart != null and piAcquisition.descriptionStart  != ''  and piAcquisition.descriptionStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.descriptionStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.descriptionStart != null  and piAcquisition.descriptionStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="description_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.descriptionEnd != null and piAcquisition.descriptionEnd  != '' " >
+                  <if test="piAcquisition.descriptionEnd != null and piAcquisition.descriptionEnd  != ''  and piAcquisition.descriptionEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.descriptionEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.descriptionEnd != null  and piAcquisition.descriptionEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.contentStart != null and piAcquisition.contentStart  != '' " >
+                  <if test="piAcquisition.contentStart != null and piAcquisition.contentStart  != ''  and piAcquisition.contentStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.contentStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.contentStart != null  and piAcquisition.contentStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="content_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.contentEnd != null and piAcquisition.contentEnd  != '' " >
+                  <if test="piAcquisition.contentEnd != null and piAcquisition.contentEnd  != ''  and piAcquisition.contentEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.contentEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.contentEnd != null  and piAcquisition.contentEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="pagination_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.paginationStart != null and piAcquisition.paginationStart  != '' " >
+                  <if test="piAcquisition.paginationStart != null and piAcquisition.paginationStart  != ''  and piAcquisition.paginationStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.paginationStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.paginationStart != null  and piAcquisition.paginationStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="pagination_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.paginationEnd != null and piAcquisition.paginationEnd  != '' " >
+                  <if test="piAcquisition.paginationEnd != null and piAcquisition.paginationEnd  != ''  and piAcquisition.paginationEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.paginationEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.paginationEnd != null  and piAcquisition.paginationEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="queue =case" suffix="end,">
@@ -1111,9 +1218,13 @@
          </trim>
          <trim prefix="repeat_check_type =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.repeatCheckType != null and piAcquisition.repeatCheckType  != '' " >
+                  <if test="piAcquisition.repeatCheckType != null and piAcquisition.repeatCheckType  != ''  and piAcquisition.repeatCheckType  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.repeatCheckType,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.repeatCheckType != null  and piAcquisition.repeatCheckType  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="img_acqu =case" suffix="end,">
@@ -1125,105 +1236,161 @@
          </trim>
          <trim prefix="content_prefix =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.contentPrefix != null and piAcquisition.contentPrefix  != '' " >
+                  <if test="piAcquisition.contentPrefix != null and piAcquisition.contentPrefix  != ''  and piAcquisition.contentPrefix  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.contentPrefix,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.contentPrefix != null  and piAcquisition.contentPrefix  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="img_prefix =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.imgPrefix != null and piAcquisition.imgPrefix  != '' " >
+                  <if test="piAcquisition.imgPrefix != null and piAcquisition.imgPrefix  != ''  and piAcquisition.imgPrefix  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.imgPrefix,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.imgPrefix != null  and piAcquisition.imgPrefix  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.viewStart != null and piAcquisition.viewStart  != '' " >
+                  <if test="piAcquisition.viewStart != null and piAcquisition.viewStart  != ''  and piAcquisition.viewStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.viewStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.viewStart != null  and piAcquisition.viewStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.viewEnd != null and piAcquisition.viewEnd  != '' " >
+                  <if test="piAcquisition.viewEnd != null and piAcquisition.viewEnd  != ''  and piAcquisition.viewEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.viewEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.viewEnd != null  and piAcquisition.viewEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_id_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.viewIdStart != null and piAcquisition.viewIdStart  != '' " >
+                  <if test="piAcquisition.viewIdStart != null and piAcquisition.viewIdStart  != ''  and piAcquisition.viewIdStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.viewIdStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.viewIdStart != null  and piAcquisition.viewIdStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_id_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.viewIdEnd != null and piAcquisition.viewIdEnd  != '' " >
+                  <if test="piAcquisition.viewIdEnd != null and piAcquisition.viewIdEnd  != ''  and piAcquisition.viewIdEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.viewIdEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.viewIdEnd != null  and piAcquisition.viewIdEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="view_link =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.viewLink != null and piAcquisition.viewLink  != '' " >
+                  <if test="piAcquisition.viewLink != null and piAcquisition.viewLink  != ''  and piAcquisition.viewLink  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.viewLink,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.viewLink != null  and piAcquisition.viewLink  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="releaseTime_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.releaseTimeStart != null and piAcquisition.releaseTimeStart  != '' " >
+                  <if test="piAcquisition.releaseTimeStart != null and piAcquisition.releaseTimeStart  != ''  and piAcquisition.releaseTimeStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.releaseTimeStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.releaseTimeStart != null  and piAcquisition.releaseTimeStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="releaseTime_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.releaseTimeEnd != null and piAcquisition.releaseTimeEnd  != '' " >
+                  <if test="piAcquisition.releaseTimeEnd != null and piAcquisition.releaseTimeEnd  != ''  and piAcquisition.releaseTimeEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.releaseTimeEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.releaseTimeEnd != null  and piAcquisition.releaseTimeEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="author_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.authorStart != null and piAcquisition.authorStart  != '' " >
+                  <if test="piAcquisition.authorStart != null and piAcquisition.authorStart  != ''  and piAcquisition.authorStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.authorStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.authorStart != null  and piAcquisition.authorStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="author_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.authorEnd != null and piAcquisition.authorEnd  != '' " >
+                  <if test="piAcquisition.authorEnd != null and piAcquisition.authorEnd  != ''  and piAcquisition.authorEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.authorEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.authorEnd != null  and piAcquisition.authorEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="origin_start =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.originStart != null and piAcquisition.originStart  != '' " >
+                  <if test="piAcquisition.originStart != null and piAcquisition.originStart  != ''  and piAcquisition.originStart  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.originStart,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.originStart != null  and piAcquisition.originStart  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="origin_end =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.originEnd != null and piAcquisition.originEnd  != '' " >
+                  <if test="piAcquisition.originEnd != null and piAcquisition.originEnd  != ''  and piAcquisition.originEnd  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.originEnd,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.originEnd != null  and piAcquisition.originEnd  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="releaseTime_format =case" suffix="end,">
               <foreach collection="list" item="piAcquisition" index="index">
-                  <if test="piAcquisition.releaseTimeFormat != null and piAcquisition.releaseTimeFormat  != '' " >
+                  <if test="piAcquisition.releaseTimeFormat != null and piAcquisition.releaseTimeFormat  != ''  and piAcquisition.releaseTimeFormat  != '-1' ">
                      when id=#{piAcquisition.id} then #{piAcquisition.releaseTimeFormat,jdbcType=VARCHAR}
                   </if>
+                  <if test="piAcquisition.releaseTimeFormat != null  and piAcquisition.releaseTimeFormat  == '-1' ">
+                     when id=#{piAcquisition.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piAcquisition" index="index" open="(" close=")" separator=",">
 			#{piAcquisition.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -1233,300 +1400,204 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_acquisition
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="siteId  != null and siteId  != '' " >
-              site_id,
-          </if>
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="typeId  != null and typeId  != '' " >
-              type_id,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
-          <if test="acqName  != null and acqName  != '' " >
-              acq_name,
-          </if>
-          <if test="startTime  != null " >
-              start_time,
-          </if>
-          <if test="endTime  != null " >
-              end_time,
-          </if>
-          <if test="status  != null " >
-              status,
-          </if>
-          <if test="currNum  != null " >
-              curr_num,
-          </if>
-          <if test="currItem  != null " >
-              curr_item,
-          </if>
-          <if test="totalItem  != null " >
-              total_item,
-          </if>
-          <if test="pauseTime  != null " >
-              pause_time,
-          </if>
-          <if test="pageEncoding  != null and pageEncoding  != '' " >
-              page_encoding,
-          </if>
-          <if test="planList  != null and planList  != '' " >
-              plan_list,
-          </if>
-          <if test="dynamicAddr  != null and dynamicAddr  != '' " >
-              dynamic_addr,
-          </if>
-          <if test="dynamicStart  != null " >
-              dynamic_start,
-          </if>
-          <if test="dynamicEnd  != null " >
-              dynamic_end,
-          </if>
-          <if test="linksetStart  != null and linksetStart  != '' " >
-              linkset_start,
-          </if>
-          <if test="linksetEnd  != null and linksetEnd  != '' " >
-              linkset_end,
-          </if>
-          <if test="linkStart  != null and linkStart  != '' " >
-              link_start,
-          </if>
-          <if test="linkEnd  != null and linkEnd  != '' " >
-              link_end,
-          </if>
-          <if test="titleStart  != null and titleStart  != '' " >
-              title_start,
-          </if>
-          <if test="titleEnd  != null and titleEnd  != '' " >
-              title_end,
-          </if>
-          <if test="keywordsStart  != null and keywordsStart  != '' " >
-              keywords_start,
-          </if>
-          <if test="keywordsEnd  != null and keywordsEnd  != '' " >
-              keywords_end,
-          </if>
-          <if test="descriptionStart  != null and descriptionStart  != '' " >
-              description_start,
-          </if>
-          <if test="descriptionEnd  != null and descriptionEnd  != '' " >
-              description_end,
-          </if>
-          <if test="contentStart  != null and contentStart  != '' " >
-              content_start,
-          </if>
-          <if test="contentEnd  != null and contentEnd  != '' " >
-              content_end,
-          </if>
-          <if test="paginationStart  != null and paginationStart  != '' " >
-              pagination_start,
-          </if>
-          <if test="paginationEnd  != null and paginationEnd  != '' " >
-              pagination_end,
-          </if>
-          <if test="queue  != null " >
-              queue,
-          </if>
-          <if test="repeatCheckType  != null and repeatCheckType  != '' " >
-              repeat_check_type,
-          </if>
-          <if test="imgAcqu  != null " >
-              img_acqu,
-          </if>
-          <if test="contentPrefix  != null and contentPrefix  != '' " >
-              content_prefix,
-          </if>
-          <if test="imgPrefix  != null and imgPrefix  != '' " >
-              img_prefix,
-          </if>
-          <if test="viewStart  != null and viewStart  != '' " >
-              view_start,
-          </if>
-          <if test="viewEnd  != null and viewEnd  != '' " >
-              view_end,
-          </if>
-          <if test="viewIdStart  != null and viewIdStart  != '' " >
-              view_id_start,
-          </if>
-          <if test="viewIdEnd  != null and viewIdEnd  != '' " >
-              view_id_end,
-          </if>
-          <if test="viewLink  != null and viewLink  != '' " >
-              view_link,
-          </if>
-          <if test="releaseTimeStart  != null and releaseTimeStart  != '' " >
-              releaseTime_start,
-          </if>
-          <if test="releaseTimeEnd  != null and releaseTimeEnd  != '' " >
-              releaseTime_end,
-          </if>
-          <if test="authorStart  != null and authorStart  != '' " >
-              author_start,
-          </if>
-          <if test="authorEnd  != null and authorEnd  != '' " >
-              author_end,
-          </if>
-          <if test="originStart  != null and originStart  != '' " >
-              origin_start,
-          </if>
-          <if test="originEnd  != null and originEnd  != '' " >
-              origin_end,
-          </if>
-          <if test="releaseTimeFormat  != null and releaseTimeFormat  != '' " >
-              releaseTime_format,
-          </if>
+id,
+site_id,
+channel_id,
+type_id,
+user_id,
+acq_name,
+start_time,
+end_time,
+status,
+curr_num,
+curr_item,
+total_item,
+pause_time,
+page_encoding,
+plan_list,
+dynamic_addr,
+dynamic_start,
+dynamic_end,
+linkset_start,
+linkset_end,
+link_start,
+link_end,
+title_start,
+title_end,
+keywords_start,
+keywords_end,
+description_start,
+description_end,
+content_start,
+content_end,
+pagination_start,
+pagination_end,
+queue,
+repeat_check_type,
+img_acqu,
+content_prefix,
+img_prefix,
+view_start,
+view_end,
+view_id_start,
+view_id_end,
+view_link,
+releaseTime_start,
+releaseTime_end,
+author_start,
+author_end,
+origin_start,
+origin_end,
+releaseTime_format,
     </trim>
     VALUES
     <foreach collection="list" item="piAcquisition" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piAcquisition.id ,jdbcType=VARCHAR},
-                  <if test="t.siteId  != null  and t.siteId != '' " >
+                  
                      #{piAcquisition.siteId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
+                  
                      #{piAcquisition.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.typeId  != null  and t.typeId != '' " >
+                  
+                  
                      #{piAcquisition.typeId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+                  
+                  
                      #{piAcquisition.userId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.acqName  != null  and t.acqName != '' " >
+                  
+                  
                      #{piAcquisition.acqName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.startTime != null ">
+                  
+                  
                     #{piAcquisition.startTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.endTime != null ">
+            
+                  
                     #{piAcquisition.endTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.status != null ">
+            
+                  
                     #{piAcquisition.status,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.currNum != null ">
+            
+                  
                     #{piAcquisition.currNum,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.currItem != null ">
+            
+                  
                     #{piAcquisition.currItem,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.totalItem != null ">
+            
+                  
                     #{piAcquisition.totalItem,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.pauseTime != null ">
+            
+                  
                     #{piAcquisition.pauseTime,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.pageEncoding  != null  and t.pageEncoding != '' " >
+            
+                  
                      #{piAcquisition.pageEncoding ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.planList  != null  and t.planList != '' " >
+                  
+                  
                      #{piAcquisition.planList ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.dynamicAddr  != null  and t.dynamicAddr != '' " >
+                  
+                  
                      #{piAcquisition.dynamicAddr ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.dynamicStart != null ">
+                  
+                  
                     #{piAcquisition.dynamicStart,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.dynamicEnd != null ">
+            
+                  
                     #{piAcquisition.dynamicEnd,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.linksetStart  != null  and t.linksetStart != '' " >
+            
+                  
                      #{piAcquisition.linksetStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.linksetEnd  != null  and t.linksetEnd != '' " >
+                  
+                  
                      #{piAcquisition.linksetEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.linkStart  != null  and t.linkStart != '' " >
+                  
+                  
                      #{piAcquisition.linkStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.linkEnd  != null  and t.linkEnd != '' " >
+                  
+                  
                      #{piAcquisition.linkEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.titleStart  != null  and t.titleStart != '' " >
+                  
+                  
                      #{piAcquisition.titleStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.titleEnd  != null  and t.titleEnd != '' " >
+                  
+                  
                      #{piAcquisition.titleEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.keywordsStart  != null  and t.keywordsStart != '' " >
+                  
+                  
                      #{piAcquisition.keywordsStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.keywordsEnd  != null  and t.keywordsEnd != '' " >
+                  
+                  
                      #{piAcquisition.keywordsEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.descriptionStart  != null  and t.descriptionStart != '' " >
+                  
+                  
                      #{piAcquisition.descriptionStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.descriptionEnd  != null  and t.descriptionEnd != '' " >
+                  
+                  
                      #{piAcquisition.descriptionEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.contentStart  != null  and t.contentStart != '' " >
+                  
+                  
                      #{piAcquisition.contentStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.contentEnd  != null  and t.contentEnd != '' " >
+                  
+                  
                      #{piAcquisition.contentEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.paginationStart  != null  and t.paginationStart != '' " >
+                  
+                  
                      #{piAcquisition.paginationStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.paginationEnd  != null  and t.paginationEnd != '' " >
+                  
+                  
                      #{piAcquisition.paginationEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.queue != null ">
+                  
+                  
                     #{piAcquisition.queue,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.repeatCheckType  != null  and t.repeatCheckType != '' " >
+            
+                  
                      #{piAcquisition.repeatCheckType ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.imgAcqu != null ">
+                  
+                  
                     #{piAcquisition.imgAcqu,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.contentPrefix  != null  and t.contentPrefix != '' " >
+            
+                  
                      #{piAcquisition.contentPrefix ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.imgPrefix  != null  and t.imgPrefix != '' " >
+                  
+                  
                      #{piAcquisition.imgPrefix ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewStart  != null  and t.viewStart != '' " >
+                  
+                  
                      #{piAcquisition.viewStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewEnd  != null  and t.viewEnd != '' " >
+                  
+                  
                      #{piAcquisition.viewEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewIdStart  != null  and t.viewIdStart != '' " >
+                  
+                  
                      #{piAcquisition.viewIdStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewIdEnd  != null  and t.viewIdEnd != '' " >
+                  
+                  
                      #{piAcquisition.viewIdEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.viewLink  != null  and t.viewLink != '' " >
+                  
+                  
                      #{piAcquisition.viewLink ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.releaseTimeStart  != null  and t.releaseTimeStart != '' " >
+                  
+                  
                      #{piAcquisition.releaseTimeStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.releaseTimeEnd  != null  and t.releaseTimeEnd != '' " >
+                  
+                  
                      #{piAcquisition.releaseTimeEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.authorStart  != null  and t.authorStart != '' " >
+                  
+                  
                      #{piAcquisition.authorStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.authorEnd  != null  and t.authorEnd != '' " >
+                  
+                  
                      #{piAcquisition.authorEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.originStart  != null  and t.originStart != '' " >
+                  
+                  
                      #{piAcquisition.originStart ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.originEnd  != null  and t.originEnd != '' " >
+                  
+                  
                      #{piAcquisition.originEnd ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.releaseTimeFormat  != null  and t.releaseTimeFormat != '' " >
+                  
+                  
                      #{piAcquisition.releaseTimeFormat ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.generate.da.DaEnterpriseShareholderInfoGenEnt;
+import com.zee.ent.generate.da.DaEnterpriseShareholderInfoGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

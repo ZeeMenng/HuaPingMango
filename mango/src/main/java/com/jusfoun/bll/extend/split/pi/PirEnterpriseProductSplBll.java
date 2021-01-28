@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.split.pi;
+package com.zee.bll.extend.split.pi;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.pi.PirEnterpriseProductGenSplBll;
+import com.zee.bll.generate.split.pi.PirEnterpriseProductGenSplBll;
 
 
 /**

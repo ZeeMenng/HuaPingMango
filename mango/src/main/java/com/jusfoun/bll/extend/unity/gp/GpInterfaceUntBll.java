@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.unity.gp;
+package com.zee.bll.extend.unity.gp;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.unity.gp.GpInterfaceGenUntBll;
+import com.zee.bll.generate.unity.gp.GpInterfaceGenUntBll;
 
 
 /**

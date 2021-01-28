@@ -1,9 +1,9 @@
-package com.jusfoun.app.extend.swagger.pe;
+package com.zee.app.extend.swagger.pe;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pe.PeAerialBroadcastGenSwgApp;
+import com.zee.app.generate.swagger.pe.PeAerialBroadcastGenSwgApp;
 
 
 /**

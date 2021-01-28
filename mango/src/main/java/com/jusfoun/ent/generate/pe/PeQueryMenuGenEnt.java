@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pe;
+﻿package com.zee.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:05
+ * @updateDate 2021/1/28 16:09:42
  * @description 实体类PeQueryMenuGenEnt，自动生成。数据版门户-数据资源-查询菜单
  */
 
@@ -24,39 +22,43 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="对应字典表的code字段,1年2季度3月4日5实时",allowableValues="0,1",hidden=false,required=false)
     private Byte dataTimeTypeCode;
-    @ApiModelProperty(value="对应字典表的text字段,1年2季度3月4日5实时 ",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String dataTimeTypeText;
-    @ApiModelProperty(value="用以记录各菜单的父级菜单的id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String fartherId;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="对应字典表的code字段,0导航菜单 1，一级菜单2，二级菜单3，三级菜单",allowableValues="0,1",hidden=false,required=false)
     private Byte menuLevelCode;
-    @ApiModelProperty(value="对应字典表的text字段,0导航菜单 1，一级菜单2，二级菜单3，三级菜单",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String menuLevelText;
-    @ApiModelProperty(value="菜单名称",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String menuName;
     @ApiModelProperty(value="对应字典表的code字段,1，田头价2，批发价3，零售价4，电商价5，进口价6，出口价",allowableValues="0,1",hidden=false,required=false)
     private Byte priceTypeCode;
-    @ApiModelProperty(value="对应字典表的text字段,1，田头价2，批发价3，零售价4，电商价5，进口价6，出口价",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String priceTypeText;
     @ApiModelProperty(value="对应字典表的code字段,1，元2，万元3，亿元4，美元",allowableValues="0,1",hidden=false,required=false)
     private Byte priceUnitCode;
-    @ApiModelProperty(value="对应字典表的text字段,1，元2，万元3，亿元4，美元 ",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String priceUnitText;
-    @ApiModelProperty(value="指定需要查询的具体内容，如金额(volume)、数量(amount)、面积(area)",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String queryType;
-    @ApiModelProperty(value="地理区域 :对应区域表的code",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String regionId;
-    @ApiModelProperty(value="用以表示各条件之间的关系",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String relationId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种 ",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。对应字典表的code字段,1年2季度3月4日5实时
@@ -73,42 +75,42 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应字典表的text字段,1年2季度3月4日5实时 
+	 * get方法。
 	 */
 	public String getDataTimeTypeText() {
 		return this.dataTimeTypeText;
 	}
 
 	/**
-	 * set方法。对应字典表的text字段,1年2季度3月4日5实时 
+	 * set方法。
 	 */
 	public void setDataTimeTypeText(String dataTimeTypeText) {
 		this.dataTimeTypeText = dataTimeTypeText;
 	}
     
 	/**
-	 * get方法。用以记录各菜单的父级菜单的id
+	 * get方法。
 	 */
 	public String getFartherId() {
 		return this.fartherId;
 	}
 
 	/**
-	 * set方法。用以记录各菜单的父级菜单的id
+	 * set方法。
 	 */
 	public void setFartherId(String fartherId) {
 		this.fartherId = fartherId;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -129,28 +131,28 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应字典表的text字段,0导航菜单 1，一级菜单2，二级菜单3，三级菜单
+	 * get方法。
 	 */
 	public String getMenuLevelText() {
 		return this.menuLevelText;
 	}
 
 	/**
-	 * set方法。对应字典表的text字段,0导航菜单 1，一级菜单2，二级菜单3，三级菜单
+	 * set方法。
 	 */
 	public void setMenuLevelText(String menuLevelText) {
 		this.menuLevelText = menuLevelText;
 	}
     
 	/**
-	 * get方法。菜单名称
+	 * get方法。
 	 */
 	public String getMenuName() {
 		return this.menuName;
 	}
 
 	/**
-	 * set方法。菜单名称
+	 * set方法。
 	 */
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
@@ -171,14 +173,14 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应字典表的text字段,1，田头价2，批发价3，零售价4，电商价5，进口价6，出口价
+	 * get方法。
 	 */
 	public String getPriceTypeText() {
 		return this.priceTypeText;
 	}
 
 	/**
-	 * set方法。对应字典表的text字段,1，田头价2，批发价3，零售价4，电商价5，进口价6，出口价
+	 * set方法。
 	 */
 	public void setPriceTypeText(String priceTypeText) {
 		this.priceTypeText = priceTypeText;
@@ -199,56 +201,56 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应字典表的text字段,1，元2，万元3，亿元4，美元 
+	 * get方法。
 	 */
 	public String getPriceUnitText() {
 		return this.priceUnitText;
 	}
 
 	/**
-	 * set方法。对应字典表的text字段,1，元2，万元3，亿元4，美元 
+	 * set方法。
 	 */
 	public void setPriceUnitText(String priceUnitText) {
 		this.priceUnitText = priceUnitText;
 	}
     
 	/**
-	 * get方法。指定需要查询的具体内容，如金额(volume)、数量(amount)、面积(area)
+	 * get方法。
 	 */
 	public String getQueryType() {
 		return this.queryType;
 	}
 
 	/**
-	 * set方法。指定需要查询的具体内容，如金额(volume)、数量(amount)、面积(area)
+	 * set方法。
 	 */
 	public void setQueryType(String queryType) {
 		this.queryType = queryType;
 	}
     
 	/**
-	 * get方法。地理区域 :对应区域表的code
+	 * get方法。
 	 */
 	public String getRegionId() {
 		return this.regionId;
 	}
 
 	/**
-	 * set方法。地理区域 :对应区域表的code
+	 * set方法。
 	 */
 	public void setRegionId(String regionId) {
 		this.regionId = regionId;
 	}
     
 	/**
-	 * get方法。用以表示各条件之间的关系
+	 * get方法。
 	 */
 	public String getRelationId() {
 		return this.relationId;
 	}
 
 	/**
-	 * set方法。用以表示各条件之间的关系
+	 * set方法。
 	 */
 	public void setRelationId(String relationId) {
 		this.relationId = relationId;
@@ -269,21 +271,28 @@ public class PeQueryMenuGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种 
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种 
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

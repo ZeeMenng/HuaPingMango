@@ -1,8 +1,8 @@
-package com.jusfoun.bll.extend.unity.da;
+package com.zee.bll.extend.unity.da;
 
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.unity.da.DaEnterpriseDistributionGenUntBll;
+import com.zee.bll.generate.unity.da.DaEnterpriseDistributionGenUntBll;
 
 
 /**

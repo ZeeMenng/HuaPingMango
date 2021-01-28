@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaUserContributionUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaUserContributionUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaUserContribution" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaUserContribution" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="price_times" property="priceTimes" jdbcType="INTEGER" />
               <result column="price_num" property="priceNum" jdbcType="INTEGER" />
@@ -19,7 +19,7 @@
         id,price_times,price_num,yield_times,yield_num,farm_oper_times,farm_oper_num,user_id,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaUserContribution" >
     insert into da_user_contribution
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -89,8 +89,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_user_contribution
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -99,48 +98,66 @@
     	<foreach collection="list" item="daUserContribution" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daUserContribution.id,jdbcType=VARCHAR},
-
-      
           #{daUserContribution.priceTimes,jdbcType=INTEGER},
-
-      
           #{daUserContribution.priceNum,jdbcType=INTEGER},
-
-      
           #{daUserContribution.yieldTimes,jdbcType=INTEGER},
-
-      
           #{daUserContribution.yieldNum,jdbcType=INTEGER},
-
-      
           #{daUserContribution.farmOperTimes,jdbcType=INTEGER},
-
-      
           #{daUserContribution.farmOperNum,jdbcType=INTEGER},
-
-      
           #{daUserContribution.userId,jdbcType=VARCHAR},
-
-      
           #{daUserContribution.addTime,jdbcType=TIMESTAMP},
-
-      
           #{daUserContribution.updateTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_user_contribution
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_user_contribution
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daUserContribution" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daUserContribution.id,jdbcType=VARCHAR},
+          #{daUserContribution.priceTimes,jdbcType=INTEGER},
+          #{daUserContribution.priceNum,jdbcType=INTEGER},
+          #{daUserContribution.yieldTimes,jdbcType=INTEGER},
+          #{daUserContribution.yieldNum,jdbcType=INTEGER},
+          #{daUserContribution.farmOperTimes,jdbcType=INTEGER},
+          #{daUserContribution.farmOperNum,jdbcType=INTEGER},
+          #{daUserContribution.userId,jdbcType=VARCHAR},
+          #{daUserContribution.addTime,jdbcType=TIMESTAMP},
+          #{daUserContribution.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+price_times=values(price_times),
+price_num=values(price_num),
+yield_times=values(yield_times),
+yield_num=values(yield_num),
+farm_oper_times=values(farm_oper_times),
+farm_oper_num=values(farm_oper_num),
+user_id=values(user_id),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_user_contribution
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_user_contribution
 		where id  in
@@ -149,7 +166,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaUserContribution" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaUserContribution" >
     update da_user_contribution
     <set >
                   <if test="priceTimes != null ">
@@ -269,9 +288,13 @@
          </trim>
          <trim prefix="user_id =case" suffix="end,">
               <foreach collection="list" item="daUserContribution" index="index">
-                  <if test="daUserContribution.userId != null and daUserContribution.userId  != '' " >
+                  <if test="daUserContribution.userId != null and daUserContribution.userId  != ''  and daUserContribution.userId  != '-1' ">
                      when id=#{daUserContribution.id} then #{daUserContribution.userId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daUserContribution.userId != null  and daUserContribution.userId  == '-1' ">
+                     when id=#{daUserContribution.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -290,7 +313,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daUserContribution" index="index" open="(" close=")" separator=",">
 			#{daUserContribution.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -300,66 +323,48 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_user_contribution
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="priceTimes  != null " >
-              price_times,
-          </if>
-          <if test="priceNum  != null " >
-              price_num,
-          </if>
-          <if test="yieldTimes  != null " >
-              yield_times,
-          </if>
-          <if test="yieldNum  != null " >
-              yield_num,
-          </if>
-          <if test="farmOperTimes  != null " >
-              farm_oper_times,
-          </if>
-          <if test="farmOperNum  != null " >
-              farm_oper_num,
-          </if>
-          <if test="userId  != null and userId  != '' " >
-              user_id,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="updateTime  != null " >
-              update_time,
-          </if>
+id,
+price_times,
+price_num,
+yield_times,
+yield_num,
+farm_oper_times,
+farm_oper_num,
+user_id,
+add_time,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="daUserContribution" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daUserContribution.id ,jdbcType=VARCHAR},
-                  <if test="t.priceTimes != null ">
+                  
                     #{daUserContribution.priceTimes,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.priceNum != null ">
+            
+                  
                     #{daUserContribution.priceNum,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.yieldTimes != null ">
+            
+                  
                     #{daUserContribution.yieldTimes,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.yieldNum != null ">
+            
+                  
                     #{daUserContribution.yieldNum,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.farmOperTimes != null ">
+            
+                  
                     #{daUserContribution.farmOperTimes,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.farmOperNum != null ">
+            
+                  
                     #{daUserContribution.farmOperNum,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.userId  != null  and t.userId != '' " >
+            
+                  
                      #{daUserContribution.userId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
+                  
+                  
                     #{daUserContribution.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.updateTime != null ">
+            
+                  
                     #{daUserContribution.updateTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

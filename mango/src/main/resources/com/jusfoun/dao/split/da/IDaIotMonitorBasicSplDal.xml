@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaIotMonitorBasicSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaIotMonitorBasicSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIotMonitorBasic" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="hid" property="hid" jdbcType="VARCHAR" />
               <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
         id,hid,device_name,basc_code,basc_name,address,longitude,latitude,mango_type,plant_area,farmers,person,telephone,create_time,update_time,remark
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIotMonitorBasic" >
     insert into da_iot_monitor_basic
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -221,7 +221,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotMonitorBasic" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIotMonitorBasic" >
     update da_iot_monitor_basic
     <set >
                   <if test="hid != null  and hid != '' " >

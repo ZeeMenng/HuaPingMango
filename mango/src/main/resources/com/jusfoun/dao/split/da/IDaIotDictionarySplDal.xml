@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaIotDictionarySplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaIotDictionarySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaIotDictionary" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaIotDictionary" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="type" property="type" jdbcType="INTEGER" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
         id,type,name,display_name,unit
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaIotDictionary" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaIotDictionary" >
     insert into da_iot_dictionary
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -101,7 +101,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaIotDictionary" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaIotDictionary" >
     update da_iot_dictionary
     <set >
                   <if test="type != null ">

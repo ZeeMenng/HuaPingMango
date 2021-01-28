@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.da;
+package com.zee.ent.parameter.da;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.da.DaGrowCost;
-import com.jusfoun.ent.generate.da.DaGrowCostGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.da.DaGrowCost;
+import com.zee.ent.generate.da.DaGrowCostGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pi;
+package com.zee.app.extend.swagger.pi;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pi.PiContentCountGenSwgApp;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.pi.PiContentCountGenSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 
 /**

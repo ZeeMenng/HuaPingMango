@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.mf.IMfProcessYieldUntDal" >
+<mapper namespace="com.zee.dao.unity.mf.IMfProcessYieldUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProcessYield" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfProcessYield" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="process_strains_code" property="processStrainsCode" jdbcType="TINYINT" />
               <result column="process_strains_text" property="processStrainsText" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         id,process_strains_code,process_strains_text,output_value_forecast,output_value_actual,yield_forecast,yield_actual,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProcessYield" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfProcessYield" >
     insert into mf_process_yield
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -76,8 +76,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into mf_process_yield
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -86,42 +85,60 @@
     	<foreach collection="list" item="mfProcessYield" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{mfProcessYield.id,jdbcType=VARCHAR},
-
-      
           #{mfProcessYield.processStrainsCode,jdbcType=TINYINT},
-
-      
           #{mfProcessYield.processStrainsText,jdbcType=VARCHAR},
-
-      
           #{mfProcessYield.outputValueForecast,jdbcType=NUMERIC},
-
-      
           #{mfProcessYield.outputValueActual,jdbcType=NUMERIC},
-
-      
           #{mfProcessYield.yieldForecast,jdbcType=NUMERIC},
-
-      
           #{mfProcessYield.yieldActual,jdbcType=NUMERIC},
-
-      
           #{mfProcessYield.dateTime,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from mf_process_yield
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into mf_process_yield
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="mfProcessYield" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{mfProcessYield.id,jdbcType=VARCHAR},
+          #{mfProcessYield.processStrainsCode,jdbcType=TINYINT},
+          #{mfProcessYield.processStrainsText,jdbcType=VARCHAR},
+          #{mfProcessYield.outputValueForecast,jdbcType=NUMERIC},
+          #{mfProcessYield.outputValueActual,jdbcType=NUMERIC},
+          #{mfProcessYield.yieldForecast,jdbcType=NUMERIC},
+          #{mfProcessYield.yieldActual,jdbcType=NUMERIC},
+          #{mfProcessYield.dateTime,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+process_strains_code=values(process_strains_code),
+process_strains_text=values(process_strains_text),
+output_value_forecast=values(output_value_forecast),
+output_value_actual=values(output_value_actual),
+yield_forecast=values(yield_forecast),
+yield_actual=values(yield_actual),
+date_time=values(date_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from mf_process_yield
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from mf_process_yield
 		where id  in
@@ -130,7 +147,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProcessYield" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfProcessYield" >
     update mf_process_yield
     <set >
                   <if test="processStrainsCode != null ">
@@ -203,9 +222,13 @@
          </trim>
          <trim prefix="process_strains_text =case" suffix="end,">
               <foreach collection="list" item="mfProcessYield" index="index">
-                  <if test="mfProcessYield.processStrainsText != null and mfProcessYield.processStrainsText  != '' " >
+                  <if test="mfProcessYield.processStrainsText != null and mfProcessYield.processStrainsText  != ''  and mfProcessYield.processStrainsText  != '-1' ">
                      when id=#{mfProcessYield.id} then #{mfProcessYield.processStrainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfProcessYield.processStrainsText != null  and mfProcessYield.processStrainsText  == '-1' ">
+                     when id=#{mfProcessYield.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="output_value_forecast =case" suffix="end,">
@@ -238,14 +261,18 @@
          </trim>
          <trim prefix="date_time =case" suffix="end,">
               <foreach collection="list" item="mfProcessYield" index="index">
-                  <if test="mfProcessYield.dateTime != null and mfProcessYield.dateTime  != '' " >
+                  <if test="mfProcessYield.dateTime != null and mfProcessYield.dateTime  != ''  and mfProcessYield.dateTime  != '-1' ">
                      when id=#{mfProcessYield.id} then #{mfProcessYield.dateTime,jdbcType=VARCHAR}
                   </if>
+                  <if test="mfProcessYield.dateTime != null  and mfProcessYield.dateTime  == '-1' ">
+                     when id=#{mfProcessYield.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="mfProcessYield" index="index" open="(" close=")" separator=",">
 			#{mfProcessYield.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -255,54 +282,40 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into mf_process_yield
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="processStrainsCode  != null " >
-              process_strains_code,
-          </if>
-          <if test="processStrainsText  != null and processStrainsText  != '' " >
-              process_strains_text,
-          </if>
-          <if test="outputValueForecast  != null " >
-              output_value_forecast,
-          </if>
-          <if test="outputValueActual  != null " >
-              output_value_actual,
-          </if>
-          <if test="yieldForecast  != null " >
-              yield_forecast,
-          </if>
-          <if test="yieldActual  != null " >
-              yield_actual,
-          </if>
-          <if test="dateTime  != null and dateTime  != '' " >
-              date_time,
-          </if>
+id,
+process_strains_code,
+process_strains_text,
+output_value_forecast,
+output_value_actual,
+yield_forecast,
+yield_actual,
+date_time,
     </trim>
     VALUES
     <foreach collection="list" item="mfProcessYield" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{mfProcessYield.id ,jdbcType=VARCHAR},
-                  <if test="t.processStrainsCode != null ">
+                  
                     #{mfProcessYield.processStrainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.processStrainsText  != null  and t.processStrainsText != '' " >
+            
+                  
                      #{mfProcessYield.processStrainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.outputValueForecast != null ">
+                  
+                  
                     #{mfProcessYield.outputValueForecast,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.outputValueActual != null ">
+            
+                  
                     #{mfProcessYield.outputValueActual,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.yieldForecast != null ">
+            
+                  
                     #{mfProcessYield.yieldForecast,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.yieldActual != null ">
+            
+                  
                     #{mfProcessYield.yieldActual,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.dateTime  != null  and t.dateTime != '' " >
+            
+                  
                      #{mfProcessYield.dateTime ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

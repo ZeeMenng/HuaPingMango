@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.pi;
+package com.zee.ent.extend.pi;
 
-import com.jusfoun.ent.generate.pi.PiInteractionGenEnt;
+import com.zee.ent.generate.pi.PiInteractionGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

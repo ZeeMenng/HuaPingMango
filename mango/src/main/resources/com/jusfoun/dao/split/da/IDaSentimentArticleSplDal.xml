@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentArticleSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaSentimentArticleSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentArticle" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
               <result column="article_name" property="articleName" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
         id,theme_id,article_name,publish_time,article_txt_id,thread_starter,url,media_type_code,media_type_text,sentiment_type_code,sentiment_type_text,view_count,datasource_code,datasource_text,serial_number,remark,add_time,update_status_code,update_user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentArticle" >
     insert into da_sentiment_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -249,7 +249,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentArticle" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentArticle" >
     update da_sentiment_article
     <set >
                   <if test="themeId != null  and themeId != '' " >

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaInputSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaInputSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaInput" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaInput" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <id column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -39,7 +39,7 @@
         id,common_field_id,name,object_name,base_name,crop_type_code,crop_type_text,strains_code,strains_text,input_name,input_type_code,input_type_text,brand_name,purchase_point,procurement_total,procurement_total_unit_code,procurement_total_unit_text,procurement_total_unit,use_amount,use_amount_unit_code,use_amount_unit_text,use_amount_unit,per_price,per_price_unit_code,per_price_unit_text,per_price_unit,per_cost,per_cost_unit_code,per_cost_unit_text,per_cost_unit
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaInput" >
     insert into da_input
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -362,7 +362,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaInput" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaInput" >
     update da_input
     <set >
                   <if test="name != null  and name != '' " >

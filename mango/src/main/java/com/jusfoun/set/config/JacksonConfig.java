@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jusfoun.set.serializer.JacksonNullSerializer;
+import com.zee.set.serializer.JacksonNullSerializer;
 
 /**
  * @author Zee

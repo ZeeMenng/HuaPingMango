@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentRuleSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaSentimentRuleSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentRule" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentRule" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
               <result column="media_type_code_set" property="mediaTypeCodeSet" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
         id,rule_name,media_type_code_set,media_type_text_set,frequency,start_time,end_time,remark,add_user_id,add_time,status_code,status_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentRule" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentRule" >
     insert into da_sentiment_rule
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -176,7 +176,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentRule" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentRule" >
     update da_sentiment_rule
     <set >
                   <if test="ruleName != null  and ruleName != '' " >

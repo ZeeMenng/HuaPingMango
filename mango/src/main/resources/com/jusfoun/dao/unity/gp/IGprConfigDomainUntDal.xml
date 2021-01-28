@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGprConfigDomainUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGprConfigDomainUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprConfigDomain" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprConfigDomain" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="config_id" property="configId" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,config_id,domain_id,config_value,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprConfigDomain" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GprConfigDomain" >
     insert into gpr_config_domain
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -82,6 +82,36 @@
         </trim>
     	</foreach>
     </insert>
+
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gpr_config_domain
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gprConfigDomain" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gprConfigDomain.id,jdbcType=VARCHAR},
+          #{gprConfigDomain.configId,jdbcType=VARCHAR},
+          #{gprConfigDomain.domainId,jdbcType=VARCHAR},
+          #{gprConfigDomain.configValue,jdbcType=VARCHAR},
+          #{gprConfigDomain.addTime,jdbcType=TIMESTAMP},
+          #{gprConfigDomain.updateTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+config_id=values(config_id),
+domain_id=values(domain_id),
+config_value=values(config_value),
+add_time=values(add_time),
+update_time=values(update_time)
+        
+    </insert>
+
 
     <delete id="delete" parameterType="java.lang.String" >
         delete from gpr_config_domain
@@ -152,7 +182,7 @@
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprConfigDomain" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GprConfigDomain" >
     update gpr_config_domain
     <set >
                   <if test="configId != null  and configId != '' " >

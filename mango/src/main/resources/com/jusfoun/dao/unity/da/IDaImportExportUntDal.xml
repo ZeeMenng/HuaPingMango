@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaImportExportUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaImportExportUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaImportExport" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaImportExport" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
@@ -49,7 +49,7 @@
         id,common_field_id,name,crop_type_code,crop_type_text,strains_code,strains_text,product_name,import_amount,import_amount_unit_code,import_amount_unit_text,import_amount_unit,import_volume,import_volume_unit_code,import_volume_unit_text,import_volume_unit,import_price,import_price_unit_code,import_price_unit_text,import_price_unit,import_time,import_country_code,import_country_text,import_enterprise,export_amount,export_amount_unit_code,export_amount_unit_text,export_amount_unit,export_volume,export_volume_unit_code,export_volume_unit_text,export_volume_unit,export_price,export_price_unit_code,export_price_unit_text,export_price_unit,export_time,export_country_code,export_country_text,export_enterprise
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaImportExport" >
     insert into da_import_export
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -315,8 +315,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_import_export
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -325,138 +324,156 @@
     	<foreach collection="list" item="daImportExport" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daImportExport.id,jdbcType=VARCHAR},
-
-      
           #{daImportExport.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daImportExport.name,jdbcType=VARCHAR},
-
-      
           #{daImportExport.cropTypeCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.cropTypeText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.strainsCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.strainsText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.productName,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importAmount,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importAmountUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.importAmountUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importAmountUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importVolume,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importVolumeUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.importVolumeUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importVolumeUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importPrice,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.importPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.importTime,jdbcType=TIMESTAMP},
-
-      
           #{daImportExport.importCountryCode,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importCountryText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.importEnterprise,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportAmount,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportAmountUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.exportAmountUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportAmountUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportVolume,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportVolumeUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.exportVolumeUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportVolumeUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportPrice,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportPriceUnitCode,jdbcType=TINYINT},
-
-      
           #{daImportExport.exportPriceUnitText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportPriceUnit,jdbcType=NUMERIC},
-
-      
           #{daImportExport.exportTime,jdbcType=TIMESTAMP},
-
-      
           #{daImportExport.exportCountryCode,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportCountryText,jdbcType=VARCHAR},
-
-      
           #{daImportExport.exportEnterprise,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_import_export
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_import_export
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daImportExport" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daImportExport.id,jdbcType=VARCHAR},
+          #{daImportExport.commonFieldId,jdbcType=VARCHAR},
+          #{daImportExport.name,jdbcType=VARCHAR},
+          #{daImportExport.cropTypeCode,jdbcType=TINYINT},
+          #{daImportExport.cropTypeText,jdbcType=VARCHAR},
+          #{daImportExport.strainsCode,jdbcType=TINYINT},
+          #{daImportExport.strainsText,jdbcType=VARCHAR},
+          #{daImportExport.productName,jdbcType=VARCHAR},
+          #{daImportExport.importAmount,jdbcType=NUMERIC},
+          #{daImportExport.importAmountUnitCode,jdbcType=TINYINT},
+          #{daImportExport.importAmountUnitText,jdbcType=VARCHAR},
+          #{daImportExport.importAmountUnit,jdbcType=NUMERIC},
+          #{daImportExport.importVolume,jdbcType=NUMERIC},
+          #{daImportExport.importVolumeUnitCode,jdbcType=TINYINT},
+          #{daImportExport.importVolumeUnitText,jdbcType=VARCHAR},
+          #{daImportExport.importVolumeUnit,jdbcType=NUMERIC},
+          #{daImportExport.importPrice,jdbcType=NUMERIC},
+          #{daImportExport.importPriceUnitCode,jdbcType=TINYINT},
+          #{daImportExport.importPriceUnitText,jdbcType=VARCHAR},
+          #{daImportExport.importPriceUnit,jdbcType=NUMERIC},
+          #{daImportExport.importTime,jdbcType=TIMESTAMP},
+          #{daImportExport.importCountryCode,jdbcType=VARCHAR},
+          #{daImportExport.importCountryText,jdbcType=VARCHAR},
+          #{daImportExport.importEnterprise,jdbcType=VARCHAR},
+          #{daImportExport.exportAmount,jdbcType=NUMERIC},
+          #{daImportExport.exportAmountUnitCode,jdbcType=TINYINT},
+          #{daImportExport.exportAmountUnitText,jdbcType=VARCHAR},
+          #{daImportExport.exportAmountUnit,jdbcType=NUMERIC},
+          #{daImportExport.exportVolume,jdbcType=NUMERIC},
+          #{daImportExport.exportVolumeUnitCode,jdbcType=TINYINT},
+          #{daImportExport.exportVolumeUnitText,jdbcType=VARCHAR},
+          #{daImportExport.exportVolumeUnit,jdbcType=NUMERIC},
+          #{daImportExport.exportPrice,jdbcType=NUMERIC},
+          #{daImportExport.exportPriceUnitCode,jdbcType=TINYINT},
+          #{daImportExport.exportPriceUnitText,jdbcType=VARCHAR},
+          #{daImportExport.exportPriceUnit,jdbcType=NUMERIC},
+          #{daImportExport.exportTime,jdbcType=TIMESTAMP},
+          #{daImportExport.exportCountryCode,jdbcType=VARCHAR},
+          #{daImportExport.exportCountryText,jdbcType=VARCHAR},
+          #{daImportExport.exportEnterprise,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+name=values(name),
+crop_type_code=values(crop_type_code),
+crop_type_text=values(crop_type_text),
+strains_code=values(strains_code),
+strains_text=values(strains_text),
+product_name=values(product_name),
+import_amount=values(import_amount),
+import_amount_unit_code=values(import_amount_unit_code),
+import_amount_unit_text=values(import_amount_unit_text),
+import_amount_unit=values(import_amount_unit),
+import_volume=values(import_volume),
+import_volume_unit_code=values(import_volume_unit_code),
+import_volume_unit_text=values(import_volume_unit_text),
+import_volume_unit=values(import_volume_unit),
+import_price=values(import_price),
+import_price_unit_code=values(import_price_unit_code),
+import_price_unit_text=values(import_price_unit_text),
+import_price_unit=values(import_price_unit),
+import_time=values(import_time),
+import_country_code=values(import_country_code),
+import_country_text=values(import_country_text),
+import_enterprise=values(import_enterprise),
+export_amount=values(export_amount),
+export_amount_unit_code=values(export_amount_unit_code),
+export_amount_unit_text=values(export_amount_unit_text),
+export_amount_unit=values(export_amount_unit),
+export_volume=values(export_volume),
+export_volume_unit_code=values(export_volume_unit_code),
+export_volume_unit_text=values(export_volume_unit_text),
+export_volume_unit=values(export_volume_unit),
+export_price=values(export_price),
+export_price_unit_code=values(export_price_unit_code),
+export_price_unit_text=values(export_price_unit_text),
+export_price_unit=values(export_price_unit),
+export_time=values(export_time),
+export_country_code=values(export_country_code),
+export_country_text=values(export_country_text),
+export_enterprise=values(export_enterprise)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_import_export
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_import_export
 		where id  in
@@ -465,7 +482,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaImportExport" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaImportExport" >
     update da_import_export
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -723,16 +742,24 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.commonFieldId != null and daImportExport.commonFieldId  != '' " >
+                  <if test="daImportExport.commonFieldId != null and daImportExport.commonFieldId  != ''  and daImportExport.commonFieldId  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.commonFieldId != null  and daImportExport.commonFieldId  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.name != null and daImportExport.name  != '' " >
+                  <if test="daImportExport.name != null and daImportExport.name  != ''  and daImportExport.name  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.name != null  and daImportExport.name  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="crop_type_code =case" suffix="end,">
@@ -744,9 +771,13 @@
          </trim>
          <trim prefix="crop_type_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.cropTypeText != null and daImportExport.cropTypeText  != '' " >
+                  <if test="daImportExport.cropTypeText != null and daImportExport.cropTypeText  != ''  and daImportExport.cropTypeText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.cropTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.cropTypeText != null  and daImportExport.cropTypeText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="strains_code =case" suffix="end,">
@@ -758,16 +789,24 @@
          </trim>
          <trim prefix="strains_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.strainsText != null and daImportExport.strainsText  != '' " >
+                  <if test="daImportExport.strainsText != null and daImportExport.strainsText  != ''  and daImportExport.strainsText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.strainsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.strainsText != null  and daImportExport.strainsText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="product_name =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.productName != null and daImportExport.productName  != '' " >
+                  <if test="daImportExport.productName != null and daImportExport.productName  != ''  and daImportExport.productName  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.productName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.productName != null  and daImportExport.productName  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_amount =case" suffix="end,">
@@ -786,9 +825,13 @@
          </trim>
          <trim prefix="import_amount_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importAmountUnitText != null and daImportExport.importAmountUnitText  != '' " >
+                  <if test="daImportExport.importAmountUnitText != null and daImportExport.importAmountUnitText  != ''  and daImportExport.importAmountUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importAmountUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importAmountUnitText != null  and daImportExport.importAmountUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_amount_unit =case" suffix="end,">
@@ -814,9 +857,13 @@
          </trim>
          <trim prefix="import_volume_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importVolumeUnitText != null and daImportExport.importVolumeUnitText  != '' " >
+                  <if test="daImportExport.importVolumeUnitText != null and daImportExport.importVolumeUnitText  != ''  and daImportExport.importVolumeUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importVolumeUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importVolumeUnitText != null  and daImportExport.importVolumeUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_volume_unit =case" suffix="end,">
@@ -842,9 +889,13 @@
          </trim>
          <trim prefix="import_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importPriceUnitText != null and daImportExport.importPriceUnitText  != '' " >
+                  <if test="daImportExport.importPriceUnitText != null and daImportExport.importPriceUnitText  != ''  and daImportExport.importPriceUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importPriceUnitText != null  and daImportExport.importPriceUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_price_unit =case" suffix="end,">
@@ -863,23 +914,35 @@
          </trim>
          <trim prefix="import_country_code =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importCountryCode != null and daImportExport.importCountryCode  != '' " >
+                  <if test="daImportExport.importCountryCode != null and daImportExport.importCountryCode  != ''  and daImportExport.importCountryCode  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importCountryCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importCountryCode != null  and daImportExport.importCountryCode  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_country_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importCountryText != null and daImportExport.importCountryText  != '' " >
+                  <if test="daImportExport.importCountryText != null and daImportExport.importCountryText  != ''  and daImportExport.importCountryText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importCountryText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importCountryText != null  and daImportExport.importCountryText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="import_enterprise =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.importEnterprise != null and daImportExport.importEnterprise  != '' " >
+                  <if test="daImportExport.importEnterprise != null and daImportExport.importEnterprise  != ''  and daImportExport.importEnterprise  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.importEnterprise,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.importEnterprise != null  and daImportExport.importEnterprise  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_amount =case" suffix="end,">
@@ -898,9 +961,13 @@
          </trim>
          <trim prefix="export_amount_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportAmountUnitText != null and daImportExport.exportAmountUnitText  != '' " >
+                  <if test="daImportExport.exportAmountUnitText != null and daImportExport.exportAmountUnitText  != ''  and daImportExport.exportAmountUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportAmountUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportAmountUnitText != null  and daImportExport.exportAmountUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_amount_unit =case" suffix="end,">
@@ -926,9 +993,13 @@
          </trim>
          <trim prefix="export_volume_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportVolumeUnitText != null and daImportExport.exportVolumeUnitText  != '' " >
+                  <if test="daImportExport.exportVolumeUnitText != null and daImportExport.exportVolumeUnitText  != ''  and daImportExport.exportVolumeUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportVolumeUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportVolumeUnitText != null  and daImportExport.exportVolumeUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_volume_unit =case" suffix="end,">
@@ -954,9 +1025,13 @@
          </trim>
          <trim prefix="export_price_unit_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportPriceUnitText != null and daImportExport.exportPriceUnitText  != '' " >
+                  <if test="daImportExport.exportPriceUnitText != null and daImportExport.exportPriceUnitText  != ''  and daImportExport.exportPriceUnitText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportPriceUnitText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportPriceUnitText != null  and daImportExport.exportPriceUnitText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_price_unit =case" suffix="end,">
@@ -975,28 +1050,40 @@
          </trim>
          <trim prefix="export_country_code =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportCountryCode != null and daImportExport.exportCountryCode  != '' " >
+                  <if test="daImportExport.exportCountryCode != null and daImportExport.exportCountryCode  != ''  and daImportExport.exportCountryCode  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportCountryCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportCountryCode != null  and daImportExport.exportCountryCode  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_country_text =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportCountryText != null and daImportExport.exportCountryText  != '' " >
+                  <if test="daImportExport.exportCountryText != null and daImportExport.exportCountryText  != ''  and daImportExport.exportCountryText  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportCountryText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportCountryText != null  and daImportExport.exportCountryText  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="export_enterprise =case" suffix="end,">
               <foreach collection="list" item="daImportExport" index="index">
-                  <if test="daImportExport.exportEnterprise != null and daImportExport.exportEnterprise  != '' " >
+                  <if test="daImportExport.exportEnterprise != null and daImportExport.exportEnterprise  != ''  and daImportExport.exportEnterprise  != '-1' ">
                      when id=#{daImportExport.id} then #{daImportExport.exportEnterprise,jdbcType=VARCHAR}
                   </if>
+                  <if test="daImportExport.exportEnterprise != null  and daImportExport.exportEnterprise  == '-1' ">
+                     when id=#{daImportExport.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daImportExport" index="index" open="(" close=")" separator=",">
 			#{daImportExport.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -1006,246 +1093,168 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_import_export
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="cropTypeCode  != null " >
-              crop_type_code,
-          </if>
-          <if test="cropTypeText  != null and cropTypeText  != '' " >
-              crop_type_text,
-          </if>
-          <if test="strainsCode  != null " >
-              strains_code,
-          </if>
-          <if test="strainsText  != null and strainsText  != '' " >
-              strains_text,
-          </if>
-          <if test="productName  != null and productName  != '' " >
-              product_name,
-          </if>
-          <if test="importAmount  != null " >
-              import_amount,
-          </if>
-          <if test="importAmountUnitCode  != null " >
-              import_amount_unit_code,
-          </if>
-          <if test="importAmountUnitText  != null and importAmountUnitText  != '' " >
-              import_amount_unit_text,
-          </if>
-          <if test="importAmountUnit  != null " >
-              import_amount_unit,
-          </if>
-          <if test="importVolume  != null " >
-              import_volume,
-          </if>
-          <if test="importVolumeUnitCode  != null " >
-              import_volume_unit_code,
-          </if>
-          <if test="importVolumeUnitText  != null and importVolumeUnitText  != '' " >
-              import_volume_unit_text,
-          </if>
-          <if test="importVolumeUnit  != null " >
-              import_volume_unit,
-          </if>
-          <if test="importPrice  != null " >
-              import_price,
-          </if>
-          <if test="importPriceUnitCode  != null " >
-              import_price_unit_code,
-          </if>
-          <if test="importPriceUnitText  != null and importPriceUnitText  != '' " >
-              import_price_unit_text,
-          </if>
-          <if test="importPriceUnit  != null " >
-              import_price_unit,
-          </if>
-          <if test="importTime  != null " >
-              import_time,
-          </if>
-          <if test="importCountryCode  != null and importCountryCode  != '' " >
-              import_country_code,
-          </if>
-          <if test="importCountryText  != null and importCountryText  != '' " >
-              import_country_text,
-          </if>
-          <if test="importEnterprise  != null and importEnterprise  != '' " >
-              import_enterprise,
-          </if>
-          <if test="exportAmount  != null " >
-              export_amount,
-          </if>
-          <if test="exportAmountUnitCode  != null " >
-              export_amount_unit_code,
-          </if>
-          <if test="exportAmountUnitText  != null and exportAmountUnitText  != '' " >
-              export_amount_unit_text,
-          </if>
-          <if test="exportAmountUnit  != null " >
-              export_amount_unit,
-          </if>
-          <if test="exportVolume  != null " >
-              export_volume,
-          </if>
-          <if test="exportVolumeUnitCode  != null " >
-              export_volume_unit_code,
-          </if>
-          <if test="exportVolumeUnitText  != null and exportVolumeUnitText  != '' " >
-              export_volume_unit_text,
-          </if>
-          <if test="exportVolumeUnit  != null " >
-              export_volume_unit,
-          </if>
-          <if test="exportPrice  != null " >
-              export_price,
-          </if>
-          <if test="exportPriceUnitCode  != null " >
-              export_price_unit_code,
-          </if>
-          <if test="exportPriceUnitText  != null and exportPriceUnitText  != '' " >
-              export_price_unit_text,
-          </if>
-          <if test="exportPriceUnit  != null " >
-              export_price_unit,
-          </if>
-          <if test="exportTime  != null " >
-              export_time,
-          </if>
-          <if test="exportCountryCode  != null and exportCountryCode  != '' " >
-              export_country_code,
-          </if>
-          <if test="exportCountryText  != null and exportCountryText  != '' " >
-              export_country_text,
-          </if>
-          <if test="exportEnterprise  != null and exportEnterprise  != '' " >
-              export_enterprise,
-          </if>
+id,
+common_field_id,
+name,
+crop_type_code,
+crop_type_text,
+strains_code,
+strains_text,
+product_name,
+import_amount,
+import_amount_unit_code,
+import_amount_unit_text,
+import_amount_unit,
+import_volume,
+import_volume_unit_code,
+import_volume_unit_text,
+import_volume_unit,
+import_price,
+import_price_unit_code,
+import_price_unit_text,
+import_price_unit,
+import_time,
+import_country_code,
+import_country_text,
+import_enterprise,
+export_amount,
+export_amount_unit_code,
+export_amount_unit_text,
+export_amount_unit,
+export_volume,
+export_volume_unit_code,
+export_volume_unit_text,
+export_volume_unit,
+export_price,
+export_price_unit_code,
+export_price_unit_text,
+export_price_unit,
+export_time,
+export_country_code,
+export_country_text,
+export_enterprise,
     </trim>
     VALUES
     <foreach collection="list" item="daImportExport" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daImportExport.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daImportExport.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daImportExport.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.cropTypeCode != null ">
+                  
+                  
                     #{daImportExport.cropTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.cropTypeText  != null  and t.cropTypeText != '' " >
+            
+                  
                      #{daImportExport.cropTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.strainsCode != null ">
+                  
+                  
                     #{daImportExport.strainsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.strainsText  != null  and t.strainsText != '' " >
+            
+                  
                      #{daImportExport.strainsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.productName  != null  and t.productName != '' " >
+                  
+                  
                      #{daImportExport.productName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importAmount != null ">
+                  
+                  
                     #{daImportExport.importAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importAmountUnitCode != null ">
+            
+                  
                     #{daImportExport.importAmountUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.importAmountUnitText  != null  and t.importAmountUnitText != '' " >
+            
+                  
                      #{daImportExport.importAmountUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importAmountUnit != null ">
+                  
+                  
                     #{daImportExport.importAmountUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importVolume != null ">
+            
+                  
                     #{daImportExport.importVolume,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importVolumeUnitCode != null ">
+            
+                  
                     #{daImportExport.importVolumeUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.importVolumeUnitText  != null  and t.importVolumeUnitText != '' " >
+            
+                  
                      #{daImportExport.importVolumeUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importVolumeUnit != null ">
+                  
+                  
                     #{daImportExport.importVolumeUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importPrice != null ">
+            
+                  
                     #{daImportExport.importPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importPriceUnitCode != null ">
+            
+                  
                     #{daImportExport.importPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.importPriceUnitText  != null  and t.importPriceUnitText != '' " >
+            
+                  
                      #{daImportExport.importPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importPriceUnit != null ">
+                  
+                  
                     #{daImportExport.importPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.importTime != null ">
+            
+                  
                     #{daImportExport.importTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.importCountryCode  != null  and t.importCountryCode != '' " >
+            
+                  
                      #{daImportExport.importCountryCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importCountryText  != null  and t.importCountryText != '' " >
+                  
+                  
                      #{daImportExport.importCountryText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.importEnterprise  != null  and t.importEnterprise != '' " >
+                  
+                  
                      #{daImportExport.importEnterprise ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportAmount != null ">
+                  
+                  
                     #{daImportExport.exportAmount,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportAmountUnitCode != null ">
+            
+                  
                     #{daImportExport.exportAmountUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.exportAmountUnitText  != null  and t.exportAmountUnitText != '' " >
+            
+                  
                      #{daImportExport.exportAmountUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportAmountUnit != null ">
+                  
+                  
                     #{daImportExport.exportAmountUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportVolume != null ">
+            
+                  
                     #{daImportExport.exportVolume,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportVolumeUnitCode != null ">
+            
+                  
                     #{daImportExport.exportVolumeUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.exportVolumeUnitText  != null  and t.exportVolumeUnitText != '' " >
+            
+                  
                      #{daImportExport.exportVolumeUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportVolumeUnit != null ">
+                  
+                  
                     #{daImportExport.exportVolumeUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportPrice != null ">
+            
+                  
                     #{daImportExport.exportPrice,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportPriceUnitCode != null ">
+            
+                  
                     #{daImportExport.exportPriceUnitCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.exportPriceUnitText  != null  and t.exportPriceUnitText != '' " >
+            
+                  
                      #{daImportExport.exportPriceUnitText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportPriceUnit != null ">
+                  
+                  
                     #{daImportExport.exportPriceUnit,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.exportTime != null ">
+            
+                  
                     #{daImportExport.exportTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.exportCountryCode  != null  and t.exportCountryCode != '' " >
+            
+                  
                      #{daImportExport.exportCountryCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportCountryText  != null  and t.exportCountryText != '' " >
+                  
+                  
                      #{daImportExport.exportCountryText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.exportEnterprise  != null  and t.exportEnterprise != '' " >
+                  
+                  
                      #{daImportExport.exportEnterprise ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

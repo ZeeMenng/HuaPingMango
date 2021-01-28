@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.generate.da.DaTargetTypeGenEnt;
+import com.zee.ent.generate.da.DaTargetTypeGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

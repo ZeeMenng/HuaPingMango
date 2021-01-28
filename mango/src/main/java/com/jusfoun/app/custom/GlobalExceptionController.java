@@ -1,4 +1,4 @@
-package com.jusfoun.app.custom;
+package com.zee.app.custom;
 
 import java.util.Map;
 
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.SymbolicConstant;
 
 /**
  * @author Zee

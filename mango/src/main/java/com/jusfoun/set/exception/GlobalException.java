@@ -1,6 +1,6 @@
-package com.jusfoun.set.exception;
+package com.zee.set.exception;
 
-import com.jusfoun.ent.custom.ResultModel;
+import com.zee.ent.custom.ResultModel;
 
 /**
  * @author Zee

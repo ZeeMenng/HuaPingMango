@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:34
+ * @updateDate 2021/1/28 16:09:11
  * @description 实体类DaTargetTypeGenEnt，自动生成。指标类型
  */
 
@@ -24,21 +22,25 @@ public class DaTargetTypeGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="创建时间",hidden=false,required=false)
     private Date addTime;
-    @ApiModelProperty(value="创建人",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String addUserId;
-    @ApiModelProperty(value="常量名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String constantName;
-    @ApiModelProperty(value="主键",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="排序",hidden=false,required=false)
     private Integer priority;
-    @ApiModelProperty(value="备注",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String remark;
-    @ApiModelProperty(value="指标名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String targetName;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。创建时间
@@ -55,42 +57,42 @@ public class DaTargetTypeGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。创建人
+	 * get方法。
 	 */
 	public String getAddUserId() {
 		return this.addUserId;
 	}
 
 	/**
-	 * set方法。创建人
+	 * set方法。
 	 */
 	public void setAddUserId(String addUserId) {
 		this.addUserId = addUserId;
 	}
     
 	/**
-	 * get方法。常量名称
+	 * get方法。
 	 */
 	public String getConstantName() {
 		return this.constantName;
 	}
 
 	/**
-	 * set方法。常量名称
+	 * set方法。
 	 */
 	public void setConstantName(String constantName) {
 		this.constantName = constantName;
 	}
     
 	/**
-	 * get方法。主键
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -111,35 +113,42 @@ public class DaTargetTypeGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。备注
+	 * get方法。
 	 */
 	public String getRemark() {
 		return this.remark;
 	}
 
 	/**
-	 * set方法。备注
+	 * set方法。
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
     
 	/**
-	 * get方法。指标名称
+	 * get方法。
 	 */
 	public String getTargetName() {
 		return this.targetName;
 	}
 
 	/**
-	 * set方法。指标名称
+	 * set方法。
 	 */
 	public void setTargetName(String targetName) {
 		this.targetName = targetName;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

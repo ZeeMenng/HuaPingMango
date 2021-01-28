@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpEarlyWarningSplDal" >
+<mapper namespace="com.zee.dao.split.gp.IGpEarlyWarningSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpEarlyWarning" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpEarlyWarning" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="growth_id" property="growthId" jdbcType="VARCHAR" />
               <result column="growth_name" property="growthName" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
         id,growth_id,growth_name,begin_date,end_date,warning_type,warning_name,max_val,min_val,tips_mess,stutas_code,stutas_text,remark,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpEarlyWarning" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpEarlyWarning" >
     insert into gp_early_warning
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -206,7 +206,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpEarlyWarning" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpEarlyWarning" >
     update gp_early_warning
     <set >
                   <if test="growthId != null  and growthId != '' " >

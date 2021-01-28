@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.da;
+﻿package com.zee.app.generate.swagger.da;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.da.DaIotMonitorDisasterDataSplBll;
-import com.jusfoun.bll.extend.unity.da.DaIotMonitorDisasterDataUntBll;
-import com.jusfoun.ent.extend.da.DaIotMonitorDisasterData;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.da.DaIotMonitorDisasterDataParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.split.da.DaIotMonitorDisasterDataSplBll;
+import com.zee.bll.extend.unity.da.DaIotMonitorDisasterDataUntBll;
+import com.zee.ent.extend.da.DaIotMonitorDisasterData;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.parameter.da.DaIotMonitorDisasterDataParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2020/8/11 11:42:43
+ * @updateDate 2021/1/28 16:06:32
  * @description da_iot_monitor_data表中满足预警条件的数据 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

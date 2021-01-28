@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiContentTagSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiContentTagSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentTag" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentTag" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
               <result column="ref_counter" property="refCounter" jdbcType="INTEGER" />
@@ -12,7 +12,7 @@
         id,tag_name,ref_counter
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentTag" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentTag" >
     insert into pi_content_tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -79,7 +79,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentTag" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentTag" >
     update pi_content_tag
     <set >
                   <if test="tagName != null  and tagName != '' " >

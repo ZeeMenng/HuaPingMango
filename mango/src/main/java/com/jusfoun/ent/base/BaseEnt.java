@@ -1,4 +1,4 @@
-package com.jusfoun.ent.base;
+package com.zee.ent.base;
 
 import org.springframework.beans.factory.annotation.Value;
 

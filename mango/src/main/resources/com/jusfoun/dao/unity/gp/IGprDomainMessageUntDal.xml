@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGprDomainMessageUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGprDomainMessageUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprDomainMessage" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprDomainMessage" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="message_id" property="messageId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,domain_id,message_id,enterprise_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprDomainMessage" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GprDomainMessage" >
     insert into gpr_domain_message
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -66,6 +66,32 @@
         </trim>
     	</foreach>
     </insert>
+
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gpr_domain_message
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gprDomainMessage" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gprDomainMessage.id,jdbcType=VARCHAR},
+          #{gprDomainMessage.domainId,jdbcType=VARCHAR},
+          #{gprDomainMessage.messageId,jdbcType=VARCHAR},
+          #{gprDomainMessage.enterpriseId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+domain_id=values(domain_id),
+message_id=values(message_id),
+enterprise_id=values(enterprise_id)
+        
+    </insert>
+
 
     <delete id="delete" parameterType="java.lang.String" >
         delete from gpr_domain_message
@@ -136,7 +162,7 @@
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprDomainMessage" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GprDomainMessage" >
     update gpr_domain_message
     <set >
                   <if test="domainId != null  and domainId != '' " >

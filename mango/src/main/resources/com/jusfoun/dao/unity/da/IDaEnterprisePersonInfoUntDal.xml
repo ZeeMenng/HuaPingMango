@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterprisePersonInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaEnterprisePersonInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         id,enterprise_id,enterprise_name,name,position,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
     insert into da_enterprise_person_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -79,8 +79,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_enterprise_person_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -89,42 +88,60 @@
     	<foreach collection="list" item="daEnterprisePersonInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daEnterprisePersonInfo.id,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.enterpriseId,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.name,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.position,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.datasourceCode,jdbcType=TINYINT},
-
-      
           #{daEnterprisePersonInfo.remark,jdbcType=VARCHAR},
-
-      
           #{daEnterprisePersonInfo.createdTime,jdbcType=TIMESTAMP},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_enterprise_person_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_enterprise_person_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterprisePersonInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daEnterprisePersonInfo.id,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.enterpriseId,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.name,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.position,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.datasourceCode,jdbcType=TINYINT},
+          #{daEnterprisePersonInfo.remark,jdbcType=VARCHAR},
+          #{daEnterprisePersonInfo.createdTime,jdbcType=TIMESTAMP},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+enterprise_id=values(enterprise_id),
+enterprise_name=values(enterprise_name),
+name=values(name),
+position=values(position),
+datasource_code=values(datasource_code),
+remark=values(remark),
+created_time=values(created_time)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_enterprise_person_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_enterprise_person_info
 		where id  in
@@ -133,7 +150,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterprisePersonInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterprisePersonInfo" >
     update da_enterprise_person_info
     <set >
                   <if test="enterpriseId != null  and enterpriseId != '' " >
@@ -199,30 +218,46 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="enterprise_id =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePersonInfo" index="index">
-                  <if test="daEnterprisePersonInfo.enterpriseId != null and daEnterprisePersonInfo.enterpriseId  != '' " >
+                  <if test="daEnterprisePersonInfo.enterpriseId != null and daEnterprisePersonInfo.enterpriseId  != ''  and daEnterprisePersonInfo.enterpriseId  != '-1' ">
                      when id=#{daEnterprisePersonInfo.id} then #{daEnterprisePersonInfo.enterpriseId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePersonInfo.enterpriseId != null  and daEnterprisePersonInfo.enterpriseId  == '-1' ">
+                     when id=#{daEnterprisePersonInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePersonInfo" index="index">
-                  <if test="daEnterprisePersonInfo.enterpriseName != null and daEnterprisePersonInfo.enterpriseName  != '' " >
+                  <if test="daEnterprisePersonInfo.enterpriseName != null and daEnterprisePersonInfo.enterpriseName  != ''  and daEnterprisePersonInfo.enterpriseName  != '-1' ">
                      when id=#{daEnterprisePersonInfo.id} then #{daEnterprisePersonInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePersonInfo.enterpriseName != null  and daEnterprisePersonInfo.enterpriseName  == '-1' ">
+                     when id=#{daEnterprisePersonInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePersonInfo" index="index">
-                  <if test="daEnterprisePersonInfo.name != null and daEnterprisePersonInfo.name  != '' " >
+                  <if test="daEnterprisePersonInfo.name != null and daEnterprisePersonInfo.name  != ''  and daEnterprisePersonInfo.name  != '-1' ">
                      when id=#{daEnterprisePersonInfo.id} then #{daEnterprisePersonInfo.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePersonInfo.name != null  and daEnterprisePersonInfo.name  == '-1' ">
+                     when id=#{daEnterprisePersonInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="position =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePersonInfo" index="index">
-                  <if test="daEnterprisePersonInfo.position != null and daEnterprisePersonInfo.position  != '' " >
+                  <if test="daEnterprisePersonInfo.position != null and daEnterprisePersonInfo.position  != ''  and daEnterprisePersonInfo.position  != '-1' ">
                      when id=#{daEnterprisePersonInfo.id} then #{daEnterprisePersonInfo.position,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePersonInfo.position != null  and daEnterprisePersonInfo.position  == '-1' ">
+                     when id=#{daEnterprisePersonInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="datasource_code =case" suffix="end,">
@@ -234,9 +269,13 @@
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daEnterprisePersonInfo" index="index">
-                  <if test="daEnterprisePersonInfo.remark != null and daEnterprisePersonInfo.remark  != '' " >
+                  <if test="daEnterprisePersonInfo.remark != null and daEnterprisePersonInfo.remark  != ''  and daEnterprisePersonInfo.remark  != '-1' ">
                      when id=#{daEnterprisePersonInfo.id} then #{daEnterprisePersonInfo.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterprisePersonInfo.remark != null  and daEnterprisePersonInfo.remark  == '-1' ">
+                     when id=#{daEnterprisePersonInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="created_time =case" suffix="end,">
@@ -248,7 +287,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daEnterprisePersonInfo" index="index" open="(" close=")" separator=",">
 			#{daEnterprisePersonInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -258,54 +297,40 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_enterprise_person_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="enterpriseId  != null and enterpriseId  != '' " >
-              enterprise_id,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="position  != null and position  != '' " >
-              position,
-          </if>
-          <if test="datasourceCode  != null " >
-              datasource_code,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="createdTime  != null " >
-              created_time,
-          </if>
+id,
+enterprise_id,
+enterprise_name,
+name,
+position,
+datasource_code,
+remark,
+created_time,
     </trim>
     VALUES
     <foreach collection="list" item="daEnterprisePersonInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daEnterprisePersonInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.enterpriseId  != null  and t.enterpriseId != '' " >
+                  
                      #{daEnterprisePersonInfo.enterpriseId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daEnterprisePersonInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daEnterprisePersonInfo.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.position  != null  and t.position != '' " >
+                  
+                  
                      #{daEnterprisePersonInfo.position ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.datasourceCode != null ">
+                  
+                  
                     #{daEnterprisePersonInfo.datasourceCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+            
+                  
                      #{daEnterprisePersonInfo.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.createdTime != null ">
+                  
+                  
                     #{daEnterprisePersonInfo.createdTime,jdbcType=TIMESTAMP},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

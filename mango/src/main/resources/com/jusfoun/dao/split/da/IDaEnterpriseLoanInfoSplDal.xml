@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaEnterpriseLoanInfoSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaEnterpriseLoanInfoSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
               <result column="id" property="id" jdbcType="VARCHAR" />
               <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
               <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         id,enterprise_id,enterprise_name,loan_date,loan_money,loan_type_code,loan_type_text,loan_status,loan_status_text,overdue_status_code,overdue_status_text,datasource_code,remark,created_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
     insert into da_enterprise_loan_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -187,7 +187,7 @@
 	<delete id="deleteByIdList" parameterType="list">
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseLoanInfo" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseLoanInfo" >
     update da_enterprise_loan_info
     <set >
                   <if test="id != null  and id != '' " >

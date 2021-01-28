@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPirContentVideoUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPirContentVideoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirContentVideo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,content_id,resource_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirContentVideo" >
     insert into pir_content_video
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pir_content_video
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -51,27 +50,45 @@
     	<foreach collection="list" item="pirContentVideo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{pirContentVideo.id,jdbcType=VARCHAR},
-
-      
           #{pirContentVideo.contentId,jdbcType=VARCHAR},
-
-      
           #{pirContentVideo.resourceId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pir_content_video
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pir_content_video
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirContentVideo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{pirContentVideo.id,jdbcType=VARCHAR},
+          #{pirContentVideo.contentId,jdbcType=VARCHAR},
+          #{pirContentVideo.resourceId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+content_id=values(content_id),
+resource_id=values(resource_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pir_content_video
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pir_content_video
 		where id  in
@@ -80,7 +97,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentVideo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirContentVideo" >
     update pir_content_video
     <set >
                   <if test="contentId != null  and contentId != '' " >
@@ -116,21 +135,29 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="content_id =case" suffix="end,">
               <foreach collection="list" item="pirContentVideo" index="index">
-                  <if test="pirContentVideo.contentId != null and pirContentVideo.contentId  != '' " >
+                  <if test="pirContentVideo.contentId != null and pirContentVideo.contentId  != ''  and pirContentVideo.contentId  != '-1' ">
                      when id=#{pirContentVideo.id} then #{pirContentVideo.contentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirContentVideo.contentId != null  and pirContentVideo.contentId  == '-1' ">
+                     when id=#{pirContentVideo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
               <foreach collection="list" item="pirContentVideo" index="index">
-                  <if test="pirContentVideo.resourceId != null and pirContentVideo.resourceId  != '' " >
+                  <if test="pirContentVideo.resourceId != null and pirContentVideo.resourceId  != ''  and pirContentVideo.resourceId  != '-1' ">
                      when id=#{pirContentVideo.id} then #{pirContentVideo.resourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirContentVideo.resourceId != null  and pirContentVideo.resourceId  == '-1' ">
+                     when id=#{pirContentVideo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="pirContentVideo" index="index" open="(" close=")" separator=",">
 			#{pirContentVideo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -140,24 +167,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pir_content_video
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="contentId  != null and contentId  != '' " >
-              content_id,
-          </if>
-          <if test="resourceId  != null and resourceId  != '' " >
-              resource_id,
-          </if>
+id,
+content_id,
+resource_id,
     </trim>
     VALUES
     <foreach collection="list" item="pirContentVideo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{pirContentVideo.id ,jdbcType=VARCHAR},
-                  <if test="t.contentId  != null  and t.contentId != '' " >
+                  
                      #{pirContentVideo.contentId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.resourceId  != null  and t.resourceId != '' " >
+                  
+                  
                      #{pirContentVideo.resourceId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

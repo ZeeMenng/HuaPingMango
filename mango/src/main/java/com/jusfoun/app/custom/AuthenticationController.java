@@ -1,4 +1,4 @@
-package com.jusfoun.app.custom;
+package com.zee.app.custom;
 
 import java.util.List;
 
@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsUtils;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.gp.GpLoginLogSplBll;
-import com.jusfoun.bll.extend.split.gp.GpUserSplBll;
-import com.jusfoun.bll.extend.split.gp.GprDomainUserSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpLoginLogUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpTokenUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpLoginLog;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.set.enumer.DomainEnum;
-import com.jusfoun.set.enumer.LogoutType;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TokenUtil;
-import com.jusfoun.utl.Tools;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.split.gp.GpLoginLogSplBll;
+import com.zee.bll.extend.split.gp.GpUserSplBll;
+import com.zee.bll.extend.split.gp.GprDomainUserSplBll;
+import com.zee.bll.extend.unity.gp.GpLoginLogUntBll;
+import com.zee.bll.extend.unity.gp.GpTokenUntBll;
+import com.zee.bll.extend.unity.gp.GpUserUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpLoginLog;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.set.enumer.DomainEnum;
+import com.zee.set.enumer.LogoutType;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TokenUtil;
+import com.zee.utl.Tools;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

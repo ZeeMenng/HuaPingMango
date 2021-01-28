@@ -1,11 +1,11 @@
-package com.jusfoun.dao.split.mf;
+package com.zee.dao.split.mf;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jusfoun.dao.split.base.IBaseSplDal;
-import com.jusfoun.ent.extend.mf.MfWeather;
+import com.zee.dao.split.base.IBaseSplDal;
+import com.zee.ent.extend.mf.MfWeather;
 
 
 

@@ -1,8 +1,8 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
 import io.swagger.annotations.ApiModel;
 
-import com.jusfoun.ent.generate.da.DaMarketPriceGenEnt;
+import com.zee.ent.generate.da.DaMarketPriceGenEnt;
 
 /**
  * @author Zee

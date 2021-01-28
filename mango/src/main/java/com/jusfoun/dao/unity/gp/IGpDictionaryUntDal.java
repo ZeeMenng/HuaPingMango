@@ -1,9 +1,9 @@
-﻿package com.jusfoun.dao.unity.gp;
+﻿package com.zee.dao.unity.gp;
 
 import java.util.List;
-import com.jusfoun.dao.unity.base.IBaseUntDal;
-import com.jusfoun.ent.extend.gp.GpDictionary;
-import com.jusfoun.ent.extend.gp.GpDictionaryType;
+import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.extend.gp.GpDictionary;
+import com.zee.ent.extend.gp.GpDictionaryType;
 
 
 
@@ -11,7 +11,7 @@ import com.jusfoun.ent.extend.gp.GpDictionaryType;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/4 14:18:33
+ * @updateDate 2021/1/28 16:07:43
  * @description 扩展自实体类IBaseUntDal<GpDictionary>，可手动更改。字典信息。
  */
 

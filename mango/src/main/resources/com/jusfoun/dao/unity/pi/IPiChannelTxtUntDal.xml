@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiChannelTxtUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiChannelTxtUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiChannelTxt" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="txt" property="txt" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,channel_id,txt,txt1,txt2,txt3
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiChannelTxt" >
     insert into pi_channel_txt
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -65,8 +65,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_channel_txt
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -75,36 +74,54 @@
     	<foreach collection="list" item="piChannelTxt" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piChannelTxt.id,jdbcType=VARCHAR},
-
-      
           #{piChannelTxt.channelId,jdbcType=VARCHAR},
-
-      
           #{piChannelTxt.txt,jdbcType=VARCHAR},
-
-      
           #{piChannelTxt.txt1,jdbcType=VARCHAR},
-
-      
           #{piChannelTxt.txt2,jdbcType=VARCHAR},
-
-      
           #{piChannelTxt.txt3,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_channel_txt
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_channel_txt
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piChannelTxt" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piChannelTxt.id,jdbcType=VARCHAR},
+          #{piChannelTxt.channelId,jdbcType=VARCHAR},
+          #{piChannelTxt.txt,jdbcType=VARCHAR},
+          #{piChannelTxt.txt1,jdbcType=VARCHAR},
+          #{piChannelTxt.txt2,jdbcType=VARCHAR},
+          #{piChannelTxt.txt3,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+txt=values(txt),
+txt1=values(txt1),
+txt2=values(txt2),
+txt3=values(txt3)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_channel_txt
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_channel_txt
 		where id  in
@@ -113,7 +130,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiChannelTxt" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiChannelTxt" >
     update pi_channel_txt
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -167,42 +186,62 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="piChannelTxt" index="index">
-                  <if test="piChannelTxt.channelId != null and piChannelTxt.channelId  != '' " >
+                  <if test="piChannelTxt.channelId != null and piChannelTxt.channelId  != ''  and piChannelTxt.channelId  != '-1' ">
                      when id=#{piChannelTxt.id} then #{piChannelTxt.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelTxt.channelId != null  and piChannelTxt.channelId  == '-1' ">
+                     when id=#{piChannelTxt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt =case" suffix="end,">
               <foreach collection="list" item="piChannelTxt" index="index">
-                  <if test="piChannelTxt.txt != null and piChannelTxt.txt  != '' " >
+                  <if test="piChannelTxt.txt != null and piChannelTxt.txt  != ''  and piChannelTxt.txt  != '-1' ">
                      when id=#{piChannelTxt.id} then #{piChannelTxt.txt,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelTxt.txt != null  and piChannelTxt.txt  == '-1' ">
+                     when id=#{piChannelTxt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt1 =case" suffix="end,">
               <foreach collection="list" item="piChannelTxt" index="index">
-                  <if test="piChannelTxt.txt1 != null and piChannelTxt.txt1  != '' " >
+                  <if test="piChannelTxt.txt1 != null and piChannelTxt.txt1  != ''  and piChannelTxt.txt1  != '-1' ">
                      when id=#{piChannelTxt.id} then #{piChannelTxt.txt1,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelTxt.txt1 != null  and piChannelTxt.txt1  == '-1' ">
+                     when id=#{piChannelTxt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt2 =case" suffix="end,">
               <foreach collection="list" item="piChannelTxt" index="index">
-                  <if test="piChannelTxt.txt2 != null and piChannelTxt.txt2  != '' " >
+                  <if test="piChannelTxt.txt2 != null and piChannelTxt.txt2  != ''  and piChannelTxt.txt2  != '-1' ">
                      when id=#{piChannelTxt.id} then #{piChannelTxt.txt2,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelTxt.txt2 != null  and piChannelTxt.txt2  == '-1' ">
+                     when id=#{piChannelTxt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="txt3 =case" suffix="end,">
               <foreach collection="list" item="piChannelTxt" index="index">
-                  <if test="piChannelTxt.txt3 != null and piChannelTxt.txt3  != '' " >
+                  <if test="piChannelTxt.txt3 != null and piChannelTxt.txt3  != ''  and piChannelTxt.txt3  != '-1' ">
                      when id=#{piChannelTxt.id} then #{piChannelTxt.txt3,jdbcType=VARCHAR}
                   </if>
+                  <if test="piChannelTxt.txt3 != null  and piChannelTxt.txt3  == '-1' ">
+                     when id=#{piChannelTxt.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piChannelTxt" index="index" open="(" close=")" separator=",">
 			#{piChannelTxt.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -212,42 +251,32 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_channel_txt
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="txt  != null and txt  != '' " >
-              txt,
-          </if>
-          <if test="txt1  != null and txt1  != '' " >
-              txt1,
-          </if>
-          <if test="txt2  != null and txt2  != '' " >
-              txt2,
-          </if>
-          <if test="txt3  != null and txt3  != '' " >
-              txt3,
-          </if>
+id,
+channel_id,
+txt,
+txt1,
+txt2,
+txt3,
     </trim>
     VALUES
     <foreach collection="list" item="piChannelTxt" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piChannelTxt.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{piChannelTxt.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt  != null  and t.txt != '' " >
+                  
+                  
                      #{piChannelTxt.txt ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt1  != null  and t.txt1 != '' " >
+                  
+                  
                      #{piChannelTxt.txt1 ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt2  != null  and t.txt2 != '' " >
+                  
+                  
                      #{piChannelTxt.txt2 ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.txt3  != null  and t.txt3 != '' " >
+                  
+                  
                      #{piChannelTxt.txt3 ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

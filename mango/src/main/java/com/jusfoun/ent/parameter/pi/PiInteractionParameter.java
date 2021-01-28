@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.pi;
+package com.zee.ent.parameter.pi;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.pi.PiInteraction;
-import com.jusfoun.ent.generate.pi.PiInteractionGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.pi.PiInteraction;
+import com.zee.ent.generate.pi.PiInteractionGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

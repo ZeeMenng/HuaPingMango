@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGprUserRoleSplDal">
+<mapper namespace="com.zee.dao.split.gp.IGprUserRoleSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprUserRole">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprUserRole">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="user_id" property="userId" jdbcType="VARCHAR" />
 		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
 		id,user_id,role_id
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprUserRole">
+	<insert id="add" parameterType="com.zee.ent.extend.gp.GprUserRole">
 		insert into gpr_user_role
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -96,7 +96,7 @@
 		</foreach>
 	</delete>
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprUserRole">
+	<update id="update" parameterType="com.zee.ent.extend.gp.GprUserRole">
 		update gpr_user_role
 		<set>
 			<if test="userId != null  and userId != '' ">

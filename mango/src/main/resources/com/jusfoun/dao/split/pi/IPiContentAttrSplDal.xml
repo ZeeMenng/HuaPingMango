@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiContentAttrSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiContentAttrSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentAttr" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentAttr" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,content_id,attr_name,attr_value
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentAttr" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentAttr" >
     insert into pi_content_attr
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -91,7 +91,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentAttr" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentAttr" >
     update pi_content_attr
     <set >
                   <if test="contentId != null  and contentId != '' " >

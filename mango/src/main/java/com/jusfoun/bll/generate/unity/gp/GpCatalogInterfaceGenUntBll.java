@@ -1,4 +1,4 @@
-﻿package com.jusfoun.bll.generate.unity.gp;
+﻿package com.zee.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.gp.IGpCatalogInterfaceUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpCatalogInterface;
-import com.jusfoun.ent.parameter.gp.GpCatalogInterfaceParameter;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.unity.base.BaseUntBll;
+import com.zee.dao.unity.gp.IGpCatalogInterfaceUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpCatalogInterface;
+import com.zee.ent.parameter.gp.GpCatalogInterfaceParameter;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/4 14:18:23
+ * @updateDate 2021/1/28 16:07:07
  * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 业务逻辑处理类，扩展自BaseUntBll<GpCatalogInterface>，自动生成。
  */
 public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> {

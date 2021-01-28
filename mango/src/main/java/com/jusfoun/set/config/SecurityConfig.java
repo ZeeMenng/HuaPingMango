@@ -1,4 +1,4 @@
-package com.jusfoun.set.config;
+package com.zee.set.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.Controller;
  * @description Spring Security设置用类
  */
 @Configuration
-@ComponentScan(basePackages = { "com.jusfoun.app.**.gp.**", "com.jusfoun.app.**.pi.**", "com.jusfoun.set.**"})
+@ComponentScan(basePackages = { "com.zee.app.**.gp.**", "com.zee.app.**.pi.**", "com.zee.set.**"})
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

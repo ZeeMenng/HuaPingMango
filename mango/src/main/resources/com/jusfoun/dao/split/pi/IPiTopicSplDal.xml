@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiTopicSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiTopicSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiTopic" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiTopic" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="topic_name" property="topicName" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
         id,channel_id,topic_name,short_name,keywords,description,title_img,content_img,tpl_content,priority,is_recommend
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiTopic" >
     insert into pi_topic
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -166,7 +166,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiTopic" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiTopic" >
     update pi_topic
     <set >
                   <if test="channelId != null  and channelId != '' " >

@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:16
+ * @updateDate 2021/1/28 16:08:55
  * @description 实体类DaEnterprisePropertyInfoGenEnt，自动生成。企业财产信息表
  */
 
@@ -32,13 +30,13 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
     private BigDecimal beforeYearTotalLiabilities;
     @ApiModelProperty(value="创建时间",hidden=false,required=false)
     private Date createdTime;
-    @ApiModelProperty(value="币种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String currency;
     @ApiModelProperty(value="数据来源。编码，对应数据字典表（dictionary）中的编码字段（code）。目前有2中类型 1：数据中心  2：手工输入",allowableValues="0,1",hidden=false,required=false)
     private Byte datasourceCode;
-    @ApiModelProperty(value="企业id。外键。对应企业信息表enterprise主键。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String enterpriseId;
-    @ApiModelProperty(value="企业名称。对应企业信息表（enterprise）字段（enterprise_name）。",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String enterpriseName;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal equityInterestRate;
@@ -46,11 +44,11 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
     private BigDecimal fixedAssets;
     @ApiModelProperty(value="是否有效。  编码。对应数据字典表（dictionary）中的编码字段（code）1.有效，0.无效，2.删除        ",allowableValues="0,1",hidden=false,required=false)
     private Byte flagCode;
-    @ApiModelProperty(value="是否有效。 文本。对应数据字典表（dictionary）中的文本字段（name）1.有效，0.无效，2.删除  ",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String flagText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal grossProfitMargin;
-    @ApiModelProperty(value="主键",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal invisibleAssetsNetAlue;
@@ -62,7 +60,7 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
     private BigDecimal operatingIncome;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal operatingProfit;
-    @ApiModelProperty(value="备注",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String remark;
     @ApiModelProperty(value="源创建时间",hidden=false,required=false)
     private Date sourceCreateTime;
@@ -80,13 +78,17 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
     private BigDecimal totalProfit;
     @ApiModelProperty(value="更新时间",hidden=false,required=false)
     private Date updateTime;
-    @ApiModelProperty(value="更新人",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String updateUserId;
     @ApiModelProperty(value="发生年份",hidden=false,required=false)
     private Integer year;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。
@@ -159,14 +161,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。币种
+	 * get方法。
 	 */
 	public String getCurrency() {
 		return this.currency;
 	}
 
 	/**
-	 * set方法。币种
+	 * set方法。
 	 */
 	public void setCurrency(String currency) {
 		this.currency = currency;
@@ -187,28 +189,28 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。企业id。外键。对应企业信息表enterprise主键。
+	 * get方法。
 	 */
 	public String getEnterpriseId() {
 		return this.enterpriseId;
 	}
 
 	/**
-	 * set方法。企业id。外键。对应企业信息表enterprise主键。
+	 * set方法。
 	 */
 	public void setEnterpriseId(String enterpriseId) {
 		this.enterpriseId = enterpriseId;
 	}
     
 	/**
-	 * get方法。企业名称。对应企业信息表（enterprise）字段（enterprise_name）。
+	 * get方法。
 	 */
 	public String getEnterpriseName() {
 		return this.enterpriseName;
 	}
 
 	/**
-	 * set方法。企业名称。对应企业信息表（enterprise）字段（enterprise_name）。
+	 * set方法。
 	 */
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
@@ -257,14 +259,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。是否有效。 文本。对应数据字典表（dictionary）中的文本字段（name）1.有效，0.无效，2.删除  
+	 * get方法。
 	 */
 	public String getFlagText() {
 		return this.flagText;
 	}
 
 	/**
-	 * set方法。是否有效。 文本。对应数据字典表（dictionary）中的文本字段（name）1.有效，0.无效，2.删除  
+	 * set方法。
 	 */
 	public void setFlagText(String flagText) {
 		this.flagText = flagText;
@@ -285,14 +287,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。主键
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -369,14 +371,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。备注
+	 * get方法。
 	 */
 	public String getRemark() {
 		return this.remark;
 	}
 
 	/**
-	 * set方法。备注
+	 * set方法。
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
@@ -495,14 +497,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 	/**
-	 * get方法。更新人
+	 * get方法。
 	 */
 	public String getUpdateUserId() {
 		return this.updateUserId;
 	}
 
 	/**
-	 * set方法。更新人
+	 * set方法。
 	 */
 	public void setUpdateUserId(String updateUserId) {
 		this.updateUserId = updateUserId;
@@ -523,7 +525,14 @@ public class DaEnterprisePropertyInfoGenEnt extends BaseEnt implements Serializa
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

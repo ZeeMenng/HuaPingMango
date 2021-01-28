@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaTemplateDataSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaTemplateDataSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaTemplateData" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaTemplateData" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="template_target_id" property="templateTargetId" jdbcType="VARCHAR" />
               <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
@@ -17,7 +17,7 @@
         id,template_target_id,add_time,add_user_id,audit_status_code,audit_status_text,auditer_suggestion,auditer_user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaTemplateData" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaTemplateData" >
     insert into da_template_data
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -133,7 +133,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaTemplateData" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaTemplateData" >
     update da_template_data
     <set >
                   <if test="templateTargetId != null  and templateTargetId != '' " >

@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.gp;
+package com.zee.app.extend.swagger.gp;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,15 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.gp.GpDictionaryGenSwgApp;
-import com.jusfoun.bll.extend.unity.gp.GpRegionUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.base.BaseParameter;
-import com.jusfoun.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
-import com.jusfoun.ent.parameter.gp.GpDictionaryParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TimesView;
+import com.zee.app.generate.swagger.gp.GpDictionaryGenSwgApp;
+import com.zee.bll.extend.unity.gp.GpRegionUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.parameter.base.BaseParameter;
+import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
+import com.zee.ent.parameter.gp.GpDictionaryParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TimesView;
 
 /**
  * @author Zee

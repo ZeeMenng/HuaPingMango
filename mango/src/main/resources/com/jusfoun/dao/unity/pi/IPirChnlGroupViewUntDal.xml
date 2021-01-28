@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPirChnlGroupViewUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPirChnlGroupViewUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirChnlGroupView" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="role_id" property="roleId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,channel_id,role_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirChnlGroupView" >
     insert into pir_chnl_group_view
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pir_chnl_group_view
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -51,27 +50,45 @@
     	<foreach collection="list" item="pirChnlGroupView" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{pirChnlGroupView.id,jdbcType=VARCHAR},
-
-      
           #{pirChnlGroupView.channelId,jdbcType=VARCHAR},
-
-      
           #{pirChnlGroupView.roleId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pir_chnl_group_view
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pir_chnl_group_view
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirChnlGroupView" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{pirChnlGroupView.id,jdbcType=VARCHAR},
+          #{pirChnlGroupView.channelId,jdbcType=VARCHAR},
+          #{pirChnlGroupView.roleId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+role_id=values(role_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pir_chnl_group_view
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pir_chnl_group_view
 		where id  in
@@ -80,7 +97,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirChnlGroupView" >
     update pir_chnl_group_view
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -116,21 +135,29 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="pirChnlGroupView" index="index">
-                  <if test="pirChnlGroupView.channelId != null and pirChnlGroupView.channelId  != '' " >
+                  <if test="pirChnlGroupView.channelId != null and pirChnlGroupView.channelId  != ''  and pirChnlGroupView.channelId  != '-1' ">
                      when id=#{pirChnlGroupView.id} then #{pirChnlGroupView.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChnlGroupView.channelId != null  and pirChnlGroupView.channelId  == '-1' ">
+                     when id=#{pirChnlGroupView.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="pirChnlGroupView" index="index">
-                  <if test="pirChnlGroupView.roleId != null and pirChnlGroupView.roleId  != '' " >
+                  <if test="pirChnlGroupView.roleId != null and pirChnlGroupView.roleId  != ''  and pirChnlGroupView.roleId  != '-1' ">
                      when id=#{pirChnlGroupView.id} then #{pirChnlGroupView.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChnlGroupView.roleId != null  and pirChnlGroupView.roleId  == '-1' ">
+                     when id=#{pirChnlGroupView.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="pirChnlGroupView" index="index" open="(" close=")" separator=",">
 			#{pirChnlGroupView.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -140,24 +167,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pir_chnl_group_view
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="roleId  != null and roleId  != '' " >
-              role_id,
-          </if>
+id,
+channel_id,
+role_id,
     </trim>
     VALUES
     <foreach collection="list" item="pirChnlGroupView" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{pirChnlGroupView.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{pirChnlGroupView.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.roleId  != null  and t.roleId != '' " >
+                  
+                  
                      #{pirChnlGroupView.roleId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

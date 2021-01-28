@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.base;
+package com.zee.ent.parameter.base;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.ent.base.BaseEnt;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiModelProperty;
 

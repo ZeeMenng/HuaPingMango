@@ -1,4 +1,4 @@
-package com.jusfoun.bll.generate.unity.mf;
+﻿package com.zee.bll.generate.unity.mf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jusfoun.bll.generate.unity.base.BaseUntBll;
-import com.jusfoun.dao.unity.mf.IMfInputTypeUntDal;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.mf.MfInputType;
-import com.jusfoun.ent.parameter.mf.MfInputTypeParameter;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.unity.base.BaseUntBll;
+import com.zee.dao.unity.mf.IMfInputTypeUntDal;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.mf.MfInputType;
+import com.zee.ent.parameter.mf.MfInputTypeParameter;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2020/8/11 11:42:47
+ * @updateDate 2021/1/28 16:07:15
  * @description 投入品种类监管 业务逻辑处理类，扩展自BaseUntBll<MfInputType>，自动生成。
  */
 public class MfInputTypeGenUntBll extends BaseUntBll<MfInputType> {
@@ -146,7 +146,8 @@ public class MfInputTypeGenUntBll extends BaseUntBll<MfInputType> {
 		}
 		return result;
 	}
-	
+  
+
 }
 
 

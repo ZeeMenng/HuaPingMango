@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGprResourceUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGprResourceUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprResource" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprResource" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="business_id" property="businessId" jdbcType="VARCHAR" />
               <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
         id,business_id,resource_id,is_default
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprResource" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GprResource" >
     insert into gpr_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -66,6 +66,32 @@
     	</foreach>
     </insert>
 
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gpr_resource
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gprResource" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gprResource.id,jdbcType=VARCHAR},
+          #{gprResource.businessId,jdbcType=VARCHAR},
+          #{gprResource.resourceId,jdbcType=VARCHAR},
+          #{gprResource.isDefault,jdbcType=TINYINT},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+business_id=values(business_id),
+resource_id=values(resource_id),
+is_default=values(is_default)
+        
+    </insert>
+
+
     <delete id="delete" parameterType="java.lang.String" >
         delete from gpr_resource
         where  id = #{id,jdbcType=VARCHAR}
@@ -102,7 +128,7 @@
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprResource" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GprResource" >
     update gpr_resource
     <set >
                   <if test="businessId != null  and businessId != '' " >

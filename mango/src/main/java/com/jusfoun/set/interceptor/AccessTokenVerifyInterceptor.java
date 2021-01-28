@@ -1,4 +1,4 @@
-package com.jusfoun.set.interceptor;
+package com.zee.set.interceptor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,22 +12,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.jusfoun.bll.extend.split.gp.GpInterfaceSplBll;
-import com.jusfoun.bll.extend.split.gp.GpUserSplBll;
-import com.jusfoun.bll.extend.split.gp.GprDomainUserSplBll;
-import com.jusfoun.bll.extend.unity.gp.GpDomainUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpTokenUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GpInterface;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.TokenUtil;
+import com.zee.bll.extend.split.gp.GpInterfaceSplBll;
+import com.zee.bll.extend.split.gp.GpUserSplBll;
+import com.zee.bll.extend.split.gp.GprDomainUserSplBll;
+import com.zee.bll.extend.unity.gp.GpDomainUntBll;
+import com.zee.bll.extend.unity.gp.GpTokenUntBll;
+import com.zee.bll.extend.unity.gp.GpUserUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.extend.gp.GpInterface;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.TokenUtil;
 
 import io.jsonwebtoken.Claims;
 

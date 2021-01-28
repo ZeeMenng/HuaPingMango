@@ -1,64 +1,62 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.zee.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:03
+ * @updateDate 2021/1/28 16:09:40
  * @description 实体类MfSaleEcommerceCrawGenEnt，自动生成。电商数据表,采集
  */
 
 public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
     @ApiModelProperty(value="平台号：对应数据字典表（dictionary）中的编码字段（code）1：天猫，2：淘宝，3：京东，4：惠农网",allowableValues="0,1",hidden=false,required=false)
     private Byte ecommerceCode;
-    @ApiModelProperty(value="平台号文本：文本，对应数据字典表（dictionary）中的文本字段（text）1：天猫，2：淘宝，3：京东，4：惠农网",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String ecommerceText;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="价格区间，对应数据字典表（dictionary）中的编码字段（code） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte priceRangeCode;
-    @ApiModelProperty(value="价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String priceRangeText;
-    @ApiModelProperty(value="原产区：对应数据字典表（dictionary）中的编码字段（code）",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String productAreaCode;
-    @ApiModelProperty(value="原产区文本，对应数据字典表（dictionary）中的文本字段（text）",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal saleAmount;
     @ApiModelProperty(value="销量单位，:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte saleAmountCode;
-    @ApiModelProperty(value="销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String saleAmountText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal saleAmountUnit;
-    @ApiModelProperty(value="销区：对应数据字典表（dictionary）中的编码字段（code）",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String saleAreaCode;
-    @ApiModelProperty(value="销区：文本，对应数据字典表（dictionary）中的文本字段（text）",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String saleAreaText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal salePrice;
     @ApiModelProperty(value="售价单位，对应数据字典表（dictionary）中的编码字段（code），1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte salePriceCode;
-    @ApiModelProperty(value="售价单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String salePriceText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal salePriceUnit;
@@ -68,29 +66,33 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
     private BigDecimal saleVolumeUnit;
     @ApiModelProperty(value="销售额单位:对应数据字典表（dictionary）中的编码字段（code）1：元，2：万元，3：亿元，4：美元，5：百万美元",allowableValues="0,1",hidden=false,required=false)
     private Byte saleVolumeUnitCode;
-    @ApiModelProperty(value="销售额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：百万美元",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String saleVolumeUnitText;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
     @ApiModelProperty(value="重量规格，对应数据字典表（dictionary）中的编码字段（code） 1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",allowableValues="0,1",hidden=false,required=false)
     private Byte weightSpecificationCode;
-    @ApiModelProperty(value="重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String weightSpecificationText;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -111,14 +113,14 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
@@ -139,28 +141,28 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。平台号文本：文本，对应数据字典表（dictionary）中的文本字段（text）1：天猫，2：淘宝，3：京东，4：惠农网
+	 * get方法。
 	 */
 	public String getEcommerceText() {
 		return this.ecommerceText;
 	}
 
 	/**
-	 * set方法。平台号文本：文本，对应数据字典表（dictionary）中的文本字段（text）1：天猫，2：淘宝，3：京东，4：惠农网
+	 * set方法。
 	 */
 	public void setEcommerceText(String ecommerceText) {
 		this.ecommerceText = ecommerceText;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -181,42 +183,42 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
+	 * get方法。
 	 */
 	public String getPriceRangeText() {
 		return this.priceRangeText;
 	}
 
 	/**
-	 * set方法。价格区间文本，对应数据字典表（dictionary）中的文本字段（text） 1：5元以下/公斤，2：5-10元/公斤，3：10-15元/公斤，4：15-20元/公斤，5：20元以上/公斤
+	 * set方法。
 	 */
 	public void setPriceRangeText(String priceRangeText) {
 		this.priceRangeText = priceRangeText;
 	}
     
 	/**
-	 * get方法。原产区：对应数据字典表（dictionary）中的编码字段（code）
+	 * get方法。
 	 */
 	public String getProductAreaCode() {
 		return this.productAreaCode;
 	}
 
 	/**
-	 * set方法。原产区：对应数据字典表（dictionary）中的编码字段（code）
+	 * set方法。
 	 */
 	public void setProductAreaCode(String productAreaCode) {
 		this.productAreaCode = productAreaCode;
 	}
     
 	/**
-	 * get方法。原产区文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * get方法。
 	 */
 	public String getProductAreaText() {
 		return this.productAreaText;
 	}
 
 	/**
-	 * set方法。原产区文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * set方法。
 	 */
 	public void setProductAreaText(String productAreaText) {
 		this.productAreaText = productAreaText;
@@ -251,14 +253,14 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getSaleAmountText() {
 		return this.saleAmountText;
 	}
 
 	/**
-	 * set方法。销量单位文本，:对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setSaleAmountText(String saleAmountText) {
 		this.saleAmountText = saleAmountText;
@@ -279,28 +281,28 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。销区：对应数据字典表（dictionary）中的编码字段（code）
+	 * get方法。
 	 */
 	public String getSaleAreaCode() {
 		return this.saleAreaCode;
 	}
 
 	/**
-	 * set方法。销区：对应数据字典表（dictionary）中的编码字段（code）
+	 * set方法。
 	 */
 	public void setSaleAreaCode(String saleAreaCode) {
 		this.saleAreaCode = saleAreaCode;
 	}
     
 	/**
-	 * get方法。销区：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * get方法。
 	 */
 	public String getSaleAreaText() {
 		return this.saleAreaText;
 	}
 
 	/**
-	 * set方法。销区：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * set方法。
 	 */
 	public void setSaleAreaText(String saleAreaText) {
 		this.saleAreaText = saleAreaText;
@@ -335,14 +337,14 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。售价单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getSalePriceText() {
 		return this.salePriceText;
 	}
 
 	/**
-	 * set方法。售价单位文本，对应数据字典表（dictionary）中的文本字段（text），1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setSalePriceText(String salePriceText) {
 		this.salePriceText = salePriceText;
@@ -405,14 +407,14 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。销售额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * get方法。
 	 */
 	public String getSaleVolumeUnitText() {
 		return this.saleVolumeUnitText;
 	}
 
 	/**
-	 * set方法。销售额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：百万美元
+	 * set方法。
 	 */
 	public void setSaleVolumeUnitText(String saleVolumeUnitText) {
 		this.saleVolumeUnitText = saleVolumeUnitText;
@@ -433,14 +435,14 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
@@ -461,21 +463,28 @@ public class MfSaleEcommerceCrawGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * get方法。
 	 */
 	public String getWeightSpecificationText() {
 		return this.weightSpecificationText;
 	}
 
 	/**
-	 * set方法。重量规格文本，对应数据字典表（dictionary）中的文本字段（text）1：1kg以下，2：1kg-2kg，3：2kg-3kg，4:3kg以上
+	 * set方法。
 	 */
 	public void setWeightSpecificationText(String weightSpecificationText) {
 		this.weightSpecificationText = weightSpecificationText;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

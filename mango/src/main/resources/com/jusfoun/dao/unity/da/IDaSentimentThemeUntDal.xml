@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaSentimentThemeUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaSentimentThemeUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentTheme" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="theme_name" property="themeName" jdbcType="VARCHAR" />
               <result column="key_name" property="keyName" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
         id,theme_name,key_name,exclude_name,rule_id,remark,add_user_id,add_time,status_code,status_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentTheme" >
     insert into da_sentiment_theme
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -95,8 +95,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_sentiment_theme
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -105,48 +104,66 @@
     	<foreach collection="list" item="daSentimentTheme" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daSentimentTheme.id,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.themeName,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.keyName,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.excludeName,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.ruleId,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.remark,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.addUserId,jdbcType=VARCHAR},
-
-      
           #{daSentimentTheme.addTime,jdbcType=TIMESTAMP},
-
-      
           #{daSentimentTheme.statusCode,jdbcType=TINYINT},
-
-      
           #{daSentimentTheme.statusText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_sentiment_theme
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_sentiment_theme
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daSentimentTheme" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daSentimentTheme.id,jdbcType=VARCHAR},
+          #{daSentimentTheme.themeName,jdbcType=VARCHAR},
+          #{daSentimentTheme.keyName,jdbcType=VARCHAR},
+          #{daSentimentTheme.excludeName,jdbcType=VARCHAR},
+          #{daSentimentTheme.ruleId,jdbcType=VARCHAR},
+          #{daSentimentTheme.remark,jdbcType=VARCHAR},
+          #{daSentimentTheme.addUserId,jdbcType=VARCHAR},
+          #{daSentimentTheme.addTime,jdbcType=TIMESTAMP},
+          #{daSentimentTheme.statusCode,jdbcType=TINYINT},
+          #{daSentimentTheme.statusText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+theme_name=values(theme_name),
+key_name=values(key_name),
+exclude_name=values(exclude_name),
+rule_id=values(rule_id),
+remark=values(remark),
+add_user_id=values(add_user_id),
+add_time=values(add_time),
+status_code=values(status_code),
+status_text=values(status_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_sentiment_theme
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_sentiment_theme
 		where id  in
@@ -155,7 +172,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentTheme" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentTheme" >
     update da_sentiment_theme
     <set >
                   <if test="themeName != null  and themeName != '' " >
@@ -233,44 +252,68 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="theme_name =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.themeName != null and daSentimentTheme.themeName  != '' " >
+                  <if test="daSentimentTheme.themeName != null and daSentimentTheme.themeName  != ''  and daSentimentTheme.themeName  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.themeName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.themeName != null  and daSentimentTheme.themeName  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="key_name =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.keyName != null and daSentimentTheme.keyName  != '' " >
+                  <if test="daSentimentTheme.keyName != null and daSentimentTheme.keyName  != ''  and daSentimentTheme.keyName  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.keyName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.keyName != null  and daSentimentTheme.keyName  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="exclude_name =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.excludeName != null and daSentimentTheme.excludeName  != '' " >
+                  <if test="daSentimentTheme.excludeName != null and daSentimentTheme.excludeName  != ''  and daSentimentTheme.excludeName  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.excludeName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.excludeName != null  and daSentimentTheme.excludeName  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="rule_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.ruleId != null and daSentimentTheme.ruleId  != '' " >
+                  <if test="daSentimentTheme.ruleId != null and daSentimentTheme.ruleId  != ''  and daSentimentTheme.ruleId  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.ruleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.ruleId != null  and daSentimentTheme.ruleId  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.remark != null and daSentimentTheme.remark  != '' " >
+                  <if test="daSentimentTheme.remark != null and daSentimentTheme.remark  != ''  and daSentimentTheme.remark  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.remark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.remark != null  and daSentimentTheme.remark  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_user_id =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.addUserId != null and daSentimentTheme.addUserId  != '' " >
+                  <if test="daSentimentTheme.addUserId != null and daSentimentTheme.addUserId  != ''  and daSentimentTheme.addUserId  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.addUserId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.addUserId != null  and daSentimentTheme.addUserId  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -289,14 +332,18 @@
          </trim>
          <trim prefix="status_text =case" suffix="end,">
               <foreach collection="list" item="daSentimentTheme" index="index">
-                  <if test="daSentimentTheme.statusText != null and daSentimentTheme.statusText  != '' " >
+                  <if test="daSentimentTheme.statusText != null and daSentimentTheme.statusText  != ''  and daSentimentTheme.statusText  != '-1' ">
                      when id=#{daSentimentTheme.id} then #{daSentimentTheme.statusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daSentimentTheme.statusText != null  and daSentimentTheme.statusText  == '-1' ">
+                     when id=#{daSentimentTheme.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daSentimentTheme" index="index" open="(" close=")" separator=",">
 			#{daSentimentTheme.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -306,66 +353,48 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_sentiment_theme
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="themeName  != null and themeName  != '' " >
-              theme_name,
-          </if>
-          <if test="keyName  != null and keyName  != '' " >
-              key_name,
-          </if>
-          <if test="excludeName  != null and excludeName  != '' " >
-              exclude_name,
-          </if>
-          <if test="ruleId  != null and ruleId  != '' " >
-              rule_id,
-          </if>
-          <if test="remark  != null and remark  != '' " >
-              remark,
-          </if>
-          <if test="addUserId  != null and addUserId  != '' " >
-              add_user_id,
-          </if>
-          <if test="addTime  != null " >
-              add_time,
-          </if>
-          <if test="statusCode  != null " >
-              status_code,
-          </if>
-          <if test="statusText  != null and statusText  != '' " >
-              status_text,
-          </if>
+id,
+theme_name,
+key_name,
+exclude_name,
+rule_id,
+remark,
+add_user_id,
+add_time,
+status_code,
+status_text,
     </trim>
     VALUES
     <foreach collection="list" item="daSentimentTheme" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daSentimentTheme.id ,jdbcType=VARCHAR},
-                  <if test="t.themeName  != null  and t.themeName != '' " >
+                  
                      #{daSentimentTheme.themeName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.keyName  != null  and t.keyName != '' " >
+                  
+                  
                      #{daSentimentTheme.keyName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.excludeName  != null  and t.excludeName != '' " >
+                  
+                  
                      #{daSentimentTheme.excludeName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.ruleId  != null  and t.ruleId != '' " >
+                  
+                  
                      #{daSentimentTheme.ruleId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.remark  != null  and t.remark != '' " >
+                  
+                  
                      #{daSentimentTheme.remark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addUserId  != null  and t.addUserId != '' " >
+                  
+                  
                      #{daSentimentTheme.addUserId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.addTime != null ">
+                  
+                  
                     #{daSentimentTheme.addTime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.statusCode != null ">
+            
+                  
                     #{daSentimentTheme.statusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.statusText  != null  and t.statusText != '' " >
+            
+                  
                      #{daSentimentTheme.statusText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaEnterpriseInfoUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaEnterpriseInfoUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaEnterpriseInfo" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
@@ -89,7 +89,7 @@
         id,common_field_id,organization_id,enterprise_name,enterprise_code,registration_mark,archives_number,society_credit_id,register_status_text,register_status_code,register_type_text,register_type_code,statistics_Department_number,found_date,corporation_name,corporation_identity_card,corporation_mobile,linkman,linkman_mobile,landline_telephone,enterprise_type_text,enterprise_type_code,enterprise_nature_code,enterprise_nature_text,industry_type_code,industry_type_text,registered_capital,paidin_capital,address,enterprise_address,enterprise_phone,administrative_area,region_code,region_text,measure_longitude,measure_latitude,establish_date,approval_date,business_duetime,longdistance_number,administration_number,business_scope,professional_activity,enterprise_control,organization_type_text,organization_type_code,industry_activity,industry_code,industry_text,risk_grade,risk_value,category_code,category_text,risk_tags_code,risk_tags_text,funnel_tags_code,funnel_tags_text,core_code,core_text,person_scale,money_scale,year_they,is_corporate_champion_type_code,is_corporate_champion_type_text,scale_enterprise_type_code,email,scale_enterprise_type_text,summary,description,zip_code,telautogram,is_recommend,organization_code,manage_status,trade_text,registry_office,logo_resource_id,logo_resource_path,is_cooperative_code,is_cooperative_text
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaEnterpriseInfo" >
     insert into da_enterprise_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -637,8 +637,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_enterprise_info
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -647,258 +646,276 @@
     	<foreach collection="list" item="daEnterpriseInfo" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daEnterpriseInfo.id,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.organizationId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseName,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registrationMark,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.archivesNumber,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.societyCreditId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registerStatusText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.registerTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER},
-
-      
           #{daEnterpriseInfo.statisticsDepartmentNumber,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseInfo.corporationName,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.corporationIdentityCard,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.corporationMobile,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.linkman,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.linkmanMobile,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.landlineTelephone,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.enterpriseNatureText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.industryTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC},
-
-      
           #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC},
-
-      
           #{daEnterpriseInfo.address,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseAddress,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterprisePhone,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.administrativeArea,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.regionCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.regionText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.measureLongitude,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.measureLatitude,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP},
-
-      
           #{daEnterpriseInfo.longdistanceNumber,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.administrationNumber,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.businessScope,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.professionalActivity,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.enterpriseControl,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.organizationTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.organizationTypeCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.industryActivity,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.industryCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.industryText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.riskGrade,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC},
-
-      
           #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.categoryText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.riskTagsText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.funnelTagsText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.coreCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.coreText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.personScale,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.moneyScale,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.yearThey,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.isCorporateChampionTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.email,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.scaleEnterpriseTypeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.summary,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.description,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.zipCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.telautogram,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.organizationCode,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.manageStatus,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.tradeText,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.registryOffice,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.logoResourceId,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.logoResourcePath,jdbcType=VARCHAR},
-
-      
           #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT},
-
-      
           #{daEnterpriseInfo.isCooperativeText,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_enterprise_info
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_enterprise_info
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daEnterpriseInfo" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daEnterpriseInfo.id,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.commonFieldId,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.organizationId,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseName,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registrationMark,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.archivesNumber,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.societyCreditId,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registerStatusText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.registerTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER},
+          #{daEnterpriseInfo.statisticsDepartmentNumber,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP},
+          #{daEnterpriseInfo.corporationName,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.corporationIdentityCard,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.corporationMobile,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.linkman,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.linkmanMobile,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.landlineTelephone,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.enterpriseNatureText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.industryTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC},
+          #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC},
+          #{daEnterpriseInfo.address,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseAddress,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterprisePhone,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.administrativeArea,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.regionCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.regionText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.measureLongitude,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.measureLatitude,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP},
+          #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP},
+          #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP},
+          #{daEnterpriseInfo.longdistanceNumber,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.administrationNumber,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.businessScope,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.professionalActivity,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.enterpriseControl,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.organizationTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.organizationTypeCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.industryActivity,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.industryCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.industryText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.riskGrade,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC},
+          #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.categoryText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.riskTagsText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.funnelTagsText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.coreCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.coreText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.personScale,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.moneyScale,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.yearThey,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.isCorporateChampionTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.email,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.scaleEnterpriseTypeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.summary,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.description,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.zipCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.telautogram,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT},
+          #{daEnterpriseInfo.organizationCode,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.manageStatus,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.tradeText,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.registryOffice,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.logoResourceId,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.logoResourcePath,jdbcType=VARCHAR},
+          #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT},
+          #{daEnterpriseInfo.isCooperativeText,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+organization_id=values(organization_id),
+enterprise_name=values(enterprise_name),
+enterprise_code=values(enterprise_code),
+registration_mark=values(registration_mark),
+archives_number=values(archives_number),
+society_credit_id=values(society_credit_id),
+register_status_text=values(register_status_text),
+register_status_code=values(register_status_code),
+register_type_text=values(register_type_text),
+register_type_code=values(register_type_code),
+statistics_Department_number=values(statistics_Department_number),
+found_date=values(found_date),
+corporation_name=values(corporation_name),
+corporation_identity_card=values(corporation_identity_card),
+corporation_mobile=values(corporation_mobile),
+linkman=values(linkman),
+linkman_mobile=values(linkman_mobile),
+landline_telephone=values(landline_telephone),
+enterprise_type_text=values(enterprise_type_text),
+enterprise_type_code=values(enterprise_type_code),
+enterprise_nature_code=values(enterprise_nature_code),
+enterprise_nature_text=values(enterprise_nature_text),
+industry_type_code=values(industry_type_code),
+industry_type_text=values(industry_type_text),
+registered_capital=values(registered_capital),
+paidin_capital=values(paidin_capital),
+address=values(address),
+enterprise_address=values(enterprise_address),
+enterprise_phone=values(enterprise_phone),
+administrative_area=values(administrative_area),
+region_code=values(region_code),
+region_text=values(region_text),
+measure_longitude=values(measure_longitude),
+measure_latitude=values(measure_latitude),
+establish_date=values(establish_date),
+approval_date=values(approval_date),
+business_duetime=values(business_duetime),
+longdistance_number=values(longdistance_number),
+administration_number=values(administration_number),
+business_scope=values(business_scope),
+professional_activity=values(professional_activity),
+enterprise_control=values(enterprise_control),
+organization_type_text=values(organization_type_text),
+organization_type_code=values(organization_type_code),
+industry_activity=values(industry_activity),
+industry_code=values(industry_code),
+industry_text=values(industry_text),
+risk_grade=values(risk_grade),
+risk_value=values(risk_value),
+category_code=values(category_code),
+category_text=values(category_text),
+risk_tags_code=values(risk_tags_code),
+risk_tags_text=values(risk_tags_text),
+funnel_tags_code=values(funnel_tags_code),
+funnel_tags_text=values(funnel_tags_text),
+core_code=values(core_code),
+core_text=values(core_text),
+person_scale=values(person_scale),
+money_scale=values(money_scale),
+year_they=values(year_they),
+is_corporate_champion_type_code=values(is_corporate_champion_type_code),
+is_corporate_champion_type_text=values(is_corporate_champion_type_text),
+scale_enterprise_type_code=values(scale_enterprise_type_code),
+email=values(email),
+scale_enterprise_type_text=values(scale_enterprise_type_text),
+summary=values(summary),
+description=values(description),
+zip_code=values(zip_code),
+telautogram=values(telautogram),
+is_recommend=values(is_recommend),
+organization_code=values(organization_code),
+manage_status=values(manage_status),
+trade_text=values(trade_text),
+registry_office=values(registry_office),
+logo_resource_id=values(logo_resource_id),
+logo_resource_path=values(logo_resource_path),
+is_cooperative_code=values(is_cooperative_code),
+is_cooperative_text=values(is_cooperative_text)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_enterprise_info
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_enterprise_info
 		where id  in
@@ -907,7 +924,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaEnterpriseInfo" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaEnterpriseInfo" >
     update da_enterprise_info
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -1405,58 +1424,90 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.commonFieldId != null and daEnterpriseInfo.commonFieldId  != '' " >
+                  <if test="daEnterpriseInfo.commonFieldId != null and daEnterpriseInfo.commonFieldId  != ''  and daEnterpriseInfo.commonFieldId  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.commonFieldId != null  and daEnterpriseInfo.commonFieldId  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="organization_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.organizationId != null and daEnterpriseInfo.organizationId  != '' " >
+                  <if test="daEnterpriseInfo.organizationId != null and daEnterpriseInfo.organizationId  != ''  and daEnterpriseInfo.organizationId  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.organizationId != null  and daEnterpriseInfo.organizationId  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_name =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseName != null and daEnterpriseInfo.enterpriseName  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseName != null and daEnterpriseInfo.enterpriseName  != ''  and daEnterpriseInfo.enterpriseName  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseName != null  and daEnterpriseInfo.enterpriseName  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseCode != null and daEnterpriseInfo.enterpriseCode  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseCode != null and daEnterpriseInfo.enterpriseCode  != ''  and daEnterpriseInfo.enterpriseCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseCode != null  and daEnterpriseInfo.enterpriseCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="registration_mark =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.registrationMark != null and daEnterpriseInfo.registrationMark  != '' " >
+                  <if test="daEnterpriseInfo.registrationMark != null and daEnterpriseInfo.registrationMark  != ''  and daEnterpriseInfo.registrationMark  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registrationMark,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.registrationMark != null  and daEnterpriseInfo.registrationMark  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="archives_number =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.archivesNumber != null and daEnterpriseInfo.archivesNumber  != '' " >
+                  <if test="daEnterpriseInfo.archivesNumber != null and daEnterpriseInfo.archivesNumber  != ''  and daEnterpriseInfo.archivesNumber  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.archivesNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.archivesNumber != null  and daEnterpriseInfo.archivesNumber  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="society_credit_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.societyCreditId != null and daEnterpriseInfo.societyCreditId  != '' " >
+                  <if test="daEnterpriseInfo.societyCreditId != null and daEnterpriseInfo.societyCreditId  != ''  and daEnterpriseInfo.societyCreditId  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.societyCreditId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.societyCreditId != null  and daEnterpriseInfo.societyCreditId  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="register_status_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.registerStatusText != null and daEnterpriseInfo.registerStatusText  != '' " >
+                  <if test="daEnterpriseInfo.registerStatusText != null and daEnterpriseInfo.registerStatusText  != ''  and daEnterpriseInfo.registerStatusText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerStatusText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.registerStatusText != null  and daEnterpriseInfo.registerStatusText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="register_status_code =case" suffix="end,">
@@ -1468,9 +1519,13 @@
          </trim>
          <trim prefix="register_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.registerTypeText != null and daEnterpriseInfo.registerTypeText  != '' " >
+                  <if test="daEnterpriseInfo.registerTypeText != null and daEnterpriseInfo.registerTypeText  != ''  and daEnterpriseInfo.registerTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registerTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.registerTypeText != null  and daEnterpriseInfo.registerTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="register_type_code =case" suffix="end,">
@@ -1482,9 +1537,13 @@
          </trim>
          <trim prefix="statistics_Department_number =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.statisticsDepartmentNumber != null and daEnterpriseInfo.statisticsDepartmentNumber  != '' " >
+                  <if test="daEnterpriseInfo.statisticsDepartmentNumber != null and daEnterpriseInfo.statisticsDepartmentNumber  != ''  and daEnterpriseInfo.statisticsDepartmentNumber  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.statisticsDepartmentNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.statisticsDepartmentNumber != null  and daEnterpriseInfo.statisticsDepartmentNumber  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="found_date =case" suffix="end,">
@@ -1496,51 +1555,79 @@
          </trim>
          <trim prefix="corporation_name =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.corporationName != null and daEnterpriseInfo.corporationName  != '' " >
+                  <if test="daEnterpriseInfo.corporationName != null and daEnterpriseInfo.corporationName  != ''  and daEnterpriseInfo.corporationName  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationName,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.corporationName != null  and daEnterpriseInfo.corporationName  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="corporation_identity_card =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.corporationIdentityCard != null and daEnterpriseInfo.corporationIdentityCard  != '' " >
+                  <if test="daEnterpriseInfo.corporationIdentityCard != null and daEnterpriseInfo.corporationIdentityCard  != ''  and daEnterpriseInfo.corporationIdentityCard  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationIdentityCard,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.corporationIdentityCard != null  and daEnterpriseInfo.corporationIdentityCard  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="corporation_mobile =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.corporationMobile != null and daEnterpriseInfo.corporationMobile  != '' " >
+                  <if test="daEnterpriseInfo.corporationMobile != null and daEnterpriseInfo.corporationMobile  != ''  and daEnterpriseInfo.corporationMobile  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.corporationMobile,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.corporationMobile != null  and daEnterpriseInfo.corporationMobile  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="linkman =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.linkman != null and daEnterpriseInfo.linkman  != '' " >
+                  <if test="daEnterpriseInfo.linkman != null and daEnterpriseInfo.linkman  != ''  and daEnterpriseInfo.linkman  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.linkman,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.linkman != null  and daEnterpriseInfo.linkman  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="linkman_mobile =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.linkmanMobile != null and daEnterpriseInfo.linkmanMobile  != '' " >
+                  <if test="daEnterpriseInfo.linkmanMobile != null and daEnterpriseInfo.linkmanMobile  != ''  and daEnterpriseInfo.linkmanMobile  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.linkmanMobile,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.linkmanMobile != null  and daEnterpriseInfo.linkmanMobile  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="landline_telephone =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.landlineTelephone != null and daEnterpriseInfo.landlineTelephone  != '' " >
+                  <if test="daEnterpriseInfo.landlineTelephone != null and daEnterpriseInfo.landlineTelephone  != ''  and daEnterpriseInfo.landlineTelephone  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.landlineTelephone,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.landlineTelephone != null  and daEnterpriseInfo.landlineTelephone  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseTypeText != null and daEnterpriseInfo.enterpriseTypeText  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseTypeText != null and daEnterpriseInfo.enterpriseTypeText  != ''  and daEnterpriseInfo.enterpriseTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseTypeText != null  and daEnterpriseInfo.enterpriseTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_type_code =case" suffix="end,">
@@ -1559,9 +1646,13 @@
          </trim>
          <trim prefix="enterprise_nature_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseNatureText != null and daEnterpriseInfo.enterpriseNatureText  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseNatureText != null and daEnterpriseInfo.enterpriseNatureText  != ''  and daEnterpriseInfo.enterpriseNatureText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseNatureText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseNatureText != null  and daEnterpriseInfo.enterpriseNatureText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="industry_type_code =case" suffix="end,">
@@ -1573,9 +1664,13 @@
          </trim>
          <trim prefix="industry_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.industryTypeText != null and daEnterpriseInfo.industryTypeText  != '' " >
+                  <if test="daEnterpriseInfo.industryTypeText != null and daEnterpriseInfo.industryTypeText  != ''  and daEnterpriseInfo.industryTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.industryTypeText != null  and daEnterpriseInfo.industryTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="registered_capital =case" suffix="end,">
@@ -1594,58 +1689,90 @@
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.address != null and daEnterpriseInfo.address  != '' " >
+                  <if test="daEnterpriseInfo.address != null and daEnterpriseInfo.address  != ''  and daEnterpriseInfo.address  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.address != null  and daEnterpriseInfo.address  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_address =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseAddress != null and daEnterpriseInfo.enterpriseAddress  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseAddress != null and daEnterpriseInfo.enterpriseAddress  != ''  and daEnterpriseInfo.enterpriseAddress  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseAddress,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseAddress != null  and daEnterpriseInfo.enterpriseAddress  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_phone =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterprisePhone != null and daEnterpriseInfo.enterprisePhone  != '' " >
+                  <if test="daEnterpriseInfo.enterprisePhone != null and daEnterpriseInfo.enterprisePhone  != ''  and daEnterpriseInfo.enterprisePhone  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterprisePhone,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterprisePhone != null  and daEnterpriseInfo.enterprisePhone  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="administrative_area =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.administrativeArea != null and daEnterpriseInfo.administrativeArea  != '' " >
+                  <if test="daEnterpriseInfo.administrativeArea != null and daEnterpriseInfo.administrativeArea  != ''  and daEnterpriseInfo.administrativeArea  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.administrativeArea,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.administrativeArea != null  and daEnterpriseInfo.administrativeArea  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.regionCode != null and daEnterpriseInfo.regionCode  != '' " >
+                  <if test="daEnterpriseInfo.regionCode != null and daEnterpriseInfo.regionCode  != ''  and daEnterpriseInfo.regionCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.regionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.regionCode != null  and daEnterpriseInfo.regionCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.regionText != null and daEnterpriseInfo.regionText  != '' " >
+                  <if test="daEnterpriseInfo.regionText != null and daEnterpriseInfo.regionText  != ''  and daEnterpriseInfo.regionText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.regionText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.regionText != null  and daEnterpriseInfo.regionText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="measure_longitude =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.measureLongitude != null and daEnterpriseInfo.measureLongitude  != '' " >
+                  <if test="daEnterpriseInfo.measureLongitude != null and daEnterpriseInfo.measureLongitude  != ''  and daEnterpriseInfo.measureLongitude  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.measureLongitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.measureLongitude != null  and daEnterpriseInfo.measureLongitude  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="measure_latitude =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.measureLatitude != null and daEnterpriseInfo.measureLatitude  != '' " >
+                  <if test="daEnterpriseInfo.measureLatitude != null and daEnterpriseInfo.measureLatitude  != ''  and daEnterpriseInfo.measureLatitude  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.measureLatitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.measureLatitude != null  and daEnterpriseInfo.measureLatitude  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="establish_date =case" suffix="end,">
@@ -1671,79 +1798,123 @@
          </trim>
          <trim prefix="longdistance_number =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.longdistanceNumber != null and daEnterpriseInfo.longdistanceNumber  != '' " >
+                  <if test="daEnterpriseInfo.longdistanceNumber != null and daEnterpriseInfo.longdistanceNumber  != ''  and daEnterpriseInfo.longdistanceNumber  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.longdistanceNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.longdistanceNumber != null  and daEnterpriseInfo.longdistanceNumber  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="administration_number =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.administrationNumber != null and daEnterpriseInfo.administrationNumber  != '' " >
+                  <if test="daEnterpriseInfo.administrationNumber != null and daEnterpriseInfo.administrationNumber  != ''  and daEnterpriseInfo.administrationNumber  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.administrationNumber,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.administrationNumber != null  and daEnterpriseInfo.administrationNumber  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="business_scope =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.businessScope != null and daEnterpriseInfo.businessScope  != '' " >
+                  <if test="daEnterpriseInfo.businessScope != null and daEnterpriseInfo.businessScope  != ''  and daEnterpriseInfo.businessScope  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.businessScope,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.businessScope != null  and daEnterpriseInfo.businessScope  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="professional_activity =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.professionalActivity != null and daEnterpriseInfo.professionalActivity  != '' " >
+                  <if test="daEnterpriseInfo.professionalActivity != null and daEnterpriseInfo.professionalActivity  != ''  and daEnterpriseInfo.professionalActivity  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.professionalActivity,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.professionalActivity != null  and daEnterpriseInfo.professionalActivity  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="enterprise_control =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.enterpriseControl != null and daEnterpriseInfo.enterpriseControl  != '' " >
+                  <if test="daEnterpriseInfo.enterpriseControl != null and daEnterpriseInfo.enterpriseControl  != ''  and daEnterpriseInfo.enterpriseControl  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.enterpriseControl,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.enterpriseControl != null  and daEnterpriseInfo.enterpriseControl  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="organization_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.organizationTypeText != null and daEnterpriseInfo.organizationTypeText  != '' " >
+                  <if test="daEnterpriseInfo.organizationTypeText != null and daEnterpriseInfo.organizationTypeText  != ''  and daEnterpriseInfo.organizationTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.organizationTypeText != null  and daEnterpriseInfo.organizationTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="organization_type_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.organizationTypeCode != null and daEnterpriseInfo.organizationTypeCode  != '' " >
+                  <if test="daEnterpriseInfo.organizationTypeCode != null and daEnterpriseInfo.organizationTypeCode  != ''  and daEnterpriseInfo.organizationTypeCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationTypeCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.organizationTypeCode != null  and daEnterpriseInfo.organizationTypeCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="industry_activity =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.industryActivity != null and daEnterpriseInfo.industryActivity  != '' " >
+                  <if test="daEnterpriseInfo.industryActivity != null and daEnterpriseInfo.industryActivity  != ''  and daEnterpriseInfo.industryActivity  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryActivity,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.industryActivity != null  and daEnterpriseInfo.industryActivity  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="industry_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.industryCode != null and daEnterpriseInfo.industryCode  != '' " >
+                  <if test="daEnterpriseInfo.industryCode != null and daEnterpriseInfo.industryCode  != ''  and daEnterpriseInfo.industryCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.industryCode != null  and daEnterpriseInfo.industryCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="industry_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.industryText != null and daEnterpriseInfo.industryText  != '' " >
+                  <if test="daEnterpriseInfo.industryText != null and daEnterpriseInfo.industryText  != ''  and daEnterpriseInfo.industryText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.industryText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.industryText != null  and daEnterpriseInfo.industryText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="risk_grade =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.riskGrade != null and daEnterpriseInfo.riskGrade  != '' " >
+                  <if test="daEnterpriseInfo.riskGrade != null and daEnterpriseInfo.riskGrade  != ''  and daEnterpriseInfo.riskGrade  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskGrade,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.riskGrade != null  and daEnterpriseInfo.riskGrade  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="risk_value =case" suffix="end,">
@@ -1762,9 +1933,13 @@
          </trim>
          <trim prefix="category_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.categoryText != null and daEnterpriseInfo.categoryText  != '' " >
+                  <if test="daEnterpriseInfo.categoryText != null and daEnterpriseInfo.categoryText  != ''  and daEnterpriseInfo.categoryText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.categoryText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.categoryText != null  and daEnterpriseInfo.categoryText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="risk_tags_code =case" suffix="end,">
@@ -1776,9 +1951,13 @@
          </trim>
          <trim prefix="risk_tags_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.riskTagsText != null and daEnterpriseInfo.riskTagsText  != '' " >
+                  <if test="daEnterpriseInfo.riskTagsText != null and daEnterpriseInfo.riskTagsText  != ''  and daEnterpriseInfo.riskTagsText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.riskTagsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.riskTagsText != null  and daEnterpriseInfo.riskTagsText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="funnel_tags_code =case" suffix="end,">
@@ -1790,9 +1969,13 @@
          </trim>
          <trim prefix="funnel_tags_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.funnelTagsText != null and daEnterpriseInfo.funnelTagsText  != '' " >
+                  <if test="daEnterpriseInfo.funnelTagsText != null and daEnterpriseInfo.funnelTagsText  != ''  and daEnterpriseInfo.funnelTagsText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.funnelTagsText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.funnelTagsText != null  and daEnterpriseInfo.funnelTagsText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="core_code =case" suffix="end,">
@@ -1804,30 +1987,46 @@
          </trim>
          <trim prefix="core_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.coreText != null and daEnterpriseInfo.coreText  != '' " >
+                  <if test="daEnterpriseInfo.coreText != null and daEnterpriseInfo.coreText  != ''  and daEnterpriseInfo.coreText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.coreText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.coreText != null  and daEnterpriseInfo.coreText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="person_scale =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.personScale != null and daEnterpriseInfo.personScale  != '' " >
+                  <if test="daEnterpriseInfo.personScale != null and daEnterpriseInfo.personScale  != ''  and daEnterpriseInfo.personScale  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.personScale,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.personScale != null  and daEnterpriseInfo.personScale  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="money_scale =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.moneyScale != null and daEnterpriseInfo.moneyScale  != '' " >
+                  <if test="daEnterpriseInfo.moneyScale != null and daEnterpriseInfo.moneyScale  != ''  and daEnterpriseInfo.moneyScale  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.moneyScale,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.moneyScale != null  and daEnterpriseInfo.moneyScale  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="year_they =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.yearThey != null and daEnterpriseInfo.yearThey  != '' " >
+                  <if test="daEnterpriseInfo.yearThey != null and daEnterpriseInfo.yearThey  != ''  and daEnterpriseInfo.yearThey  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.yearThey,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.yearThey != null  and daEnterpriseInfo.yearThey  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_corporate_champion_type_code =case" suffix="end,">
@@ -1839,9 +2038,13 @@
          </trim>
          <trim prefix="is_corporate_champion_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.isCorporateChampionTypeText != null and daEnterpriseInfo.isCorporateChampionTypeText  != '' " >
+                  <if test="daEnterpriseInfo.isCorporateChampionTypeText != null and daEnterpriseInfo.isCorporateChampionTypeText  != ''  and daEnterpriseInfo.isCorporateChampionTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCorporateChampionTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.isCorporateChampionTypeText != null  and daEnterpriseInfo.isCorporateChampionTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="scale_enterprise_type_code =case" suffix="end,">
@@ -1853,44 +2056,68 @@
          </trim>
          <trim prefix="email =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.email != null and daEnterpriseInfo.email  != '' " >
+                  <if test="daEnterpriseInfo.email != null and daEnterpriseInfo.email  != ''  and daEnterpriseInfo.email  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.email,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.email != null  and daEnterpriseInfo.email  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="scale_enterprise_type_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.scaleEnterpriseTypeText != null and daEnterpriseInfo.scaleEnterpriseTypeText  != '' " >
+                  <if test="daEnterpriseInfo.scaleEnterpriseTypeText != null and daEnterpriseInfo.scaleEnterpriseTypeText  != ''  and daEnterpriseInfo.scaleEnterpriseTypeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.scaleEnterpriseTypeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.scaleEnterpriseTypeText != null  and daEnterpriseInfo.scaleEnterpriseTypeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="summary =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.summary != null and daEnterpriseInfo.summary  != '' " >
+                  <if test="daEnterpriseInfo.summary != null and daEnterpriseInfo.summary  != ''  and daEnterpriseInfo.summary  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.summary,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.summary != null  and daEnterpriseInfo.summary  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="description =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.description != null and daEnterpriseInfo.description  != '' " >
+                  <if test="daEnterpriseInfo.description != null and daEnterpriseInfo.description  != ''  and daEnterpriseInfo.description  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.description,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.description != null  and daEnterpriseInfo.description  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="zip_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.zipCode != null and daEnterpriseInfo.zipCode  != '' " >
+                  <if test="daEnterpriseInfo.zipCode != null and daEnterpriseInfo.zipCode  != ''  and daEnterpriseInfo.zipCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.zipCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.zipCode != null  and daEnterpriseInfo.zipCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="telautogram =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.telautogram != null and daEnterpriseInfo.telautogram  != '' " >
+                  <if test="daEnterpriseInfo.telautogram != null and daEnterpriseInfo.telautogram  != ''  and daEnterpriseInfo.telautogram  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.telautogram,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.telautogram != null  and daEnterpriseInfo.telautogram  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_recommend =case" suffix="end,">
@@ -1902,44 +2129,68 @@
          </trim>
          <trim prefix="organization_code =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.organizationCode != null and daEnterpriseInfo.organizationCode  != '' " >
+                  <if test="daEnterpriseInfo.organizationCode != null and daEnterpriseInfo.organizationCode  != ''  and daEnterpriseInfo.organizationCode  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.organizationCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.organizationCode != null  and daEnterpriseInfo.organizationCode  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="manage_status =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.manageStatus != null and daEnterpriseInfo.manageStatus  != '' " >
+                  <if test="daEnterpriseInfo.manageStatus != null and daEnterpriseInfo.manageStatus  != ''  and daEnterpriseInfo.manageStatus  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.manageStatus,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.manageStatus != null  and daEnterpriseInfo.manageStatus  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="trade_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.tradeText != null and daEnterpriseInfo.tradeText  != '' " >
+                  <if test="daEnterpriseInfo.tradeText != null and daEnterpriseInfo.tradeText  != ''  and daEnterpriseInfo.tradeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.tradeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.tradeText != null  and daEnterpriseInfo.tradeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="registry_office =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.registryOffice != null and daEnterpriseInfo.registryOffice  != '' " >
+                  <if test="daEnterpriseInfo.registryOffice != null and daEnterpriseInfo.registryOffice  != ''  and daEnterpriseInfo.registryOffice  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.registryOffice,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.registryOffice != null  and daEnterpriseInfo.registryOffice  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="logo_resource_id =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.logoResourceId != null and daEnterpriseInfo.logoResourceId  != '' " >
+                  <if test="daEnterpriseInfo.logoResourceId != null and daEnterpriseInfo.logoResourceId  != ''  and daEnterpriseInfo.logoResourceId  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.logoResourceId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.logoResourceId != null  and daEnterpriseInfo.logoResourceId  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="logo_resource_path =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.logoResourcePath != null and daEnterpriseInfo.logoResourcePath  != '' " >
+                  <if test="daEnterpriseInfo.logoResourcePath != null and daEnterpriseInfo.logoResourcePath  != ''  and daEnterpriseInfo.logoResourcePath  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.logoResourcePath,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.logoResourcePath != null  and daEnterpriseInfo.logoResourcePath  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="is_cooperative_code =case" suffix="end,">
@@ -1951,14 +2202,18 @@
          </trim>
          <trim prefix="is_cooperative_text =case" suffix="end,">
               <foreach collection="list" item="daEnterpriseInfo" index="index">
-                  <if test="daEnterpriseInfo.isCooperativeText != null and daEnterpriseInfo.isCooperativeText  != '' " >
+                  <if test="daEnterpriseInfo.isCooperativeText != null and daEnterpriseInfo.isCooperativeText  != ''  and daEnterpriseInfo.isCooperativeText  != '-1' ">
                      when id=#{daEnterpriseInfo.id} then #{daEnterpriseInfo.isCooperativeText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daEnterpriseInfo.isCooperativeText != null  and daEnterpriseInfo.isCooperativeText  == '-1' ">
+                     when id=#{daEnterpriseInfo.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daEnterpriseInfo" index="index" open="(" close=")" separator=",">
 			#{daEnterpriseInfo.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -1968,486 +2223,328 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_enterprise_info
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="organizationId  != null and organizationId  != '' " >
-              organization_id,
-          </if>
-          <if test="enterpriseName  != null and enterpriseName  != '' " >
-              enterprise_name,
-          </if>
-          <if test="enterpriseCode  != null and enterpriseCode  != '' " >
-              enterprise_code,
-          </if>
-          <if test="registrationMark  != null and registrationMark  != '' " >
-              registration_mark,
-          </if>
-          <if test="archivesNumber  != null and archivesNumber  != '' " >
-              archives_number,
-          </if>
-          <if test="societyCreditId  != null and societyCreditId  != '' " >
-              society_credit_id,
-          </if>
-          <if test="registerStatusText  != null and registerStatusText  != '' " >
-              register_status_text,
-          </if>
-          <if test="registerStatusCode  != null " >
-              register_status_code,
-          </if>
-          <if test="registerTypeText  != null and registerTypeText  != '' " >
-              register_type_text,
-          </if>
-          <if test="registerTypeCode  != null " >
-              register_type_code,
-          </if>
-          <if test="statisticsDepartmentNumber  != null and statisticsDepartmentNumber  != '' " >
-              statistics_Department_number,
-          </if>
-          <if test="foundDate  != null " >
-              found_date,
-          </if>
-          <if test="corporationName  != null and corporationName  != '' " >
-              corporation_name,
-          </if>
-          <if test="corporationIdentityCard  != null and corporationIdentityCard  != '' " >
-              corporation_identity_card,
-          </if>
-          <if test="corporationMobile  != null and corporationMobile  != '' " >
-              corporation_mobile,
-          </if>
-          <if test="linkman  != null and linkman  != '' " >
-              linkman,
-          </if>
-          <if test="linkmanMobile  != null and linkmanMobile  != '' " >
-              linkman_mobile,
-          </if>
-          <if test="landlineTelephone  != null and landlineTelephone  != '' " >
-              landline_telephone,
-          </if>
-          <if test="enterpriseTypeText  != null and enterpriseTypeText  != '' " >
-              enterprise_type_text,
-          </if>
-          <if test="enterpriseTypeCode  != null " >
-              enterprise_type_code,
-          </if>
-          <if test="enterpriseNatureCode  != null " >
-              enterprise_nature_code,
-          </if>
-          <if test="enterpriseNatureText  != null and enterpriseNatureText  != '' " >
-              enterprise_nature_text,
-          </if>
-          <if test="industryTypeCode  != null " >
-              industry_type_code,
-          </if>
-          <if test="industryTypeText  != null and industryTypeText  != '' " >
-              industry_type_text,
-          </if>
-          <if test="registeredCapital  != null " >
-              registered_capital,
-          </if>
-          <if test="paidinCapital  != null " >
-              paidin_capital,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="enterpriseAddress  != null and enterpriseAddress  != '' " >
-              enterprise_address,
-          </if>
-          <if test="enterprisePhone  != null and enterprisePhone  != '' " >
-              enterprise_phone,
-          </if>
-          <if test="administrativeArea  != null and administrativeArea  != '' " >
-              administrative_area,
-          </if>
-          <if test="regionCode  != null and regionCode  != '' " >
-              region_code,
-          </if>
-          <if test="regionText  != null and regionText  != '' " >
-              region_text,
-          </if>
-          <if test="measureLongitude  != null and measureLongitude  != '' " >
-              measure_longitude,
-          </if>
-          <if test="measureLatitude  != null and measureLatitude  != '' " >
-              measure_latitude,
-          </if>
-          <if test="establishDate  != null " >
-              establish_date,
-          </if>
-          <if test="approvalDate  != null " >
-              approval_date,
-          </if>
-          <if test="businessDuetime  != null " >
-              business_duetime,
-          </if>
-          <if test="longdistanceNumber  != null and longdistanceNumber  != '' " >
-              longdistance_number,
-          </if>
-          <if test="administrationNumber  != null and administrationNumber  != '' " >
-              administration_number,
-          </if>
-          <if test="businessScope  != null and businessScope  != '' " >
-              business_scope,
-          </if>
-          <if test="professionalActivity  != null and professionalActivity  != '' " >
-              professional_activity,
-          </if>
-          <if test="enterpriseControl  != null and enterpriseControl  != '' " >
-              enterprise_control,
-          </if>
-          <if test="organizationTypeText  != null and organizationTypeText  != '' " >
-              organization_type_text,
-          </if>
-          <if test="organizationTypeCode  != null and organizationTypeCode  != '' " >
-              organization_type_code,
-          </if>
-          <if test="industryActivity  != null and industryActivity  != '' " >
-              industry_activity,
-          </if>
-          <if test="industryCode  != null and industryCode  != '' " >
-              industry_code,
-          </if>
-          <if test="industryText  != null and industryText  != '' " >
-              industry_text,
-          </if>
-          <if test="riskGrade  != null and riskGrade  != '' " >
-              risk_grade,
-          </if>
-          <if test="riskValue  != null " >
-              risk_value,
-          </if>
-          <if test="categoryCode  != null " >
-              category_code,
-          </if>
-          <if test="categoryText  != null and categoryText  != '' " >
-              category_text,
-          </if>
-          <if test="riskTagsCode  != null " >
-              risk_tags_code,
-          </if>
-          <if test="riskTagsText  != null and riskTagsText  != '' " >
-              risk_tags_text,
-          </if>
-          <if test="funnelTagsCode  != null " >
-              funnel_tags_code,
-          </if>
-          <if test="funnelTagsText  != null and funnelTagsText  != '' " >
-              funnel_tags_text,
-          </if>
-          <if test="coreCode  != null " >
-              core_code,
-          </if>
-          <if test="coreText  != null and coreText  != '' " >
-              core_text,
-          </if>
-          <if test="personScale  != null and personScale  != '' " >
-              person_scale,
-          </if>
-          <if test="moneyScale  != null and moneyScale  != '' " >
-              money_scale,
-          </if>
-          <if test="yearThey  != null and yearThey  != '' " >
-              year_they,
-          </if>
-          <if test="isCorporateChampionTypeCode  != null " >
-              is_corporate_champion_type_code,
-          </if>
-          <if test="isCorporateChampionTypeText  != null and isCorporateChampionTypeText  != '' " >
-              is_corporate_champion_type_text,
-          </if>
-          <if test="scaleEnterpriseTypeCode  != null " >
-              scale_enterprise_type_code,
-          </if>
-          <if test="email  != null and email  != '' " >
-              email,
-          </if>
-          <if test="scaleEnterpriseTypeText  != null and scaleEnterpriseTypeText  != '' " >
-              scale_enterprise_type_text,
-          </if>
-          <if test="summary  != null and summary  != '' " >
-              summary,
-          </if>
-          <if test="description  != null and description  != '' " >
-              description,
-          </if>
-          <if test="zipCode  != null and zipCode  != '' " >
-              zip_code,
-          </if>
-          <if test="telautogram  != null and telautogram  != '' " >
-              telautogram,
-          </if>
-          <if test="isRecommend  != null " >
-              is_recommend,
-          </if>
-          <if test="organizationCode  != null and organizationCode  != '' " >
-              organization_code,
-          </if>
-          <if test="manageStatus  != null and manageStatus  != '' " >
-              manage_status,
-          </if>
-          <if test="tradeText  != null and tradeText  != '' " >
-              trade_text,
-          </if>
-          <if test="registryOffice  != null and registryOffice  != '' " >
-              registry_office,
-          </if>
-          <if test="logoResourceId  != null and logoResourceId  != '' " >
-              logo_resource_id,
-          </if>
-          <if test="logoResourcePath  != null and logoResourcePath  != '' " >
-              logo_resource_path,
-          </if>
-          <if test="isCooperativeCode  != null " >
-              is_cooperative_code,
-          </if>
-          <if test="isCooperativeText  != null and isCooperativeText  != '' " >
-              is_cooperative_text,
-          </if>
+id,
+common_field_id,
+organization_id,
+enterprise_name,
+enterprise_code,
+registration_mark,
+archives_number,
+society_credit_id,
+register_status_text,
+register_status_code,
+register_type_text,
+register_type_code,
+statistics_Department_number,
+found_date,
+corporation_name,
+corporation_identity_card,
+corporation_mobile,
+linkman,
+linkman_mobile,
+landline_telephone,
+enterprise_type_text,
+enterprise_type_code,
+enterprise_nature_code,
+enterprise_nature_text,
+industry_type_code,
+industry_type_text,
+registered_capital,
+paidin_capital,
+address,
+enterprise_address,
+enterprise_phone,
+administrative_area,
+region_code,
+region_text,
+measure_longitude,
+measure_latitude,
+establish_date,
+approval_date,
+business_duetime,
+longdistance_number,
+administration_number,
+business_scope,
+professional_activity,
+enterprise_control,
+organization_type_text,
+organization_type_code,
+industry_activity,
+industry_code,
+industry_text,
+risk_grade,
+risk_value,
+category_code,
+category_text,
+risk_tags_code,
+risk_tags_text,
+funnel_tags_code,
+funnel_tags_text,
+core_code,
+core_text,
+person_scale,
+money_scale,
+year_they,
+is_corporate_champion_type_code,
+is_corporate_champion_type_text,
+scale_enterprise_type_code,
+email,
+scale_enterprise_type_text,
+summary,
+description,
+zip_code,
+telautogram,
+is_recommend,
+organization_code,
+manage_status,
+trade_text,
+registry_office,
+logo_resource_id,
+logo_resource_path,
+is_cooperative_code,
+is_cooperative_text,
     </trim>
     VALUES
     <foreach collection="list" item="daEnterpriseInfo" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daEnterpriseInfo.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daEnterpriseInfo.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.organizationId  != null  and t.organizationId != '' " >
+                  
+                  
                      #{daEnterpriseInfo.organizationId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseName  != null  and t.enterpriseName != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterpriseName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseCode  != null  and t.enterpriseCode != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterpriseCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registrationMark  != null  and t.registrationMark != '' " >
+                  
+                  
                      #{daEnterpriseInfo.registrationMark ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.archivesNumber  != null  and t.archivesNumber != '' " >
+                  
+                  
                      #{daEnterpriseInfo.archivesNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.societyCreditId  != null  and t.societyCreditId != '' " >
+                  
+                  
                      #{daEnterpriseInfo.societyCreditId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registerStatusText  != null  and t.registerStatusText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.registerStatusText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registerStatusCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.registerStatusCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.registerTypeText  != null  and t.registerTypeText != '' " >
+            
+                  
                      #{daEnterpriseInfo.registerTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registerTypeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.registerTypeCode,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.statisticsDepartmentNumber  != null  and t.statisticsDepartmentNumber != '' " >
+            
+                  
                      #{daEnterpriseInfo.statisticsDepartmentNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.foundDate != null ">
+                  
+                  
                     #{daEnterpriseInfo.foundDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.corporationName  != null  and t.corporationName != '' " >
+            
+                  
                      #{daEnterpriseInfo.corporationName ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.corporationIdentityCard  != null  and t.corporationIdentityCard != '' " >
+                  
+                  
                      #{daEnterpriseInfo.corporationIdentityCard ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.corporationMobile  != null  and t.corporationMobile != '' " >
+                  
+                  
                      #{daEnterpriseInfo.corporationMobile ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.linkman  != null  and t.linkman != '' " >
+                  
+                  
                      #{daEnterpriseInfo.linkman ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.linkmanMobile  != null  and t.linkmanMobile != '' " >
+                  
+                  
                      #{daEnterpriseInfo.linkmanMobile ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.landlineTelephone  != null  and t.landlineTelephone != '' " >
+                  
+                  
                      #{daEnterpriseInfo.landlineTelephone ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseTypeText  != null  and t.enterpriseTypeText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterpriseTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseTypeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.enterpriseTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.enterpriseNatureCode != null ">
+            
+                  
                     #{daEnterpriseInfo.enterpriseNatureCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.enterpriseNatureText  != null  and t.enterpriseNatureText != '' " >
+            
+                  
                      #{daEnterpriseInfo.enterpriseNatureText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.industryTypeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.industryTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.industryTypeText  != null  and t.industryTypeText != '' " >
+            
+                  
                      #{daEnterpriseInfo.industryTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registeredCapital != null ">
+                  
+                  
                     #{daEnterpriseInfo.registeredCapital,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.paidinCapital != null ">
+            
+                  
                     #{daEnterpriseInfo.paidinCapital,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
+            
+                  
                      #{daEnterpriseInfo.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseAddress  != null  and t.enterpriseAddress != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterpriseAddress ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterprisePhone  != null  and t.enterprisePhone != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterprisePhone ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.administrativeArea  != null  and t.administrativeArea != '' " >
+                  
+                  
                      #{daEnterpriseInfo.administrativeArea ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                  
+                  
                      #{daEnterpriseInfo.regionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionText  != null  and t.regionText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.regionText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.measureLongitude  != null  and t.measureLongitude != '' " >
+                  
+                  
                      #{daEnterpriseInfo.measureLongitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.measureLatitude  != null  and t.measureLatitude != '' " >
+                  
+                  
                      #{daEnterpriseInfo.measureLatitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.establishDate != null ">
+                  
+                  
                     #{daEnterpriseInfo.establishDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.approvalDate != null ">
+            
+                  
                     #{daEnterpriseInfo.approvalDate,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.businessDuetime != null ">
+            
+                  
                     #{daEnterpriseInfo.businessDuetime,jdbcType=TIMESTAMP},
-                  </if>
-                  <if test="t.longdistanceNumber  != null  and t.longdistanceNumber != '' " >
+            
+                  
                      #{daEnterpriseInfo.longdistanceNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.administrationNumber  != null  and t.administrationNumber != '' " >
+                  
+                  
                      #{daEnterpriseInfo.administrationNumber ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.businessScope  != null  and t.businessScope != '' " >
+                  
+                  
                      #{daEnterpriseInfo.businessScope ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.professionalActivity  != null  and t.professionalActivity != '' " >
+                  
+                  
                      #{daEnterpriseInfo.professionalActivity ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.enterpriseControl  != null  and t.enterpriseControl != '' " >
+                  
+                  
                      #{daEnterpriseInfo.enterpriseControl ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.organizationTypeText  != null  and t.organizationTypeText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.organizationTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.organizationTypeCode  != null  and t.organizationTypeCode != '' " >
+                  
+                  
                      #{daEnterpriseInfo.organizationTypeCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.industryActivity  != null  and t.industryActivity != '' " >
+                  
+                  
                      #{daEnterpriseInfo.industryActivity ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.industryCode  != null  and t.industryCode != '' " >
+                  
+                  
                      #{daEnterpriseInfo.industryCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.industryText  != null  and t.industryText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.industryText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.riskGrade  != null  and t.riskGrade != '' " >
+                  
+                  
                      #{daEnterpriseInfo.riskGrade ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.riskValue != null ">
+                  
+                  
                     #{daEnterpriseInfo.riskValue,jdbcType=NUMERIC},
-                  </if>
-                  <if test="t.categoryCode != null ">
+            
+                  
                     #{daEnterpriseInfo.categoryCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.categoryText  != null  and t.categoryText != '' " >
+            
+                  
                      #{daEnterpriseInfo.categoryText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.riskTagsCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.riskTagsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.riskTagsText  != null  and t.riskTagsText != '' " >
+            
+                  
                      #{daEnterpriseInfo.riskTagsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.funnelTagsCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.funnelTagsCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.funnelTagsText  != null  and t.funnelTagsText != '' " >
+            
+                  
                      #{daEnterpriseInfo.funnelTagsText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.coreCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.coreCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.coreText  != null  and t.coreText != '' " >
+            
+                  
                      #{daEnterpriseInfo.coreText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.personScale  != null  and t.personScale != '' " >
+                  
+                  
                      #{daEnterpriseInfo.personScale ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.moneyScale  != null  and t.moneyScale != '' " >
+                  
+                  
                      #{daEnterpriseInfo.moneyScale ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.yearThey  != null  and t.yearThey != '' " >
+                  
+                  
                      #{daEnterpriseInfo.yearThey ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isCorporateChampionTypeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.isCorporateChampionTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isCorporateChampionTypeText  != null  and t.isCorporateChampionTypeText != '' " >
+            
+                  
                      #{daEnterpriseInfo.isCorporateChampionTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.scaleEnterpriseTypeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.scaleEnterpriseTypeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.email  != null  and t.email != '' " >
+            
+                  
                      #{daEnterpriseInfo.email ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.scaleEnterpriseTypeText  != null  and t.scaleEnterpriseTypeText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.scaleEnterpriseTypeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.summary  != null  and t.summary != '' " >
+                  
+                  
                      #{daEnterpriseInfo.summary ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.description  != null  and t.description != '' " >
+                  
+                  
                      #{daEnterpriseInfo.description ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.zipCode  != null  and t.zipCode != '' " >
+                  
+                  
                      #{daEnterpriseInfo.zipCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.telautogram  != null  and t.telautogram != '' " >
+                  
+                  
                      #{daEnterpriseInfo.telautogram ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isRecommend != null ">
+                  
+                  
                     #{daEnterpriseInfo.isRecommend,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.organizationCode  != null  and t.organizationCode != '' " >
+            
+                  
                      #{daEnterpriseInfo.organizationCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.manageStatus  != null  and t.manageStatus != '' " >
+                  
+                  
                      #{daEnterpriseInfo.manageStatus ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tradeText  != null  and t.tradeText != '' " >
+                  
+                  
                      #{daEnterpriseInfo.tradeText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.registryOffice  != null  and t.registryOffice != '' " >
+                  
+                  
                      #{daEnterpriseInfo.registryOffice ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.logoResourceId  != null  and t.logoResourceId != '' " >
+                  
+                  
                      #{daEnterpriseInfo.logoResourceId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.logoResourcePath  != null  and t.logoResourcePath != '' " >
+                  
+                  
                      #{daEnterpriseInfo.logoResourcePath ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.isCooperativeCode != null ">
+                  
+                  
                     #{daEnterpriseInfo.isCooperativeCode,jdbcType=TINYINT},
-                  </if>
-                  <if test="t.isCooperativeText  != null  and t.isCooperativeText != '' " >
+            
+                  
                      #{daEnterpriseInfo.isCooperativeText ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

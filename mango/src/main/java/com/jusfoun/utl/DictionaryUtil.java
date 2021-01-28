@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.ent.custom.ResultModel;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.ent.custom.ResultModel;
 
 /**
  * 字典值转换

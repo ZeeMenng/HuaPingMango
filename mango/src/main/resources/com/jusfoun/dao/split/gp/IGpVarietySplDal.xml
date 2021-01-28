@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGpVarietySplDal" >
+<mapper namespace="com.zee.dao.split.gp.IGpVarietySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GpVariety" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpVariety" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
         id,name,parent_id,relation_id,describes,resource_id,resource_url,stutas_code,stutas_text,cycle_time,priority,remark,add_user_id,add_time,update_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GpVariety" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GpVariety" >
     insert into gp_variety
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -207,7 +207,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GpVariety" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GpVariety" >
     update gp_variety
     <set >
                   <if test="name != null  and name != '' " >

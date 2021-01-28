@@ -36,9 +36,9 @@
 			<!--<property name="params" value="pageNum=start;pageSize=limit;" /> -->
 		</plugin>
 
-		<plugin interceptor="com.jusfoun.set.interceptor.MyBatisSQLInterceptor">
+		<plugin interceptor="com.zee.set.interceptor.MyBatisSQLInterceptor">
 		</plugin>
-		<plugin interceptor="com.jusfoun.set.interceptor.MyBatisResultInterceptor">
+		<plugin interceptor="com.zee.set.interceptor.MyBatisResultInterceptor">
 		</plugin>
 	</plugins>
 

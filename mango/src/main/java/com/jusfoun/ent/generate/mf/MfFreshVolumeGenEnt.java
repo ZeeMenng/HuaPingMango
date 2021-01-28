@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.mf;
+﻿package com.zee.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:57
+ * @updateDate 2021/1/28 16:09:31
  * @description 实体类MfFreshVolumeGenEnt，自动生成。mf_fresh_volume
  */
 
@@ -26,7 +24,7 @@ public class MfFreshVolumeGenEnt extends BaseEnt implements Serializable {
     private BigDecimal actualAmount;
     @ApiModelProperty(value="实际销售量，单位：千克",hidden=false,required=false)
     private BigDecimal actualVolume;
-    @ApiModelProperty(value="日期，年份，存YYYY",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String dateTime;
     @ApiModelProperty(value="预测销售金额，单位：元",hidden=false,required=false)
     private BigDecimal forecastAmount;
@@ -34,9 +32,13 @@ public class MfFreshVolumeGenEnt extends BaseEnt implements Serializable {
     private BigDecimal forecastVolume;
     @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。实际销售金额，单位：元
@@ -67,14 +69,14 @@ public class MfFreshVolumeGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。日期，年份，存YYYY
+	 * get方法。
 	 */
 	public String getDateTime() {
 		return this.dateTime;
 	}
 
 	/**
-	 * set方法。日期，年份，存YYYY
+	 * set方法。
 	 */
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
@@ -123,7 +125,14 @@ public class MfFreshVolumeGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

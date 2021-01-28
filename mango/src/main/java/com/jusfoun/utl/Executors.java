@@ -1,4 +1,4 @@
-package com.jusfoun.utl;
+package com.zee.utl;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,19 +12,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jusfoun.app.base.BaseApp;
-import com.jusfoun.bll.extend.unity.da.DaSentimentArticleUntBll;
-import com.jusfoun.bll.extend.unity.da.DaSentimentContentUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpLoginLogUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpTokenUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpUserUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaSentimentArticle;
-import com.jusfoun.ent.extend.da.DaSentimentContent;
-import com.jusfoun.ent.extend.gp.GpLoginLog;
-import com.jusfoun.ent.extend.gp.GpToken;
-import com.jusfoun.ent.extend.gp.GpUser;
-import com.jusfoun.set.enumer.DictType;
+import com.zee.app.base.BaseApp;
+import com.zee.bll.extend.unity.da.DaSentimentArticleUntBll;
+import com.zee.bll.extend.unity.da.DaSentimentContentUntBll;
+import com.zee.bll.extend.unity.gp.GpLoginLogUntBll;
+import com.zee.bll.extend.unity.gp.GpTokenUntBll;
+import com.zee.bll.extend.unity.gp.GpUserUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaSentimentArticle;
+import com.zee.ent.extend.da.DaSentimentContent;
+import com.zee.ent.extend.gp.GpLoginLog;
+import com.zee.ent.extend.gp.GpToken;
+import com.zee.ent.extend.gp.GpUser;
+import com.zee.set.enumer.DictType;
 
 /**
  * @author lxy

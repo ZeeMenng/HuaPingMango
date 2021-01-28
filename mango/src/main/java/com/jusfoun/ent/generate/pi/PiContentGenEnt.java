@@ -1,21 +1,19 @@
-package com.jusfoun.ent.generate.pi;
+﻿package com.zee.ent.generate.pi;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:44:14
+ * @updateDate 2021/1/28 16:09:53
  * @description 实体类PiContentGenEnt，自动生成。CMS内容表
  */
 
@@ -28,15 +26,15 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
     private Integer downloadsDay;
     @ApiModelProperty(value="是否有标题图",hidden=false,required=true)
     private Byte hasTitleImg;
-    @ApiModelProperty(value="主键",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="是否推荐,0:否，1：是",hidden=false,required=true)
     private Byte isRecommend;
-    @ApiModelProperty(value="模型ID",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String modelId;
     @ApiModelProperty(value="得分",hidden=false,required=true)
     private Integer score;
-    @ApiModelProperty(value="站点ID",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String siteId;
     @ApiModelProperty(value="排序日期",hidden=false,required=false)
     private Date sortDate;
@@ -44,17 +42,21 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
     private Byte status;
     @ApiModelProperty(value="固顶级别",hidden=false,required=true)
     private Byte topLevel;
-    @ApiModelProperty(value="属性ID",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String typeId;
     @ApiModelProperty(value="日顶数",hidden=false,required=true)
     private Integer upsDay;
-    @ApiModelProperty(value="用户ID",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String userId;
     @ApiModelProperty(value="日访问数",hidden=false,required=true)
     private Integer viewsDay;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
 	 * get方法。日评论数
@@ -99,14 +101,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。主键
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -127,14 +129,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。模型ID
+	 * get方法。
 	 */
 	public String getModelId() {
 		return this.modelId;
 	}
 
 	/**
-	 * set方法。模型ID
+	 * set方法。
 	 */
 	public void setModelId(String modelId) {
 		this.modelId = modelId;
@@ -155,14 +157,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。站点ID
+	 * get方法。
 	 */
 	public String getSiteId() {
 		return this.siteId;
 	}
 
 	/**
-	 * set方法。站点ID
+	 * set方法。
 	 */
 	public void setSiteId(String siteId) {
 		this.siteId = siteId;
@@ -211,14 +213,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。属性ID
+	 * get方法。
 	 */
 	public String getTypeId() {
 		return this.typeId;
 	}
 
 	/**
-	 * set方法。属性ID
+	 * set方法。
 	 */
 	public void setTypeId(String typeId) {
 		this.typeId = typeId;
@@ -239,14 +241,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。用户ID
+	 * get方法。
 	 */
 	public String getUserId() {
 		return this.userId;
 	}
 
 	/**
-	 * set方法。用户ID
+	 * set方法。
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -267,7 +269,14 @@ public class PiContentGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

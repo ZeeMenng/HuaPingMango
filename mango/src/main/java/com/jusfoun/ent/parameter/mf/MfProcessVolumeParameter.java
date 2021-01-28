@@ -1,10 +1,10 @@
-package com.jusfoun.ent.parameter.mf;
+package com.zee.ent.parameter.mf;
 
 import java.util.*;
 
-import com.jusfoun.ent.extend.mf.MfProcessVolume;
-import com.jusfoun.ent.generate.mf.MfProcessVolumeGenEnt;
-import com.jusfoun.ent.parameter.base.BaseParameter;
+import com.zee.ent.extend.mf.MfProcessVolume;
+import com.zee.ent.generate.mf.MfProcessVolumeGenEnt;
+import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

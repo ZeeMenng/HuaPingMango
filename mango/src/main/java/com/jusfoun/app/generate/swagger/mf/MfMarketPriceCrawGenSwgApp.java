@@ -1,4 +1,4 @@
-package com.jusfoun.app.generate.swagger.mf;
+package com.zee.app.generate.swagger.mf;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jusfoun.app.generate.swagger.base.BaseSwgApp;
-import com.jusfoun.bll.extend.split.mf.MfMarketPriceCrawSplBll;
-import com.jusfoun.bll.extend.unity.mf.MfMarketPriceCrawUntBll;
-import com.jusfoun.ent.extend.mf.MfMarketPriceCraw;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.parameter.mf.MfMarketPriceCrawParameter;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.base.BaseSwgApp;
+import com.zee.bll.extend.split.mf.MfMarketPriceCrawSplBll;
+import com.zee.bll.extend.unity.mf.MfMarketPriceCrawUntBll;
+import com.zee.ent.extend.mf.MfMarketPriceCraw;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.parameter.mf.MfMarketPriceCrawParameter;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

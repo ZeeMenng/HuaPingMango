@@ -13,12 +13,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.jusfoun.app.start.Starter;
-import com.jusfoun.bll.extend.unity.da.DaEnterpriseInfoUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.da.DaEnterpriseInfo;
-import com.jusfoun.utl.FileUtil;
-import com.jusfoun.utl.Tools;
+import com.zee.app.start.Starter;
+import com.zee.bll.extend.unity.da.DaEnterpriseInfoUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.da.DaEnterpriseInfo;
+import com.zee.utl.FileUtil;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
 

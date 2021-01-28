@@ -1,4 +1,4 @@
-package com.jusfoun.bll.extend.unity.da;
+package com.zee.bll.extend.unity.da;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,16 +15,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpRegionUntBll;
-import com.jusfoun.bll.generate.unity.da.DaCrawlerGenUntBll;
-import com.jusfoun.bll.generate.unity.mf.MfSaleEcommerceCrawGenUntBll;
-import com.jusfoun.ent.extend.da.DaCommonField;
-import com.jusfoun.ent.extend.da.DaCrawler;
-import com.jusfoun.ent.extend.mf.MfSaleEcommerceCraw;
-import com.jusfoun.ent.parameter.da.DaCrawlerParameter.GetList;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.bll.extend.unity.gp.GpRegionUntBll;
+import com.zee.bll.generate.unity.da.DaCrawlerGenUntBll;
+import com.zee.bll.generate.unity.mf.MfSaleEcommerceCrawGenUntBll;
+import com.zee.ent.extend.da.DaCommonField;
+import com.zee.ent.extend.da.DaCrawler;
+import com.zee.ent.extend.mf.MfSaleEcommerceCraw;
+import com.zee.ent.parameter.da.DaCrawlerParameter.GetList;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
 import us.codecraft.webmagic.selector.Html;
 
 /**

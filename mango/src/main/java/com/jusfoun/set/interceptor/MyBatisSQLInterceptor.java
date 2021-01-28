@@ -1,4 +1,4 @@
-package com.jusfoun.set.interceptor;
+package com.zee.set.interceptor;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -49,14 +49,14 @@ public class MyBatisSQLInterceptor implements Interceptor {
 			
 			//跳过没必要的SQL
 			ArrayList<String> skipMethod = new ArrayList<String>();
-			skipMethod.add("com.jusfoun.dao.unity.gp.IGpTokenUntDal.getModel");
-			skipMethod.add("com.jusfoun.dao.split.gp.IGpInterfaceSplDal.isPermitted");
-			skipMethod.add("com.jusfoun.dao.split.gp.IGpUserSplDal.getModelByUserName");
-			skipMethod.add("com.jusfoun.dao.split.gp.IGprDomainUserSplDal.isPermitted");
-			skipMethod.add("com.jusfoun.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
-			skipMethod.add("com.jusfoun.dao.unity.gp.IGpDomainUntDal.getModel");
-			skipMethod.add("com.jusfoun.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
-			skipMethod.add("com.jusfoun.dao.unity.gp.IGpModuleUntDal.getListBySQL");
+			skipMethod.add("com.zee.dao.unity.gp.IGpTokenUntDal.getModel");
+			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
+			skipMethod.add("com.zee.dao.split.gp.IGpUserSplDal.getModelByUserName");
+			skipMethod.add("com.zee.dao.split.gp.IGprDomainUserSplDal.isPermitted");
+			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
+			skipMethod.add("com.zee.dao.unity.gp.IGpDomainUntDal.getModel");
+			skipMethod.add("com.zee.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
+			skipMethod.add("com.zee.dao.unity.gp.IGpModuleUntDal.getListBySQL");
 			
 			BoundSql boundSql = mappedStatement.getBoundSql(parameter); // BoundSql就是封装myBatis最终产生的sql类
 			Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置

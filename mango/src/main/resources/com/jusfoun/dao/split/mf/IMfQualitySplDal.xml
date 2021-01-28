@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfQualitySplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfQualitySplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfQuality" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfQuality" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="index_num" property="indexNum" jdbcType="INTEGER" />
               <result column="level_code" property="levelCode" jdbcType="TINYINT" />
@@ -14,7 +14,7 @@
         id,index_num,level_code,level_text,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfQuality" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfQuality" >
     insert into mf_quality
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -100,7 +100,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfQuality" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfQuality" >
     update mf_quality
     <set >
                   <if test="indexNum != null ">

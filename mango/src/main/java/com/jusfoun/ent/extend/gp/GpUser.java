@@ -1,9 +1,9 @@
-package com.jusfoun.ent.extend.gp;
+package com.zee.ent.extend.gp;
 
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jusfoun.ent.generate.gp.GpUserGenEnt;
+import com.zee.ent.generate.gp.GpUserGenEnt;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

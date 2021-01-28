@@ -1,4 +1,4 @@
-package com.jusfoun.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,16 +6,16 @@ import java.math.BigDecimal;
 import java.util.*;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.base.BaseEnt;
-import com.jusfoun.ent.extend.gp.GpDomain;
-import com.jusfoun.ent.extend.gp.GpRole;
+import com.zee.ent.base.BaseEnt;
+import com.zee.ent.extend.gp.GpDomain;
+import com.zee.ent.extend.gp.GpRole;
 
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/27 10:33:08
+ * @updateDate 2021/1/28 16:09:16
  * @description 实体类GprRoleDomainGenEnt，自动生成。角色拥有的功能模块权限。
  */
 

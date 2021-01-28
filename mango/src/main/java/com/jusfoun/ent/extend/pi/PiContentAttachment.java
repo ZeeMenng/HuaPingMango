@@ -1,9 +1,9 @@
-package com.jusfoun.ent.extend.pi;
+package com.zee.ent.extend.pi;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import com.jusfoun.ent.generate.pi.PiContentAttachmentGenEnt;
+import com.zee.ent.generate.pi.PiContentAttachmentGenEnt;
 
 /**
  * @author Zee

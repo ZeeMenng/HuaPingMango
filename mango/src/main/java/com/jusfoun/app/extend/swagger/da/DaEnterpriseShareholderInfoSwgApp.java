@@ -1,9 +1,9 @@
-package com.jusfoun.app.extend.swagger.da;
+package com.zee.app.extend.swagger.da;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.da.DaEnterpriseShareholderInfoGenSwgApp;
+import com.zee.app.generate.swagger.da.DaEnterpriseShareholderInfoGenSwgApp;
 
 
 /**

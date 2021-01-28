@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirContentTopicSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirContentTopicSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirContentTopic" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirContentTopic" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="topic_id" property="topicId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,content_id,topic_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirContentTopic" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirContentTopic" >
     insert into pir_content_topic
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -80,7 +80,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirContentTopic" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirContentTopic" >
     update pir_content_topic
     <set >
                   <if test="contentId != null  and contentId != '' " >

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPirChnlGroupContriUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPirChnlGroupContriUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirChnlGroupContri" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirChnlGroupContri" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="role_id" property="roleId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,channel_id,role_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupContri" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirChnlGroupContri" >
     insert into pir_chnl_group_contri
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -41,8 +41,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pir_chnl_group_contri
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -51,27 +50,45 @@
     	<foreach collection="list" item="pirChnlGroupContri" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{pirChnlGroupContri.id,jdbcType=VARCHAR},
-
-      
           #{pirChnlGroupContri.channelId,jdbcType=VARCHAR},
-
-      
           #{pirChnlGroupContri.roleId,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pir_chnl_group_contri
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pir_chnl_group_contri
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="pirChnlGroupContri" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{pirChnlGroupContri.id,jdbcType=VARCHAR},
+          #{pirChnlGroupContri.channelId,jdbcType=VARCHAR},
+          #{pirChnlGroupContri.roleId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+channel_id=values(channel_id),
+role_id=values(role_id)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pir_chnl_group_contri
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pir_chnl_group_contri
 		where id  in
@@ -80,7 +97,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupContri" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirChnlGroupContri" >
     update pir_chnl_group_contri
     <set >
                   <if test="channelId != null  and channelId != '' " >
@@ -116,21 +135,29 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="channel_id =case" suffix="end,">
               <foreach collection="list" item="pirChnlGroupContri" index="index">
-                  <if test="pirChnlGroupContri.channelId != null and pirChnlGroupContri.channelId  != '' " >
+                  <if test="pirChnlGroupContri.channelId != null and pirChnlGroupContri.channelId  != ''  and pirChnlGroupContri.channelId  != '-1' ">
                      when id=#{pirChnlGroupContri.id} then #{pirChnlGroupContri.channelId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChnlGroupContri.channelId != null  and pirChnlGroupContri.channelId  == '-1' ">
+                     when id=#{pirChnlGroupContri.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="role_id =case" suffix="end,">
               <foreach collection="list" item="pirChnlGroupContri" index="index">
-                  <if test="pirChnlGroupContri.roleId != null and pirChnlGroupContri.roleId  != '' " >
+                  <if test="pirChnlGroupContri.roleId != null and pirChnlGroupContri.roleId  != ''  and pirChnlGroupContri.roleId  != '-1' ">
                      when id=#{pirChnlGroupContri.id} then #{pirChnlGroupContri.roleId,jdbcType=VARCHAR}
                   </if>
+                  <if test="pirChnlGroupContri.roleId != null  and pirChnlGroupContri.roleId  == '-1' ">
+                     when id=#{pirChnlGroupContri.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="pirChnlGroupContri" index="index" open="(" close=")" separator=",">
 			#{pirChnlGroupContri.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -140,24 +167,20 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pir_chnl_group_contri
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="channelId  != null and channelId  != '' " >
-              channel_id,
-          </if>
-          <if test="roleId  != null and roleId  != '' " >
-              role_id,
-          </if>
+id,
+channel_id,
+role_id,
     </trim>
     VALUES
     <foreach collection="list" item="pirChnlGroupContri" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{pirChnlGroupContri.id ,jdbcType=VARCHAR},
-                  <if test="t.channelId  != null  and t.channelId != '' " >
+                  
                      #{pirChnlGroupContri.channelId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.roleId  != null  and t.roleId != '' " >
+                  
+                  
                      #{pirChnlGroupContri.roleId ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

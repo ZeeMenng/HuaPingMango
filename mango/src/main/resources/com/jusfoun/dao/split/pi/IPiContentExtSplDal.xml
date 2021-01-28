@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPiContentExtSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPiContentExtSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentExt" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentExt" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="title" property="title" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
         id,content_id,title,short_title,author,origin,origin_url,description,release_date,media_path,media_type,title_color,is_bold,title_img,content_img,type_img,link,tpl_content,need_regenerate,add_time,add_user_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentExt" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentExt" >
     insert into pi_content_ext
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -274,7 +274,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentExt" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentExt" >
     update pi_content_ext
     <set >
                   <if test="contentId != null  and contentId != '' " >

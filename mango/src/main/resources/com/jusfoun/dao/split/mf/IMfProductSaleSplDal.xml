@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.mf.IMfProductSaleSplDal" >
+<mapper namespace="com.zee.dao.split.mf.IMfProductSaleSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.mf.MfProductSale" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.mf.MfProductSale" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="yield_actual" property="yieldActual" jdbcType="NUMERIC" />
               <result column="yield_forecast" property="yieldForecast" jdbcType="NUMERIC" />
@@ -15,7 +15,7 @@
         id,yield_actual,yield_forecast,sale_actual,sale_forecast,date_time
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.mf.MfProductSale" >
+  <insert id="add" parameterType="com.zee.ent.extend.mf.MfProductSale" >
     insert into mf_product_sale
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -109,7 +109,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.mf.MfProductSale" >
+  <update id="update" parameterType="com.zee.ent.extend.mf.MfProductSale" >
     update mf_product_sale
     <set >
                   <if test="yieldActual != null ">

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.pi.IPiContentCountUntDal" >
+<mapper namespace="com.zee.dao.unity.pi.IPiContentCountUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PiContentCount" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PiContentCount" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="content_id" property="contentId" jdbcType="VARCHAR" />
               <result column="views" property="views" jdbcType="INTEGER" />
@@ -28,7 +28,7 @@
         id,content_id,views,views_month,views_week,views_day,comments,comments_month,comments_week,comments_day,downloads,downloads_month,downloads_week,downloads_day,ups,ups_month,ups_week,ups_day,downs
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PiContentCount" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PiContentCount" >
     insert into pi_content_count
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -152,8 +152,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into pi_content_count
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -162,75 +161,93 @@
     	<foreach collection="list" item="piContentCount" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{piContentCount.id,jdbcType=VARCHAR},
-
-      
           #{piContentCount.contentId,jdbcType=VARCHAR},
-
-      
           #{piContentCount.views,jdbcType=INTEGER},
-
-      
           #{piContentCount.viewsMonth,jdbcType=INTEGER},
-
-      
           #{piContentCount.viewsWeek,jdbcType=INTEGER},
-
-      
           #{piContentCount.viewsDay,jdbcType=INTEGER},
-
-      
           #{piContentCount.comments,jdbcType=INTEGER},
-
-      
           #{piContentCount.commentsMonth,jdbcType=INTEGER},
-
-      
           #{piContentCount.commentsWeek,jdbcType=INTEGER},
-
-      
           #{piContentCount.commentsDay,jdbcType=INTEGER},
-
-      
           #{piContentCount.downloads,jdbcType=INTEGER},
-
-      
           #{piContentCount.downloadsMonth,jdbcType=INTEGER},
-
-      
           #{piContentCount.downloadsWeek,jdbcType=INTEGER},
-
-      
           #{piContentCount.downloadsDay,jdbcType=INTEGER},
-
-      
           #{piContentCount.ups,jdbcType=INTEGER},
-
-      
           #{piContentCount.upsMonth,jdbcType=INTEGER},
-
-      
           #{piContentCount.upsWeek,jdbcType=INTEGER},
-
-      
           #{piContentCount.upsDay,jdbcType=INTEGER},
-
-      
           #{piContentCount.downs,jdbcType=INTEGER},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from pi_content_count
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into pi_content_count
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="piContentCount" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{piContentCount.id,jdbcType=VARCHAR},
+          #{piContentCount.contentId,jdbcType=VARCHAR},
+          #{piContentCount.views,jdbcType=INTEGER},
+          #{piContentCount.viewsMonth,jdbcType=INTEGER},
+          #{piContentCount.viewsWeek,jdbcType=INTEGER},
+          #{piContentCount.viewsDay,jdbcType=INTEGER},
+          #{piContentCount.comments,jdbcType=INTEGER},
+          #{piContentCount.commentsMonth,jdbcType=INTEGER},
+          #{piContentCount.commentsWeek,jdbcType=INTEGER},
+          #{piContentCount.commentsDay,jdbcType=INTEGER},
+          #{piContentCount.downloads,jdbcType=INTEGER},
+          #{piContentCount.downloadsMonth,jdbcType=INTEGER},
+          #{piContentCount.downloadsWeek,jdbcType=INTEGER},
+          #{piContentCount.downloadsDay,jdbcType=INTEGER},
+          #{piContentCount.ups,jdbcType=INTEGER},
+          #{piContentCount.upsMonth,jdbcType=INTEGER},
+          #{piContentCount.upsWeek,jdbcType=INTEGER},
+          #{piContentCount.upsDay,jdbcType=INTEGER},
+          #{piContentCount.downs,jdbcType=INTEGER},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+content_id=values(content_id),
+views=values(views),
+views_month=values(views_month),
+views_week=values(views_week),
+views_day=values(views_day),
+comments=values(comments),
+comments_month=values(comments_month),
+comments_week=values(comments_week),
+comments_day=values(comments_day),
+downloads=values(downloads),
+downloads_month=values(downloads_month),
+downloads_week=values(downloads_week),
+downloads_day=values(downloads_day),
+ups=values(ups),
+ups_month=values(ups_month),
+ups_week=values(ups_week),
+ups_day=values(ups_day),
+downs=values(downs)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from pi_content_count
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from pi_content_count
 		where id  in
@@ -239,7 +256,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PiContentCount" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.pi.PiContentCount" >
     update pi_content_count
     <set >
                   <if test="contentId != null  and contentId != '' " >
@@ -371,9 +390,13 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="content_id =case" suffix="end,">
               <foreach collection="list" item="piContentCount" index="index">
-                  <if test="piContentCount.contentId != null and piContentCount.contentId  != '' " >
+                  <if test="piContentCount.contentId != null and piContentCount.contentId  != ''  and piContentCount.contentId  != '-1' ">
                      when id=#{piContentCount.id} then #{piContentCount.contentId,jdbcType=VARCHAR}
                   </if>
+                  <if test="piContentCount.contentId != null  and piContentCount.contentId  == '-1' ">
+                     when id=#{piContentCount.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="views =case" suffix="end,">
@@ -497,7 +520,7 @@
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="piContentCount" index="index" open="(" close=")" separator=",">
 			#{piContentCount.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -507,120 +530,84 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into pi_content_count
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="contentId  != null and contentId  != '' " >
-              content_id,
-          </if>
-          <if test="views  != null " >
-              views,
-          </if>
-          <if test="viewsMonth  != null " >
-              views_month,
-          </if>
-          <if test="viewsWeek  != null " >
-              views_week,
-          </if>
-          <if test="viewsDay  != null " >
-              views_day,
-          </if>
-          <if test="comments  != null " >
-              comments,
-          </if>
-          <if test="commentsMonth  != null " >
-              comments_month,
-          </if>
-          <if test="commentsWeek  != null " >
-              comments_week,
-          </if>
-          <if test="commentsDay  != null " >
-              comments_day,
-          </if>
-          <if test="downloads  != null " >
-              downloads,
-          </if>
-          <if test="downloadsMonth  != null " >
-              downloads_month,
-          </if>
-          <if test="downloadsWeek  != null " >
-              downloads_week,
-          </if>
-          <if test="downloadsDay  != null " >
-              downloads_day,
-          </if>
-          <if test="ups  != null " >
-              ups,
-          </if>
-          <if test="upsMonth  != null " >
-              ups_month,
-          </if>
-          <if test="upsWeek  != null " >
-              ups_week,
-          </if>
-          <if test="upsDay  != null " >
-              ups_day,
-          </if>
-          <if test="downs  != null " >
-              downs,
-          </if>
+id,
+content_id,
+views,
+views_month,
+views_week,
+views_day,
+comments,
+comments_month,
+comments_week,
+comments_day,
+downloads,
+downloads_month,
+downloads_week,
+downloads_day,
+ups,
+ups_month,
+ups_week,
+ups_day,
+downs,
     </trim>
     VALUES
     <foreach collection="list" item="piContentCount" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{piContentCount.id ,jdbcType=VARCHAR},
-                  <if test="t.contentId  != null  and t.contentId != '' " >
+                  
                      #{piContentCount.contentId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.views != null ">
+                  
+                  
                     #{piContentCount.views,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsMonth != null ">
+            
+                  
                     #{piContentCount.viewsMonth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsWeek != null ">
+            
+                  
                     #{piContentCount.viewsWeek,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.viewsDay != null ">
+            
+                  
                     #{piContentCount.viewsDay,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.comments != null ">
+            
+                  
                     #{piContentCount.comments,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.commentsMonth != null ">
+            
+                  
                     #{piContentCount.commentsMonth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.commentsWeek != null ">
+            
+                  
                     #{piContentCount.commentsWeek,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.commentsDay != null ">
+            
+                  
                     #{piContentCount.commentsDay,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.downloads != null ">
+            
+                  
                     #{piContentCount.downloads,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.downloadsMonth != null ">
+            
+                  
                     #{piContentCount.downloadsMonth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.downloadsWeek != null ">
+            
+                  
                     #{piContentCount.downloadsWeek,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.downloadsDay != null ">
+            
+                  
                     #{piContentCount.downloadsDay,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.ups != null ">
+            
+                  
                     #{piContentCount.ups,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.upsMonth != null ">
+            
+                  
                     #{piContentCount.upsMonth,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.upsWeek != null ">
+            
+                  
                     #{piContentCount.upsWeek,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.upsDay != null ">
+            
+                  
                     #{piContentCount.upsDay,jdbcType=INTEGER},
-                  </if>
-                  <if test="t.downs != null ">
+            
+                  
                     #{piContentCount.downs,jdbcType=INTEGER},
-                  </if>
+            
       </trim>
     </foreach>
   </insert>

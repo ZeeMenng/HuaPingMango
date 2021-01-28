@@ -1,4 +1,4 @@
-package com.jusfoun.bll.extend.split.gp;
+package com.zee.bll.extend.split.gp;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -7,17 +7,17 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
-import com.jusfoun.bll.generate.split.gp.GprRoleInterfaceGenSplBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.ent.extend.gp.GprRoleInterface;
-import com.jusfoun.set.enumer.OperResult;
-import com.jusfoun.set.enumer.OperType;
-import com.jusfoun.set.exception.GlobalException;
-import com.jusfoun.utl.ClassUtil;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SnowFlakeSerialNoWorkerUtl;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.Tools;
+import com.zee.bll.generate.split.gp.GprRoleInterfaceGenSplBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GprRoleInterface;
+import com.zee.set.enumer.OperResult;
+import com.zee.set.enumer.OperType;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.ClassUtil;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

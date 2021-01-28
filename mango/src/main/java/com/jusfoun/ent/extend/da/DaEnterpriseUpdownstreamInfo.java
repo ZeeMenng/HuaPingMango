@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.generate.da.DaEnterpriseUpdownstreamInfoGenEnt;
+import com.zee.ent.generate.da.DaEnterpriseUpdownstreamInfoGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

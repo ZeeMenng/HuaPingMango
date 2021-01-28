@@ -1,4 +1,4 @@
-package com.jusfoun.utl.task;
+package com.zee.utl.task;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.jusfoun.bll.extend.unity.da.DaSentimentThemeUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.set.enumer.StatusEnum;
-import com.jusfoun.utl.Executors;
+import com.zee.bll.extend.unity.da.DaSentimentThemeUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.set.enumer.StatusEnum;
+import com.zee.utl.Executors;
 
 @Component
 public class SentimentTask {

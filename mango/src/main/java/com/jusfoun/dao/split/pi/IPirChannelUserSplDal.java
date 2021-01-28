@@ -1,11 +1,11 @@
-package com.jusfoun.dao.split.pi;
+package com.zee.dao.split.pi;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jusfoun.dao.split.base.IBaseSplDal;
-import com.jusfoun.ent.extend.pi.PirChannelUser;
+import com.zee.dao.split.base.IBaseSplDal;
+import com.zee.ent.extend.pi.PirChannelUser;
 
 
 

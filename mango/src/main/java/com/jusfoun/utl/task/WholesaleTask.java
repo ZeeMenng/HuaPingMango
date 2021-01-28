@@ -1,4 +1,4 @@
-package com.jusfoun.utl.task;
+package com.zee.utl.task;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.jusfoun.bll.extend.unity.da.DaMarketPriceUntBll;
-import com.jusfoun.bll.extend.unity.gp.GpDictionaryUntBll;
-import com.jusfoun.utl.DateUtils;
-import com.jusfoun.utl.SymbolicConstant;
-import com.jusfoun.utl.crawler.GenerateProxy;
-import com.jusfoun.utl.crawler.MofProcessor;
-import com.jusfoun.utl.crawler.PhantomJsDriver2;
+import com.zee.bll.extend.unity.da.DaMarketPriceUntBll;
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.utl.DateUtils;
+import com.zee.utl.SymbolicConstant;
+import com.zee.utl.crawler.GenerateProxy;
+import com.zee.utl.crawler.MofProcessor;
+import com.zee.utl.crawler.PhantomJsDriver2;
 
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;

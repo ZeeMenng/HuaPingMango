@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.da;
+package com.zee.ent.extend.da;
 
-import com.jusfoun.ent.generate.da.DaIotMonitorQueryDateGenEnt;
+import com.zee.ent.generate.da.DaIotMonitorQueryDateGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

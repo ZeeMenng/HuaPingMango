@@ -1,273 +1,282 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:36
+ * @updateDate 2021/1/28 16:09:12
  * @description 实体类DaWholesaleMarketGenEnt，自动生成。批发市场
  */
 
 public class DaWholesaleMarketGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="地址",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String address;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
-    @ApiModelProperty(value="介绍",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String content;
-    @ApiModelProperty(value="占地面积",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String coverArea;
-    @ApiModelProperty(value="日交易量",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String daysVolume;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="纬度",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String latitude;
-    @ApiModelProperty(value="经度",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String longitude;
-    @ApiModelProperty(value="经营商户数",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String merchantsNum;
-    @ApiModelProperty(value="批发市场名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
-    @ApiModelProperty(value="所属区域代码",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String regionCode;
-    @ApiModelProperty(value="所属区域名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String regionText;
-    @ApiModelProperty(value="摊位数量",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String stallsNum;
-    @ApiModelProperty(value="联系方式",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String tel;
-    @ApiModelProperty(value="年交易额",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String yearsAmount;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。地址
+	 * get方法。
 	 */
 	public String getAddress() {
 		return this.address;
 	}
 
 	/**
-	 * set方法。地址
+	 * set方法。
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
     
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
 	}
     
 	/**
-	 * get方法。介绍
+	 * get方法。
 	 */
 	public String getContent() {
 		return this.content;
 	}
 
 	/**
-	 * set方法。介绍
+	 * set方法。
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
     
 	/**
-	 * get方法。占地面积
+	 * get方法。
 	 */
 	public String getCoverArea() {
 		return this.coverArea;
 	}
 
 	/**
-	 * set方法。占地面积
+	 * set方法。
 	 */
 	public void setCoverArea(String coverArea) {
 		this.coverArea = coverArea;
 	}
     
 	/**
-	 * get方法。日交易量
+	 * get方法。
 	 */
 	public String getDaysVolume() {
 		return this.daysVolume;
 	}
 
 	/**
-	 * set方法。日交易量
+	 * set方法。
 	 */
 	public void setDaysVolume(String daysVolume) {
 		this.daysVolume = daysVolume;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。纬度
+	 * get方法。
 	 */
 	public String getLatitude() {
 		return this.latitude;
 	}
 
 	/**
-	 * set方法。纬度
+	 * set方法。
 	 */
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
     
 	/**
-	 * get方法。经度
+	 * get方法。
 	 */
 	public String getLongitude() {
 		return this.longitude;
 	}
 
 	/**
-	 * set方法。经度
+	 * set方法。
 	 */
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
     
 	/**
-	 * get方法。经营商户数
+	 * get方法。
 	 */
 	public String getMerchantsNum() {
 		return this.merchantsNum;
 	}
 
 	/**
-	 * set方法。经营商户数
+	 * set方法。
 	 */
 	public void setMerchantsNum(String merchantsNum) {
 		this.merchantsNum = merchantsNum;
 	}
     
 	/**
-	 * get方法。批发市场名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。批发市场名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
     
 	/**
-	 * get方法。所属区域代码
+	 * get方法。
 	 */
 	public String getRegionCode() {
 		return this.regionCode;
 	}
 
 	/**
-	 * set方法。所属区域代码
+	 * set方法。
 	 */
 	public void setRegionCode(String regionCode) {
 		this.regionCode = regionCode;
 	}
     
 	/**
-	 * get方法。所属区域名称
+	 * get方法。
 	 */
 	public String getRegionText() {
 		return this.regionText;
 	}
 
 	/**
-	 * set方法。所属区域名称
+	 * set方法。
 	 */
 	public void setRegionText(String regionText) {
 		this.regionText = regionText;
 	}
     
 	/**
-	 * get方法。摊位数量
+	 * get方法。
 	 */
 	public String getStallsNum() {
 		return this.stallsNum;
 	}
 
 	/**
-	 * set方法。摊位数量
+	 * set方法。
 	 */
 	public void setStallsNum(String stallsNum) {
 		this.stallsNum = stallsNum;
 	}
     
 	/**
-	 * get方法。联系方式
+	 * get方法。
 	 */
 	public String getTel() {
 		return this.tel;
 	}
 
 	/**
-	 * set方法。联系方式
+	 * set方法。
 	 */
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
     
 	/**
-	 * get方法。年交易额
+	 * get方法。
 	 */
 	public String getYearsAmount() {
 		return this.yearsAmount;
 	}
 
 	/**
-	 * set方法。年交易额
+	 * set方法。
 	 */
 	public void setYearsAmount(String yearsAmount) {
 		this.yearsAmount = yearsAmount;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

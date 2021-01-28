@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.gp.IGprRoleDomainSplDal">
+<mapper namespace="com.zee.dao.split.gp.IGprRoleDomainSplDal">
 
-	<resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprRoleDomain">
+	<resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprRoleDomain">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
 		<result column="domain_id" property="domainId" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 		id,role_id,domain_id,is_enable_code
 	</sql>
 
-	<insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprRoleDomain">
+	<insert id="add" parameterType="com.zee.ent.extend.gp.GprRoleDomain">
 		insert into gpr_role_domain
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null and id != '' ">
@@ -116,7 +116,7 @@
 
 
 
-	<update id="update" parameterType="com.jusfoun.ent.extend.gp.GprRoleDomain">
+	<update id="update" parameterType="com.zee.ent.extend.gp.GprRoleDomain">
 		update gpr_role_domain
 		<set>
 			<if test="roleId != null  and roleId != '' ">

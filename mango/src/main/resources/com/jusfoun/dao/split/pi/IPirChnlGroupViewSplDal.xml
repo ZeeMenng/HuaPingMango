@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.pi.IPirChnlGroupViewSplDal" >
+<mapper namespace="com.zee.dao.split.pi.IPirChnlGroupViewSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.pi.PirChnlGroupView" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
               <result column="role_id" property="roleId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,channel_id,role_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  <insert id="add" parameterType="com.zee.ent.extend.pi.PirChnlGroupView" >
     insert into pir_chnl_group_view
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -80,7 +80,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.pi.PirChnlGroupView" >
+  <update id="update" parameterType="com.zee.ent.extend.pi.PirChnlGroupView" >
     update pir_chnl_group_view
     <set >
                   <if test="channelId != null  and channelId != '' " >

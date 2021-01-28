@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.da.IDaOnlineRetailersUntDal" >
+<mapper namespace="com.zee.dao.unity.da.IDaOnlineRetailersUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaOnlineRetailers" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaOnlineRetailers" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="common_field_id" property="commonFieldId" jdbcType="VARCHAR" />
               <result column="longitude" property="longitude" jdbcType="VARCHAR" />
@@ -18,7 +18,7 @@
         id,common_field_id,longitude,latitude,region_code,region_text,name,address,tel
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaOnlineRetailers" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaOnlineRetailers" >
     insert into da_online_retailers
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -89,8 +89,7 @@
     </trim>
   </insert>
   
- 
-    <insert id="addList" parameterType="list">
+  <insert id="addList" parameterType="list">
     	insert into da_online_retailers
     	<trim prefix="(" suffix=")">
     		<include refid="Base_Column_List" />
@@ -99,45 +98,63 @@
     	<foreach collection="list" item="daOnlineRetailers" index="index" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
-      
           #{daOnlineRetailers.id,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.commonFieldId,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.longitude,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.latitude,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.regionCode,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.regionText,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.name,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.address,jdbcType=VARCHAR},
-
-      
           #{daOnlineRetailers.tel,jdbcType=VARCHAR},
-
 
         </trim>
     	</foreach>
     </insert>
 
-  
-  
-  <delete id="delete" parameterType="java.lang.String" >
-                 delete from da_online_retailers
-                 where  id = #{id,jdbcType=VARCHAR}
-  </delete>
-  
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into da_online_retailers
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="daOnlineRetailers" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{daOnlineRetailers.id,jdbcType=VARCHAR},
+          #{daOnlineRetailers.commonFieldId,jdbcType=VARCHAR},
+          #{daOnlineRetailers.longitude,jdbcType=VARCHAR},
+          #{daOnlineRetailers.latitude,jdbcType=VARCHAR},
+          #{daOnlineRetailers.regionCode,jdbcType=VARCHAR},
+          #{daOnlineRetailers.regionText,jdbcType=VARCHAR},
+          #{daOnlineRetailers.name,jdbcType=VARCHAR},
+          #{daOnlineRetailers.address,jdbcType=VARCHAR},
+          #{daOnlineRetailers.tel,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+common_field_id=values(common_field_id),
+longitude=values(longitude),
+latitude=values(latitude),
+region_code=values(region_code),
+region_text=values(region_text),
+name=values(name),
+address=values(address),
+tel=values(tel)
+        
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        delete from da_online_retailers
+        where  id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+        
+
 	<delete id="deleteByIdList" parameterType="list">
 		delete from da_online_retailers
 		where id  in
@@ -146,7 +163,9 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaOnlineRetailers" >
+  
+  
+  <update id="update" parameterType="com.zee.ent.extend.da.DaOnlineRetailers" >
     update da_online_retailers
     <set >
                   <if test="commonFieldId != null  and commonFieldId != '' " >
@@ -218,63 +237,95 @@
 		<trim prefix="set" suffixOverrides=",">
          <trim prefix="common_field_id =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.commonFieldId != null and daOnlineRetailers.commonFieldId  != '' " >
+                  <if test="daOnlineRetailers.commonFieldId != null and daOnlineRetailers.commonFieldId  != ''  and daOnlineRetailers.commonFieldId  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.commonFieldId,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.commonFieldId != null  and daOnlineRetailers.commonFieldId  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="longitude =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.longitude != null and daOnlineRetailers.longitude  != '' " >
+                  <if test="daOnlineRetailers.longitude != null and daOnlineRetailers.longitude  != ''  and daOnlineRetailers.longitude  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.longitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.longitude != null  and daOnlineRetailers.longitude  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.latitude != null and daOnlineRetailers.latitude  != '' " >
+                  <if test="daOnlineRetailers.latitude != null and daOnlineRetailers.latitude  != ''  and daOnlineRetailers.latitude  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.latitude,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.latitude != null  and daOnlineRetailers.latitude  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_code =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.regionCode != null and daOnlineRetailers.regionCode  != '' " >
+                  <if test="daOnlineRetailers.regionCode != null and daOnlineRetailers.regionCode  != ''  and daOnlineRetailers.regionCode  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.regionCode,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.regionCode != null  and daOnlineRetailers.regionCode  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="region_text =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.regionText != null and daOnlineRetailers.regionText  != '' " >
+                  <if test="daOnlineRetailers.regionText != null and daOnlineRetailers.regionText  != ''  and daOnlineRetailers.regionText  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.regionText,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.regionText != null  and daOnlineRetailers.regionText  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.name != null and daOnlineRetailers.name  != '' " >
+                  <if test="daOnlineRetailers.name != null and daOnlineRetailers.name  != ''  and daOnlineRetailers.name  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.name,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.name != null  and daOnlineRetailers.name  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="address =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.address != null and daOnlineRetailers.address  != '' " >
+                  <if test="daOnlineRetailers.address != null and daOnlineRetailers.address  != ''  and daOnlineRetailers.address  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.address,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.address != null  and daOnlineRetailers.address  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
          <trim prefix="tel =case" suffix="end,">
               <foreach collection="list" item="daOnlineRetailers" index="index">
-                  <if test="daOnlineRetailers.tel != null and daOnlineRetailers.tel  != '' " >
+                  <if test="daOnlineRetailers.tel != null and daOnlineRetailers.tel  != ''  and daOnlineRetailers.tel  != '-1' ">
                      when id=#{daOnlineRetailers.id} then #{daOnlineRetailers.tel,jdbcType=VARCHAR}
                   </if>
+                  <if test="daOnlineRetailers.tel != null  and daOnlineRetailers.tel  == '-1' ">
+                     when id=#{daOnlineRetailers.id} then null
+                  </if>
+                  
               </foreach>
          </trim>
     </trim>
     where id in
-		<foreach collection="list" item="gpModule" index="index" open="(" close=")" separator=",">
+		<foreach collection="list" item="daOnlineRetailers" index="index" open="(" close=")" separator=",">
 			#{daOnlineRetailers.id,jdbcType=VARCHAR}
 		</foreach>
   </update>
@@ -284,60 +335,44 @@
   <insert id="updateListWithDffOrAdd" useGeneratedKeys="true" keyProperty="id" parameterType="list">
     replace into da_online_retailers
         <trim prefix="(" suffix=")" suffixOverrides="," >
-              id ,
-          <if test="commonFieldId  != null and commonFieldId  != '' " >
-              common_field_id,
-          </if>
-          <if test="longitude  != null and longitude  != '' " >
-              longitude,
-          </if>
-          <if test="latitude  != null and latitude  != '' " >
-              latitude,
-          </if>
-          <if test="regionCode  != null and regionCode  != '' " >
-              region_code,
-          </if>
-          <if test="regionText  != null and regionText  != '' " >
-              region_text,
-          </if>
-          <if test="name  != null and name  != '' " >
-              name,
-          </if>
-          <if test="address  != null and address  != '' " >
-              address,
-          </if>
-          <if test="tel  != null and tel  != '' " >
-              tel,
-          </if>
+id,
+common_field_id,
+longitude,
+latitude,
+region_code,
+region_text,
+name,
+address,
+tel,
     </trim>
     VALUES
     <foreach collection="list" item="daOnlineRetailers" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{daOnlineRetailers.id ,jdbcType=VARCHAR},
-                  <if test="t.commonFieldId  != null  and t.commonFieldId != '' " >
+                  
                      #{daOnlineRetailers.commonFieldId ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.longitude  != null  and t.longitude != '' " >
+                  
+                  
                      #{daOnlineRetailers.longitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.latitude  != null  and t.latitude != '' " >
+                  
+                  
                      #{daOnlineRetailers.latitude ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionCode  != null  and t.regionCode != '' " >
+                  
+                  
                      #{daOnlineRetailers.regionCode ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.regionText  != null  and t.regionText != '' " >
+                  
+                  
                      #{daOnlineRetailers.regionText ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.name  != null  and t.name != '' " >
+                  
+                  
                      #{daOnlineRetailers.name ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.address  != null  and t.address != '' " >
+                  
+                  
                      #{daOnlineRetailers.address ,jdbcType=VARCHAR},
-                  </if>
-                  <if test="t.tel  != null  and t.tel != '' " >
+                  
+                  
                      #{daOnlineRetailers.tel ,jdbcType=VARCHAR},
-                  </if>
+                  
       </trim>
     </foreach>
   </insert>

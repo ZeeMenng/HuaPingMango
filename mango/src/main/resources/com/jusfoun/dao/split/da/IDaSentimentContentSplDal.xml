@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.split.da.IDaSentimentContentSplDal" >
+<mapper namespace="com.zee.dao.split.da.IDaSentimentContentSplDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.da.DaSentimentContent" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="article_id" property="articleId" jdbcType="VARCHAR" />
               <result column="txt" property="txt" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
         id,article_id,txt,txt1,txt2,txt3
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  <insert id="add" parameterType="com.zee.ent.extend.da.DaSentimentContent" >
     insert into da_sentiment_content
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -113,7 +113,7 @@
 		</foreach>
 	</delete>
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.da.DaSentimentContent" >
+  <update id="update" parameterType="com.zee.ent.extend.da.DaSentimentContent" >
     update da_sentiment_content
     <set >
                   <if test="articleId != null  and articleId != '' " >

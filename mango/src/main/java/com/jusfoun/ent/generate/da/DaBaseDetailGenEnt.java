@@ -1,102 +1,104 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:09
+ * @updateDate 2021/1/28 16:08:48
  * @description 实体类DaBaseDetailGenEnt，自动生成。基地细分表-地块表
  */
 
 public class DaBaseDetailGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="地块面积",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String areaDetail;
-    @ApiModelProperty(value="对应基地表code",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String baseCode;
-    @ApiModelProperty(value="基地id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String baseId;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="创建时间",hidden=false,required=false)
     private Date createDate;
-    @ApiModelProperty(value="创建者",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String creator;
     @ApiModelProperty(value="删除标志：0正常，1删除",hidden=false,required=true)
     private Byte delFlag;
-    @ApiModelProperty(value="地块编号",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String detailCode;
-    @ApiModelProperty(value="地块名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String detailName;
-    @ApiModelProperty(value="备用字段",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String extra;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="产量",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String output;
     @ApiModelProperty(value="是否种植：0未种植，1已种植",hidden=false,required=true)
     private Byte planted;
-    @ApiModelProperty(value="产品标识",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productId;
-    @ApiModelProperty(value="产品名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productName;
-    @ApiModelProperty(value="更新者",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String regenerator;
     @ApiModelProperty(value="更新时间",hidden=false,required=false)
     private Date updateDate;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。地块面积
+	 * get方法。
 	 */
 	public String getAreaDetail() {
 		return this.areaDetail;
 	}
 
 	/**
-	 * set方法。地块面积
+	 * set方法。
 	 */
 	public void setAreaDetail(String areaDetail) {
 		this.areaDetail = areaDetail;
 	}
     
 	/**
-	 * get方法。对应基地表code
+	 * get方法。
 	 */
 	public String getBaseCode() {
 		return this.baseCode;
 	}
 
 	/**
-	 * set方法。对应基地表code
+	 * set方法。
 	 */
 	public void setBaseCode(String baseCode) {
 		this.baseCode = baseCode;
 	}
     
 	/**
-	 * get方法。基地id
+	 * get方法。
 	 */
 	public String getBaseId() {
 		return this.baseId;
 	}
 
 	/**
-	 * set方法。基地id
+	 * set方法。
 	 */
 	public void setBaseId(String baseId) {
 		this.baseId = baseId;
@@ -131,14 +133,14 @@ public class DaBaseDetailGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。创建者
+	 * get方法。
 	 */
 	public String getCreator() {
 		return this.creator;
 	}
 
 	/**
-	 * set方法。创建者
+	 * set方法。
 	 */
 	public void setCreator(String creator) {
 		this.creator = creator;
@@ -159,70 +161,70 @@ public class DaBaseDetailGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。地块编号
+	 * get方法。
 	 */
 	public String getDetailCode() {
 		return this.detailCode;
 	}
 
 	/**
-	 * set方法。地块编号
+	 * set方法。
 	 */
 	public void setDetailCode(String detailCode) {
 		this.detailCode = detailCode;
 	}
     
 	/**
-	 * get方法。地块名称
+	 * get方法。
 	 */
 	public String getDetailName() {
 		return this.detailName;
 	}
 
 	/**
-	 * set方法。地块名称
+	 * set方法。
 	 */
 	public void setDetailName(String detailName) {
 		this.detailName = detailName;
 	}
     
 	/**
-	 * get方法。备用字段
+	 * get方法。
 	 */
 	public String getExtra() {
 		return this.extra;
 	}
 
 	/**
-	 * set方法。备用字段
+	 * set方法。
 	 */
 	public void setExtra(String extra) {
 		this.extra = extra;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
     
 	/**
-	 * get方法。产量
+	 * get方法。
 	 */
 	public String getOutput() {
 		return this.output;
 	}
 
 	/**
-	 * set方法。产量
+	 * set方法。
 	 */
 	public void setOutput(String output) {
 		this.output = output;
@@ -243,42 +245,42 @@ public class DaBaseDetailGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。产品标识
+	 * get方法。
 	 */
 	public String getProductId() {
 		return this.productId;
 	}
 
 	/**
-	 * set方法。产品标识
+	 * set方法。
 	 */
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
     
 	/**
-	 * get方法。产品名称
+	 * get方法。
 	 */
 	public String getProductName() {
 		return this.productName;
 	}
 
 	/**
-	 * set方法。产品名称
+	 * set方法。
 	 */
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
     
 	/**
-	 * get方法。更新者
+	 * get方法。
 	 */
 	public String getRegenerator() {
 		return this.regenerator;
 	}
 
 	/**
-	 * set方法。更新者
+	 * set方法。
 	 */
 	public void setRegenerator(String regenerator) {
 		this.regenerator = regenerator;
@@ -299,7 +301,14 @@ public class DaBaseDetailGenEnt extends BaseEnt implements Serializable {
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 

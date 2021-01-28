@@ -1,6 +1,6 @@
-package com.jusfoun.ent.extend.pe;
+package com.zee.ent.extend.pe;
 
-import com.jusfoun.ent.generate.pe.PeAerialViewGenEnt;
+import com.zee.ent.generate.pe.PeAerialViewGenEnt;
 
 import io.swagger.annotations.ApiModel;
 

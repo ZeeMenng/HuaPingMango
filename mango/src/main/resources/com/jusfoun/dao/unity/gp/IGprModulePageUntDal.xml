@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jusfoun.dao.unity.gp.IGprModulePageUntDal" >
+<mapper namespace="com.zee.dao.unity.gp.IGprModulePageUntDal" >
 
-  <resultMap id="BaseResultMap" type="com.jusfoun.ent.extend.gp.GprModulePage" >
+  <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GprModulePage" >
               <id column="id" property="id" jdbcType="VARCHAR" />
               <result column="module_id" property="moduleId" jdbcType="VARCHAR" />
               <result column="page_id" property="pageId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         id,module_id,page_id
   </sql>
   
-  <insert id="add" parameterType="com.jusfoun.ent.extend.gp.GprModulePage" >
+  <insert id="add" parameterType="com.zee.ent.extend.gp.GprModulePage" >
     insert into gpr_module_page
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
@@ -57,6 +57,30 @@
         </trim>
     	</foreach>
     </insert>
+
+
+  <insert id="addListWithDffOrAdd" parameterType="list">
+    	insert into gpr_module_page
+    	<trim prefix="(" suffix=")">
+    		<include refid="Base_Column_List" />
+    	</trim>
+    	values
+    	<foreach collection="list" item="gprModulePage" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+
+          #{gprModulePage.id,jdbcType=VARCHAR},
+          #{gprModulePage.moduleId,jdbcType=VARCHAR},
+          #{gprModulePage.pageId,jdbcType=VARCHAR},
+
+        </trim>
+    	</foreach>
+        ON DUPLICATE KEY UPDATE
+id=values(id),
+module_id=values(module_id),
+page_id=values(page_id)
+        
+    </insert>
+
 
     <delete id="delete" parameterType="java.lang.String" >
         delete from gpr_module_page
@@ -127,7 +151,7 @@
   
   
   
-  <update id="update" parameterType="com.jusfoun.ent.extend.gp.GprModulePage" >
+  <update id="update" parameterType="com.zee.ent.extend.gp.GprModulePage" >
     update gpr_module_page
     <set >
                   <if test="moduleId != null  and moduleId != '' " >

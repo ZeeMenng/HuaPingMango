@@ -1,4 +1,4 @@
-package com.jusfoun.app.extend.swagger.pe;
+package com.zee.app.extend.swagger.pe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jusfoun.app.generate.swagger.pe.PeQueryMenuGenSwgApp;
-import com.jusfoun.bll.extend.unity.pe.PeQueryMenuUntBll;
-import com.jusfoun.ent.custom.ResultModel;
-import com.jusfoun.utl.SymbolicConstant;
+import com.zee.app.generate.swagger.pe.PeQueryMenuGenSwgApp;
+import com.zee.bll.extend.unity.pe.PeQueryMenuUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;

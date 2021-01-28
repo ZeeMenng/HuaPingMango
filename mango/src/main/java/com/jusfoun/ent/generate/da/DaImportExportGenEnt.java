@@ -1,32 +1,30 @@
-package com.jusfoun.ent.generate.da;
+﻿package com.zee.ent.generate.da;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.*;
-
-import com.jusfoun.ent.base.BaseEnt;
-
 import io.swagger.annotations.ApiModelProperty;
 
-import java.math.BigDecimal;
+import com.zee.ent.base.BaseEnt;
+
 
 
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2020/8/11 11:43:20
+ * @updateDate 2021/1/28 16:08:58
  * @description 实体类DaImportExportGenEnt，自动生成。进出口数据表，用于存放直报数据的进出口数据
  */
 
 public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value="对应通用字段表id",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String commonFieldId;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的编码字段（code）作物种类，1：芒果",allowableValues="0,1",hidden=false,required=false)
     private Byte cropTypeCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String cropTypeText;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal exportAmount;
@@ -34,13 +32,13 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal exportAmountUnit;
     @ApiModelProperty(value="出口量单位:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte exportAmountUnitCode;
-    @ApiModelProperty(value="出口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String exportAmountUnitText;
-    @ApiModelProperty(value="出口国家：对应数据字典表（dictionary）中的编码字段（code）",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String exportCountryCode;
-    @ApiModelProperty(value="出口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String exportCountryText;
-    @ApiModelProperty(value="出口企业",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String exportEnterprise;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal exportPrice;
@@ -48,7 +46,7 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal exportPriceUnit;
     @ApiModelProperty(value="出口价格单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，5：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte exportPriceUnitCode;
-    @ApiModelProperty(value="出口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，5：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String exportPriceUnitText;
     @ApiModelProperty(value="出口日期",hidden=false,required=false)
     private Date exportTime;
@@ -58,9 +56,9 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal exportVolumeUnit;
     @ApiModelProperty(value="出口额单位:对应数据字典表（dictionary）中的编码字段（code）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元",allowableValues="0,1",hidden=false,required=false)
     private Byte exportVolumeUnitCode;
-    @ApiModelProperty(value="出口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String exportVolumeUnitText;
-    @ApiModelProperty(value="主键id",hidden=false,required=true)
+    @ApiModelProperty(value="",hidden=false,required=true)
     private String id;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal importAmount;
@@ -68,13 +66,13 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal importAmountUnit;
     @ApiModelProperty(value="进口量单位:对应数据字典表（dictionary）中的编码字段（code），1：千克，2：吨，3：公斤，4：万吨",allowableValues="0,1",hidden=false,required=false)
     private Byte importAmountUnitCode;
-    @ApiModelProperty(value="进口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String importAmountUnitText;
-    @ApiModelProperty(value="进口国家：对应数据字典表（dictionary）中的编码字段（code）",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="",allowableValues="0,1",hidden=false,required=false)
     private String importCountryCode;
-    @ApiModelProperty(value="进口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String importCountryText;
-    @ApiModelProperty(value="进口企业",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String importEnterprise;
     @ApiModelProperty(value="",hidden=false,required=false)
     private BigDecimal importPrice;
@@ -82,7 +80,7 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal importPriceUnit;
     @ApiModelProperty(value="进口价格单位:对应数据字典表（dictionary）中的编码字段（code）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，6：百万美元/公斤",allowableValues="0,1",hidden=false,required=false)
     private Byte importPriceUnitCode;
-    @ApiModelProperty(value="进口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，6：百万美元/公斤",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String importPriceUnitText;
     @ApiModelProperty(value="进口日期",hidden=false,required=false)
     private Date importTime;
@@ -92,29 +90,33 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
     private BigDecimal importVolumeUnit;
     @ApiModelProperty(value="进口额单位:对应数据字典表（dictionary）中的编码字段（code）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元",allowableValues="0,1",hidden=false,required=false)
     private Byte importVolumeUnitCode;
-    @ApiModelProperty(value="进口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String importVolumeUnitText;
-    @ApiModelProperty(value="名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String name;
-    @ApiModelProperty(value="产品名称",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String productName;
     @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",allowableValues="0,1",hidden=false,required=false)
     private Byte strainsCode;
-    @ApiModelProperty(value="对应数据字典表（dictionary）中的作物品种",hidden=false,required=false)
+    @ApiModelProperty(value="",hidden=false,required=false)
     private String strainsText;
-    //多对一关系中，一端实体对象
 
-    //一对多关系中，多端数据列表
+   //本表做为子表时，父表实体对象
+
+    //本表做为父表时，子表数据列表
+
+    //父子表均为自身时
+
 
 	/**
-	 * get方法。对应通用字段表id
+	 * get方法。
 	 */
 	public String getCommonFieldId() {
 		return this.commonFieldId;
 	}
 
 	/**
-	 * set方法。对应通用字段表id
+	 * set方法。
 	 */
 	public void setCommonFieldId(String commonFieldId) {
 		this.commonFieldId = commonFieldId;
@@ -135,14 +137,14 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * get方法。
 	 */
 	public String getCropTypeText() {
 		return this.cropTypeText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的文本字段（text）作物种类文本，1：芒果
+	 * set方法。
 	 */
 	public void setCropTypeText(String cropTypeText) {
 		this.cropTypeText = cropTypeText;
@@ -191,56 +193,56 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。出口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getExportAmountUnitText() {
 		return this.exportAmountUnitText;
 	}
 
 	/**
-	 * set方法。出口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setExportAmountUnitText(String exportAmountUnitText) {
 		this.exportAmountUnitText = exportAmountUnitText;
 	}
     
 	/**
-	 * get方法。出口国家：对应数据字典表（dictionary）中的编码字段（code）
+	 * get方法。
 	 */
 	public String getExportCountryCode() {
 		return this.exportCountryCode;
 	}
 
 	/**
-	 * set方法。出口国家：对应数据字典表（dictionary）中的编码字段（code）
+	 * set方法。
 	 */
 	public void setExportCountryCode(String exportCountryCode) {
 		this.exportCountryCode = exportCountryCode;
 	}
     
 	/**
-	 * get方法。出口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * get方法。
 	 */
 	public String getExportCountryText() {
 		return this.exportCountryText;
 	}
 
 	/**
-	 * set方法。出口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * set方法。
 	 */
 	public void setExportCountryText(String exportCountryText) {
 		this.exportCountryText = exportCountryText;
 	}
     
 	/**
-	 * get方法。出口企业
+	 * get方法。
 	 */
 	public String getExportEnterprise() {
 		return this.exportEnterprise;
 	}
 
 	/**
-	 * set方法。出口企业
+	 * set方法。
 	 */
 	public void setExportEnterprise(String exportEnterprise) {
 		this.exportEnterprise = exportEnterprise;
@@ -289,14 +291,14 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。出口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，5：百万美元/公斤
+	 * get方法。
 	 */
 	public String getExportPriceUnitText() {
 		return this.exportPriceUnitText;
 	}
 
 	/**
-	 * set方法。出口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，5：百万美元/公斤
+	 * set方法。
 	 */
 	public void setExportPriceUnitText(String exportPriceUnitText) {
 		this.exportPriceUnitText = exportPriceUnitText;
@@ -359,28 +361,28 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。出口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元
+	 * get方法。
 	 */
 	public String getExportVolumeUnitText() {
 		return this.exportVolumeUnitText;
 	}
 
 	/**
-	 * set方法。出口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元
+	 * set方法。
 	 */
 	public void setExportVolumeUnitText(String exportVolumeUnitText) {
 		this.exportVolumeUnitText = exportVolumeUnitText;
 	}
     
 	/**
-	 * get方法。主键id
+	 * get方法。
 	 */
 	public String getId() {
 		return this.id;
 	}
 
 	/**
-	 * set方法。主键id
+	 * set方法。
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -429,56 +431,56 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。进口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * get方法。
 	 */
 	public String getImportAmountUnitText() {
 		return this.importAmountUnitText;
 	}
 
 	/**
-	 * set方法。进口量单位文本:文本，对应数据字典表（dictionary）中的文本字段（text），1：千克，2：吨，3：公斤，4：万吨
+	 * set方法。
 	 */
 	public void setImportAmountUnitText(String importAmountUnitText) {
 		this.importAmountUnitText = importAmountUnitText;
 	}
     
 	/**
-	 * get方法。进口国家：对应数据字典表（dictionary）中的编码字段（code）
+	 * get方法。
 	 */
 	public String getImportCountryCode() {
 		return this.importCountryCode;
 	}
 
 	/**
-	 * set方法。进口国家：对应数据字典表（dictionary）中的编码字段（code）
+	 * set方法。
 	 */
 	public void setImportCountryCode(String importCountryCode) {
 		this.importCountryCode = importCountryCode;
 	}
     
 	/**
-	 * get方法。进口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * get方法。
 	 */
 	public String getImportCountryText() {
 		return this.importCountryText;
 	}
 
 	/**
-	 * set方法。进口国家文本：文本，对应数据字典表（dictionary）中的文本字段（text）
+	 * set方法。
 	 */
 	public void setImportCountryText(String importCountryText) {
 		this.importCountryText = importCountryText;
 	}
     
 	/**
-	 * get方法。进口企业
+	 * get方法。
 	 */
 	public String getImportEnterprise() {
 		return this.importEnterprise;
 	}
 
 	/**
-	 * set方法。进口企业
+	 * set方法。
 	 */
 	public void setImportEnterprise(String importEnterprise) {
 		this.importEnterprise = importEnterprise;
@@ -527,14 +529,14 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。进口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，6：百万美元/公斤
+	 * get方法。
 	 */
 	public String getImportPriceUnitText() {
 		return this.importPriceUnitText;
 	}
 
 	/**
-	 * set方法。进口价格单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元/公斤，2：万元/公斤，3：亿元/公斤，4：美元/公斤，5：万美元/公斤，6：百万美元/公斤
+	 * set方法。
 	 */
 	public void setImportPriceUnitText(String importPriceUnitText) {
 		this.importPriceUnitText = importPriceUnitText;
@@ -597,42 +599,42 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。进口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元
+	 * get方法。
 	 */
 	public String getImportVolumeUnitText() {
 		return this.importVolumeUnitText;
 	}
 
 	/**
-	 * set方法。进口额单位文本:文本，对应数据字典表（dictionary）中的文本字段（text）1：元，2：万元，3：亿元，4：美元，5：万美元，6：百万美元
+	 * set方法。
 	 */
 	public void setImportVolumeUnitText(String importVolumeUnitText) {
 		this.importVolumeUnitText = importVolumeUnitText;
 	}
     
 	/**
-	 * get方法。名称
+	 * get方法。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * set方法。名称
+	 * set方法。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
     
 	/**
-	 * get方法。产品名称
+	 * get方法。
 	 */
 	public String getProductName() {
 		return this.productName;
 	}
 
 	/**
-	 * set方法。产品名称
+	 * set方法。
 	 */
 	public void setProductName(String productName) {
 		this.productName = productName;
@@ -653,21 +655,28 @@ public class DaImportExportGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。对应数据字典表（dictionary）中的作物品种
+	 * get方法。
 	 */
 	public String getStrainsText() {
 		return this.strainsText;
 	}
 
 	/**
-	 * set方法。对应数据字典表（dictionary）中的作物品种
+	 * set方法。
 	 */
 	public void setStrainsText(String strainsText) {
 		this.strainsText = strainsText;
 	}
     
 
-    //一对多关系中，多端数据列表
+
+
+
+
+
+
+
+
 
 }
 
