@@ -2521,7 +2521,7 @@ function initZTreeEditForm(pageParam, ajaxParam) {
     var errorMessage = $('.alert-danger', formEdit);
     var successMessage = $('.alert-success', formEdit);
     var selectRowsCookie = Cookies.get("selectRows");
-    var id = ajaxParam.recordId;
+    var recordId = ajaxParam.recordId;
 
     // 添加重置按钮事件，重置的动作类似于重新加载
     $("#buttonReset").unbind('click');
@@ -2535,12 +2535,12 @@ function initZTreeEditForm(pageParam, ajaxParam) {
             time: 1000
         });
     });
-
+    
     formEdit.on("submit", function () {
         for (var e in CKEDITOR.instances)
             CKEDITOR.instances[e].updateElement();
     });
-
+    
     formEdit.validate({
         errorClass: 'help-block',
         rules: pageParam.validateRules,
@@ -2590,11 +2590,11 @@ function initZTreeEditForm(pageParam, ajaxParam) {
                         return false;
                     }
 
-                    // 更新当前节点，也可以用zTree.refresh();
+                    // 更新当前节点，注意这里如果直接获取ajaxParam.id做为getNodeByParam参数是只能获取第一次点击时的值
                     var zTree = $.fn.zTree.getZTreeObj(pageParam.treeId);
-                    var node = zTree.getNodeByParam("id", ajaxParam.recordId);
+                    var node = zTree.getNodeByParam("id", $("#hiddenId").val());
                     node.name = $("#textName").val();
-                    zTree.updateNode(node)
+                    zTree.updateNode(node);
 
                     layer.msg('记录修改成功……', {
                         time: 1000
@@ -2627,7 +2627,7 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 
     // 初始化页面标签
     var ajaxParamter = {
-        "url": ajaxParam.getModelUrl + "/" + id,
+        "url": ajaxParam.getModelUrl + "/" + recordId,
         "type": "GET",
         "async": true,
         "success": function (resultData) {
