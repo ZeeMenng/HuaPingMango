@@ -358,8 +358,8 @@
 
 	<select id="getListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		<include refid="Base_Column_List" />
-		from gp_module a inner join gpr_role_module b on a.id=b.module_id where role_id = #{roleId,jdbcType=VARCHAR} order by priority
+		A.id,A.domain_id,A.name,A.serial_no,A.level,A.farther_id,A.priority,A.page_id,A.page_url,A.style,A.icon_resource,A.remark,A.add_time,A.update_time
+		from gp_module A inner join gpr_role_module B on A.id=B.module_id where role_id = #{roleId,jdbcType=VARCHAR} order by priority
 	</select>
 
 	<cache />
