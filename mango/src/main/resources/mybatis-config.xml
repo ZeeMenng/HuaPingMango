@@ -8,6 +8,8 @@
 		<setting name="cacheEnabled" value="false" />
 		<!-- 查询值为空时也返回属性 -->
 		<setting name="callSettersOnNulls" value="true" />
+		<!-- 插入或更新时如果为空，则设置为NULL，否则插入报错 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageHelper">

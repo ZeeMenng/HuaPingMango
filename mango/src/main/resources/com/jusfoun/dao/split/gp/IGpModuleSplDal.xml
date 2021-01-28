@@ -151,9 +151,9 @@
 		</foreach>
 		ON DUPLICATE KEY UPDATE
 		id=values(id),
+		serial_no=values(serial_no),
 		domain_id=values(domain_id),
 		name=values(name),
-
 		level=values(level),
 		farther_id=values(farther_id),
 		priority=values(priority),

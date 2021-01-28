@@ -261,11 +261,7 @@ public class GpModuleSplBll extends GpModuleGenSplBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETE_F.getCode());
-				result.setResultMessage(OperResult.DELETE_F.getText() + "：不存在相应记录！");
-			}
+		
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
@@ -488,6 +484,7 @@ public class GpModuleSplBll extends GpModuleGenSplBll {
 			}
 
 			int i = 0;
+			
 			if (gpModuleList.size() > 0) {
 				gpModuleSplDal.deleteInvalidDomainModules(gpModuleList.get(0).getDomainId(), gpModuleList);
 				i = gpModuleSplDal.updateDomainModules(gpModuleList);

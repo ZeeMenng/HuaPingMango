@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import com.jusfoun.ent.extend.gp.GpModule;
-import com.jusfoun.set.enumer.DictionaryModuleLevelEnum;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -316,10 +315,17 @@ public class Tools {
 			GpModule module = new GpModule();
 			JSONObject jsonObject = JSONObject.fromObject(moduleJSONArray.get(i));
 			byte level = ((Integer) (jsonObject.getInt("level"))).byteValue();
-			if (StringUtils.isEmpty((jsonObject.getString("id"))))
+			if (!jsonObject.containsKey("id") || StringUtils.isEmpty((jsonObject.getString("id"))) || jsonObject.getString("id").length() != 32)
 				module.setId(Tools.getUUID());
 			else
 				module.setId(jsonObject.getString("id"));
+
+			if (!jsonObject.containsKey("serialNo") || StringUtils.isEmpty((jsonObject.getString("serialNo"))) || jsonObject.getString("serialNo").equals("null")) {
+				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+				module.setSerialNo(tSerialNo);
+			} else
+				module.setSerialNo(jsonObject.getString("serialNo"));
+
 			module.setFartherId(parentId);
 			module.setPriority(i);
 			module.setDomainId(domainId);

@@ -88,7 +88,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
 			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(result.getObjectId(), modules);
-			result = gpModuleSplBll.add(moduleList);
+			result = gpModuleUntBll.add(moduleList);
 		}
 
 		// 图标列表
@@ -152,7 +152,11 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 		String modules = jsonData.getModules();
 		if (StringUtils.isNotBlank(modules)) {
 			ArrayList<GpModule> moduleList = Tools.getModuleListFromJsonString(jsonData.getId(), modules);
-			result = gpModuleSplBll.updateDomainModules(moduleList);
+			// 如果为0直接删除所有
+			if (moduleList.size() == 0)
+				result = gpModuleUntBll.deleteByDomainId(jsonData.getId());
+			else
+				result = gpModuleSplBll.updateDomainModules(moduleList);
 		}
 
 		// 图标列表
