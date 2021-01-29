@@ -13,7 +13,7 @@ import com.zee.ent.base.BaseEnt;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:08:53
+ * @updateDate 2021/1/29 16:02:36
  * @description 实体类DaEnterpriseInfoGenEnt，自动生成。da_enterprise_info
  */
 
@@ -1141,16 +1141,14 @@ public class DaEnterpriseInfoGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权    
-            可以有多个用|进行分隔
+	 * get方法。风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权可以有多个用|进行分隔
 	 */
 	public Byte getRiskTagsCode() {
 		return this.riskTagsCode;
 	}
 
 	/**
-	 * set方法。风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权    
-            可以有多个用|进行分隔
+	 * set方法。风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权可以有多个用|进行分隔
 	 */
 	public void setRiskTagsCode(Byte riskTagsCode) {
 		this.riskTagsCode = riskTagsCode;

@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/28 16:07:07
+ * @updateDate 2021/1/29 17:00:48
  * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 业务逻辑处理类，扩展自BaseUntBll<GpCatalogInterface>，自动生成。
  */
 public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> {
@@ -51,6 +51,7 @@ public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> 
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
@@ -59,27 +60,24 @@ public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> 
 			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELIST_S.getCode());
 			result.setResultMessage(OperResult.UPDATELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != updateListParam.getIdList().size()) {
-				result.setResultCode(OperResult.UPDATELIST_F.getCode());
-				result.setResultMessage(OperResult.UPDATELIST_F.getText() + "要修改的记录中有些已被删除。");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -99,6 +97,7 @@ public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> 
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
@@ -135,14 +134,15 @@ public class GpCatalogInterfaceGenUntBll extends BaseUntBll<GpCatalogInterface> 
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

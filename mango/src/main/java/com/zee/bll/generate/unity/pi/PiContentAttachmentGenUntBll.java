@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/28 16:07:24
+ * @updateDate 2021/1/29 17:01:05
  * @description CMS内容附件表 业务逻辑处理类，扩展自BaseUntBll<PiContentAttachment>，自动生成。
  */
 public class PiContentAttachmentGenUntBll extends BaseUntBll<PiContentAttachment> {
@@ -51,6 +51,7 @@ public class PiContentAttachmentGenUntBll extends BaseUntBll<PiContentAttachment
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
@@ -59,27 +60,24 @@ public class PiContentAttachmentGenUntBll extends BaseUntBll<PiContentAttachment
 			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELIST_S.getCode());
 			result.setResultMessage(OperResult.UPDATELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != updateListParam.getIdList().size()) {
-				result.setResultCode(OperResult.UPDATELIST_F.getCode());
-				result.setResultMessage(OperResult.UPDATELIST_F.getText() + "要修改的记录中有些已被删除。");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -99,6 +97,7 @@ public class PiContentAttachmentGenUntBll extends BaseUntBll<PiContentAttachment
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
@@ -135,14 +134,15 @@ public class PiContentAttachmentGenUntBll extends BaseUntBll<PiContentAttachment
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

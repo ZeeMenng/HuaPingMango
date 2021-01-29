@@ -12,6 +12,17 @@ public class ResultModel extends GpOperLog {
 
 	private Object data;
 
+	// 原始异常信息——如果出现异常的话
+	private Exception originException;
+
+	public Exception getOriginException() {
+		return originException;
+	}
+
+	public void setOriginException(Exception originException) {
+		this.originException = originException;
+	}
+
 	public boolean getIsSuccess() {
 
 		isSuccess = this.getIsSuccessCode() == null ? false : this.getIsSuccessCode() == SymbolicConstant.DCODE_BOOLEAN_T ? true : false;

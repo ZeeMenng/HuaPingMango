@@ -9,8 +9,7 @@ import com.zee.ent.custom.ResultModel;
  * @description 全局异常封装,在GlobalExceptionHandler配置中调用。
  */
 public class GlobalException extends RuntimeException {
-	
-	private Exception originException;
+
 	private ResultModel resultModel;
 
 	public GlobalException() {
@@ -42,16 +41,5 @@ public class GlobalException extends RuntimeException {
 	public void setResultModel(ResultModel resultModel) {
 		this.resultModel = resultModel;
 	}
-
-	public Exception getOriginException() {
-		return originException;
-	}
-
-	public void setOriginException(Exception originException) {
-		this.originException = originException;
-	}
-	
-	
-	
 
 }

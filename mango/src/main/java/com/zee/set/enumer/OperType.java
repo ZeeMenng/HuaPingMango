@@ -10,7 +10,7 @@ public enum OperType {
 	//
 	CUSTOM((byte)0, "自定义方法操作"),
 	// 新增操作
-	ADD((byte)10, "添加记录"), ADDLIST((byte)11, "批量添加"),
+	ADD((byte)10, "添加记录"), ADDLIST((byte)11, "批量添加"),ADDLISTWIDTHDFFORADD((byte)12, "批量新增或修改为记录不同值"),
 	// 删除操作
 	DELETE((byte)20, "删除记录"), DELETELIST((byte)21, "批量删除"),DELETEBYFOREIGNKEY((byte)22, "根据外键字段删除记录"),
 	// 修改操作

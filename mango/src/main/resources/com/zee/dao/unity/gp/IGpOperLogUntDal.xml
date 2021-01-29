@@ -11,6 +11,7 @@
               <result column="table_name" property="tableName" jdbcType="VARCHAR" />
               <result column="total_count" property="totalCount" jdbcType="BIGINT" />
               <result column="income_value" property="incomeValue" jdbcType="VARCHAR" />
+              <result column="income_count" property="incomeCount" jdbcType="INTEGER" />
               <result column="return_value" property="returnValue" jdbcType="VARCHAR" />
               <result column="is_success_code" property="isSuccessCode" jdbcType="TINYINT" />
               <result column="result_code" property="resultCode" jdbcType="INTEGER" />
@@ -20,7 +21,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,domain_id,object_id,oper_type_code,oper_type_text,table_name,total_count,income_value,return_value,is_success_code,result_code,result_message,remark,add_time
+        id,domain_id,object_id,oper_type_code,oper_type_text,table_name,total_count,income_value,income_count,return_value,is_success_code,result_code,result_message,remark,add_time
   </sql>
   
   <insert id="add" parameterType="com.zee.ent.extend.gp.GpOperLog" >
@@ -56,6 +57,9 @@
               income_value,
           </if>
       
+          <if test="incomeCount != null " >
+              income_count,
+          </if>
           <if test="returnValue != null and returnValue != '' " >
               return_value,
           </if>
@@ -103,6 +107,9 @@
           <if test="incomeValue != null and incomeValue != '' " >
               #{incomeValue,jdbcType=VARCHAR},
           </if>
+          <if test="incomeCount != null " >
+              #{incomeCount,jdbcType=INTEGER},
+          </if>
           <if test="returnValue != null and returnValue != '' " >
               #{returnValue,jdbcType=VARCHAR},
           </if>
@@ -141,6 +148,7 @@
           #{gpOperLog.tableName,jdbcType=VARCHAR},
           #{gpOperLog.totalCount,jdbcType=BIGINT},
           #{gpOperLog.incomeValue,jdbcType=VARCHAR},
+          #{gpOperLog.incomeCount,jdbcType=INTEGER},
           #{gpOperLog.returnValue,jdbcType=VARCHAR},
           #{gpOperLog.isSuccessCode,jdbcType=TINYINT},
           #{gpOperLog.resultCode,jdbcType=INTEGER},
@@ -170,6 +178,7 @@
           #{gpOperLog.tableName,jdbcType=VARCHAR},
           #{gpOperLog.totalCount,jdbcType=BIGINT},
           #{gpOperLog.incomeValue,jdbcType=VARCHAR},
+          #{gpOperLog.incomeCount,jdbcType=INTEGER},
           #{gpOperLog.returnValue,jdbcType=VARCHAR},
           #{gpOperLog.isSuccessCode,jdbcType=TINYINT},
           #{gpOperLog.resultCode,jdbcType=INTEGER},
@@ -188,6 +197,7 @@ oper_type_text=values(oper_type_text),
 table_name=values(table_name),
 total_count=values(total_count),
 income_value=values(income_value),
+income_count=values(income_count),
 return_value=values(return_value),
 is_success_code=values(is_success_code),
 result_code=values(result_code),
@@ -258,6 +268,9 @@ add_time=values(add_time)
                   <if test="incomeValue != null  and incomeValue != '' " >
                      income_value = #{incomeValue,jdbcType=VARCHAR},
                   </if>
+                  <if test="incomeCount != null ">
+                     income_count = #{incomeCount,jdbcType=INTEGER},
+                  </if>
                   <if test="returnValue != null  and returnValue != '' " >
                      return_value = #{returnValue,jdbcType=VARCHAR},
                   </if>
@@ -303,6 +316,9 @@ add_time=values(add_time)
                   </if>
                   <if test="t.incomeValue != null  and t.incomeValue != '' " >
                      income_value = #{t.incomeValue,jdbcType=VARCHAR},
+                  </if>
+                  <if test="t.incomeCount != null ">
+                     income_count = #{t.incomeCount,jdbcType=INTEGER},
                   </if>
                   <if test="t.returnValue != null  and t.returnValue != '' " >
                      return_value = #{t.returnValue,jdbcType=VARCHAR},
@@ -403,6 +419,13 @@ add_time=values(add_time)
                   
               </foreach>
          </trim>
+         <trim prefix="income_count =case" suffix="end,">
+              <foreach collection="list" item="gpOperLog" index="index">
+                  <if test="gpOperLog.incomeCount != null " >
+                     when id=#{gpOperLog.id} then #{gpOperLog.incomeCount,jdbcType=INTEGER}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="return_value =case" suffix="end,">
               <foreach collection="list" item="gpOperLog" index="index">
                   <if test="gpOperLog.returnValue != null and gpOperLog.returnValue  != ''  and gpOperLog.returnValue  != '-1' ">
@@ -477,6 +500,7 @@ oper_type_text,
 table_name,
 total_count,
 income_value,
+income_count,
 return_value,
 is_success_code,
 result_code,
@@ -509,6 +533,9 @@ add_time,
                   
                      #{gpOperLog.incomeValue ,jdbcType=VARCHAR},
                   
+                  
+                    #{gpOperLog.incomeCount,jdbcType=INTEGER},
+            
                   
                      #{gpOperLog.returnValue ,jdbcType=VARCHAR},
                   

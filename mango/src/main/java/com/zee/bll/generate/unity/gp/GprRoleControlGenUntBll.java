@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/28 16:07:04
+ * @updateDate 2021/1/29 17:00:46
  * @description 角色拥有的控件权限。 业务逻辑处理类，扩展自BaseUntBll<GprRoleControl>，自动生成。
  */
 public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
@@ -51,6 +51,7 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
@@ -59,27 +60,24 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELIST_S.getCode());
 			result.setResultMessage(OperResult.UPDATELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != updateListParam.getIdList().size()) {
-				result.setResultCode(OperResult.UPDATELIST_F.getCode());
-				result.setResultMessage(OperResult.UPDATELIST_F.getText() + "要修改的记录中有些已被删除。");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -99,6 +97,7 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+            result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
@@ -135,14 +134,15 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}
@@ -157,7 +157,8 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(controlId);
-			result.setTableName(this.getClass().getSimpleName());
+			result.setIncomeCount(0);
+            result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据外键，删除中间表数据。");
@@ -174,14 +175,15 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -198,7 +200,8 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject( controlIdList).toString());
-			result.setObjectId("");
+			result.setIncomeCount(0);
+            result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
@@ -216,14 +219,15 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -240,6 +244,7 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(controlId);
+            result.setIncomeCount(0);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
 			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
@@ -253,22 +258,18 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -284,7 +285,8 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(roleId);
-			result.setTableName(this.getClass().getSimpleName());
+			result.setIncomeCount(0);
+            result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据外键，删除中间表数据。");
@@ -301,14 +303,15 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -325,7 +328,8 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject( roleIdList).toString());
-			result.setObjectId("");
+			result.setIncomeCount(0);
+            result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
@@ -343,14 +347,15 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -367,6 +372,7 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(roleId);
+            result.setIncomeCount(0);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
 			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
@@ -380,22 +386,18 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -416,7 +418,8 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 		try {
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(gprRoleControlList).toString());
-			result.setAddTime(DateUtils.getCurrentTime());
+			result.setIncomeCount(0);
+            result.setAddTime(DateUtils.getCurrentTime());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
@@ -425,25 +428,23 @@ public class GprRoleControlGenUntBll extends BaseUntBll<GprRoleControl> {
 			int i = gprRoleControlUntDal.deleteByCompositeIdList(gprRoleControlList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != gprRoleControlList.size()) {
-				result.setResultMessage(OperResult.DELETELIST_S.getText() + "要删除的记录中有些已被删除。");
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;

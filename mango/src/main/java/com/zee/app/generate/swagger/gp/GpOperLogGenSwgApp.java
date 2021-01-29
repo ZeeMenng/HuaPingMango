@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/28 16:06:36
+ * @updateDate 2021/1/29 16:02:34
  * @description 操作日志。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpOperLogGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.domain_id domainId,A.object_id objectId,A.oper_type_code operTypeCode,A.oper_type_text operTypeText,A.table_name tableName,A.total_count totalCount,A.income_value incomeValue,A.return_value returnValue,A.is_success_code isSuccessCode,A.result_code resultCode,A.result_message resultMessage,A.remark remark,A.add_time addTime  from gp_oper_log A inner join gp_oper_log B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,A.object_id objectId,A.oper_type_code operTypeCode,A.oper_type_text operTypeText,A.table_name tableName,A.total_count totalCount,A.income_value incomeValue,A.income_count incomeCount,A.return_value returnValue,A.is_success_code isSuccessCode,A.result_code resultCode,A.result_message resultMessage,A.remark remark,A.add_time addTime  from gp_oper_log A inner join gp_oper_log B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);

@@ -49,6 +49,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+			result.setIncomeCount(1);
 
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.ADD.getCode());
@@ -68,7 +69,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				result.setObjectId(idObject.toString());
 			}
 
-			//给编号统一赋值
+			// 给编号统一赋值
 			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
 				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
@@ -77,61 +78,53 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
 					serialNoField.set(t, tSerialNo);
 			}
-			// 统一新增时间begin
-			try {
-				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				addTimeField.setAccessible(true);
-				updateTimeField.setAccessible(true);
-				addTimeField.set(t, DateUtils.getCurrentTime());
-				updateTimeField.set(t, DateUtils.getCurrentTime());
-			} catch (NoSuchFieldException e) {
-				// 不是所有类都会有新增时间字段，捕获异常继续执行
-				logger.error(e.getMessage());
-			}
-			// 统一新增时间end
+
+			// 给新增时间、修改时间统一赋值
+			Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+			Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+			addTimeField.setAccessible(true);
+			updateTimeField.setAccessible(true);
+			addTimeField.set(t, DateUtils.getCurrentTime());
+			updateTimeField.set(t, DateUtils.getCurrentTime());
 
 			int i = baseUntDal.add(t);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADD_S.getCode());
 			result.setResultMessage(OperResult.ADD_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setResultCode(OperResult.ADD_F.getCode());
-				result.setResultMessage(OperResult.ADD_F.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
-			result.setResultMessage(OperResult.ADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
-			result.setResultMessage(OperResult.ADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			e.printStackTrace();
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
-			result.setResultMessage(OperResult.ADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
@@ -155,6 +148,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
+			result.setIncomeCount(JSONArray.fromObject(tList).size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.ADDLIST.getCode());
 			result.setOperTypeText(OperType.ADDLIST.getText());
@@ -181,68 +175,60 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
 						serialNoField.set(t, tSerialNo);
 				}
-				// 统一新增时间begin
-				try {
-					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-					addTimeField.setAccessible(true);
-					updateTimeField.setAccessible(true);
-					addTimeField.set(t, DateUtils.getCurrentTime());
-					updateTimeField.set(t, DateUtils.getCurrentTime());
-				} catch (NoSuchFieldException e) {
-					// 不是所有类都会有新增时间字段，捕获异常继续执行
-					logger.error(e.getMessage());
-				}
-				// 统一新增时间end
+				// 给新增时间、修改时间统一赋值
+				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				addTimeField.setAccessible(true);
+				updateTimeField.setAccessible(true);
+				addTimeField.set(t, DateUtils.getCurrentTime());
+				updateTimeField.set(t, DateUtils.getCurrentTime());
 
 			}
 			int i = baseUntDal.addList(tList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADDLIST_S.getCode());
 			result.setResultMessage(OperResult.ADDLIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != tList.size()) {
-				result.setResultCode(OperResult.ADDLIST_F.getCode());
-				result.setResultMessage(OperResult.ADDLIST_F.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
-			result.setResultMessage(OperResult.ADDLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
-			result.setResultMessage(OperResult.ADDLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
-			result.setResultMessage(OperResult.ADDLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
 		return result;
 	}
 
-	
 	public ResultModel addListWithDffOrAdd(ArrayList<T> tList) {
 		return addListWithDffOrAdd(tList, isLogWrite);
 	}
@@ -261,9 +247,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
+			result.setIncomeCount(JSONArray.fromObject(tList).size());
 			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.UPDATELISTWIDTHDFFORADD.getCode());
-			result.setOperTypeText(OperType.UPDATELISTWIDTHDFFORADD.getText());
+			result.setOperTypeCode(OperType.ADDLISTWIDTHDFFORADD.getCode());
+			result.setOperTypeText(OperType.ADDLISTWIDTHDFFORADD.getText());
 			result.setRemark("");
 
 			for (T t : tList) {
@@ -275,65 +262,56 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
 
-				// 统一修改时间begin
-				try {
-					Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-					timeField.setAccessible(true);
-					timeField.set(t, DateUtils.getCurrentTime());
-				} catch (NoSuchFieldException e) {
-					// 不是所有类都会有修改时间字段，捕获异常继续执行
-					logger.error(e.getMessage());
-				}
-
+				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				timeField.setAccessible(true);
+				timeField.set(t, DateUtils.getCurrentTime());
 			}
 
 			int i = baseUntDal.addListWithDffOrAdd(tList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_S.getCode());
 			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != tList.size()) {
-				result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
-				result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
 		return result;
 	}
 
-	
 	public ResultModel delete(String id) {
 		return delete(id, isLogWrite);
 	}
@@ -345,6 +323,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(id);
+			result.setIncomeCount(1);
 			result.setObjectId(id);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
@@ -359,22 +338,19 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETE_F.getCode());
-				result.setResultMessage(OperResult.DELETE_F.getText() + "：不存在相应记录！");
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
@@ -397,6 +373,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(idList).toString());
+			result.setIncomeCount(JSONArray.fromObject(idList).size());
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
@@ -411,22 +388,19 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != idList.size()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETELIST_F.getCode());
-				result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + "某些记录已不存在！");
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
@@ -447,6 +421,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+			result.setIncomeCount(1);
 			if (jsonObject.containsKey("id"))
 				result.setObjectId(jsonObject.getString("id"));
 			result.setTableName(this.getClass().getSimpleName());
@@ -455,47 +430,36 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setRemark("");
 
 			// 统一增加修改时间begin
-			try {
-				Class<?> cla = t.getClass().getSuperclass();
-				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				timeField.setAccessible(true);
-				timeField.set(t, DateUtils.getCurrentTime());
-			} catch (NoSuchFieldException e) {
-				// 不是所有类都会有新增时间字段，捕获异常继续执行
-				logger.error(e.getMessage());
-			}
-			// 统一增加修改时间end
+			Class<?> cla = t.getClass().getSuperclass();
+			Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+			timeField.setAccessible(true);
+			timeField.set(t, DateUtils.getCurrentTime());
 
 			int i = baseUntDal.update(t);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATE_S.getCode());
 			result.setResultMessage(OperResult.UPDATE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setResultCode(OperResult.UPDATE_F.getCode());
-				result.setResultMessage(OperResult.UPDATE_F.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
 		return result;
 	}
-
 
 	public ResultModel updateListWithDff(ArrayList<T> tList) {
 		return updateListWithDff(tList, isLogWrite);
@@ -515,6 +479,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
+			result.setIncomeCount(JSONArray.fromObject(tList).size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELISTWIDTHDFF.getCode());
 			result.setOperTypeText(OperType.UPDATELISTWIDTHDFF.getText());
@@ -522,7 +487,6 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
-				String tId = Tools.getUUID();
 				Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
 				field.setAccessible(true);
 				Object idObject = field.get(t);
@@ -533,57 +497,51 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				}
 
 				// 统一修改时间begin
-				try {
-					Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-					timeField.setAccessible(true);
-					timeField.set(t, DateUtils.getCurrentTime());
-				} catch (NoSuchFieldException e) {
-					// 不是所有类都会有修改时间字段，捕获异常继续执行
-					logger.error(e.getMessage());
-				}
+				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				timeField.setAccessible(true);
+				timeField.set(t, DateUtils.getCurrentTime());
 
 			}
 
 			int i = baseUntDal.updateListWithDff(tList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_S.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != tList.size()) {
-				result.setResultCode(OperResult.UPDATELISTWIDTHDFF_S.getCode());
-				result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_S.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
@@ -608,6 +566,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
+			result.setIncomeCount(JSONArray.fromObject(tList).size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELISTWIDTHDFFORADD.getCode());
 			result.setOperTypeText(OperType.UPDATELISTWIDTHDFFORADD.getText());
@@ -623,64 +582,57 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 					field.set(t, tId);
 
 				// 统一修改时间begin
-				try {
-					Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-					timeField.setAccessible(true);
-					timeField.set(t, DateUtils.getCurrentTime());
-				} catch (NoSuchFieldException e) {
-					// 不是所有类都会有修改时间字段，捕获异常继续执行
-					logger.error(e.getMessage());
-				}
+				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				timeField.setAccessible(true);
+				timeField.set(t, DateUtils.getCurrentTime());
 
 			}
 
 			int i = baseUntDal.updateListWithDffOrAdd(tList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(String.valueOf(i));
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_S.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != tList.size()) {
-				result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_S.getCode());
-				result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_S.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+	
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
-			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 
 		return result;
 	}
 
-	
 	public ResultModel getModel(String id) {
 		return getModel(id, isLogRead);
 	}
@@ -692,6 +644,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(id);
+			result.setIncomeCount(0);
 			result.setObjectId(id);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETMODEL.getCode());
@@ -705,26 +658,25 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setResultCode(OperResult.GETMODEL_S.getCode());
 			result.setResultMessage(OperResult.GETMODEL_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (t == null) {
-				result.setResultCode(OperResult.GETMODEL_S.getCode());
-				result.setResultMessage(OperResult.GETMODEL_S.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			}
+			if (t == null)
+				result.setTotalCount(0);
+
 			result.setReturnValue(JSONObject.fromObject(t).toString());
 		} catch (Exception e) {
 
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
-			result.setResultMessage(OperResult.GETMODEL_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETMODEL_F.getText());
 			throw globalException;
 
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 		return result;
@@ -744,6 +696,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+			result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLISTBYSQL.getCode());
@@ -763,26 +716,33 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setResultCode(OperResult.GETLISTBYSQL_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYSQL_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYSQL_F.getText() + "：不存在相应记录！");
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
-			e.printStackTrace();
+
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 			insertRedis(result);
 		}
 		return result;
+	}
+
+	protected void addOperationLog(ResultModel result) {
+		Long incomeCount = Long.valueOf(result.getIncomeCount());
+
+		if (result.getIsSuccess())
+			if (incomeCount != 0 && incomeCount != result.getTotalCount())
+				result.setResultMessage(result.getResultMessage() + " 传入数据" + incomeCount + " 条，实际操作 " + result.getTotalCount() + " 。");
+
+		operationLogDal.add(result);
 	}
 
 	private void insertRedis(ResultModel result) {
@@ -799,7 +759,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			// DateUtils.getCurrentDateStr(), gp_oper_log_id);
 			// redisUtil.hmset(gp_oper_log_id, map);
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
 	}
 

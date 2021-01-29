@@ -15,7 +15,7 @@ import com.zee.ent.extend.gp.GpOperLogLogin;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:23
+ * @updateDate 2021/1/29 16:02:37
  * @description 实体类GpOperLogGenEnt，自动生成。操作日志。
  */
 
@@ -28,6 +28,8 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
     private String domainId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
+    @ApiModelProperty(value="传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。",hidden=false,required=false)
+    private Integer incomeCount;
     @ApiModelProperty(value="传入参数。记录调用BLL层方法时传入的参数值，对象的话序列化成JSON字符串保存。",hidden=false,required=false)
     private String incomeValue;
     @ApiModelProperty(value="操作是否成功。对应数据字典表（dictionary）中的编码字段（code）。布尔型字段，两种类型：0是，1否。 ",allowableValues="0,1",hidden=false,required=false)
@@ -48,7 +50,7 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
     private String returnValue;
     @ApiModelProperty(value="操作表名。只记录核心表名，暂不考虑记录操作动作涉及的所有表名列表。",hidden=false,required=false)
     private String tableName;
-    @ApiModelProperty(value="记录总数。",hidden=false,required=false)
+    @ApiModelProperty(value="记录总数。写入操作的记录总数或读取到符合条件的总数。",hidden=false,required=false)
     private long totalCount;
 
    //本表做为子表时，父表实体对象
@@ -100,6 +102,20 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+    
+	/**
+	 * get方法。传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。
+	 */
+	public Integer getIncomeCount() {
+		return this.incomeCount;
+	}
+
+	/**
+	 * set方法。传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。
+	 */
+	public void setIncomeCount(Integer incomeCount) {
+		this.incomeCount = incomeCount;
 	}
     
 	/**
@@ -243,14 +259,14 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。记录总数。
+	 * get方法。记录总数。写入操作的记录总数或读取到符合条件的总数。
 	 */
 	public long getTotalCount() {
 		return this.totalCount;
 	}
 
 	/**
-	 * set方法。记录总数。
+	 * set方法。记录总数。写入操作的记录总数或读取到符合条件的总数。
 	 */
 	public void setTotalCount(long totalCount) {
 		this.totalCount = totalCount;

@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/28 16:06:30
+ * @updateDate 2021/1/29 16:02:34
  * @description da_enterprise_info 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

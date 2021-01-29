@@ -51,6 +51,7 @@ public class GpMenuGenUntBll extends BaseUntBll<GpMenu> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
+			result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
@@ -142,7 +143,7 @@ public class GpMenuGenUntBll extends BaseUntBll<GpMenu> {
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
 public class MyBatisResultInterceptor implements Interceptor {
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({})
 	public Object intercept(Invocation invocation) throws Throwable {
 		Object result = invocation.proceed(); // 执行请求方法，并将所得结果保存到result中
 		String str = "";
@@ -32,7 +32,7 @@ public class MyBatisResultInterceptor implements Interceptor {
 			str = JSONArray.fromObject(result).toString();
 		else
 			str = JSONObject.fromObject(result).toString();
-		//System.out.println(str);
+		System.out.println(str);
 		return result;
 	}
 
