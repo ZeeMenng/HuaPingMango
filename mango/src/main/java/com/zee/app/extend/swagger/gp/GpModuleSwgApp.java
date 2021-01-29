@@ -2,6 +2,8 @@ package com.zee.app.extend.swagger.gp;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +85,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
 
-		ResultModel result = gpModuleSplBll.delete(id);// 删除模块
+		ResultModel result = gpModuleUntBll.delete(id);// 删除模块
 		return result;
 	}
 
@@ -91,7 +93,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GpModuleDeleteByIdList")
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteList(@RequestBody GpModuleParameter.DeleteByIdList jsonData) {
-		ResultModel result = gpModuleSplBll.deleteByIdList(jsonData.getIdList());// 删除模块
+		ResultModel result = gpModuleUntBll.deleteByIdList(jsonData.getIdList());// 删除模块
 
 		return result;
 	}
@@ -172,12 +174,12 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	@RequestMapping(value = "/updateListWithDff", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateListWithDff(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
-		 ArrayList<GpModule> list=ClassFieldNullable.convertNull(moduleList, new ArrayList<String>() {
-				{
-					add("fartherId");
-				}
-			});
-		
+		ArrayList<GpModule> list = ClassFieldNullable.convertNull(moduleList, new ArrayList<String>() {
+			{
+				add("fartherId");
+			}
+		});
+
 		ResultModel result = gpModuleUntBll.updateListWithDff(list);
 		return result;
 	}
@@ -383,8 +385,8 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 	@RequestMapping(value = "/getListByDomainId/{domainId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByDomainId(@PathVariable("domainId") String domainId) {
-		ResultModel resultModel = gpModuleSplBll.getListByDomainId(domainId);
-
+		ResultModel resultModel = gpModuleUntBll.getListByDomainId(domainId);
+		resultModel = Tools.sortModuleList(resultModel);
 		return resultModel;
 	}
 
@@ -401,8 +403,8 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 			resultModel = gpDomainUntBll.getList(getListParam);
 			return resultModel;
 		}
-		resultModel = gpModuleSplBll.getListByDomainId(domainId);
-
+		resultModel = gpModuleUntBll.getListByDomainId(domainId);
+		resultModel = Tools.sortModuleList(resultModel);
 		return resultModel;
 	}
 
@@ -411,7 +413,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 
 		resultModel = gpModuleSplBll.getListByRoleId(roleId);
-
+		resultModel = Tools.sortModuleList(resultModel);
 		return resultModel;
 	}
 
@@ -483,6 +485,5 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		}
 
 	}
-
 
 }

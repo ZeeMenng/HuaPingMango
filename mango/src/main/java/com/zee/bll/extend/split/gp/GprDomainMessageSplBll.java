@@ -48,18 +48,19 @@ public class GprDomainMessageSplBll extends GprDomainMessageGenSplBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText() );
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -90,18 +91,19 @@ public class GprDomainMessageSplBll extends GprDomainMessageGenSplBll {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -131,18 +133,19 @@ public class GprDomainMessageSplBll extends GprDomainMessageGenSplBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText() );
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -173,18 +176,19 @@ public class GprDomainMessageSplBll extends GprDomainMessageGenSplBll {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;

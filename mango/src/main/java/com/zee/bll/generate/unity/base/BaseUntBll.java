@@ -71,21 +71,27 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 			// 给编号统一赋值
 			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
-				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
 				serialNoField.setAccessible(true);
 				Object serialNoObject = serialNoField.get(t);
-				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
+				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
+					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 					serialNoField.set(t, tSerialNo);
+				}
 			}
 
-			// 给新增时间、修改时间统一赋值
-			Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-			Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-			addTimeField.setAccessible(true);
-			updateTimeField.setAccessible(true);
-			addTimeField.set(t, DateUtils.getCurrentTime());
-			updateTimeField.set(t, DateUtils.getCurrentTime());
+			// 给新增时间统一赋值
+			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
+				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				addTimeField.setAccessible(true);
+				addTimeField.set(t, DateUtils.getCurrentTime());
+			}
+			// 给修改时间统一赋值
+			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
+				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				updateTimeField.setAccessible(true);
+				updateTimeField.set(t, DateUtils.getCurrentTime());
+			}
 
 			int i = baseUntDal.add(t);
 
@@ -167,21 +173,26 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 				// 给编号统一赋值
 				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
-					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
-
 					Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
 					serialNoField.setAccessible(true);
 					Object serialNoObject = serialNoField.get(t);
-					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString()))
+					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
+						String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 						serialNoField.set(t, tSerialNo);
+					}
 				}
-				// 给新增时间、修改时间统一赋值
-				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
-				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				addTimeField.setAccessible(true);
-				updateTimeField.setAccessible(true);
-				addTimeField.set(t, DateUtils.getCurrentTime());
-				updateTimeField.set(t, DateUtils.getCurrentTime());
+				// 给新增时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+					addTimeField.setAccessible(true);
+					addTimeField.set(t, DateUtils.getCurrentTime());
+				}
+				// 给修改时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+					updateTimeField.setAccessible(true);
+					updateTimeField.set(t, DateUtils.getCurrentTime());
+				}
 
 			}
 			int i = baseUntDal.addList(tList);
@@ -261,10 +272,18 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
-
-				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				timeField.setAccessible(true);
-				timeField.set(t, DateUtils.getCurrentTime());
+				// 给新增时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+					addTimeField.setAccessible(true);
+					addTimeField.set(t, DateUtils.getCurrentTime());
+				}
+				// 给修改时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+					updateTimeField.setAccessible(true);
+					updateTimeField.set(t, DateUtils.getCurrentTime());
+				}
 			}
 
 			int i = baseUntDal.addListWithDffOrAdd(tList);
@@ -429,11 +448,14 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setOperTypeText(OperType.UPDATE.getText());
 			result.setRemark("");
 
-			// 统一增加修改时间begin
 			Class<?> cla = t.getClass().getSuperclass();
-			Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-			timeField.setAccessible(true);
-			timeField.set(t, DateUtils.getCurrentTime());
+
+			// 给修改时间统一赋值
+			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
+				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				updateTimeField.setAccessible(true);
+				updateTimeField.set(t, DateUtils.getCurrentTime());
+			}
 
 			int i = baseUntDal.update(t);
 
@@ -475,7 +497,6 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 		}
 
 		try {
-
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
@@ -496,10 +517,12 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 					throw globalException;
 				}
 
-				// 统一修改时间begin
-				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				timeField.setAccessible(true);
-				timeField.set(t, DateUtils.getCurrentTime());
+				// 给修改时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+					updateTimeField.setAccessible(true);
+					updateTimeField.set(t, DateUtils.getCurrentTime());
+				}
 
 			}
 
@@ -580,11 +603,18 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
-
-				// 统一修改时间begin
-				Field timeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
-				timeField.setAccessible(true);
-				timeField.set(t, DateUtils.getCurrentTime());
+				// 给新增时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+					addTimeField.setAccessible(true);
+					addTimeField.set(t, DateUtils.getCurrentTime());
+				}
+				// 给修改时间统一赋值
+				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
+					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+					updateTimeField.setAccessible(true);
+					updateTimeField.set(t, DateUtils.getCurrentTime());
+				}
 
 			}
 
@@ -596,7 +626,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_S.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-	
+
 		} catch (NoSuchFieldException e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
@@ -660,8 +690,8 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 			if (t == null)
 				result.setTotalCount(0);
-
-			result.setReturnValue(JSONObject.fromObject(t).toString());
+			else
+				result.setReturnValue(JSONObject.fromObject(t).toString());
 		} catch (Exception e) {
 
 			result.setReturnValue(e.getMessage());
@@ -733,16 +763,6 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			insertRedis(result);
 		}
 		return result;
-	}
-
-	protected void addOperationLog(ResultModel result) {
-		Long incomeCount = Long.valueOf(result.getIncomeCount());
-
-		if (result.getIsSuccess())
-			if (incomeCount != 0 && incomeCount != result.getTotalCount())
-				result.setResultMessage(result.getResultMessage() + " 传入数据" + incomeCount + " 条，实际操作 " + result.getTotalCount() + " 。");
-
-		operationLogDal.add(result);
 	}
 
 	private void insertRedis(ResultModel result) {

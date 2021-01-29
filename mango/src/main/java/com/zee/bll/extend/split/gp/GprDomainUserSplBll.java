@@ -1,25 +1,15 @@
 package com.zee.bll.extend.split.gp;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.zee.bll.generate.split.gp.GprDomainUserGenSplBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.ent.extend.gp.GprDomainUser;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
 import com.zee.utl.DateUtils;
-import com.zee.utl.PageHelperUtil;
 import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
-
-import net.sf.json.JSONArray;
 
 /**
  * @author Zee
@@ -29,303 +19,6 @@ import net.sf.json.JSONArray;
  */
 @Service("gprDomainUserSplBll")
 public class GprDomainUserSplBll extends GprDomainUserGenSplBll {
-
-	public ResultModel deleteByUserId(String userId) {
-		return deleteByUserId(userId, isLogRead);
-	}
-
-	public ResultModel deleteByUserId(String userId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(userId);
-			result.setObjectId(userId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据用户ID，删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByUserId(userId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel deleteByUserIdList(ArrayList<String> userIdList) {
-		return deleteByUserIdList(userIdList, isLogWrite);
-	}
-
-	public ResultModel deleteByUserIdList(ArrayList<String> userIdList, boolean isLog) {
-		ResultModel result = new ResultModel();
-
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject(userIdList).toString());
-			result.setObjectId("");
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETELIST.getCode());
-			result.setOperTypeText(OperType.DELETELIST.getText());
-			result.setRemark("根据用户ID列表，批量删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByUserIdList(userIdList);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETELIST_S.getCode());
-			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel deleteByDomainId(String domainId) {
-		return deleteByDomainId(domainId, isLogRead);
-	}
-
-	public ResultModel deleteByDomainId(String domainId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(domainId);
-			result.setObjectId(domainId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据应用领域ID，删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByDomainId(domainId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList) {
-		return deleteByDomainIdList(domainIdList, isLogWrite);
-	}
-
-	public ResultModel deleteByDomainIdList(ArrayList<String> domainIdList, boolean isLog) {
-		ResultModel result = new ResultModel();
-
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject(domainIdList).toString());
-			result.setObjectId("");
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETELIST.getCode());
-			result.setOperTypeText(OperType.DELETELIST.getText());
-			result.setRemark("根据应用领域ID列表，批量删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByDomainIdList(domainIdList);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETELIST_S.getCode());
-			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	
-	public ResultModel deleteByRoleId(String roleId) {
-		return deleteByDomainId(roleId, isLogRead);
-	}
-
-	public ResultModel deleteByRoleId(String roleId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(roleId);
-			result.setObjectId(roleId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETE.getCode());
-			result.setOperTypeText(OperType.DELETE.getText());
-			result.setRemark("根据角色ID，删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByRoleId(roleId);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETE_S.getCode());
-			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList) {
-		return deleteByRoleIdList(roleIdList, isLogWrite);
-	}
-
-	public ResultModel deleteByRoleIdList(ArrayList<String> roleIdList, boolean isLog) {
-		ResultModel result = new ResultModel();
-
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject(roleIdList).toString());
-			result.setObjectId("");
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.DELETELIST.getCode());
-			result.setOperTypeText(OperType.DELETELIST.getText());
-			result.setRemark("根据角色ID，批量删除应用领域用户中间表。");
-
-			int i = gprDomainUserSplDal.deleteByRoleIdList(roleIdList);
-
-			result.setReturnValue(String.valueOf(i));
-			result.setData(i);
-			result.setTotalCount(new Long(i));
-			result.setResultCode(OperResult.DELETELIST_S.getCode());
-			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
-
-	
-	
-	public ResultModel getListByUserId(String userId) {
-		return getListByUserId(userId, isLogRead);
-	}
-
-	public ResultModel getListByUserId(String userId, boolean isLog) {
-		ResultModel result = new ResultModel();
-		try {
-			result.setAddTime(DateUtils.getCurrentTime());
-			result.setId(Tools.getUUID());
-			result.setIncomeValue(userId);
-			result.setObjectId(userId);
-			result.setTableName(this.getClass().getSimpleName());
-			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
-			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
-			result.setRemark("根据用户ID，查询应用领域用户中间表。");
-
-			List<GprDomainUser> modelList = gprDomainUserSplDal.getListByUserId(userId);
-
-			result.setReturnValue(JSONArray.fromObject(modelList).toString());
-			result.setData(modelList);
-			result.setTotalCount(modelList.size());
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (modelList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-				result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：不存在相应记录！");
-			}
-		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
-			GlobalException globalException = new GlobalException();
-			globalException.setResultModel(result);
-			throw globalException;
-		} finally {
-			if (isLog)
-				operationLogDal.add(result);
-		}
-
-		return result;
-	}
 
 	public ResultModel isPermitted(String userId, String clientId) {
 		return isPermitted(userId, clientId, isLogRead);
@@ -360,14 +53,15 @@ public class GprDomainUserSplBll extends GprDomainUserGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.CUSTOM_F.getCode());
-			result.setResultMessage(OperResult.CUSTOM_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.CUSTOM_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

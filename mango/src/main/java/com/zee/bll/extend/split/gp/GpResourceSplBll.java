@@ -37,6 +37,7 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(id);
+			result.setIncomeCount(0);
 			result.setObjectId(id);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
@@ -51,22 +52,18 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETE_F.getCode());
-				result.setResultMessage(OperResult.DELETE_F.getText() + "：不存在相应记录！");
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -83,6 +80,7 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(domainId);
+			result.setIncomeCount(0);
 			result.setObjectId(domainId);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
@@ -97,22 +95,18 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != 1) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETE_F.getCode());
-				result.setResultMessage(OperResult.DELETE_F.getText() + "：不存在相应记录！");
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -129,6 +123,7 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(idList).toString());
+			result.setIncomeCount(idList.size());
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
@@ -143,22 +138,19 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != idList.size()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETELIST_F.getCode());
-				result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + "某些记录已不存在！");
-			}
+			result.setIncomeCount(i);
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -175,6 +167,7 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(domainIdList).toString());
+			result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
@@ -189,22 +182,19 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			if (i != domainIdList.size()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-				result.setResultCode(OperResult.DELETELIST_F.getCode());
-				result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + "某些记录已不存在！");
-			}
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -243,15 +233,16 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			e.printStackTrace();
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

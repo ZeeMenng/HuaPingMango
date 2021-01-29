@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpModule;
 
 import net.sf.json.JSONArray;
@@ -305,6 +306,33 @@ public class Tools {
 		});
 		return moduleList;
 
+	}
+
+	public static ResultModel sortModuleList(ResultModel resultModel) {
+		Object object = resultModel.getData();
+		// 程序排序
+		if (object != null) {
+			List<GpModule> moduleList = (List<GpModule>) object;
+			if (moduleList.size() > 0)
+				Collections.sort(moduleList, new Comparator<GpModule>() {
+					@Override
+					public int compare(GpModule module1, GpModule module2) {
+						if (module1.getPriority() == null)
+							return 1;
+						if (module2.getPriority() == null)
+							return -1;
+						if (module1.getPriority() > module2.getPriority()) {
+							return 1;
+						} else if (module1.getPriority() == module2.getPriority()) {
+							return 0;
+						} else {
+							return -1;
+						}
+					}
+				});
+			resultModel.setData(moduleList);
+		}
+		return resultModel;
 	}
 
 	private static ArrayList<GpModule> convertModuleTreeToList(String domainId, String parentId, JSONArray moduleJSONArray) {

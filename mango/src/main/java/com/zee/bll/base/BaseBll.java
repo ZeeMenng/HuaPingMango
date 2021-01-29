@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zee.bll.base.Interface.IBaseBll;
 import com.zee.dao.unity.base.IBaseUntDal;
+import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpOperLog;
 
 @Service
@@ -24,4 +25,17 @@ public class BaseBll implements IBaseBll {
 
 	@Autowired
 	protected IBaseUntDal<GpOperLog> operationLogDal;
+
+	protected void addOperationLog(ResultModel result) {
+		Long incomeCount = 0L;
+		if (result.getIncomeCount() != null)
+			incomeCount = Long.valueOf(result.getIncomeCount());
+
+		if (result.getIsSuccess())
+			if (incomeCount != 0 && incomeCount > result.getTotalCount())
+				result.setResultMessage(result.getResultMessage() + " 传入数据" + incomeCount + " 条，实际操作 " + result.getTotalCount() + " 。");
+
+		operationLogDal.add(result);
+	}
+
 }

@@ -59,14 +59,14 @@ public class GprResourceSplBll extends GprResourceGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETEBYBUSINESSID_F.getCode());
-			result.setResultMessage(OperResult.DELETEBYBUSINESSID_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
+			result.setResultMessage(OperResult.DELETEBYBUSINESSID_F.getText() );
+			result.setReturnValue(e.getMessage());result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
@@ -105,14 +105,14 @@ public class GprResourceSplBll extends GprResourceGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
+			result.setReturnValue(e.getMessage());result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;

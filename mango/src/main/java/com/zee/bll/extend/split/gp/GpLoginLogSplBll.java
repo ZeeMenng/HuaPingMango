@@ -42,7 +42,7 @@ public class GpLoginLogSplBll extends GpLoginLogGenSplBll {
 			result.setOperTypeText(OperType.GETMODEL.getText());
 			result.setRemark("");
 
-			List<GpLoginLog>  modelList = gpLoginLogSplDal.getListOnLine(userName, domainId);
+			List<GpLoginLog> modelList = gpLoginLogSplDal.getListOnLine(userName, domainId);
 
 			result.setReturnValue(JSONArray.fromObject(modelList).toString());
 			result.setData(modelList);
@@ -53,17 +53,16 @@ public class GpLoginLogSplBll extends GpLoginLogGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETLIST_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}
 }
-
-

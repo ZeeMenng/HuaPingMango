@@ -112,7 +112,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteByPath(@PathVariable("id") String id) {
-		ResultModel result = gpDomainSplBll.delete(id);
+		ResultModel result = gpDomainUntBll.delete(id);
 
 		return result;
 	}
@@ -121,7 +121,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		ResultModel result = gpDomainSplBll.delete(id);
+		ResultModel result = gpDomainUntBll.delete(id);
 
 		return result;
 	}
@@ -130,7 +130,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	@ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表", required = true, dataType = "GpDomainDeleteByIdList")
 	@RequestMapping(value = "/deleteList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel deleteList(@RequestBody GpDomainParameter.DeleteByIdList jsonData) {
-		ResultModel result = gpDomainSplBll.deleteByIdList(jsonData.getIdList());
+		ResultModel result = gpDomainUntBll.deleteByIdList(jsonData.getIdList());
 
 		return result;
 	}

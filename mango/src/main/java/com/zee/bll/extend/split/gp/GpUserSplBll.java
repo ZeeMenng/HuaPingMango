@@ -39,37 +39,35 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(userName);
-
+			result.setIncomeCount(1);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETMODEL.getCode());
 			result.setOperTypeText(OperType.GETMODEL.getText());
 			result.setRemark("");
 
 			GpUser user = gpUserSplDal.getModelByUserName(userName);
-			if (user == null) {
-				result.setResultCode(OperResult.GETMODEL_S.getCode());
-				result.setResultMessage(OperResult.GETMODEL_S.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-			} else {
-				result.setObjectId(user.getId());
+
+			result.setData(user);
+			result.setTotalCount(new Long(1));
+			result.setResultCode(OperResult.GETMODEL_S.getCode());
+			result.setResultMessage(OperResult.GETMODEL_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (user == null)
+				result.setTotalCount(0);
+			else
 				result.setReturnValue(JSONObject.fromObject(user).toString());
-				result.setData(user);
-				result.setTotalCount(new Long(1));
-				result.setResultCode(OperResult.GETMODEL_S.getCode());
-				result.setResultMessage(OperResult.GETMODEL_S.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
-			}
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
-			result.setResultMessage(OperResult.GETMODEL_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.GETMODEL_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}
@@ -110,14 +108,15 @@ public class GpUserSplBll extends GpUserGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}
@@ -158,14 +157,15 @@ public class GpUserSplBll extends GpUserGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 		return result;
 	}

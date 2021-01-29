@@ -220,13 +220,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		gprResourceSplBll.deleteByBusinessId(id);
-		gprUserOrganizationSplBll.deleteByUserId(id);
-		gprUserRoleSplBll.deleteByUserId(id);
-		gprUserStationSplBll.deleteByUserId(id);
-		gprDomainUserSplBll.deleteByUserId(id);
-		gprMessageUserSplBll.deleteByUserId(id);
-		gprUserBaseSplBll.deleteByUserId(id);
+
 		ResultModel result = gpUserUntBll.delete(id);
 		return result;
 	}
@@ -237,12 +231,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel deleteList(@RequestBody GpUserParameter.DeleteByIdList jsonData) {
 		ArrayList<String> idList = jsonData.getIdList();
 		gprResourceSplBll.deleteByBusinessIdList(idList);
-		gprUserOrganizationSplBll.deleteByUserIdList(idList);
-		gprUserRoleSplBll.deleteByUserIdList(idList);
-		gprUserStationSplBll.deleteByUserIdList(idList);
-		gprDomainUserSplBll.deleteByUserIdList(idList);
-		gprMessageUserSplBll.deleteByUserIdList(idList);
-		gprUserBaseSplBll.deleteByUserIdList(idList);
 		ResultModel result = gpUserUntBll.deleteByIdList(idList);
 		return result;
 	}
@@ -278,7 +266,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprResourceUntBll.add(gprResourceList);
 		}
 		// 组织机构
-		gprUserOrganizationSplBll.deleteByUserId(userId);
+		gprUserOrganizationUntBll.deleteByUserId(userId);
 		if (StringUtils.isNotBlank(jsonData.getOrgIds())) {
 			ArrayList<GprUserOrganization> addOrgs = new ArrayList<GprUserOrganization>();
 			for (String organizationId : jsonData.getOrgIds().split(",")) {
@@ -291,8 +279,8 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		}
 
 		// 角色列表和应用领域
-		gprUserRoleSplBll.deleteByUserId(userId);
-		gprDomainUserSplBll.deleteByUserId(userId);
+		gprUserRoleUntBll.deleteByUserId(userId);
+		gprDomainUserUntBll.deleteByUserId(userId);
 		if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
 			ArrayList<GprUserRole> arrayList = new ArrayList<GprUserRole>();
 			if (StringUtils.isNotBlank(jsonData.getRoleIds())) {

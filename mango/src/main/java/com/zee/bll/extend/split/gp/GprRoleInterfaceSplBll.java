@@ -1,10 +1,7 @@
 package com.zee.bll.extend.split.gp;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import com.zee.bll.generate.split.gp.GprRoleInterfaceGenSplBll;
@@ -13,14 +10,11 @@ import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.ClassUtil;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
 import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 
 /**
@@ -57,7 +51,7 @@ public class GprRoleInterfaceSplBll extends GprRoleInterfaceGenSplBll {
 			int i = gprRoleInterfaceSplDal.deleteByCompositeIdList(gprRoleInterfaceList);
 
 			result.setReturnValue(String.valueOf(i));
-			result.setData(null);
+			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
@@ -68,14 +62,14 @@ public class GprRoleInterfaceSplBll extends GprRoleInterfaceGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
-			result.setReturnValue(e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
+			result.setReturnValue(e.getMessage());result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;

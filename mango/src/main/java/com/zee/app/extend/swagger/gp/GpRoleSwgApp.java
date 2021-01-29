@@ -30,7 +30,6 @@ import com.zee.bll.extend.unity.gp.GprRoleModuleUntBll;
 import com.zee.bll.extend.unity.gp.GprRolePageUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpRole;
-import com.zee.ent.extend.gp.GprDomainUser;
 import com.zee.ent.extend.gp.GprRoleDomain;
 import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.ent.extend.gp.GprRoleModule;
@@ -130,11 +129,6 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel delete(@RequestParam String id) {
-		gprRoleModuleSplBll.deleteByRoleId(id);
-		gprRoleDomainSplBll.deleteByRoleId(id);
-		gprRolePageUntBll.deleteByRoleId(id);
-		gprRoleControlUntBll.deleteByRoleId(id);
-		gprRoleInterfaceUntBll.deleteByRoleId(id);
 
 		ResultModel result = gpRoleUntBll.delete(id);
 		return result;

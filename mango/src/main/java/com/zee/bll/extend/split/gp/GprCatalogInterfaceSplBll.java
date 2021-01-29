@@ -15,7 +15,6 @@ import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -36,6 +35,7 @@ public class GprCatalogInterfaceSplBll extends GprCatalogInterfaceGenSplBll {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(gprCatalogInterfaceList).toString());
+			result.setIncomeCount(gprCatalogInterfaceList.size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
@@ -44,6 +44,7 @@ public class GprCatalogInterfaceSplBll extends GprCatalogInterfaceGenSplBll {
 			int i = gprCatalogInterfaceSplDal.deleteInvalidRecord(gprCatalogInterfaceList);
 
 			result.setReturnValue(String.valueOf(i));
+
 			result.setData(i);
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
@@ -53,14 +54,15 @@ public class GprCatalogInterfaceSplBll extends GprCatalogInterfaceGenSplBll {
 		} catch (Exception e) {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() + "：" + e.getMessage());
+			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
 		} finally {
 			if (isLog)
-				operationLogDal.add(result);
+				addOperationLog(result);
 		}
 
 		return result;
