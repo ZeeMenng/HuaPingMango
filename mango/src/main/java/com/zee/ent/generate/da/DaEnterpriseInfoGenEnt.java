@@ -156,8 +156,7 @@ public class DaEnterpriseInfoGenEnt extends BaseEnt implements Serializable {
     private String registryOffice;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String riskGrade;
-    @ApiModelProperty(value="风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权    
-            可以有多个用|进行分隔",allowableValues="0,1",hidden=false,required=false)
+    @ApiModelProperty(value="风险标签。编码，对应数据字典表（dictionary）中的编码字段（code）目前定义5种类型    1：交易额持续下滑 2：拖欠工资 3：债务拖欠 4：履约不利 5：违法侵权可以有多个用|进行分隔",allowableValues="0,1",hidden=false,required=false)
     private Byte riskTagsCode;
     @ApiModelProperty(value="",hidden=false,required=false)
     private String riskTagsText;
