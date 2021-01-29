@@ -63,8 +63,8 @@ $(document).ready(function() {
 
 			},
 			"orderList" : [ {
-				"columnName" : "id",
-				"isASC" : true
+				"columnName" : "addTime",
+				"isASC" : false
 			} ],
 			"page" : {
 				"pageIndex" : DEFAULT_PAGE_INDEX,
