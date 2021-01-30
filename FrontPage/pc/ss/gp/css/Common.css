@@ -290,7 +290,7 @@ embed {
 	table-layout: fixed;
 }
 
-#contentTable tbody tr td {
+#contentTable tbody tr td,#contentTable tbody tr td a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

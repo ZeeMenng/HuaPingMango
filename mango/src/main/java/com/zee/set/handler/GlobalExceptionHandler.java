@@ -35,26 +35,32 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<Object> handleExceptions(Exception exception, WebRequest request) {
 
+		// 打印异常
+		logger.error(exception.getMessage(), exception);
+
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		HttpHeaders headers = new HttpHeaders();
 
 		ResultModel result = new ResultModel();
 		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
-		logger.error(exception.getMessage(), exception);
+
 		if (exception instanceof GlobalException) {
 			GlobalException globalException = (GlobalException) exception;
 			result = globalException.getResultModel();
-			
-			String causeMessage=result.getOriginException().getCause().getMessage();
-			if (StringUtils.isNotEmpty(causeMessage)){
-				if (causeMessage.matches("Incorrect(.*)value(.*)for column(.*)"))
-					result.setResultMessage(result.getResultMessage() + "请检查输入类型……");
-			}
+			if (result.getOriginException() != null) {
+				String causeMessage = result.getOriginException().getCause().getMessage();
 
-			if (result.getOriginException().getMessage().contains("Data truncation: Data too long for column ")) {
-				result.setResultMessage("请控制输入长度……");
-			}
+				// 根据异常中的CauseMessage给出不同的提示信息
+				if (StringUtils.isNotEmpty(causeMessage)) {
 
+					if (causeMessage.matches("Incorrect(.*)value(.*)for column(.*)"))
+						result.setResultMessage(result.getResultMessage() + "请检查输入类型……");
+
+					if (causeMessage.contains("Data truncation: Data too long for column "))
+						result.setResultMessage("请控制输入长度……");
+
+				}
+			}
 		} else {
 			result.setResultMessage(exception.getMessage());
 		}

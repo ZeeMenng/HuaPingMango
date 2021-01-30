@@ -360,6 +360,12 @@ function initInterfaceTable(diplayOpeationButton) {
 			"style" : "text-align:left"
 
 		}, {
+			"columnName" : "isPublicCode",
+			"columnText" : "公共",
+			"width" : "50px",
+			"style" : "text-align:center"
+
+		},  {
 			"columnName" : "updateTime",
 			"columnText" : "更新时间",
 			"style" : "text-align:left"

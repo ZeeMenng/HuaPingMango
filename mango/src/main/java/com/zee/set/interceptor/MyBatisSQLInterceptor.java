@@ -24,6 +24,10 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
+import com.alibaba.druid.sql.ast.SQLStatement;
+import com.alibaba.druid.sql.dialect.mysql.parser.MySqlStatementParser;
+import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
+
 /**
  * @author Zee
  * @createDate 2020年11月12日 下午2:09:05
@@ -44,25 +48,28 @@ public class MyBatisSQLInterceptor implements Interceptor {
 				parameter = invocation.getArgs()[1];
 				// System.out.println("parameter = " + parameter);
 			}
-			String sqlId = mappedStatement.getId(); // 获取到节点的id,即sql语句的id
+			// 获取到执行SQL语句的方法
+			String dalMethod = mappedStatement.getId();
 			// System.out.println("sqlId = " + sqlId);
-			
-			//跳过没必要的SQL
+
+			// 跳过没必要的SQL
 			ArrayList<String> skipMethod = new ArrayList<String>();
 			skipMethod.add("com.zee.dao.unity.gp.IGpTokenUntDal.getModel");
-			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
+			//skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
 			skipMethod.add("com.zee.dao.split.gp.IGpUserSplDal.getModelByUserName");
 			skipMethod.add("com.zee.dao.split.gp.IGprDomainUserSplDal.isPermitted");
 			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
 			skipMethod.add("com.zee.dao.unity.gp.IGpDomainUntDal.getModel");
 			skipMethod.add("com.zee.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
 			skipMethod.add("com.zee.dao.unity.gp.IGpModuleUntDal.getListBySQL");
-			
+			skipMethod.add("com.zee.dao.unity.gp.IGpOperLogUntDal.add");
+
 			BoundSql boundSql = mappedStatement.getBoundSql(parameter); // BoundSql就是封装myBatis最终产生的sql类
-			Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置
-			String sql = getSql(configuration, boundSql, sqlId); // 获取到最终的sql语句
-			if (!skipMethod.contains(sqlId))
+			if (!skipMethod.contains(dalMethod)) {
+				Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置
+				String sql = getSql(configuration, boundSql, dalMethod); // 获取到最终的sql语句
 				System.out.println("sql = " + sql);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,32 +78,14 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	}
 
 	// 封装了一下sql语句，使得结果返回完整xml路径下的sql语句节点id + sql语句
-	public static String getSql(Configuration configuration, BoundSql boundSql, String sqlId) {
+	public static String getSql(Configuration configuration, BoundSql boundSql, String dalMethod) {
 		String sql = showSql(configuration, boundSql);
+		DataAuthorityControl(sql);
 		StringBuilder str = new StringBuilder(100);
-		str.append(sqlId);
+		str.append(dalMethod);
 		str.append(":");
 		str.append(sql);
 		return str.toString();
-	}
-
-	// 如果参数是String，则添加单引号， 如果是日期，则转换为时间格式器并加单引号； 对参数是null和不是null的情况作了处理
-	private static String getParameterValue(Object obj) {
-		String value = null;
-		if (obj instanceof String) {
-			value = "'" + obj.toString() + "'";
-		} else if (obj instanceof Date) {
-			DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
-			value = "'" + formatter.format(new Date()) + "'";
-		} else {
-			if (obj != null) {
-				value = obj.toString();
-			} else {
-				value = "";
-			}
-
-		}
-		return value;
 	}
 
 	// 进行？的替换
@@ -135,6 +124,25 @@ public class MyBatisSQLInterceptor implements Interceptor {
 		return sql;
 	}
 
+	// 如果参数是String，则添加单引号， 如果是日期，则转换为时间格式器并加单引号； 对参数是null和不是null的情况作了处理
+	private static String getParameterValue(Object obj) {
+		String value = null;
+		if (obj instanceof String) {
+			value = "'" + obj.toString() + "'";
+		} else if (obj instanceof Date) {
+			DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
+			value = "'" + formatter.format(new Date()) + "'";
+		} else {
+			if (obj != null) {
+				value = obj.toString();
+			} else {
+				value = "";
+			}
+
+		}
+		return value;
+	}
+
 	@Override
 	public Object plugin(Object target) {
 		return Plugin.wrap(target, this);
@@ -143,6 +151,38 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	@Override
 	public void setProperties(Properties properties) {
 
+	}
+
+	/**
+	 * @param sql
+	 * 
+	 * 数据级权限的控制，可以在这里添加
+	 * 如果解析出的SQL中操作的字段，不在当前用户的权限中，抛出没有权限的异常，或者更改当前的SQL。
+	 * 如果是写操作，刚去掉这个字段，如果是读操作可以将这个字段的返回变成***，或者部分打码，等等类似操作。
+	 * 
+	 */
+	public static void DataAuthorityControl(String sql) {
+		// 新建 MySQL Parser
+		MySqlStatementParser parser = new MySqlStatementParser(sql);
+
+		// 使用Parser解析生成AST，这里SQLStatement就是AST
+		SQLStatement statement = parser.parseStatement();
+
+		// 使用visitor来访问AST
+		MySqlSchemaStatVisitor visitor = new MySqlSchemaStatVisitor();
+		statement.accept(visitor);
+
+		// 从visitor中拿出你所关注的信息
+		/*
+		 * System.out.println(visitor.getTables());
+		 * System.out.println(visitor.getColumns());
+		 */
+
+		// 格式化输出
+		/*
+		 * String result = SQLUtils.format(sql, JdbcConstants.MYSQL);
+		 * System.out.println("\n"); System.out.println(result); // 缺省大写格式
+		 */
 	}
 
 }
