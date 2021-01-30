@@ -2786,7 +2786,7 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
         ajaxParamter.type = 'POST';
         ajaxParamter.data = JSON.stringify(submitData);
         ajaxParamter.url = zTree.setting.url.deleteListUrl;
-    } else if (action = "UPDATE") {
+    } else if (action == "UPDATE") {
         var zTreeNodeJsonArray = new Array();
 
         var zTreeNodeJson = {

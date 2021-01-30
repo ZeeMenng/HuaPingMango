@@ -190,7 +190,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public ResultModel updateListWithDffOrAdd(@RequestBody GpModuleParameter.AddList jsonData) {
 		ArrayList<GpModule> moduleList = jsonData.getEntityList();
 
-		ResultModel result = gpModuleUntBll.updateListWithDffOrAdd(moduleList);
+		ResultModel result = gpModuleUntBll.addListWithDffOrAdd(moduleList);
 		return result;
 	}
 
