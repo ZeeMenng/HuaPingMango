@@ -1313,16 +1313,17 @@ function request(name) {
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	layer.closeAll();
+	var statusText=XMLHttpRequest.statusText;
     if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
         var result = JSON.parse(XMLHttpRequest.responseText)
         layer.alert(result.resultMessage, {
             icon: 6
         });
-    } else if(textStatus=="error"&&errorThrown.indexOf("NetworkError: Failed to execute 'send' on 'XMLHttpRequest'")>0){
+    } else if(textStatus=="error"&&statusText.indexOf("NetworkError")>-1){
     	   layer.alert("调用后台接口时出现错误！请检查网络连接……", {
                icon: 6
            });
-    	  
+    	  return false;
     }else {
         layer.alert("调用后台接口时出现错误！" + textStatus + " " + errorThrown, {
             icon: 6
@@ -2017,7 +2018,7 @@ function initMessage() {
         }),
         "dataType": "json",
         "type": "GET",
-        "async": false,
+        "async": true,
         "success": function (res) {
             if (!validateLogin(res.resultCode))
                 return false;
