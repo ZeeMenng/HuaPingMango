@@ -32,7 +32,7 @@ public class MyBatisResultInterceptor implements Interceptor {
 			str = JSONArray.fromObject(result).toString();
 		else
 			str = JSONObject.fromObject(result).toString();
-		System.out.println(str);
+		//System.out.println(str);
 		return result;
 	}
 

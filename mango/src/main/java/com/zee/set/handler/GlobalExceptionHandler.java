@@ -2,6 +2,7 @@ package com.zee.set.handler;
 
 import java.io.IOException;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -35,20 +35,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<Object> handleExceptions(Exception exception, WebRequest request) {
 
-		HttpStatus status = HttpStatus.OK;
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		HttpHeaders headers = new HttpHeaders();
 
 		ResultModel result = new ResultModel();
-
+		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+		logger.error(exception.getMessage(), exception);
 		if (exception instanceof GlobalException) {
 			GlobalException globalException = (GlobalException) exception;
 			result = globalException.getResultModel();
-			if (result.getResultMessage().contains("Data truncation: Data too long for column ")) {
+			
+			String causeMessage=result.getOriginException().getCause().getMessage();
+			if (StringUtils.isNotEmpty(causeMessage)){
+				if (causeMessage.matches("Incorrect(.*)value(.*)for column(.*)"))
+					result.setResultMessage(result.getResultMessage() + "请检查输入类型……");
+			}
+
+			if (result.getOriginException().getMessage().contains("Data truncation: Data too long for column ")) {
 				result.setResultMessage("请控制输入长度……");
 			}
+
 		} else {
-			logger.error(exception.getMessage(), exception);
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
 			result.setResultMessage(exception.getMessage());
 		}
 

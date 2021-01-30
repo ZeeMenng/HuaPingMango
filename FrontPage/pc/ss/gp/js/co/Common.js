@@ -1312,13 +1312,18 @@ function request(name) {
  * @param errorThrown
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
-    layer.closeAll();
+	layer.closeAll();
     if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
         var result = JSON.parse(XMLHttpRequest.responseText)
         layer.alert(result.resultMessage, {
             icon: 6
         });
-    } else {
+    } else if(textStatus=="error"&&errorThrown.indexOf("NetworkError: Failed to execute 'send' on 'XMLHttpRequest'")>0){
+    	   layer.alert("调用后台接口时出现错误！请检查网络连接……", {
+               icon: 6
+           });
+    	  
+    }else {
         layer.alert("调用后台接口时出现错误！" + textStatus + " " + errorThrown, {
             icon: 6
         });

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zee.ent.extend.gp.GpOperLog;
 import com.zee.utl.SymbolicConstant;
 
-@JsonIgnoreProperties({ "addTime", "domainId", "id", "isSuccessValue", "incomeValue", "operTypeCode", "operTypeText", "remark", "returnValue", "tableName" })
+@JsonIgnoreProperties({ "addTime", "domainId", "id", "isSuccessValue", "incomeValue", "operTypeCode", "operTypeText", "remark", "returnValue", "tableName","originException" })
 public class ResultModel extends GpOperLog {
 
 	// 查询操作是否成功
