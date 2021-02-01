@@ -79,6 +79,7 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 		selectBuffer.append("	SELECT                                                       ");
 		selectBuffer.append("		A.id id,                                                 ");
 		selectBuffer.append("		A.domain_id domainId,                                    ");
+		selectBuffer.append("		B.name domainName,                                             ");
 		selectBuffer.append("		A.object_id objectId,                                    ");
 		selectBuffer.append("		A.oper_type_text operTypeText,                           ");
 		selectBuffer.append("		A.table_name tableName,                                  ");
@@ -87,7 +88,7 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 		selectBuffer.append("		A.add_time addTime                                       ");
 		selectBuffer.append("	FROM                                                         ");
 		selectBuffer.append("		gp_oper_log A                                            ");
-		selectBuffer.append("	INNER JOIN gp_oper_log B ON A.id = B.id                      ");
+		selectBuffer.append("	LEFT JOIN gp_domain B ON A.domain_id = B.id                 ");
 		selectBuffer.append("	WHERE                                                        ");
 		selectBuffer.append("		1 = 1                                                    ");
 		

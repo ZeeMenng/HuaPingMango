@@ -79,6 +79,7 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 		selectBuffer.append("	SELECT                                                                ");
 		selectBuffer.append("		A.id id,                                                          ");
 		selectBuffer.append("		A.domain_id domainId,                                             ");
+		selectBuffer.append("		B.name domainName,                                             ");
 		selectBuffer.append("		A.user_name userName,                                             ");
 		selectBuffer.append("		DATE_FORMAT(A.login_time,'%Y-%m-%d %H:%i:%S') loginTime,          ");
 		selectBuffer.append("		DATE_FORMAT(A.logout_time,'%Y-%m-%d %H:%i:%S') logoutTime,        ");
@@ -92,7 +93,7 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 		selectBuffer.append("		A.remark remark                                                   ");
 		selectBuffer.append("	FROM                                                                  ");
 		selectBuffer.append("		gp_login_log A                                                    ");
-		selectBuffer.append("	INNER JOIN gp_login_log B ON A.id = B.id                              ");
+		selectBuffer.append("	LEFT JOIN gp_domain B ON A.domain_id = B.id                              ");
 		selectBuffer.append("	WHERE                                                                 ");
 		selectBuffer.append("		1 = 1                                                             ");
 
@@ -134,7 +135,7 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 					selectBuffer.append(" order by ");
 				for (int i = 0; i < orderListArray.size(); i++) {
 					JSONObject orderColumnObject = orderListArray.getJSONObject(i);
-					selectBuffer.append("A.").append(Tools.getCamelUnderline(orderColumnObject.getString("columnName")));
+					selectBuffer.append(Tools.getCamelUnderline(orderColumnObject.getString("columnName")));
 					selectBuffer.append(orderColumnObject.getBoolean("isASC") ? " ASC" : " DESC");
 					selectBuffer.append((i + 1) == orderListArray.size() ? " " : " ,");
 				}

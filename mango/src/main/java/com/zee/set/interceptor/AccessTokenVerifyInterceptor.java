@@ -81,7 +81,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		uri = uri.substring(contextPath.length(), uri.length());
-
+		
 		ResultModel interfaceResult = gpInterfaceSplBll.getModelByUrl(uri);
 
 		// 如果在接口白名单中直接放行
@@ -141,8 +141,8 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 			// 当前登录用户已被注销（禁止登录），抛出异常
 			throw new GlobalException("您的账号已被注销，无权访问本接口！" + uri);
 		}
-		
-		ResultModel gprDomainUserResult = gprDomainUserSplBll.isPermitted(user.getId(),domainId,false);
+
+		ResultModel gprDomainUserResult = gprDomainUserSplBll.isPermitted(user.getId(), domainId, false);
 		if (!gprDomainUserResult.getIsSuccess()) {
 			throw new GlobalException("该用户无权访问本系统！");
 		}

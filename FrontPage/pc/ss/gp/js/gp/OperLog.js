@@ -72,7 +72,11 @@ $(document).ready(function() {
 			}
 		},
 		columnInfo : [ 
-        
+			{
+                "columnName" : "domainName",
+                "columnText" : "应用领域",
+                "style" : "text-align:left",
+            },
 			 {
 			"columnName" : "tableName",
 			"columnText" : "操作表名",
