@@ -135,7 +135,7 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 					selectBuffer.append(" order by ");
 				for (int i = 0; i < orderListArray.size(); i++) {
 					JSONObject orderColumnObject = orderListArray.getJSONObject(i);
-					selectBuffer.append(Tools.getCamelUnderline(orderColumnObject.getString("columnName")));
+					selectBuffer.append(orderColumnObject.getString("columnName"));
 					selectBuffer.append(orderColumnObject.getBoolean("isASC") ? " ASC" : " DESC");
 					selectBuffer.append((i + 1) == orderListArray.size() ? " " : " ,");
 				}

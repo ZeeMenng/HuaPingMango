@@ -39,7 +39,7 @@ public class GpTokenSwgApp extends GpTokenGenSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.domain_id domainId,B.name domainName A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A left join gp_domain B on A.domain_id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.domain_id domainId,B.name domainName,A.user_id userId,A.user_name userName,A.access_token accessToken,A.a_dead_time aDeadTime,A.refresh_token refreshToken,A.r_dead_time rDeadTime,A.secret secret,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_token A left join gp_domain B on A.domain_id=B.id where 1=1 ");
 
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
