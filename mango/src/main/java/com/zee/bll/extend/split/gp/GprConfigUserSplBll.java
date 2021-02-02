@@ -8,8 +8,8 @@ import com.zee.ent.extend.gp.GprConfigUser;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
@@ -51,10 +51,10 @@ public class GprConfigUserSplBll extends GprConfigUserGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATE_S.getCode());
 			result.setResultMessage(OperResult.UPDATE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());

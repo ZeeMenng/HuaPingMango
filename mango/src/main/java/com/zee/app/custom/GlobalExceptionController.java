@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * @author Zee
@@ -49,7 +49,7 @@ public class GlobalExceptionController extends BasicErrorController {
 
 	@Override
 	public String getErrorPath() {
-		return SymbolicConstant.ERROR_PAGE;
+		return CustomSymbolic.ERROR_PAGE;
 	}
 
 }

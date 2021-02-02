@@ -46,9 +46,10 @@ import com.zee.ent.extend.gp.GprUserOrganization;
 import com.zee.ent.extend.gp.GprUserRole;
 import com.zee.ent.parameter.gp.GpUserParameter;
 import com.zee.set.enumer.OperResult;
+import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.set.symbolic.SqlSymbolic;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.MailSenderUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -166,7 +167,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(result.getObjectId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -196,7 +197,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
-			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
+			String sql = String.format(SqlSymbolic.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
@@ -258,7 +259,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(result.getObjectId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -291,7 +292,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
-			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
+			String sql = String.format(SqlSymbolic.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
@@ -392,7 +393,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel getModelByToken() {
 		ResultModel result = new ResultModel();
 		GpUser user = getCurrentUser();
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		result.setObjectId(user == null ? null : user.getId());
 		result.setData(user);
 		return result;
@@ -403,7 +404,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -474,7 +475,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String email = request.getParameter("email");
 		String oldEmail = request.getParameter("oldEmail");
 		if (StringUtils.isNotEmpty(oldEmail) && email.equals(oldEmail)) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}
 
@@ -489,7 +490,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String username = request.getParameter("userName");
 		String oldUserName = request.getParameter("oldUserName");
 		if (StringUtils.isNotEmpty(oldUserName) && username.equals(oldUserName)) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}
 		result = gpUserUntBll.isUniqueUserName(username);
@@ -503,7 +504,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String phone = request.getParameter("phone");
 		String oldPhone = request.getParameter("oldPhone");
 		if (StringUtils.isNotEmpty(oldPhone) && phone.equals(oldPhone)) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}
 
@@ -518,7 +519,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String qq = request.getParameter("qq");
 		String oldQq = request.getParameter("oldQq");
 		if (StringUtils.isNotEmpty(oldQq) && qq.equals(oldQq)) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}
 		result = gpUserUntBll.isUniqueQq(qq);
@@ -626,7 +627,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprResource = new GprResource();
 			gprResource.setId(id);
 			gprResource.setBusinessId(userId);
-			gprResource.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_F);
+			gprResource.setIsDefault(CustomSymbolic.DCODE_BOOLEAN_F);
 			gprResourceUntBll.update(gprResource);
 
 		}
@@ -635,7 +636,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprResource = new GprResource();
 			gprResource.setBusinessId(userId);
 			gprResource.setResourceId(resourceId);
-			gprResource.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_T);
+			gprResource.setIsDefault(CustomSymbolic.DCODE_BOOLEAN_T);
 			gprResourceUntBll.add(gprResource);
 		}
 	}
@@ -762,7 +763,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel getLoginInfoByJsonDataForApp() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -809,7 +810,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpUserUntBll.getListBySQL(map);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
 		if (modelList.size() > 0) {
 			if (!password.equals(modelList.get(0).get("password").toString())) {
@@ -821,7 +822,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 					resultModel.setResultMessage("该用户没有登录此app权限！");
 				} else {
 					resultModel.setResultMessage("登录成功！");
-					resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+					resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 					// 获取第一个进入的页面
 					// modelList.get(0).putAll(getFstPage(userName));
 					// 处理用户登陆信息
@@ -882,7 +883,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel register() throws Exception {
 
 		ResultModel resultModel = new ResultModel();
-		String jsonData = new String(request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON).getBytes("ISO-8859-1"), "UTF-8");
+		String jsonData = new String(request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON).getBytes("ISO-8859-1"), "UTF-8");
 
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
@@ -930,7 +931,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel sendResetMailByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -967,7 +968,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		if (resultModel.getTotalCount() == 0) {
 			resultModel.setResultMessage("您输入的邮箱未注册！");
 			resultModel.setTotalCount(0);
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			resultModel.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 		} else if (resultModel.getTotalCount() >= 1) {
 			if (!StringUtils.isBlank(jsonData)) {
@@ -981,7 +982,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 				mailSenderUtil.mailSimple(mail, subject, content);
 				modelList.get(0).put("code", code);
 				resultModel.setData(modelList);
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 				resultModel.setResultMessage("邮件发送成功，请登录邮箱查看验证码！");
 			}
@@ -1014,22 +1015,22 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	public ResultModel updatePassWord() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		JSONObject jsonObject = JSONObject.fromObject(jsonData);
 		if (jsonObject.containsKey("entityRelated")) {
 			JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
 			if (!StringUtils.isNotEmpty(entityRelatedObject.getString("newPassWord"))) {
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				resultModel.setResultMessage("新密码不能为空！");
 				return resultModel;
 			} else if (!StringUtils.isNotEmpty(entityRelatedObject.getString("rpnewpassword"))) {
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				resultModel.setResultMessage("请重复输入的新密码！");
 				return resultModel;
 			} else if (!entityRelatedObject.getString("newPassWord").equals(entityRelatedObject.getString("rpnewpassword"))) {
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				resultModel.setResultMessage("两次输入的密码不一致！");
 				return resultModel;
 			}
@@ -1066,7 +1067,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		if (resultModel.getTotalCount() == 0) {
 			resultModel.setResultMessage("重置密码失败！");
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			resultModel.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 		} else if (resultModel.getTotalCount() >= 1) {
 
@@ -1087,7 +1088,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			String qq = entityRelatedObject.getString("newPassWord");
 			gpUser.setPassword(qq);
 			resultModel = gpUserUntBll.update(gpUser);
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			resultModel.setResultMessage("密码重置成功，请返回登录页面进行登录！");
 		}
 		return resultModel;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.zee.ent.base.BaseEnt;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -73,9 +73,9 @@ public class BaseParameter extends BaseEnt implements Serializable {
 		public static class Page {
 
 			@ApiModelProperty(value = "分页大小，默认为15条", allowableValues = "15", required = false)
-			private Integer pageSize = SymbolicConstant.SQLQUERY_PAGESIZE_DEFAULTVALUE;
+			private Integer pageSize = CustomSymbolic.SQLQUERY_PAGESIZE_DEFAULTVALUE;
 			@ApiModelProperty(value = "查询页码，默认为第1页", allowableValues = "1", required = false)
-			private Integer pageIndex = SymbolicConstant.SQLQUERY_PAGEINDEX_DEFAULTVALUE;
+			private Integer pageIndex = CustomSymbolic.SQLQUERY_PAGEINDEX_DEFAULTVALUE;
 
 			public Integer getPageSize() {
 				return pageSize;

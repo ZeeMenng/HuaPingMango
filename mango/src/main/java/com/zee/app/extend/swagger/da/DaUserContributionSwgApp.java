@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.da.DaUserContributionGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.service.DaUserContributionUtil;
 
 
@@ -41,7 +41,7 @@ public class  DaUserContributionSwgApp extends  DaUserContributionGenSwgApp {
 		
 		ResultModel resultModel = new ResultModel();
 		daUserContributionUtil.updateUserContribution(type);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	

@@ -37,11 +37,11 @@ import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaAltitudeInfoParameter;
 import com.zee.ent.parameter.da.DaImportExportParameter;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
 import com.zee.utl.MathUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 
@@ -180,7 +180,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -303,7 +303,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -504,7 +504,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getTradeRank() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -567,7 +567,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getTradeScale() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -633,7 +633,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getTradePrice() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -683,7 +683,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getTradeScaleData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -749,7 +749,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	public ResultModel getTradePriceData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -799,7 +799,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 	@RequestMapping(value = "/getImportExportDataAndProportion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getImportExportDataAndProportion() throws ParseException {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1018,7 +1018,7 @@ public class  DaImportExportSwgApp extends  DaImportExportGenSwgApp {
 		resultMap.put("exportData", exportResultMap);
 		
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;	
 	}
 

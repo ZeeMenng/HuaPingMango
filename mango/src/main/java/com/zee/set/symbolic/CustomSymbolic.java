@@ -1,4 +1,4 @@
-package com.zee.utl;
+package com.zee.set.symbolic;
 
 /**
  * @author Zee
@@ -6,7 +6,7 @@ package com.zee.utl;
  * @updateDate 2017年4月13日 下午3:18:52
  * @description 常量类
  */
-public class SymbolicConstant {
+public class CustomSymbolic {
 
 	public static final String INITIAL_PASSWORD = "HuaPing190109";
 	// 同一请求中的当前登录用户
@@ -210,32 +210,6 @@ public class SymbolicConstant {
 	public static final String DI_CROP_BREED = "f8ba8a76017c654648c239a4a0f37b34";// 作物种类字典
 	public static final String DI_ENTERPRISE_RELATION_TYPE = "fb498fc2c61dd4c81bc7e15310b1ad8e";// 企业上下游关系类型字典
 
-	// 查询出某个用户没有拥有、但相应角色拥有的应用领域。
-	public static final String SQL_SELECT_ROLE_DOMAIN_ID = "select domain_id from gpr_role_domain where role_id in (%s) and domain_id not in (select domain_id from gpr_domain_user where user_id='%s') group by domain_id";
-
-	// 根据角色，查出这个角色下的用户和应用领域
-	public static final String SQL_SELECT_USER_DOMAIN_BY_ROLE = "select A.domain_id,B.user_id from gpr_role_domain A inner join gpr_user_role B on A.role_id=B.role_id where A.role_id='%s'";
-
-	public static final String SQL_SELECT_ROLE_GET_LIST = "SELECT distinct A.id id,A.name name,A.remark remark,A.add_time addTime, A.update_time updateTime FROM gp_role A left join gpr_role_domain B on A.id=B.role_id WHERE 1 = 1";
-
-	// 根据code查询配置项的Key是否唯一
-	public static final String SQL_SELECT_CONFIG_KEY = "SELECT id FROM gp_config  WHERE code = '%s'";
-
-	// 根据配置id查询应用领域配置项
-	public static final String SQL_SELECT_DOMAIN_CONFIG = "SELECT A.id id,A.domain_id domainId,B.default_value defaultValue,A.config_id configId,A.config_value configValue,A.add_time addTime,A.update_time updateTime,B.code code,B.name name,B.remark remark,C.name domainName FROM gpr_config_domain A inner join gp_config B on A.config_id=B.id inner join gp_domain C on A.domain_id=C.id WHERE A.id = '%s'";
-
-	// 应用配置列表模糊查询
-	public static final String SQL_SELECT_DOMAIN_CONFIG_LIST = "select A.id id,A.config_value configValue,A.update_time updateTime,B.code code,B.name name,C.name domainName  from gpr_config_domain A inner join gp_config B on A.config_id=B.id inner join gp_domain C on A.domain_id=C.id WHERE 1=1 ";
-
-	// 根据用户ID和应用领域ID查询当前用户在当前应用领域下的配置项
-	public static final String SQL_SELECT_USER_CONFIG_LIST = "select A.id configId,A.code code,IFNULL( C.config_value, IFNULL( B.config_value, A.default_value ) ) configValue from gp_config A inner join gpr_config_domain B on A.id=b.config_id  left join gpr_config_user C on A.id=C.config_id  where  B.domain_id='%s' and (C.user_id='%s' or C.user_id is null)";
-
-	// 根据config_id和user_id查询gpr_config_user表，判断记录是否存在
-	public static final String SQL_SELECT_USER_CONFIG_UNIQUE = "select id from  gpr_config_user where config_id='%s' and user_id='%s' ";
-
-	//查询服务目录
-	public static final String SQL_SELECT_INTERFACE_CATALOG_LIST = "select A.id id,A.name name,A.serial_no serialNo,A.level level,A.farther_id fartherId,A.priority priority,A.category_code categoryCode,A.category_text categoryText,A.remark remark  from gp_catalog_interface A inner join gp_catalog_interface B on A.id=B.id where 1=1"; 
-	
 	// 用于生成记录号serialNo的、雪花算法（Snowflake）的开始时间（2020/9/17
 	// 17:38:36）及dataCentId和workerId暂时写成固定
 	public static final long SNOWFLAKE_SERIAL_NO_STARTTIME = 1600335516000L;

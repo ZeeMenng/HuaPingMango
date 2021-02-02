@@ -20,8 +20,8 @@ import com.zee.bll.extend.unity.gp.GprCatalogInterfaceUntBll;
 import com.zee.ent.extend.gp.GprCatalogInterface;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.gp.GprCatalogInterfaceParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -167,7 +167,7 @@ public class GprCatalogInterfaceGenSwgApp extends BaseSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -223,7 +223,7 @@ public class GprCatalogInterfaceGenSwgApp extends BaseSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "后台接口所属分类列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

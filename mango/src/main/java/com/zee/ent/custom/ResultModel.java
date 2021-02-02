@@ -2,7 +2,7 @@ package com.zee.ent.custom;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zee.ent.extend.gp.GpOperLog;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 @JsonIgnoreProperties({ "addTime", "domainId", "id", "isSuccessValue", "incomeValue", "operTypeCode", "operTypeText", "remark", "returnValue", "tableName","originException" })
 public class ResultModel extends GpOperLog {
@@ -25,7 +25,7 @@ public class ResultModel extends GpOperLog {
 
 	public boolean getIsSuccess() {
 
-		isSuccess = this.getIsSuccessCode() == null ? false : this.getIsSuccessCode() == SymbolicConstant.DCODE_BOOLEAN_T ? true : false;
+		isSuccess = this.getIsSuccessCode() == null ? false : this.getIsSuccessCode() == CustomSymbolic.DCODE_BOOLEAN_T ? true : false;
 		return isSuccess;
 	}
 

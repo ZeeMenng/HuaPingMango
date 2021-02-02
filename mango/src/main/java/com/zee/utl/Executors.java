@@ -25,6 +25,7 @@ import com.zee.ent.extend.gp.GpLoginLog;
 import com.zee.ent.extend.gp.GpToken;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.set.enumer.DictType;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * @author lxy
@@ -105,7 +106,7 @@ public class Executors extends BaseApp{
 	 */
 	private JSONObject getPostData(Map<String, Object> paramMap){
 		JSONObject postData = new JSONObject();
-		postData.put("secretkey", SymbolicConstant.SENTIMENT_SECRETKEY);
+		postData.put("secretkey", CustomSymbolic.SENTIMENT_SECRETKEY);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("viewName", "hour");//视图名，年year，月month，日date，小时hour（默认为年）
@@ -142,7 +143,7 @@ public class Executors extends BaseApp{
 		String themeId = paramMap.get("id").toString();
 		
 		JSONObject postData = getPostData(paramMap);
-		JSONObject jsonObj = restTemplate.postForEntity(SymbolicConstant.SENTIMENT_SEARCH_URL, postData, JSONObject.class).getBody();
+		JSONObject jsonObj = restTemplate.postForEntity(CustomSymbolic.SENTIMENT_SEARCH_URL, postData, JSONObject.class).getBody();
 		Map<String, Object> dataMap = (Map<String, Object>)jsonObj.get("data");
 		List<Map<String, Object>> list = (List<Map<String, Object>>) dataMap.get("resultList");
 		if(list == null){

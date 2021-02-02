@@ -17,7 +17,7 @@ import com.zee.app.generate.swagger.pi.PiUserFavoriteGenSwgApp;
 import com.zee.bll.extend.unity.pi.PiUserFavoriteUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.pi.PiUserFavorite;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
@@ -43,7 +43,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -84,7 +84,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 			piUserFavorite.setAddTime(new Date());
 			resultModel = piUserFavoriteUntBll.add(piUserFavorite);
 		}else {
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		}
 		return 	resultModel;
 	}
@@ -94,7 +94,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 	public ResultModel deleteContentFromUserFavorite() {
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -156,7 +156,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 		selectBuffer.append("'");
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piUserFavoriteUntBll.getListBySQL(map);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		
 		Object obj = resultModel.getData();
 		List<Map<String,Object>> list = null;
@@ -214,7 +214,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 			}
 		}
 		resultModel.setData(resultList);*/
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return 	resultModel;
 	}
 	
@@ -224,7 +224,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 		
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -267,7 +267,7 @@ public class  PiUserFavoriteSwgApp extends  PiUserFavoriteGenSwgApp {
 		}
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piUserFavoriteUntBll.getListBySQL(map);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return 	resultModel;
 	}
 	

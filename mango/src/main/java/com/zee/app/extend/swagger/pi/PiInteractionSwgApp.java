@@ -27,7 +27,7 @@ import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.extend.pi.PiInteraction;
 import com.zee.ent.extend.pi.PirInteractionImage;
 import com.zee.ent.parameter.pi.PiInteractionParameter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -185,7 +185,7 @@ public class  PiInteractionSwgApp extends  PiInteractionGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -260,7 +260,7 @@ public class  PiInteractionSwgApp extends  PiInteractionGenSwgApp {
 		
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -350,7 +350,7 @@ public class  PiInteractionSwgApp extends  PiInteractionGenSwgApp {
 	public ResultModel getInteractionList() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

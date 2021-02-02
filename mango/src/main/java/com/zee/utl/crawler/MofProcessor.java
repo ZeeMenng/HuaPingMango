@@ -17,8 +17,9 @@ import com.zee.bll.extend.unity.da.DaMarketPriceUntBll;
 import com.zee.bll.extend.unity.da.DaWholesaleMarketUntBll;
 import com.zee.ent.extend.da.DaCommonField;
 import com.zee.ent.extend.da.DaMarketPrice;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

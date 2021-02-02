@@ -20,8 +20,8 @@ import com.zee.bll.extend.unity.pi.PiFileUntBll;
 import com.zee.ent.extend.pi.PiFile;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.pi.PiFileParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -167,7 +167,7 @@ public class PiFileGenSwgApp extends BaseSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -227,7 +227,7 @@ public class PiFileGenSwgApp extends BaseSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "CMS文章相关文件表列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * @author Zee
@@ -177,8 +177,8 @@ public class DataSourceConfig implements EnvironmentAware {
 		ServletRegistrationBean reg = new ServletRegistrationBean();
 		reg.setServlet(new StatViewServlet());
 		reg.addUrlMappings("/druid/*");
-		reg.addInitParameter("loginUsername", SymbolicConstant.DRUID_LOGIN_USERNAME);
-		reg.addInitParameter("loginPassword", SymbolicConstant.DRUID_LOGIN_PASSWORD);
+		reg.addInitParameter("loginUsername", CustomSymbolic.DRUID_LOGIN_USERNAME);
+		reg.addInitParameter("loginPassword", CustomSymbolic.DRUID_LOGIN_PASSWORD);
 		return reg;
 	}
 

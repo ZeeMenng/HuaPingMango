@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.mf.MfPerUnitYieldGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 
@@ -36,7 +36,7 @@ public class  MfPerUnitYieldSwgApp extends  MfPerUnitYieldGenSwgApp {
 	public ResultModel forecast() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zee.ent.custom.ResultModel;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * @author Zee
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		HttpHeaders headers = new HttpHeaders();
 
 		ResultModel result = new ResultModel();
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 
 		if (exception instanceof GlobalException) {
 			GlobalException globalException = (GlobalException) exception;

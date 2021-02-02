@@ -18,7 +18,7 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.ent.parameter.gp.GprRoleDomainParameter;
 import com.zee.ent.parameter.gp.GprRoleModuleParameter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -64,7 +64,7 @@ public class GprRoleModuleSwgApp extends GprRoleModuleGenSwgApp {
 	public ResultModel getListByRoleId(@PathVariable("roleId") String roleId) {
 		ResultModel result = gprRoleModuleUntBll.getListByRoleId(roleId);
 		List<GprRoleInterface> roleInterfaceList = (List<GprRoleInterface>) result.getData();
-		result.setData(roleInterfaceList.stream().filter(gprRoleInterface -> gprRoleInterface.getIsEnableCode() == SymbolicConstant.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
+		result.setData(roleInterfaceList.stream().filter(gprRoleInterface -> gprRoleInterface.getIsEnableCode() == CustomSymbolic.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
 
 		return result;
 	}

@@ -41,11 +41,11 @@ import com.zee.ent.extend.da.DaIndustryProcess;
 import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaIndustryProcessParameter;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
 import com.zee.utl.MathUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 import com.zee.utl.UnitUtil;
@@ -78,7 +78,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 	@RequestMapping(value = "/getMangoIndustryStructure", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoIndustryStructure() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -167,7 +167,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 		resultList.add(freshResultMap);
 		resultList.add(processResultMap);
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -386,7 +386,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 	@RequestMapping(value = "/getMangoIndustrySurvey", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoIndustrySurvey() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -482,7 +482,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 		resultMap.put("mangoFruitsProportion", "87");
 		resultMap.put("mangoAgricultureProportion", "24");
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -588,7 +588,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -613,7 +613,7 @@ public class  DaIndustryProcessSwgApp extends  DaIndustryProcessGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

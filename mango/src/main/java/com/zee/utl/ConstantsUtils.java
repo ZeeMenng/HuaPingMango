@@ -28,6 +28,7 @@ import com.zee.ent.extend.gp.GpInterface;
 import com.zee.ent.extend.gp.GpPage;
 import com.zee.set.enumer.InterfaceType;
 import com.zee.set.enumer.OperResult;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import net.sf.json.JSONObject;
 
@@ -84,10 +85,10 @@ public class ConstantsUtils {
 				dictionaryMethod();
 				System.out.println("生成字典类型js常量，java常量，执行完毕");
 			}
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			result.setResultMessage(OperResult.CUSTOM_S.getText());
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultMessage(OperResult.CUSTOM_F.getText() + "：" + e.getMessage());
 			e.printStackTrace();
 		}

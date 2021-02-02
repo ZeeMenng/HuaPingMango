@@ -8,8 +8,8 @@ import com.zee.ent.extend.gp.GpUser;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
@@ -48,14 +48,14 @@ public class PirContentImageSplBll extends PirContentImageGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (i != 1) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				result.setResultCode(OperResult.DELETE_F.getCode());
 				result.setResultMessage(OperResult.DELETE_F.getText() + "：不存在相应记录！");
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
 			result.setResultMessage(OperResult.DELETE_F.getText() + "：" + e.getMessage());
 			result.setReturnValue(e.getMessage());

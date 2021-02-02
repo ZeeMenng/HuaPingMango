@@ -37,10 +37,10 @@ import com.zee.set.enumer.DataControlEnum;
 import com.zee.set.enumer.DictionaryEnum;
 import com.zee.set.enumer.EnterpriseTypeEnum;
 import com.zee.set.enumer.OrgTypeEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -177,7 +177,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		GpOrganization gpOrganization = new GpOrganization();
 		gpOrganization.setName(jsonData.getEnterpriseName());
 		gpOrganization.setShortName(jsonData.getEnterpriseName());
-		gpOrganization.setFartherId(SymbolicConstant.ORGANIZATION_ID_HUAPING_QIYE);
+		gpOrganization.setFartherId(CustomSymbolic.ORGANIZATION_ID_HUAPING_QIYE);
 		gpOrganization.setTypeCode(OrgTypeEnum.QITA.getCode());
 		gpOrganization.setTypeText(OrgTypeEnum.QITA.getText());
 		gpOrganization.setLevelCode((byte) 3);
@@ -326,7 +326,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -381,7 +381,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -594,7 +594,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -672,7 +672,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		ResultModel resultModel4 = new ResultModel();//企业资产状况信息
 		ResultModel resultModel5 = new ResultModel();//疑似关系
 		ResultModel resultModel6 = new ResultModel();//法院判决
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String id = "";// 企业id
@@ -938,7 +938,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		relationshipMap.put("疑似关系", resultModel5.getData());
 		maps.put("relationship", relationshipMap);
 		ResultModel result = new ResultModel();//基本信息
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		result.setData(maps);
 		return result;
 		
@@ -948,7 +948,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	@RequestMapping(value = "/getEnterpriseList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEnterpriseList() {
 		ResultModel resultModel = new ResultModel();//基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1013,7 +1013,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	@RequestMapping(value = "/getEnterpriseRecommendPicList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEnterpriseRecommendPicList() {
 		ResultModel resultModel = new ResultModel();//基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1091,7 +1091,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 			}
 		}
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -1099,7 +1099,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	@RequestMapping(value = "/getEnterpriseSummary", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEnterpriseSummary() {
 		ResultModel resultModel = new ResultModel();//基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1235,7 +1235,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 			}
 		}
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		
 		return resultModel;
 	}
@@ -1245,7 +1245,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	@RequestMapping(value = "/getEnterpriseIndustryAndCommerceInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEnterpriseIndustryAndCommerceInfo() {
 		ResultModel resultModel = new ResultModel();//基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1319,7 +1319,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	@RequestMapping(value = "/getEnterpriseVideoInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEnterpriseVideoInfo() {
 		ResultModel resultModel = new ResultModel();//基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1389,7 +1389,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 	public ResultModel getEnterpriseByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		

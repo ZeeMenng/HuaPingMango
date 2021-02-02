@@ -42,12 +42,12 @@ import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaMarketPriceParameter;
 import com.zee.set.enumer.DictionaryEnum;
 import com.zee.set.enumer.DomainEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.FileUtil;
 import com.zee.utl.ImportExcelUtil;
 import com.zee.utl.MathUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 import com.zee.utl.UnitUtil;
@@ -121,7 +121,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -233,7 +233,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		}
 
 		// 新增完之后，更新用户贡献度
-		daUserContributionUtil.updateUserContribution(SymbolicConstant.CONTRIBUTION_PRICE);
+		daUserContributionUtil.updateUserContribution(CustomSymbolic.CONTRIBUTION_PRICE);
 
 		return resultModel;
 	}
@@ -400,7 +400,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -519,7 +519,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -638,7 +638,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel get8PriceKline() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -859,7 +859,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getPriceStrainChg() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -945,7 +945,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getPriceCityChgTop10() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1071,7 +1071,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getPriceCityChg() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1206,7 +1206,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getPriceGap() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1350,7 +1350,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getPriceEachLinkGap() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1462,7 +1462,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getMarketPriceDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMarketPriceDetails() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1536,7 +1536,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultList.add(dispatchResultMap);
 		
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -1712,7 +1712,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getWeekPriceDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getWeekPriceDetails() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1761,7 +1761,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultList.add(ecommerceResultMap);
 
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2047,7 +2047,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getWholeSalePriceRank() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -2126,7 +2126,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getWholeSalePriceMap() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2201,7 +2201,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getWholeSalePriceTend() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2229,7 +2229,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getWeekPriceDetailsForApp", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getWeekPriceDetailsForApp() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2291,7 +2291,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultList.add(retailResultMap);
 
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2352,7 +2352,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getLatestPriceForApp", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getLatestPriceForApp() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2368,7 +2368,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		}
 
 		// 获取芒果品种<code,text>列表
-		Map<String, Object> mangoBreedMap = getDicMapByTypeId(SymbolicConstant.DI_CROP_STRAINS);
+		Map<String, Object> mangoBreedMap = getDicMapByTypeId(CustomSymbolic.DI_CROP_STRAINS);
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> perResultMap = null;
 		Map<String, Object> perBreedMap = null;
@@ -2424,7 +2424,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 			}
 		}
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2620,7 +2620,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
 		selectBuffer.append("select ");
@@ -2673,7 +2673,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getPriceDataAndProportion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getPriceDataAndProportion() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2744,7 +2744,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		priceResultMap.put("proportion", priceProportionList);
 
 		resultModel.setData(priceResultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2774,7 +2774,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getTimesPriceData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimesPriceData() throws NumberFormatException, ParseException {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2892,7 +2892,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("times", timesList);
 
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -3292,7 +3292,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	@RequestMapping(value = "/getperBreedPriceData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getperBreedPriceData() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -3319,7 +3319,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("time", timesList);
 
 		// 获取芒果品种<code,text>列表
-		Map<String, Object> mangoBreedMap = getDicMapByTypeId(SymbolicConstant.DI_CROP_STRAINS);
+		Map<String, Object> mangoBreedMap = getDicMapByTypeId(CustomSymbolic.DI_CROP_STRAINS);
 
 		Map<String, Object> perBreedMap = null;
 		List<String> perBreedList = null;
@@ -3369,7 +3369,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("info", infoList);
 		resultMap.put("time", timesList);
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -3378,7 +3378,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 	public ResultModel getBreedsFieldAndRetailPriceForApp() throws ParseException {
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -3414,9 +3414,9 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		List<Map<String,Object>> resultList = new ArrayList<Map<String,Object>>();
 		
 		// 获取芒果品种<code,text>列表
-		Map<String, Object> mangoBreedMap = getDicMapByTypeId(SymbolicConstant.DI_CROP_STRAINS);
+		Map<String, Object> mangoBreedMap = getDicMapByTypeId(CustomSymbolic.DI_CROP_STRAINS);
 		// 获取芒果品种<code,remark>列表
-		Map<String, Object> mangoRemarkMap = getDicMarkMapByTypeId(SymbolicConstant.DI_CROP_STRAINS);
+		Map<String, Object> mangoRemarkMap = getDicMarkMapByTypeId(CustomSymbolic.DI_CROP_STRAINS);
 		
 		Map<String, Object> perResultMap = null;
 		Map<String, Object> perBreedMap = null;
@@ -3546,7 +3546,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("time", time);
 		resultMap.put("priceData", resultList);
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		
 		return resultModel;
 	}
@@ -3748,9 +3748,9 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		selectBuffer.append("%'");
 		
 		// 企业微网站的数据不应显示在首页和市场页面的轮播中
-		if (!SymbolicConstant.CHANNEL_WEBSIT.equals(channelId)) {
+		if (!CustomSymbolic.CHANNEL_WEBSIT.equals(channelId)) {
 			selectBuffer.append("AND a.channel_id !='");
-			selectBuffer.append(SymbolicConstant.CHANNEL_WEBSIT);
+			selectBuffer.append(CustomSymbolic.CHANNEL_WEBSIT);
 			selectBuffer.append("'");
 		}
 		if (StringUtils.isNotBlank(isRecommend)) {
@@ -3781,16 +3781,16 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 			}
 			String tempTypeId = (String) resultMap.get("type_id");
 			if (StringUtils.isNotBlank(tempTypeId)) {
-				if (SymbolicConstant.CONTENT_TYPE_SEE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SEE.equals(tempTypeId)) {
 					tempTypeId = "1";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
 					tempTypeId = "2";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
 					tempTypeId = "3";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_SAY.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SAY.equals(tempTypeId)) {
 					tempTypeId = "4";
 				}
 				resultMap.put("type_id", tempTypeId);
@@ -3960,7 +3960,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("banner", bannerList);
 		resultMap.put("hot", hotList);
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -3998,7 +3998,7 @@ public class DaMarketPriceSwgApp extends DaMarketPriceGenSwgApp {
 		resultMap.put("plant", plantList);
 		
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	

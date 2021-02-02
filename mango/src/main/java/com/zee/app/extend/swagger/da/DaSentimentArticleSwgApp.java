@@ -29,8 +29,8 @@ import com.zee.bll.extend.unity.da.DaSentimentContentUntBll;
 import com.zee.bll.extend.unity.da.DaSentimentThemeUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaSentimentArticle;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.MathUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 
 
@@ -127,7 +127,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -244,7 +244,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel analyze() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -323,7 +323,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel distribute() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -403,7 +403,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel newsFromMedia() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -466,7 +466,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel fromMediaType() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -535,7 +535,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel fromMediaRank() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -613,7 +613,7 @@ public class  DaSentimentArticleSwgApp extends  DaSentimentArticleGenSwgApp {
 	public ResultModel news() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		

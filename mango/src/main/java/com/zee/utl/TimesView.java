@@ -14,6 +14,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 import com.zee.ent.custom.ResultModel;
+import com.zee.set.symbolic.CustomSymbolic;
 
 public class TimesView {
 	
@@ -155,7 +156,7 @@ public class TimesView {
 		ResultModel result = new ResultModel();
 		result.setData(modelList);
 		result.setTotalCount(modelList.size());
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return result;
 	}
 	

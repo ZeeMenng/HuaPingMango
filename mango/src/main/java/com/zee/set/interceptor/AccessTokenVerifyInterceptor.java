@@ -25,8 +25,8 @@ import com.zee.ent.extend.gp.GpToken;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TokenUtil;
 
 import io.jsonwebtoken.Claims;
@@ -71,7 +71,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-		String header = request.getHeader(SymbolicConstant.JWT_HEADER_PARAM);
+		String header = request.getHeader(CustomSymbolic.JWT_HEADER_PARAM);
 		// 如果是预检请求返回OK
 		if (CorsUtils.isPreFlightRequest(request)) {
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -97,7 +97,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 		}
 		GpInterface gpInterface = (GpInterface) interfaceResult.getData();
 		// 如果没有带Token且接口为公共接口，放行。
-		if (StringUtils.isBlank(header) && gpInterface.getIsPublicCode() == SymbolicConstant.DCODE_BOOLEAN_T) {
+		if (StringUtils.isBlank(header) && gpInterface.getIsPublicCode() == CustomSymbolic.DCODE_BOOLEAN_T) {
 			return true;
 		}
 
@@ -107,22 +107,22 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 			throw new GlobalException("未接收到AccessToken信息!");
 		}
 
-		if (header.length() < SymbolicConstant.JWT_HEADER_PREFIX.length()) {
+		if (header.length() < CustomSymbolic.JWT_HEADER_PREFIX.length()) {
 			// Token信息不正确，抛出异常。
 			throw new GlobalException("AccessToken信息不正确!");
 		}
 
-		header = header.substring(SymbolicConstant.JWT_HEADER_PREFIX.length(), header.length());
+		header = header.substring(CustomSymbolic.JWT_HEADER_PREFIX.length(), header.length());
 
-		Claims claims = TokenUtil.parserJavaWebToken(header, SymbolicConstant.JWT_SECRET).getBody();
+		Claims claims = TokenUtil.parserJavaWebToken(header, CustomSymbolic.JWT_SECRET).getBody();
 		// 和自身记录的过期时间校验，Token过期，抛出异常
 		if (DateUtils.comparator(claims.getExpiration(), DateUtils.getCurrentTime()) < 0) {
 			throw new GlobalException(OperResult.TOKEN_EXPIRED.getCode(), OperResult.TOKEN_EXPIRED.getText());
 		}
 
 		String userName = claims.getSubject();
-		String loginLogId = (String) claims.get(SymbolicConstant.JWT_LOGIN_LOG_ID);
-		String domainId = (String) claims.get(SymbolicConstant.JWT_DOMAIN_ID);
+		String loginLogId = (String) claims.get(CustomSymbolic.JWT_LOGIN_LOG_ID);
+		String domainId = (String) claims.get(CustomSymbolic.JWT_DOMAIN_ID);
 
 		ResultModel tokenResult = gpTokenUntBll.getModel(loginLogId);
 		// 根据登录日志没有取到相应的Token，说明后台数据发生人为更改，认为登录过期重新登录
@@ -137,7 +137,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 		GpDomain domain = (GpDomain) gpDomainUntBll.getModel(domainId).getData();
 		GpUser user = (GpUser) gpUserSplBll.getModelByUserName(userName).getData();
 
-		if (user.getIsDisabledCode() == SymbolicConstant.DCODE_BOOLEAN_T) {
+		if (user.getIsDisabledCode() == CustomSymbolic.DCODE_BOOLEAN_T) {
 			// 当前登录用户已被注销（禁止登录），抛出异常
 			throw new GlobalException("您的账号已被注销，无权访问本接口！" + uri);
 		}
@@ -153,8 +153,8 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 			// 当前登录用户没有访问请求接口的权限，抛出异常
 			throw new GlobalException("您无权访问本接口！" + uri);
 		}
-		request.setAttribute(SymbolicConstant.REQUEST_CURRENT_USER, user);
-		request.setAttribute(SymbolicConstant.REQUEST_CURRENT_DOMAIN, domain);
+		request.setAttribute(CustomSymbolic.REQUEST_CURRENT_USER, user);
+		request.setAttribute(CustomSymbolic.REQUEST_CURRENT_DOMAIN, domain);
 		return true;
 	}
 

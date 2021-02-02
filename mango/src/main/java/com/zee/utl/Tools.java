@@ -28,6 +28,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpModule;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -349,7 +350,7 @@ public class Tools {
 				module.setId(jsonObject.getString("id"));
 
 			if (!jsonObject.containsKey("serialNo") || StringUtils.isEmpty((jsonObject.getString("serialNo"))) || jsonObject.getString("serialNo").equals("null")) {
-				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+				String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 				module.setSerialNo(tSerialNo);
 			} else
 				module.setSerialNo(jsonObject.getString("serialNo"));

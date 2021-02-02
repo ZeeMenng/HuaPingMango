@@ -25,8 +25,8 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.pi.PiChannel;
 import com.zee.ent.extend.pi.PiChannelExt;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -62,7 +62,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 	public ResultModel addChannel() throws Exception {
 		ResultModel resultModel = new ResultModel();
 //		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String jsonData = new String(strJson.getBytes("ISO-8859-1"),"UTF-8");
 //		System.out.println(jsonData);
 		if (StringUtils.isBlank(jsonData)) {
@@ -179,7 +179,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 	@RequestMapping(value = "/getChannel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getChannel() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -233,7 +233,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -419,7 +419,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 		}
 		//您的位置处，首页不用显示
 //		channelInfoList.remove(channelInfoList.size()-1);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		resultModel.setData(channelInfoList);
 		return resultModel;
 	}
@@ -569,7 +569,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		
 		//首先获取需要更新的数据
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String jsonData = new String(strJson.getBytes("ISO-8859-1"),"UTF-8");
 		
 		if (StringUtils.isBlank(jsonData)) {
@@ -706,7 +706,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 	public ResultModel getChannelNodes() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -750,7 +750,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "CMS栏目表列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);
@@ -811,12 +811,12 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 				JSONObject jsonData = JSONObject.fromObject(objMap);
 				if (jsonData.containsKey("hasContent")) {
 					String tempHasContent = jsonData.getString("hasContent");
-					String hasContent = transfSqlData(SymbolicConstant.DI_BOOLEAN,tempHasContent);
+					String hasContent = transfSqlData(CustomSymbolic.DI_BOOLEAN,tempHasContent);
 					objMap.put("hasContent", hasContent);
 				}
 				if (jsonData.containsKey("isDisplay")) {
 					String tempIsDisplay = jsonData.getString("isDisplay");
-					String isDisplay = transfSqlData(SymbolicConstant.DI_BOOLEAN,tempIsDisplay);
+					String isDisplay = transfSqlData(CustomSymbolic.DI_BOOLEAN,tempIsDisplay);
 					objMap.put("isDisplay", isDisplay);
 				}
 				

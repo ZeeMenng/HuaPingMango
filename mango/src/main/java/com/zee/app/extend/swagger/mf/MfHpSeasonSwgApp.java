@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.mf.MfHpSeasonGenSwgApp;
 import com.zee.bll.extend.unity.mf.MfHpSeasonUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +41,7 @@ public class  MfHpSeasonSwgApp extends  MfHpSeasonGenSwgApp {
 	public ResultModel forecast() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -82,7 +82,7 @@ public class  MfHpSeasonSwgApp extends  MfHpSeasonGenSwgApp {
 	public ResultModel getPriceSeason() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

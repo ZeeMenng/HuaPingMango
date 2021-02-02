@@ -23,7 +23,7 @@ import com.zee.bll.extend.unity.gp.GpVarietyUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpVariety;
 import com.zee.ent.parameter.gp.GpVarietyParameter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -68,7 +68,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
     		selectBuffer.append("		gp_variety a                                     ");
     		selectBuffer.append("	WHERE a.name IS NOT NULL ");
     		
-    		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+    		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
     		if (!StringUtils.isBlank(jsonData)){
     			JSONObject jsonObject = JSONObject.fromObject(jsonData);
     			if(jsonObject.containsKey("id") && StringUtils.isNotBlank(jsonObject.getString("id"))) {
@@ -192,7 +192,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -257,7 +257,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 	public ResultModel getTreeNodeData() {
 		ResultModel resultModel = new ResultModel();
         try {
-        	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+        	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
     		if (StringUtils.isBlank(jsonData))
     			return resultModel;
 

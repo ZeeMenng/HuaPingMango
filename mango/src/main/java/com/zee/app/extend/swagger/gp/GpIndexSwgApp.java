@@ -18,7 +18,7 @@ import com.zee.bll.extend.unity.gp.GpLoginLogUntBll;
 import com.zee.bll.extend.unity.gp.GprUserOrganizationUntBll;
 import com.zee.bll.extend.unity.pi.PiChannelCountUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -56,7 +56,7 @@ public class GpIndexSwgApp extends PiChannelCountGenSwgApp {
 	@RequestMapping(value = "/getIndexData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getIndexData() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)){
 			return resultModel;
 		}
@@ -133,7 +133,7 @@ public class GpIndexSwgApp extends PiChannelCountGenSwgApp {
 	@RequestMapping(value = "/getPublishArticles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getPublishArticles() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}

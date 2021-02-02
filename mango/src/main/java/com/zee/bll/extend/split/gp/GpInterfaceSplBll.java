@@ -8,8 +8,8 @@ import com.zee.ent.extend.gp.GpInterface;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
@@ -46,7 +46,7 @@ public class GpInterfaceSplBll extends GpInterfaceGenSplBll {
 
 			result.setResultCode(OperResult.GETMODEL_S.getCode());
 			result.setResultMessage(OperResult.GETMODEL_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			result.setData(gpInterface);
 			result.setTotalCount(new Long(1));
 			if (gpInterface == null) {
@@ -57,7 +57,7 @@ public class GpInterfaceSplBll extends GpInterfaceGenSplBll {
 			}
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
 			result.setResultMessage(OperResult.GETMODEL_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -93,17 +93,17 @@ public class GpInterfaceSplBll extends GpInterfaceGenSplBll {
 			if (i == 0) {
 				result.setResultCode(OperResult.CUSTOM_S.getCode());
 				result.setResultMessage(OperResult.CUSTOM_S.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			} else {
 				result.setReturnValue(String.valueOf(i));
 				result.setData(i);
 				result.setTotalCount(new Long(1));
 				result.setResultCode(OperResult.CUSTOM_S.getCode());
 				result.setResultMessage(OperResult.CUSTOM_S.getText());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.CUSTOM_F.getCode());
 			result.setResultMessage(OperResult.CUSTOM_F.getText());
 			result.setReturnValue(e.getMessage());

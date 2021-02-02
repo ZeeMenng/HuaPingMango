@@ -47,9 +47,9 @@ import com.zee.ent.extend.pi.PiContentPicture;
 import com.zee.ent.extend.pi.PiContentTxt;
 import com.zee.ent.extend.pi.PirContentChannel;
 import com.zee.ent.extend.pi.PirContentImage;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
 import com.zee.utl.FileUtil;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -103,7 +103,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public synchronized ResultModel getContentList() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -167,9 +167,9 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 				selectBuffer.append("%'");
 			}
 			// 企业微网站的数据不应显示在首页和市场页面的轮播中
-			if (!SymbolicConstant.CHANNEL_WEBSIT.equals(cId)) {
+			if (!CustomSymbolic.CHANNEL_WEBSIT.equals(cId)) {
 				selectBuffer.append("AND a.channel_id !='");
-				selectBuffer.append(SymbolicConstant.CHANNEL_WEBSIT);
+				selectBuffer.append(CustomSymbolic.CHANNEL_WEBSIT);
 				selectBuffer.append("'");
 			}
 
@@ -245,16 +245,16 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			 */
 			String tempTypeId = (String) resultMap.get("type_id");
 			if (StringUtils.isNotBlank(tempTypeId)) {
-				if (SymbolicConstant.CONTENT_TYPE_SEE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SEE.equals(tempTypeId)) {
 					tempTypeId = "1";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
 					tempTypeId = "2";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
 					tempTypeId = "3";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_SAY.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SAY.equals(tempTypeId)) {
 					tempTypeId = "4";
 				}
 				resultMap.put("type_id", tempTypeId);
@@ -276,7 +276,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		String relationId = null;
 
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -425,7 +425,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		String contentId = null;
 
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -696,7 +696,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			relationIdLen -= 2;
 			relId = relId.substring(0, relationIdLen);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		resultModel.setData(channelInfoList);
 		return resultChannelIds;
 
@@ -887,7 +887,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 
 		// 首先获取需要更新的数据
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String jsonData = new String(strJson);
 		String contentId = "";
 
@@ -925,9 +925,9 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			}
 
 			if (jsonObject.containsKey("titleImageResourceId") && StringUtils.isNotBlank(jsonObject.getString("titleImageResourceId")))
-				piContent.setHasTitleImg(SymbolicConstant.DCODE_BOOLEAN_T);
+				piContent.setHasTitleImg(CustomSymbolic.DCODE_BOOLEAN_T);
 			else
-				piContent.setHasTitleImg(SymbolicConstant.DCODE_BOOLEAN_F);
+				piContent.setHasTitleImg(CustomSymbolic.DCODE_BOOLEAN_F);
 
 			if (jsonObject.containsKey("isRecommend")) {
 				isRecommend = Integer.parseInt(jsonObject.getString("isRecommend"));
@@ -981,7 +981,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			if (jsonObject.containsKey("releaseDate")) {
 				releaseDate = jsonObject.getString("releaseDate");
 				if (StringUtils.isNotBlank(releaseDate)) {
-					piContentExt.setReleaseDate(DateUtils.string2Date(releaseDate, SymbolicConstant.DATE_FORMAT));
+					piContentExt.setReleaseDate(DateUtils.string2Date(releaseDate, CustomSymbolic.DATE_FORMAT));
 				}
 			}
 			if (jsonObject.containsKey("origin")) {
@@ -1009,7 +1009,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			contentImage.setContentId(contentId);
 			if (jsonObject.containsKey("titleImageResourceId") && StringUtils.isNotBlank(jsonObject.getString("titleImageResourceId"))) {
 				contentImage.setResourceId(jsonObject.getString("titleImageResourceId"));
-				contentImage.setIsTitleImgCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				contentImage.setIsTitleImgCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			}
 			resultModel = pirContentImageUntBll.add(contentImage);
 
@@ -1034,7 +1034,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1154,7 +1154,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "CMS内容表列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);
@@ -1179,7 +1179,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	@ResponseBody
 	public ResultModel addContent() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -1304,7 +1304,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel batchAddContent() throws Exception {
 
 		ResultModel resultModel = new ResultModel();
-		String jsonData = new String(request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON));
+		String jsonData = new String(request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON));
 
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
@@ -1338,9 +1338,9 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			// 插入pi_content表
 			PiContent piContent = new PiContent();
 			if (jsonObject.containsKey("titleImageResourceId") && StringUtils.isNotBlank(jsonObject.getString("titleImageResourceId")))
-				piContent.setHasTitleImg(SymbolicConstant.DCODE_BOOLEAN_T);
+				piContent.setHasTitleImg(CustomSymbolic.DCODE_BOOLEAN_T);
 			else
-				piContent.setHasTitleImg(SymbolicConstant.DCODE_BOOLEAN_F);
+				piContent.setHasTitleImg(CustomSymbolic.DCODE_BOOLEAN_F);
 
 			if (jsonObject.containsKey("isRecommend")) {
 				isRecommend = Integer.parseInt(jsonObject.getString("isRecommend"));
@@ -1386,7 +1386,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			if (jsonObject.containsKey("releaseDate")) {
 				releaseDate = jsonObject.getString("releaseDate");
 				if (StringUtils.isNotBlank(releaseDate)) {
-					piContentExt.setReleaseDate(DateUtils.string2Date(releaseDate, SymbolicConstant.DATE_FORMAT));
+					piContentExt.setReleaseDate(DateUtils.string2Date(releaseDate, CustomSymbolic.DATE_FORMAT));
 				}
 			}
 			if (jsonObject.containsKey("textOrigin")) {
@@ -1414,7 +1414,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			contentImage.setContentId(tempContentId);
 			if (jsonObject.containsKey("titleImageResourceId") && StringUtils.isNotBlank(jsonObject.getString("titleImageResourceId"))) {
 				contentImage.setResourceId(jsonObject.getString("titleImageResourceId"));
-				contentImage.setIsTitleImgCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				contentImage.setIsTitleImgCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			}
 			resultModel = pirContentImageUntBll.add(contentImage);
 
@@ -1474,7 +1474,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel getChannelNodes() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1503,7 +1503,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> map2 : modelList) {
 			Map<String, Object> treeMap = new HashMap<String, Object>();
-			if (!SymbolicConstant.CHANNEL_TRACE.equals(map2.get("id"))) {
+			if (!CustomSymbolic.CHANNEL_TRACE.equals(map2.get("id"))) {
 				treeMap.put("id", map2.get("id"));
 				treeMap.put("pId", map2.get("fartherId"));
 				treeMap.put("name", map2.get("name"));
@@ -1597,17 +1597,17 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 				JSONObject jsonData = JSONObject.fromObject(objectList.get(0));
 				if (jsonData.containsKey("isRecommend")) {
 					String tempIsRecommend = jsonData.getString("isRecommend");
-					String isRecommend = transfSqlData(SymbolicConstant.DI_BOOLEAN, tempIsRecommend);
+					String isRecommend = transfSqlData(CustomSymbolic.DI_BOOLEAN, tempIsRecommend);
 					formalObjMap.put("isRecommend", isRecommend);
 				}
 				if (jsonData.containsKey("hasTitleImg")) {
 					String tempHasTitleImg = jsonData.getString("hasTitleImg");
-					String hasTitleImg = transfSqlData(SymbolicConstant.DI_BOOLEAN, tempHasTitleImg);
+					String hasTitleImg = transfSqlData(CustomSymbolic.DI_BOOLEAN, tempHasTitleImg);
 					formalObjMap.put("hasTitleImg", hasTitleImg);
 				}
 				if (jsonData.containsKey("status")) {
 					String tempStatus = jsonData.getString("status");
-					String status = transfSqlData(SymbolicConstant.DI_CONTENT_STATUS, tempStatus);
+					String status = transfSqlData(CustomSymbolic.DI_CONTENT_STATUS, tempStatus);
 					formalObjMap.put("status", status);
 				}
 			}
@@ -1777,7 +1777,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel batchUpdate() throws Exception {
 		ResultModel resultModel = new ResultModel();
 
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String jsonData = new String(strJson);
 
 		if (StringUtils.isBlank(jsonData)) {
@@ -1802,7 +1802,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 				severallyUpdateByContentId(contentId, entityJSONObject, resultModel);
 			}
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2090,7 +2090,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel getContentListForApp() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -2150,9 +2150,9 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 				selectBuffer.append("%'");
 			}
 			// 企业微网站的数据不应显示在首页和市场页面的轮播中
-			if (!SymbolicConstant.CHANNEL_WEBSIT.equals(cId)) {
+			if (!CustomSymbolic.CHANNEL_WEBSIT.equals(cId)) {
 				selectBuffer.append("AND a.channel_id !='");
-				selectBuffer.append(SymbolicConstant.CHANNEL_WEBSIT);
+				selectBuffer.append(CustomSymbolic.CHANNEL_WEBSIT);
 				selectBuffer.append("'");
 			}
 			/*
@@ -2242,16 +2242,16 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 			}
 			String tempTypeId = (String) resultMap.get("type_id");
 			if (StringUtils.isNotBlank(tempTypeId)) {
-				if (SymbolicConstant.CONTENT_TYPE_SEE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SEE.equals(tempTypeId)) {
 					tempTypeId = "1";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_HEAR.equals(tempTypeId)) {
 					tempTypeId = "2";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_IMAGE.equals(tempTypeId)) {
 					tempTypeId = "3";
 				}
-				if (SymbolicConstant.CONTENT_TYPE_SAY.equals(tempTypeId)) {
+				if (CustomSymbolic.CONTENT_TYPE_SAY.equals(tempTypeId)) {
 					tempTypeId = "4";
 				}
 				resultMap.put("type_id", tempTypeId);
@@ -2274,7 +2274,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		String userId = null;
 
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}
@@ -2413,7 +2413,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 	public ResultModel getWebSiteBaseInfo() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
 		}

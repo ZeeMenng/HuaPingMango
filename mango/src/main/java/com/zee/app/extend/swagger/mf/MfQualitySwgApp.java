@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.mf.MfQualityGenSwgApp;
 import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
@@ -52,7 +52,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	public ResultModel forecast() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -102,7 +102,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 年份
@@ -305,7 +305,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	public ResultModel getInpuType() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String typeInput = "";// 投入品种类
@@ -396,7 +396,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	public ResultModel getInputSubject() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 
@@ -473,7 +473,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	public ResultModel getScavenging() {
 		ResultModel resultModel = new ResultModel();
 		ResultModel resultModel2 = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 
@@ -574,7 +574,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	@RequestMapping(value = "/getQualitInspection", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getQualitInspection() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 
@@ -670,7 +670,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 	@RequestMapping(value = "/getWarningSum", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getWarningSum() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 

@@ -23,8 +23,8 @@ import org.thymeleaf.util.ListUtils;
 
 import com.zee.bll.extend.unity.da.DaCrawlerUntBll;
 import com.zee.ent.extend.da.DaCrawler;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

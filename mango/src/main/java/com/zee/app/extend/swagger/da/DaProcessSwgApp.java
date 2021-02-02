@@ -39,10 +39,10 @@ import com.zee.ent.parameter.da.DaBaseInfoParameter;
 import com.zee.ent.parameter.da.DaProcessParameter;
 import com.zee.set.enumer.DictionaryEnum;
 import com.zee.set.enumer.EnterpriseTypeEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 
@@ -170,7 +170,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -281,7 +281,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -466,7 +466,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		ResultModel resultModel2 = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 
@@ -522,7 +522,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		maps.put("hpEnterpriseDate", resultModel2.getData());// 整个华坪的
 		list.add(maps);
 		resultModel.setData(list);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -541,7 +541,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 	public ResultModel getConsumptionPredictionData() {
 		ResultModel resultModel = new ResultModel();
 		ResultModel resultModel2 = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		//鲜果消耗量
@@ -614,7 +614,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 	@RequestMapping(value = "/getProcessOutputValueData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getProcessOutputValueData() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		//鲜果消耗量
@@ -651,7 +651,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		ResultModel resultModel2 = new ResultModel();
 		ResultModel resultModel3 = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 
@@ -767,7 +767,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -794,7 +794,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		List<Map<String,Object>> dataList = new ArrayList<Map<String,Object>>();
 		
-		Map<String,Object> processTypeMap = getDicMapByTypeId(SymbolicConstant.DI_PROCESS_BREED);
+		Map<String,Object> processTypeMap = getDicMapByTypeId(CustomSymbolic.DI_PROCESS_BREED);
 		
 		BigDecimal saleNum = new BigDecimal("0");
 		int index = 0;
@@ -864,7 +864,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 		resultMap.put("totalSum", valueSum);
 
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	

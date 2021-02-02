@@ -20,8 +20,8 @@ import com.zee.bll.extend.unity.pi.PirChnlGroupViewUntBll;
 import com.zee.ent.extend.pi.PirChnlGroupView;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.pi.PirChnlGroupViewParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -167,7 +167,7 @@ public class PirChnlGroupViewGenSwgApp extends BaseSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -223,7 +223,7 @@ public class PirChnlGroupViewGenSwgApp extends BaseSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "CMS栏目浏览会员组关联表列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

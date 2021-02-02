@@ -14,7 +14,7 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.extend.gp.GprConfigUser;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.SqlSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -39,7 +39,7 @@ public class GprConfigUserSwgApp extends GprConfigUserGenSwgApp {
 
 		// 查询是否存在
 		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = String.format(SymbolicConstant.SQL_SELECT_USER_CONFIG_UNIQUE, jsonData.getConfigId(), jsonData.getUserId());
+		String sql = String.format(SqlSymbolic.SQL_SELECT_USER_CONFIG_UNIQUE, jsonData.getConfigId(), jsonData.getUserId());
 		map.put("Sql", sql);
 		ResultModel result = gprConfigUserUntBll.getListBySQL(map);
 
@@ -65,7 +65,7 @@ public class GprConfigUserSwgApp extends GprConfigUserGenSwgApp {
 		String domainId = user.getCurrentDomain().getId();
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		String sql = String.format(SymbolicConstant.SQL_SELECT_USER_CONFIG_LIST, domainId, userId);
+		String sql = String.format(SqlSymbolic.SQL_SELECT_USER_CONFIG_LIST, domainId, userId);
 
 		map.put("Sql", sql);
 

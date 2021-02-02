@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.da.DaOnlineRetailersGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;

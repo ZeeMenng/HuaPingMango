@@ -24,8 +24,8 @@ import com.zee.app.generate.swagger.gp.GpRegionCountryGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpRegionCountry;
 import com.zee.ent.parameter.gp.GpRegionCountryParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.DictionaryUtil;
 
 
@@ -58,7 +58,7 @@ public class GpRegionCountrySwgApp extends GpRegionCountryGenSwgApp {
 				&&(jsonData.getEntity().getArea()==null)
 				&&(jsonData.getEntity().getRemark().equals("")||jsonData.getEntity().getRemark()==null)
 				){
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}else{
 					result = gpRegionCountryUntBll.updateList(jsonData);
@@ -81,7 +81,7 @@ public class GpRegionCountrySwgApp extends GpRegionCountryGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -158,7 +158,7 @@ public class GpRegionCountrySwgApp extends GpRegionCountryGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "国家信息列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

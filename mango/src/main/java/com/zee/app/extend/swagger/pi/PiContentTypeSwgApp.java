@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.pi.PiContentTypeGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -47,9 +47,9 @@ public class PiContentTypeSwgApp extends PiContentTypeGenSwgApp {
 		List<Map<String, Object>> cTypeList = (List<Map<String, Object>>) resultModel.getData();
 		for (Map<String, Object> cTypeMap : cTypeList) {
 			Map<String, Object> cMap = new HashMap<String, Object>();
-			if(!SymbolicConstant.CONTENT_TYPE_IMAGETEXT.equals(cTypeMap.get("id"))
-					&& !SymbolicConstant.CONTENT_TYPE_FOCUS.equals(cTypeMap.get("id"))
-					&& !SymbolicConstant.CONTENT_TYPE_COMMON.equals(cTypeMap.get("id"))) {
+			if(!CustomSymbolic.CONTENT_TYPE_IMAGETEXT.equals(cTypeMap.get("id"))
+					&& !CustomSymbolic.CONTENT_TYPE_FOCUS.equals(cTypeMap.get("id"))
+					&& !CustomSymbolic.CONTENT_TYPE_COMMON.equals(cTypeMap.get("id"))) {
 				cMap.put("id", cTypeMap.get("id"));
 				cMap.put("name", cTypeMap.get("name"));
 				cList.add(cMap);

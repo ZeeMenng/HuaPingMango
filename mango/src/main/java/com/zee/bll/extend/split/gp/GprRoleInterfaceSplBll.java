@@ -10,8 +10,8 @@ import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -55,12 +55,12 @@ public class GprRoleInterfaceSplBll extends GprRoleInterfaceGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (i != gprRoleInterfaceList.size()) {
 				result.setResultMessage(OperResult.DELETELIST_S.getText() + "要删除的记录中有些已被删除。");
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
 			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());result.setOriginException(e);

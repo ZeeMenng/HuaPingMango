@@ -24,8 +24,8 @@ import com.zee.bll.extend.unity.pi.PiAcquisitionUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.pi.PiAcquisition;
 import com.zee.ent.extend.pi.PiContent;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DictionaryUtil;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -59,7 +59,7 @@ public class PiAcquisitionSwgApp extends PiAcquisitionGenSwgApp {
 	@ResponseBody
 	public ResultModel addAcquisition() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		
 		if (StringUtils.isBlank(jsonData)) {
 			return resultModel;
@@ -119,7 +119,7 @@ public class PiAcquisitionSwgApp extends PiAcquisitionGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -139,7 +139,7 @@ public class PiAcquisitionSwgApp extends PiAcquisitionGenSwgApp {
 		selectBuffer.append("WHERE 1=1       																				");
 		selectBuffer.append("AND																							");
 		selectBuffer.append("d.type_id='");
-		selectBuffer.append(SymbolicConstant.DI_ACQUISITION																	 );
+		selectBuffer.append(CustomSymbolic.DI_ACQUISITION																	 );
 		selectBuffer.append("'");
 		
         if (!StringUtils.isBlank(jsonData)) {
@@ -251,7 +251,7 @@ public class PiAcquisitionSwgApp extends PiAcquisitionGenSwgApp {
 				JSONObject jsonData = JSONObject.fromObject(objMap);
 				if (jsonData.containsKey("status")) {
 					String tempStatus = jsonData.getString("status");
-					String status = transfSqlData(SymbolicConstant.DI_ACQUISITION,tempStatus);
+					String status = transfSqlData(CustomSymbolic.DI_ACQUISITION,tempStatus);
 					objMap.put("status", status);
 				}
 				resultModel.setData(objMap);

@@ -38,9 +38,9 @@ import com.zee.ent.parameter.gp.GpDomainParameter;
 import com.zee.ent.parameter.gp.GpModuleParameter;
 import com.zee.set.enumer.DictionaryModuleCascadeEnum;
 import com.zee.set.enumer.DictionaryModuleLevelEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.ClassFieldNullable;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -148,7 +148,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(result.getObjectId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -199,7 +199,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		// 这个接口暂时无人使用，先给一个空值。
@@ -244,7 +244,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public ResultModel getTreeNodes() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -285,7 +285,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -422,7 +422,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public ResultModel getLinkMenu() {
 
 		// 授收domainId参数，如果有此参数，则返回当前登录用户在这个应用领域下拥有的菜单权限，如果没有此参数，则返回用户拥有的所有菜单权限。
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String domainId = "";
 		if (StringUtils.isNotBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -466,7 +466,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "功能模块列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

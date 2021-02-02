@@ -16,8 +16,8 @@ import com.zee.app.generate.swagger.pi.PiAdvertisingGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.pi.PiAdvertising;
 import com.zee.ent.parameter.pi.PiAdvertisingParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -62,7 +62,7 @@ public class PiAdvertisingSwgApp extends PiAdvertisingGenSwgApp {
 
 	@RequestMapping(value = "/updateAdvertising", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateAdvertising() throws Exception {
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		ResultModel result = new ResultModel();
 		String jsonData = new String(strJson);
 		if (!StringUtils.isBlank(jsonData)) {
@@ -94,7 +94,7 @@ public class PiAdvertisingSwgApp extends PiAdvertisingGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -157,7 +157,7 @@ public class PiAdvertisingSwgApp extends PiAdvertisingGenSwgApp {
 	public ResultModel getListByCode() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

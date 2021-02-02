@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.zee.bll.extend.unity.da.DaMarketPriceUntBll;
 import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.crawler.GenerateProxy;
 import com.zee.utl.crawler.MofProcessor;
 import com.zee.utl.crawler.PhantomJsDriver2;
@@ -62,7 +62,7 @@ public class WholesaleTask {
 			urls[length++]="http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index=13076&craft_index=15052357&startTime="+format+"&endTime="+format;
 			urls[length++]="http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index=13076&craft_index=13228&startTime="+format+"&endTime="+format;
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("Sql", "SELECT `code`, `text` FROM gp_dictionary WHERE type_id = '"+SymbolicConstant.DI_CROP_STRAINS+"'");
+			map.put("Sql", "SELECT `code`, `text` FROM gp_dictionary WHERE type_id = '"+CustomSymbolic.DI_CROP_STRAINS+"'");
 			List<Map<String, Object>> listmd = (List<Map<String, Object>>)gpDictionaryUntBll.getListBySQL(map).getData();
 			mofProcessor.setListmd(listmd);
 			Spider spider=Spider.create(mofProcessor);

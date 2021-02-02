@@ -16,8 +16,8 @@ import com.zee.app.generate.swagger.base.BaseSwgApp;
 import com.zee.bll.extend.unity.da.DaUserContributionUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaUserContribution;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
-import com.zee.utl.SymbolicConstant;
 
 @Component
 public class DaUserContributionUtil extends BaseSwgApp {
@@ -54,11 +54,11 @@ public class DaUserContributionUtil extends BaseSwgApp {
 		ResultModel resultModel = daUserContributionUntBll.getListBySQL(map);
 		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
 		
-		if(SymbolicConstant.CONTRIBUTION_PRICE.equals(type)){
+		if(CustomSymbolic.CONTRIBUTION_PRICE.equals(type)){
 			update("priceTimes", "priceNum", modelList);
-		}else if(SymbolicConstant.CONTRIBUTION_YIELD.equals(type)){
+		}else if(CustomSymbolic.CONTRIBUTION_YIELD.equals(type)){
 			update("yieldTimes", "yieldNum", modelList);
-		}else if(SymbolicConstant.CONTRIBUTION_FARM_OPER.equals(type)){
+		}else if(CustomSymbolic.CONTRIBUTION_FARM_OPER.equals(type)){
 			update("farmOperTimes", "farmOperNum", modelList);
 		}
 	}

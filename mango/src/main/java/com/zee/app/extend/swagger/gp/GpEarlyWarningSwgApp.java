@@ -16,7 +16,7 @@ import com.zee.app.generate.swagger.gp.GpEarlyWarningGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpEarlyWarning;
 import com.zee.ent.parameter.gp.GpEarlyWarningParameter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -115,7 +115,7 @@ public class  GpEarlyWarningSwgApp extends  GpEarlyWarningGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

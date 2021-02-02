@@ -10,8 +10,8 @@ import com.zee.ent.extend.gp.GpUser;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
@@ -51,13 +51,13 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			result.setTotalCount(new Long(1));
 			result.setResultCode(OperResult.GETMODEL_S.getCode());
 			result.setResultMessage(OperResult.GETMODEL_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (user == null)
 				result.setTotalCount(0);
 			else
 				result.setReturnValue(JSONObject.fromObject(user).toString());
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
 			result.setResultMessage(OperResult.GETMODEL_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -91,7 +91,7 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			GpUser user = new GpUser();
 			user.setId(userId);
 			user.setUpdateTime(DateUtils.getCurrentTime());
-			user.setPassword(SymbolicConstant.INITIAL_PASSWORD);
+			user.setPassword(CustomSymbolic.INITIAL_PASSWORD);
 			int i = gpUserUntDal.update(user);
 
 			result.setReturnValue(String.valueOf(i));
@@ -99,14 +99,14 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATE_S.getCode());
 			result.setResultMessage(OperResult.UPDATE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (i != 1) {
 				result.setResultCode(OperResult.UPDATE_F.getCode());
 				result.setResultMessage(OperResult.UPDATE_F.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -140,7 +140,7 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			GpUser user = new GpUser();
 			user.setId(userId);
 			user.setUpdateTime(DateUtils.getCurrentTime());
-			user.setIsDisabledCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			user.setIsDisabledCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			int i = gpUserUntDal.update(user);
 
 			result.setReturnValue(String.valueOf(i));
@@ -148,14 +148,14 @@ public class GpUserSplBll extends GpUserGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATE_S.getCode());
 			result.setResultMessage(OperResult.UPDATE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (i != 1) {
 				result.setResultCode(OperResult.UPDATE_F.getCode());
 				result.setResultMessage(OperResult.UPDATE_F.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());

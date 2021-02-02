@@ -23,7 +23,7 @@ import com.zee.app.generate.swagger.mf.MfForreturnGenSwgApp;
 import com.zee.bll.extend.unity.mf.MfForpriceUntBll;
 import com.zee.bll.extend.unity.mf.MfForreturnUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 
@@ -47,7 +47,7 @@ public class  MfForreturnSwgApp extends  MfForreturnGenSwgApp {
 	public ResultModel forecast() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -107,7 +107,7 @@ public class  MfForreturnSwgApp extends  MfForreturnGenSwgApp {
 	public ResultModel getPriceReturn() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		

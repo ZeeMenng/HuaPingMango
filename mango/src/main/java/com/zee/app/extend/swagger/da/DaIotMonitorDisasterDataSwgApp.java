@@ -23,8 +23,8 @@ import com.zee.bll.extend.unity.da.DaIotMonitorQueryDateUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaIotMonitorDisasterData;
 import com.zee.ent.extend.da.DaIotMonitorQueryDate;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
@@ -115,7 +115,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -135,7 +135,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		        calendar.setTime(now);  
 		        calendar.add(Calendar.MONTH, -1);  
 		        now = calendar.getTime();
-		        preDate = DateUtils.date2String(now, SymbolicConstant.DATETIME_FORMAT).substring(0, 7);
+		        preDate = DateUtils.date2String(now, CustomSymbolic.DATETIME_FORMAT).substring(0, 7);
 			}
 		}
 		
@@ -200,7 +200,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 					}
 				}
 				resultModel.setData(resultList);
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			}
 		}
 		return resultModel;
@@ -215,7 +215,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		//然后再到da_iot_monitor_disaster_data表中查询灾害预警数据
 		
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -344,7 +344,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 			resultList.add(perMap);
 		}
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -359,7 +359,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		ResultModel resultModel = new ResultModel();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -405,7 +405,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		resultMap.put("text", typeText);
 		
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -1229,7 +1229,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 		//然后再到da_iot_monitor_disaster_data表中查询灾害预警数据
 		
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -1272,7 +1272,7 @@ public class  DaIotMonitorDisasterDataSwgApp extends  DaIotMonitorDisasterDataGe
 	public ResultModel checkUpIOTMonitorData() {
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;

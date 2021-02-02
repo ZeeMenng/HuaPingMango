@@ -32,10 +32,10 @@ import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaPeasantInfoParameter;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -192,7 +192,7 @@ public class  DaPeasantInfoSwgApp extends  DaPeasantInfoGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -246,7 +246,7 @@ public class  DaPeasantInfoSwgApp extends  DaPeasantInfoGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

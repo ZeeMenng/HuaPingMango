@@ -33,10 +33,10 @@ import com.zee.ent.extend.da.DaSaleProcess;
 import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaSaleProcessParameter;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 import com.zee.utl.UnitUtil;
@@ -108,7 +108,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 	public ResultModel getFruitRank() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -160,7 +160,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 	public ResultModel getFruitFlow() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -287,7 +287,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 	public ResultModel getProcessOutput() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -311,7 +311,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 	@RequestMapping(value = "/getMangoConsumptionStructure", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoConsumptionStructure() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -491,7 +491,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 		//造假数据end
 		
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -746,7 +746,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -909,7 +909,7 @@ public class  DaSaleProcessSwgApp extends  DaSaleProcessGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

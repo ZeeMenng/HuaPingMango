@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.mf.MfWeatherGenSwgApp;
 import com.zee.bll.extend.unity.da.DaIotMonitorDataUntBll;
 import com.zee.ent.custom.ResultModel;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
 import com.zee.utl.MongoUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 
 
@@ -64,7 +64,7 @@ public class  MfWeatherSwgApp extends  MfWeatherGenSwgApp {
 	public ResultModel forecast() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -153,7 +153,7 @@ public class  MfWeatherSwgApp extends  MfWeatherGenSwgApp {
 		xmap.put("warningNum",warningNumList);
 		xmap.put("warningMsg",warningMsg);
 		resultModel.setData(xmap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	

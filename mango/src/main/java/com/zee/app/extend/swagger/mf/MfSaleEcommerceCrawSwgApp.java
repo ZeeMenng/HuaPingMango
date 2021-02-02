@@ -24,9 +24,9 @@ import com.zee.ent.extend.da.DaCommonField;
 import com.zee.ent.extend.da.DaMarketPrice;
 import com.zee.ent.extend.mf.MfSaleEcommerceCraw;
 import com.zee.ent.parameter.da.DaMarketPriceParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -57,7 +57,7 @@ public class  MfSaleEcommerceCrawSwgApp extends  MfSaleEcommerceCrawGenSwgApp {
 	public ResultModel getCombinatorialPreference() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -200,7 +200,7 @@ public class  MfSaleEcommerceCrawSwgApp extends  MfSaleEcommerceCrawGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -311,7 +311,7 @@ public class  MfSaleEcommerceCrawSwgApp extends  MfSaleEcommerceCrawGenSwgApp {
 		jsonData.setAuditerUserId(this.getCurrentUser().getId());
 		jsonData.setAuditerTime(DateUtils.getCurrentTime());
 		daCommonFieldUntBll.update(jsonData);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	

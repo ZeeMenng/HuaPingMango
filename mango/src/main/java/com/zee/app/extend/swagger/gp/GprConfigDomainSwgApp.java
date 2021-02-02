@@ -19,7 +19,8 @@ import com.zee.bll.extend.unity.gp.GpConfigUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpConfig;
 import com.zee.ent.extend.gp.GprConfigDomain;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.set.symbolic.SqlSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -85,7 +86,7 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 	public ResultModel getDomainConfigByPath(@PathVariable("id") String id) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = String.format(SymbolicConstant.SQL_SELECT_DOMAIN_CONFIG, id);
+		String sql = String.format(SqlSymbolic.SQL_SELECT_DOMAIN_CONFIG, id);
 		map.put("Sql", sql);
 		ResultModel result = gprConfigDomainUntBll.getListBySQL(map);
 		if (result.getTotalCount() == 1)
@@ -99,13 +100,13 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append(SymbolicConstant.SQL_SELECT_DOMAIN_CONFIG_LIST);
+		selectBuffer.append(SqlSymbolic.SQL_SELECT_DOMAIN_CONFIG_LIST);
 
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -154,7 +155,6 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 		return resultModel;
 	}
 
-	
 	@ApiOperation(value = "查询Key是否重复", notes = "查询Key是否重复")
 	@RequestMapping(value = "/isUniqueCode", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel isUniqueCode() {
@@ -162,15 +162,15 @@ public class GprConfigDomainSwgApp extends GprConfigDomainGenSwgApp {
 		String code = request.getParameter("code");
 		String oldCode = request.getParameter("oldCode");
 		if (StringUtils.isNotEmpty(oldCode) && code.equals(oldCode)) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		String sql = String.format(SymbolicConstant.SQL_SELECT_CONFIG_KEY, code);
+		String sql = String.format(SqlSymbolic.SQL_SELECT_CONFIG_KEY, code);
 		map.put("Sql", sql);
 		result = gprConfigDomainUntBll.getListBySQL(map);
-		result.setIsSuccessCode(result.getTotalCount() == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+		result.setIsSuccessCode(result.getTotalCount() == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 		return result;
 	}
 

@@ -25,10 +25,10 @@ import com.zee.ent.extend.gp.GpPage;
 import com.zee.ent.parameter.gp.GpPageParameter;
 import com.zee.set.enumer.DomainEnum;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.FileUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -99,7 +99,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -142,8 +142,8 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 
 				
 				// 模糊匹配下拉框使用的关键字
-				if (entityRelatedObject.containsKey(SymbolicConstant.AUTOCOMPLETE_KEY) && StringUtils.isNotBlank(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)))
-					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString(SymbolicConstant.AUTOCOMPLETE_KEY)).append("%'");
+				if (entityRelatedObject.containsKey(CustomSymbolic.AUTOCOMPLETE_KEY) && StringUtils.isNotBlank(entityRelatedObject.getString(CustomSymbolic.AUTOCOMPLETE_KEY)))
+					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString(CustomSymbolic.AUTOCOMPLETE_KEY)).append("%'");
 
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
@@ -185,7 +185,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "系统页面列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);
@@ -207,7 +207,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 
 	@RequestMapping(value = "/updatePageConstants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updatePageConstants() throws IOException {
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			throw new GlobalException("缺少必要参数！");
 		JSONObject jsonObject = JSONObject.fromObject(jsonData);

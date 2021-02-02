@@ -17,8 +17,8 @@ import com.zee.ent.parameter.gp.GprResourceParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -64,10 +64,10 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELIST_S.getCode());
 			result.setResultMessage(OperResult.UPDATELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -130,9 +130,9 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 			result.setTotalCount(pageInfo.getTotal());
 			result.setResultCode(OperResult.GETLIST_S.getCode());
 			result.setResultMessage(OperResult.GETLIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
 			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -170,10 +170,10 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
 			result.setResultMessage(OperResult.DELETE_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -214,10 +214,10 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
 			result.setResultMessage(OperResult.DELETELIST_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -257,9 +257,9 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 			result.setTotalCount(modelList.size());
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
 			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() );
 			result.setReturnValue(e.getMessage());

@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.zee.set.symbolic.CustomSymbolic;
+
 /**
  * @author Zee
  * @createDate 2018年1月6日 下午2:29:02
@@ -44,12 +46,12 @@ public class DateUtils {
 	 */
 	public static String getCurrentDateStr() {
 		Date date = new Date();
-		return date2String(date, SymbolicConstant.DATE_FORMAT);
+		return date2String(date, CustomSymbolic.DATE_FORMAT);
 	}
 	
 	public static String getCurrentTimeStr() {
 		Date date = new Date();
-		return date2String(date, SymbolicConstant.DATETIME_FORMAT);
+		return date2String(date, CustomSymbolic.DATETIME_FORMAT);
 	}
 
 	/**
@@ -148,7 +150,7 @@ public class DateUtils {
 		if (StringUtils.isBlank(datetime)) {
 			return null;
 		}
-		SimpleDateFormat format = new SimpleDateFormat(SymbolicConstant.DATETIME_FORMAT);
+		SimpleDateFormat format = new SimpleDateFormat(CustomSymbolic.DATETIME_FORMAT);
 
 		Date date = null;
 		try {
@@ -166,7 +168,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static String convertDateTime(long time) {
-		SimpleDateFormat format = new SimpleDateFormat(SymbolicConstant.DATETIME_FORMAT);
+		SimpleDateFormat format = new SimpleDateFormat(CustomSymbolic.DATETIME_FORMAT);
 		String outDate = format.format(time);
 		return outDate;
 	}
@@ -206,7 +208,7 @@ public class DateUtils {
 		Calendar c = Calendar.getInstance();
 		int day = c.get(c.DAY_OF_YEAR) - days;
 		c.set(c.DAY_OF_YEAR, day);
-		String time = date2String(c.getTime(), SymbolicConstant.DATE_FORMAT);
+		String time = date2String(c.getTime(), CustomSymbolic.DATE_FORMAT);
 		return time;
 	}
 

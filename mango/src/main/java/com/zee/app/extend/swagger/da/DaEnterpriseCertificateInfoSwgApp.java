@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.da.DaEnterpriseCertificateInfoGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaEnterpriseCertificateInfo;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -78,7 +78,7 @@ public class  DaEnterpriseCertificateInfoSwgApp extends  DaEnterpriseCertificate
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

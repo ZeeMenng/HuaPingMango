@@ -29,10 +29,10 @@ import com.zee.ent.extend.da.DaIndustryBasicinfo;
 import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaIndustryBasicinfoParameter;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 import com.zee.utl.UnitUtil;
 
@@ -179,7 +179,7 @@ public class  DaIndustryBasicinfoSwgApp extends  DaIndustryBasicinfoGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	@ApiOperation(value = "模糊查询（直报）", notes = "根据查询条件模糊查询")
@@ -187,7 +187,7 @@ public class  DaIndustryBasicinfoSwgApp extends  DaIndustryBasicinfoGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

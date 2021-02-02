@@ -35,12 +35,12 @@ import com.zee.ent.parameter.gp.GpInterfaceParameter;
 import com.zee.set.enumer.DomainEnum;
 import com.zee.set.enumer.InterfaceType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.CamelCaseUtl;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.FileUtil;
 import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -114,7 +114,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -205,7 +205,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "系统接口列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);
@@ -227,7 +227,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 	@RequestMapping(value = "/updateInterfaceConstants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateInterfaceConstants() throws IOException, DateParseException, ParseException {
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			throw new GlobalException("缺少必要参数！");
 		JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -255,11 +255,11 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			Date addTime = DateUtils.getCurrentTime();
 			String domainId = null;
 			String id = Tools.getUUID();
-			Byte isPublicCode = SymbolicConstant.DCODE_BOOLEAN_T;
-			Byte isGenerateCode = SymbolicConstant.DCODE_BOOLEAN_T;
+			Byte isPublicCode = CustomSymbolic.DCODE_BOOLEAN_T;
+			Byte isGenerateCode = CustomSymbolic.DCODE_BOOLEAN_T;
 			String name = null;
 			String remark = null;
-			String serialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+			String serialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 
 			String tableName = null;
 			Byte typeCode = null;
@@ -280,7 +280,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 				continue;
 
 			if (!handlerMethod.getMethod().getDeclaringClass().getSimpleName().contains("GenSwgApp"))
-				isGenerateCode = SymbolicConstant.DCODE_BOOLEAN_F;
+				isGenerateCode = CustomSymbolic.DCODE_BOOLEAN_F;
 			// 获取JS常量文件中的变量名，并写入JS常量文件中
 			String className = handlerMethod.getMethod().getDeclaringClass().getSimpleName().replaceAll("GenSwgApp", "").replaceAll("SwgApp", "").replaceAll("Controller", "");
 			String methodName = handlerMethod.getMethod().getName();
@@ -347,7 +347,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 			// 如果是POST接口，设为非公共接口
 			if (typeCode == InterfaceType.POST.getCode())
-				isPublicCode = SymbolicConstant.DCODE_BOOLEAN_F;
+				isPublicCode = CustomSymbolic.DCODE_BOOLEAN_F;
 			gpInterface.setIsPublicCode(isPublicCode);
 
 			// 如果包含，说明是修改记录
@@ -370,7 +370,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 		result = gpInterfaceUntBll.addListWithDffOrAdd(gpInterfaceList);
 
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		result.setResultMessage("接口记录更新成功……");
 		return result;
 	}

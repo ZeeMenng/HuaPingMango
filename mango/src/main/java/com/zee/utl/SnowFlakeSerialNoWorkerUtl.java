@@ -1,5 +1,7 @@
 package com.zee.utl;
 
+import com.zee.set.symbolic.CustomSymbolic;
+
 /**
  * @author Zee
  * @createTime 2020年9月17日 下午2:14:58
@@ -21,7 +23,7 @@ package com.zee.utl;
 public class SnowFlakeSerialNoWorkerUtl {
 
 	/** 开始时间截 **/
-	private static final long twepoch = SymbolicConstant.SNOWFLAKE_SERIAL_NO_STARTTIME;
+	private static final long twepoch = CustomSymbolic.SNOWFLAKE_SERIAL_NO_STARTTIME;
 
 	/** 机器id所占的位数 */
 	private final long workerIdBits = 5L;

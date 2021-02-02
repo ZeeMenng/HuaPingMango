@@ -29,8 +29,8 @@ import com.zee.bll.extend.unity.gp.GpPageUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpMenu;
 import com.zee.ent.parameter.gp.GpMenuParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 /**
  * @author Zee
@@ -55,7 +55,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 	public ResultModel getLinkMenu() {
 
 		// 授收domainId参数，如果有此参数，则返回当前登录用户在这个应用领域下拥有的菜单权限，如果没有此参数，则返回用户拥有的所有菜单权限。
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		String domainId = "";
 		if (StringUtils.isNotBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -220,7 +220,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -296,7 +296,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "链接菜单列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

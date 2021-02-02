@@ -28,7 +28,7 @@ import com.zee.ent.extend.pi.PirEnterpriseProduct;
 import com.zee.ent.extend.pi.PirProductResource;
 import com.zee.set.enumer.ProductImgTypeEnum;
 import com.zee.set.enumer.RecommendProductType;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -150,7 +150,7 @@ public class PiProductRecommendSwgApp extends PiProductRecommendGenSwgApp {
 			Map<String,Object> resultMap = list.get(0);
 			if(resultMap.containsKey("isRecommend")) {
 				int isRecommend = (Integer) resultMap.get("isRecommend");
-				resultMap.put("isRecommendText", transfSqlData(SymbolicConstant.DI_BOOLEAN, String.valueOf(isRecommend)));
+				resultMap.put("isRecommendText", transfSqlData(CustomSymbolic.DI_BOOLEAN, String.valueOf(isRecommend)));
 			}
 			List<String> resourceIdList = new ArrayList<String>();
 			List<String> resourcePathList = new ArrayList<String>();
@@ -291,7 +291,7 @@ public class PiProductRecommendSwgApp extends PiProductRecommendGenSwgApp {
 	@RequestMapping(value = "/getMangoMallList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoMallList() {
 		ResultModel resultModel = new ResultModel();// 基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -393,7 +393,7 @@ public class PiProductRecommendSwgApp extends PiProductRecommendGenSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piProductRecommendUntBll.getListBySQL(map);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -401,7 +401,7 @@ public class PiProductRecommendSwgApp extends PiProductRecommendGenSwgApp {
 	@RequestMapping(value = "/getMangoMallListByEnterpriseId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoMallListByEnterpriseId() {
 		ResultModel resultModel = new ResultModel();// 基本信息
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -499,7 +499,7 @@ public class PiProductRecommendSwgApp extends PiProductRecommendGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		

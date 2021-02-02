@@ -17,8 +17,8 @@ import com.zee.ent.parameter.gp.GpRegionCountryParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -64,10 +64,10 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELIST_S.getCode());
 			result.setResultMessage(OperResult.UPDATELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -130,9 +130,9 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setTotalCount(pageInfo.getTotal());
 			result.setResultCode(OperResult.GETLIST_S.getCode());
 			result.setResultMessage(OperResult.GETLIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
 			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
@@ -173,13 +173,13 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETEBYUNIQUE_S.getCode());
 			result.setResultMessage(OperResult.DELETEBYUNIQUE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
 			result.setReturnValue(e.getMessage());
 			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETEBYUNIQUE_F.getCode());
 			result.setResultMessage(OperResult.DELETEBYUNIQUE_F.getText());
 			throw globalException;
@@ -216,7 +216,7 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setTotalCount(new Long(1));
 			result.setResultCode(OperResult.GETMODELBYUNIQUE_S.getCode());
 			result.setResultMessage(OperResult.GETMODELBYUNIQUE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (t == null)
 				result.setTotalCount(0);
 			else{
@@ -229,7 +229,7 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODELBYUNIQUE_F.getCode());
 			result.setResultMessage(OperResult.GETMODELBYUNIQUE_F.getText());
 			throw globalException;
@@ -265,7 +265,7 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
             result.setReturnValue(String.valueOf(i));
 			result.setResultCode(OperResult.ISUNIQUE_S.getCode());
 			result.setResultMessage(OperResult.ISUNIQUE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (i == 0){
                 result.setData(true);
             }else{
@@ -278,7 +278,7 @@ public class GpRegionCountryGenUntBll extends BaseUntBll<GpRegionCountry> {
 			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ISUNIQUE_F.getCode());
 			result.setResultMessage(OperResult.ISUNIQUE_F.getText());
 			throw globalException;

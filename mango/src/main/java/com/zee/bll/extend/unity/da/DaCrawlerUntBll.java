@@ -23,8 +23,9 @@ import com.zee.ent.extend.da.DaCommonField;
 import com.zee.ent.extend.da.DaCrawler;
 import com.zee.ent.extend.mf.MfSaleEcommerceCraw;
 import com.zee.ent.parameter.da.DaCrawlerParameter.GetList;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
+
 import us.codecraft.webmagic.selector.Html;
 
 /**
@@ -55,12 +56,12 @@ public class DaCrawlerUntBll extends DaCrawlerGenUntBll {
 	public void dataCleaning() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Date currentTime = DateUtils.getCurrentDate();
-		map.put("Sql", "SELECT `code`, `text` FROM gp_dictionary WHERE type_id = '"+SymbolicConstant.DI_CROP_STRAINS+"'");
+		map.put("Sql", "SELECT `code`, `text` FROM gp_dictionary WHERE type_id = '"+CustomSymbolic.DI_CROP_STRAINS+"'");
 		List<Map<String, Object>> listmd = (List<Map<String, Object>>)gpDictionaryUntBll.getListBySQL(map).getData();
 		GetList getListParam = new GetList();
-		getListParam.getEntityRelated().setBeginCreatedTime(DateUtils.string2Date(DateUtils.getCurrentDateStr(), SymbolicConstant.DATE_FORMAT));
-		getListParam.getPage().setPageIndex(SymbolicConstant.SQLQUERY_PAGEINDEX_DEFAULTVALUE);
-		getListParam.getPage().setPageSize(SymbolicConstant.SQLQUERY_KEYWORDS_PAGESIZE_MAX);
+		getListParam.getEntityRelated().setBeginCreatedTime(DateUtils.string2Date(DateUtils.getCurrentDateStr(), CustomSymbolic.DATE_FORMAT));
+		getListParam.getPage().setPageIndex(CustomSymbolic.SQLQUERY_PAGEINDEX_DEFAULTVALUE);
+		getListParam.getPage().setPageSize(CustomSymbolic.SQLQUERY_KEYWORDS_PAGESIZE_MAX);
 		List<DaCrawler> list = (List<DaCrawler>) this.getList(getListParam).getData();
 		for (DaCrawler daCrawler : list) {
 			log.info("--------------------------id:"+daCrawler.getId());

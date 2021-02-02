@@ -24,7 +24,7 @@ import com.zee.ent.extend.gp.GpDictionary;
 import com.zee.ent.parameter.base.BaseParameter;
 import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
 import com.zee.ent.parameter.gp.GpDictionaryParameter;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 import io.swagger.annotations.ApiOperation;
@@ -63,7 +63,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 		GpDictionaryParameter.GetList.EntityRelated entityRelated = new GpDictionaryParameter.GetList.EntityRelated();
 		BaseParameter.BaseParamGetList.Order order = new BaseParameter.BaseParamGetList.Order();
 
-		entityRelated.setTypeId(SymbolicConstant.DI_PROCESS_BREED);
+		entityRelated.setTypeId(CustomSymbolic.DI_PROCESS_BREED);
 		order.setColumnName("priority");
 		order.setIsASC(true);
 
@@ -221,7 +221,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 		GpDictionaryParameter.GetList.EntityRelated entityRelated = new GpDictionaryParameter.GetList.EntityRelated();
 		BaseParameter.BaseParamGetList.Order order = new BaseParameter.BaseParamGetList.Order();
 
-		entityRelated.setTypeId(SymbolicConstant.DI_PROCESS_BREED);
+		entityRelated.setTypeId(CustomSymbolic.DI_PROCESS_BREED);
 		order.setColumnName("priority");
 		order.setIsASC(true);
 

@@ -19,7 +19,7 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpDomain;
 import com.zee.ent.extend.gp.GpOperLog;
 import com.zee.ent.extend.gp.GpUser;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 @Service
 @Transactional
@@ -61,7 +61,7 @@ public class BaseBll implements IBaseBll {
 	}
 
 	protected GpUser getCurrentUser() {
-		Object object = request.getAttribute(SymbolicConstant.REQUEST_CURRENT_USER);
+		Object object = request.getAttribute(CustomSymbolic.REQUEST_CURRENT_USER);
 		return object == null ? null : (GpUser) object;
 	}
 

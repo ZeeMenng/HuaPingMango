@@ -24,7 +24,7 @@ import com.zee.app.generate.swagger.mf.MfProductSaleGenSwgApp;
 import com.zee.bll.extend.unity.da.DaGrowYieldUntBll;
 import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
 
@@ -58,7 +58,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 	public ResultModel forecast() throws ParseException {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -135,7 +135,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		ResultModel resultModel2 = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		String year = "";// 年份
@@ -470,7 +470,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 public ResultModel getProSaleForecast() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -504,7 +504,7 @@ public ResultModel getProSaleForecast() {
 public ResultModel getProSaleStatus() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -576,7 +576,7 @@ public ResultModel getProSaleStatus() {
 public ResultModel getWeatherDate() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -611,7 +611,7 @@ public ResultModel getWeatherDate() {
 public ResultModel getPriceDate() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -675,7 +675,7 @@ public ResultModel getPriceDate() {
 public ResultModel getInternationalDate() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -746,7 +746,7 @@ public ResultModel getInternationalDate() {
 public ResultModel getSupplyDemandDate() {
 	ResultModel resultModel = new ResultModel();
 
-	String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 	if (StringUtils.isBlank(jsonData))
 		return resultModel;
 //	String year = "";// 年份

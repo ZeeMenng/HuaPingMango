@@ -21,7 +21,7 @@ import com.zee.app.generate.swagger.da.DaSentimentSourceGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaSentimentSource;
 import com.zee.set.enumer.StatusEnum;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 
 /**
@@ -75,7 +75,7 @@ public class  DaSentimentSourceSwgApp extends  DaSentimentSourceGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

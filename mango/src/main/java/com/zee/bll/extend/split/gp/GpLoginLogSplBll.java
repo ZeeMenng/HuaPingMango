@@ -10,8 +10,8 @@ import com.zee.ent.extend.gp.GpLoginLog;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -49,9 +49,9 @@ public class GpLoginLogSplBll extends GpLoginLogGenSplBll {
 			result.setTotalCount(modelList.size());
 			result.setResultCode(OperResult.GETLIST_S.getCode());
 			result.setResultMessage(OperResult.GETLIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
 			result.setResultMessage(OperResult.GETLIST_F.getText());
 			result.setReturnValue(e.getMessage());

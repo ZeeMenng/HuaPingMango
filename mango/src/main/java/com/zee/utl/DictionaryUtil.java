@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
 import com.zee.ent.custom.ResultModel;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * 字典值转换
@@ -46,43 +47,43 @@ public class DictionaryUtil {
 				String fieldStr = field.get(t)!=null?field.get(t).toString():"";
 				switch(field.getName()){
 				case "genderCode":
-					value = dictMap.get(SymbolicConstant.DI_GENDER + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_GENDER + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("genderValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isMarriageCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isMarriageValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isAdminCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isAdminValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isDisabledCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isDisabledValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isPublicCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isPublicValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isDisplayCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isDisplayValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);
 					continue;
 				case "isSuccessCode":
-					value = dictMap.get(SymbolicConstant.DI_BOOLEAN + "_" + fieldStr);
+					value = dictMap.get(CustomSymbolic.DI_BOOLEAN + "_" + fieldStr);
 					fieldValue = clazz.getDeclaredField("isSuccessValue");
 					fieldValue.setAccessible(true);
 					fieldValue.set(t, value);

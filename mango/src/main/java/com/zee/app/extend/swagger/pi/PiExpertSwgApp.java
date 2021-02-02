@@ -35,7 +35,7 @@ import com.zee.ent.extend.gp.GprUserRole;
 import com.zee.ent.extend.pi.PiExpert;
 import com.zee.ent.parameter.pi.PiExpertParameter;
 import com.zee.set.enumer.RoleEnum;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -145,7 +145,7 @@ public class PiExpertSwgApp extends PiExpertGenSwgApp {
 			gprUserIcon = new GprUserIcon();
 			gprUserIcon.setUserId(gpUserResult.getObjectId());
 			gprUserIcon.setResourceId(jsonData.getResourceId());
-			gprUserIcon.setIsDefault(SymbolicConstant.DCODE_BOOLEAN_T);
+			gprUserIcon.setIsDefault(CustomSymbolic.DCODE_BOOLEAN_T);
 			gprUserIconUntBll.add(gprUserIcon);
 		}
 
@@ -192,7 +192,7 @@ public class PiExpertSwgApp extends PiExpertGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(gpUser.getId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -339,7 +339,7 @@ public class PiExpertSwgApp extends PiExpertGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -349,7 +349,7 @@ public class PiExpertSwgApp extends PiExpertGenSwgApp {
 		selectBuffer.append("when B.gender_code = 1 then '女' else '' end genderValue,B.birth_time birthTime,B.phone,concat('" + linkPath + "',D.path) icon ");
 		selectBuffer.append(",case when A.is_recommend = 0 then '是' else '否' end isRecommend ");
 		selectBuffer.append("from pi_expert A left join gp_user B on A.user_id=B.id left join gpr_user_icon C on A.user_id=C.user_id left join ");
-		selectBuffer.append("gp_resource D on C.resource_id=D.id where 1=1 and C.is_default = '").append(SymbolicConstant.DCODE_BOOLEAN_T).append("' ");
+		selectBuffer.append("gp_resource D on C.resource_id=D.id where 1=1 and C.is_default = '").append(CustomSymbolic.DCODE_BOOLEAN_T).append("' ");
 
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);

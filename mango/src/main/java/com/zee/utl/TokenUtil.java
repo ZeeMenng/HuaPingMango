@@ -8,6 +8,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import com.zee.set.enumer.OperResult;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -42,9 +43,9 @@ public class TokenUtil {
 		JwtBuilder jwtBuilder = Jwts.builder();
 		jwtBuilder.setClaims(claims);
 
-		jwtBuilder.setExpiration(DateUtils.addSecond(DateUtils.getCurrentTime(), SymbolicConstant.JWT_ACCESS_DEAD_TIME));
+		jwtBuilder.setExpiration(DateUtils.addSecond(DateUtils.getCurrentTime(), CustomSymbolic.JWT_ACCESS_DEAD_TIME));
 
-		jwtBuilder.setIssuer(SymbolicConstant.JWT_ISSUER);
+		jwtBuilder.setIssuer(CustomSymbolic.JWT_ISSUER);
 		jwtBuilder.setIssuedAt(DateUtils.getCurrentTime());
 		jwtBuilder.setId(Tools.getUUID());
 		jwtBuilder.signWith(SignatureAlgorithm.HS256, getKeyInstance(secret));
@@ -55,8 +56,8 @@ public class TokenUtil {
 
 		JwtBuilder jwtBuilder = Jwts.builder();
 		jwtBuilder.setClaims(claims);
-		jwtBuilder.setExpiration(DateUtils.addHour(DateUtils.getCurrentTime(), SymbolicConstant.JWT_REFRESH_DEAD_TIME));
-		jwtBuilder.setIssuer(SymbolicConstant.JWT_ISSUER);
+		jwtBuilder.setExpiration(DateUtils.addHour(DateUtils.getCurrentTime(), CustomSymbolic.JWT_REFRESH_DEAD_TIME));
+		jwtBuilder.setIssuer(CustomSymbolic.JWT_ISSUER);
 		jwtBuilder.setIssuedAt(DateUtils.getCurrentTime());
 		jwtBuilder.setId(Tools.getUUID());
 		jwtBuilder.signWith(SignatureAlgorithm.HS256, getKeyInstance(secret));
@@ -67,7 +68,7 @@ public class TokenUtil {
 	// 解析Token，同时也能验证Token，当验证失败返回null
 	public static Jws<Claims> parserJavaWebToken(String jwt, String secret) {
 		try {
-			Jws<Claims> jwtClaims = Jwts.parser().setSigningKey(getKeyInstance(SymbolicConstant.JWT_SECRET)).parseClaimsJws(jwt);
+			Jws<Claims> jwtClaims = Jwts.parser().setSigningKey(getKeyInstance(CustomSymbolic.JWT_SECRET)).parseClaimsJws(jwt);
 			return jwtClaims;
 		} catch (ExpiredJwtException e) {
 			throw new GlobalException(OperResult.TOKEN_EXPIRED.getCode(),"Token信息已过期，请重新获取授权！" + e.getLocalizedMessage());

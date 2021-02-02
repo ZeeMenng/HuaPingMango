@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import com.zee.set.interceptor.AccessTokenVerifyInterceptor;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 @Configuration
 @EnableWebMvc
@@ -31,9 +31,9 @@ public class SpringBootConfig extends WebMvcAutoConfigurationAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(accessTokenVerifyInterceptor())
 
-				.addPathPatterns(SymbolicConstant.API_ROOT_URL)
+				.addPathPatterns(CustomSymbolic.API_ROOT_URL)
 
-				.excludePathPatterns(SymbolicConstant.AUTHENTICATION_URL);
+				.excludePathPatterns(CustomSymbolic.AUTHENTICATION_URL);
 
 		super.addInterceptors(registry);
 
@@ -54,9 +54,9 @@ public class SpringBootConfig extends WebMvcAutoConfigurationAdapter {
 		return new EmbeddedServletContainerCustomizer() {
 			@Override
 			public void customize(ConfigurableEmbeddedServletContainer container) {
-				container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, SymbolicConstant.ERROR_PAGE));
-				container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, SymbolicConstant.ERROR_PAGE));
-				container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, SymbolicConstant.ERROR_PAGE));
+				container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, CustomSymbolic.ERROR_PAGE));
+				container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, CustomSymbolic.ERROR_PAGE));
+				container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, CustomSymbolic.ERROR_PAGE));
 			}
 		};
 	}

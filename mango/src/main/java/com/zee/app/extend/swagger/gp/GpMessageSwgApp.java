@@ -26,8 +26,8 @@ import com.zee.ent.extend.gp.GpMessage;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.extend.gp.GprMessageUser;
 import com.zee.ent.parameter.gp.GpMessageParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -285,7 +285,7 @@ public class GpMessageSwgApp extends GpMessageGenSwgApp {
 		if(resultModel.getResultCode() == 969701){
 			//不存在记录
 			resultModel.setResultMessage("");
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		}
 
 		return resultModel;

@@ -35,8 +35,9 @@ import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.ent.extend.gp.GprRoleModule;
 import com.zee.ent.parameter.gp.GpRoleParameter;
 import com.zee.ent.parameter.gp.GprRoleModuleParameter;
+import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.set.symbolic.SqlSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -209,7 +210,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	public ResultModel getListByRoleId(@PathVariable("roleId") String roleId) {
 		ResultModel result = gprRoleModuleUntBll.getListByRoleId(roleId);
 		List<GprRoleInterface> roleInterfaceList = (List<GprRoleInterface>) result.getData();
-		result.setData(roleInterfaceList.stream().filter(gprRoleInterface -> gprRoleInterface.getIsEnableCode() == SymbolicConstant.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
+		result.setData(roleInterfaceList.stream().filter(gprRoleInterface -> gprRoleInterface.getIsEnableCode() == CustomSymbolic.DCODE_BOOLEAN_T).map(GprRoleInterface::getInterfaceId).collect(Collectors.toList()));
 
 		return result;
 	}
@@ -238,12 +239,12 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		StringBuffer selectBuffer = new StringBuffer(SymbolicConstant.SQL_SELECT_ROLE_GET_LIST);
+		StringBuffer selectBuffer = new StringBuffer(SqlSymbolic.SQL_SELECT_ROLE_GET_LIST);
 
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -302,7 +303,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "系统角色列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

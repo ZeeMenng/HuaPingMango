@@ -23,7 +23,7 @@ import org.springframework.util.FileCopyUtils;
 import com.zee.app.base.BaseApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpUser;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import net.sf.json.JSONArray;
 
@@ -39,7 +39,7 @@ public class BaseSwgApp extends BaseApp {
 	public JdbcTemplate jdbcTemplate;
 
 	protected GpUser getCurrentUser() {
-		Object object = request.getAttribute(SymbolicConstant.REQUEST_CURRENT_USER);
+		Object object = request.getAttribute(CustomSymbolic.REQUEST_CURRENT_USER);
 		return object == null ? null : (GpUser) object;
 	}
 

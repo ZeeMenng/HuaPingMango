@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.pe.PeAerialViewGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.pe.PeAerialView;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -59,7 +59,7 @@ public class  PeAerialViewSwgApp extends  PeAerialViewGenSwgApp {
 	public ResultModel getAerialList() {
 		ResultModel resultModel = new ResultModel();
     
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -138,7 +138,7 @@ public class  PeAerialViewSwgApp extends  PeAerialViewGenSwgApp {
 	public ResultModel getHomeAerialList() {
 		ResultModel resultModel = new ResultModel();
     
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -219,7 +219,7 @@ public class  PeAerialViewSwgApp extends  PeAerialViewGenSwgApp {
 	
 	@RequestMapping(value = "/updateAerialView", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateAerialView() throws Exception {
-		String strJson = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String strJson = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		ResultModel result = new ResultModel();
 		String jsonData = new String(strJson);
 		if (!StringUtils.isBlank(jsonData)){
@@ -243,7 +243,7 @@ public class  PeAerialViewSwgApp extends  PeAerialViewGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

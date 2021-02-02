@@ -10,8 +10,8 @@ import com.zee.ent.extend.pi.PiAdvertising;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONObject;
@@ -50,7 +50,7 @@ public class PiAdvertisingSplBll extends PiAdvertisingGenSplBll {
 			if (piAdvertising == null) {
 				result.setResultCode(OperResult.GETMODEL_S.getCode());
 				result.setResultMessage(OperResult.GETMODEL_S.getText() + "：不存在相应记录！");
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			} else {
 				result.setObjectId(piAdvertising.getId());
 				result.setData(piAdvertising);
@@ -58,7 +58,7 @@ public class PiAdvertisingSplBll extends PiAdvertisingGenSplBll {
 				result.setResultCode(OperResult.GETMODEL_S.getCode());
 				result.setResultMessage(OperResult.GETMODEL_S.getText());
 				result.setReturnValue(JSONObject.fromObject(piAdvertising).toString());
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			}
 		} catch (Exception e) {
 
@@ -66,7 +66,7 @@ public class PiAdvertisingSplBll extends PiAdvertisingGenSplBll {
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
 			result.setResultMessage(OperResult.GETMODEL_F.getText() + "：" + e.getMessage());
 			throw globalException;

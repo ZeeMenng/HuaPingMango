@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.zee.set.symbolic.CustomSymbolic;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -13,7 +15,7 @@ import net.sf.json.JSONObject;
 public class PageHelperUtil {
 
 	public static int getPageNum(Map<String, Object> map) {
-		int pageIndex = SymbolicConstant.SQLQUERY_PAGEINDEX_DEFAULTVALUE;
+		int pageIndex = CustomSymbolic.SQLQUERY_PAGEINDEX_DEFAULTVALUE;
 		if (map.get("Page") != null) {
 			JSONObject pageObject = (JSONObject) map.get("Page");
 			if (pageObject.containsKey("pageIndex") && StringUtils.isNotBlank(pageObject.getString("pageIndex")))
@@ -23,7 +25,7 @@ public class PageHelperUtil {
 	}
 
 	public static int getPageSize(Map<String, Object> map) {
-		int pageSize = SymbolicConstant.SQLQUERY_KEYWORDS_PAGESIZE_MAX;
+		int pageSize = CustomSymbolic.SQLQUERY_KEYWORDS_PAGESIZE_MAX;
 		if (map.get("Page") != null) {
 			JSONObject pageObject = (JSONObject) map.get("Page");
 			if (pageObject.containsKey("pageSize") && StringUtils.isNotBlank(pageObject.getString("pageSize")))

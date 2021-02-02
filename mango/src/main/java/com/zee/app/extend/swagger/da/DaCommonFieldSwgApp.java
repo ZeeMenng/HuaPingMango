@@ -17,8 +17,9 @@ import com.zee.app.generate.swagger.da.DaCommonFieldGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaCommonField;
 import com.zee.set.enumer.DictionaryEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -49,7 +50,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		Map<String, Object> map;
@@ -112,7 +113,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getTrendByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -125,7 +126,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 		//时间轴查询
 		Date monthTime = DateUtils.getMonthTime(-1);
 		List<String> timesList = DateUtils.findDates(monthTime, DateUtils.getCurrentDate());
-		String beginTime = DateUtils.date2String(monthTime, SymbolicConstant.DATE_FORMAT);
+		String beginTime = DateUtils.date2String(monthTime, CustomSymbolic.DATE_FORMAT);
 		String endTime = DateUtils.getCurrentDateStr();
 		
 		//舆情数据
@@ -189,7 +190,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 		dataMap.put("times",timesList);
 		dataMap.put("data", dataList);
 		resultModel.setData(dataMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -198,7 +199,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getDayTrendByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -279,7 +280,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 		
 		resultModel = new ResultModel();
 		resultModel.setData(dataMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		return resultModel;
 	}
@@ -289,7 +290,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getSourceByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -380,7 +381,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getSubjectByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -459,7 +460,7 @@ public class  DaCommonFieldSwgApp extends  DaCommonFieldGenSwgApp {
 	public ResultModel getMonthlyTobeAuditedByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

@@ -29,8 +29,8 @@ import com.zee.ent.extend.gp.GpModule;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GprResource;
 import com.zee.ent.parameter.gp.GpDomainParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -99,7 +99,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(result.getObjectId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -168,7 +168,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 				GprResource gprResource = new GprResource();
 				gprResource.setResourceId(resourceArray[i]);
 				gprResource.setBusinessId(jsonData.getId());
-				gprResource.setIsDefault(i == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+				gprResource.setIsDefault(i == 0 ? CustomSymbolic.DCODE_BOOLEAN_T : CustomSymbolic.DCODE_BOOLEAN_F);
 				gprResourceList.add(gprResource);
 			}
 			gprResourceUntBll.add(gprResourceList);
@@ -272,7 +272,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -349,7 +349,7 @@ public class GpDomainSwgApp extends GpDomainGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "应用领域列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

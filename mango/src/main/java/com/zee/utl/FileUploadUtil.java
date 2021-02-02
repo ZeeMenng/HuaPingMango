@@ -33,6 +33,7 @@ import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequ
 
 import com.zee.app.base.BaseApp;
 import com.zee.ent.custom.ResultModel;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * 上传工具类，待完善
@@ -112,7 +113,7 @@ public class FileUploadUtil extends BaseApp {
 				fileNames += fileName + "|";
 			} catch (IOException e) {
 				e.printStackTrace();
-				resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				resultModel.setResultMessage("上传文件失败" + e.getMessage());
 				return resultModel;
 			}
@@ -122,7 +123,7 @@ public class FileUploadUtil extends BaseApp {
 			fileNames = fileNames.substring(0, fileNames.length() - 1);
 		}
 
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		resultModel.setResultMessage("上传文件成功");
 
 		resultModel.setData(relativePath + fileNames);

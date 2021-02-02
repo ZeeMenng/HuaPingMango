@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.gp.GprMessageUserGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpMessage;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +37,7 @@ public class GprMessageUserSwgApp extends GprMessageUserGenSwgApp {
 	public ResultModel getUserListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -88,7 +88,7 @@ public class GprMessageUserSwgApp extends GprMessageUserGenSwgApp {
 	public ResultModel getSySListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 

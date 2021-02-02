@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 /**
  * @author Zee
@@ -26,7 +26,7 @@ public class JacksonDateSerialize extends JsonSerializer<Date> {
 
 	@Override
 	public void serialize(Date value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
-		SimpleDateFormat sdf = new SimpleDateFormat(SymbolicConstant.DATETIME_FORMAT);
+		SimpleDateFormat sdf = new SimpleDateFormat(CustomSymbolic.DATETIME_FORMAT);
 		jgen.writeString(sdf.format(value));
 	}
 }

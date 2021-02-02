@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zee.app.generate.swagger.base.BaseSwgApp;
 import com.zee.bll.extend.unity.da.DaIotMonitorDataUntBll;
 import com.zee.ent.custom.ResultModel;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.mongodb.client.MongoCollection;
 
@@ -66,7 +66,7 @@ public class MongodbController extends BaseSwgApp {
 			for (String timeStr : timesList) {
 				insert(timeStr);
 			}
-			resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
 			log.error("dataSyncException" + e.getMessage(), e);
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class MongodbController extends BaseSwgApp {
 		ResultModel resultModel = daIotMonitorDataUntBll.getListBySQL(map);
 		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
 		String minTime = modelList.get(0).get("minTime").toString();
-		int dd = DateUtils.differentDays(DateUtils.string2Date(minTime, SymbolicConstant.DATE_FORMAT), DateUtils.getCurrentDate());
+		int dd = DateUtils.differentDays(DateUtils.string2Date(minTime, CustomSymbolic.DATE_FORMAT), DateUtils.getCurrentDate());
 		return String.valueOf(dd);
 	}
 	
@@ -156,7 +156,7 @@ public class MongodbController extends BaseSwgApp {
 				doc.append("unit", null);
 			}
 			if(map2.get("time") != null){
-				doc.append("time", DateUtils.string2Date(map2.get("time").toString(), SymbolicConstant.TIME_FORMAT));
+				doc.append("time", DateUtils.string2Date(map2.get("time").toString(), CustomSymbolic.TIME_FORMAT));
 				doc.append("timeStr", map2.get("time").toString());
 			}else{
 				doc.append("time", null);

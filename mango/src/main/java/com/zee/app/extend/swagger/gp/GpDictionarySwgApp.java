@@ -29,8 +29,8 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.base.BaseParameter;
 import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
 import com.zee.ent.parameter.gp.GpDictionaryParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 
 /**
@@ -52,7 +52,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 	public ResultModel getTimesView() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -87,7 +87,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
         pmap.put("isASC", isASC);
         List<String> timesList = TimesView.getTimesView(pmap);
         resultModel.setData(timesList);
-        resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+        resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -134,7 +134,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 				&&(jsonData.getEntity().getPriority()==null)
 				&&(jsonData.getEntity().getRemark().equals("")||jsonData.getEntity().getRemark()==null)
 				){
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}else{
 			result = gpDictionaryUntBll.updateList(jsonData);
@@ -147,7 +147,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -223,7 +223,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "字典信息列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);
@@ -249,7 +249,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 
 		ResultModel resultModel = new ResultModel();
 		
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -275,7 +275,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 			}
 		}
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 

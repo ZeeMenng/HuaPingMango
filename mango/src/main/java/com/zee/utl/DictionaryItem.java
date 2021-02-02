@@ -2,6 +2,8 @@ package com.zee.utl;
 
 import java.util.HashMap;
 
+import com.zee.set.symbolic.CustomSymbolic;
+
 /**
  * @author Zee
  * @createDate 2017年4月18日 下午4:18:40
@@ -18,8 +20,8 @@ public class DictionaryItem {
 
 	private DictionaryItem() {
 
-		booleanD.put(SymbolicConstant.DCODE_BOOLEAN_T, "是");
-		booleanD.put(SymbolicConstant.DCODE_BOOLEAN_F, "否");
+		booleanD.put(CustomSymbolic.DCODE_BOOLEAN_T, "是");
+		booleanD.put(CustomSymbolic.DCODE_BOOLEAN_F, "否");
 
 	}
 

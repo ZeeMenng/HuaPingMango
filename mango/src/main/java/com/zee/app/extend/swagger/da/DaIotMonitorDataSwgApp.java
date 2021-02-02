@@ -36,9 +36,9 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.da.DaIotMonitorDataParameter;
 import com.zee.set.enumer.StatusEnum;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
 import com.zee.utl.MongoUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 
 /**
@@ -195,7 +195,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		StringBuffer msgSql = new StringBuffer();
 		msgSql.append("SELECT A.id id,A.user_id userId,A.user_name userName,A.title title,A.content content,A.remark remark,A.add_time addTime ");
 		msgSql.append(" FROM gp_message A ");
-		msgSql.append(" WHERE A.add_time >= DATE_ADD(NOW(), INTERVAL - " + SymbolicConstant.DEVICE_ERROR_TIME + " HOUR) ");
+		msgSql.append(" WHERE A.add_time >= DATE_ADD(NOW(), INTERVAL - " + CustomSymbolic.DEVICE_ERROR_TIME + " HOUR) ");
 		msgMap.put("Sql", msgSql.toString());
 		ResultModel msgRes = daIotMonitorBasicUntBll.getListBySQL(msgMap);
 		List<Map<String, Object>> msgModelList = (List<Map<String, Object>>) msgRes.getData();
@@ -203,7 +203,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 			for (Map<String, Object> msgModel : msgModelList) {
 				String title = (String) msgModel.get("title");
 				String content = (String) msgModel.get("content");
-				if (SymbolicConstant.DEVICE_ERROR_MSG_TITLE.equals(title)) {
+				if (CustomSymbolic.DEVICE_ERROR_MSG_TITLE.equals(title)) {
 					for (Map<String, Object> modelMap : modelList) {
 						String hid = (String) modelMap.get("hid");
 						if (content.contains(hid)) {
@@ -240,7 +240,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getActualTimeDataByDeviceId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getActualTimeDataByDeviceId() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -338,7 +338,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getTimesDataByDeviceId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimesDataByDeviceId() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -376,7 +376,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		selectBuffer.append(" FROM														");
 		selectBuffer.append(" da_iot_monitor_data														");
 		selectBuffer.append(" WHERE														");
-		selectBuffer.append(" time BETWEEN '").append(DateUtils.date2String(DateUtils.addHour(DateUtils.getCurrentTime(), -23), SymbolicConstant.DATETIME_FORMAT)).append("' AND '").append(DateUtils.getCurrentTimeStr()).append("'");
+		selectBuffer.append(" time BETWEEN '").append(DateUtils.date2String(DateUtils.addHour(DateUtils.getCurrentTime(), -23), CustomSymbolic.DATETIME_FORMAT)).append("' AND '").append(DateUtils.getCurrentTimeStr()).append("'");
 		if (StringUtils.isNotBlank(sensorType))
 			selectBuffer.append(" AND sensor_type = '").append(sensorType).append("'");
 		if (StringUtils.isNotBlank(deviceId))
@@ -436,7 +436,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getTimeQuantumDataByDeviceId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimeQuantumDataByDeviceId() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -460,13 +460,13 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 					calendar.setTime(date);
 					calendar.add(Calendar.DAY_OF_MONTH, -1);
 					date = calendar.getTime();
-					startTime = DateUtils.date2String(date, SymbolicConstant.DATETIME_FORMAT);
+					startTime = DateUtils.date2String(date, CustomSymbolic.DATETIME_FORMAT);
 				}
 				if (entityRelatedObject.containsKey("endTime") && StringUtils.isNotBlank(entityRelatedObject.getString("endTime"))) {
 					endTime = entityRelatedObject.getString("endTime");
 					endTime += " 23:59:59";
 				} else {
-					endTime = DateUtils.date2String(new Date(), SymbolicConstant.DATETIME_FORMAT);
+					endTime = DateUtils.date2String(new Date(), CustomSymbolic.DATETIME_FORMAT);
 				}
 
 			}
@@ -550,7 +550,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getEarlyWarningAndMangoProportion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEarlyWarningAndMangoProportion() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -603,7 +603,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		rMap.put("data", rList);
 		resultList.add(rMap);
 		resultModel.setData(rMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 
 	}
@@ -616,7 +616,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getEarlyWarningAndMangoProportion11", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEarlyWarningAndMangoProportion11() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -692,7 +692,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	// 根据月份和预警类型获取预警次数
 	public ResultModel getEarlyWarningCount(String time, String warningType) {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -730,7 +730,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	// 根据月份和预警类型获取预警波及到的基地的占比
 	public ResultModel getBaseWarningProportion(String time, String warningType) {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -789,7 +789,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getEarlyWarningDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getEarlyWarningDetails() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -823,7 +823,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 			resultMap.put(str, perSensorYearMap);
 		}
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -894,7 +894,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getActualTimeDataByDeviceIdForApp", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getActualTimeDataByDeviceIdForApp() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -995,7 +995,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 	@RequestMapping(value = "/getTimesDataByDeviceIdForApp", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimesDataByDeviceIdForApp() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1033,7 +1033,7 @@ public class DaIotMonitorDataSwgApp extends DaIotMonitorDataGenSwgApp {
 		selectBuffer.append(" FROM														");
 		selectBuffer.append(" da_iot_monitor_data														");
 		selectBuffer.append(" WHERE														");
-		selectBuffer.append(" time BETWEEN '").append(DateUtils.date2String(DateUtils.addHour(DateUtils.getCurrentTime(), -23), SymbolicConstant.DATETIME_FORMAT)).append("' AND '").append(DateUtils.getCurrentTimeStr()).append("'");
+		selectBuffer.append(" time BETWEEN '").append(DateUtils.date2String(DateUtils.addHour(DateUtils.getCurrentTime(), -23), CustomSymbolic.DATETIME_FORMAT)).append("' AND '").append(DateUtils.getCurrentTimeStr()).append("'");
 		if (StringUtils.isNotBlank(sensorType))
 			selectBuffer.append(" AND sensor_type = '").append(sensorType).append("'");
 		if (StringUtils.isNotBlank(deviceId))

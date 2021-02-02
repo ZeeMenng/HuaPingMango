@@ -27,9 +27,9 @@ import com.zee.ent.extend.gp.GpRegion;
 import com.zee.ent.extend.gp.GpStation;
 import com.zee.ent.parameter.gp.GpRegionCountryParameter;
 import com.zee.ent.parameter.gp.GpRegionParameter;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
-import com.zee.utl.SymbolicConstant;
 
 
 /**
@@ -65,7 +65,7 @@ public class GpRegionSwgApp extends GpRegionGenSwgApp {
 				&&(jsonData.getEntity().getArea()==null)
 				&&(jsonData.getEntity().getRemark().equals("")||jsonData.getEntity().getRemark()==null)
 				){
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
 		}else{
 			result = gpRegionUntBll.updateList(jsonData);
@@ -112,7 +112,7 @@ public class GpRegionSwgApp extends GpRegionGenSwgApp {
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -202,7 +202,7 @@ public class GpRegionSwgApp extends GpRegionGenSwgApp {
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
 		String fileName = "地区信息列表数据" + DateUtils.getCurrentDateStr() + ".xls";
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		JSONArray columnInfoList = new JSONArray();
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject json = JSONObject.fromObject(jsonData);

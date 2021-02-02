@@ -11,8 +11,8 @@ import com.zee.ent.extend.gp.GpResource;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -51,9 +51,9 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
 			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -94,9 +94,9 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
 			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -137,10 +137,10 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			result.setIncomeCount(i);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
 			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -181,10 +181,10 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
 			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -224,14 +224,14 @@ public class GpResourceSplBll extends GpResourceGenSplBll {
 			result.setTotalCount(grResourceList.size());
 			result.setResultCode(OperResult.GETLISTBYSQL_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYSQL_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (grResourceList.isEmpty()) {
-				result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+				result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 				result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 				result.setResultMessage(OperResult.GETLISTBYSQL_F.getText() + "：不存在相应记录！");
 			}
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText());
 			result.setReturnValue(e.getMessage());

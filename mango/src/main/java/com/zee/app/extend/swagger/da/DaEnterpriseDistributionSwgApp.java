@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.da.DaEnterpriseDistributionGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.utl.SymbolicConstant;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

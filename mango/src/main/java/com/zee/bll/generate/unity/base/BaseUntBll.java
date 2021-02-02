@@ -18,11 +18,11 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.ClassUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.PageHelperUtil;
 import com.zee.utl.SnowFlakeSerialNoWorkerUtl;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -59,7 +59,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			// 给主键统一赋值
 			Class<?> cla = t.getClass().getSuperclass();
 			String tId = Tools.getUUID();
-			Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+			Field idField = cla.getDeclaredField(CustomSymbolic.TABLE_ID);
 			idField.setAccessible(true);
 			Object idObject = idField.get(t);
 			if (idObject == null || StringUtils.isEmpty(idObject.toString())) {
@@ -70,25 +70,25 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			}
 
 			// 给编号统一赋值
-			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
-				Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+			if (ClassUtil.isExistFieldName(cla, CustomSymbolic.TABLE_SERIAL_NO)) {
+				Field serialNoField = cla.getDeclaredField(CustomSymbolic.TABLE_SERIAL_NO);
 				serialNoField.setAccessible(true);
 				Object serialNoObject = serialNoField.get(t);
 				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
-					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 					serialNoField.set(t, tSerialNo);
 				}
 			}
 
 			// 给新增时间统一赋值
-			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
-				Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+			if (ClassUtil.isExistFieldName(cla, CustomSymbolic.ADD_TIME)) {
+				Field addTimeField = cla.getDeclaredField(CustomSymbolic.ADD_TIME);
 				addTimeField.setAccessible(true);
 				addTimeField.set(t, DateUtils.getCurrentTime());
 			}
 			// 给修改时间统一赋值
-			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
-				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+			if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
+				Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 				updateTimeField.setAccessible(true);
 				updateTimeField.set(t, DateUtils.getCurrentTime());
 			}
@@ -100,9 +100,9 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADD_S.getCode());
 			result.setResultMessage(OperResult.ADD_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (NoSuchFieldException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
 			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -111,7 +111,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
 			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -120,7 +120,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADD_F.getCode());
 			result.setResultMessage(OperResult.ADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -165,31 +165,31 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 				// 给主键统一赋值
 				String tId = Tools.getUUID();
-				Field idField = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+				Field idField = cla.getDeclaredField(CustomSymbolic.TABLE_ID);
 				idField.setAccessible(true);
 				Object idObject = idField.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					idField.set(t, tId);
 
 				// 给编号统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
-					Field serialNoField = cla.getDeclaredField(SymbolicConstant.TABLE_SERIAL_NO);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.TABLE_SERIAL_NO)) {
+					Field serialNoField = cla.getDeclaredField(CustomSymbolic.TABLE_SERIAL_NO);
 					serialNoField.setAccessible(true);
 					Object serialNoObject = serialNoField.get(t);
 					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
-						String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(SymbolicConstant.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, SymbolicConstant.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+						String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
 						serialNoField.set(t, tSerialNo);
 					}
 				}
 				// 给新增时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
-					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(CustomSymbolic.ADD_TIME);
 					addTimeField.setAccessible(true);
 					addTimeField.set(t, DateUtils.getCurrentTime());
 				}
 				// 给修改时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
-					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 					updateTimeField.setAccessible(true);
 					updateTimeField.set(t, DateUtils.getCurrentTime());
 				}
@@ -202,10 +202,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADDLIST_S.getCode());
 			result.setResultMessage(OperResult.ADDLIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (NoSuchFieldException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -214,7 +214,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -223,7 +223,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLIST_F.getCode());
 			result.setResultMessage(OperResult.ADDLIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -267,20 +267,20 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
 				String tId = Tools.getUUID();
-				Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+				Field field = cla.getDeclaredField(CustomSymbolic.TABLE_ID);
 				field.setAccessible(true);
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
 				// 给新增时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
-					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(CustomSymbolic.ADD_TIME);
 					addTimeField.setAccessible(true);
 					addTimeField.set(t, DateUtils.getCurrentTime());
 				}
 				// 给修改时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
-					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 					updateTimeField.setAccessible(true);
 					updateTimeField.set(t, DateUtils.getCurrentTime());
 				}
@@ -293,10 +293,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_S.getCode());
 			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (NoSuchFieldException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -305,7 +305,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -314,7 +314,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.ADDLISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.ADDLISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -356,10 +356,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
 			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -406,10 +406,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
 			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -451,8 +451,8 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			Class<?> cla = t.getClass().getSuperclass();
 
 			// 给修改时间统一赋值
-			if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
-				Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+			if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
+				Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 				updateTimeField.setAccessible(true);
 				updateTimeField.set(t, DateUtils.getCurrentTime());
 			}
@@ -464,9 +464,9 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATE_S.getCode());
 			result.setResultMessage(OperResult.UPDATE_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
 			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -508,7 +508,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
-				Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+				Field field = cla.getDeclaredField(CustomSymbolic.TABLE_ID);
 				field.setAccessible(true);
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString())) {
@@ -518,8 +518,8 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				}
 
 				// 给修改时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.UPDATE_TIME)) {
-					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
+					Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 					updateTimeField.setAccessible(true);
 					updateTimeField.set(t, DateUtils.getCurrentTime());
 				}
@@ -533,10 +533,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_S.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (NoSuchFieldException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -545,7 +545,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -554,7 +554,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFF_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFF_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -598,20 +598,20 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
 				String tId = Tools.getUUID();
-				Field field = cla.getDeclaredField(SymbolicConstant.TABLE_ID);
+				Field field = cla.getDeclaredField(CustomSymbolic.TABLE_ID);
 				field.setAccessible(true);
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
 				// 给新增时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.ADD_TIME)) {
-					Field addTimeField = cla.getDeclaredField(SymbolicConstant.ADD_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.ADD_TIME)) {
+					Field addTimeField = cla.getDeclaredField(CustomSymbolic.ADD_TIME);
 					addTimeField.setAccessible(true);
 					addTimeField.set(t, DateUtils.getCurrentTime());
 				}
 				// 给修改时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, SymbolicConstant.TABLE_SERIAL_NO)) {
-					Field updateTimeField = cla.getDeclaredField(SymbolicConstant.UPDATE_TIME);
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.TABLE_SERIAL_NO)) {
+					Field updateTimeField = cla.getDeclaredField(CustomSymbolic.UPDATE_TIME);
 					updateTimeField.setAccessible(true);
 					updateTimeField.set(t, DateUtils.getCurrentTime());
 				}
@@ -625,10 +625,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(i));
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_S.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (NoSuchFieldException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -637,7 +637,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (IllegalAccessException e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -646,7 +646,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			globalException.setResultModel(result);
 			throw globalException;
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATELISTWIDTHDFFORADD_F.getCode());
 			result.setResultMessage(OperResult.UPDATELISTWIDTHDFFORADD_F.getText());
 			result.setReturnValue(e.getMessage());
@@ -687,7 +687,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(new Long(1));
 			result.setResultCode(OperResult.GETMODEL_S.getCode());
 			result.setResultMessage(OperResult.GETMODEL_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (t == null)
 				result.setTotalCount(0);
 			else
@@ -699,7 +699,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETMODEL_F.getCode());
 			result.setResultMessage(OperResult.GETMODEL_F.getText());
 			throw globalException;
@@ -745,10 +745,10 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setTotalCount(pageInfo.getTotal());
 			result.setResultCode(OperResult.GETLISTBYSQL_S.getCode());
 			result.setResultMessage(OperResult.GETLISTBYSQL_S.getText());
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		} catch (Exception e) {
-			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 			result.setResultMessage(OperResult.GETLISTBYSQL_F.getText());
 			result.setReturnValue(e.getMessage());

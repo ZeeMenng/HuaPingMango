@@ -30,8 +30,8 @@ import com.zee.set.enumer.DomainEnum;
 import com.zee.set.enumer.LogoutType;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.exception.GlobalException;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TokenUtil;
 import com.zee.utl.Tools;
 
@@ -102,17 +102,17 @@ public class AuthenticationController extends BaseSwgApp {
 
 		ResultModel result = new ResultModel();
 
-		String header = request.getHeader(SymbolicConstant.JWT_HEADER_PARAM);
+		String header = request.getHeader(CustomSymbolic.JWT_HEADER_PARAM);
 
-		header = header.substring(SymbolicConstant.JWT_HEADER_PREFIX.length(), header.length());
+		header = header.substring(CustomSymbolic.JWT_HEADER_PREFIX.length(), header.length());
 
-		Claims claims = TokenUtil.parserJavaWebToken(header, SymbolicConstant.JWT_SECRET).getBody();
+		Claims claims = TokenUtil.parserJavaWebToken(header, CustomSymbolic.JWT_SECRET).getBody();
 
 		if (DateUtils.comparator(claims.getExpiration(), DateUtils.getCurrentTime()) < 0) {
 			throw new GlobalException(OperResult.TOKEN_EXPIRED.getCode(), OperResult.TOKEN_EXPIRED.getText());
 		}
 
-		String loginLogId = (String) claims.get(SymbolicConstant.JWT_LOGIN_LOG_ID);
+		String loginLogId = (String) claims.get(CustomSymbolic.JWT_LOGIN_LOG_ID);
 
 		ResultModel resultModel = gpTokenUntBll.getModel(loginLogId);
 		GpToken gpToken = (GpToken) resultModel.getData();
@@ -139,12 +139,12 @@ public class AuthenticationController extends BaseSwgApp {
 		if (StringUtils.isBlank(refreshToken)) {
 			throw new GlobalException("refreshToken不能为空！");
 		}
-		Claims claims = TokenUtil.parserJavaWebToken(refreshToken, SymbolicConstant.JWT_SECRET).getBody();
+		Claims claims = TokenUtil.parserJavaWebToken(refreshToken, CustomSymbolic.JWT_SECRET).getBody();
 		if (DateUtils.comparator(claims.getExpiration(), DateUtils.getCurrentTime()) < 0) {
 			throw new GlobalException("RefreshToken过期，重新校验!");
 		}
 		String userName = claims.getSubject();
-		String loginLogId = (String) claims.get(SymbolicConstant.JWT_LOGIN_LOG_ID);
+		String loginLogId = (String) claims.get(CustomSymbolic.JWT_LOGIN_LOG_ID);
 		ResultModel resultModel = gpTokenUntBll.getModel(loginLogId);
 		GpToken gpToken = (GpToken) resultModel.getData();
 		if (DateUtils.comparator(gpToken.getRDeadTime(), DateUtils.getCurrentTime()) < 0) {
@@ -162,11 +162,11 @@ public class AuthenticationController extends BaseSwgApp {
 		}
 
 		String secret = TokenUtil.createSecret();
-		secret = SymbolicConstant.JWT_SECRET;
+		secret = CustomSymbolic.JWT_SECRET;
 		String accessToken = TokenUtil.createAccessToken(claims, secret);
 
 		gpToken.setAccessToken(accessToken);
-		gpToken.setADeadTime(DateUtils.addSecond(DateUtils.getCurrentTime(), SymbolicConstant.JWT_ACCESS_DEAD_TIME));
+		gpToken.setADeadTime(DateUtils.addSecond(DateUtils.getCurrentTime(), CustomSymbolic.JWT_ACCESS_DEAD_TIME));
 
 		// 更新登录信息到GpToken表中
 		ResultModel result = gpTokenUntBll.update(gpToken, false);
@@ -179,7 +179,7 @@ public class AuthenticationController extends BaseSwgApp {
 		if (!result.getIsSuccess())
 			throw new GlobalException(result.getResultMessage());
 		result = new ResultModel();
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		gpToken.setGpUser(user);
 		result.setData(gpToken);
 		return result;
@@ -204,7 +204,7 @@ public class AuthenticationController extends BaseSwgApp {
 		if (!password.equals(user.getPassword())) {
 			throw new GlobalException("输入的密码有误！");
 		}
-		if (user.getIsDisabledCode() == SymbolicConstant.DCODE_BOOLEAN_T) {
+		if (user.getIsDisabledCode() == CustomSymbolic.DCODE_BOOLEAN_T) {
 			throw new GlobalException("该用户已被禁用！");
 		}
 		resultModel = gprDomainUserSplBll.isPermitted(user.getId(), clientId, false);
@@ -242,10 +242,10 @@ public class AuthenticationController extends BaseSwgApp {
 		String loginLogId = Tools.getUUID();
 		// 暂不使用动态密钥
 		String secret = TokenUtil.createSecret();
-		secret = SymbolicConstant.JWT_SECRET;
+		secret = CustomSymbolic.JWT_SECRET;
 		claims.setSubject(userName);
-		claims.put(SymbolicConstant.JWT_LOGIN_LOG_ID, loginLogId);
-		claims.put(SymbolicConstant.JWT_DOMAIN_ID, clientId);
+		claims.put(CustomSymbolic.JWT_LOGIN_LOG_ID, loginLogId);
+		claims.put(CustomSymbolic.JWT_DOMAIN_ID, clientId);
 
 		String accessToken = TokenUtil.createAccessToken(claims, secret);
 		String refreshToken = TokenUtil.createRefreshToken(claims, secret);
@@ -253,9 +253,9 @@ public class AuthenticationController extends BaseSwgApp {
 		gpToken.setId(loginLogId);
 		gpToken.setAccessToken(accessToken);
 		gpToken.setAddTime(DateUtils.getCurrentTime());
-		gpToken.setADeadTime(DateUtils.addSecond(gpToken.getAddTime(), SymbolicConstant.JWT_ACCESS_DEAD_TIME));
+		gpToken.setADeadTime(DateUtils.addSecond(gpToken.getAddTime(), CustomSymbolic.JWT_ACCESS_DEAD_TIME));
 		gpToken.setDomainId(clientId);
-		gpToken.setRDeadTime(DateUtils.addSecond(gpToken.getADeadTime(), SymbolicConstant.JWT_ACCESS_DEAD_TIME));
+		gpToken.setRDeadTime(DateUtils.addSecond(gpToken.getADeadTime(), CustomSymbolic.JWT_ACCESS_DEAD_TIME));
 		gpToken.setRefreshToken(refreshToken);
 		gpToken.setRemark("");
 		gpToken.setSecret(secret);
@@ -273,7 +273,7 @@ public class AuthenticationController extends BaseSwgApp {
 		gpLoginLog.setDomainName(DomainEnum.getText(clientId));
 		gpLoginLog.setDuration(0);
 		gpLoginLog.setIp(ip);
-		gpLoginLog.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		gpLoginLog.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		gpLoginLog.setLoginTime(DateUtils.getCurrentTime());
 		gpLoginLog.setLogoutTime(gpToken.getRDeadTime());
 		gpLoginLog.setLogoutTypeCode(LogoutType.TOKEN_EXPIRE.getCode());
@@ -299,7 +299,7 @@ public class AuthenticationController extends BaseSwgApp {
 		gpUserUntBll.update(user);
 
 		resultModel = new ResultModel();
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		if (StringUtils.isNotEmpty(user.getIcon()))
 			user.setIcon(this.linkPath + user.getIcon());
 		gpToken.setGpUser(user);

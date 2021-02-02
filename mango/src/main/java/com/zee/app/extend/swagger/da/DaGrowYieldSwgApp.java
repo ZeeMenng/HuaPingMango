@@ -38,11 +38,11 @@ import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaGrowYieldParameter;
 import com.zee.set.enumer.DictionaryEnum;
 import com.zee.set.enumer.DomainEnum;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.ImportExcelUtil;
 import com.zee.utl.MathUtil;
-import com.zee.utl.SymbolicConstant;
 import com.zee.utl.TimesView;
 import com.zee.utl.Tools;
 import com.zee.utl.UnitUtil;
@@ -101,7 +101,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getListByCurrentUser() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -200,7 +200,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		BigDecimal areaSum = new BigDecimal("0");
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -256,7 +256,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 
 		// 获取芒果品种<code,text>列表  
 		//20180814-01 客户问题跟踪表   固定展示 红象牙、圣心芒、凯特芒、金煌芒、爱文芒、澳芒、热农芒和鹰嘴芒这八个品种
-		Map<String, Object> mangoBreedMap = getDicMapByTypeId(SymbolicConstant.DI_CROP_STRAINS,"10,3,4,9,7,1,2,11");
+		Map<String, Object> mangoBreedMap = getDicMapByTypeId(CustomSymbolic.DI_CROP_STRAINS,"10,3,4,9,7,1,2,11");
 
 		Map<String, Object> perBreedMap = null;
 		Iterator iter = mangoBreedMap.entrySet().iterator();
@@ -314,7 +314,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		
 		resultList = resultList.subList(0, resultList.size()>pageSize? pageSize:resultList.size());
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -572,7 +572,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getPeasantCount() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -659,7 +659,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getGrowAreaSum() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -800,7 +800,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		resultMap.put("outputs", outputMap);
 
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -812,7 +812,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getGrowSumInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getGrowSumInfo() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -862,7 +862,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 			resultMap.put("outputSum",outputSum);
 		
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 //	/**
@@ -1163,7 +1163,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getMangoGrowDetailsByRegion1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoGrowDetailsByRegion1() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1279,7 +1279,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getMangoGrowDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoGrowDetails() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1452,7 +1452,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		resultMap.put("lastYear", lastYear);
 		resultMap.put("theYearBeforeLast", theYearBeforeLast);
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 
 		return resultModel;
 	}
@@ -1498,7 +1498,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 			}
 		}
 		resultModel.setData(ordinaryList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -1654,7 +1654,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getMangoGrowDetailsByRegion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getMangoGrowDetailsByRegion() {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1805,7 +1805,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		// 7、计算种植面积和有机认证面积最多的乡镇
 
 		resultModel.setData(resultList);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -1911,7 +1911,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getPerAreaProduct() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -1973,7 +1973,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		resultMap.put("2017", new BigDecimal(0.721));
 		resultMap.put("2018", new BigDecimal(0.718));*/
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -1981,7 +1981,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getGrowDataAndProportion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getGrowDataAndProportion() throws ParseException {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2164,7 +2164,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		}
 
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -2225,7 +2225,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	@RequestMapping(value = "/getTimesMonoidalDataForApp", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimesMonoidalDataForApp() throws ParseException {
 		ResultModel resultModel = new ResultModel();
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 		
@@ -2317,7 +2317,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 			resultMap.put("unit", COMMON_UNIT_PEASANTCOUNT);	
 		}
 		resultModel.setData(resultMap);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -2383,7 +2383,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		}
 
 		// 新增完之后，更新用户贡献度
-		daUserContributionUtil.updateUserContribution(SymbolicConstant.CONTRIBUTION_YIELD);
+		daUserContributionUtil.updateUserContribution(CustomSymbolic.CONTRIBUTION_YIELD);
 
 		return resultModel;
 	}
@@ -2510,7 +2510,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 			daCommonField.setAuditStatusText(paramDaCommonField.getAuditStatusText());
 			daCommonFieldUntBll.update(daCommonField);
 		}
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 	
@@ -2682,7 +2682,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getListByJsonDatas() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2853,7 +2853,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		ResultModel growYieldList = getGrowYieldList(id, "0");
 		jsonData.setDaGrowYieldList((List<DaGrowYield>) growYieldList.getData());
 		ResultModel result = new ResultModel();
-		result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		result.setData(jsonData);
 		return result;
 	}
@@ -2911,7 +2911,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 	public ResultModel getListByJsonDatasWl() {
 		ResultModel resultModel = new ResultModel();
 
-		String jsonData = request.getParameter(SymbolicConstant.CONTROLLER_PARAM_JSON);
+		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
@@ -2986,7 +2986,7 @@ public class DaGrowYieldSwgApp extends DaGrowYieldGenSwgApp {
 		daCommonField.setAuditerUserId(this.getCurrentUser().getId());
 		daCommonField.setAuditerTime(DateUtils.getCurrentTime());
 		daCommonFieldUntBll.update(daCommonField);
-		resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 }
