@@ -7,13 +7,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.httpclient.util.DateParseException;
-import org.apache.commons.httpclient.util.DateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -252,10 +250,8 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			RequestMappingInfo requestMappingInfo = item.getKey();
 			HandlerMethod handlerMethod = item.getValue();
 
-			Date addTime = DateUtils.getCurrentTime();
 			String domainId = null;
 			String id = Tools.getUUID();
-			Byte isPublicCode = CustomSymbolic.DCODE_BOOLEAN_T;
 			Byte isGenerateCode = CustomSymbolic.DCODE_BOOLEAN_T;
 			String name = null;
 			String remark = null;
@@ -263,7 +259,6 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 			String tableName = null;
 			Byte typeCode = null;
-			Date updateTime = DateUtils.getCurrentTime();
 			String url = null;
 
 			// 获取接口路径URL
@@ -334,7 +329,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			// 将接口信息插入数据库
 			GpInterface gpInterface = new GpInterface();
 			gpInterface.setId(id);
-			gpInterface.setAddTime(addTime);
+			gpInterface.setAddTime(DateUtils.getCurrentTime());
 			gpInterface.setName(name);
 			gpInterface.setDomainId(domainId);
 			gpInterface.setTableName(tableName);
@@ -343,14 +338,14 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			gpInterface.setRemark(remark);
 			gpInterface.setSerialNo(serialNo);
 			gpInterface.setTypeCode(typeCode);
-			gpInterface.setUpdateTime(updateTime);
+			gpInterface.setUpdateTime(DateUtils.getCurrentTime());
 
 			// 如果是POST接口，设为非公共接口
+			gpInterface.setIsPublicCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			if (typeCode == InterfaceType.POST.getCode())
-				isPublicCode = CustomSymbolic.DCODE_BOOLEAN_F;
-			gpInterface.setIsPublicCode(isPublicCode);
+				gpInterface.setIsPublicCode(CustomSymbolic.DCODE_BOOLEAN_F);
 
-			// 如果包含，说明是修改记录
+			// 如果包含，说明是修改记录，是否公共、添加时间、编号这3个字段不做修改、
 			for (Map<String, Object> interfaceMap : interfaceList) {
 				if (interfaceMap.get("url").equals(url)) {
 					gpInterface.setId(interfaceMap.get("id").toString());
@@ -358,7 +353,6 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 						gpInterface.setSerialNo(interfaceMap.get("serial_no").toString());
 					if (interfaceMap.get("is_public_code") != null)
 						gpInterface.setIsPublicCode(Byte.valueOf(interfaceMap.get("is_public_code").toString()));
-
 					gpInterface.setAddTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(interfaceMap.get("add_time").toString()));
 					break;
 				}

@@ -2,9 +2,9 @@ package com.zee.set.enumer;
 
 public enum DomainEnum {
 
-	WP("032769fd7e376c04fb13c66419a72598", "芒果门户网站"),
+	WP("032769fd7e376c04fb13c66419a72598", "通用门户网站"),
 
-	GP("09335bd69ab9826df8b69589a2568055", "通用权限管理系统"),
+	GP("09335bd69ab9826df8b69589a2568055", "玉轮后台管理"),
 
 	DA("61016ec489463334d638ceb433e8e1d1", "数据采集体系"),
 

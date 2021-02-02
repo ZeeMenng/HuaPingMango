@@ -33,7 +33,7 @@ import com.zee.set.symbolic.CustomSymbolic;
  * @updateDate 2018年4月20日 下午3:46:52
  * @description 多线程处理类
  */
-@Component
+//@Component
 public class Executors extends BaseApp{
 	
 	@Autowired

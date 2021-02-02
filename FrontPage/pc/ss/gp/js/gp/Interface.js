@@ -365,7 +365,7 @@ function initInterfaceTable(diplayOpeationButton) {
 			"width" : "50px",
 			"style" : "text-align:center"
 
-		},  {
+		}, {
 			"columnName" : "updateTime",
 			"columnText" : "更新时间",
 			"style" : "text-align:left"
@@ -410,14 +410,17 @@ function initInterfaceTable(diplayOpeationButton) {
 	initQueryForm(pageParam, ajaxParam, operationParam);
 
 	$("#updateInterfaceConstantsButton").click(function() {
-
+		// 获取配置的路径
+		var interfaceSymbolicJsConfig = getUserConfigByCode("interfaceSymbolicJs");
+		if(interfaceSymbolicJsConfig)
+			interfaceSymbolicJs=interfaceSymbolicJsConfig.configValue;
 		layer.open({
 			area : [ '800px', '230px' ],
 			type : 1,
 			closeBtn : true,
 			shift : 7,
 			shadeClose : true,
-			content : "<div style='width:750px;text-align: center' class='form-inline'>" + "<br/><div  style='margin: 10px' class='form-group'><span style='font-weight:bold'>JS    常量路径： </span><input size='60pt'  id='textJsConstantsPath' class='form-control' type='text' name='textJsConstantsPath' value='D:\\JAVA\\GitHubTarget\\HuaPingMango\\FrontPage\\pc\\global\\js\\constant\\Interface.js'/></div>" + "<br/><div style='margin: 20px,0px,20px' class='form-group'><button style='margin-top:5%;' type='button' class='form-control btn btn-block  btn-lg red-mint' onclick='updatePageConstant()'>提交</button></div></div>"
+			content : "<div style='width:750px;text-align: center' class='form-inline'>" + "<br/><div  style='margin: 10px' class='form-group'><span style='font-weight:bold'>JS    常量路径： </span><input size='60pt'  id='textJsConstantsPath' class='form-control' type='text' name='textJsConstantsPath' value='" + interfaceSymbolicJs + "'/></div>" + "<br/><div style='margin: 20px,0px,20px' class='form-group'><button style='margin-top:5%;' type='button' class='form-control btn btn-block  btn-lg red-mint' onclick='updatePageConstant()'>提交</button></div></div>"
 		});
 		return;
 
@@ -434,6 +437,11 @@ function initInterfaceTable(diplayOpeationButton) {
  * 
  */
 function updatePageConstant() {
+
+	var interfaceSymbolicJs = getUserConfigByCode("interfaceSymbolicJs");
+	interfaceSymbolicJs.configValue = $("#textJsConstantsPath").val();
+	updateUserConfig(interfaceSymbolicJs);
+
 	var ajaxParamter = {
 		"url" : "/extend/swagger/gp/gpInterface/updateInterfaceConstants",
 		"data" : "jsonData=" + JSON.stringify({

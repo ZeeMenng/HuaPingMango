@@ -55,7 +55,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 			// 跳过没必要的SQL
 			ArrayList<String> skipMethod = new ArrayList<String>();
 			skipMethod.add("com.zee.dao.unity.gp.IGpTokenUntDal.getModel");
-			//skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
+			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
 			skipMethod.add("com.zee.dao.split.gp.IGpUserSplDal.getModelByUserName");
 			skipMethod.add("com.zee.dao.split.gp.IGprDomainUserSplDal.isPermitted");
 			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");

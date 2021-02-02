@@ -12,7 +12,7 @@ import com.zee.ent.extend.gp.GprConfigUser;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/2/2 10:32:00
+ * @updateDate 2021/2/2 15:48:52
  * @description 扩展自实体类IBaseUntDal<GpConfig>，可手动更改。配置项信息。
  */
 
