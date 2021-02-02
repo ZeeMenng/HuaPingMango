@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.pi;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -233,7 +233,7 @@ public class PiExpertSwgApp extends PiExpertGenSwgApp {
 		selectBuffer.append(" where D.is_default = '0' and t.id = '" + userId + "' ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpUserUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 
 		String userName = modelList.get(0).get("userName").toString();
 		String realName = modelList.get(0).get("realName").toString();

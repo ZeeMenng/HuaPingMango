@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -84,7 +84,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfProductSaleUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<HashMap<String, Object>> xmap = new ArrayList<HashMap<String, Object>>();
 		Map<String, Object> maps = new HashMap<String, Object>();
 		Map<String, String> pmap = new HashMap<String, String>();
@@ -94,7 +94,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		pmap.put("afterNum", "2");
 		
 		resultModel = TimesView.getTimesData(pmap, modelList,keySet);
-		List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 		List<String> dateList = new ArrayList<String>();
 		List<Object> yieldList = new ArrayList<Object>();
 		List<Object> saleList = new ArrayList<Object>();
@@ -267,7 +267,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		keySet.add("productTotal");
 		keySet.add("proSaleRate");
 		keySet.add("dateTime");
-		List<Map<String, Object>> modelLists  = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists  = CastObjectUtil.cast(resultModel.getData());
 		Map<String, String> pmap = new HashMap<String, String>();
 		pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 		pmap.put("hasCurrent", "true");
@@ -275,7 +275,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		pmap.put("afterNum", "0");
 
 		resultModel = TimesView.getTimesData(pmap, modelLists, keySet);
-		List<Map<String, Object>> list2 =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list2 =CastObjectUtil.cast(resultModel.getData());
 		
 		
 		Map<String, Object> map2 = new HashMap<String,Object>();
@@ -416,7 +416,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		keySet.add("productTotal");
 		keySet.add("proSaleRate");
 		keySet.add("dateTime");
-		List<Map<String, Object>> modelLists  = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists  = CastObjectUtil.cast(resultModel.getData());
 		Map<String, String> pmap = new HashMap<String, String>();
 		pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 		pmap.put("hasCurrent", "true");
@@ -424,7 +424,7 @@ public class  MfProductSaleSwgApp extends  MfProductSaleGenSwgApp {
 		pmap.put("afterNum", "0");
 
 		resultModel = TimesView.getTimesData(pmap, modelLists, keySet);
-		List<Map<String, Object>> list2 =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list2 =CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, Object> map2 = new HashMap<String,Object>();
 		List<Object> mList = new ArrayList<Object>();
@@ -649,7 +649,7 @@ public ResultModel getPriceDate() {
 	keySet.add("costPrice");
 	keySet.add("fieldPrice");
 	keySet.add("dateTime");
-	List<Map<String, Object>> modelLists  = (List<Map<String, Object>>) resultModel.getData();
+	List<Map<String, Object>> modelLists  = CastObjectUtil.cast(resultModel.getData());
 	Map<String, String> pmap = new HashMap<String, String>();
 	pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 	pmap.put("hasCurrent", "true");
@@ -793,7 +793,7 @@ public ResultModel getSupplyDemandDate() {
 	keySet.add("saleAmount");
 	keySet.add("productTotal");
 	keySet.add("dateTime");
-	List<Map<String, Object>> modelLists  = (List<Map<String, Object>>) resultModel.getData();
+	List<Map<String, Object>> modelLists  = CastObjectUtil.cast(resultModel.getData());
 	Map<String, String> pmap = new HashMap<String, String>();
 	pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 	pmap.put("hasCurrent", "true");

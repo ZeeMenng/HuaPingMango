@@ -3,7 +3,7 @@ package com.zee.app.extend.swagger.pi;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -732,7 +732,7 @@ public class PiChannelSwgApp extends PiChannelGenSwgApp {
 		
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piChannelUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> map2 : modelList) {
 			Map<String, Object> treeMap = new HashMap<String, Object>();

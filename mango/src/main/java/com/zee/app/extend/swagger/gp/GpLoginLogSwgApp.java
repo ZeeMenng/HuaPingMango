@@ -1,15 +1,9 @@
 package com.zee.app.extend.swagger.gp;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +17,14 @@ import com.zee.app.generate.swagger.gp.GpLoginLogGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpLoginLog;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
-import com.zee.utl.Tools;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -57,7 +56,7 @@ public class GpLoginLogSwgApp extends GpLoginLogGenSwgApp {
 			selectBuffer.append("		WHERE A.id = '" + gpLoginLog.getId() + "'             ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = gpLoginLogUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> modelMap = modelList.get(0);
 			gpLoginLog.setDomainName(modelMap.get("domainName") != null ? modelMap.get("domainName").toString() : "");
 			result.setData(dictionaryUtil.dictTransform(gpLoginLog));

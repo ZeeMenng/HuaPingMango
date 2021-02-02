@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +35,7 @@ import com.zee.set.enumer.InterfaceType;
 import com.zee.set.exception.GlobalException;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.CamelCaseUtl;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.FileUtil;
@@ -99,7 +100,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			selectBuffer.append("		WHERE A.id = '" + gpInterface.getId() + "'            ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = gpInterfaceUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> modelMap = modelList.get(0);
 			gpInterface.setDomainName(modelMap.get("domainName") != null ? modelMap.get("domainName").toString() : "");
 			result.setData(dictionaryUtil.dictTransform(gpInterface));
@@ -242,7 +243,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 		selectBuffer.append("	SELECT * FROM gp_interface A");
 		sqlMap.put("Sql", selectBuffer.toString());
 		result = gpInterfaceUntBll.getListBySQL(sqlMap);
-		List<Map<String, Object>> interfaceList = (List<Map<String, Object>>) result.getData();
+		List<Map<String, Object>> interfaceList = CastObjectUtil.cast(result.getData());
 
 		ArrayList<GpInterface> gpInterfaceList = new ArrayList<GpInterface>();
 		Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();

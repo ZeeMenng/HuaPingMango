@@ -5,7 +5,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +83,7 @@ public class  MfForreturnSwgApp extends  MfForreturnGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfForreturnUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Set<String> keySet = new HashSet<String>();
 		keySet.add("id");

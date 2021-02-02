@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +71,7 @@ public class  DaUserContributionSwgApp extends  DaUserContributionGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 
 		resultModel = daUserContributionUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		if(modelList != null && modelList.size() > 0){
 			resultModel.setData(modelList.get(0));
 		}else{

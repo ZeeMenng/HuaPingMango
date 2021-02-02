@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiOperation;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -92,7 +92,7 @@ public class GpStationSwgApp extends GpStationGenSwgApp {
 		selectBuffer.append("		t.id = '" + gpStation.getId() + "'                                ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpStationUntBll.getListBySQL(map);
-		List<Map<String, Object>> stationList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> stationList = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> stationMap = stationList.get(0);
 		gpStation.setOrganizationName(stationMap.get("organizationName") != null ? stationMap.get("organizationName").toString() : "");
 		result.setData(gpStation);

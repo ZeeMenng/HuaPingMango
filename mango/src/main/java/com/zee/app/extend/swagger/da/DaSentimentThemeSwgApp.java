@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -145,7 +145,7 @@ public class  DaSentimentThemeSwgApp extends  DaSentimentThemeGenSwgApp {
 		List<String> timesList = TimesView.getTimesView(timeMap);
 		
 		//查询24小时主题数以及负面数
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		for (Map<String, Object> map2 : modelList) {
 			Map<String, Object> artMap = new HashMap<String, Object>();
 			StringBuffer artBuffer = new StringBuffer();

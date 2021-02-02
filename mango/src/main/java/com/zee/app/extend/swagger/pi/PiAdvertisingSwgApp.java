@@ -1,6 +1,6 @@
 package com.zee.app.extend.swagger.pi;
 
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -217,7 +217,7 @@ public class PiAdvertisingSwgApp extends PiAdvertisingGenSwgApp {
 		selectBuffer.append(" where A.id='" + jsonData.getId() + "' ");
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piAdvertisingUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Long clickCount = (Long) list.get(0).get("clickCount");
 		jsonData.setClickCount(clickCount + 1);
 		ResultModel result = piAdvertisingUntBll.update(jsonData);

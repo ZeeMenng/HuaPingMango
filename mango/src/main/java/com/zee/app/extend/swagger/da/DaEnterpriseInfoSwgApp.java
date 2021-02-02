@@ -3,7 +3,7 @@ package com.zee.app.extend.swagger.da;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -156,7 +156,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = daEnterpriseInfoUntBll.getListBySQL(map);
 		List<String> codeList = new ArrayList<String>();
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		for (Map<String, Object> map2 : modelList) {
 			if(map2.get("enterpriseCode") != null){
 				codeList.add(map2.get("enterpriseCode").toString());
@@ -571,7 +571,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpDictionaryUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Map<String,Object> maps = new HashMap<String,Object>();
 		for(Map<String, Object> lists:list){
 			maps.put(lists.get("name").toString(), lists.get("code"));
@@ -914,7 +914,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		map6.put("Sql", selectBuffer6.toString());
 		resultModel6 = daEnterpriseInfoUntBll.getListBySQL(map6);
 		
-		List<Map<String, Object>> list =  (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list =  CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("enterpriseBasicInfo", list.get(0));// 基本信息
 		maps.put("shareholderInfo", resultModel2.getData());// 股东信息

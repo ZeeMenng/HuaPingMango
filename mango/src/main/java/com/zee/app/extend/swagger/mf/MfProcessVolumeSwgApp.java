@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +67,7 @@ public class  MfProcessVolumeSwgApp extends  MfProcessVolumeGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfProcessVolumeUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Set<String> keySet = new HashSet<String>();
 		keySet.add("id");
@@ -84,7 +84,7 @@ public class  MfProcessVolumeSwgApp extends  MfProcessVolumeGenSwgApp {
 		pmap.put("afterNum", "1");
 		
 		resultModel = TimesView.getTimesData(pmap, modelList,keySet);
-		List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 //		List<Object> list;
 		Map<String, Object> listmap;
 		List<Object> mfProcessList = new ArrayList<Object>();

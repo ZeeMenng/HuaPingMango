@@ -2,10 +2,8 @@ package com.zee.app.extend.swagger.gp;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -28,17 +26,15 @@ import com.zee.bll.extend.unity.gp.GpDomainUntBll;
 import com.zee.bll.extend.unity.gp.GpMenuUntBll;
 import com.zee.bll.extend.unity.gp.GprResourceUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.ent.extend.gp.GpCatalogInterface;
 import com.zee.ent.extend.gp.GpMenu;
 import com.zee.ent.extend.gp.GpModule;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GprResource;
-import com.zee.ent.extend.gp.GprUserIcon;
 import com.zee.ent.parameter.gp.GpDomainParameter;
 import com.zee.ent.parameter.gp.GpModuleParameter;
 import com.zee.set.enumer.DictionaryModuleCascadeEnum;
-import com.zee.set.enumer.DictionaryModuleLevelEnum;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.ClassFieldNullable;
 import com.zee.utl.DateUtils;
 import com.zee.utl.Tools;
@@ -264,7 +260,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpModuleUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> map2 : modelList) {
 			Map<String, Object> treeMap = new HashMap<String, Object>();

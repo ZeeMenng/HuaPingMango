@@ -178,13 +178,13 @@ function updatePageConstant() {
 		}),
 		"type" : "GET",
 		"async" : true,
+		"beforeSend" : function() {
+			layer.closeAll();
+			layer.load(0, {
+				shade : false
+			});
+		},
 		"success" : function(resultData) {
-			if (!resultData["isSuccess"]) {
-				layer.alert(resultData["resultMessage"], {
-					icon : 6
-				});
-				return false;
-			}
 			layer.closeAll();
 			layer.msg('更新成功……', {
 				time : 500,

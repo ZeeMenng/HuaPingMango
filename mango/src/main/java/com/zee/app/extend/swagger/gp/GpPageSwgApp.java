@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +26,7 @@ import com.zee.ent.parameter.gp.GpPageParameter;
 import com.zee.set.enumer.DomainEnum;
 import com.zee.set.exception.GlobalException;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.FileUtil;
@@ -86,7 +87,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 			selectBuffer.append("		WHERE A.id = '" + gpPage.getId() + "'                 ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = gpPageUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> modelMap = modelList.get(0);
 			gpPage.setDomainName(modelMap.get("domainName") != null ? modelMap.get("domainName").toString() : "");
 			result.setData(dictionaryUtil.dictTransform(gpPage));
@@ -229,7 +230,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 		JSONObject jsonObject = JSONObject.fromObject(jsonStr);
 		sqlMap.put("Page", jsonObject);
 		ResultModel resultModel = gpPageUntBll.getListBySQL(sqlMap);
-		List<Map<String, Object>> pageList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> pageList = CastObjectUtil.cast(resultModel.getData());
 		List<String> urls = new ArrayList<String>();
 		for (Map<String, Object> page : pageList) {
 			urls.add(page.get("url").toString());

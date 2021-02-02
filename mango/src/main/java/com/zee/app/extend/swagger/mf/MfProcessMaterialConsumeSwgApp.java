@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +74,7 @@ public class  MfProcessMaterialConsumeSwgApp extends  MfProcessMaterialConsumeGe
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfProcessMaterialConsumeUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, String> pmap = new HashMap<String, String>();
 		pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
@@ -83,7 +83,7 @@ public class  MfProcessMaterialConsumeSwgApp extends  MfProcessMaterialConsumeGe
 		pmap.put("afterNum", "0");
 		
 		resultModel = TimesView.getTimesData(pmap, modelList,keySet);
-		List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 		List<String> dateTimeList =  new ArrayList<String>(); 
 		List<String> dateTimeForecastList =  new ArrayList<String>(); 
 		List<Object> actualAmountList =  new ArrayList<Object>(); 

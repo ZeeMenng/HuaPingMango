@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiOperation;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -186,7 +186,7 @@ public class  MfWeatherSwgApp extends  MfWeatherGenSwgApp {
 //		map.put("Sql", selectBuffer.toString());
 //		resultModel = mfWeatherUntBll.getListBySQL(map);
 //		
-//		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+//		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 //		Long warningNum = (Long) modelList.get(0).get("weatherThreshold");
 //		Map<String, String> pmap = new HashMap<String, String>();
 //		pmap.put("viewName", "month");//视图名，年year，月month，日date（默认为年）
@@ -195,7 +195,7 @@ public class  MfWeatherSwgApp extends  MfWeatherGenSwgApp {
 //		pmap.put("afterNum", "0");
 //		
 //		resultModel = TimesView.getTimesData(pmap, modelList,keySet);
-//		List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+//		List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 //		List<String> list = new ArrayList<String>();
 //		List<Object> weatherThresholdList = new ArrayList<Object>();
 //		List<Object> warningNumList = new ArrayList<Object>();

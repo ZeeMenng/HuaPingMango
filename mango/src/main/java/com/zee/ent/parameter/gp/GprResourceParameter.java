@@ -1,6 +1,6 @@
 package com.zee.ent.parameter.gp;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import com.zee.ent.extend.gp.GprResource;
 import com.zee.ent.generate.gp.GprResourceGenEnt;
@@ -8,8 +8,6 @@ import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-
 
 /**
  * @author Zee
@@ -72,16 +70,9 @@ public class GprResourceParameter extends BaseParameter {
 		}
 
 		@ApiModel(value = "GprResourceGetListEntityRelated", description = "模糊查询GprResource所需的参数，实体类相关。")
-		public static class EntityRelated extends GprResourceGenEnt{
-        
+		public static class EntityRelated extends GprResourceGenEnt {
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

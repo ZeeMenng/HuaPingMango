@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -227,7 +227,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piContentGenUntBll.getListBySQL(map);
 
-		List<Map<String, Object>> resultList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> resultList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> rList = new ArrayList<Map<String, Object>>();
 		// List<String> contentIdList = new ArrayList<String>();
 		for (Map<String, Object> resultMap : resultList) {
@@ -351,7 +351,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		 * getRelationId(channelId); } } }
 		 */
 
-		List<Map<String, Object>> resultList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> resultList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> rList = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> resultMap : resultList) {
 			// 将查询到的imgPath拼接为完整路径
@@ -482,7 +482,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piContentGenUntBll.getListBySQL(map);
 
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		if (modelList.size() >= 1) {
 			resultMap = modelList.get(0);
@@ -1499,7 +1499,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piChannelUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> map2 : modelList) {
 			Map<String, Object> treeMap = new HashMap<String, Object>();
@@ -2230,7 +2230,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piContentGenUntBll.getListBySQL(map);
 
-		List<Map<String, Object>> resultList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> resultList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> rList = new ArrayList<Map<String, Object>>();
 		// List<String> contentIdList = new ArrayList<String>();
 		for (Map<String, Object> resultMap : resultList) {
@@ -2327,7 +2327,7 @@ public class PiContentSwgApp extends PiContentGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piContentGenUntBll.getListBySQL(map);
 
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		if (modelList.size() >= 1) {
 			resultMap = modelList.get(0);

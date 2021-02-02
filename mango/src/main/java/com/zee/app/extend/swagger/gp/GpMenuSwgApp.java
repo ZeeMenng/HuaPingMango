@@ -1,17 +1,10 @@
 package com.zee.app.extend.swagger.gp;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +23,14 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpMenu;
 import com.zee.ent.parameter.gp.GpMenuParameter;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -72,7 +72,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 		ResultModel resultModel = this.getCurrentUserMenu();
 
 		// 转自定义格式
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> jsonFormat = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> map : modelList) {
 			if (map.get("fartherModuleId") == null) {
@@ -158,7 +158,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 		selectBuffer.append("SELECT A.id FROM gp_page A WHERE A.url = '" + pageUrl + "'");
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpPageUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList.get(0).get("id").toString();
 	}
 
@@ -206,7 +206,7 @@ public class GpMenuSwgApp extends GpMenuGenSwgApp {
 			selectBuffer.append("		A.id = '" + gpMenu.getId() + "'                       ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = gpMenuUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> modelMap = modelList.get(0);
 			gpMenu.setModuleName(modelMap.get("moduleName") != null ? modelMap.get("moduleName").toString() : "");
 			gpMenu.setDomainName(modelMap.get("domainName") != null ? modelMap.get("domainName").toString() : "");

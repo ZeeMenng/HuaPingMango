@@ -1,6 +1,6 @@
 package com.zee.app.extend.swagger.mf;
 
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class  MfHpSeasonSwgApp extends  MfHpSeasonGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfHpSeasonUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Set<String> keySet = new HashSet<String>();
 		keySet.add("id");

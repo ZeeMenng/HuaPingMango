@@ -1,17 +1,10 @@
 package com.zee.app.extend.swagger.gp;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.MediaType;
@@ -23,11 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zee.app.generate.swagger.gp.GpOrganizationGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.ent.extend.gp.GpModule;
 import com.zee.ent.extend.gp.GpOrganization;
 import com.zee.ent.parameter.gp.GpOrganizationParameter;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -94,7 +93,7 @@ public class GpOrganizationSwgApp extends GpOrganizationGenSwgApp {
 		selectBuffer.append("		t.id = '" + gpOrganization.getId() + "'                                 ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpOrganizationUntBll.getListBySQL(map);
-		List<Map<String, Object>> organizationList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> organizationList = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> organizationMap = organizationList.get(0);
 		gpOrganization.setOrganizationTop(organizationMap.get("organizationTop") != null ? organizationMap.get("organizationTop").toString() : "");
 		gpOrganization.setOrganizationFar(organizationMap.get("organizationFar") != null ? organizationMap.get("organizationFar").toString() : "");
@@ -187,7 +186,6 @@ public class GpOrganizationSwgApp extends GpOrganizationGenSwgApp {
 		return resultModel;
 	}
 
-
 	@RequestMapping(value = "/getListByUserId/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByUserId(@PathVariable("userId") String userId) {
 		ResultModel resultModel = new ResultModel();
@@ -210,15 +208,12 @@ public class GpOrganizationSwgApp extends GpOrganizationGenSwgApp {
 		selectBuffer.append("		1 = 1                                                ");
 		selectBuffer.append("		AND C.user_id = '").append(userId).append("'");
 
-
 		map.put("Sql", selectBuffer.toString());
 
 		resultModel = gpOrganizationUntBll.getListBySQL(map);
 
 		return resultModel;
 	}
-
-	
 
 	@ApiOperation(value = "组织机构名称查询", notes = "查询所有现有组织机构名称")
 	@RequestMapping(value = "/getOrganizationNameList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

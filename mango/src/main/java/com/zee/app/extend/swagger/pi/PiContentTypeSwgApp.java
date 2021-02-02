@@ -1,7 +1,7 @@
 package com.zee.app.extend.swagger.pi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +44,7 @@ public class PiContentTypeSwgApp extends PiContentTypeGenSwgApp {
 		resultModel = piContentTypeUntBll.getListBySQL(map);
 		
 		List<Map<String, Object>> cList = new ArrayList<Map<String, Object>>();
-		List<Map<String, Object>> cTypeList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> cTypeList = CastObjectUtil.cast(resultModel.getData());
 		for (Map<String, Object> cTypeMap : cTypeList) {
 			Map<String, Object> cMap = new HashMap<String, Object>();
 			if(!CustomSymbolic.CONTENT_TYPE_IMAGETEXT.equals(cTypeMap.get("id"))

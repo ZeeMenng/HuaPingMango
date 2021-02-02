@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +62,7 @@ public class PiContentAttachmentSwgApp extends PiContentAttachmentGenSwgApp {
 			selectBuffer.append("		A.id = '"+id+"'                                                   ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = piContentUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> moduleMap = modelList.get(0);
 			piContentAttachment.setTitle(moduleMap.get("title").toString());
 			result.setData(piContentAttachment);

@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -124,7 +124,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 			
 			resultModel = mfProcessYieldUntBll.getListBySQL(map);
 			
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, String> pmap = new HashMap<String, String>();
 			pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 			pmap.put("hasCurrent", "true");
@@ -132,7 +132,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 			pmap.put("afterNum", "0");
 
 			resultModel = TimesView.getTimesData(pmap, modelList, keySet);
-			List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 			List<Object> productNameList = new ArrayList<Object>();
 			for(Map<String, Object> YmodelLists :modelLists ){
 				
@@ -282,7 +282,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 			
 			resultModel = mfProcessYieldUntBll.getListBySQL(map);
 			
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, String> pmap = new HashMap<String, String>();
 			pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
 			pmap.put("hasCurrent", "true");
@@ -290,7 +290,7 @@ public class  MfProcessYieldSwgApp extends  MfProcessYieldGenSwgApp {
 			pmap.put("afterNum", "0");
 
 			resultModel = TimesView.getTimesData(pmap, modelList, keySet);
-			List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 			List<Object> productNameList = new ArrayList<Object>();
 			for(Map<String, Object> YmodelLists :modelLists ){
 				 Date dateTime=sdf.parse(String.valueOf(YmodelLists.get("dateTime")));

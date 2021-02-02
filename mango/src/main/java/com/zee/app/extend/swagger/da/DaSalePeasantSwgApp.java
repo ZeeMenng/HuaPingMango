@@ -3,7 +3,7 @@ package com.zee.app.extend.swagger.da;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -233,7 +233,7 @@ public class  DaSalePeasantSwgApp extends  DaSalePeasantGenSwgApp {
 		
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpDictionaryUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Map<String,Object> maps = new HashMap<String,Object>();
 		for(Map<String, Object> lists:list){
 			maps.put(lists.get("name").toString(), lists.get("code"));

@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.mf;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +76,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfQualityUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, String> pmap = new HashMap<String, String>();
 		pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）
@@ -154,7 +154,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfQualityUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> areaList =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> areaList =CastObjectUtil.cast(resultModel.getData());
 		List<Object> reusltList= new ArrayList<Object>();
 		for(Map<String, Object> list : areaList){
 			Map<String, Object> maps = new HashMap<String, Object>();
@@ -242,7 +242,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 				+ "GROUP BY A.identification_type_code");
 		map2.put("Sql", selectBuffer2.toString());
 		resultModel = mfQualityUntBll.getListBySQL(map);
-		List<Map<String, Object>> list1 =  (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list1 =  CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> strMap = new HashMap<String, Object>();
 		String [] str={"1","2","3"};
 		List<String> strList = new ArrayList<String>();
@@ -369,7 +369,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		resultModel = mfQualityUntBll.getListBySQL(map);
 		List<Object> list = new ArrayList<Object>();
 		Map<String,Object> dateMap = new HashMap<String,Object>();
-//		List<Map<String,Object>> maps = (List<Map<String, Object>>) resultModel.getData();
+//		List<Map<String,Object>> maps = CastObjectUtil.cast(resultModel.getData());
 //		for(Map<String,Object> thresholdMap :maps){
 //			if(thresholdMap.get("qualityThreshold")!=null && !"".equals(thresholdMap.get("qualityThreshold"))){
 //				list.add(thresholdMap.get("qualityThreshold"));
@@ -451,7 +451,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		resultModel = mfQualityUntBll.getListBySQL(map);
 		Map<String, Object> warningMap =getDictionary("ffea2e4a2e174986bf01d091b00537c2","2");
 		Map<String, Object> map2 = new HashMap<String,Object>();
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		map2.put("data", list);
 		map2.put("warning", warningMap.get("warning"));
 		resultModel.setData(map2);
@@ -636,7 +636,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		resultModel=mfQualityUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> warningMap =getDictionary("ffea2e4a2e174986bf01d091b00537c2","1");
 		map2.put("data", list);
 		map2.put("warning", warningMap.get("warning"));
@@ -653,7 +653,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpDictionaryUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Map<String,Object> maps = new HashMap<String,Object>();
 		for(Map<String, Object> lists:list){
 			maps.put("warning", lists.get("name"));
@@ -726,7 +726,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 
 		resultModel = mfQualityUntBll.getListBySQL(map);
-		List<Map<String, Object>> list2 = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list2 = CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		StringBuffer selectBuffer2 = new StringBuffer();
@@ -755,7 +755,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		;
 		map2.put("Sql", selectBuffer2.toString());
 		resultModel=mfQualityUntBll.getListBySQL(map2);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		
 		
 		
@@ -777,7 +777,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map3.put("Sql", selectBuffer3.toString());
 		
 		resultModel = mfQualityUntBll.getListBySQL(map3);
-		List<Map<String, Object>> list3 = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list3 = CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, Object> map4 = new HashMap<String, Object>();
 		StringBuffer selectBuffer4 = new StringBuffer();
@@ -795,7 +795,7 @@ public class MfQualitySwgApp extends MfQualityGenSwgApp {
 		map4.put("Sql", selectBuffer4.toString());
 		
 		resultModel = mfQualityUntBll.getListBySQL(map4);
-		List<Map<String, Object>> list4 = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list4 = CastObjectUtil.cast(resultModel.getData());
 		String cnt =String.valueOf(list4.get(0).get("yjCount"));
 		Map<String,Object> yjMap = new HashMap<String,Object>();
 		yjMap.put("zljcCount", list.get(0).get("yjCount"));

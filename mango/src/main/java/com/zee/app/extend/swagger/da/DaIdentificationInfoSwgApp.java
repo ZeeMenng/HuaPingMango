@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -117,7 +117,7 @@ public class  DaIdentificationInfoSwgApp extends  DaIdentificationInfoGenSwgApp 
 		resultModel = daIdentificationInfoUntBll.getListBySQL(map);
 		resultModel2 = daIdentificationInfoUntBll.getListBySQL(entMap);
 		List<Map<String, Object>> modelList2 = (List<Map<String, Object>>) resultModel2.getData();
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		String nuisanceless="";
 		String organic="";
@@ -339,7 +339,7 @@ public class  DaIdentificationInfoSwgApp extends  DaIdentificationInfoGenSwgApp 
 		
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpDictionaryUntBll.getListBySQL(map);
-		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> list = CastObjectUtil.cast(resultModel.getData());
 		Map<String,Object> maps = new HashMap<String,Object>();
 		for(Map<String, Object> lists:list){
 			maps.put(lists.get("name").toString(), lists.get("code"));

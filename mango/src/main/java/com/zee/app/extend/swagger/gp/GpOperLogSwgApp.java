@@ -1,15 +1,9 @@
 package com.zee.app.extend.swagger.gp;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +17,14 @@ import com.zee.app.generate.swagger.gp.GpOperLogGenSwgApp;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpOperLog;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -36,16 +35,16 @@ import com.zee.utl.DictionaryUtil;
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gpOperLog")
 public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
-	
+
 	@Autowired
 	private DictionaryUtil dictionaryUtil;
-	
+
 	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
 	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getModelByPath(@PathVariable("id") String id) {
 		ResultModel result = gpOperLogUntBll.getModel(id);
-		if(result.getData() != null){
+		if (result.getData() != null) {
 			GpOperLog gpOperLog = (GpOperLog) result.getData();
 			Map<String, Object> map = new HashMap<String, Object>();
 			StringBuffer selectBuffer = new StringBuffer();
@@ -54,17 +53,17 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 			selectBuffer.append("		FROM                                              ");
 			selectBuffer.append("			gp_oper_log A                                ");
 			selectBuffer.append("		LEFT JOIN gp_domain B ON A.domain_id = B.id       ");
-			selectBuffer.append("		WHERE A.id = '"+gpOperLog.getId()+"'             ");
+			selectBuffer.append("		WHERE A.id = '" + gpOperLog.getId() + "'             ");
 			map.put("Sql", selectBuffer.toString());
 			ResultModel resultModel = gpOperLogUntBll.getListBySQL(map);
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			Map<String, Object> modelMap = modelList.get(0);
-			gpOperLog.setDomainName(modelMap.get("domainName")!=null?modelMap.get("domainName").toString():"");
+			gpOperLog.setDomainName(modelMap.get("domainName") != null ? modelMap.get("domainName").toString() : "");
 			result.setData(dictionaryUtil.dictTransform(gpOperLog));
 		}
 		return result;
 	}
-	
+
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
@@ -91,8 +90,8 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 		selectBuffer.append("	LEFT JOIN gp_domain B ON A.domain_id = B.id                 ");
 		selectBuffer.append("	WHERE                                                        ");
 		selectBuffer.append("		1 = 1                                                    ");
-		
-        if (!StringUtils.isBlank(jsonData)) {
+
+		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 
 			if (jsonObject.containsKey("selectRows")) {
@@ -108,7 +107,7 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-                
+
 				if (entityRelatedObject.containsKey("operTypeCode") && StringUtils.isNotBlank(entityRelatedObject.getString("operTypeCode")))
 					selectBuffer.append(" and A.oper_type_code = '").append(entityRelatedObject.getString("operTypeCode")).append("'");
 				if (entityRelatedObject.containsKey("operTypeText") && StringUtils.isNotBlank(entityRelatedObject.getString("operTypeText")))
@@ -168,6 +167,3 @@ public class GpOperLogSwgApp extends GpOperLogGenSwgApp {
 
 	}
 }
-
-
-

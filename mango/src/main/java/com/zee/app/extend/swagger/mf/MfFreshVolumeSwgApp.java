@@ -3,7 +3,7 @@ package com.zee.app.extend.swagger.mf;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +68,7 @@ public class  MfFreshVolumeSwgApp extends  MfFreshVolumeGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfFreshVolumeUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Set<String> keySet = new HashSet<String>();
 		keySet.add("id");
@@ -85,7 +85,7 @@ public class  MfFreshVolumeSwgApp extends  MfFreshVolumeGenSwgApp {
 		pmap.put("afterNum", "1");
 		
 		resultModel = TimesView.getTimesData(pmap, modelList,keySet);
-		List<Map<String, Object>> modelLists =(List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelLists =CastObjectUtil.cast(resultModel.getData());
 //		List<Object> list;
 		Map<String, Object> listmap;
 		List<Object> mfFreshList = new ArrayList<Object>();

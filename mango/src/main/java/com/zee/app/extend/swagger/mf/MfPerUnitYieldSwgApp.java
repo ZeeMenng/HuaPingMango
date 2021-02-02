@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.mf;
 
 import io.swagger.annotations.ApiOperation;
 
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +60,7 @@ public class  MfPerUnitYieldSwgApp extends  MfPerUnitYieldGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = mfPerUnitYieldUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		
 		Map<String, String> pmap = new HashMap<String, String>();
 		pmap.put("viewName", "year");//视图名，年year，月month，日date（默认为年）

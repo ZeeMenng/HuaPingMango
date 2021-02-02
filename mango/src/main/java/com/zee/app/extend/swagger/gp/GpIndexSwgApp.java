@@ -1,7 +1,7 @@
 package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +19,10 @@ import com.zee.bll.extend.unity.gp.GprUserOrganizationUntBll;
 import com.zee.bll.extend.unity.pi.PiChannelCountUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -102,7 +102,7 @@ public class GpIndexSwgApp extends PiChannelCountGenSwgApp {
 		
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piChannelCountUntBll.getListBySQL(map);
-		List<Map<String, Object>> dataArray =  (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> dataArray = CastObjectUtil.cast(resultModel.getData());
 
 		List< Object> resultList = new ArrayList();
 		List< Object> list; 
@@ -164,7 +164,7 @@ public class GpIndexSwgApp extends PiChannelCountGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = piChannelCountUntBll.getListBySQL(map);
 		
-		List<Map<String, Object>> dataArray =  (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> dataArray =  CastObjectUtil.cast(resultModel.getData());
 
 		List< Object> resultList = new ArrayList();
 		List< Object> list; 

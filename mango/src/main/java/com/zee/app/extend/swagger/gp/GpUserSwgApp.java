@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap;import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -201,7 +201,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
-			List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> domainIdList = CastObjectUtil.cast(resultModel.getData());
 			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
 			for (Map<String, Object> domainId : domainIdList) {
 				GprDomainUser gprDomainUser = new GprDomainUser();
@@ -296,7 +296,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
-			List<Map<String, Object>> domainIdList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> domainIdList = CastObjectUtil.cast(resultModel.getData());
 			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
 			for (Map<String, Object> domainId : domainIdList) {
 				GprDomainUser gprDomainUser = new GprDomainUser();
@@ -541,7 +541,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("			A.user_id = '" + userId + "'        					  ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gprUserRoleUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList;
 	}
 
@@ -558,7 +558,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("		A.user_id = '" + userId + "'                                   ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gprUserRoleUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList;
 	}
 
@@ -575,7 +575,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("			A.business_id = '" + userId + "'        					  ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList;
 	}
 
@@ -592,7 +592,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("			A.user_id = '" + userId + "'        					  ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gprDomainUserUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList;
 	}
 
@@ -608,7 +608,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		selectBuffer.append("			A.business_id = '" + userId + "' and is_default = '0'     ");
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gprResourceUntBll.getListBySQL(map);
-		List<Map<String, Object>> iconList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> iconList = CastObjectUtil.cast(resultModel.getData());
 		return iconList;
 	}
 
@@ -811,7 +811,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpUserUntBll.getListBySQL(map);
 		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		if (modelList.size() > 0) {
 			if (!password.equals(modelList.get(0).get("password").toString())) {
 				resultModel.setResultMessage("输入的密码有误！");
@@ -873,7 +873,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Sql", selectBuffer.toString());
 		ResultModel resultModel = gpMenuUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		return modelList.get(0);
 	}
 
@@ -962,7 +962,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		resultModel = gpUserUntBll.getListBySQL(map);
 
-		List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 		List<Map<String, Object>> pageInfo = new ArrayList<Map<String, Object>>();
 
 		if (resultModel.getTotalCount() == 0) {
@@ -1071,7 +1071,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			resultModel.setResultCode(OperResult.GETLISTBYSQL_F.getCode());
 		} else if (resultModel.getTotalCount() >= 1) {
 
-			List<Map<String, Object>> modelList = (List<Map<String, Object>>) resultModel.getData();
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			String id1 = modelList.get(0).get("id").toString();
 
 			// String sss=(String)resultModel.getReturnValue();
