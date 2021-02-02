@@ -1,4 +1,4 @@
-﻿package com.zee.app.generate.swagger.gp;
+package com.zee.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,8 +20,8 @@ import com.zee.bll.extend.unity.gp.GpPageUntBll;
 import com.zee.ent.extend.gp.GpPage;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.gp.GpPageParameter;
-import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/28 16:06:36
+ * @updateDate 2021/2/2 19:55:54
  * @description 系统页面。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 
@@ -173,7 +173,7 @@ public class GpPageGenSwgApp extends BaseSwgApp {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("select A.id id,A.domain_id domainId,A.name name,A.url url,A.remark remark,A.add_time addTime,A.is_public_code isPublicCode  from gp_page A inner join gp_page B on A.id=B.id where 1=1 ");
+		selectBuffer.append("select A.id id,A.serial_no serialNo,A.domain_id domainId,A.name name,A.url url,A.is_public_code isPublicCode,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_page A inner join gp_page B on A.id=B.id where 1=1 ");
         
         if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
@@ -192,12 +192,12 @@ public class GpPageGenSwgApp extends BaseSwgApp {
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
                 
+				if (entityRelatedObject.containsKey("serialNo") && StringUtils.isNotBlank(entityRelatedObject.getString("serialNo")))
+					selectBuffer.append(" and A.serial_no like '%").append(entityRelatedObject.getString("serialNo")).append("%'");
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("url") && StringUtils.isNotBlank(entityRelatedObject.getString("url")))
 					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString("url")).append("%'");
-				if (entityRelatedObject.containsKey("remark") && StringUtils.isNotBlank(entityRelatedObject.getString("remark")))
-					selectBuffer.append(" and A.remark like '%").append(entityRelatedObject.getString("remark")).append("%'");
 			}
 
 			if (jsonObject.containsKey("page")) {

@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import com.zee.ent.extend.gp.GprCatalogInterface;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:19
+ * @updateDate 2021/2/2 18:48:46
  * @description 实体类GpCatalogInterfaceGenEnt，自动生成。接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。
  */
 

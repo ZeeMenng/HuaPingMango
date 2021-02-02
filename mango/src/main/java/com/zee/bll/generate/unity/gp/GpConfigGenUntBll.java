@@ -1,4 +1,4 @@
-﻿package com.zee.bll.generate.unity.gp;
+package com.zee.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,23 +17,25 @@ import com.zee.ent.parameter.gp.GpConfigParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
-import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/2/2 15:48:51
+ * @updateDate 2021/2/2 18:48:12
  * @description 配置项信息。 业务逻辑处理类，扩展自BaseUntBll<GpConfig>，自动生成。
  */
 public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 
 	@Autowired
 	protected IGpConfigUntDal gpConfigUntDal;
+
 
 	public ResultModel updateList(GpConfigParameter.UpdateList updateListParam) {
 		return updateList(updateListParam, isLogWrite);
@@ -49,13 +51,13 @@ public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
-			result.setIncomeCount(updateListParam.getIdList().size());
+            result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
 			result.setRemark("");
 
-			int i = baseUntDal.updateList(updateListParam.getIdList(), updateListParam.getEntity());
+			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -67,9 +69,9 @@ public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText());
+			result.setResultMessage(OperResult.UPDATE_F.getText() );
 			result.setReturnValue(e.getMessage());
-			result.setOriginException(e);
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -95,12 +97,13 @@ public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
-			result.setIncomeCount(0);
+            result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
-			result.setOperTypeText(OperType.GETLIST.getText());
+            result.setOperTypeText(OperType.GETLIST.getText());
 			result.setRemark("");
+			
 
 			GpConfigParameter.GetList.EntityRelated entityRelated = getListParam.getEntityRelated();
 			GpConfigParameter.GetList.Page page = getListParam.getPage();
@@ -131,9 +134,9 @@ public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText());
+			result.setResultMessage(OperResult.GETLIST_F.getText() );
 			result.setReturnValue(e.getMessage());
-			result.setOriginException(e);
+            result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -144,4 +147,10 @@ public class GpConfigGenUntBll extends BaseUntBll<GpConfig> {
 		return result;
 	}
 
+
 }
+
+
+
+
+

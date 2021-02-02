@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -23,7 +23,7 @@ import com.zee.ent.extend.gp.GprConfigUser;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:29
+ * @updateDate 2021/2/2 18:48:52
  * @description 实体类GpUserGenEnt，自动生成。系统用户。
  */
 
@@ -70,7 +70,7 @@ public class GpUserGenEnt extends BaseEnt implements Serializable {
     private String remark;
     @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
     private Date updateTime;
-    @ApiModelProperty(value="登录账号。",hidden=false,required=false)
+    @ApiModelProperty(value="登录账号。",hidden=false,required=true)
     private String userName;
 
    //本表做为子表时，父表实体对象

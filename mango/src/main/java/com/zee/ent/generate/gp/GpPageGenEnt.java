@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ import com.zee.ent.extend.gp.GprRolePage;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:25
+ * @updateDate 2021/2/2 18:48:50
  * @description 实体类GpPageGenEnt，自动生成。系统页面。
  */
 
@@ -36,6 +36,10 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
     private String name;
     @ApiModelProperty(value="备注字段。",hidden=false,required=false)
     private String remark;
+    @ApiModelProperty(value="接口编号。",hidden=false,required=false)
+    private String serialNo;
+    @ApiModelProperty(value="记录最后一次修改时间。",hidden=false,required=false)
+    private Date updateTime;
     @ApiModelProperty(value="存放路径。",hidden=false,required=false)
     private String url;
 
@@ -132,6 +136,34 @@ public class GpPageGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+    
+	/**
+	 * get方法。接口编号。
+	 */
+	public String getSerialNo() {
+		return this.serialNo;
+	}
+
+	/**
+	 * set方法。接口编号。
+	 */
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
+	}
+    
+	/**
+	 * get方法。记录最后一次修改时间。
+	 */
+	public Date getUpdateTime() {
+		return this.updateTime;
+	}
+
+	/**
+	 * set方法。记录最后一次修改时间。
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
     
 	/**

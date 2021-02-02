@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.mf;
+package com.zee.ent.generate.mf;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

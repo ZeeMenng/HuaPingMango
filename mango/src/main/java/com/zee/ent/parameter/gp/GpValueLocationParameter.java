@@ -1,6 +1,7 @@
 package com.zee.ent.parameter.gp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.zee.ent.extend.gp.GpValueLocation;
 import com.zee.ent.generate.gp.GpValueLocationGenEnt;
@@ -8,8 +9,6 @@ import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-
 
 /**
  * @author Zee
@@ -72,38 +71,31 @@ public class GpValueLocationParameter extends BaseParameter {
 		}
 
 		@ApiModel(value = "GpValueLocationGetListEntityRelated", description = "模糊查询GpValueLocation所需的参数，实体类相关。")
-		public static class EntityRelated extends GpValueLocationGenEnt{
-        
-        @ApiModelProperty(value="添加时间查询起止时间。",required=false)
-		private Date beginAddTime;
+		public static class EntityRelated extends GpValueLocationGenEnt {
 
-        @ApiModelProperty(value="添加时间查询结束时间。",required=false)
-		private Date endAddTime;
+			@ApiModelProperty(value = "添加时间查询起止时间。", required = false)
+			private Date beginAddTime;
 
-		public Date getBeginAddTime() {
-			return this.beginAddTime;
-		}
-        
-		public void setBeginAddTime(Date beginAddTime) {
-			this.beginAddTime = beginAddTime;
-		}
-        
-        public Date getEndAddTime() {
-			return this.endAddTime;
-		}
-        
-		public void setEndAddTime(Date endAddTime) {
-			this.endAddTime = endAddTime;
-		}
-        
+			@ApiModelProperty(value = "添加时间查询结束时间。", required = false)
+			private Date endAddTime;
+
+			public Date getBeginAddTime() {
+				return this.beginAddTime;
+			}
+
+			public void setBeginAddTime(Date beginAddTime) {
+				this.beginAddTime = beginAddTime;
+			}
+
+			public Date getEndAddTime() {
+				return this.endAddTime;
+			}
+
+			public void setEndAddTime(Date endAddTime) {
+				this.endAddTime = endAddTime;
+			}
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

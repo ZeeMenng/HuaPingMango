@@ -1,4 +1,4 @@
-﻿package com.zee.bll.generate.unity.gp;
+package com.zee.bll.generate.unity.gp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +17,8 @@ import com.zee.ent.parameter.gp.GpDictionaryTypeParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
-import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
+import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/2/2 10:31:48
+ * @updateDate 2021/2/2 18:48:13
  * @description 字典类型。 业务逻辑处理类，扩展自BaseUntBll<GpDictionaryType>，自动生成。
  */
 public class GpDictionaryTypeGenUntBll extends BaseUntBll<GpDictionaryType> {

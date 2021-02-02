@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import com.zee.ent.extend.gp.GpResource;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:16
+ * @updateDate 2021/2/2 18:48:43
  * @description 实体类GprResourceGenEnt，自动生成。附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。
  */
 

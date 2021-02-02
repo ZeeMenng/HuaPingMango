@@ -1,29 +1,31 @@
 package com.zee.set.enumer;
 
 /**
- * @author Zee
- * @createDate 2020年8月26日 下午2:10:04
- * @updateDate 2020年8月26日 下午2:10:04
- * @description 接口类型
+ * 
+ * @author lxl
+ * @createDate 2018年7月25日 下午4:49:10
+ * @updateDate 2018年7月25日 下午4:49:10
+ * @description 企业类型枚举
  */
-public enum InterfaceType {
-	//
-	GET((byte)1, "GET方式"),
-	// 新增操作
-	POST((byte)2, "POST方式"),
-	//
-	POSTORGET((byte)0, "POST||GET方式");
+public enum DiEnterpriseTypeEnum {
 	
+	SHENGCHAN((byte) 5, "生产企业"),
+	JIAGONG((byte) 6, "加工企业"),
+	WULIU((byte) 3, "物流企业"),
+	XIAOSHOU((byte) 7, "销售企业"),
+	;
+
 	private String text;
+
 	private Byte code;
 
-	private InterfaceType(Byte code, String text) {
+	private DiEnterpriseTypeEnum(Byte code, String text) {
 		this.text = text;
 		this.code = code;
 	}
 
 	public static String getText(Byte code) {
-		for (InterfaceType c : InterfaceType.values()) {
+		for (DiEnterpriseTypeEnum c : DiEnterpriseTypeEnum.values()) {
 			if (c.getCode() == code) {
 				return c.text;
 			}
@@ -49,3 +51,4 @@ public enum InterfaceType {
 	}
 
 }
+	

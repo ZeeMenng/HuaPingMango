@@ -1,4 +1,4 @@
-﻿package com.zee.ent.extend.gp;
+package com.zee.ent.extend.gp;
 
 import com.zee.ent.generate.gp.GprConfigUserGenEnt;
 

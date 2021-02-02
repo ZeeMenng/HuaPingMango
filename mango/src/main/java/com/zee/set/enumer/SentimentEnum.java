@@ -1,6 +1,6 @@
 package com.zee.set.enumer;
 
-public enum sentimentEnum {
+public enum SentimentEnum {
 	
 	QUANBU((byte)0, "全部"),
 	FUMIAN((byte)1, "负面"),
@@ -9,13 +9,13 @@ public enum sentimentEnum {
 	;
 	private String text;
 	private Byte code;
-	private sentimentEnum(Byte code, String text) {
+	private SentimentEnum(Byte code, String text) {
 		this.text = text;
 		this.code = code;
 	}
 
 	public static String getText(Byte code) {
-		for (sentimentEnum c : sentimentEnum.values()) {
+		for (SentimentEnum c : SentimentEnum.values()) {
 			if (c.getCode() == code) {
 				return c.text;
 			}

@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import com.zee.ent.extend.gp.GpUser;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:19
+ * @updateDate 2021/2/2 18:48:45
  * @description 实体类GprUserStationGenEnt，自动生成。用户所属岗位。
  */
 

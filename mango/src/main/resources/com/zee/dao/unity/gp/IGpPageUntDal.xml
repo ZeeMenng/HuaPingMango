@@ -4,16 +4,18 @@
 
   <resultMap id="BaseResultMap" type="com.zee.ent.extend.gp.GpPage" >
               <id column="id" property="id" jdbcType="VARCHAR" />
+              <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
               <result column="domain_id" property="domainId" jdbcType="VARCHAR" />
               <result column="name" property="name" jdbcType="VARCHAR" />
               <result column="url" property="url" jdbcType="VARCHAR" />
+              <result column="is_public_code" property="isPublicCode" jdbcType="TINYINT" />
               <result column="remark" property="remark" jdbcType="VARCHAR" />
               <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
-              <result column="is_public_code" property="isPublicCode" jdbcType="TINYINT" />
+              <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-        id,domain_id,name,url,remark,add_time,is_public_code
+        id,serial_no,domain_id,name,url,is_public_code,remark,add_time,update_time
   </sql>
   
   <insert id="add" parameterType="com.zee.ent.extend.gp.GpPage" >
@@ -21,6 +23,10 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
               id,
+          </if>
+      
+          <if test="serialNo != null and serialNo != '' " >
+              serial_no,
           </if>
       
           <if test="domainId != null and domainId != '' " >
@@ -35,6 +41,9 @@
               url,
           </if>
       
+          <if test="isPublicCode != null " >
+              is_public_code,
+          </if>
           <if test="remark != null and remark != '' " >
               remark,
           </if>
@@ -42,13 +51,16 @@
           <if test="addTime != null " >
               add_time,
           </if>
-          <if test="isPublicCode != null " >
-              is_public_code,
+          <if test="updateTime != null " >
+              update_time,
           </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
           <if test="id != null and id != '' " >
               #{id,jdbcType=VARCHAR},
+          </if>
+          <if test="serialNo != null and serialNo != '' " >
+              #{serialNo,jdbcType=VARCHAR},
           </if>
           <if test="domainId != null and domainId != '' " >
               #{domainId,jdbcType=VARCHAR},
@@ -59,14 +71,17 @@
           <if test="url != null and url != '' " >
               #{url,jdbcType=VARCHAR},
           </if>
+          <if test="isPublicCode != null " >
+              #{isPublicCode,jdbcType=TINYINT},
+          </if>
           <if test="remark != null and remark != '' " >
               #{remark,jdbcType=VARCHAR},
           </if>
           <if test="addTime != null " >
               #{addTime,jdbcType=TIMESTAMP},
           </if>
-          <if test="isPublicCode != null " >
-              #{isPublicCode,jdbcType=TINYINT},
+          <if test="updateTime != null " >
+              #{updateTime,jdbcType=TIMESTAMP},
           </if>
     </trim>
   </insert>
@@ -81,12 +96,14 @@
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
           #{gpPage.id,jdbcType=VARCHAR},
+          #{gpPage.serialNo,jdbcType=VARCHAR},
           #{gpPage.domainId,jdbcType=VARCHAR},
           #{gpPage.name,jdbcType=VARCHAR},
           #{gpPage.url,jdbcType=VARCHAR},
+          #{gpPage.isPublicCode,jdbcType=TINYINT},
           #{gpPage.remark,jdbcType=VARCHAR},
           #{gpPage.addTime,jdbcType=TIMESTAMP},
-          #{gpPage.isPublicCode,jdbcType=TINYINT},
+          #{gpPage.updateTime,jdbcType=TIMESTAMP},
 
         </trim>
     	</foreach>
@@ -103,23 +120,27 @@
             <trim prefix="(" suffix=")" suffixOverrides="," >
 
           #{gpPage.id,jdbcType=VARCHAR},
+          #{gpPage.serialNo,jdbcType=VARCHAR},
           #{gpPage.domainId,jdbcType=VARCHAR},
           #{gpPage.name,jdbcType=VARCHAR},
           #{gpPage.url,jdbcType=VARCHAR},
+          #{gpPage.isPublicCode,jdbcType=TINYINT},
           #{gpPage.remark,jdbcType=VARCHAR},
           #{gpPage.addTime,jdbcType=TIMESTAMP},
-          #{gpPage.isPublicCode,jdbcType=TINYINT},
+          #{gpPage.updateTime,jdbcType=TIMESTAMP},
 
         </trim>
     	</foreach>
         ON DUPLICATE KEY UPDATE
 id=values(id),
+serial_no=values(serial_no),
 domain_id=values(domain_id),
 name=values(name),
 url=values(url),
+is_public_code=values(is_public_code),
 remark=values(remark),
 add_time=values(add_time),
-is_public_code=values(is_public_code)
+update_time=values(update_time)
         
     </insert>
 
@@ -164,6 +185,17 @@ is_public_code=values(is_public_code)
     update gp_page
     <set >
                     <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
+                     serial_no = #{serialNo,jdbcType=VARCHAR},
+                  </when>
+                  </choose>
+                    <choose>
                    <when test="domainId != null and domainId=='-1'">
                      domain_id = null,
                   </when>
@@ -196,6 +228,9 @@ is_public_code=values(is_public_code)
                      url = #{url,jdbcType=VARCHAR},
                   </when>
                   </choose>
+                  <if test="isPublicCode != null ">
+                     is_public_code = #{isPublicCode,jdbcType=TINYINT},
+                  </if>
                     <choose>
                    <when test="remark != null and remark=='-1'">
                      remark = null,
@@ -210,8 +245,8 @@ is_public_code=values(is_public_code)
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
-                  <if test="isPublicCode != null ">
-                     is_public_code = #{isPublicCode,jdbcType=TINYINT},
+                  <if test="updateTime != null ">
+                     update_time = #{updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
@@ -220,6 +255,9 @@ is_public_code=values(is_public_code)
 <update id="updateList">
     update gp_page
     <set >
+                  <if test="t.serialNo != null  and t.serialNo != '' " >
+                     serial_no = #{t.serialNo,jdbcType=VARCHAR},
+                  </if>
                   <if test="t.domainId != null  and t.domainId != '' " >
                      domain_id = #{t.domainId,jdbcType=VARCHAR},
                   </if>
@@ -229,14 +267,17 @@ is_public_code=values(is_public_code)
                   <if test="t.url != null  and t.url != '' " >
                      url = #{t.url,jdbcType=VARCHAR},
                   </if>
+                  <if test="t.isPublicCode != null ">
+                     is_public_code = #{t.isPublicCode,jdbcType=TINYINT},
+                  </if>
                   <if test="t.remark != null  and t.remark != '' " >
                      remark = #{t.remark,jdbcType=VARCHAR},
                   </if>
                   <if test="t.addTime != null ">
                      add_time = #{t.addTime,jdbcType=TIMESTAMP},
                   </if>
-                  <if test="t.isPublicCode != null ">
-                     is_public_code = #{t.isPublicCode,jdbcType=TINYINT},
+                  <if test="t.updateTime != null ">
+                     update_time = #{t.updateTime,jdbcType=TIMESTAMP},
                   </if>
    </set>
 	
@@ -250,6 +291,19 @@ is_public_code=values(is_public_code)
 <update id="updateListWithDff"  parameterType="list">
     update gp_page
 		<trim prefix="set" suffixOverrides=",">
+         <trim prefix="serial_no =case" suffix="end,">
+              <foreach collection="list" item="gpPage" index="index">
+                  <if test="gpPage.serialNo != null and gpPage.serialNo  != ''  and gpPage.serialNo  != '-1' ">
+                     when id=#{gpPage.id} then #{gpPage.serialNo,jdbcType=VARCHAR}
+                  </if>
+                  <if test="gpPage.serialNo != null  and gpPage.serialNo  == '-1' ">
+                     when id=#{gpPage.id} then null
+                  </if>  
+                   <if test="gpPage.serialNo != null  and gpPage.serialNo  == '-2' ">
+                     when id=#{gpPage.id} then ''
+                  </if> 
+              </foreach>
+         </trim>
          <trim prefix="domain_id =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
                   <if test="gpPage.domainId != null and gpPage.domainId  != ''  and gpPage.domainId  != '-1' ">
@@ -289,6 +343,13 @@ is_public_code=values(is_public_code)
                   </if> 
               </foreach>
          </trim>
+         <trim prefix="is_public_code =case" suffix="end,">
+              <foreach collection="list" item="gpPage" index="index">
+                  <if test="gpPage.isPublicCode != null " >
+                     when id=#{gpPage.id} then #{gpPage.isPublicCode,jdbcType=TINYINT}
+                  </if>
+              </foreach>
+         </trim>
          <trim prefix="remark =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
                   <if test="gpPage.remark != null and gpPage.remark  != ''  and gpPage.remark  != '-1' ">
@@ -309,10 +370,10 @@ is_public_code=values(is_public_code)
                   </if>
               </foreach>
          </trim>
-         <trim prefix="is_public_code =case" suffix="end,">
+         <trim prefix="update_time =case" suffix="end,">
               <foreach collection="list" item="gpPage" index="index">
-                  <if test="gpPage.isPublicCode != null " >
-                     when id=#{gpPage.id} then #{gpPage.isPublicCode,jdbcType=TINYINT}
+                  <if test="gpPage.updateTime != null " >
+                     when id=#{gpPage.id} then #{gpPage.updateTime,jdbcType=TIMESTAMP}
                   </if>
               </foreach>
          </trim>
@@ -329,17 +390,22 @@ is_public_code=values(is_public_code)
     replace into gp_page
         <trim prefix="(" suffix=")" suffixOverrides="," >
 id,
+serial_no,
 domain_id,
 name,
 url,
+is_public_code,
 remark,
 add_time,
-is_public_code,
+update_time,
     </trim>
     VALUES
     <foreach collection="list" item="gpPage" index="index" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
               #{gpPage.id ,jdbcType=VARCHAR},
+                  
+                     #{gpPage.serialNo ,jdbcType=VARCHAR},
+                  
                   
                      #{gpPage.domainId ,jdbcType=VARCHAR},
                   
@@ -350,13 +416,16 @@ is_public_code,
                      #{gpPage.url ,jdbcType=VARCHAR},
                   
                   
+                    #{gpPage.isPublicCode,jdbcType=TINYINT},
+            
+                  
                      #{gpPage.remark ,jdbcType=VARCHAR},
                   
                   
                     #{gpPage.addTime,jdbcType=TIMESTAMP},
             
                   
-                    #{gpPage.isPublicCode,jdbcType=TINYINT},
+                    #{gpPage.updateTime,jdbcType=TIMESTAMP},
             
       </trim>
     </foreach>
@@ -400,6 +469,15 @@ is_public_code,
 		</if>
 		<if test="EntityRelated.remark != null and EntityRelated.remark != '' ">
  				and  remark LIKE CONCAT('%',#{EntityRelated.remark,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.serialNo != null and EntityRelated.serialNo != '' ">
+ 				and  serial_no LIKE CONCAT('%',#{EntityRelated.serialNo,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="EntityRelated.beginUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)>=unix_timestamp(#{EntityRelated.beginUpdateTime})]]> 
+		</if>
+		<if test="EntityRelated.endUpdateTime != null ">
+				<![CDATA[ AND  unix_timestamp(update_time)<unix_timestamp(#{EntityRelated.endUpdateTime})]]> 
 		</if>
 		<if test="EntityRelated.url != null and EntityRelated.url != '' ">
  				and  url LIKE CONCAT('%',#{EntityRelated.url,jdbcType=VARCHAR},'%') 

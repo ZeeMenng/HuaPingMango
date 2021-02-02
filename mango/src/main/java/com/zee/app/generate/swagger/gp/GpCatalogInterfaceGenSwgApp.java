@@ -1,4 +1,4 @@
-﻿package com.zee.app.generate.swagger.gp;
+package com.zee.app.generate.swagger.gp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,8 +20,8 @@ import com.zee.bll.extend.unity.gp.GpCatalogInterfaceUntBll;
 import com.zee.ent.extend.gp.GpCatalogInterface;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.parameter.gp.GpCatalogInterfaceParameter;
-import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.DateUtils;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +34,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 15:00:55
- * @updateDate 2021/1/28 16:06:35
+ * @updateDate 2021/2/2 19:55:54
  * @description 接口分类字典。存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。 对外接口，扩展自BaseSwgApp，自动生成。
  */
 

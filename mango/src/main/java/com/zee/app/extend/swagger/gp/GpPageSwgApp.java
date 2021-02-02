@@ -4,12 +4,14 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.httpclient.util.DateParseException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,7 +32,6 @@ import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.FileUtil;
-import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -109,6 +110,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 		selectBuffer.append("	SELECT                                               ");
 		selectBuffer.append("		A.id id,                                         ");
 		selectBuffer.append("		A.domain_id domainId,                            ");
+		selectBuffer.append("		B.name domainName,                            ");
 		selectBuffer.append("		A.name name,                                     ");
 		selectBuffer.append("		A.url url,                                       ");
 		selectBuffer.append("		A.remark remark,                                 ");
@@ -116,7 +118,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 		selectBuffer.append("	  IF(A.is_public_code=0,'是','否') isPublicCode      ");
 		selectBuffer.append("	FROM                                                 ");
 		selectBuffer.append("		gp_page A                                        ");
-		selectBuffer.append("	INNER JOIN gp_page B ON A.id = B.id                  ");
+		selectBuffer.append("	INNER JOIN gp_domain B ON A.domain_id = B.id         ");
 		selectBuffer.append("	WHERE                                                ");
 		selectBuffer.append("		1 = 1                                            ");
 
@@ -136,12 +138,11 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-				
+
 				if (entityRelatedObject.containsKey("kewwords") && StringUtils.isNotBlank(entityRelatedObject.getString("kewwords"))) {
 					selectBuffer.append(String.format(" and(  A.name like %1$s or A.url like %1$s )", "'%" + entityRelatedObject.getString("kewwords") + "%'"));
 				}
 
-				
 				// 模糊匹配下拉框使用的关键字
 				if (entityRelatedObject.containsKey(CustomSymbolic.AUTOCOMPLETE_KEY) && StringUtils.isNotBlank(entityRelatedObject.getString(CustomSymbolic.AUTOCOMPLETE_KEY)))
 					selectBuffer.append(" and A.url like '%").append(entityRelatedObject.getString(CustomSymbolic.AUTOCOMPLETE_KEY)).append("%'");
@@ -207,7 +208,7 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 	}
 
 	@RequestMapping(value = "/updatePageConstants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResultModel updatePageConstants() throws IOException {
+	public ResultModel updatePageConstants() throws IOException, DateParseException, ParseException {
 		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			throw new GlobalException("缺少必要参数！");
@@ -221,20 +222,14 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 		return traverseGenerate(frontPagePath, jsConstantsPath);
 	}
 
-	private ResultModel traverseGenerate(String frontPagePath, String jsConstantsPath) throws IOException {
+	private ResultModel traverseGenerate(String frontPagePath, String jsConstantsPath) throws IOException, DateParseException, ParseException {
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("	SELECT A.url url FROM gp_page A");
+		selectBuffer.append("	SELECT * FROM gp_page A");
 		sqlMap.put("Sql", selectBuffer.toString());
-		String jsonStr = "{\"pageIndex\":1,\"pageSize\":10000}";
-		JSONObject jsonObject = JSONObject.fromObject(jsonStr);
-		sqlMap.put("Page", jsonObject);
-		ResultModel resultModel = gpPageUntBll.getListBySQL(sqlMap);
-		List<Map<String, Object>> pageList = CastObjectUtil.cast(resultModel.getData());
-		List<String> urls = new ArrayList<String>();
-		for (Map<String, Object> page : pageList) {
-			urls.add(page.get("url").toString());
-		}
+		ResultModel result = gpPageUntBll.getListBySQL(sqlMap);
+		List<Map<String, Object>> pageList = CastObjectUtil.cast(result.getData());
+		ArrayList<GpPage> newPageList = new ArrayList<GpPage>();
 
 		File file = new File(frontPagePath);
 		if (!file.exists())
@@ -277,22 +272,40 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 				bufferedOutputStream.flush();
 				bufferedOutputStream.close();
 
-				if (!urls.contains(path)) {
-					GpPage jsonData = new GpPage();
-					jsonData.setId(Tools.getUUID());
-					jsonData.setDomainId(DomainEnum.GP.getId());
-					jsonData.setName(DomainEnum.GP.getName());
-					jsonData.setUrl(path);
-					jsonData.setAddTime(new Date());
-					jsonData.setIsPublicCode((byte) 0);
-					resultModel = gpPageUntBll.add(jsonData);
+				GpPage gpPage = new GpPage();
+				gpPage.setDomainId(DomainEnum.GP.getId());
+				int beginIndex = path.lastIndexOf('/');
+				int endIndex = path.lastIndexOf('.');
+				if (beginIndex == -1)
+					beginIndex = 0;
+				if (endIndex == -1)
+					endIndex = path.length();
+				gpPage.setName(path.substring(beginIndex, endIndex));
+				gpPage.setUrl(path);
+				gpPage.setIsPublicCode((byte) 0);
+
+				// 如果包含，说明是修改记录，是否公共、添加时间、编号这3个字段不做修改、
+				for (Map<String, Object> pageMap : pageList) {
+					if (pageMap.get("url").equals(path)) {
+						gpPage.setId(pageMap.get("id").toString());
+						if (pageMap.get("serial_no") != null)
+							gpPage.setSerialNo(pageMap.get("serial_no").toString());
+						if (pageMap.get("is_public_code") != null)
+							gpPage.setIsPublicCode(Byte.valueOf(pageMap.get("is_public_code").toString()));
+						gpPage.setAddTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pageMap.get("add_time").toString()));
+
+						break;
+					}
 				}
+				newPageList.add(gpPage);
 
 			}
 
 		}
-		resultModel.setResultMessage("页面的JS常量及对应数据库中的记录更新成功！");
-		return resultModel;
+
+		result = gpPageUntBll.addListWithDffOrAdd(newPageList);
+		result.setResultMessage("页面的JS常量及对应数据库中的记录更新成功！");
+		return result;
 	}
 
 }

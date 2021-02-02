@@ -24,7 +24,7 @@ import com.zee.app.generate.swagger.da.DaSentimentThemeGenSwgApp;
 import com.zee.bll.extend.unity.da.DaSentimentArticleUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.da.DaSentimentTheme;
-import com.zee.set.enumer.sentimentEnum;
+import com.zee.set.enumer.SentimentEnum;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.TimesView;
 
@@ -166,7 +166,7 @@ public class  DaSentimentThemeSwgApp extends  DaSentimentThemeGenSwgApp {
 			int all24Num = 0;
 			int negative24Num = 0;
 			for (Map<String, Object> map3 : artList) {
-				if(sentimentEnum.FUMIAN.getCode() == Byte.valueOf(map3.get("sentimentTypeCode").toString())){
+				if(SentimentEnum.FUMIAN.getCode() == Byte.valueOf(map3.get("sentimentTypeCode").toString())){
 					negative24Num ++;
 				}
 				all24Num ++;

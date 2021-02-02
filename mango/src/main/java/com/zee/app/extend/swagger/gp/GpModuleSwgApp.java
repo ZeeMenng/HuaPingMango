@@ -3,7 +3,7 @@ package com.zee.app.extend.swagger.gp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +26,11 @@ import com.zee.bll.extend.unity.gp.GpDomainUntBll;
 import com.zee.bll.extend.unity.gp.GpMenuUntBll;
 import com.zee.bll.extend.unity.gp.GprResourceUntBll;
 import com.zee.ent.custom.ResultModel;
-import com.zee.ent.extend.gp.GpMenu;
 import com.zee.ent.extend.gp.GpModule;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GprResource;
 import com.zee.ent.parameter.gp.GpDomainParameter;
 import com.zee.ent.parameter.gp.GpModuleParameter;
-import com.zee.set.enumer.DictionaryModuleCascadeEnum;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.CastObjectUtil;
 import com.zee.utl.ClassFieldNullable;
@@ -101,19 +99,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		jsonData.setAddTime(new Date());
 		jsonData.setUpdateTime(new Date());
 		ResultModel result = gpModuleUntBll.add(jsonData);
-		// 根据级联参数类型决定是否级联处理菜单部分
-		if (jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.ALL.getCode() || jsonData.getCascadeTypeCode() == DictionaryModuleCascadeEnum.ADD.getCode()) {
-			GpMenu gpMenu = new GpMenu();
-			gpMenu.setDomainId(jsonData.getDomainId());
-			gpMenu.setDomainName(jsonData.getDomainName());
-			gpMenu.setModuleId(jsonData.getId());
-			gpMenu.setName(jsonData.getName());
-			gpMenu.setPriority(jsonData.getPriority());
-			gpMenu.setRemark(jsonData.getRemark());
-			gpMenu.setAddTime(jsonData.getAddTime());
-			gpMenu.setUpdateTime(jsonData.getUpdateTime());
-			gpMenuUntBll.add(gpMenu);
-		}
+
 		return result;
 	}
 
@@ -213,11 +199,10 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		ResultModel result = new ResultModel();
 
 		result = gpResourceSplBll.getListByBusinessId(id);
-		ArrayList<GpResource> iconResuourceList = (ArrayList<GpResource>) result.getData();
-
+		ArrayList<GpResource> iconResuourceList = CastObjectUtil.cast(result.getData());
 		result = gpModuleUntBll.getModel(id);
 
-		GpModule gpModule = (GpModule) result.getData();
+		GpModule gpModule = CastObjectUtil.cast(result.getData());
 
 		String userIconIds = "";
 		String userIconPaths = "";

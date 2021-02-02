@@ -7,7 +7,7 @@ package com.zee.set.enumer;
  * @updateDate 2018年7月25日 下午4:49:10
  * @description 组织机构类型枚举
  */
-public enum OrgTypeEnum {
+public enum DiOrgTypeEnum {
 	
 	XIANZHENGFU((byte) 1, "县政府"),
 	SHENGSHISHUANGGUANDANWEI((byte) 2, "省市双管单位"),
@@ -24,13 +24,13 @@ public enum OrgTypeEnum {
 
 	private Byte code;
 
-	private OrgTypeEnum(Byte code, String text) {
+	private DiOrgTypeEnum(Byte code, String text) {
 		this.text = text;
 		this.code = code;
 	}
 
 	public static String getText(Byte code) {
-		for (OrgTypeEnum c : OrgTypeEnum.values()) {
+		for (DiOrgTypeEnum c : DiOrgTypeEnum.values()) {
 			if (c.getCode() == code) {
 				return c.text;
 			}

@@ -38,7 +38,7 @@ import com.zee.ent.generate.da.DaCommonFieldGenEnt;
 import com.zee.ent.parameter.da.DaBaseInfoParameter;
 import com.zee.ent.parameter.da.DaProcessParameter;
 import com.zee.set.enumer.DictionaryEnum;
-import com.zee.set.enumer.EnterpriseTypeEnum;
+import com.zee.set.enumer.DiEnterpriseTypeEnum;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
@@ -495,7 +495,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 					.append(" dei.is_corporate_champion_type_code='0'")//龙头企业
 					.append(" AND YEAR (dcf.start_time) ='"+year+"' ")
 					.append(" and dcf.area_latitude_type_code='8'")//企业个体
-					.append(" and dei.enterprise_type_code='"+EnterpriseTypeEnum.JIAGONG.getCode()+"' ")//加工
+					.append(" and dei.enterprise_type_code='"+DiEnterpriseTypeEnum.JIAGONG.getCode()+"' ")//加工
 					.append(" group by dp.`name`");//龙头企业
         
 		map.put("Sql", selectBuffer.toString());
@@ -732,7 +732,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 							.append(" FROM da_enterprise_info dp")
 							//.append(" INNER JOIN da_common_field dcf ON dcf.id = dp.common_field_id ")
 							.append(" where (YEAR(dp.found_date) <  '"+year+"'  or  YEAR(dp.found_date) =  '"+year+"') ")
-							.append(" and dp.enterprise_type_code='"+EnterpriseTypeEnum.JIAGONG.getCode()+"' ")
+							.append(" and dp.enterprise_type_code='"+DiEnterpriseTypeEnum.JIAGONG.getCode()+"' ")
 							.append(" ) t1")
 							.append(" ) t3")
 							.append(" LEFT JOIN ")
@@ -741,7 +741,7 @@ public class  DaProcessSwgApp extends  DaProcessGenSwgApp {
 							.append(" FROM da_enterprise_info dp")
 							//.append(" INNER JOIN da_common_field dcf ON dcf.id = dp.common_field_id")
 							.append(" where YEAR(dp.found_date) < '"+year+"' ")
-							.append(" and dp.enterprise_type_code='"+EnterpriseTypeEnum.JIAGONG.getCode()+"' ")
+							.append(" and dp.enterprise_type_code='"+DiEnterpriseTypeEnum.JIAGONG.getCode()+"' ")
 							.append("  ) t1")
 							.append("  ) t4")
 							.append(" ON t3.YearMonth <> t4.lastYearMonth) t5");

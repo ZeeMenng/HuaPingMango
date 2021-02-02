@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import com.zee.ent.base.BaseEnt;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/28 16:09:29
+ * @updateDate 2021/2/2 18:48:53
  * @description 实体类GpValueLocationGenEnt，自动生成。调用存储过程查询某个值在本数据库中的位置，记录相关信息到本表中。
  */
 

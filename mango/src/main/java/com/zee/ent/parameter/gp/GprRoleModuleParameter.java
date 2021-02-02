@@ -1,16 +1,13 @@
 package com.zee.ent.parameter.gp;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.ent.extend.gp.GprRoleModule;
 import com.zee.ent.generate.gp.GprRoleModuleGenEnt;
 import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-
 
 /**
  * @author Zee
@@ -42,7 +39,6 @@ public class GprRoleModuleParameter extends BaseParameter {
 
 	}
 
-
 	@ApiModel(value = "GprRoleModuleDeleteByCompositeIdList", description = "批量删除GprRoleModule所复合主键参数")
 	public static class DeleteByCompositeIdList {
 
@@ -58,7 +54,7 @@ public class GprRoleModuleParameter extends BaseParameter {
 		}
 
 	}
-	
+
 	@ApiModel(value = "GprRoleModuleUpdateList", description = "批量修改GprRoleModule所需参数")
 	public static class UpdateList extends BaseParameter.BaseParamUpdateList {
 
@@ -90,16 +86,9 @@ public class GprRoleModuleParameter extends BaseParameter {
 		}
 
 		@ApiModel(value = "GprRoleModuleGetListEntityRelated", description = "模糊查询GprRoleModule所需的参数，实体类相关。")
-		public static class EntityRelated extends GprRoleModuleGenEnt{
-        
+		public static class EntityRelated extends GprRoleModuleGenEnt {
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

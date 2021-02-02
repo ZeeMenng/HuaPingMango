@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.pe;
+package com.zee.ent.generate.pe;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

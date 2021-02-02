@@ -1,4 +1,4 @@
-﻿package com.zee.ent.generate.gp;
+package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import com.zee.ent.extend.gp.GpOperLogLogin;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/1/29 16:02:37
+ * @updateDate 2021/2/2 18:48:49
  * @description 实体类GpOperLogGenEnt，自动生成。操作日志。
  */
 
@@ -28,7 +28,7 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
     private String domainId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
     private String id;
-    @ApiModelProperty(value="传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。",hidden=false,required=false)
+    @ApiModelProperty(value="期望影响记录总数。期望写操作影响的的记录总数，不确定数量（比如关联删除、非主键删除）或读取操作时传入参数为0。",hidden=false,required=false)
     private Integer incomeCount;
     @ApiModelProperty(value="传入参数。记录调用BLL层方法时传入的参数值，对象的话序列化成JSON字符串保存。",hidden=false,required=false)
     private String incomeValue;
@@ -105,14 +105,14 @@ public class GpOperLogGenEnt extends BaseEnt implements Serializable {
 	}
     
 	/**
-	 * get方法。传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。
+	 * get方法。期望影响记录总数。期望写操作影响的的记录总数，不确定数量（比如关联删除、非主键删除）或读取操作时传入参数为0。
 	 */
 	public Integer getIncomeCount() {
 		return this.incomeCount;
 	}
 
 	/**
-	 * set方法。传入记录总数。写入操作时传入的记录总数，读取操作时传入参数为0。
+	 * set方法。期望影响记录总数。期望写操作影响的的记录总数，不确定数量（比如关联删除、非主键删除）或读取操作时传入参数为0。
 	 */
 	public void setIncomeCount(Integer incomeCount) {
 		this.incomeCount = incomeCount;

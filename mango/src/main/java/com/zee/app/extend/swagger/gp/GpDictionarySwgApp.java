@@ -1,17 +1,10 @@
 package com.zee.app.extend.swagger.gp;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +23,15 @@ import com.zee.ent.parameter.base.BaseParameter;
 import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
 import com.zee.ent.parameter.gp.GpDictionaryParameter;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DateUtils;
 import com.zee.utl.TimesView;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * @author Zee
@@ -42,11 +42,11 @@ import com.zee.utl.TimesView;
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gpDictionary")
 public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
-	
+
 	@Autowired
 	@Qualifier("gpRegionUntBll")
 	protected GpRegionUntBll gpRegionUntBll;
-	
+
 	@ApiOperation(value = "获取当前时间及过去时间", notes = "获取当前时间及过去时间")
 	@RequestMapping(value = "/getTimesView", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTimesView() {
@@ -56,13 +56,13 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
 
-		String viewName = "";//视图名称
-		String pastNum = "";//过去数字
-		String hasCurrent = "";//是否包含现在
-		String afterNum = "";//将来数字
-		String isASC = "";//排序
-		
-        if (!StringUtils.isBlank(jsonData)) {
+		String viewName = "";// 视图名称
+		String pastNum = "";// 过去数字
+		String hasCurrent = "";// 是否包含现在
+		String afterNum = "";// 将来数字
+		String isASC = "";// 排序
+
+		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 
 			if (jsonObject.containsKey("entityRelated")) {
@@ -79,15 +79,15 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 					isASC = entityRelatedObject.getString("isASC");
 			}
 		}
-        Map<String, String> pmap = new HashMap<String, String>();
-        pmap.put("viewName", viewName);
-        pmap.put("pastNum", pastNum);
-        pmap.put("hasCurrent", hasCurrent);
-        pmap.put("afterNum", afterNum);
-        pmap.put("isASC", isASC);
-        List<String> timesList = TimesView.getTimesView(pmap);
-        resultModel.setData(timesList);
-        resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
+		Map<String, String> pmap = new HashMap<String, String>();
+		pmap.put("viewName", viewName);
+		pmap.put("pastNum", pastNum);
+		pmap.put("hasCurrent", hasCurrent);
+		pmap.put("afterNum", afterNum);
+		pmap.put("isASC", isASC);
+		List<String> timesList = TimesView.getTimesView(pmap);
+		resultModel.setData(timesList);
+		resultModel.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		return resultModel;
 	}
 
@@ -105,7 +105,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		entityRelated.setTypeId(typeId);
 		order.setColumnName("priority");
 		order.setIsASC(true);
-		
+
 		order1.setColumnName("code");
 		order1.setIsASC(true);
 
@@ -121,27 +121,22 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 
 		return result;
 	}
-	
+
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表和要修改为的信息承载实体", required = true, dataType = "GpDictionaryUpdateList") })
 	@RequestMapping(value = "/updateList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updateList(@RequestBody GpDictionaryParameter.UpdateList jsonData) {
-		
+
 		ResultModel result = new ResultModel();
-		if((jsonData.getEntity().getCode()==null)
-				&&(jsonData.getEntity().getTypeId().equals("")||jsonData.getEntity().getTypeId()==null)
-				&&(jsonData.getEntity().getText().equals("")||jsonData.getEntity().getText()==null)
-				&&(jsonData.getEntity().getPriority()==null)
-				&&(jsonData.getEntity().getRemark().equals("")||jsonData.getEntity().getRemark()==null)
-				){
+		if ((jsonData.getEntity().getCode() == null) && (jsonData.getEntity().getTypeId().equals("") || jsonData.getEntity().getTypeId() == null) && (jsonData.getEntity().getText().equals("") || jsonData.getEntity().getText() == null) && (jsonData.getEntity().getPriority() == null) && (jsonData.getEntity().getRemark().equals("") || jsonData.getEntity().getRemark() == null)) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 			return result;
-		}else{
+		} else {
 			result = gpDictionaryUntBll.updateList(jsonData);
-					return result;
-				}
+			return result;
+		}
 	}
-	
+
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
@@ -166,8 +161,8 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		selectBuffer.append("	INNER JOIN gp_dictionary_type B ON A.type_id = B.id               ");
 		selectBuffer.append("	WHERE                                                             ");
 		selectBuffer.append("		1 = 1                                                         ");
-		
-        if (!StringUtils.isBlank(jsonData)) {
+
+		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 
 			if (jsonObject.containsKey("selectRows")) {
@@ -183,7 +178,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-                
+
 				if (entityRelatedObject.containsKey("code") && StringUtils.isNotBlank(entityRelatedObject.getString("code")))
 					selectBuffer.append(" and A.code like '%").append(entityRelatedObject.getString("code")).append("%'");
 				if (entityRelatedObject.containsKey("text") && StringUtils.isNotBlank(entityRelatedObject.getString("text")))
@@ -218,7 +213,7 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 
 		return resultModel;
 	}
-	
+
 	@RequestMapping(value = "/exportExcel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void exportExcel() {
 		ResultModel resultModel = getListByJsonData();
@@ -242,19 +237,19 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		}
 
 	}
-	
+
 	@ApiOperation(value = "根据区域等级获取地理区域列表", notes = "根据区域等级获取地理区域列表，路径拼接模式")
 	@RequestMapping(value = "/getRegionListByLevel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getRegionListByLevel() {
 
 		ResultModel resultModel = new ResultModel();
-		
+
 		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
 		if (StringUtils.isBlank(jsonData))
 			return resultModel;
-		
+
 		String level = "5";
-		
+
 		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 			if (jsonObject.containsKey("entityRelated")) {
@@ -263,14 +258,14 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 					level = entityRelatedObject.getString("level");
 			}
 		}
-		
-		List<Map<String,Object>> originList = getOriginRegionList();
-		List<Map<String,Object>> resultList = new ArrayList<Map<String,Object>>();
-		
-		if(originList!=null && originList.size()>=1) {
-			for(Map<String,Object> perMap:originList) {
-				//对perMap进行递归
-				Map<String,Object> tempMap = recursionGetChildrenRegion(perMap,level);
+
+		List<Map<String, Object>> originList = getOriginRegionList();
+		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+
+		if (originList != null && originList.size() >= 1) {
+			for (Map<String, Object> perMap : originList) {
+				// 对perMap进行递归
+				Map<String, Object> tempMap = recursionGetChildrenRegion(perMap, level);
 				resultList.add(tempMap);
 			}
 		}
@@ -279,27 +274,27 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		return resultModel;
 	}
 
-	private Map<String, Object> recursionGetChildrenRegion(Map<String, Object> perMap,String level) {
-		Map<String, Object> resultMap = new HashMap<String,Object>();
+	private Map<String, Object> recursionGetChildrenRegion(Map<String, Object> perMap, String level) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		String code = "";
 		String name = "";
-		//根据perMap中的code值获取对应的level
-		if(perMap.containsKey("value")) {
+		// 根据perMap中的code值获取对应的level
+		if (perMap.containsKey("value")) {
 			code = (String) perMap.get("value");
 			resultMap.put("value", code);
 		}
-		if(perMap.containsKey("label")) {
+		if (perMap.containsKey("label")) {
 			name = (String) perMap.get("label");
 			resultMap.put("label", name);
 		}
 		int perLevel = getLevelByCode(code);
-		if(perLevel < Integer.parseInt(level)) {
-			//获取farther_code为code的地区列表
-			List<Map<String,Object>> perChildrenRegionList = getChildrenRegionListByFartherCode(code);
-			List<Map<String,Object>> perResultRegionList = new ArrayList<Map<String,Object>>();
-			if(perChildrenRegionList!=null && perChildrenRegionList.size()>=1) {
-				for(Map<String,Object> perChildrenMap:perChildrenRegionList) {
-					Map<String,Object> tempMap = recursionGetChildrenRegion(perChildrenMap,level);
+		if (perLevel < Integer.parseInt(level)) {
+			// 获取farther_code为code的地区列表
+			List<Map<String, Object>> perChildrenRegionList = getChildrenRegionListByFartherCode(code);
+			List<Map<String, Object>> perResultRegionList = new ArrayList<Map<String, Object>>();
+			if (perChildrenRegionList != null && perChildrenRegionList.size() >= 1) {
+				for (Map<String, Object> perChildrenMap : perChildrenRegionList) {
+					Map<String, Object> tempMap = recursionGetChildrenRegion(perChildrenMap, level);
 					perResultRegionList.add(tempMap);
 				}
 			}
@@ -312,14 +307,12 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		
-		/*SELECT 
-		    A.`code` AS value,
-		    A.`name` AS label 
-		FROM
-		    gp_region A 
-		WHERE A.farther_code = '031000000'  */
-		
+
+		/*
+		 * SELECT A.`code` AS value, A.`name` AS label FROM gp_region A WHERE
+		 * A.farther_code = '031000000'
+		 */
+
 		selectBuffer.append(" SELECT														");
 		selectBuffer.append(" A.`code` AS value,											");
 		selectBuffer.append(" A.`name` AS label 											");
@@ -331,30 +324,22 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 			selectBuffer.append(code);
 		}
 		selectBuffer.append("'");
-		
+
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpRegionUntBll.getListBySQL(map);
-		
-		Object obj = resultModel.getData();
-		List<Map<String,Object>> list = null;
-		if(obj!=null) {
-			list = (List<Map<String, Object>>) obj;
-			return list;
-		}
-		return null;
+		return CastObjectUtil.cast(resultModel.getData());
 	}
 
 	private int getLevelByCode(String code) {
 		ResultModel resultModel = new ResultModel();
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		
-		/*SELECT 
-		    A.`region_level` AS regionLevel
-		FROM
-		    gp_region A 
-		WHERE A.code = ''  */
-		
+
+		/*
+		 * SELECT A.`region_level` AS regionLevel FROM gp_region A WHERE A.code
+		 * = ''
+		 */
+
 		selectBuffer.append(" SELECT														");
 		selectBuffer.append(" A.`region_level` AS regionLevel								");
 		selectBuffer.append(" FROM															");
@@ -365,17 +350,17 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 			selectBuffer.append(code);
 		}
 		selectBuffer.append("'");
-		
+
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpRegionUntBll.getListBySQL(map);
-		
+
 		Object obj = resultModel.getData();
-		List<Map<String,Object>> list = null;
-		if(obj!=null) {
-			list = (List<Map<String, Object>>) obj;
-			if(list.size()>=1) {
-				Map<String,Object> tempMap = list.get(0);
-				if(tempMap.containsKey("regionLevel")) {
+		List<Map<String, Object>> list = null;
+		if (obj != null) {
+			list =CastObjectUtil.cast(obj);
+			if (list.size() >= 1) {
+				Map<String, Object> tempMap = list.get(0);
+				if (tempMap.containsKey("regionLevel")) {
 					int level = (int) tempMap.get("regionLevel");
 					return level;
 				}
@@ -388,31 +373,29 @@ public class GpDictionarySwgApp extends GpDictionaryGenSwgApp {
 		ResultModel resultModel = new ResultModel();
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
-		
-		/*SELECT 
-		    A.`code` AS value,
-		    A.`name` AS label 
-		FROM
-		    gp_region A 
-		WHERE A.region_level = '1' */
-		
+
+		/*
+		 * SELECT A.`code` AS value, A.`name` AS label FROM gp_region A WHERE
+		 * A.region_level = '1'
+		 */
+
 		selectBuffer.append(" SELECT														");
 		selectBuffer.append(" A.`code` AS value,											");
 		selectBuffer.append(" A.`name` AS label 											");
 		selectBuffer.append(" FROM															");
 		selectBuffer.append(" gp_region A 													");
 		selectBuffer.append(" WHERE A.region_level = '1'									");
-		
+
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpRegionUntBll.getListBySQL(map);
-		
+
 		Object obj = resultModel.getData();
-		List<Map<String,Object>> list = null;
-		if(obj!=null) {
-			list = (List<Map<String, Object>>) obj;
+		List<Map<String, Object>> list = null;
+		if (obj != null) {
+			list =CastObjectUtil.cast(obj);
 			return list;
 		}
 		return null;
 	}
-	
+
 }

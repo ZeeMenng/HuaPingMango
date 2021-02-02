@@ -80,7 +80,14 @@ $(document).ready(
 						var href = RP_GPPAGE_DETAIL + "?" + RECORD_ID + "=" + event.id;
 						return href;
 					},
-				}, {
+				}, 
+				{
+					"columnName" : "domainName",
+					"columnText" : "应用领域",
+					"style" : "text-align:left"
+					
+				},
+				{
 					"columnName" : "url",
 					"columnText" : "存放路径",
 					"width" : '300px',

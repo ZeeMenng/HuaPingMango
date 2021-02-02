@@ -1,6 +1,7 @@
 package com.zee.ent.parameter.gp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.generate.gp.GpUserGenEnt;
@@ -8,8 +9,6 @@ import com.zee.ent.parameter.base.BaseParameter;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-
 
 /**
  * @author Zee
@@ -72,104 +71,97 @@ public class GpUserParameter extends BaseParameter {
 		}
 
 		@ApiModel(value = "GpUserGetListEntityRelated", description = "模糊查询GpUser所需的参数，实体类相关。")
-		public static class EntityRelated extends GpUserGenEnt{
-        
-        @ApiModelProperty(value="记录创建时间。查询起止时间。",required=false)
-		private Date beginAddTime;
+		public static class EntityRelated extends GpUserGenEnt {
 
-        @ApiModelProperty(value="记录创建时间。查询结束时间。",required=false)
-		private Date endAddTime;
+			@ApiModelProperty(value = "记录创建时间。查询起止时间。", required = false)
+			private Date beginAddTime;
 
-        @ApiModelProperty(value="出生日期。查询起止时间。",required=false)
-		private Date beginBirthTime;
+			@ApiModelProperty(value = "记录创建时间。查询结束时间。", required = false)
+			private Date endAddTime;
 
-        @ApiModelProperty(value="出生日期。查询结束时间。",required=false)
-		private Date endBirthTime;
+			@ApiModelProperty(value = "出生日期。查询起止时间。", required = false)
+			private Date beginBirthTime;
 
-        @ApiModelProperty(value="最后登录时间。查询起止时间。",required=false)
-		private Date beginLastLoginTime;
+			@ApiModelProperty(value = "出生日期。查询结束时间。", required = false)
+			private Date endBirthTime;
 
-        @ApiModelProperty(value="最后登录时间。查询结束时间。",required=false)
-		private Date endLastLoginTime;
+			@ApiModelProperty(value = "最后登录时间。查询起止时间。", required = false)
+			private Date beginLastLoginTime;
 
-        @ApiModelProperty(value="记录最后一次修改时间。查询起止时间。",required=false)
-		private Date beginUpdateTime;
+			@ApiModelProperty(value = "最后登录时间。查询结束时间。", required = false)
+			private Date endLastLoginTime;
 
-        @ApiModelProperty(value="记录最后一次修改时间。查询结束时间。",required=false)
-		private Date endUpdateTime;
+			@ApiModelProperty(value = "记录最后一次修改时间。查询起止时间。", required = false)
+			private Date beginUpdateTime;
 
-		public Date getBeginAddTime() {
-			return this.beginAddTime;
-		}
-        
-		public void setBeginAddTime(Date beginAddTime) {
-			this.beginAddTime = beginAddTime;
-		}
-        
-        public Date getEndAddTime() {
-			return this.endAddTime;
-		}
-        
-		public void setEndAddTime(Date endAddTime) {
-			this.endAddTime = endAddTime;
-		}
-        
-		public Date getBeginBirthTime() {
-			return this.beginBirthTime;
-		}
-        
-		public void setBeginBirthTime(Date beginBirthTime) {
-			this.beginBirthTime = beginBirthTime;
-		}
-        
-        public Date getEndBirthTime() {
-			return this.endBirthTime;
-		}
-        
-		public void setEndBirthTime(Date endBirthTime) {
-			this.endBirthTime = endBirthTime;
-		}
-        
-		public Date getBeginLastLoginTime() {
-			return this.beginLastLoginTime;
-		}
-        
-		public void setBeginLastLoginTime(Date beginLastLoginTime) {
-			this.beginLastLoginTime = beginLastLoginTime;
-		}
-        
-        public Date getEndLastLoginTime() {
-			return this.endLastLoginTime;
-		}
-        
-		public void setEndLastLoginTime(Date endLastLoginTime) {
-			this.endLastLoginTime = endLastLoginTime;
-		}
-        
-		public Date getBeginUpdateTime() {
-			return this.beginUpdateTime;
-		}
-        
-		public void setBeginUpdateTime(Date beginUpdateTime) {
-			this.beginUpdateTime = beginUpdateTime;
-		}
-        
-        public Date getEndUpdateTime() {
-			return this.endUpdateTime;
-		}
-        
-		public void setEndUpdateTime(Date endUpdateTime) {
-			this.endUpdateTime = endUpdateTime;
-		}
-        
+			@ApiModelProperty(value = "记录最后一次修改时间。查询结束时间。", required = false)
+			private Date endUpdateTime;
+
+			public Date getBeginAddTime() {
+				return this.beginAddTime;
+			}
+
+			public void setBeginAddTime(Date beginAddTime) {
+				this.beginAddTime = beginAddTime;
+			}
+
+			public Date getEndAddTime() {
+				return this.endAddTime;
+			}
+
+			public void setEndAddTime(Date endAddTime) {
+				this.endAddTime = endAddTime;
+			}
+
+			public Date getBeginBirthTime() {
+				return this.beginBirthTime;
+			}
+
+			public void setBeginBirthTime(Date beginBirthTime) {
+				this.beginBirthTime = beginBirthTime;
+			}
+
+			public Date getEndBirthTime() {
+				return this.endBirthTime;
+			}
+
+			public void setEndBirthTime(Date endBirthTime) {
+				this.endBirthTime = endBirthTime;
+			}
+
+			public Date getBeginLastLoginTime() {
+				return this.beginLastLoginTime;
+			}
+
+			public void setBeginLastLoginTime(Date beginLastLoginTime) {
+				this.beginLastLoginTime = beginLastLoginTime;
+			}
+
+			public Date getEndLastLoginTime() {
+				return this.endLastLoginTime;
+			}
+
+			public void setEndLastLoginTime(Date endLastLoginTime) {
+				this.endLastLoginTime = endLastLoginTime;
+			}
+
+			public Date getBeginUpdateTime() {
+				return this.beginUpdateTime;
+			}
+
+			public void setBeginUpdateTime(Date beginUpdateTime) {
+				this.beginUpdateTime = beginUpdateTime;
+			}
+
+			public Date getEndUpdateTime() {
+				return this.endUpdateTime;
+			}
+
+			public void setEndUpdateTime(Date endUpdateTime) {
+				this.endUpdateTime = endUpdateTime;
+			}
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

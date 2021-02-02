@@ -26,7 +26,7 @@ import com.zee.bll.extend.unity.gp.GpPageUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpInterface;
 import com.zee.ent.extend.gp.GpPage;
-import com.zee.set.enumer.InterfaceType;
+import com.zee.set.enumer.DiInterfaceType;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.symbolic.CustomSymbolic;
 
@@ -154,9 +154,9 @@ public class ConstantsUtils {
 				jsonData.setAddTime(new Date());
 				jsonData.setIsPublicCode((byte) 0);
 				if ("POST".equals(handlerMethodsMap.get("type"))) {
-					jsonData.setTypeCode(InterfaceType.POST.getCode());
+					jsonData.setTypeCode(DiInterfaceType.POST.getCode());
 				} else if ("GET".equals(handlerMethodsMap.get("type"))) {
-					jsonData.setTypeCode(InterfaceType.GET.getCode());
+					jsonData.setTypeCode(DiInterfaceType.GET.getCode());
 				}
 				gpInterfaceUntBll.add(jsonData);
 			}

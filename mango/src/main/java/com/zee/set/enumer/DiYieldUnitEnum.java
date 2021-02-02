@@ -8,9 +8,9 @@ package com.zee.set.enumer;
  * @description 产量枚举
  */
 public enum DiYieldUnitEnum {
-	QIANKE((byte) 1, "千克/亩"),
-	KE((byte) 2, "克/亩"),
-	;
+	QIANKE((byte) 1, "千克/亩"), 
+	
+	KE((byte) 2, "克/亩");
 
 	private String text;
 
@@ -48,4 +48,3 @@ public enum DiYieldUnitEnum {
 	}
 
 }
-	

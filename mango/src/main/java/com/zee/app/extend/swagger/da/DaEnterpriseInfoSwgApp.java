@@ -35,8 +35,8 @@ import com.zee.ent.parameter.da.DaEnterpriseInfoParameter;
 import com.zee.ent.parameter.da.DaPeasantInfoParameter;
 import com.zee.set.enumer.DataControlEnum;
 import com.zee.set.enumer.DictionaryEnum;
-import com.zee.set.enumer.EnterpriseTypeEnum;
-import com.zee.set.enumer.OrgTypeEnum;
+import com.zee.set.enumer.DiEnterpriseTypeEnum;
+import com.zee.set.enumer.DiOrgTypeEnum;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
 import com.zee.utl.DateUtils;
@@ -178,8 +178,8 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 		gpOrganization.setName(jsonData.getEnterpriseName());
 		gpOrganization.setShortName(jsonData.getEnterpriseName());
 		gpOrganization.setFartherId(CustomSymbolic.ORGANIZATION_ID_HUAPING_QIYE);
-		gpOrganization.setTypeCode(OrgTypeEnum.QITA.getCode());
-		gpOrganization.setTypeText(OrgTypeEnum.QITA.getText());
+		gpOrganization.setTypeCode(DiOrgTypeEnum.QITA.getCode());
+		gpOrganization.setTypeText(DiOrgTypeEnum.QITA.getText());
 		gpOrganization.setLevelCode((byte) 3);
 		gpOrganization.setLevelText("第三级");
 		ResultModel resultModel = gpOrganizationUntBll.add(gpOrganization);
@@ -297,7 +297,7 @@ public class  DaEnterpriseInfoSwgApp extends  DaEnterpriseInfoGenSwgApp {
 			jsonData.setLogoResourcePath(jsonData.getLogoResourcePath().substring(this.linkPath.length(), jsonData.getLogoResourcePath().length()));
 		}
 		if(jsonData.getEnterpriseTypeCode() != null){
-			jsonData.setEnterpriseTypeText(EnterpriseTypeEnum.getText(jsonData.getEnterpriseTypeCode()));
+			jsonData.setEnterpriseTypeText(DiEnterpriseTypeEnum.getText(jsonData.getEnterpriseTypeCode()));
 		}
 		resultModel = daEnterpriseInfoUntBll.update(jsonData);
 		return resultModel;

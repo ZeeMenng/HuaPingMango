@@ -31,7 +31,7 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpInterface;
 import com.zee.ent.parameter.gp.GpInterfaceParameter;
 import com.zee.set.enumer.DomainEnum;
-import com.zee.set.enumer.InterfaceType;
+import com.zee.set.enumer.DiInterfaceType;
 import com.zee.set.exception.GlobalException;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.CamelCaseUtl;
@@ -308,12 +308,12 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			String type = methodsCondition.toString();
 			if (type != null && type.startsWith("[") && type.endsWith("]")) {
 				type = type.substring(1, type.length() - 1);
-				if (InterfaceType.POST.name().equals(type)) {
-					typeCode = InterfaceType.POST.getCode();
-				} else if (InterfaceType.GET.name().equals(type)) {
-					typeCode = InterfaceType.GET.getCode();
+				if (DiInterfaceType.POST.name().equals(type)) {
+					typeCode = DiInterfaceType.POST.getCode();
+				} else if (DiInterfaceType.GET.name().equals(type)) {
+					typeCode = DiInterfaceType.GET.getCode();
 				} else {
-					typeCode = InterfaceType.POSTORGET.getCode();
+					typeCode = DiInterfaceType.POSTORGET.getCode();
 				}
 			}
 
@@ -343,7 +343,7 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 			// 如果是POST接口，设为非公共接口
 			gpInterface.setIsPublicCode(CustomSymbolic.DCODE_BOOLEAN_T);
-			if (typeCode == InterfaceType.POST.getCode())
+			if (typeCode == DiInterfaceType.POST.getCode())
 				gpInterface.setIsPublicCode(CustomSymbolic.DCODE_BOOLEAN_F);
 
 			// 如果包含，说明是修改记录，是否公共、添加时间、编号这3个字段不做修改、
@@ -365,7 +365,6 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 
 		result = gpInterfaceUntBll.addListWithDffOrAdd(gpInterfaceList);
 
-		result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
 		result.setResultMessage("接口记录更新成功……");
 		return result;
 	}
