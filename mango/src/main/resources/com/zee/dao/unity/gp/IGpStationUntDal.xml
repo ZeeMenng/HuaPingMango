@@ -174,21 +174,61 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpStation" >
     update gp_station
     <set >
-                  <if test="serialNo != null  and serialNo != '' " >
+                    <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
-                  </if>
-                  <if test="organizationId != null  and organizationId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="organizationId != null and organizationId=='-1'">
+                     organization_id = null,
+                  </when>
+                  <when test="organizationId != null and organizationId=='-2'">
+                     organization_id = '',
+                  </when>
+                  <when test="organizationId != null  and organizationId != '' " >
                      organization_id = #{organizationId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="responsibility != null  and responsibility != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="responsibility != null and responsibility=='-1'">
+                     responsibility = null,
+                  </when>
+                  <when test="responsibility != null and responsibility=='-2'">
+                     responsibility = '',
+                  </when>
+                  <when test="responsibility != null  and responsibility != '' " >
                      responsibility = #{responsibility,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -242,8 +282,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpStation.serialNo != null  and gpStation.serialNo  == '-1' ">
                      when id=#{gpStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpStation.serialNo != null  and gpStation.serialNo  == '-2' ">
+                     when id=#{gpStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="organization_id =case" suffix="end,">
@@ -253,8 +295,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpStation.organizationId != null  and gpStation.organizationId  == '-1' ">
                      when id=#{gpStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpStation.organizationId != null  and gpStation.organizationId  == '-2' ">
+                     when id=#{gpStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -264,8 +308,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpStation.name != null  and gpStation.name  == '-1' ">
                      when id=#{gpStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpStation.name != null  and gpStation.name  == '-2' ">
+                     when id=#{gpStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="responsibility =case" suffix="end,">
@@ -275,8 +321,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpStation.responsibility != null  and gpStation.responsibility  == '-1' ">
                      when id=#{gpStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpStation.responsibility != null  and gpStation.responsibility  == '-2' ">
+                     when id=#{gpStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -286,8 +334,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpStation.remark != null  and gpStation.remark  == '-1' ">
                      when id=#{gpStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpStation.remark != null  and gpStation.remark  == '-2' ">
+                     when id=#{gpStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -361,6 +411,8 @@ update_time,
           from gp_station
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

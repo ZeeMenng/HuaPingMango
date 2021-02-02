@@ -289,15 +289,39 @@ remark=values(remark)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpLoginLog" >
     update gp_login_log
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userName != null  and userName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="loginTime != null ">
                      login_time = #{loginTime,jdbcType=TIMESTAMP},
                   </if>
@@ -310,27 +334,75 @@ remark=values(remark)
                   <if test="duration != null ">
                      duration = #{duration,jdbcType=INTEGER},
                   </if>
-                  <if test="ip != null  and ip != '' " >
+                    <choose>
+                   <when test="ip != null and ip=='-1'">
+                     ip = null,
+                  </when>
+                  <when test="ip != null and ip=='-2'">
+                     ip = '',
+                  </when>
+                  <when test="ip != null  and ip != '' " >
                      ip = #{ip,jdbcType=VARCHAR},
-                  </if>
-                  <if test="ipAddress != null  and ipAddress != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="ipAddress != null and ipAddress=='-1'">
+                     ip_address = null,
+                  </when>
+                  <when test="ipAddress != null and ipAddress=='-2'">
+                     ip_address = '',
+                  </when>
+                  <when test="ipAddress != null  and ipAddress != '' " >
                      ip_address = #{ipAddress,jdbcType=VARCHAR},
-                  </if>
-                  <if test="browser != null  and browser != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="browser != null and browser=='-1'">
+                     browser = null,
+                  </when>
+                  <when test="browser != null and browser=='-2'">
+                     browser = '',
+                  </when>
+                  <when test="browser != null  and browser != '' " >
                      browser = #{browser,jdbcType=VARCHAR},
-                  </if>
-                  <if test="resolution != null  and resolution != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="resolution != null and resolution=='-1'">
+                     resolution = null,
+                  </when>
+                  <when test="resolution != null and resolution=='-2'">
+                     resolution = '',
+                  </when>
+                  <when test="resolution != null  and resolution != '' " >
                      resolution = #{resolution,jdbcType=VARCHAR},
-                  </if>
-                  <if test="os != null  and os != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="os != null and os=='-1'">
+                     os = null,
+                  </when>
+                  <when test="os != null and os=='-2'">
+                     os = '',
+                  </when>
+                  <when test="os != null  and os != '' " >
                      os = #{os,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isSuccessCode != null ">
                      is_success_code = #{isSuccessCode,jdbcType=TINYINT},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -399,8 +471,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.domainId != null  and gpLoginLog.domainId  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.domainId != null  and gpLoginLog.domainId  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -410,8 +484,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.userId != null  and gpLoginLog.userId  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.userId != null  and gpLoginLog.userId  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
@@ -421,8 +497,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.userName != null  and gpLoginLog.userName  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.userName != null  and gpLoginLog.userName  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="login_time =case" suffix="end,">
@@ -460,8 +538,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.ip != null  and gpLoginLog.ip  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.ip != null  and gpLoginLog.ip  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="ip_address =case" suffix="end,">
@@ -471,8 +551,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.ipAddress != null  and gpLoginLog.ipAddress  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.ipAddress != null  and gpLoginLog.ipAddress  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="browser =case" suffix="end,">
@@ -482,8 +564,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.browser != null  and gpLoginLog.browser  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.browser != null  and gpLoginLog.browser  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="resolution =case" suffix="end,">
@@ -493,8 +577,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.resolution != null  and gpLoginLog.resolution  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.resolution != null  and gpLoginLog.resolution  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="os =case" suffix="end,">
@@ -504,8 +590,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.os != null  and gpLoginLog.os  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.os != null  and gpLoginLog.os  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_success_code =case" suffix="end,">
@@ -522,8 +610,10 @@ remark=values(remark)
                   </if>
                   <if test="gpLoginLog.remark != null  and gpLoginLog.remark  == '-1' ">
                      when id=#{gpLoginLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpLoginLog.remark != null  and gpLoginLog.remark  == '-2' ">
+                     when id=#{gpLoginLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -611,6 +701,8 @@ remark,
           from gp_login_log
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

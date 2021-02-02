@@ -198,30 +198,94 @@ add_time=values(add_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpResource" >
     update gp_resource
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="moduleId != null  and moduleId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="moduleId != null and moduleId=='-1'">
+                     module_id = null,
+                  </when>
+                  <when test="moduleId != null and moduleId=='-2'">
+                     module_id = '',
+                  </when>
+                  <when test="moduleId != null  and moduleId != '' " >
                      module_id = #{moduleId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="pageId != null  and pageId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="pageId != null and pageId=='-1'">
+                     page_id = null,
+                  </when>
+                  <when test="pageId != null and pageId=='-2'">
+                     page_id = '',
+                  </when>
+                  <when test="pageId != null  and pageId != '' " >
                      page_id = #{pageId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="originalName != null  and originalName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="originalName != null and originalName=='-1'">
+                     original_name = null,
+                  </when>
+                  <when test="originalName != null and originalName=='-2'">
+                     original_name = '',
+                  </when>
+                  <when test="originalName != null  and originalName != '' " >
                      original_name = #{originalName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="newName != null  and newName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="newName != null and newName=='-1'">
+                     new_name = null,
+                  </when>
+                  <when test="newName != null and newName=='-2'">
+                     new_name = '',
+                  </when>
+                  <when test="newName != null  and newName != '' " >
                      new_name = #{newName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="extension != null  and extension != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="extension != null and extension=='-1'">
+                     extension = null,
+                  </when>
+                  <when test="extension != null and extension=='-2'">
+                     extension = '',
+                  </when>
+                  <when test="extension != null  and extension != '' " >
                      extension = #{extension,jdbcType=VARCHAR},
-                  </if>
-                  <if test="path != null  and path != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="path != null and path=='-1'">
+                     path = null,
+                  </when>
+                  <when test="path != null and path=='-2'">
+                     path = '',
+                  </when>
+                  <when test="path != null  and path != '' " >
                      path = #{path,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="priority != null ">
                      priority = #{priority,jdbcType=INTEGER},
                   </if>
@@ -290,8 +354,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.domainId != null  and gpResource.domainId  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.domainId != null  and gpResource.domainId  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="module_id =case" suffix="end,">
@@ -301,8 +367,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.moduleId != null  and gpResource.moduleId  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.moduleId != null  and gpResource.moduleId  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="page_id =case" suffix="end,">
@@ -312,8 +380,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.pageId != null  and gpResource.pageId  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.pageId != null  and gpResource.pageId  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -323,8 +393,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.userId != null  and gpResource.userId  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.userId != null  and gpResource.userId  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="original_name =case" suffix="end,">
@@ -334,8 +406,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.originalName != null  and gpResource.originalName  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.originalName != null  and gpResource.originalName  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="new_name =case" suffix="end,">
@@ -345,8 +419,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.newName != null  and gpResource.newName  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.newName != null  and gpResource.newName  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="extension =case" suffix="end,">
@@ -356,8 +432,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.extension != null  and gpResource.extension  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.extension != null  and gpResource.extension  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="path =case" suffix="end,">
@@ -367,8 +445,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpResource.path != null  and gpResource.path  == '-1' ">
                      when id=#{gpResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpResource.path != null  and gpResource.path  == '-2' ">
+                     when id=#{gpResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -465,6 +545,8 @@ add_time,
           from gp_resource
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

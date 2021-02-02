@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:45
+ * @updateDate 2021/2/2 10:31:42
  * @description 消息队列。 业务逻辑处理类，扩展自BaseUntBll<GprMessageUser>，自动生成。
  */
 public class GprMessageUserGenUntBll extends BaseUntBll<GprMessageUser> {
@@ -451,7 +451,7 @@ public class GprMessageUserGenUntBll extends BaseUntBll<GprMessageUser> {
 
 	}
    
-  
+
 
 }
 

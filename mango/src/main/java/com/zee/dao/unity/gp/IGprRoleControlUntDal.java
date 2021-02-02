@@ -12,7 +12,7 @@ import com.zee.ent.extend.gp.GpRole;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/28 16:07:39
+ * @updateDate 2021/2/2 10:31:56
  * @description 扩展自实体类IBaseUntDal<GprRoleControl>，可手动更改。角色拥有的控件权限。
  */
 

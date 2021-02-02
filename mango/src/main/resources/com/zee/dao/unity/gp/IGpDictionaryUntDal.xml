@@ -152,21 +152,45 @@ remark=values(remark)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpDictionary" >
     update gp_dictionary
     <set >
-                  <if test="typeId != null  and typeId != '' " >
+                    <choose>
+                   <when test="typeId != null and typeId=='-1'">
+                     type_id = null,
+                  </when>
+                  <when test="typeId != null and typeId=='-2'">
+                     type_id = '',
+                  </when>
+                  <when test="typeId != null  and typeId != '' " >
                      type_id = #{typeId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="code != null ">
                      code = #{code,jdbcType=TINYINT},
                   </if>
-                  <if test="text != null  and text != '' " >
+                    <choose>
+                   <when test="text != null and text=='-1'">
+                     text = null,
+                  </when>
+                  <when test="text != null and text=='-2'">
+                     text = '',
+                  </when>
+                  <when test="text != null  and text != '' " >
                      text = #{text,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="priority != null ">
                      priority = #{priority,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -208,8 +232,10 @@ remark=values(remark)
                   </if>
                   <if test="gpDictionary.typeId != null  and gpDictionary.typeId  == '-1' ">
                      when id=#{gpDictionary.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDictionary.typeId != null  and gpDictionary.typeId  == '-2' ">
+                     when id=#{gpDictionary.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="code =case" suffix="end,">
@@ -226,8 +252,10 @@ remark=values(remark)
                   </if>
                   <if test="gpDictionary.text != null  and gpDictionary.text  == '-1' ">
                      when id=#{gpDictionary.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDictionary.text != null  and gpDictionary.text  == '-2' ">
+                     when id=#{gpDictionary.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -244,8 +272,10 @@ remark=values(remark)
                   </if>
                   <if test="gpDictionary.remark != null  and gpDictionary.remark  == '-1' ">
                      when id=#{gpDictionary.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDictionary.remark != null  and gpDictionary.remark  == '-2' ">
+                     when id=#{gpDictionary.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -297,6 +327,8 @@ remark,
           from gp_dictionary
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

@@ -154,12 +154,28 @@ page_id=values(page_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprModulePage" >
     update gpr_module_page
     <set >
-                  <if test="moduleId != null  and moduleId != '' " >
+                    <choose>
+                   <when test="moduleId != null and moduleId=='-1'">
+                     module_id = null,
+                  </when>
+                  <when test="moduleId != null and moduleId=='-2'">
+                     module_id = '',
+                  </when>
+                  <when test="moduleId != null  and moduleId != '' " >
                      module_id = #{moduleId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="pageId != null  and pageId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="pageId != null and pageId=='-1'">
+                     page_id = null,
+                  </when>
+                  <when test="pageId != null and pageId=='-2'">
+                     page_id = '',
+                  </when>
+                  <when test="pageId != null  and pageId != '' " >
                      page_id = #{pageId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -192,8 +208,10 @@ page_id=values(page_id)
                   </if>
                   <if test="gprModulePage.moduleId != null  and gprModulePage.moduleId  == '-1' ">
                      when id=#{gprModulePage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprModulePage.moduleId != null  and gprModulePage.moduleId  == '-2' ">
+                     when id=#{gprModulePage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="page_id =case" suffix="end,">
@@ -203,8 +221,10 @@ page_id=values(page_id)
                   </if>
                   <if test="gprModulePage.pageId != null  and gprModulePage.pageId  == '-1' ">
                      when id=#{gprModulePage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprModulePage.pageId != null  and gprModulePage.pageId  == '-2' ">
+                     when id=#{gprModulePage.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -244,6 +264,8 @@ page_id,
           from gpr_module_page
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

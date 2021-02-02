@@ -20,13 +20,41 @@ import com.zee.ent.extend.gp.GprConfigUser;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/28 16:07:51
+ * @updateDate 2021/2/2 10:32:10
  * @description 扩展自实体类IBaseUntDal<GpUser>，可手动更改。系统用户。
  */
 
 public interface IGpUserUntDal extends IBaseUntDal<GpUser> {
 
    
+
+	public int deleteByEmail(String  email );
+
+	public GpUser getModelByEmail(String  email );
+
+	public int isUniqueEmail(String  email);
+  
+
+	public int deleteByPhone(String  phone );
+
+	public GpUser getModelByPhone(String  phone );
+
+	public int isUniquePhone(String  phone);
+  
+
+	public int deleteByQq(String  qq );
+
+	public GpUser getModelByQq(String  qq );
+
+	public int isUniqueQq(String  qq);
+  
+
+	public int deleteByUserName(String  userName );
+
+	public GpUser getModelByUserName(String  userName );
+
+	public int isUniqueUserName(String  userName);
+  
 
    
 }

@@ -154,12 +154,28 @@ station_id=values(station_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprUserStation" >
     update gpr_user_station
     <set >
-                  <if test="userId != null  and userId != '' " >
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="stationId != null  and stationId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="stationId != null and stationId=='-1'">
+                     station_id = null,
+                  </when>
+                  <when test="stationId != null and stationId=='-2'">
+                     station_id = '',
+                  </when>
+                  <when test="stationId != null  and stationId != '' " >
                      station_id = #{stationId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -192,8 +208,10 @@ station_id=values(station_id)
                   </if>
                   <if test="gprUserStation.userId != null  and gprUserStation.userId  == '-1' ">
                      when id=#{gprUserStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprUserStation.userId != null  and gprUserStation.userId  == '-2' ">
+                     when id=#{gprUserStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="station_id =case" suffix="end,">
@@ -203,8 +221,10 @@ station_id=values(station_id)
                   </if>
                   <if test="gprUserStation.stationId != null  and gprUserStation.stationId  == '-1' ">
                      when id=#{gprUserStation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprUserStation.stationId != null  and gprUserStation.stationId  == '-2' ">
+                     when id=#{gprUserStation.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -244,6 +264,8 @@ station_id,
           from gpr_user_station
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

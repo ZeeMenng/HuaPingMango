@@ -177,33 +177,89 @@ remark=values(remark)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpRegionCountry" >
     update gp_region_country
     <set >
-                  <if test="isoCode != null  and isoCode != '' " >
+                    <choose>
+                   <when test="isoCode != null and isoCode=='-1'">
+                     iso_code = null,
+                  </when>
+                  <when test="isoCode != null and isoCode=='-2'">
+                     iso_code = '',
+                  </when>
+                  <when test="isoCode != null  and isoCode != '' " >
                      iso_code = #{isoCode,jdbcType=VARCHAR},
-                  </if>
-                  <if test="chineseName != null  and chineseName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="chineseName != null and chineseName=='-1'">
+                     chinese_name = null,
+                  </when>
+                  <when test="chineseName != null and chineseName=='-2'">
+                     chinese_name = '',
+                  </when>
+                  <when test="chineseName != null  and chineseName != '' " >
                      chinese_name = #{chineseName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="englishName != null  and englishName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="englishName != null and englishName=='-1'">
+                     english_name = null,
+                  </when>
+                  <when test="englishName != null and englishName=='-2'">
+                     english_name = '',
+                  </when>
+                  <when test="englishName != null  and englishName != '' " >
                      english_name = #{englishName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="abbreviation != null  and abbreviation != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="abbreviation != null and abbreviation=='-1'">
+                     abbreviation = null,
+                  </when>
+                  <when test="abbreviation != null and abbreviation=='-2'">
+                     abbreviation = '',
+                  </when>
+                  <when test="abbreviation != null  and abbreviation != '' " >
                      abbreviation = #{abbreviation,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isDisplayCode != null ">
                      is_display_code = #{isDisplayCode,jdbcType=TINYINT},
                   </if>
-                  <if test="longitude != null  and longitude != '' " >
+                    <choose>
+                   <when test="longitude != null and longitude=='-1'">
+                     longitude = null,
+                  </when>
+                  <when test="longitude != null and longitude=='-2'">
+                     longitude = '',
+                  </when>
+                  <when test="longitude != null  and longitude != '' " >
                      longitude = #{longitude,jdbcType=VARCHAR},
-                  </if>
-                  <if test="latitude != null  and latitude != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="latitude != null and latitude=='-1'">
+                     latitude = null,
+                  </when>
+                  <when test="latitude != null and latitude=='-2'">
+                     latitude = '',
+                  </when>
+                  <when test="latitude != null  and latitude != '' " >
                      latitude = #{latitude,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="area != null ">
                      area = #{area,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -257,8 +313,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.isoCode != null  and gpRegionCountry.isoCode  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.isoCode != null  and gpRegionCountry.isoCode  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="chinese_name =case" suffix="end,">
@@ -268,8 +326,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.chineseName != null  and gpRegionCountry.chineseName  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.chineseName != null  and gpRegionCountry.chineseName  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="english_name =case" suffix="end,">
@@ -279,8 +339,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.englishName != null  and gpRegionCountry.englishName  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.englishName != null  and gpRegionCountry.englishName  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="abbreviation =case" suffix="end,">
@@ -290,8 +352,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.abbreviation != null  and gpRegionCountry.abbreviation  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.abbreviation != null  and gpRegionCountry.abbreviation  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_display_code =case" suffix="end,">
@@ -308,8 +372,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.longitude != null  and gpRegionCountry.longitude  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.longitude != null  and gpRegionCountry.longitude  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
@@ -319,8 +385,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.latitude != null  and gpRegionCountry.latitude  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.latitude != null  and gpRegionCountry.latitude  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="area =case" suffix="end,">
@@ -337,8 +405,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegionCountry.remark != null  and gpRegionCountry.remark  == '-1' ">
                      when id=#{gpRegionCountry.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegionCountry.remark != null  and gpRegionCountry.remark  == '-2' ">
+                     when id=#{gpRegionCountry.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -406,6 +476,29 @@ remark,
           from gp_region_country
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+
+<delete id="deleteByIsoCode" parameterType="java.lang.String" >
+
+        delete from gp_region_country
+        where  iso_code = #{isoCode,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByIsoCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_region_country
+          where  iso_code = #{isoCode,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniqueIsoCode" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_region_country
+          where  iso_code = #{isoCode,jdbcType=VARCHAR}
+  </select>
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

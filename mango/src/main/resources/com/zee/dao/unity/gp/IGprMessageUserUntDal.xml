@@ -195,15 +195,39 @@ add_time=values(add_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprMessageUser" >
     update gpr_message_user
     <set >
-                  <if test="messageId != null  and messageId != '' " >
+                    <choose>
+                   <when test="messageId != null and messageId=='-1'">
+                     message_id = null,
+                  </when>
+                  <when test="messageId != null and messageId=='-2'">
+                     message_id = '',
+                  </when>
+                  <when test="messageId != null  and messageId != '' " >
                      message_id = #{messageId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userName != null  and userName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isReadCode != null ">
                      is_read_code = #{isReadCode,jdbcType=TINYINT},
                   </if>
@@ -257,8 +281,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gprMessageUser.messageId != null  and gprMessageUser.messageId  == '-1' ">
                      when id=#{gprMessageUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprMessageUser.messageId != null  and gprMessageUser.messageId  == '-2' ">
+                     when id=#{gprMessageUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -268,8 +294,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gprMessageUser.userId != null  and gprMessageUser.userId  == '-1' ">
                      when id=#{gprMessageUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprMessageUser.userId != null  and gprMessageUser.userId  == '-2' ">
+                     when id=#{gprMessageUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
@@ -279,8 +307,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gprMessageUser.userName != null  and gprMessageUser.userName  == '-1' ">
                      when id=#{gprMessageUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprMessageUser.userName != null  and gprMessageUser.userName  == '-2' ">
+                     when id=#{gprMessageUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_read_code =case" suffix="end,">
@@ -357,6 +387,8 @@ add_time,
           from gpr_message_user
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

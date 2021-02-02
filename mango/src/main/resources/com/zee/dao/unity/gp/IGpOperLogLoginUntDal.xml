@@ -233,21 +233,61 @@ token_id=values(token_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpOperLogLogin" >
     update gp_oper_log_login
     <set >
-                  <if test="operLogId != null  and operLogId != '' " >
+                    <choose>
+                   <when test="operLogId != null and operLogId=='-1'">
+                     oper_log_id = null,
+                  </when>
+                  <when test="operLogId != null and operLogId=='-2'">
+                     oper_log_id = '',
+                  </when>
+                  <when test="operLogId != null  and operLogId != '' " >
                      oper_log_id = #{operLogId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="loginLogId != null  and loginLogId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="loginLogId != null and loginLogId=='-1'">
+                     login_log_id = null,
+                  </when>
+                  <when test="loginLogId != null and loginLogId=='-2'">
+                     login_log_id = '',
+                  </when>
+                  <when test="loginLogId != null  and loginLogId != '' " >
                      login_log_id = #{loginLogId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userName != null  and userName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="tokenId != null  and tokenId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="tokenId != null and tokenId=='-1'">
+                     token_id = null,
+                  </when>
+                  <when test="tokenId != null and tokenId=='-2'">
+                     token_id = '',
+                  </when>
+                  <when test="tokenId != null  and tokenId != '' " >
                      token_id = #{tokenId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -289,8 +329,10 @@ token_id=values(token_id)
                   </if>
                   <if test="gpOperLogLogin.operLogId != null  and gpOperLogLogin.operLogId  == '-1' ">
                      when id=#{gpOperLogLogin.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLogLogin.operLogId != null  and gpOperLogLogin.operLogId  == '-2' ">
+                     when id=#{gpOperLogLogin.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="login_log_id =case" suffix="end,">
@@ -300,8 +342,10 @@ token_id=values(token_id)
                   </if>
                   <if test="gpOperLogLogin.loginLogId != null  and gpOperLogLogin.loginLogId  == '-1' ">
                      when id=#{gpOperLogLogin.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLogLogin.loginLogId != null  and gpOperLogLogin.loginLogId  == '-2' ">
+                     when id=#{gpOperLogLogin.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -311,8 +355,10 @@ token_id=values(token_id)
                   </if>
                   <if test="gpOperLogLogin.userId != null  and gpOperLogLogin.userId  == '-1' ">
                      when id=#{gpOperLogLogin.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLogLogin.userId != null  and gpOperLogLogin.userId  == '-2' ">
+                     when id=#{gpOperLogLogin.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
@@ -322,8 +368,10 @@ token_id=values(token_id)
                   </if>
                   <if test="gpOperLogLogin.userName != null  and gpOperLogLogin.userName  == '-1' ">
                      when id=#{gpOperLogLogin.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLogLogin.userName != null  and gpOperLogLogin.userName  == '-2' ">
+                     when id=#{gpOperLogLogin.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="token_id =case" suffix="end,">
@@ -333,8 +381,10 @@ token_id=values(token_id)
                   </if>
                   <if test="gpOperLogLogin.tokenId != null  and gpOperLogLogin.tokenId  == '-1' ">
                      when id=#{gpOperLogLogin.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLogLogin.tokenId != null  and gpOperLogLogin.tokenId  == '-2' ">
+                     when id=#{gpOperLogLogin.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -386,6 +436,8 @@ token_id,
           from gp_oper_log_login
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

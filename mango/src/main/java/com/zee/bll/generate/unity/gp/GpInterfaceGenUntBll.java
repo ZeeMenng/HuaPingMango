@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:50
+ * @updateDate 2021/2/2 10:31:49
  * @description 系统接口。 业务逻辑处理类，扩展自BaseUntBll<GpInterface>，自动生成。
  */
 public class GpInterfaceGenUntBll extends BaseUntBll<GpInterface> {
@@ -274,7 +274,149 @@ public class GpInterfaceGenUntBll extends BaseUntBll<GpInterface> {
 
 		return result;
 	}
-  
+
+
+	public ResultModel deleteByUrl(String url){
+		return deleteByUrl( url, isLogRead);
+	}
+
+	public ResultModel deleteByUrl(String url, boolean isLog) {
+		ResultModel result = new ResultModel();
+
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(url);
+			result.setIncomeCount(1);
+			
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.DELETEBYUNIQUE.getCode());
+			result.setOperTypeText(OperType.DELETEBYUNIQUE.getText());
+			result.setRemark("");
+
+			int i = gpInterfaceUntDal.deleteByUrl(url);
+
+            result.setReturnValue(String.valueOf(i));
+			result.setData(i);
+			result.setTotalCount(new Long(i));
+			result.setResultCode(OperResult.DELETEBYUNIQUE_S.getCode());
+			result.setResultMessage(OperResult.DELETEBYUNIQUE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+		} catch (Exception e) {
+			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.DELETEBYUNIQUE_F.getCode());
+			result.setResultMessage(OperResult.DELETEBYUNIQUE_F.getText());
+			throw globalException;
+
+		} finally {
+			if (isLog)
+				addOperationLog(result);
+		}
+		return result;
+	}
+    
+
+	public ResultModel getModelByUrl(String url){
+		return getModelByUrl( url, isLogRead);
+	}
+
+	public ResultModel getModelByUrl(String url, boolean isLog) {
+		ResultModel result = new ResultModel();
+
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(url);
+			result.setIncomeCount(0);
+			
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.GETMODELBYUNIQUE.getCode());
+			result.setOperTypeText(OperType.GETMODELBYUNIQUE.getText());
+			result.setRemark("");
+
+			GpInterface t = gpInterfaceUntDal.getModelByUrl(url);
+
+			result.setData(t);
+			result.setTotalCount(new Long(1));
+			result.setResultCode(OperResult.GETMODELBYUNIQUE_S.getCode());
+			result.setResultMessage(OperResult.GETMODELBYUNIQUE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (t == null)
+				result.setTotalCount(0);
+			else{
+				result.setObjectId(t.getId());
+				result.setReturnValue(JSONObject.fromObject(t).toString());
+            }
+		} catch (Exception e) {
+
+			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.GETMODELBYUNIQUE_F.getCode());
+			result.setResultMessage(OperResult.GETMODELBYUNIQUE_F.getText());
+			throw globalException;
+
+		} finally {
+			if (isLog)
+				addOperationLog(result);
+		}
+		return result;
+	}
+    
+   public ResultModel isUniqueUrl(String url){
+		return isUniqueUrl(url, isLogRead);
+	}
+
+	public ResultModel isUniqueUrl(String url, boolean isLog) {
+		ResultModel result = new ResultModel();
+
+		try {
+			result.setAddTime(DateUtils.getCurrentTime());
+			result.setId(Tools.getUUID());
+			result.setIncomeValue(url);
+			result.setIncomeCount(0);
+			result.setObjectId(null);
+			result.setTableName(this.getClass().getSimpleName());
+			result.setOperTypeCode(OperType.ISUNIQUE.getCode());
+			result.setOperTypeText(OperType.ISUNIQUE.getText());
+			result.setRemark("");
+
+			int i = gpInterfaceUntDal.isUniqueUrl(url);
+
+			result.setTotalCount(i);
+            result.setReturnValue(String.valueOf(i));
+			result.setResultCode(OperResult.ISUNIQUE_S.getCode());
+			result.setResultMessage(OperResult.ISUNIQUE_S.getText());
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
+			if (i == 0){
+                result.setData(true);
+            }else{
+                result.setData(false);
+				
+            }
+		} catch (Exception e) {
+
+			result.setReturnValue(e.getMessage());
+			result.setOriginException(e);
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_F);
+			result.setResultCode(OperResult.ISUNIQUE_F.getCode());
+			result.setResultMessage(OperResult.ISUNIQUE_F.getText());
+			throw globalException;
+
+		} finally {
+			if (isLog)
+				addOperationLog(result);
+		}
+		return result;
+	}
 
 }
 

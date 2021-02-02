@@ -154,12 +154,28 @@ organization_id=values(organization_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprUserOrganization" >
     update gpr_user_organization
     <set >
-                  <if test="userId != null  and userId != '' " >
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="organizationId != null  and organizationId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="organizationId != null and organizationId=='-1'">
+                     organization_id = null,
+                  </when>
+                  <when test="organizationId != null and organizationId=='-2'">
+                     organization_id = '',
+                  </when>
+                  <when test="organizationId != null  and organizationId != '' " >
                      organization_id = #{organizationId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -192,8 +208,10 @@ organization_id=values(organization_id)
                   </if>
                   <if test="gprUserOrganization.userId != null  and gprUserOrganization.userId  == '-1' ">
                      when id=#{gprUserOrganization.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprUserOrganization.userId != null  and gprUserOrganization.userId  == '-2' ">
+                     when id=#{gprUserOrganization.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="organization_id =case" suffix="end,">
@@ -203,8 +221,10 @@ organization_id=values(organization_id)
                   </if>
                   <if test="gprUserOrganization.organizationId != null  and gprUserOrganization.organizationId  == '-1' ">
                      when id=#{gprUserOrganization.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprUserOrganization.organizationId != null  and gprUserOrganization.organizationId  == '-2' ">
+                     when id=#{gprUserOrganization.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -244,6 +264,8 @@ organization_id,
           from gpr_user_organization
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

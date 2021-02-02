@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:53
+ * @updateDate 2021/2/2 10:31:52
  * @description 文件信息。 业务逻辑处理类，扩展自BaseUntBll<GpResource>，自动生成。
  */
 public class GpResourceGenUntBll extends BaseUntBll<GpResource> {
@@ -146,7 +146,7 @@ public class GpResourceGenUntBll extends BaseUntBll<GpResource> {
 		}
 		return result;
 	}
-  
+
 
 }
 

@@ -228,42 +228,106 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpEarlyWarning" >
     update gp_early_warning
     <set >
-                  <if test="growthId != null  and growthId != '' " >
+                    <choose>
+                   <when test="growthId != null and growthId=='-1'">
+                     growth_id = null,
+                  </when>
+                  <when test="growthId != null and growthId=='-2'">
+                     growth_id = '',
+                  </when>
+                  <when test="growthId != null  and growthId != '' " >
                      growth_id = #{growthId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="growthName != null  and growthName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="growthName != null and growthName=='-1'">
+                     growth_name = null,
+                  </when>
+                  <when test="growthName != null and growthName=='-2'">
+                     growth_name = '',
+                  </when>
+                  <when test="growthName != null  and growthName != '' " >
                      growth_name = #{growthName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="beginDate != null  and beginDate != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="beginDate != null and beginDate=='-1'">
+                     begin_date = null,
+                  </when>
+                  <when test="beginDate != null and beginDate=='-2'">
+                     begin_date = '',
+                  </when>
+                  <when test="beginDate != null  and beginDate != '' " >
                      begin_date = #{beginDate,jdbcType=VARCHAR},
-                  </if>
-                  <if test="endDate != null  and endDate != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="endDate != null and endDate=='-1'">
+                     end_date = null,
+                  </when>
+                  <when test="endDate != null and endDate=='-2'">
+                     end_date = '',
+                  </when>
+                  <when test="endDate != null  and endDate != '' " >
                      end_date = #{endDate,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="warningType != null ">
                      warning_type = #{warningType,jdbcType=INTEGER},
                   </if>
-                  <if test="warningName != null  and warningName != '' " >
+                    <choose>
+                   <when test="warningName != null and warningName=='-1'">
+                     warning_name = null,
+                  </when>
+                  <when test="warningName != null and warningName=='-2'">
+                     warning_name = '',
+                  </when>
+                  <when test="warningName != null  and warningName != '' " >
                      warning_name = #{warningName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="maxVal != null ">
                      max_val = #{maxVal,jdbcType=DOUBLE},
                   </if>
                   <if test="minVal != null ">
                      min_val = #{minVal,jdbcType=DOUBLE},
                   </if>
-                  <if test="tipsMess != null  and tipsMess != '' " >
+                    <choose>
+                   <when test="tipsMess != null and tipsMess=='-1'">
+                     tips_mess = null,
+                  </when>
+                  <when test="tipsMess != null and tipsMess=='-2'">
+                     tips_mess = '',
+                  </when>
+                  <when test="tipsMess != null  and tipsMess != '' " >
                      tips_mess = #{tipsMess,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="stutasCode != null ">
                      stutas_code = #{stutasCode,jdbcType=TINYINT},
                   </if>
-                  <if test="stutasText != null  and stutasText != '' " >
+                    <choose>
+                   <when test="stutasText != null and stutasText=='-1'">
+                     stutas_text = null,
+                  </when>
+                  <when test="stutasText != null and stutasText=='-2'">
+                     stutas_text = '',
+                  </when>
+                  <when test="stutasText != null  and stutasText != '' " >
                      stutas_text = #{stutasText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -338,8 +402,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.growthId != null  and gpEarlyWarning.growthId  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.growthId != null  and gpEarlyWarning.growthId  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="growth_name =case" suffix="end,">
@@ -349,8 +415,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.growthName != null  and gpEarlyWarning.growthName  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.growthName != null  and gpEarlyWarning.growthName  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="begin_date =case" suffix="end,">
@@ -360,8 +428,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.beginDate != null  and gpEarlyWarning.beginDate  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.beginDate != null  and gpEarlyWarning.beginDate  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="end_date =case" suffix="end,">
@@ -371,8 +441,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.endDate != null  and gpEarlyWarning.endDate  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.endDate != null  and gpEarlyWarning.endDate  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="warning_type =case" suffix="end,">
@@ -389,8 +461,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.warningName != null  and gpEarlyWarning.warningName  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.warningName != null  and gpEarlyWarning.warningName  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="max_val =case" suffix="end,">
@@ -414,8 +488,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.tipsMess != null  and gpEarlyWarning.tipsMess  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.tipsMess != null  and gpEarlyWarning.tipsMess  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="stutas_code =case" suffix="end,">
@@ -432,8 +508,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.stutasText != null  and gpEarlyWarning.stutasText  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.stutasText != null  and gpEarlyWarning.stutasText  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -443,8 +521,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpEarlyWarning.remark != null  and gpEarlyWarning.remark  == '-1' ">
                      when id=#{gpEarlyWarning.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpEarlyWarning.remark != null  and gpEarlyWarning.remark  == '-2' ">
+                     when id=#{gpEarlyWarning.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -546,6 +626,8 @@ update_time,
           from gp_early_warning
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

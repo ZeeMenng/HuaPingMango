@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:46
+ * @updateDate 2021/2/2 10:31:43
  * @description 附件关联表。只要存有附件字段的表，都会通过此表于gp_resource表关联。 业务逻辑处理类，扩展自BaseUntBll<GprResource>，自动生成。
  */
 public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
@@ -274,7 +274,7 @@ public class GprResourceGenUntBll extends BaseUntBll<GprResource> {
 
 		return result;
 	}
-  
+
 
 }
 

@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:44
+ * @updateDate 2021/2/2 10:31:41
  * @description 应用领域配置信息。 业务逻辑处理类，扩展自BaseUntBll<GprConfigDomain>，自动生成。
  */
 public class GprConfigDomainGenUntBll extends BaseUntBll<GprConfigDomain> {
@@ -451,7 +451,7 @@ public class GprConfigDomainGenUntBll extends BaseUntBll<GprConfigDomain> {
 
 	}
    
-  
+
 
 }
 

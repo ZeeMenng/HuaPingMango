@@ -247,45 +247,109 @@ add_time=values(add_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpOperLog" >
     update gp_oper_log
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="objectId != null  and objectId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="objectId != null and objectId=='-1'">
+                     object_id = null,
+                  </when>
+                  <when test="objectId != null and objectId=='-2'">
+                     object_id = '',
+                  </when>
+                  <when test="objectId != null  and objectId != '' " >
                      object_id = #{objectId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="operTypeCode != null ">
                      oper_type_code = #{operTypeCode,jdbcType=TINYINT},
                   </if>
-                  <if test="operTypeText != null  and operTypeText != '' " >
+                    <choose>
+                   <when test="operTypeText != null and operTypeText=='-1'">
+                     oper_type_text = null,
+                  </when>
+                  <when test="operTypeText != null and operTypeText=='-2'">
+                     oper_type_text = '',
+                  </when>
+                  <when test="operTypeText != null  and operTypeText != '' " >
                      oper_type_text = #{operTypeText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="tableName != null  and tableName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="tableName != null and tableName=='-1'">
+                     table_name = null,
+                  </when>
+                  <when test="tableName != null and tableName=='-2'">
+                     table_name = '',
+                  </when>
+                  <when test="tableName != null  and tableName != '' " >
                      table_name = #{tableName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="totalCount != null ">
                      total_count = #{totalCount,jdbcType=BIGINT},
                   </if>
-                  <if test="incomeValue != null  and incomeValue != '' " >
+                    <choose>
+                   <when test="incomeValue != null and incomeValue=='-1'">
+                     income_value = null,
+                  </when>
+                  <when test="incomeValue != null and incomeValue=='-2'">
+                     income_value = '',
+                  </when>
+                  <when test="incomeValue != null  and incomeValue != '' " >
                      income_value = #{incomeValue,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="incomeCount != null ">
                      income_count = #{incomeCount,jdbcType=INTEGER},
                   </if>
-                  <if test="returnValue != null  and returnValue != '' " >
+                    <choose>
+                   <when test="returnValue != null and returnValue=='-1'">
+                     return_value = null,
+                  </when>
+                  <when test="returnValue != null and returnValue=='-2'">
+                     return_value = '',
+                  </when>
+                  <when test="returnValue != null  and returnValue != '' " >
                      return_value = #{returnValue,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isSuccessCode != null ">
                      is_success_code = #{isSuccessCode,jdbcType=TINYINT},
                   </if>
                   <if test="resultCode != null ">
                      result_code = #{resultCode,jdbcType=INTEGER},
                   </if>
-                  <if test="resultMessage != null  and resultMessage != '' " >
+                    <choose>
+                   <when test="resultMessage != null and resultMessage=='-1'">
+                     result_message = null,
+                  </when>
+                  <when test="resultMessage != null and resultMessage=='-2'">
+                     result_message = '',
+                  </when>
+                  <when test="resultMessage != null  and resultMessage != '' " >
                      result_message = #{resultMessage,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -357,8 +421,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.domainId != null  and gpOperLog.domainId  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.domainId != null  and gpOperLog.domainId  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="object_id =case" suffix="end,">
@@ -368,8 +434,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.objectId != null  and gpOperLog.objectId  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.objectId != null  and gpOperLog.objectId  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="oper_type_code =case" suffix="end,">
@@ -386,8 +454,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.operTypeText != null  and gpOperLog.operTypeText  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.operTypeText != null  and gpOperLog.operTypeText  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="table_name =case" suffix="end,">
@@ -397,8 +467,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.tableName != null  and gpOperLog.tableName  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.tableName != null  and gpOperLog.tableName  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="total_count =case" suffix="end,">
@@ -415,8 +487,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.incomeValue != null  and gpOperLog.incomeValue  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.incomeValue != null  and gpOperLog.incomeValue  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="income_count =case" suffix="end,">
@@ -433,8 +507,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.returnValue != null  and gpOperLog.returnValue  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.returnValue != null  and gpOperLog.returnValue  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_success_code =case" suffix="end,">
@@ -458,8 +534,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.resultMessage != null  and gpOperLog.resultMessage  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.resultMessage != null  and gpOperLog.resultMessage  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -469,8 +547,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpOperLog.remark != null  and gpOperLog.remark  == '-1' ">
                      when id=#{gpOperLog.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpOperLog.remark != null  and gpOperLog.remark  == '-2' ">
+                     when id=#{gpOperLog.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -565,6 +645,8 @@ add_time,
           from gp_oper_log
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

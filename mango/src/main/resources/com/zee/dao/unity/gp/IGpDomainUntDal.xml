@@ -155,21 +155,61 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpDomain" >
     update gp_domain
     <set >
-                  <if test="serialNo != null  and serialNo != '' " >
+                    <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="com != null  and com != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="com != null and com=='-1'">
+                     com = null,
+                  </when>
+                  <when test="com != null and com=='-2'">
+                     com = '',
+                  </when>
+                  <when test="com != null  and com != '' " >
                      com = #{com,jdbcType=VARCHAR},
-                  </if>
-                  <if test="iconResource != null  and iconResource != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="iconResource != null and iconResource=='-1'">
+                     icon_resource = null,
+                  </when>
+                  <when test="iconResource != null and iconResource=='-2'">
+                     icon_resource = '',
+                  </when>
+                  <when test="iconResource != null  and iconResource != '' " >
                      icon_resource = #{iconResource,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -223,8 +263,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpDomain.serialNo != null  and gpDomain.serialNo  == '-1' ">
                      when id=#{gpDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDomain.serialNo != null  and gpDomain.serialNo  == '-2' ">
+                     when id=#{gpDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -234,8 +276,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpDomain.name != null  and gpDomain.name  == '-1' ">
                      when id=#{gpDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDomain.name != null  and gpDomain.name  == '-2' ">
+                     when id=#{gpDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="com =case" suffix="end,">
@@ -245,8 +289,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpDomain.com != null  and gpDomain.com  == '-1' ">
                      when id=#{gpDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDomain.com != null  and gpDomain.com  == '-2' ">
+                     when id=#{gpDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="icon_resource =case" suffix="end,">
@@ -256,8 +302,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpDomain.iconResource != null  and gpDomain.iconResource  == '-1' ">
                      when id=#{gpDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDomain.iconResource != null  and gpDomain.iconResource  == '-2' ">
+                     when id=#{gpDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -267,8 +315,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpDomain.remark != null  and gpDomain.remark  == '-1' ">
                      when id=#{gpDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpDomain.remark != null  and gpDomain.remark  == '-2' ">
+                     when id=#{gpDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -342,6 +392,8 @@ update_time,
           from gp_domain
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

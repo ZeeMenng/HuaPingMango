@@ -33,10 +33,7 @@
 						},
 						dataFilter : function(data) {
 							var json = JSON.parse(data);
-							if (json.isSuccess) {
-								return true;
-							}
-							return false;
+							return json.data;
 						}
 					}
 				},
@@ -69,10 +66,7 @@
 						},
 						dataFilter : function(data) {
 							var json = JSON.parse(data);
-							if (json.isSuccess) {
-								return true;
-							}
-							return false;
+							return json.data;
 						}
 					}
 				},
@@ -91,10 +85,7 @@
 						},
 						dataFilter : function(data) {
 							var json = JSON.parse(data);
-							if (json.isSuccess) {
-								return true;
-							}
-							return false;
+							return json.data;
 						}
 					}
 				},
@@ -115,10 +106,7 @@
 						},
 						dataFilter : function(data) {
 							var json = JSON.parse(data);
-							if (json.isSuccess) {
-								return true;
-							}
-							return false;
+							return json.data;
 						}
 					}
 				}

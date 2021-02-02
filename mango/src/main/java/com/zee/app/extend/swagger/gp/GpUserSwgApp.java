@@ -42,13 +42,11 @@ import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.extend.gp.GprDomainUser;
 import com.zee.ent.extend.gp.GprResource;
-import com.zee.ent.extend.gp.GprUserIcon;
 import com.zee.ent.extend.gp.GprUserOrganization;
 import com.zee.ent.extend.gp.GprUserRole;
 import com.zee.ent.parameter.gp.GpUserParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.utl.DictionaryUtil;
-import com.zee.utl.Executors;
 import com.zee.utl.MailSenderUtil;
 import com.zee.utl.SymbolicConstant;
 import com.zee.utl.Tools;
@@ -198,7 +196,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
-			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'"+jsonData.getRoleIds().replace(",", "','")+"'", result.getObjectId());
+			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
@@ -293,7 +291,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
-			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'"+jsonData.getRoleIds().replace(",", "','")+"'", result.getObjectId());
+			String sql = String.format(SymbolicConstant.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
@@ -480,12 +478,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			return result;
 		}
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = "SELECT id num FROM gp_user t WHERE t.email = '" + email + "'";
-
-		map.put("Sql", sql);
-		result = gpUserUntBll.getListBySQL(map);
-		result.setIsSuccessCode(result.getTotalCount() == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+		result = gpUserUntBll.isUniqueEmail(email);
 		return result;
 	}
 
@@ -499,11 +492,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 			return result;
 		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = "SELECT id num FROM gp_user t WHERE t.user_name = '" + username + "'";
-		map.put("Sql", sql);
-		result = gpUserUntBll.getListBySQL(map);
-		result.setIsSuccessCode(result.getTotalCount() == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+		result = gpUserUntBll.isUniqueUserName(username);
 		return result;
 	}
 
@@ -518,11 +507,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			return result;
 		}
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = "SELECT id num FROM gp_user t WHERE t.phone = '" + phone + "'";
-		map.put("Sql", sql);
-		result = gpUserUntBll.getListBySQL(map);
-		result.setIsSuccessCode(result.getTotalCount() == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+		result = gpUserUntBll.isUniquePhone(phone);
 		return result;
 	}
 
@@ -536,12 +521,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			result.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 			return result;
 		}
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		String sql = "SELECT id num FROM gp_user t WHERE t.qq = '" + qq + "'";
-		map.put("Sql", sql);
-		result = gpUserUntBll.getListBySQL(map);
-		result.setIsSuccessCode(result.getTotalCount() == 0 ? SymbolicConstant.DCODE_BOOLEAN_T : SymbolicConstant.DCODE_BOOLEAN_F);
+		result = gpUserUntBll.isUniqueQq(qq);
 		return result;
 	}
 
@@ -861,7 +841,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		modelMap.put("token", token);
 		modelMap.putAll(Tools.getLoginInfo(request));
 		// 使用多线程处理用户登陆的其他信息并插入mysql
-		//executors.dealLogin(modelMap);
+		// executors.dealLogin(modelMap);
 		// redis存放用户登陆信息
 		// redisUtil.setSessionData(modelMap);
 		return token;

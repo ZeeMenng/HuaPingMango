@@ -257,33 +257,89 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpToken" >
     update gp_token
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userName != null  and userName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="accessToken != null  and accessToken != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="accessToken != null and accessToken=='-1'">
+                     access_token = null,
+                  </when>
+                  <when test="accessToken != null and accessToken=='-2'">
+                     access_token = '',
+                  </when>
+                  <when test="accessToken != null  and accessToken != '' " >
                      access_token = #{accessToken,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="aDeadTime != null ">
                      a_dead_time = #{aDeadTime,jdbcType=TIMESTAMP},
                   </if>
-                  <if test="refreshToken != null  and refreshToken != '' " >
+                    <choose>
+                   <when test="refreshToken != null and refreshToken=='-1'">
+                     refresh_token = null,
+                  </when>
+                  <when test="refreshToken != null and refreshToken=='-2'">
+                     refresh_token = '',
+                  </when>
+                  <when test="refreshToken != null  and refreshToken != '' " >
                      refresh_token = #{refreshToken,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="rDeadTime != null ">
                      r_dead_time = #{rDeadTime,jdbcType=TIMESTAMP},
                   </if>
-                  <if test="secret != null  and secret != '' " >
+                    <choose>
+                   <when test="secret != null and secret=='-1'">
+                     secret = null,
+                  </when>
+                  <when test="secret != null and secret=='-2'">
+                     secret = '',
+                  </when>
+                  <when test="secret != null  and secret != '' " >
                      secret = #{secret,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -349,8 +405,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.domainId != null  and gpToken.domainId  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.domainId != null  and gpToken.domainId  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -360,8 +418,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.userId != null  and gpToken.userId  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.userId != null  and gpToken.userId  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
@@ -371,8 +431,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.userName != null  and gpToken.userName  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.userName != null  and gpToken.userName  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="access_token =case" suffix="end,">
@@ -382,8 +444,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.accessToken != null  and gpToken.accessToken  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.accessToken != null  and gpToken.accessToken  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="a_dead_time =case" suffix="end,">
@@ -400,8 +464,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.refreshToken != null  and gpToken.refreshToken  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.refreshToken != null  and gpToken.refreshToken  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="r_dead_time =case" suffix="end,">
@@ -418,8 +484,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.secret != null  and gpToken.secret  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.secret != null  and gpToken.secret  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -429,8 +497,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpToken.remark != null  and gpToken.remark  == '-1' ">
                      when id=#{gpToken.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpToken.remark != null  and gpToken.remark  == '-2' ">
+                     when id=#{gpToken.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -520,6 +590,8 @@ update_time,
           from gp_token
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

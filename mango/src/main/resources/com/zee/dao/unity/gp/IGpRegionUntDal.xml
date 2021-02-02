@@ -186,36 +186,84 @@ remark=values(remark)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpRegion" >
     update gp_region
     <set >
-                  <if test="code != null  and code != '' " >
+                    <choose>
+                   <when test="code != null and code=='-1'">
+                     code = null,
+                  </when>
+                  <when test="code != null and code=='-2'">
+                     code = '',
+                  </when>
+                  <when test="code != null  and code != '' " >
                      code = #{code,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="category != null ">
                      category = #{category,jdbcType=TINYINT},
                   </if>
-                  <if test="fartherCode != null  and fartherCode != '' " >
+                    <choose>
+                   <when test="fartherCode != null and fartherCode=='-1'">
+                     farther_code = null,
+                  </when>
+                  <when test="fartherCode != null and fartherCode=='-2'">
+                     farther_code = '',
+                  </when>
+                  <when test="fartherCode != null  and fartherCode != '' " >
                      farther_code = #{fartherCode,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isDisplayCode != null ">
                      is_display_code = #{isDisplayCode,jdbcType=TINYINT},
                   </if>
                   <if test="regionLevel != null ">
                      region_level = #{regionLevel,jdbcType=TINYINT},
                   </if>
-                  <if test="longitude != null  and longitude != '' " >
+                    <choose>
+                   <when test="longitude != null and longitude=='-1'">
+                     longitude = null,
+                  </when>
+                  <when test="longitude != null and longitude=='-2'">
+                     longitude = '',
+                  </when>
+                  <when test="longitude != null  and longitude != '' " >
                      longitude = #{longitude,jdbcType=VARCHAR},
-                  </if>
-                  <if test="latitude != null  and latitude != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="latitude != null and latitude=='-1'">
+                     latitude = null,
+                  </when>
+                  <when test="latitude != null and latitude=='-2'">
+                     latitude = '',
+                  </when>
+                  <when test="latitude != null  and latitude != '' " >
                      latitude = #{latitude,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="area != null ">
                      area = #{area,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -272,8 +320,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.code != null  and gpRegion.code  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.code != null  and gpRegion.code  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -283,8 +333,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.name != null  and gpRegion.name  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.name != null  and gpRegion.name  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="category =case" suffix="end,">
@@ -301,8 +353,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.fartherCode != null  and gpRegion.fartherCode  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.fartherCode != null  and gpRegion.fartherCode  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_display_code =case" suffix="end,">
@@ -326,8 +380,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.longitude != null  and gpRegion.longitude  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.longitude != null  and gpRegion.longitude  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="latitude =case" suffix="end,">
@@ -337,8 +393,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.latitude != null  and gpRegion.latitude  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.latitude != null  and gpRegion.latitude  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="area =case" suffix="end,">
@@ -355,8 +413,10 @@ remark=values(remark)
                   </if>
                   <if test="gpRegion.remark != null  and gpRegion.remark  == '-1' ">
                      when id=#{gpRegion.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRegion.remark != null  and gpRegion.remark  == '-2' ">
+                     when id=#{gpRegion.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -428,6 +488,8 @@ remark,
           from gp_region
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

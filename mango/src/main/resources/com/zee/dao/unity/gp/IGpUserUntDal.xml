@@ -290,15 +290,39 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpUser" >
     update gp_user
     <set >
-                  <if test="userName != null  and userName != '' " >
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="password != null  and password != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="password != null and password=='-1'">
+                     password = null,
+                  </when>
+                  <when test="password != null and password=='-2'">
+                     password = '',
+                  </when>
+                  <when test="password != null  and password != '' " >
                      password = #{password,jdbcType=VARCHAR},
-                  </if>
-                  <if test="realName != null  and realName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="realName != null and realName=='-1'">
+                     real_name = null,
+                  </when>
+                  <when test="realName != null and realName=='-2'">
+                     real_name = '',
+                  </when>
+                  <when test="realName != null  and realName != '' " >
                      real_name = #{realName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="genderCode != null ">
                      gender_code = #{genderCode,jdbcType=TINYINT},
                   </if>
@@ -311,33 +335,89 @@ update_time=values(update_time)
                   <if test="isMarriageCode != null ">
                      is_marriage_code = #{isMarriageCode,jdbcType=TINYINT},
                   </if>
-                  <if test="phone != null  and phone != '' " >
+                    <choose>
+                   <when test="phone != null and phone=='-1'">
+                     phone = null,
+                  </when>
+                  <when test="phone != null and phone=='-2'">
+                     phone = '',
+                  </when>
+                  <when test="phone != null  and phone != '' " >
                      phone = #{phone,jdbcType=VARCHAR},
-                  </if>
-                  <if test="email != null  and email != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="email != null and email=='-1'">
+                     email = null,
+                  </when>
+                  <when test="email != null and email=='-2'">
+                     email = '',
+                  </when>
+                  <when test="email != null  and email != '' " >
                      email = #{email,jdbcType=VARCHAR},
-                  </if>
-                  <if test="qq != null  and qq != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="qq != null and qq=='-1'">
+                     qq = null,
+                  </when>
+                  <when test="qq != null and qq=='-2'">
+                     qq = '',
+                  </when>
+                  <when test="qq != null  and qq != '' " >
                      qq = #{qq,jdbcType=VARCHAR},
-                  </if>
-                  <if test="icon != null  and icon != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="icon != null and icon=='-1'">
+                     icon = null,
+                  </when>
+                  <when test="icon != null and icon=='-2'">
+                     icon = '',
+                  </when>
+                  <when test="icon != null  and icon != '' " >
                      icon = #{icon,jdbcType=VARCHAR},
-                  </if>
-                  <if test="registerIp != null  and registerIp != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="registerIp != null and registerIp=='-1'">
+                     register_ip = null,
+                  </when>
+                  <when test="registerIp != null and registerIp=='-2'">
+                     register_ip = '',
+                  </when>
+                  <when test="registerIp != null  and registerIp != '' " >
                      register_ip = #{registerIp,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="lastLoginTime != null ">
                      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
                   </if>
-                  <if test="lastLoginIp != null  and lastLoginIp != '' " >
+                    <choose>
+                   <when test="lastLoginIp != null and lastLoginIp=='-1'">
+                     last_login_ip = null,
+                  </when>
+                  <when test="lastLoginIp != null and lastLoginIp=='-2'">
+                     last_login_ip = '',
+                  </when>
+                  <when test="lastLoginIp != null  and lastLoginIp != '' " >
                      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="loginCount != null ">
                      login_count = #{loginCount,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isAdminCode != null ">
                      is_admin_code = #{isAdminCode,jdbcType=TINYINT},
                   </if>
@@ -436,8 +516,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.userName != null  and gpUser.userName  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.userName != null  and gpUser.userName  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="password =case" suffix="end,">
@@ -447,8 +529,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.password != null  and gpUser.password  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.password != null  and gpUser.password  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="real_name =case" suffix="end,">
@@ -458,8 +542,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.realName != null  and gpUser.realName  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.realName != null  and gpUser.realName  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="gender_code =case" suffix="end,">
@@ -497,8 +583,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.phone != null  and gpUser.phone  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.phone != null  and gpUser.phone  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="email =case" suffix="end,">
@@ -508,8 +596,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.email != null  and gpUser.email  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.email != null  and gpUser.email  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="qq =case" suffix="end,">
@@ -519,8 +609,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.qq != null  and gpUser.qq  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.qq != null  and gpUser.qq  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="icon =case" suffix="end,">
@@ -530,8 +622,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.icon != null  and gpUser.icon  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.icon != null  and gpUser.icon  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="register_ip =case" suffix="end,">
@@ -541,8 +635,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.registerIp != null  and gpUser.registerIp  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.registerIp != null  and gpUser.registerIp  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="last_login_time =case" suffix="end,">
@@ -559,8 +655,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.lastLoginIp != null  and gpUser.lastLoginIp  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.lastLoginIp != null  and gpUser.lastLoginIp  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="login_count =case" suffix="end,">
@@ -577,8 +675,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpUser.remark != null  and gpUser.remark  == '-1' ">
                      when id=#{gpUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpUser.remark != null  and gpUser.remark  == '-2' ">
+                     when id=#{gpUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_admin_code =case" suffix="end,">
@@ -718,6 +818,92 @@ update_time,
           from gp_user
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+
+<delete id="deleteByUserName" parameterType="java.lang.String" >
+
+        delete from gp_user
+        where  user_name = #{userName,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_user
+          where  user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniqueUserName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_user
+          where  user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+
+<delete id="deleteByPhone" parameterType="java.lang.String" >
+
+        delete from gp_user
+        where  phone = #{phone,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_user
+          where  phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniquePhone" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_user
+          where  phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+<delete id="deleteByEmail" parameterType="java.lang.String" >
+
+        delete from gp_user
+        where  email = #{email,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_user
+          where  email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniqueEmail" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_user
+          where  email = #{email,jdbcType=VARCHAR}
+  </select>
+
+<delete id="deleteByQq" parameterType="java.lang.String" >
+
+        delete from gp_user
+        where  qq = #{qq,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByQq" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_user
+          where  qq = #{qq,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniqueQq" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_user
+          where  qq = #{qq,jdbcType=VARCHAR}
+  </select>
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

@@ -122,12 +122,28 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpRole" >
     update gp_role
     <set >
-                  <if test="name != null  and name != '' " >
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -172,8 +188,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpRole.name != null  and gpRole.name  == '-1' ">
                      when id=#{gpRole.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRole.name != null  and gpRole.name  == '-2' ">
+                     when id=#{gpRole.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -183,8 +201,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpRole.remark != null  and gpRole.remark  == '-1' ">
                      when id=#{gpRole.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpRole.remark != null  and gpRole.remark  == '-2' ">
+                     when id=#{gpRole.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -246,6 +266,8 @@ update_time,
           from gp_role
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

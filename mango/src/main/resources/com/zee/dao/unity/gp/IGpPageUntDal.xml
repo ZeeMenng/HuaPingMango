@@ -163,18 +163,50 @@ is_public_code=values(is_public_code)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpPage" >
     update gp_page
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="url != null  and url != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="url != null and url=='-1'">
+                     url = null,
+                  </when>
+                  <when test="url != null and url=='-2'">
+                     url = '',
+                  </when>
+                  <when test="url != null  and url != '' " >
                      url = #{url,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -225,8 +257,10 @@ is_public_code=values(is_public_code)
                   </if>
                   <if test="gpPage.domainId != null  and gpPage.domainId  == '-1' ">
                      when id=#{gpPage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpPage.domainId != null  and gpPage.domainId  == '-2' ">
+                     when id=#{gpPage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -236,8 +270,10 @@ is_public_code=values(is_public_code)
                   </if>
                   <if test="gpPage.name != null  and gpPage.name  == '-1' ">
                      when id=#{gpPage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpPage.name != null  and gpPage.name  == '-2' ">
+                     when id=#{gpPage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="url =case" suffix="end,">
@@ -247,8 +283,10 @@ is_public_code=values(is_public_code)
                   </if>
                   <if test="gpPage.url != null  and gpPage.url  == '-1' ">
                      when id=#{gpPage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpPage.url != null  and gpPage.url  == '-2' ">
+                     when id=#{gpPage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -258,8 +296,10 @@ is_public_code=values(is_public_code)
                   </if>
                   <if test="gpPage.remark != null  and gpPage.remark  == '-1' ">
                      when id=#{gpPage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpPage.remark != null  and gpPage.remark  == '-2' ">
+                     when id=#{gpPage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -329,6 +369,8 @@ is_public_code,
           from gp_page
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

@@ -52,12 +52,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 				// 根据异常中的CauseMessage给出不同的提示信息
 				if (StringUtils.isNotEmpty(causeMessage)) {
-
 					if (causeMessage.matches("Incorrect(.*)value(.*)for column(.*)"))
 						result.setResultMessage(result.getResultMessage() + "请检查输入类型……");
-
 					if (causeMessage.contains("Data truncation: Data too long for column "))
-						result.setResultMessage("请控制输入长度……");
+						result.setResultMessage(result.getResultMessage() + "请控制输入长度……");
+					if (causeMessage.contains("Cannot add or update a child row"))
+						result.setResultMessage(result.getResultMessage() + "请检查引用部分的输入……");
 
 				}
 			}

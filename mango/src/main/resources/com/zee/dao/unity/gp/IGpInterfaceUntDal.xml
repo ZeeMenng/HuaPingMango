@@ -205,30 +205,78 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpInterface" >
     update gp_interface
     <set >
-                  <if test="serialNo != null  and serialNo != '' " >
+                    <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
-                  </if>
-                  <if test="domainId != null  and domainId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="tableName != null  and tableName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="tableName != null and tableName=='-1'">
+                     table_name = null,
+                  </when>
+                  <when test="tableName != null and tableName=='-2'">
+                     table_name = '',
+                  </when>
+                  <when test="tableName != null  and tableName != '' " >
                      table_name = #{tableName,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isPublicCode != null ">
                      is_public_code = #{isPublicCode,jdbcType=TINYINT},
                   </if>
                   <if test="typeCode != null ">
                      type_code = #{typeCode,jdbcType=TINYINT},
                   </if>
-                  <if test="url != null  and url != '' " >
+                    <choose>
+                   <when test="url != null and url=='-1'">
+                     url = null,
+                  </when>
+                  <when test="url != null and url=='-2'">
+                     url = '',
+                  </when>
+                  <when test="url != null  and url != '' " >
                      url = #{url,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -291,8 +339,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.serialNo != null  and gpInterface.serialNo  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.serialNo != null  and gpInterface.serialNo  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
@@ -302,8 +352,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.domainId != null  and gpInterface.domainId  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.domainId != null  and gpInterface.domainId  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -313,8 +365,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.name != null  and gpInterface.name  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.name != null  and gpInterface.name  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="table_name =case" suffix="end,">
@@ -324,8 +378,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.tableName != null  and gpInterface.tableName  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.tableName != null  and gpInterface.tableName  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_public_code =case" suffix="end,">
@@ -349,8 +405,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.url != null  and gpInterface.url  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.url != null  and gpInterface.url  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -360,8 +418,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpInterface.remark != null  and gpInterface.remark  == '-1' ">
                      when id=#{gpInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpInterface.remark != null  and gpInterface.remark  == '-2' ">
+                     when id=#{gpInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -447,6 +507,29 @@ update_time,
           from gp_interface
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+
+<delete id="deleteByUrl" parameterType="java.lang.String" >
+
+        delete from gp_interface
+        where  url = #{url,jdbcType=VARCHAR}
+
+</delete>
+    
+ <select id="getModelByUrl" resultMap="BaseResultMap" parameterType="java.lang.String" >
+          select 
+                 <include refid="Base_Column_List" />
+          from gp_interface
+          where  url = #{url,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="isUniqueUrl" resultType="java.lang.Integer" parameterType="java.lang.String" >
+          select 
+                 count(1)
+          from gp_interface
+          where  url = #{url,jdbcType=VARCHAR}
+  </select>
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

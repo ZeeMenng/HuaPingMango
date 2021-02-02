@@ -185,15 +185,39 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprConfigUser" >
     update gpr_config_user
     <set >
-                  <if test="configId != null  and configId != '' " >
+                    <choose>
+                   <when test="configId != null and configId=='-1'">
+                     config_id = null,
+                  </when>
+                  <when test="configId != null and configId=='-2'">
+                     config_id = '',
+                  </when>
+                  <when test="configId != null  and configId != '' " >
                      config_id = #{configId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="configValue != null  and configValue != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="configValue != null and configValue=='-1'">
+                     config_value = null,
+                  </when>
+                  <when test="configValue != null and configValue=='-2'">
+                     config_value = '',
+                  </when>
+                  <when test="configValue != null  and configValue != '' " >
                      config_value = #{configValue,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -241,8 +265,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigUser.configId != null  and gprConfigUser.configId  == '-1' ">
                      when id=#{gprConfigUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigUser.configId != null  and gprConfigUser.configId  == '-2' ">
+                     when id=#{gprConfigUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="config_value =case" suffix="end,">
@@ -252,8 +278,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigUser.configValue != null  and gprConfigUser.configValue  == '-1' ">
                      when id=#{gprConfigUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigUser.configValue != null  and gprConfigUser.configValue  == '-2' ">
+                     when id=#{gprConfigUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -263,8 +291,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigUser.userId != null  and gprConfigUser.userId  == '-1' ">
                      when id=#{gprConfigUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigUser.userId != null  and gprConfigUser.userId  == '-2' ">
+                     when id=#{gprConfigUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -330,6 +360,8 @@ update_time,
           from gpr_config_user
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

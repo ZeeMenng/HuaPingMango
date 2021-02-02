@@ -165,15 +165,39 @@ enterprise_id=values(enterprise_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprDomainMessage" >
     update gpr_domain_message
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="messageId != null  and messageId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="messageId != null and messageId=='-1'">
+                     message_id = null,
+                  </when>
+                  <when test="messageId != null and messageId=='-2'">
+                     message_id = '',
+                  </when>
+                  <when test="messageId != null  and messageId != '' " >
                      message_id = #{messageId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="enterpriseId != null  and enterpriseId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="enterpriseId != null and enterpriseId=='-1'">
+                     enterprise_id = null,
+                  </when>
+                  <when test="enterpriseId != null and enterpriseId=='-2'">
+                     enterprise_id = '',
+                  </when>
+                  <when test="enterpriseId != null  and enterpriseId != '' " >
                      enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -209,8 +233,10 @@ enterprise_id=values(enterprise_id)
                   </if>
                   <if test="gprDomainMessage.domainId != null  and gprDomainMessage.domainId  == '-1' ">
                      when id=#{gprDomainMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprDomainMessage.domainId != null  and gprDomainMessage.domainId  == '-2' ">
+                     when id=#{gprDomainMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="message_id =case" suffix="end,">
@@ -220,8 +246,10 @@ enterprise_id=values(enterprise_id)
                   </if>
                   <if test="gprDomainMessage.messageId != null  and gprDomainMessage.messageId  == '-1' ">
                      when id=#{gprDomainMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprDomainMessage.messageId != null  and gprDomainMessage.messageId  == '-2' ">
+                     when id=#{gprDomainMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="enterprise_id =case" suffix="end,">
@@ -231,8 +259,10 @@ enterprise_id=values(enterprise_id)
                   </if>
                   <if test="gprDomainMessage.enterpriseId != null  and gprDomainMessage.enterpriseId  == '-1' ">
                      when id=#{gprDomainMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprDomainMessage.enterpriseId != null  and gprDomainMessage.enterpriseId  == '-2' ">
+                     when id=#{gprDomainMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -276,6 +306,8 @@ enterprise_id,
           from gpr_domain_message
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

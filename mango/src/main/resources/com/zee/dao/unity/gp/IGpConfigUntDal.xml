@@ -176,27 +176,75 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpConfig" >
     update gp_config
     <set >
-                  <if test="serialNo != null  and serialNo != '' " >
+                    <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
-                  </if>
-                  <if test="code != null  and code != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="code != null and code=='-1'">
+                     code = null,
+                  </when>
+                  <when test="code != null and code=='-2'">
+                     code = '',
+                  </when>
+                  <when test="code != null  and code != '' " >
                      code = #{code,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="defaultValue != null  and defaultValue != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="defaultValue != null and defaultValue=='-1'">
+                     default_value = null,
+                  </when>
+                  <when test="defaultValue != null and defaultValue=='-2'">
+                     default_value = '',
+                  </when>
+                  <when test="defaultValue != null  and defaultValue != '' " >
                      default_value = #{defaultValue,jdbcType=VARCHAR},
-                  </if>
-                  <if test="valueType != null  and valueType != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="valueType != null and valueType=='-1'">
+                     value_type = null,
+                  </when>
+                  <when test="valueType != null and valueType=='-2'">
+                     value_type = '',
+                  </when>
+                  <when test="valueType != null  and valueType != '' " >
                      value_type = #{valueType,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="priority != null ">
                      priority = #{priority,jdbcType=INTEGER},
                   </if>
-                  <if test="remark != null  and remark != '' " >
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -256,8 +304,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.serialNo != null  and gpConfig.serialNo  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.serialNo != null  and gpConfig.serialNo  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="code =case" suffix="end,">
@@ -267,8 +317,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.code != null  and gpConfig.code  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.code != null  and gpConfig.code  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -278,8 +330,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.name != null  and gpConfig.name  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.name != null  and gpConfig.name  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="default_value =case" suffix="end,">
@@ -289,8 +343,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.defaultValue != null  and gpConfig.defaultValue  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.defaultValue != null  and gpConfig.defaultValue  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="value_type =case" suffix="end,">
@@ -300,8 +356,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.valueType != null  and gpConfig.valueType  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.valueType != null  and gpConfig.valueType  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -318,8 +376,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpConfig.remark != null  and gpConfig.remark  == '-1' ">
                      when id=#{gpConfig.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpConfig.remark != null  and gpConfig.remark  == '-2' ">
+                     when id=#{gpConfig.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -401,6 +461,8 @@ update_time,
           from gp_config
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

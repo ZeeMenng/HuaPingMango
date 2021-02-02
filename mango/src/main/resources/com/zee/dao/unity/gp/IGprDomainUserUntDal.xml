@@ -154,12 +154,28 @@ user_id=values(user_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprDomainUser" >
     update gpr_domain_user
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userId != null  and userId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -192,8 +208,10 @@ user_id=values(user_id)
                   </if>
                   <if test="gprDomainUser.domainId != null  and gprDomainUser.domainId  == '-1' ">
                      when id=#{gprDomainUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprDomainUser.domainId != null  and gprDomainUser.domainId  == '-2' ">
+                     when id=#{gprDomainUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_id =case" suffix="end,">
@@ -203,8 +221,10 @@ user_id=values(user_id)
                   </if>
                   <if test="gprDomainUser.userId != null  and gprDomainUser.userId  == '-1' ">
                      when id=#{gprDomainUser.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprDomainUser.userId != null  and gprDomainUser.userId  == '-2' ">
+                     when id=#{gprDomainUser.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -244,6 +264,8 @@ user_id,
           from gpr_domain_user
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

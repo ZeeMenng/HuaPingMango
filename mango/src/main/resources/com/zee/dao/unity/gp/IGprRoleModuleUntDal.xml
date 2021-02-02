@@ -164,12 +164,28 @@ is_enable_code=values(is_enable_code)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprRoleModule" >
     update gpr_role_module
     <set >
-                  <if test="roleId != null  and roleId != '' " >
+                    <choose>
+                   <when test="roleId != null and roleId=='-1'">
+                     role_id = null,
+                  </when>
+                  <when test="roleId != null and roleId=='-2'">
+                     role_id = '',
+                  </when>
+                  <when test="roleId != null  and roleId != '' " >
                      role_id = #{roleId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="moduleId != null  and moduleId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="moduleId != null and moduleId=='-1'">
+                     module_id = null,
+                  </when>
+                  <when test="moduleId != null and moduleId=='-2'">
+                     module_id = '',
+                  </when>
+                  <when test="moduleId != null  and moduleId != '' " >
                      module_id = #{moduleId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isEnableCode != null ">
                      is_enable_code = #{isEnableCode,jdbcType=TINYINT},
                   </if>
@@ -208,8 +224,10 @@ is_enable_code=values(is_enable_code)
                   </if>
                   <if test="gprRoleModule.roleId != null  and gprRoleModule.roleId  == '-1' ">
                      when id=#{gprRoleModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprRoleModule.roleId != null  and gprRoleModule.roleId  == '-2' ">
+                     when id=#{gprRoleModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="module_id =case" suffix="end,">
@@ -219,8 +237,10 @@ is_enable_code=values(is_enable_code)
                   </if>
                   <if test="gprRoleModule.moduleId != null  and gprRoleModule.moduleId  == '-1' ">
                      when id=#{gprRoleModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprRoleModule.moduleId != null  and gprRoleModule.moduleId  == '-2' ">
+                     when id=#{gprRoleModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_enable_code =case" suffix="end,">
@@ -271,6 +291,8 @@ is_enable_code,
           from gpr_role_module
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

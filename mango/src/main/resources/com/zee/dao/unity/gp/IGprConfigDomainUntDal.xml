@@ -185,15 +185,39 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprConfigDomain" >
     update gpr_config_domain
     <set >
-                  <if test="configId != null  and configId != '' " >
+                    <choose>
+                   <when test="configId != null and configId=='-1'">
+                     config_id = null,
+                  </when>
+                  <when test="configId != null and configId=='-2'">
+                     config_id = '',
+                  </when>
+                  <when test="configId != null  and configId != '' " >
                      config_id = #{configId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="domainId != null  and domainId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="configValue != null  and configValue != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="configValue != null and configValue=='-1'">
+                     config_value = null,
+                  </when>
+                  <when test="configValue != null and configValue=='-2'">
+                     config_value = '',
+                  </when>
+                  <when test="configValue != null  and configValue != '' " >
                      config_value = #{configValue,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -241,8 +265,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigDomain.configId != null  and gprConfigDomain.configId  == '-1' ">
                      when id=#{gprConfigDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigDomain.configId != null  and gprConfigDomain.configId  == '-2' ">
+                     when id=#{gprConfigDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="domain_id =case" suffix="end,">
@@ -252,8 +278,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigDomain.domainId != null  and gprConfigDomain.domainId  == '-1' ">
                      when id=#{gprConfigDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigDomain.domainId != null  and gprConfigDomain.domainId  == '-2' ">
+                     when id=#{gprConfigDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="config_value =case" suffix="end,">
@@ -263,8 +291,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gprConfigDomain.configValue != null  and gprConfigDomain.configValue  == '-1' ">
                      when id=#{gprConfigDomain.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprConfigDomain.configValue != null  and gprConfigDomain.configValue  == '-2' ">
+                     when id=#{gprConfigDomain.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -330,6 +360,8 @@ update_time,
           from gpr_config_domain
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

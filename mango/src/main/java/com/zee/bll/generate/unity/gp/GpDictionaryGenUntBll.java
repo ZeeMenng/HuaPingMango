@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:49
+ * @updateDate 2021/2/2 10:31:47
  * @description 字典信息。 业务逻辑处理类，扩展自BaseUntBll<GpDictionary>，自动生成。
  */
 public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
@@ -274,7 +274,7 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 
 		return result;
 	}
-  
+
 
 }
 

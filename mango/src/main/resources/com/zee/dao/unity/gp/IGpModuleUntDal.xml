@@ -238,39 +238,111 @@ update_time=values(update_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpModule" >
     update gp_module
     <set >
-                  <if test="domainId != null  and domainId != '' " >
+                    <choose>
+                   <when test="domainId != null and domainId=='-1'">
+                     domain_id = null,
+                  </when>
+                  <when test="domainId != null and domainId=='-2'">
+                     domain_id = '',
+                  </when>
+                  <when test="domainId != null  and domainId != '' " >
                      domain_id = #{domainId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="name != null  and name != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="name != null and name=='-1'">
+                     name = null,
+                  </when>
+                  <when test="name != null and name=='-2'">
+                     name = '',
+                  </when>
+                  <when test="name != null  and name != '' " >
                      name = #{name,jdbcType=VARCHAR},
-                  </if>
-                  <if test="serialNo != null  and serialNo != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="serialNo != null and serialNo=='-1'">
+                     serial_no = null,
+                  </when>
+                  <when test="serialNo != null and serialNo=='-2'">
+                     serial_no = '',
+                  </when>
+                  <when test="serialNo != null  and serialNo != '' " >
                      serial_no = #{serialNo,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="level != null ">
                      level = #{level,jdbcType=TINYINT},
                   </if>
-                  <if test="fartherId != null  and fartherId != '' " >
+                    <choose>
+                   <when test="fartherId != null and fartherId=='-1'">
+                     farther_id = null,
+                  </when>
+                  <when test="fartherId != null and fartherId=='-2'">
+                     farther_id = '',
+                  </when>
+                  <when test="fartherId != null  and fartherId != '' " >
                      farther_id = #{fartherId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="priority != null ">
                      priority = #{priority,jdbcType=INTEGER},
                   </if>
-                  <if test="pageId != null  and pageId != '' " >
+                    <choose>
+                   <when test="pageId != null and pageId=='-1'">
+                     page_id = null,
+                  </when>
+                  <when test="pageId != null and pageId=='-2'">
+                     page_id = '',
+                  </when>
+                  <when test="pageId != null  and pageId != '' " >
                      page_id = #{pageId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="pageUrl != null  and pageUrl != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="pageUrl != null and pageUrl=='-1'">
+                     page_url = null,
+                  </when>
+                  <when test="pageUrl != null and pageUrl=='-2'">
+                     page_url = '',
+                  </when>
+                  <when test="pageUrl != null  and pageUrl != '' " >
                      page_url = #{pageUrl,jdbcType=VARCHAR},
-                  </if>
-                  <if test="style != null  and style != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="style != null and style=='-1'">
+                     style = null,
+                  </when>
+                  <when test="style != null and style=='-2'">
+                     style = '',
+                  </when>
+                  <when test="style != null  and style != '' " >
                      style = #{style,jdbcType=VARCHAR},
-                  </if>
-                  <if test="iconResource != null  and iconResource != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="iconResource != null and iconResource=='-1'">
+                     icon_resource = null,
+                  </when>
+                  <when test="iconResource != null and iconResource=='-2'">
+                     icon_resource = '',
+                  </when>
+                  <when test="iconResource != null  and iconResource != '' " >
                      icon_resource = #{iconResource,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -342,8 +414,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.domainId != null  and gpModule.domainId  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.domainId != null  and gpModule.domainId  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="name =case" suffix="end,">
@@ -353,8 +427,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.name != null  and gpModule.name  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.name != null  and gpModule.name  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="serial_no =case" suffix="end,">
@@ -364,8 +440,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.serialNo != null  and gpModule.serialNo  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.serialNo != null  and gpModule.serialNo  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="level =case" suffix="end,">
@@ -382,8 +460,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.fartherId != null  and gpModule.fartherId  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.fartherId != null  and gpModule.fartherId  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="priority =case" suffix="end,">
@@ -400,8 +480,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.pageId != null  and gpModule.pageId  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.pageId != null  and gpModule.pageId  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="page_url =case" suffix="end,">
@@ -411,8 +493,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.pageUrl != null  and gpModule.pageUrl  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.pageUrl != null  and gpModule.pageUrl  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="style =case" suffix="end,">
@@ -422,8 +506,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.style != null  and gpModule.style  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.style != null  and gpModule.style  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="icon_resource =case" suffix="end,">
@@ -433,8 +519,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.iconResource != null  and gpModule.iconResource  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.iconResource != null  and gpModule.iconResource  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -444,8 +532,10 @@ update_time=values(update_time)
                   </if>
                   <if test="gpModule.remark != null  and gpModule.remark  == '-1' ">
                      when id=#{gpModule.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpModule.remark != null  and gpModule.remark  == '-2' ">
+                     when id=#{gpModule.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -543,6 +633,8 @@ update_time,
           from gp_module
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

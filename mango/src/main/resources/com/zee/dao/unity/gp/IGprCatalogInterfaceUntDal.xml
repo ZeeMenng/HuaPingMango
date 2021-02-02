@@ -154,12 +154,28 @@ interface_id=values(interface_id)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprCatalogInterface" >
     update gpr_catalog_interface
     <set >
-                  <if test="catalogId != null  and catalogId != '' " >
+                    <choose>
+                   <when test="catalogId != null and catalogId=='-1'">
+                     catalog_id = null,
+                  </when>
+                  <when test="catalogId != null and catalogId=='-2'">
+                     catalog_id = '',
+                  </when>
+                  <when test="catalogId != null  and catalogId != '' " >
                      catalog_id = #{catalogId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="interfaceId != null  and interfaceId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="interfaceId != null and interfaceId=='-1'">
+                     interface_id = null,
+                  </when>
+                  <when test="interfaceId != null and interfaceId=='-2'">
+                     interface_id = '',
+                  </when>
+                  <when test="interfaceId != null  and interfaceId != '' " >
                      interface_id = #{interfaceId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
    </set>
                  where  id = #{id,jdbcType=VARCHAR}
   </update>
@@ -192,8 +208,10 @@ interface_id=values(interface_id)
                   </if>
                   <if test="gprCatalogInterface.catalogId != null  and gprCatalogInterface.catalogId  == '-1' ">
                      when id=#{gprCatalogInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprCatalogInterface.catalogId != null  and gprCatalogInterface.catalogId  == '-2' ">
+                     when id=#{gprCatalogInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="interface_id =case" suffix="end,">
@@ -203,8 +221,10 @@ interface_id=values(interface_id)
                   </if>
                   <if test="gprCatalogInterface.interfaceId != null  and gprCatalogInterface.interfaceId  == '-1' ">
                      when id=#{gprCatalogInterface.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprCatalogInterface.interfaceId != null  and gprCatalogInterface.interfaceId  == '-2' ">
+                     when id=#{gprCatalogInterface.id} then ''
+                  </if> 
               </foreach>
          </trim>
     </trim>
@@ -244,6 +264,8 @@ interface_id,
           from gpr_catalog_interface
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

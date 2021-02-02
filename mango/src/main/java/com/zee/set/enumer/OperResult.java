@@ -19,7 +19,8 @@ public enum OperResult {
 	ADDLIST_S(999800, "批量添加成功！"), ADDLISTWIDTHDFFORADD_S(999600, "批量新增或修改记录为不同值成功！"),
 	//
 	DELETE_S(989900, "删除记录成功！"),
-
+	//
+	DELETEBYUNIQUE_S(989500, "根据唯一字段删除记录成功！"),
 	//
 	DELETELIST_S(989800, "批量删除成功！"),
 	//
@@ -30,6 +31,10 @@ public enum OperResult {
 	UPDATE_S(979900, "修改记录成功！"), UPDATELIST_S(979800, "批量修改记录成功！"), UPDATELISTWIDTHDFF_S(979700, "批量修改记录为不同值成功！"), UPDATELISTWIDTHDFFORADD_S(979600, "批量修改或新增记录为不同值成功！"),
 	//
 	GETMODEL_S(969900, "单条查询成功！"),
+	//
+	GETMODELBYUNIQUE_S(969500, "根据唯一字段（非主键）单条查询成功！"),
+	//
+	ISUNIQUE_S(969400, "根据唯一字段（非主键）判断值是否存在，查询成功！"),
 	//
 	GETLIST_S(969800, "模糊查询成功！"),
 	//
@@ -46,6 +51,8 @@ public enum OperResult {
 	//
 	DELETE_F(989901, "删除记录出错！"),
 	//
+	DELETEBYUNIQUE_F(989501, "根据唯一字段删除记录成功！"),
+	//
 	DELETELIST_F(989801, "批量删除出错！"),
 	//
 	DELETEBYBUSINESSID_F(989701, "根据业务主键删除记录失败！"),
@@ -55,6 +62,10 @@ public enum OperResult {
 	UPDATE_F(979901, "修改记录出错！"), UPDATELIST_F(979801, "批量修改记录出错！"), UPDATELISTWIDTHDFF_F(979701, "批量修改记录为不同值出错！"), UPDATELISTWIDTHDFFORADD_F(97961, "批量修改或新增记录为不同值出错！"),
 	//
 	GETMODEL_F(969901, "单条查询出错！"),
+	//
+	GETMODELBYUNIQUE_F(969501, "根据唯一字段（非主主键）单条查询出错！"),
+	//
+	ISUNIQUE_F(969401, "根据唯一字段（非主键）判断值是否存在，查询失败！"),
 	//
 	GETLIST_F(969801, "模糊查询出错！"),
 	//

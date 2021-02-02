@@ -131,12 +131,28 @@ is_default=values(is_default)
   <update id="update" parameterType="com.zee.ent.extend.gp.GprResource" >
     update gpr_resource
     <set >
-                  <if test="businessId != null  and businessId != '' " >
+                    <choose>
+                   <when test="businessId != null and businessId=='-1'">
+                     business_id = null,
+                  </when>
+                  <when test="businessId != null and businessId=='-2'">
+                     business_id = '',
+                  </when>
+                  <when test="businessId != null  and businessId != '' " >
                      business_id = #{businessId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="resourceId != null  and resourceId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="resourceId != null and resourceId=='-1'">
+                     resource_id = null,
+                  </when>
+                  <when test="resourceId != null and resourceId=='-2'">
+                     resource_id = '',
+                  </when>
+                  <when test="resourceId != null  and resourceId != '' " >
                      resource_id = #{resourceId,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="isDefault != null ">
                      is_default = #{isDefault,jdbcType=TINYINT},
                   </if>
@@ -175,8 +191,10 @@ is_default=values(is_default)
                   </if>
                   <if test="gprResource.businessId != null  and gprResource.businessId  == '-1' ">
                      when id=#{gprResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprResource.businessId != null  and gprResource.businessId  == '-2' ">
+                     when id=#{gprResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="resource_id =case" suffix="end,">
@@ -186,8 +204,10 @@ is_default=values(is_default)
                   </if>
                   <if test="gprResource.resourceId != null  and gprResource.resourceId  == '-1' ">
                      when id=#{gprResource.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gprResource.resourceId != null  and gprResource.resourceId  == '-2' ">
+                     when id=#{gprResource.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="is_default =case" suffix="end,">
@@ -238,6 +258,8 @@ is_default,
           from gpr_resource
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

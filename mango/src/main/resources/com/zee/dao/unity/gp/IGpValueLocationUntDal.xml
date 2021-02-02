@@ -156,24 +156,72 @@ add_time=values(add_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpValueLocation" >
     update gp_value_location
     <set >
-                  <if test="columnValue != null  and columnValue != '' " >
+                    <choose>
+                   <when test="columnValue != null and columnValue=='-1'">
+                     column_value = null,
+                  </when>
+                  <when test="columnValue != null and columnValue=='-2'">
+                     column_value = '',
+                  </when>
+                  <when test="columnValue != null  and columnValue != '' " >
                      column_value = #{columnValue,jdbcType=VARCHAR},
-                  </if>
-                  <if test="originTableName != null  and originTableName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="originTableName != null and originTableName=='-1'">
+                     origin_table_name = null,
+                  </when>
+                  <when test="originTableName != null and originTableName=='-2'">
+                     origin_table_name = '',
+                  </when>
+                  <when test="originTableName != null  and originTableName != '' " >
                      origin_table_name = #{originTableName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="targetColumnName != null  and targetColumnName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="targetColumnName != null and targetColumnName=='-1'">
+                     target_column_name = null,
+                  </when>
+                  <when test="targetColumnName != null and targetColumnName=='-2'">
+                     target_column_name = '',
+                  </when>
+                  <when test="targetColumnName != null  and targetColumnName != '' " >
                      target_column_name = #{targetColumnName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="targetTableName != null  and targetTableName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="targetTableName != null and targetTableName=='-1'">
+                     target_table_name = null,
+                  </when>
+                  <when test="targetTableName != null and targetTableName=='-2'">
+                     target_table_name = '',
+                  </when>
+                  <when test="targetTableName != null  and targetTableName != '' " >
                      target_table_name = #{targetTableName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="targetRecordId != null  and targetRecordId != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="targetRecordId != null and targetRecordId=='-1'">
+                     target_record_id = null,
+                  </when>
+                  <when test="targetRecordId != null and targetRecordId=='-2'">
+                     target_record_id = '',
+                  </when>
+                  <when test="targetRecordId != null  and targetRecordId != '' " >
                      target_record_id = #{targetRecordId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remarks != null  and remarks != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remarks != null and remarks=='-1'">
+                     remarks = null,
+                  </when>
+                  <when test="remarks != null and remarks=='-2'">
+                     remarks = '',
+                  </when>
+                  <when test="remarks != null  and remarks != '' " >
                      remarks = #{remarks,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -224,8 +272,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.columnValue != null  and gpValueLocation.columnValue  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.columnValue != null  and gpValueLocation.columnValue  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="origin_table_name =case" suffix="end,">
@@ -235,8 +285,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.originTableName != null  and gpValueLocation.originTableName  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.originTableName != null  and gpValueLocation.originTableName  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="target_column_name =case" suffix="end,">
@@ -246,8 +298,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.targetColumnName != null  and gpValueLocation.targetColumnName  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.targetColumnName != null  and gpValueLocation.targetColumnName  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="target_table_name =case" suffix="end,">
@@ -257,8 +311,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.targetTableName != null  and gpValueLocation.targetTableName  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.targetTableName != null  and gpValueLocation.targetTableName  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="target_record_id =case" suffix="end,">
@@ -268,8 +324,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.targetRecordId != null  and gpValueLocation.targetRecordId  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.targetRecordId != null  and gpValueLocation.targetRecordId  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remarks =case" suffix="end,">
@@ -279,8 +337,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpValueLocation.remarks != null  and gpValueLocation.remarks  == '-1' ">
                      when id=#{gpValueLocation.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpValueLocation.remarks != null  and gpValueLocation.remarks  == '-2' ">
+                     when id=#{gpValueLocation.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -347,6 +407,8 @@ add_time,
           from gp_value_location
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

@@ -185,27 +185,75 @@ add_time=values(add_time)
   <update id="update" parameterType="com.zee.ent.extend.gp.GpMessage" >
     update gp_message
     <set >
-                  <if test="userId != null  and userId != '' " >
+                    <choose>
+                   <when test="userId != null and userId=='-1'">
+                     user_id = null,
+                  </when>
+                  <when test="userId != null and userId=='-2'">
+                     user_id = '',
+                  </when>
+                  <when test="userId != null  and userId != '' " >
                      user_id = #{userId,jdbcType=VARCHAR},
-                  </if>
-                  <if test="userName != null  and userName != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="userName != null and userName=='-1'">
+                     user_name = null,
+                  </when>
+                  <when test="userName != null and userName=='-2'">
+                     user_name = '',
+                  </when>
+                  <when test="userName != null  and userName != '' " >
                      user_name = #{userName,jdbcType=VARCHAR},
-                  </if>
-                  <if test="title != null  and title != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="title != null and title=='-1'">
+                     title = null,
+                  </when>
+                  <when test="title != null and title=='-2'">
+                     title = '',
+                  </when>
+                  <when test="title != null  and title != '' " >
                      title = #{title,jdbcType=VARCHAR},
-                  </if>
-                  <if test="content != null  and content != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="content != null and content=='-1'">
+                     content = null,
+                  </when>
+                  <when test="content != null and content=='-2'">
+                     content = '',
+                  </when>
+                  <when test="content != null  and content != '' " >
                      content = #{content,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="typeCode != null ">
                      type_code = #{typeCode,jdbcType=TINYINT},
                   </if>
-                  <if test="typeText != null  and typeText != '' " >
+                    <choose>
+                   <when test="typeText != null and typeText=='-1'">
+                     type_text = null,
+                  </when>
+                  <when test="typeText != null and typeText=='-2'">
+                     type_text = '',
+                  </when>
+                  <when test="typeText != null  and typeText != '' " >
                      type_text = #{typeText,jdbcType=VARCHAR},
-                  </if>
-                  <if test="remark != null  and remark != '' " >
+                  </when>
+                  </choose>
+                    <choose>
+                   <when test="remark != null and remark=='-1'">
+                     remark = null,
+                  </when>
+                  <when test="remark != null and remark=='-2'">
+                     remark = '',
+                  </when>
+                  <when test="remark != null  and remark != '' " >
                      remark = #{remark,jdbcType=VARCHAR},
-                  </if>
+                  </when>
+                  </choose>
                   <if test="addTime != null ">
                      add_time = #{addTime,jdbcType=TIMESTAMP},
                   </if>
@@ -259,8 +307,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.userId != null  and gpMessage.userId  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.userId != null  and gpMessage.userId  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="user_name =case" suffix="end,">
@@ -270,8 +320,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.userName != null  and gpMessage.userName  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.userName != null  and gpMessage.userName  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="title =case" suffix="end,">
@@ -281,8 +333,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.title != null  and gpMessage.title  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.title != null  and gpMessage.title  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="content =case" suffix="end,">
@@ -292,8 +346,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.content != null  and gpMessage.content  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.content != null  and gpMessage.content  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="type_code =case" suffix="end,">
@@ -310,8 +366,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.typeText != null  and gpMessage.typeText  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.typeText != null  and gpMessage.typeText  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="remark =case" suffix="end,">
@@ -321,8 +379,10 @@ add_time=values(add_time)
                   </if>
                   <if test="gpMessage.remark != null  and gpMessage.remark  == '-1' ">
                      when id=#{gpMessage.id} then null
-                  </if>
-                  
+                  </if>  
+                   <if test="gpMessage.remark != null  and gpMessage.remark  == '-2' ">
+                     when id=#{gpMessage.id} then ''
+                  </if> 
               </foreach>
          </trim>
          <trim prefix="add_time =case" suffix="end,">
@@ -393,6 +453,8 @@ add_time,
           from gp_message
            where  id = #{id,jdbcType=VARCHAR}
   </select>
+  
+   
   
   <select id="getList" resultMap="BaseResultMap" parameterType="map" >
           select

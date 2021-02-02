@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:41
- * @updateDate 2021/1/29 17:00:52
+ * @updateDate 2021/2/2 10:31:50
  * @description 登录用户操作日志。 业务逻辑处理类，扩展自BaseUntBll<GpOperLogLogin>，自动生成。
  */
 public class GpOperLogLoginGenUntBll extends BaseUntBll<GpOperLogLogin> {
@@ -707,7 +707,7 @@ public class GpOperLogLoginGenUntBll extends BaseUntBll<GpOperLogLogin> {
 
 	}
    
-  
+
 
 }
 

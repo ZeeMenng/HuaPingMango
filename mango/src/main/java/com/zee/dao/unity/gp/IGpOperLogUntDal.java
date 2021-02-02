@@ -12,7 +12,7 @@ import com.zee.ent.extend.gp.GpOperLogLogin;
 /**
  * @author Zee
  * @createDate 2017/05/22 14:01:29
- * @updateDate 2021/1/29 16:02:35
+ * @updateDate 2021/2/2 10:32:05
  * @description 扩展自实体类IBaseUntDal<GpOperLog>，可手动更改。操作日志。
  */
 
