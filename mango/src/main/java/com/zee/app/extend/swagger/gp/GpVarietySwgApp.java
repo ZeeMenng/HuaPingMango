@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +24,7 @@ import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpVariety;
 import com.zee.ent.parameter.gp.GpVarietyParameter;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.Tools;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -31,7 +32,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
 
 /**
  * @author Zee
@@ -41,8 +41,8 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gpVariety")
-public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
-	
+public class GpVarietySwgApp extends GpVarietyGenSwgApp {
+
 	@Autowired
 	@Qualifier("gpVarietyUntBll")
 	protected GpVarietyUntBll gpVarietyUntBll;
@@ -50,51 +50,51 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 	@Autowired
 	@Qualifier("gpVarietySplBll")
 	protected GpVarietySplBll gpVarietySplBll;
-	
+
 	@SuppressWarnings("unchecked")
 	@ApiOperation(value = "获取品种数据", notes = "获取品种数据")
 	@RequestMapping(value = "/getVarietyData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getVarietyData() {
 		ResultModel resultModel = new ResultModel();
-        try {
-    		Map<String, Object> map = new HashMap<String, Object>();
-    		StringBuffer selectBuffer = new StringBuffer();
-    		selectBuffer.append("	SELECT                                               ");
-    		selectBuffer.append("       a.id, a.name, a.parent_id pId,                   ");
-    		selectBuffer.append("		a.relation_id code,                              ");
-    		selectBuffer.append("		a.describes,                                      ");
-    		selectBuffer.append("		a.resource_url resourceUrl                                      ");
-    		selectBuffer.append("	FROM                                                 ");
-    		selectBuffer.append("		gp_variety a                                     ");
-    		selectBuffer.append("	WHERE a.name IS NOT NULL ");
-    		
-    		String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
-    		if (!StringUtils.isBlank(jsonData)){
-    			JSONObject jsonObject = JSONObject.fromObject(jsonData);
-    			if(jsonObject.containsKey("id") && StringUtils.isNotBlank(jsonObject.getString("id"))) {
-    				selectBuffer.append("  AND a.id = '").append(jsonObject.getString("id")).append("'");
-    			}
-    			if(jsonObject.containsKey("code") && StringUtils.isNotBlank(jsonObject.getString("code"))) {
-    				selectBuffer.append("  AND a.relation_id like '").append(jsonObject.getString("code")).append("%'");
-    			}
-    		}
-    		selectBuffer.append("	ORDER BY a.priority ASC  ");
-    		
-    		map.put("Sql", selectBuffer.toString());
-    		resultModel = gpVarietyUntBll.getListBySQL(map);
-    		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
-    		List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
-    		for (Map<String, Object> map2 : modelList) {
-    			Map<String, Object> treeMap = new HashMap<String, Object>();
-    			treeMap.put("id", map2.get("id"));
-    			treeMap.put("pId", map2.get("pId"));
-    			treeMap.put("name", map2.get("name"));
-    			treeMap.put("resourceUrl", map2.get("resourceUrl"));
-    			treeMap.put("code", map2.get("code"));
-    			treeMap.put("describes", map2.get("describes"));
-    			dataList.add(treeMap);
-    		}
-    		resultModel.setData(dataList);
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			StringBuffer selectBuffer = new StringBuffer();
+			selectBuffer.append("	SELECT                                               ");
+			selectBuffer.append("       a.id, a.name, a.parent_id pId,                   ");
+			selectBuffer.append("		a.relation_id code,                              ");
+			selectBuffer.append("		a.describes,                                      ");
+			selectBuffer.append("		a.resource_url resourceUrl                                      ");
+			selectBuffer.append("	FROM                                                 ");
+			selectBuffer.append("		gp_variety a                                     ");
+			selectBuffer.append("	WHERE a.name IS NOT NULL ");
+
+			String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
+			if (!StringUtils.isBlank(jsonData)) {
+				JSONObject jsonObject = JSONObject.fromObject(jsonData);
+				if (jsonObject.containsKey("id") && StringUtils.isNotBlank(jsonObject.getString("id"))) {
+					selectBuffer.append("  AND a.id = '").append(jsonObject.getString("id")).append("'");
+				}
+				if (jsonObject.containsKey("code") && StringUtils.isNotBlank(jsonObject.getString("code"))) {
+					selectBuffer.append("  AND a.relation_id like '").append(jsonObject.getString("code")).append("%'");
+				}
+			}
+			selectBuffer.append("	ORDER BY a.priority ASC  ");
+
+			map.put("Sql", selectBuffer.toString());
+			resultModel = gpVarietyUntBll.getListBySQL(map);
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			for (Map<String, Object> map2 : modelList) {
+				Map<String, Object> treeMap = new HashMap<String, Object>();
+				treeMap.put("id", map2.get("id"));
+				treeMap.put("pId", map2.get("pId"));
+				treeMap.put("name", map2.get("name"));
+				treeMap.put("resourceUrl", map2.get("resourceUrl"));
+				treeMap.put("code", map2.get("code"));
+				treeMap.put("describes", map2.get("describes"));
+				dataList.add(treeMap);
+			}
+			resultModel.setData(dataList);
 		} catch (Exception e) {
 			resultModel.setIsSuccessCode((byte) 1);
 			resultModel.setIsSuccessValue("false");
@@ -109,14 +109,14 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 	public ResultModel add(@RequestBody GpVariety jsonData) {
 		ResultModel result = new ResultModel();
 		try {
-			if(jsonData != null){
+			if (jsonData != null) {
 				jsonData.setAddTime(new Date());
 				jsonData.setId(Tools.getUUID());
 				jsonData.setAddUserId(this.getCurrentUser().getId());
 				String parentId = jsonData.getParentId();
-				if(StringUtils.isNotBlank(parentId)){
+				if (StringUtils.isNotBlank(parentId)) {
 					GpVariety gpVariety = getGpVarietyById(parentId);
-					if(gpVariety != null && StringUtils.isNotBlank(gpVariety.getRelationId())){
+					if (gpVariety != null && StringUtils.isNotBlank(gpVariety.getRelationId())) {
 						jsonData.setRelationId(getMaxRelationId(gpVariety.getRelationId()));
 					}
 				}
@@ -130,35 +130,35 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 
 		return result;
 	}
-	
+
 	@ApiOperation(value = "修改记录", notes = "修改指定记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpVariety") })
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel update(@RequestBody GpVariety jsonData) {
 		ResultModel result = new ResultModel();
 		try {
-			 if(jsonData != null){
-					String parentId = jsonData.getParentId();
-					if(StringUtils.isNotBlank(parentId)){
-						//父级对象信息
-						GpVariety gpVariety = getGpVarietyById(parentId);
-						//旧对象
-						GpVariety oldVariety = getGpVarietyById(jsonData.getId());
-						//如果修改父级节点，再修改relationId，否则不修改relationId
-						if(gpVariety != null && StringUtils.isNotBlank(gpVariety.getRelationId()) && !parentId.equals(oldVariety.getParentId())){
-							jsonData.setRelationId(getMaxRelationId(gpVariety.getRelationId()));
-						}
+			if (jsonData != null) {
+				String parentId = jsonData.getParentId();
+				if (StringUtils.isNotBlank(parentId)) {
+					// 父级对象信息
+					GpVariety gpVariety = getGpVarietyById(parentId);
+					// 旧对象
+					GpVariety oldVariety = getGpVarietyById(jsonData.getId());
+					// 如果修改父级节点，再修改relationId，否则不修改relationId
+					if (gpVariety != null && StringUtils.isNotBlank(gpVariety.getRelationId()) && !parentId.equals(oldVariety.getParentId())) {
+						jsonData.setRelationId(getMaxRelationId(gpVariety.getRelationId()));
 					}
-			  }
-			  result = gpVarietyUntBll.update(jsonData);
+				}
+			}
+			result = gpVarietyUntBll.update(jsonData);
 		} catch (Exception e) {
-				result.setIsSuccessCode((byte) 1);
-				result.setIsSuccessValue("false");
-				e.printStackTrace();
+			result.setIsSuccessCode((byte) 1);
+			result.setIsSuccessValue("false");
+			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
 	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息")
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/getModel", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -186,7 +186,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 
 		return result;
 	}
-	
+
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
@@ -199,8 +199,8 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		Map<String, Object> map = new HashMap<String, Object>();
 		StringBuffer selectBuffer = new StringBuffer();
 		selectBuffer.append("select A.id id,A.name name,A.parent_id parentId,A.relation_id relationId,A.describes describes,A.resource_id resourceId,A.resource_url resourceUrl,A.stutas_code stutasCode,A.stutas_text stutasText,A.cycle_time cycleTime,A.priority priority,A.remark remark,A.add_user_id addUserId,A.add_time addTime,A.update_time updateTime  from gp_variety A inner join gp_variety B on A.id=B.id where 1=1 ");
-        
-        if (!StringUtils.isBlank(jsonData)) {
+
+		if (!StringUtils.isBlank(jsonData)) {
 			JSONObject jsonObject = JSONObject.fromObject(jsonData);
 
 			if (jsonObject.containsKey("selectRows")) {
@@ -216,7 +216,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 
 			if (jsonObject.containsKey("entityRelated")) {
 				JSONObject entityRelatedObject = jsonObject.getJSONObject("entityRelated");
-                
+
 				if (entityRelatedObject.containsKey("name") && StringUtils.isNotBlank(entityRelatedObject.getString("name")))
 					selectBuffer.append(" and A.name like '%").append(entityRelatedObject.getString("name")).append("%'");
 				if (entityRelatedObject.containsKey("describes") && StringUtils.isNotBlank(entityRelatedObject.getString("describes")))
@@ -249,49 +249,48 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 
 		return resultModel;
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	@ApiOperation(value = "获取品种树状结构的数据", notes = "获取品种树状结构的数据")
 	@RequestMapping(value = "/getTreeNodeData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getTreeNodeData() {
 		ResultModel resultModel = new ResultModel();
-        try {
-        	String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
-    		if (StringUtils.isBlank(jsonData))
-    			return resultModel;
+		try {
+			String jsonData = request.getParameter(CustomSymbolic.CONTROLLER_PARAM_JSON);
+			if (StringUtils.isBlank(jsonData))
+				return resultModel;
 
-    		Map<String, Object> map = new HashMap<String, Object>();
-    		StringBuffer selectBuffer = new StringBuffer();
-    		selectBuffer.append("	SELECT                                               ");
-    		selectBuffer.append("		A.id id,                                         ");
-    		selectBuffer.append("		A.parent_id fartherId,                           ");
-    		selectBuffer.append("		A.name                                           ");
-    		selectBuffer.append("	FROM                                                 ");
-    		selectBuffer.append("		gp_variety A                                     ");
-    		selectBuffer.append("	WHERE A.name IS NOT NULL ");
-    		JSONObject jsonObject = JSONObject.fromObject(jsonData);
-    		if(jsonObject.containsKey("id") && StringUtils.isNotBlank(jsonObject.getString("id"))) {
-    			selectBuffer.append("	AND A.id != ");
-    			selectBuffer.append("'");
-    			selectBuffer.append(jsonObject.getString("id"));
-    			selectBuffer.append("'");
-    		}
-    		selectBuffer.append("	 ORDER BY A.priority ASC  ");
-    		
-    		map.put("Sql", selectBuffer.toString());
-    		resultModel = gpVarietyUntBll.getListBySQL(map);
-    		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
-    		List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
-    		for (Map<String, Object> map2 : modelList) {
-    			Map<String, Object> treeMap = new HashMap<String, Object>();
-    			treeMap.put("id", map2.get("id"));
-    			treeMap.put("pId", map2.get("fartherId"));
-    			treeMap.put("name", map2.get("name"));
-    			treeMap.put("open", true);
-    			treeNodes.add(treeMap);
-    		}
-    		resultModel.setData(treeNodes);
+			Map<String, Object> map = new HashMap<String, Object>();
+			StringBuffer selectBuffer = new StringBuffer();
+			selectBuffer.append("	SELECT                                               ");
+			selectBuffer.append("		A.id id,                                         ");
+			selectBuffer.append("		A.parent_id fartherId,                           ");
+			selectBuffer.append("		A.name                                           ");
+			selectBuffer.append("	FROM                                                 ");
+			selectBuffer.append("		gp_variety A                                     ");
+			selectBuffer.append("	WHERE A.name IS NOT NULL ");
+			JSONObject jsonObject = JSONObject.fromObject(jsonData);
+			if (jsonObject.containsKey("id") && StringUtils.isNotBlank(jsonObject.getString("id"))) {
+				selectBuffer.append("	AND A.id != ");
+				selectBuffer.append("'");
+				selectBuffer.append(jsonObject.getString("id"));
+				selectBuffer.append("'");
+			}
+			selectBuffer.append("	 ORDER BY A.priority ASC  ");
+
+			map.put("Sql", selectBuffer.toString());
+			resultModel = gpVarietyUntBll.getListBySQL(map);
+			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
+			List<Map<String, Object>> treeNodes = new ArrayList<Map<String, Object>>();
+			for (Map<String, Object> map2 : modelList) {
+				Map<String, Object> treeMap = new HashMap<String, Object>();
+				treeMap.put("id", map2.get("id"));
+				treeMap.put("pId", map2.get("fartherId"));
+				treeMap.put("name", map2.get("name"));
+				treeMap.put("open", true);
+				treeNodes.add(treeMap);
+			}
+			resultModel.setData(treeNodes);
 		} catch (Exception e) {
 			resultModel.setIsSuccessCode((byte) 1);
 			resultModel.setIsSuccessValue("false");
@@ -299,7 +298,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		}
 		return resultModel;
 	}
-	
+
 	@ApiOperation(value = "删除记录", notes = "根据主键删除相应记录")
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -327,7 +326,6 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		return result;
 	}
 
-
 	@ApiOperation(value = "批量修改", notes = "同时修改多条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，主键列表和要修改为的信息承载实体", required = true, dataType = "GpVarietyUpdateList") })
 	@RequestMapping(value = "/updateList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -337,7 +335,6 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		return result;
 	}
 
-	
 	/**
 	 * 根据id查询出品种对象信息
 	 * @param id
@@ -355,14 +352,14 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		selectBuffer.append("		gp_variety a  ");
 		selectBuffer.append("   WHERE a.id = ");
 		selectBuffer.append("'");
-		if(!StringUtils.isBlank(id)) {
+		if (!StringUtils.isBlank(id)) {
 			selectBuffer.append(id);
 		}
 		selectBuffer.append("'");
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpVarietyUntBll.getListBySQL(map);
 		Object object = resultModel.getData();
-		if (object != null){
+		if (object != null) {
 			List<Map<String, Object>> objectList = (List<Map<String, Object>>) object;
 			if (objectList != null && objectList.size() == 1) {
 				JSONObject jsonData = JSONObject.fromObject(objectList.get(0));
@@ -371,7 +368,7 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		}
 		return variety;
 	}
-	
+
 	/**
 	 * 获取最大relationId
 	 * @param parentRelationId 父节点的relationId
@@ -379,8 +376,8 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 	 */
 	@SuppressWarnings("unchecked")
 	private String getMaxRelationId(String parentRelationId) {
-		String relationId = "";	
-		int len = parentRelationId.length() + 4;//relationId规则以4位递增
+		String relationId = "";
+		int len = parentRelationId.length() + 4;// relationId规则以4位递增
 		ResultModel resultModel = new ResultModel();
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -394,47 +391,43 @@ public class  GpVarietySwgApp extends  GpVarietyGenSwgApp {
 		selectBuffer.append(len);
 		selectBuffer.append("   AND a.relation_id LIKE '");
 		selectBuffer.append(parentRelationId).append("%'");
-		
+
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpVarietyUntBll.getListBySQL(map);
-	
+
 		Object object = resultModel.getData();
 		List<Map<String, Object>> objectList = null;
 		Map<String, Object> objMap = null;
-		if (object != null){
+		if (object != null) {
 			objectList = (List<Map<String, Object>>) object;
-		}else{
+		} else {
 			relationId = parentRelationId + "0001";
 		}
 		if (objectList != null) {
-			if(objectList.size() == 0) {
+			if (objectList.size() == 0) {
 				relationId = parentRelationId + "0001";
-			}else{
+			} else {
 				objMap = objectList.get(0);
 				JSONObject jsonData = JSONObject.fromObject(objMap);
 				// 解析出需要的id值
 				if (jsonData.containsKey("relationId")) {
 					String relId = jsonData.getString("relationId");
-					if(StringUtils.isNotBlank(relId) && relId != "null"){
-						relId = relId.substring(relId.length() - 4, relId.length());//获取后四位
-						int	maxRelId = Integer.parseInt(relId) + 1;//计算后String.format会自动补零
-						//其中0是被填充到缺省位的数字，4代表规定数字的总位数  d代表是整型
+					if (StringUtils.isNotBlank(relId) && relId != "null") {
+						relId = relId.substring(relId.length() - 4, relId.length());// 获取后四位
+						int maxRelId = Integer.parseInt(relId) + 1;// 计算后String.format会自动补零
+						// 其中0是被填充到缺省位的数字，4代表规定数字的总位数 d代表是整型
 						relationId = parentRelationId + String.format("%04d", Integer.valueOf(maxRelId));
-					}else{
+					} else {
 						relationId = parentRelationId + "0001";
 					}
-				}else{
+				} else {
 					relationId = parentRelationId + "0001";
 				}
 			}
-		}else{
+		} else {
 			relationId = parentRelationId + "0001";
 		}
 		return relationId;
 	}
-	
 
 }
-
-
-

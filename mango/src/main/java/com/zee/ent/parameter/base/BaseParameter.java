@@ -16,7 +16,7 @@ public class BaseParameter extends BaseEnt implements Serializable {
 	}
 
 	public static class BaseParamDeleteByIdList extends BaseParameter {
-		
+
 		@ApiModelProperty(value = "要删除记录的主键列表 ", required = false)
 		private ArrayList<String> idList = new ArrayList<String>();
 
@@ -29,9 +29,9 @@ public class BaseParameter extends BaseEnt implements Serializable {
 		}
 
 	}
-	
+
 	public static class BaseParamUpdateList {
-		
+
 		@ApiModelProperty(value = "要修改记录的主键列表 ", required = false)
 		private ArrayList<String> idList = new ArrayList<String>();
 
@@ -44,8 +44,6 @@ public class BaseParameter extends BaseEnt implements Serializable {
 		}
 
 	}
-
-	
 
 	public static class BaseParamGetList {
 

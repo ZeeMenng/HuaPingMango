@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2018/1/26 17:25:56
+ * @updateDate 2021/2/3 14:28:06
  * @description 实体类GpUserParameter，方法参数，自动生成。系统用户。
  */
 

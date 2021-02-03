@@ -2,7 +2,7 @@ package com.zee.app.extend.swagger.gp;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -48,6 +48,7 @@ import com.zee.ent.parameter.gp.GpUserParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.set.symbolic.SqlSymbolic;
+import com.zee.utl.CastObjectUtil;
 import com.zee.utl.DictionaryUtil;
 import com.zee.utl.MailSenderUtil;
 import com.zee.utl.Tools;

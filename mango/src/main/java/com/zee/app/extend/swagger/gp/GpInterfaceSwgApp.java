@@ -337,7 +337,6 @@ public class GpInterfaceSwgApp extends GpInterfaceGenSwgApp {
 			gpInterface.setUrl(url);
 
 			gpInterface.setRemark(remark);
-			gpInterface.setSerialNo(serialNo);
 			gpInterface.setTypeCode(typeCode);
 			gpInterface.setUpdateTime(DateUtils.getCurrentTime());
 

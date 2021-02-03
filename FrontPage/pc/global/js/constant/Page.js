@@ -51,6 +51,7 @@ var RP_GPCATALOGINTERFACE_ADD = "/pc/ss/gp/html/gp/CatalogInterfaceAdd.html";
 var RP_GPCATALOGINTERFACE_DETAIL = "/pc/ss/gp/html/gp/CatalogInterfaceDetail.html";
 var RP_GPCATALOGINTERFACE_EDIT = "/pc/ss/gp/html/gp/CatalogInterfaceEdit.html";
 var RP_GPCATALOGINTERFACE_LIST = "/pc/ss/gp/html/gp/CatalogInterfaceList.html";
+var RP_GPCATALOGINTERFACE_LIST0 = "/pc/ss/gp/html/gp/CatalogInterfaceList0.html";
 var RP_GPCONFIG_ADD = "/pc/ss/gp/html/gp/ConfigAdd.html";
 var RP_GPCONFIG_DETAIL = "/pc/ss/gp/html/gp/ConfigDetail.html";
 var RP_GPCONFIG_EDIT = "/pc/ss/gp/html/gp/ConfigEdit.html";

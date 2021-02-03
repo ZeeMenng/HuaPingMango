@@ -278,11 +278,14 @@ public class GpPageSwgApp extends GpPageGenSwgApp {
 				int endIndex = path.lastIndexOf('.');
 				if (beginIndex == -1)
 					beginIndex = 0;
+				else
+					beginIndex++;
 				if (endIndex == -1)
 					endIndex = path.length();
 				gpPage.setName(path.substring(beginIndex, endIndex));
 				gpPage.setUrl(path);
 				gpPage.setIsPublicCode((byte) 0);
+				gpPage.setUpdateTime(DateUtils.getCurrentTime());
 
 				// 如果包含，说明是修改记录，是否公共、添加时间、编号这3个字段不做修改、
 				for (Map<String, Object> pageMap : pageList) {

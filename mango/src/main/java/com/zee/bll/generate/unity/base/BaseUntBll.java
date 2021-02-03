@@ -33,6 +33,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 	@Autowired
 	protected IBaseUntDal<T> baseUntDal;
 
+	SnowFlakeSerialNoWorkerUtl snowFlake=new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID);
 	// @Autowired
 	// private RedisUtil redisUtil;
 
@@ -75,7 +76,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				serialNoField.setAccessible(true);
 				Object serialNoObject = serialNoField.get(t);
 				if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
-					String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+					String tSerialNo = String.valueOf(snowFlake.nextId());
 					serialNoField.set(t, tSerialNo);
 				}
 			}
@@ -177,7 +178,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 					serialNoField.setAccessible(true);
 					Object serialNoObject = serialNoField.get(t);
 					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
-						String tSerialNo = String.valueOf(new SnowFlakeSerialNoWorkerUtl(CustomSymbolic.SNOWFLAKE_SERIAL_NO_DATACENTER_ID, CustomSymbolic.SNOWFLAKE_SERIAL_NO_WORKDER_ID).nextId());
+						String tSerialNo = String.valueOf(snowFlake.nextId());
 						serialNoField.set(t, tSerialNo);
 					}
 				}
@@ -255,7 +256,6 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 
 		try {
 
-			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(JSONArray.fromObject(tList).toString());
 			result.setIncomeCount(JSONArray.fromObject(tList).size());
@@ -263,7 +263,7 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 			result.setOperTypeCode(OperType.ADDLISTWIDTHDFFORADD.getCode());
 			result.setOperTypeText(OperType.ADDLISTWIDTHDFFORADD.getText());
 			result.setRemark("");
-
+			
 			for (T t : tList) {
 				Class<?> cla = t.getClass().getSuperclass();
 				String tId = Tools.getUUID();
@@ -272,11 +272,15 @@ public class BaseUntBll<T extends Serializable> extends BaseBll {
 				Object idObject = field.get(t);
 				if (idObject == null || StringUtils.isEmpty(idObject.toString()))
 					field.set(t, tId);
-				// 给新增时间统一赋值
-				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.ADD_TIME)) {
-					Field addTimeField = cla.getDeclaredField(CustomSymbolic.ADD_TIME);
-					addTimeField.setAccessible(true);
-					addTimeField.set(t, DateUtils.getCurrentTime());
+				// 给编号统一赋值（如果之前值为空 的话）
+				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.TABLE_SERIAL_NO)) {
+					Field serialNoField = cla.getDeclaredField(CustomSymbolic.TABLE_SERIAL_NO);
+					serialNoField.setAccessible(true);
+					Object serialNoObject = serialNoField.get(t);
+					if (serialNoObject == null || StringUtils.isEmpty(serialNoObject.toString())) {
+						String tSerialNo = String.valueOf(snowFlake.nextId());
+						serialNoField.set(t, tSerialNo);
+					}
 				}
 				// 给修改时间统一赋值
 				if (ClassUtil.isExistFieldName(cla, CustomSymbolic.UPDATE_TIME)) {
