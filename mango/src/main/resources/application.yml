@@ -1,159 +1,84 @@
-#spring mail  
+#spring mail
 mail:
- smtp:
-  username: 1134926238@qq.com
-  password: geuurlagbaxrgaae
-  smtpServer: smtp.qq.com
-  port: 465
-  fromMailAddress: 1134926238@qq.com
-  auth: true
-  timeout: 1000
-
-#时间戳统一转换
-spring.jackson.time-zone : GMT+8
+   smtp:
+      username: 850934828@qq.com
+      password: abcdefg
+      smtpServer: smtp.qq.com
+      port: 465
+      fromMailAddress: 850934828@qq.com
+      auth: true
+      timeout: 1000
+spring.jackson.time-zone: GMT+8
 spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
+#时间戳统一转换
 spring.jackson.joda-date-time-format: yyyy-MM-dd HH:mm:ss
-
-# Server port
 server:
-  port: 60011
-  contextPath: /mango
-
-# 跨域访问
+   port: 60011
+   servlet:
+      contextPath: /mango
 cors.allow.origin: '*'
-
-#是否记录日志到数据库
 isLog:
-  write: true
-  read: false
-
-#MyBatis配置文件地址
+   write: true
+   read: false
+# 跨域访问
 mybatis:
-  configLocation: mybatis-config.xml
-  
-# 打印sql  
-#logging:  
-# level: 
-#   com.zee.dao.unity: DEBUG
-
-# MySQL config
+   configLocation: mybatis-config.xml
+#是否记录日志到数据库
 spring:
-  datasource:
-  
-    #丽江环境
-    #外网
-    #url: jdbc:mysql://218.202.50.102:8023/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
-    #内网
-    #url: jdbc:mysql://172.0.0.7:3306/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
-    #username: root
-    #password: QJTWRr8U!9u!!
-
-    #测试环境
-    #url: jdbc:mysql://192.168.200.193:3306/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
-    #username: root
-    #password: HuaPingMango1109*
-
-    #本地环境
-    url: jdbc:mysql://localhost:3306/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
-    username: root
-    password: 850934828
-    
-    #演示环境
-    #url: jdbc:mysql://192.168.200.238:3306/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true
-    #username: root
-    #password: HuaPingMango1114
-    
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    filters: stat
-    maxActive: 80     #最大活动连接
-    initialSize: 10   #初始化连接
-    maxIdle: 60       #最大空闲连接
-    minIdle: 10       #最小空闲连接
-    maxWait: 3000     #从池中取连接的最大等待时间，单位ms
-    validationQuery: SELECT 1  #验证使用的SQL语句
-    testWhileIdle: true      #指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除.
-    testOnBorrow: false      #拿出连接时不要测试，否则很影响性能
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
-    timeBetweenEvictionRunsMillis: 30000  #每30秒运行一次空闲连接回收器
-    minEvictableIdleTimeMillis: 1800000   #池中的连接空闲30分钟后被回收
-    numTestsPerEvictionRun: 3 #在每次空闲连接回收器线程(如果有)运行时检查的连接数量
-
-  thymeleaf.cache: false
-  freemarker.cache: false
-  velocity.cache: false
-  groovy.template.cache: false
-   
-  mvc:
-    favicon:
-      enabled: false
-      
-# RedisProperties(部署丽江暂时不使用)
-# redis:
-#   database: 0               #Redis数据库索引（默认为0）
-#   timeout: 0                #连接超时时间（毫秒）
-#   sentinel: 
-#    master: mymaster          #哨兵监听的Redis server的名称
-#    nodes: 192.168.200.39:26379,192.168.200.39:26380
-#   pool:
-#    max-active: 8            #连接池最大连接数（使用负值表示没有限制）
-#    max-wait: -1             #连接池最大阻塞等待时间（使用负值表示没有限制）
-#    max-idle: 8              #连接池中的最大空闲连接
-#    min-idle: 0              #连接池中的最小空闲连接
-
-
-  multipart:  
-    enabled: true  
-    max-file-size: 1000mb  
-    max-request-size: 1000mb
-    
-# mongoProperties
-mongo:
-#测试环境
-  address : 192.168.200.39
-  port : 27017
-  maxConnect : 50
-  maxWaitThread : 100
-  maxTimeOut : 300
-  maxWaitTime : 300
-  database : mango
-  collection : DaIotMonitorData
-#演示环境
-  #address : 192.168.200.238
-  #port : 60017
-  #maxConnect : 50
-  #maxWaitThread : 100
-  #maxTimeOut : 300
-  #maxWaitTime : 300
-  #database : mango
-  #collection : DaIotMonitorData
-  
-    
-#文件上传
-upload:
+   datasource:
+      url: jdbc:mysql://localhost:3306/mango?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&autoReconnectForPools=true&serverTimezone=GMT%2B8
+      username: root
+#MyBatis配置文件地址
+      password: 850934828
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+# 打印sql
+#logging:
+# level:
+#   com.zee.dao.unity: DEBUG
+      filters: stat
+# MySQL config
+      maxActive: 80 #最大活动连接
+      initialSize: 10 #初始化连接
+      maxIdle: 60 #最大空闲连接
 #本地环境
-   diskPath : D:\ProgramData\ApplicationResource\Mango
-   linkPath : http://localhost/resource
-   swfPath : http://192.168.200.193:8081/resource/swf/flvplayer.swf
-#测试环境
-   #diskPath : /data/application/mango/resource/
-   #linkPath : http://192.168.200.193:8081/resource
-   #swfPath : http://192.168.200.193:8081/resource/swf/flvplayer.swf
-#演示环境
-  #diskPath : /data/application/mango/resource
-  #linkPath : http://202.106.10.250:62019/resource
-  #swfPath : http://202.106.10.250:62019/resource/swf/flvplayer.swf
-#丽江环境
-  #diskPath : /data/application/mango/resource
-  #linkPath : http://218.202.50.102:8026/resource
-  #swfPath : http://218.202.50.102:8026/resource/swf/flvplayer.swf
-
-  
-#定时任务开关
+      minIdle: 10 #最小空闲连接
+      maxWait: 3000 #从池中取连接的最大等待时间，单位ms
+      validationQuery: SELECT 1 #验证使用的SQL语句
+      testWhileIdle: true #指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除.
+      testOnBorrow: false #拿出连接时不要测试，否则很影响性能
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      timeBetweenEvictionRunsMillis: 30000 #每30秒运行一次空闲连接回收器
+      minEvictableIdleTimeMillis: 1800000 #池中的连接空闲30分钟后被回收
+      numTestsPerEvictionRun: 3 #在每次空闲连接回收器线程(如果有)运行时检查的连接数量
+   thymeleaf.cache: false
+   freemarker.cache: false
+   velocity.cache: false
+   groovy.template.cache: false
+   mvc:
+      favicon:
+         enabled: false
+   multipart:
+      enabled: true
+      max-file-size: 1000mb
+      max-request-size: 1000mb
+mongo:
+   address: 192.168.200.39
+   port: 27017
+   maxConnect: 50
+   maxWaitThread: 100
+   maxTimeOut: 300
+   maxWaitTime: 300
+   database: mango
+   collection: DaIotMonitorData
+upload:
+   diskPath: D:\ProgramData\ApplicationResource\Mango
+   linkPath: http://localhost/resource
+   swfPath: http://192.168.200.193:8081/resource/swf/flvplayer.swf
 mangoTaskSwitch:
-  sentimentTask : false
-  ecTask : false
-  wholesaleTask : false
-
+   sentimentTask: false
+   ecTask: false
+# mongoProperties
+   wholesaleTask: false
