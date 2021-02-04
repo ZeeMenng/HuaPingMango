@@ -16,7 +16,7 @@ $(document).ready(function() {
         valueField : "code"
     };
     var ajaxParam = {
-        url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_OPER_TYPE
+        url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_OPER_TYPE
     }
     initDropDownList(selectParam, ajaxParam);
     //初始化下拉框--是否成功
@@ -26,7 +26,7 @@ $(document).ready(function() {
         valueField : "code"
     };
     var ajaxParam = {
-        url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN
+        url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN
     }
     initDropDownList(selectParam, ajaxParam);
 	

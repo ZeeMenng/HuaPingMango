@@ -30,7 +30,7 @@ function initSelect(async) {
 		valueField : "code"
 	};
 	var ajaxParam2 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN,
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID  + DI_BOOLEAN,
 		async : async
 	}
 	initDropDownList(selectParam2, ajaxParam2);
@@ -42,7 +42,7 @@ function initSelect(async) {
 		valueField : "code"
 	};
 	var ajaxParam3 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_REQUEST_METHOD,
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_REQUEST_METHOD,
 		async : async
 	}
 	initDropDownList(selectParam3, ajaxParam3);

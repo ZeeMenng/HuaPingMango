@@ -2,12 +2,12 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2018/7/11 17:38:33
- * @description  专家表 相关页面的js方法。
+ * @description 专家表 相关页面的js方法。
  */
 
 $(document).ready(function() {
 
-	//初始化是否推荐下拉框
+	// 初始化是否推荐下拉框
 	var show = false;
 	var selectParam1 = {
 		selectId : "selectIsRecommend",
@@ -15,10 +15,10 @@ $(document).ready(function() {
 		valueField : "code"
 	};
 	var ajaxParam1 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_BOOLEAN
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN
 	}
 	initDropDownList(selectParam1, ajaxParam1);
-	//初始化是否结婚下拉框
+	// 初始化是否结婚下拉框
 	var show = false;
 	var selectParam2 = {
 		selectId : "selectIsMarriageCode",
@@ -26,21 +26,21 @@ $(document).ready(function() {
 		valueField : "code"
 	};
 	var ajaxParam2 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_BOOLEAN
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN
 	}
 	initDropDownList(selectParam2, ajaxParam2);
-	//初始化男女下拉框
+	// 初始化男女下拉框
 	var selectParam3 = {
 		selectId : "selectGenderCode",
 		textField : "text",
 		valueField : "code"
 	};
 	var ajaxParam3 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_GENDER
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_GENDER
 	}
 	initDropDownList(selectParam3, ajaxParam3);
 
-	//初始化列表页主体部分，包括查询条件表单及数据表格等。
+	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
 		tableId : "contentTable",
@@ -80,36 +80,31 @@ $(document).ready(function() {
 		},
 		columnInfo : [
 
-			{
-				"columnName" : "userName",
-				"columnText" : "专家姓名",
-				"style" : "text-align:left",
-				"linkFunction" : function(event) {
-					var href = RP_PIEXPERT_DETAIL + "?" + RECORD_ID + "=" + event.id;
-					return href;
-				},
+		{
+			"columnName" : "userName",
+			"columnText" : "专家姓名",
+			"style" : "text-align:left",
+			"linkFunction" : function(event) {
+				var href = RP_PIEXPERT_DETAIL + "?" + RECORD_ID + "=" + event.id;
+				return href;
 			},
-			{
-				"columnName" : "genderValue",
-				"columnText" : "性别",
-				"style" : "text-align:left",
-			},
-			{
-				"columnName" : "birthTime",
-				"columnText" : "出生日期",
-				"style" : "text-align:left",
-			},
-			{
-				"columnName" : "phone",
-				"columnText" : "联系方式",
-				"style" : "text-align:left",
-			},
-			{
-				"columnName" : "isRecommend",
-				"columnText" : "是否推荐",
-				"style" : "text-align:left",
-			},
-       ]
+		}, {
+			"columnName" : "genderValue",
+			"columnText" : "性别",
+			"style" : "text-align:left",
+		}, {
+			"columnName" : "birthTime",
+			"columnText" : "出生日期",
+			"style" : "text-align:left",
+		}, {
+			"columnName" : "phone",
+			"columnText" : "联系方式",
+			"style" : "text-align:left",
+		}, {
+			"columnName" : "isRecommend",
+			"columnText" : "是否推荐",
+			"style" : "text-align:left",
+		}, ]
 	};
 
 	var operationParam = [ {

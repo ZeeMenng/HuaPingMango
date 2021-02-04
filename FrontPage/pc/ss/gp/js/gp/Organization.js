@@ -14,7 +14,7 @@ $(document).ready(function() {
         valueField : "code"
     };
     var ajaxParamAdmin = {
-        url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_ORG_TYPE
+        url : RU_GPDICTIONARY_GETLISTBYTYPEID+DI_ORG_TYPE
     }
     initDropDownList(selectParamAdmin, ajaxParamAdmin);
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		valueField : "code"
 	};
 	var ajaxParamAdmin = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_ORGANIZATION
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID+DI_ORGANIZATION
 	}
 	initDropDownList(selectParamAdmin, ajaxParamAdmin);
 	

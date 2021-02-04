@@ -27,7 +27,7 @@ $(document).ready(
 				valueField : "code"
 			};
 			var ajaxParamAdmin = {
-				url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN
+				url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN
 			}
 			initDropDownList(selectParamAdmin, ajaxParamAdmin);
 

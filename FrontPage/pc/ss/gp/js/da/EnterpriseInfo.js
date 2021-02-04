@@ -2,29 +2,29 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2018-7-31 14:57:17
- * @description  企业基本信息表 相关页面的js方法。
+ * @description 企业基本信息表 相关页面的js方法。
  */
 
 $(document).ready(function() {
 
-	//初始化机构类型下拉框
+	// 初始化机构类型下拉框
 	var selectParamAdmin = {
 		selectId : "selectEnterpriseTypeCode",
 		textField : "text",
 		valueField : "code"
 	};
 	var ajaxParamAdmin = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_ENTERPRISE_TYPE
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_ENTERPRISE_TYPE
 	}
 	initDropDownList(selectParamAdmin, ajaxParamAdmin);
-	
-	 //根据下拉框选择 赋值input text
-    $('#selectEnterpriseTypeCode').change(function(){
-        var enterpriseTypeText = $(this).children('option:selected').text();
-        $('#textEnterpriseTypeText').val(enterpriseTypeText);
-    });
-	
-	//初始化列表页主体部分，包括查询条件表单及数据表格等。
+
+	// 根据下拉框选择 赋值input text
+	$('#selectEnterpriseTypeCode').change(function() {
+		var enterpriseTypeText = $(this).children('option:selected').text();
+		$('#textEnterpriseTypeText').val(enterpriseTypeText);
+	});
+
+	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
 		tableId : "contentTable",
@@ -62,9 +62,9 @@ $(document).ready(function() {
 				"pageSize" : DEFAULT_PAGE_SIZE
 			}
 		},
-		columnInfo : [ 
-        
-			 {
+		columnInfo : [
+
+		{
 			"columnName" : "enterpriseName",
 			"columnText" : "企业名称",
 			"style" : "text-align:center",
@@ -72,32 +72,27 @@ $(document).ready(function() {
 				var href = RP_DAENTERPRISEINFO_DETAIL + "?" + RECORD_ID + "=" + event.id;
 				return href;
 			},
-			},
-			{
-				"columnName" : "enterpriseCode",
-				"columnText" : "企业编码",
-				"style" : "text-align:center",
-			},
-			 {
+		}, {
+			"columnName" : "enterpriseCode",
+			"columnText" : "企业编码",
+			"style" : "text-align:center",
+		}, {
 			"columnName" : "corporationName",
 			"columnText" : "企业法人/负责人",
 			"style" : "text-align:center",
-			}, 
-			 {
+		}, {
 			"columnName" : "corporationMobile",
 			"columnText" : "联系电话",
 			"style" : "text-align:center",
-			}, 
-			 {
+		}, {
 			"columnName" : "enterpriseAddress",
 			"columnText" : "企业地址",
 			"style" : "text-align:center",
-			},
-			{
+		}, {
 			"columnName" : "enterpriseTypeText",
 			"columnText" : "企业类型",
 			"style" : "text-align:center",
-			},
+		},
 
 		]
 	};

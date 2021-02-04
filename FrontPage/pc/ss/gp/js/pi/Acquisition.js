@@ -2,22 +2,22 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2018/1/16 4:36:54
- * @description  CMS采集任务表 相关页面的js方法。
+ * @description CMS采集任务表 相关页面的js方法。
  */
 
 $(document).ready(function() {
 
-    //初始化采集状态下拉框
-    var selectParam1 = {
-        selectId : "selectAcquisitionStatus",
-        textField : "text",
-        valueField : "code"
-    };
-    var ajaxParam1 = {
-        url : RU_GPDICTIONARY_GETLISTBYTYPEID+ "/"+DI_ACQUISITION
-    }
-    initDropDownList(selectParam1, ajaxParam1);
-	//初始化列表页主体部分，包括查询条件表单及数据表格等。
+	// 初始化采集状态下拉框
+	var selectParam1 = {
+		selectId : "selectAcquisitionStatus",
+		textField : "text",
+		valueField : "code"
+	};
+	var ajaxParam1 = {
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_ACQUISITION
+	}
+	initDropDownList(selectParam1, ajaxParam1);
+	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
 		tableId : "contentTable",
@@ -37,8 +37,8 @@ $(document).ready(function() {
 		deleteListInterface : {
 			url : RU_PIACQUISITION_DELETELIST
 		},
-		exportExcelInterface:{
-			url:RU_PIACQUISITION_EXPORTEXCEL
+		exportExcelInterface : {
+			url : RU_PIACQUISITION_EXPORTEXCEL
 		}
 
 	};
@@ -58,9 +58,9 @@ $(document).ready(function() {
 				"pageSize" : DEFAULT_PAGE_SIZE
 			}
 		},
-		columnInfo : [ 
-        
-			 {
+		columnInfo : [
+
+		{
 			"columnName" : "acqName",
 			"columnText" : "采集名称",
 			"style" : "text-align:left",
@@ -68,24 +68,21 @@ $(document).ready(function() {
 				var href = RP_PIACQUISITION_DETAIL + "?" + RECORD_ID + "=" + event.id;
 				return href;
 			},
-			}, 
-			 {
+		}, {
 			"columnName" : "statusText",
 			"columnText" : "当前状态",
 			"style" : "text-align:left",
-			}, 
-			 {
+		}, {
 			"columnName" : "startTime",
 			"columnText" : "开始时间",
 			"style" : "text-align:left",
-			}, 
-			 {
+		}, {
 			"columnName" : "endTime",
 			"columnText" : "结束时间",
 			"style" : "text-align:left",
-			}
-        
-       ]
+		}
+
+		]
 	};
 
 	var operationParam = [ {

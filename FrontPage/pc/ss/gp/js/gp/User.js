@@ -7,7 +7,7 @@
 		valueField : "code"
 	};
 	var ajaxParamBoolean = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_BOOLEAN
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN
 	}
 	initDropDownList(selectParamAdmin, ajaxParamBoolean);
 
@@ -36,10 +36,9 @@
 		valueField : "code"
 	};
 	var ajaxParam3 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID + "/" + DI_GENDER
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_GENDER
 	}
 	initDropDownList(selectParam3, ajaxParam3);
-
 
 	// 初始化选择角色下拉框
 	var selectParam = {
@@ -72,7 +71,6 @@
 	$("#selectRoleIds").selectpicker('refresh');
 
 });
-
 
 function initTreeNodes(treeId, async) {
 

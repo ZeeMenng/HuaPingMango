@@ -1694,7 +1694,7 @@ function initEditPage(pageParam, ajaxParam) {
 
     // 初始化页面标签
     var ajaxParamter = {
-        "url": ajaxParam.getModelUrl + "/" + id,
+        "url": ajaxParam.getModelUrl +id,
         "type": "GET",
         "async": true,
         "success": function (resultData) {
@@ -1803,7 +1803,7 @@ function initDetailPage(pageParam, ajaxParamter) {
         });
         return;
     }
-    ajaxParamter.url = ajaxParamter.url + "/" + id;
+    ajaxParamter.url = ajaxParamter.url +  id;
     if (ajaxParamter.type == null)
         ajaxParamter.type = "GET";
     if (ajaxParamter.dataType == null)
@@ -2633,7 +2633,7 @@ function initZTreeEditForm(pageParam, ajaxParam) {
 
     // 初始化页面标签
     var ajaxParamter = {
-        "url": ajaxParam.getModelUrl + "/" + recordId,
+        "url": ajaxParam.getModelUrl + recordId,
         "type": "GET",
         "async": true,
         "success": function (resultData) {
