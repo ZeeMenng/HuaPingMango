@@ -1,10 +1,12 @@
 package com.zee.set.interceptor;
 
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
@@ -23,10 +25,30 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.alibaba.druid.sql.ast.SQLStatement;
-import com.alibaba.druid.sql.dialect.mysql.parser.MySqlStatementParser;
-import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
+import com.zee.app.extend.swagger.gp.GprConfigUserSwgApp;
+import com.zee.ent.custom.ResultModel;
+import com.zee.set.exception.GlobalException;
+import com.zee.utl.CastObjectUtil;
+
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.expression.Alias;
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.parser.CCJSqlParserManager;
+import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.delete.Delete;
+import net.sf.jsqlparser.statement.insert.Insert;
+import net.sf.jsqlparser.statement.select.AllColumns;
+import net.sf.jsqlparser.statement.select.AllTableColumns;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.SelectBody;
+import net.sf.jsqlparser.statement.select.SelectExpressionItem;
+import net.sf.jsqlparser.statement.select.SelectItem;
+import net.sf.jsqlparser.statement.update.Update;
+import net.sf.jsqlparser.util.TablesNamesFinder;
 
 /**
  * @author Zee
@@ -37,6 +59,11 @@ import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
 @Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }), @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class MyBatisSQLInterceptor implements Interceptor {
+
+	@Autowired
+	@Qualifier("gprConfigUserSwgApp")
+	protected GprConfigUserSwgApp gprConfigUserSwgApp;
+
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		try {
@@ -78,7 +105,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	}
 
 	// 封装了一下sql语句，使得结果返回完整xml路径下的sql语句节点id + sql语句
-	public static String getSql(Configuration configuration, BoundSql boundSql, String dalMethod) {
+	public String getSql(Configuration configuration, BoundSql boundSql, String dalMethod) {
 		String sql = showSql(configuration, boundSql);
 		//DataAuthorityControl(sql);
 		StringBuilder str = new StringBuilder(100);
@@ -89,7 +116,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	}
 
 	// 进行？的替换
-	public static String showSql(Configuration configuration, BoundSql boundSql) {
+	public String showSql(Configuration configuration, BoundSql boundSql) {
 		// 获取参数
 		Object parameterObject = boundSql.getParameterObject();
 		List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
@@ -125,7 +152,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	}
 
 	// 如果参数是String，则添加单引号， 如果是日期，则转换为时间格式器并加单引号； 对参数是null和不是null的情况作了处理
-	private static String getParameterValue(Object obj) {
+	private String getParameterValue(Object obj) {
 		String value = null;
 		if (obj instanceof String) {
 			value = "'" + obj.toString() + "'";
@@ -161,28 +188,105 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	 * 如果是写操作，刚去掉这个字段，如果是读操作可以将这个字段的返回变成***，或者部分打码，等等类似操作。
 	 * 
 	 */
-	public static void DataAuthorityControl(String sql) {
-		// 新建 MySQL Parser
-		MySqlStatementParser parser = new MySqlStatementParser(sql);
+	public String DataAuthorityControl(String sql) {
+		try {
+			CCJSqlParserManager pm = new CCJSqlParserManager();
+			List<String> tableList = new ArrayList<String>();
+			Statement statement = pm.parse(new StringReader(sql));
 
-		// 使用Parser解析生成AST，这里SQLStatement就是AST
-		SQLStatement statement = parser.parseStatement();
+			if (statement instanceof Select) {
+				Select selectStatement = (Select) statement;
+				TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
+				tableList = tablesNamesFinder.getTableList(selectStatement);
+			}
+			if (statement instanceof Insert) {
+				Insert selectStatement = (Insert) statement;
+				TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
+				tableList = tablesNamesFinder.getTableList(selectStatement);
+			}
+			if (statement instanceof Update) {
+				Update selectStatement = (Update) statement;
+				TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
+				tableList = tablesNamesFinder.getTableList(selectStatement);
+			}
+			if (statement instanceof Delete) {
+				Delete selectStatement = (Delete) statement;
+				TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
+				tableList = tablesNamesFinder.getTableList(selectStatement);
+			}
 
-		// 使用visitor来访问AST
-		MySqlSchemaStatVisitor visitor = new MySqlSchemaStatVisitor();
-		statement.accept(visitor);
+			// 如果是超级用户或超级角色，禁止修改删除
+			if (statement instanceof Update || statement instanceof Delete) {
+				ResultModel resultModel = gprConfigUserSwgApp.getCurrentUserConfig();
+				List<Map<String, Object>> configList = CastObjectUtil.cast(resultModel.getData());
+				for (Map<String, Object> configMap : configList) {
+					String code = CastObjectUtil.cast(configMap.get("code"));
+					if (code.equals("superUser")) {
+						String superUser = CastObjectUtil.cast(configMap.get("configValue"));
+						if (sql.contains(superUser)) {
+							throw new GlobalException("超级用户不可修改");
+						}
+					}
+					if (code.equals("superRole")) {
+						String superRole = CastObjectUtil.cast(configMap.get("configValue"));
+						if (sql.contains(superRole)) {
+							throw new GlobalException("超级用户不可修改");
+						}
+					}
+				}
 
-		// 从visitor中拿出你所关注的信息
-		/*
-		 * System.out.println(visitor.getTables());
-		 * System.out.println(visitor.getColumns());
-		 */
+			}
 
-		// 格式化输出
-		/*
-		 * String result = SQLUtils.format(sql, JdbcConstants.MYSQL);
-		 * System.out.println("\n"); System.out.println(result); // 缺省大写格式
-		 */
+		} catch (JSQLParserException e) {
+			ResultModel result = new ResultModel();
+			result.setOriginException(e);
+			result.setResultMessage(e.getMessage());
+			GlobalException globalException = new GlobalException();
+			globalException.setResultModel(result);
+			throw globalException;
+		}
+		return sql;
+	}
+
+	public List<String> getColumns(String singleSql) throws Exception {
+		if (singleSql == null) {
+			throw new Exception("params is null!");
+		}
+		CCJSqlParserManager ccjSqlParserManager = new CCJSqlParserManager();
+		Statement statement;
+		List<String> columns = new ArrayList<String>();
+		try {
+			statement = ccjSqlParserManager.parse(new StringReader(singleSql));
+			if (statement instanceof Select) {
+				Select selectStatement = (Select) statement;
+				SelectBody selectBody = selectStatement.getSelectBody();
+				List<SelectItem> selectItems = ((PlainSelect) selectBody).getSelectItems();
+				if (selectItems != null) {
+					for (SelectItem item : selectItems) {
+						if (item instanceof AllColumns) {
+							String column = item.toString();
+							columns.add(column);
+						}
+						if (item instanceof AllTableColumns) {
+							columns.add(item.toString());
+						}
+						if (item instanceof SelectExpressionItem) {
+							Alias alias = ((SelectExpressionItem) item).getAlias();
+							Expression expression = ((SelectExpressionItem) item).getExpression();
+							if (alias != null) {
+								String column = alias.getName();
+								columns.add(column);
+							} else if (expression != null) {
+								columns.add(expression.toString());
+							}
+						}
+					}
+				}
+			}
+		} catch (JSQLParserException e) {
+			throw new JSQLParserException(e.getMessage());
+		}
+		return columns;
 	}
 
 }

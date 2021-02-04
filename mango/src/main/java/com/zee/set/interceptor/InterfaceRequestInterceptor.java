@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.zee.bll.extend.split.gp.GpInterfaceSplBll;
 import com.zee.bll.extend.split.gp.GpUserSplBll;
@@ -48,7 +48,7 @@ import io.jsonwebtoken.Claims;
  *              2、Token的生成方式有很多种，例如比较热门的有JWT（JSON Web Tokens）、OAuth等。
  */
 @Component
-public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
+public class InterfaceRequestInterceptor implements HandlerInterceptor {
 
 	@Resource(name = "gpTokenUntBll")
 	protected GpTokenUntBll gpTokenUntBll;
@@ -81,7 +81,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		uri = uri.substring(contextPath.length(), uri.length());
-		
+
 		ResultModel interfaceResult = gpInterfaceSplBll.getModelByUrl(uri);
 
 		// 如果在接口白名单中直接放行
