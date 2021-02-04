@@ -24,11 +24,8 @@ public class CleanBom {
 	public static void main(String[] args) {
 
 		// 指定查找文件的父目录javafolder
-		// File parent = new
-		// File("E:/workspace/芒果_BigData/代码/PC/Mango/src/main/java/com/jusfoun");
 		File parent = new File("D:/JAVA/GitHubTarget/HuaPingMango/mango/src/main/java/com/zee");
 
-		// File parent = new File("E:/workspace/芒果_BigData/代码/PC/Mango/src/main/java/com/jusfoun");
 		List<File> javaFiles = findJavaFile(parent);
 
 		int count = 0;

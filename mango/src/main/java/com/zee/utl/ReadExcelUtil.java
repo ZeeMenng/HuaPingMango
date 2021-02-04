@@ -7,22 +7,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
-import org.springframework.web.multipart.MultipartFile;
 
-
-
+import com.zee.set.exception.GlobalException;
 
 public class ReadExcelUtil {
 
@@ -66,17 +58,15 @@ public class ReadExcelUtil {
 	 * @throws FileNotFoundException
 	 * @throws FileFormatException
 	 */
-	public static void preReadCheck(String filePath)
-			throws FileNotFoundException, FileFormatException {
+	public static void preReadCheck(String filePath) throws FileNotFoundException {
 		// 常规检查
 		File file = new File(filePath);
 		if (!file.exists()) {
 			throw new FileNotFoundException("传入的文件不存在：" + filePath);
 		}
 
-		if (!(filePath.toLowerCase().endsWith(EXTENSION_XLS) || filePath.toLowerCase()
-				.endsWith(EXTENSION_XLSX))) {
-			throw new FileFormatException("传入的文件不是excel");
+		if (!(filePath.toLowerCase().endsWith(EXTENSION_XLS) || filePath.toLowerCase().endsWith(EXTENSION_XLSX))) {
+			throw new GlobalException("传入的文件不是excel");
 		}
 	}
 
@@ -94,87 +84,85 @@ public class ReadExcelUtil {
 		if (cell == null)
 			return "";
 		switch (cell.getCellType()) {
-		case HSSFCell.CELL_TYPE_NUMERIC:
+		case NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				return sdf.format(
-						HSSFDateUtil.getJavaDate(cell.getNumericCellValue()))
-						.toString();
+				return sdf.format(HSSFDateUtil.getJavaDate(cell.getNumericCellValue())).toString();
 			}
 			return df.format(cell.getNumericCellValue());
-		case HSSFCell.CELL_TYPE_STRING:
+		case STRING:
 			return cell.getStringCellValue();
-		case HSSFCell.CELL_TYPE_FORMULA:
+		case FORMULA:
 			return cell.getCellFormula();
-		case HSSFCell.CELL_TYPE_BLANK:
+		case BLANK:
 			return "";
-		case HSSFCell.CELL_TYPE_BOOLEAN:
+		case BOOLEAN:
 			return cell.getBooleanCellValue() + "";
-		case HSSFCell.CELL_TYPE_ERROR:
+		case ERROR:
 			return cell.getErrorCellValue() + "";
 		}
 		return "";
 	}
-	
-	
-//	/**
-//	 * 读取excel文件内容
-//	 * 
-//	 * @param filePath
-//	 * @throws FileNotFoundException
-//	 * @throws FileFormatException
-//	 */
-//	public   List<User> readExcel(String filePath,MultipartFile Mfile) throws Exception {
-//		// 检查
-//		preReadCheck(filePath);
-//		// 获取workbook对象
-//		Workbook workbook = null;
-//		List<User> list = new ArrayList<User>();
-//
-//		try {
-//			workbook = getWorkbook(filePath);
-//			// 读文件 一个sheet一个sheet地读取workbook.getNumberOfSheets();
-//			Sheet sheet = workbook.getSheetAt(0);
-//
-//			int firstRowIndex = sheet.getFirstRowNum();
-//			int lastRowIndex = sheet.getLastRowNum();
-//
-//			boolean flag = true;
-//			String result = "2";
-//			// 读取数据行
-//			for (int rowIndex = firstRowIndex + 2; rowIndex < lastRowIndex; rowIndex++) {
-//				Row currentRow = sheet.getRow(rowIndex);// 当前行
-//				int colnum = 1;
-//				if (currentRow != null && currentRow.getCell(0) != null && !"".equals(currentRow.getCell(0))) {
-//					User user = new User();
-//					user.setEmpcode(getCellValue(
-//							currentRow.getCell(colnum), true));
-//					user.setUserName(getCellValue(
-//							currentRow.getCell(colnum + 1), true));
-//					
-//					list.add(user);
-//				}
-//
-//			}
-//			
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//
-//		} finally {
-//			try {
-//				is.close();
-//			} catch (IOException e) {
-//
-//			}
-//			if (workbook != null) {
-//				workbook = null;
-//			}
-//		}
-//		return list;
-//	}
-	
-	
+
+	// /**
+	// * 读取excel文件内容
+	// *
+	// * @param filePath
+	// * @throws FileNotFoundException
+	// * @throws FileFormatException
+	// */
+	// public List<User> readExcel(String filePath,MultipartFile Mfile) throws
+	// Exception {
+	// // 检查
+	// preReadCheck(filePath);
+	// // 获取workbook对象
+	// Workbook workbook = null;
+	// List<User> list = new ArrayList<User>();
+	//
+	// try {
+	// workbook = getWorkbook(filePath);
+	// // 读文件 一个sheet一个sheet地读取workbook.getNumberOfSheets();
+	// Sheet sheet = workbook.getSheetAt(0);
+	//
+	// int firstRowIndex = sheet.getFirstRowNum();
+	// int lastRowIndex = sheet.getLastRowNum();
+	//
+	// boolean flag = true;
+	// String result = "2";
+	// // 读取数据行
+	// for (int rowIndex = firstRowIndex + 2; rowIndex < lastRowIndex;
+	// rowIndex++) {
+	// Row currentRow = sheet.getRow(rowIndex);// 当前行
+	// int colnum = 1;
+	// if (currentRow != null && currentRow.getCell(0) != null &&
+	// !"".equals(currentRow.getCell(0))) {
+	// User user = new User();
+	// user.setEmpcode(getCellValue(
+	// currentRow.getCell(colnum), true));
+	// user.setUserName(getCellValue(
+	// currentRow.getCell(colnum + 1), true));
+	//
+	// list.add(user);
+	// }
+	//
+	// }
+	//
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return null;
+	//
+	// } finally {
+	// try {
+	// is.close();
+	// } catch (IOException e) {
+	//
+	// }
+	// if (workbook != null) {
+	// workbook = null;
+	// }
+	// }
+	// return list;
+	// }
 
 }

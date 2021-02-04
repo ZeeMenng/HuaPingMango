@@ -16,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.FileCopyUtils;
@@ -67,7 +68,7 @@ public class BaseSwgApp extends BaseApp {
 		HSSFCellStyle titleHssfCellStyle = hssfWorkbook.createCellStyle();
 		HSSFFont hssfFont = hssfWorkbook.createFont();
 		hssfFont.setBold(true);
-		titleHssfCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		titleHssfCellStyle.setAlignment(HorizontalAlignment.CENTER);
 		titleHssfCellStyle.setFont(hssfFont);
 
 		HSSFCell contentHssfCell = null;
@@ -79,7 +80,7 @@ public class BaseSwgApp extends BaseApp {
 
 		List<Map<String, Object>> list = (List<Map<String, Object>>) resultModel.getData();
 		titleHssfCellStyle = hssfWorkbook.createCellStyle();
-		titleHssfCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		titleHssfCellStyle.setAlignment(HorizontalAlignment.CENTER);
 		hssfFont.setBold(false);
 		titleHssfCellStyle.setFont(hssfFont);
 
@@ -136,7 +137,7 @@ public class BaseSwgApp extends BaseApp {
 		HSSFCellStyle titleHssfCellStyle = hssfWorkbook.createCellStyle();
 		HSSFFont hssfFont = hssfWorkbook.createFont();
 		hssfFont.setBold(true);
-		titleHssfCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		titleHssfCellStyle.setAlignment(HorizontalAlignment.CENTER);
 		titleHssfCellStyle.setFont(hssfFont);
 
 		HSSFCell contentHssfCell = null;
@@ -147,7 +148,7 @@ public class BaseSwgApp extends BaseApp {
 		}
 
 		titleHssfCellStyle = hssfWorkbook.createCellStyle();
-		titleHssfCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		titleHssfCellStyle.setAlignment(HorizontalAlignment.CENTER);
 		hssfFont.setBold(false);
 		titleHssfCellStyle.setFont(hssfFont);
 
