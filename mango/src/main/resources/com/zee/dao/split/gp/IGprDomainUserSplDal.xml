@@ -202,9 +202,9 @@
 		INNER JOIN gpr_user_role B ON A.user_id = B.user_id
 		INNER JOIN gpr_role_domain C ON C.role_id = B.role_id
 		WHERE
-		( A.user_id = #{0,jdbcType=VARCHAR} AND A.domain_id = #{1,jdbcType=VARCHAR} )
+		( A.user_id = #{userId,jdbcType=VARCHAR} AND A.domain_id = #{clientId,jdbcType=VARCHAR} )
 		OR
-		( B.user_id = #{0,jdbcType=VARCHAR} AND C.domain_id = #{1,jdbcType=VARCHAR} );
+		( B.user_id = #{userId,jdbcType=VARCHAR} AND C.domain_id = #{clientId,jdbcType=VARCHAR} );
 
 	</select>
 

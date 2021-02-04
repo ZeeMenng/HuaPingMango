@@ -323,7 +323,7 @@
           select 
                  <include refid="Base_Column_List" />
           from gp_login_log
-           where  user_name = #{0,jdbcType=VARCHAR} and domain_id = #{1,jdbcType=VARCHAR}
+           where  user_name = #{userName,jdbcType=VARCHAR} and domain_id = #{domainId,jdbcType=VARCHAR}
             <![CDATA[ AND  unix_timestamp(logout_time)>unix_timestamp()]]> 
   </select>
   

@@ -383,7 +383,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from pi_advertising
-		where domain_id = #{0,jdbcType=VARCHAR} and space_code=#{1,jdbcType=TINYINT};
+		where domain_id = #{domainId,jdbcType=VARCHAR} and space_code=#{spaceCode,jdbcType=TINYINT};
 	</select>
 
 

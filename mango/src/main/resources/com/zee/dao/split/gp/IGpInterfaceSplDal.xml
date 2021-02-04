@@ -267,10 +267,10 @@
 		gpr_user_role C
 		ON B.role_id = C.role_id
 		WHERE
-		( #{1,jdbcType=VARCHAR} like concat(A.url,'%') )
+		( #{url,jdbcType=VARCHAR} like concat(A.url,'%') )
 		AND
 		(A.is_public_code='0'
-		OR (C.user_id = #{0,jdbcType=VARCHAR}
+		OR (C.user_id = #{userId,jdbcType=VARCHAR}
 		AND B.is_enable_code = '0'))
 	</select>
 
