@@ -9,9 +9,8 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -87,21 +86,17 @@ public class DataSourceConfig implements EnvironmentAware {
 	@Value("${spring.datasource.filters}")
 	private String filters;
 
-	private RelaxedPropertyResolver propertyResolver;
-
 	private static Logger log = LoggerFactory.getLogger(DataSourceConfig.class);
 
 	@Override
-	public void setEnvironment(Environment env) {
-		this.propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
+	public void setEnvironment(Environment environment) {
+
 	}
 
 	@Bean(name = "druidDataSource")
 	@Primary
 	public DataSource druidDataSource() {
 		DruidDataSource datasource = new DruidDataSource();
-
-		username = propertyResolver.getProperty("username");
 
 		datasource.setUrl(this.dbUrl);
 		datasource.setUsername(username);

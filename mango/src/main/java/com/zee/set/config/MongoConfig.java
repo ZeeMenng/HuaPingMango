@@ -19,14 +19,14 @@ import com.mongodb.client.MongoDatabase;
  * @updateDate 2018年7月12日 下午3:02:04
  * @description MongoConfig
  */
-//@Configuration
+// @Configuration
 public class MongoConfig {
 
-//	@Value("${mongo.username}")
-//	private String username;
-//	@Value("${mongo.password}")
-//	private String password;
-	
+	// @Value("${mongo.username}")
+	// private String username;
+	// @Value("${mongo.password}")
+	// private String password;
+
 	@Value("${mongo.maxConnect}")
 	private String maxConnect;
 	@Value("${mongo.maxWaitThread}")
@@ -35,7 +35,7 @@ public class MongoConfig {
 	private String maxTimeOut;
 	@Value("${mongo.maxWaitTime}")
 	private String maxWaitTime;
-	
+
 	@Value("${mongo.address}")
 	private String address;
 	@Value("${mongo.port}")
@@ -52,28 +52,32 @@ public class MongoConfig {
 		build.threadsAllowedToBlockForConnectionMultiplier(Integer.valueOf(maxWaitThread));
 		build.connectTimeout(Integer.valueOf(maxTimeOut) * 1000);
 		build.maxWaitTime(Integer.valueOf(maxWaitTime) * 1000);
-		MongoClientOptions options = build.build();
-		MongoClient mongoClient = new MongoClient(Arrays.asList(new ServerAddress(address, Integer.valueOf(port))), options);
+		final MongoClientOptions options = build.build();
+
+		MongoClient mongoClient = new MongoClient(address + ":" + port, options);
 		return mongoClient;
-		
-//		try {//设置集群及密码
-//            List<ServerAddress> addrs = new ArrayList<ServerAddress>();  
-//            for (String hostport : hostports.split(", *")) {
-//                if (StringUtils.isBlank(hostport)) {
-//                    continue;
-//                }
-//                hostport = hostport.trim();
-//                ServerAddress serverAddress = new ServerAddress(hostport.split(":")[0],Integer.valueOf(hostport.split(":")[1]));
-//                addrs.add(serverAddress);  
-//            }
-//            MongoCredential credential = MongoCredential.createScramSha1Credential(username, database, password.toCharArray());  
-//            List<MongoCredential> credentials = new ArrayList<MongoCredential>();  
-//            credentials.add(credential);
-//            mongoClient = new MongoClient(addrs,credentials, options); 
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-		
+
+		// try {//设置集群及密码
+		// List<ServerAddress> addrs = new ArrayList<ServerAddress>();
+		// for (String hostport : hostports.split(", *")) {
+		// if (StringUtils.isBlank(hostport)) {
+		// continue;
+		// }
+		// hostport = hostport.trim();
+		// ServerAddress serverAddress = new
+		// ServerAddress(hostport.split(":")[0],Integer.valueOf(hostport.split(":")[1]));
+		// addrs.add(serverAddress);
+		// }
+		// MongoCredential credential =
+		// MongoCredential.createScramSha1Credential(username, database,
+		// password.toCharArray());
+		// List<MongoCredential> credentials = new ArrayList<MongoCredential>();
+		// credentials.add(credential);
+		// mongoClient = new MongoClient(addrs,credentials, options);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+
 	}
 
 	@Bean
