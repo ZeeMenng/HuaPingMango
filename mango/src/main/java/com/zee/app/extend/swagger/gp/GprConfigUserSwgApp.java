@@ -1,9 +1,10 @@
 package com.zee.app.extend.swagger.gp;
 
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gprConfigUser")
+@Service("gprConfigUserSwgApp")
 public class GprConfigUserSwgApp extends GprConfigUserGenSwgApp {
 
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")

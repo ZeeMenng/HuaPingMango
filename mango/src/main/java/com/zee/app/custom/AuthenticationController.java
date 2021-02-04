@@ -263,7 +263,7 @@ public class AuthenticationController extends BaseSwgApp {
 		gpToken.setUserId(user.getId());
 		gpToken.setUserName(user.getUserName());
 		gpToken.getSecret();
-
+		
 		GpLoginLog gpLoginLog = new GpLoginLog();
 		String ip = Tools.getIpAddr(request);
 		String resolution = request.getParameter("resolution");

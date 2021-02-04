@@ -1,7 +1,6 @@
 package com.zee.app.extend.swagger.pi;
 
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -11,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.thymeleaf.dom.Macro;
 
 import com.zee.app.generate.swagger.pi.PiFriendlinkGenSwgApp;
 import com.zee.ent.custom.ResultModel;
-import com.zee.ent.extend.pe.PeAerialView;
 import com.zee.ent.extend.pi.PiFriendlink;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.utl.BeanUtil;
