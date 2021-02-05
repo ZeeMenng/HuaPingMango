@@ -3,6 +3,7 @@ package com.zee.set.handler;
 import java.io.IOException;
 
 import org.apache.commons.lang.StringUtils;
+import org.mybatis.spring.MyBatisSystemException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -49,31 +50,31 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			result = globalException.getResultModel();
 			if (result.getOriginException() != null) {
 				String causeMessage = result.getOriginException().getCause().getMessage();
-
+				if (result.getOriginException() instanceof MyBatisSystemException) {
+					Throwable	throwable = ((MyBatisSystemException) result.getOriginException()).getCause().getCause();
+					if(throwable instanceof GlobalException)
+						causeMessage=((GlobalException) throwable).getResultModel().getResultMessage();
+				}
 				// 根据异常中的CauseMessage给出不同的提示信息
 				if (StringUtils.isNotEmpty(causeMessage)) {
 					if (causeMessage.matches("Incorrect(.*)value(.*)for column(.*)"))
 						result.setResultMessage(result.getResultMessage() + "请检查输入类型……");
-					if (causeMessage.contains("Data truncation: Data too long for column "))
+					else if (causeMessage.contains("Data truncation: Data too long for column "))
 						result.setResultMessage(result.getResultMessage() + "请控制输入长度……");
-					if (causeMessage.contains("Cannot add or update a child row"))
+					else if (causeMessage.contains("Cannot add or update a child row"))
 						result.setResultMessage(result.getResultMessage() + "请检查引用部分的输入……");
-
+					else
+						result.setResultMessage(causeMessage);
 				}
 			}
 		} else {
 			result.setResultMessage(exception.getMessage());
 		}
 
-		ObjectMapper mapper = new ObjectMapper();
-		String bodyOfResponse = "";
-		try {
-			bodyOfResponse = mapper.writeValueAsString(result);
-		} catch (IOException e) {
-		}
+
 
 		headers.add("Content-Type", "application/json;charset=UTF-8");
-		return handleExceptionInternal(exception, bodyOfResponse, headers, status, request);
+		return handleExceptionInternal(exception, result, headers, status, request);
 	}
 
 }

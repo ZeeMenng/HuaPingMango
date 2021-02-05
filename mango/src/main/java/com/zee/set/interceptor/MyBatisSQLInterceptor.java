@@ -1,12 +1,12 @@
 package com.zee.set.interceptor;
 
 import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
@@ -25,13 +25,11 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 
-import com.zee.app.extend.swagger.gp.GprConfigUserSwgApp;
+import com.zee.bll.extend.unity.gp.GprConfigUserUntBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.CastObjectUtil;
 
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Alias;
@@ -60,46 +58,40 @@ import net.sf.jsqlparser.util.TablesNamesFinder;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class MyBatisSQLInterceptor implements Interceptor {
 
-	@Autowired
-	@Qualifier("gprConfigUserSwgApp")
-	protected GprConfigUserSwgApp gprConfigUserSwgApp;
-
 	@Override
-	public Object intercept(Invocation invocation) throws Throwable {
-		try {
-			// 获取xml中的一个select/update/insert/delete节点，是一条SQL语句
-			MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
-			Object parameter = null;
-			// 获取参数，if语句成立，表示sql语句有参数，参数格式是map形式
-			if (invocation.getArgs().length > 1) {
-				parameter = invocation.getArgs()[1];
-				// System.out.println("parameter = " + parameter);
-			}
-			// 获取到执行SQL语句的方法
-			String dalMethod = mappedStatement.getId();
-			// System.out.println("sqlId = " + sqlId);
+	public Object intercept(Invocation invocation) throws IllegalAccessException, InvocationTargetException {
 
-			// 跳过没必要的SQL
-			ArrayList<String> skipMethod = new ArrayList<String>();
-			skipMethod.add("com.zee.dao.unity.gp.IGpTokenUntDal.getModel");
-			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
-			skipMethod.add("com.zee.dao.split.gp.IGpUserSplDal.getModelByUserName");
-			skipMethod.add("com.zee.dao.split.gp.IGprDomainUserSplDal.isPermitted");
-			skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
-			skipMethod.add("com.zee.dao.unity.gp.IGpDomainUntDal.getModel");
-			skipMethod.add("com.zee.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
-			skipMethod.add("com.zee.dao.unity.gp.IGpModuleUntDal.getListBySQL");
-			skipMethod.add("com.zee.dao.unity.gp.IGpOperLogUntDal.add");
-
-			BoundSql boundSql = mappedStatement.getBoundSql(parameter); // BoundSql就是封装myBatis最终产生的sql类
-			if (!skipMethod.contains(dalMethod)) {
-				Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置
-				String sql = getSql(configuration, boundSql, dalMethod); // 获取到最终的sql语句
-				System.out.println("sql = " + sql);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		// 获取xml中的一个select/update/insert/delete节点，是一条SQL语句
+		MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
+		Object parameter = null;
+		// 获取参数，if语句成立，表示sql语句有参数，参数格式是map形式
+		if (invocation.getArgs().length > 1) {
+			parameter = invocation.getArgs()[1];
+			// System.out.println("parameter = " + parameter);
 		}
+		// 获取到执行SQL语句的方法
+		String dalMethod = mappedStatement.getId();
+		// System.out.println("sqlId = " + sqlId);
+
+		// 跳过没必要的SQL
+		ArrayList<String> skipMethod = new ArrayList<String>();
+		skipMethod.add("com.zee.dao.unity.gp.IGpTokenUntDal.getModel");
+		skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.isPermitted");
+		skipMethod.add("com.zee.dao.split.gp.IGpUserSplDal.getModelByUserName");
+		skipMethod.add("com.zee.dao.split.gp.IGprDomainUserSplDal.isPermitted");
+		skipMethod.add("com.zee.dao.split.gp.IGpInterfaceSplDal.getModelByUrl");
+		skipMethod.add("com.zee.dao.unity.gp.IGpDomainUntDal.getModel");
+		skipMethod.add("com.zee.dao.unity.gp.IGprMessageUserUntDal.getListBySQL");
+		skipMethod.add("com.zee.dao.unity.gp.IGpModuleUntDal.getListBySQL");
+		skipMethod.add("com.zee.dao.unity.gp.IGpOperLogUntDal.add");
+
+		BoundSql boundSql = mappedStatement.getBoundSql(parameter); // BoundSql就是封装myBatis最终产生的sql类
+		if (!skipMethod.contains(dalMethod)) {
+			Configuration configuration = mappedStatement.getConfiguration(); // 获取节点的配置
+			String sql = getSql(configuration, boundSql, dalMethod); // 获取到最终的sql语句
+			System.out.println("sql = " + sql);
+		}
+
 		// 执行完上面的任务后，不改变原有的sql执行过程
 		return invocation.proceed();
 	}
@@ -194,7 +186,34 @@ public class MyBatisSQLInterceptor implements Interceptor {
 			List<String> tableList = new ArrayList<String>();
 			Statement statement = pm.parse(new StringReader(sql));
 
-			if (statement instanceof Select) {
+			// 如果是超级用户或超级角色，禁止修改删除
+			if (statement instanceof Update || statement instanceof Delete) {
+				if (sql.contains("7ddd711beab34cf9844037ad7b919ac1")) {
+					throw new GlobalException("超级用户不可修改");
+				}
+				if (sql.contains("83c11795be9e4383a4d1cc3e5b861c58")) {
+					throw new GlobalException("超级用户不可修改");
+				}
+				/*
+				 * ResultModel resultModel = new ResultModel(); List<Map<String,
+				 * Object>> configList =
+				 * CastObjectUtil.cast(resultModel.getData()); for (Map<String,
+				 * Object> configMap : configList) { String code =
+				 * CastObjectUtil.cast(configMap.get("code")); if
+				 * (code.equals("superUser")) { String superUser =
+				 * CastObjectUtil.cast(configMap.get("configValue")); if
+				 * (sql.contains(superUser)) { throw new
+				 * GlobalException("超级用户不可修改"); } } if
+				 * (code.equals("superRole")) { String superRole =
+				 * CastObjectUtil.cast(configMap.get("configValue")); if
+				 * (sql.contains(superRole)) { throw new
+				 * GlobalException("超级用户不可修改"); } } }
+				 */
+			}
+
+			if (statement instanceof Select)
+
+			{
 				Select selectStatement = (Select) statement;
 				TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
 				tableList = tablesNamesFinder.getTableList(selectStatement);
@@ -215,28 +234,6 @@ public class MyBatisSQLInterceptor implements Interceptor {
 				tableList = tablesNamesFinder.getTableList(selectStatement);
 			}
 
-			// 如果是超级用户或超级角色，禁止修改删除
-			if (statement instanceof Update || statement instanceof Delete) {
-				ResultModel resultModel = gprConfigUserSwgApp.getCurrentUserConfig();
-				List<Map<String, Object>> configList = CastObjectUtil.cast(resultModel.getData());
-				for (Map<String, Object> configMap : configList) {
-					String code = CastObjectUtil.cast(configMap.get("code"));
-					if (code.equals("superUser")) {
-						String superUser = CastObjectUtil.cast(configMap.get("configValue"));
-						if (sql.contains(superUser)) {
-							throw new GlobalException("超级用户不可修改");
-						}
-					}
-					if (code.equals("superRole")) {
-						String superRole = CastObjectUtil.cast(configMap.get("configValue"));
-						if (sql.contains(superRole)) {
-							throw new GlobalException("超级用户不可修改");
-						}
-					}
-				}
-
-			}
-
 		} catch (JSQLParserException e) {
 			ResultModel result = new ResultModel();
 			result.setOriginException(e);
@@ -246,6 +243,16 @@ public class MyBatisSQLInterceptor implements Interceptor {
 			throw globalException;
 		}
 		return sql;
+	}
+
+	/**
+	 * 
+	 * 直接注入不成功，用Bean注入
+	 * @return
+	 */
+	@Bean
+	public GprConfigUserUntBll getGprConfigUserUntBll() {
+		return new GprConfigUserUntBll();
 	}
 
 	public List<String> getColumns(String singleSql) throws Exception {

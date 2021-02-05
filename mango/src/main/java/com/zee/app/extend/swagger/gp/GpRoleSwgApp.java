@@ -2,7 +2,8 @@ package com.zee.app.extend.swagger.gp;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
+import java.util.HashMap;
+import com.zee.utl.CastObjectUtil;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -125,7 +126,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		return result;
 	}
-	
+
 	@ApiOperation(value = "删除记录", notes = "根据主键删除相应记录")
 	@ApiImplicitParam(paramType = "query", name = "id", value = "用户ID", required = true, dataType = "String")
 	@RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -152,7 +153,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 		ResultModel result = gpRoleUntBll.deleteByIdList(jsonData.getIdList());
 		return result;
 	}
-	
+
 	@ApiOperation(value = "修改记录", notes = "修改指定记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，实体属性", required = true, dataType = "GpRole") })
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -178,8 +179,9 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		ResultModel gprRoleDomainResult = gprRoleDomainUntBll.getListBySQL(map);
 		List<Map<String, Object>> data = (List<Map<String, Object>>) gprRoleDomainResult.getData();
-		if (data.get(0).get("domainIds") != null)
-			gpRole.setDomainIds(data.get(0).get("domainIds").toString());
+		if (data.size() != 0)
+			if (data.get(0).get("domainIds") != null)
+				gpRole.setDomainIds(data.get(0).get("domainIds").toString());
 
 		map = new HashMap<String, Object>();
 		selectBuffer = new StringBuffer();
@@ -187,8 +189,9 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 		ResultModel gprRoleModuleResult = gprRoleDomainUntBll.getListBySQL(map);
 		data = (List<Map<String, Object>>) gprRoleModuleResult.getData();
-		if (data.get(0).get("moduleIds") != null)
-			gpRole.setModuleIds(data.get(0).get("moduleIds").toString());
+		if (data.size() != 0)
+			if (data.get(0).get("moduleIds") != null)
+				gpRole.setModuleIds(data.get(0).get("moduleIds").toString());
 
 		result.setData(gpRole);
 
@@ -214,7 +217,7 @@ public class GpRoleSwgApp extends GpRoleGenSwgApp {
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/getRoleListByDomainId/{domainId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getRoleListByDomainId(@PathVariable("domainId") String domainId) {
 
