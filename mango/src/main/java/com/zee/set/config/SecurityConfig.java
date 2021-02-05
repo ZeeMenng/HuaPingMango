@@ -28,9 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 屏蔽掉Spring Security自身的CSRF防护
-		http.csrf().disable()
-
-		;
+		http.csrf().disable();
 
 	}
 
