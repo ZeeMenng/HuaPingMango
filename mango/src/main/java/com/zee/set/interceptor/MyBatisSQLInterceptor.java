@@ -107,7 +107,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 	// 封装了一下sql语句，使得结果返回完整xml路径下的sql语句节点id + sql语句
 	public String getSql(Configuration configuration, BoundSql boundSql, String dalMethod) {
 		String sql = showSql(configuration, boundSql);
-		//DataAuthorityControl(sql);
+		DataAuthorityControl(sql);
 		StringBuilder str = new StringBuilder(100);
 		str.append(dalMethod);
 		str.append(":");

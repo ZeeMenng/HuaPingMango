@@ -8,10 +8,7 @@ mail:
       fromMailAddress: 850934828@qq.com
       auth: true
       timeout: 1000
-spring.jackson.time-zone: GMT+8
-spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
-#时间戳统一转换
-spring.jackson.joda-date-time-format: yyyy-MM-dd HH:mm:ss
+
 server:
    port: 60011
    servlet:
@@ -64,6 +61,12 @@ spring:
       enabled: true
       max-file-size: 1000mb
       max-request-size: 1000mb
+   jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+      joda-date-time-format: yyyy-MM-dd HH:mm:ss
+
+      
 mongo:
    address: 192.168.200.39
    port: 27017

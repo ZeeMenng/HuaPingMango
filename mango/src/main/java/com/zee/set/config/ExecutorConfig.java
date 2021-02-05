@@ -14,8 +14,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @updateDate 2018年4月20日 下午3:47:12
  * @description 线程池配置
  */
-@Configuration
-@EnableAsync
+//@Configuration
+//@EnableAsync
 public class ExecutorConfig {
 
     @Bean

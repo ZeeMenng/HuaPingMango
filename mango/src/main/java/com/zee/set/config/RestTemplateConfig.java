@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
  * @updateDate 2018年5月31日 下午4:47:51
  * @description RestTemplate配置类
  */
-@Configuration
+//@Configuration
 public class RestTemplateConfig {
 
 	@Bean
