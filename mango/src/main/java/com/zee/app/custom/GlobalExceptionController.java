@@ -34,7 +34,7 @@ public class GlobalExceptionController extends BasicErrorController {
 
 	@RequestMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
-		Map<String, Object> body = getErrorAttributes(request, isIncludeStackTrace(request, MediaType.ALL));
+		Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions(request, MediaType.ALL));
 
 		if (!Strings.isNullOrEmpty((String) body.get("exception")) && body.get("exception").equals(GlobalException.class.getName())) {
 			GlobalException globalException = (GlobalException) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
