@@ -192,7 +192,7 @@ public class MyBatisSQLInterceptor implements Interceptor {
 					throw new GlobalException("超级用户不可修改");
 				}
 				if (sql.contains("83c11795be9e4383a4d1cc3e5b861c58")) {
-					throw new GlobalException("超级用户不可修改");
+					throw new GlobalException("超级角色不可修改");
 				}
 				/*
 				 * ResultModel resultModel = new ResultModel(); List<Map<String,

@@ -13,13 +13,5 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel(value = "GpOperLogLogin", description = "登录用户操作日志。")
 public class GpOperLogLogin extends GpOperLogLoginGenEnt {
-  
 
 }
-
-
-
-
-
-
-

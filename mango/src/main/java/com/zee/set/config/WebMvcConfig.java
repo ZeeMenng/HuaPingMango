@@ -82,10 +82,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	}
 
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(converter());
-	}
+	/* (non-Javadoc)
+	 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurer#configureMessageConverters(java.util.List)
+	 * 此方法放开会导致有些Controll的返回不再是JSON对象，而是外层包括了引号的JSON字符串，比如判断是否唯一用户名的方法
+	 * 
+	 */
+	/*
+	 * @Override public void
+	 * configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+	 * converters.add(converter()); }
+	 */
 
 	@Bean
 	MappingJackson2HttpMessageConverter converter() {

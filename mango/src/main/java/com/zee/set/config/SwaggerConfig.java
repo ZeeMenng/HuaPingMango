@@ -2,86 +2,70 @@ package com.zee.set.config;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.async.DeferredResult;
 
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.Parameter;
 import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Zee
  * @createDate 2017年4月13日 下午3:17:54
- * @updateDate 2017年4月13日 下午3:17:54
+ * @updateDate 2021年2月7日 下午3:17:54
  * @description Swagger相关的配置
  */
+
 //@Configuration
-//@EnableSwagger2
+//@EnableOpenApi
 public class SwaggerConfig {
 
-	private List<Parameter> setHeaderToken() {
-		ParameterBuilder tokenPar = new ParameterBuilder();
-		List<Parameter> pars = new ArrayList<>();
-		tokenPar.name("Authorization").description("token前缀：Bearer 注意有个空格").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-		pars.add(tokenPar.build());
-		return pars;
-	}
+	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.zee";
 
 	@Bean
 	public Docket gpApi() {
-		@SuppressWarnings("unchecked")
 		Predicate<String> or = regex("/extend/swagger/gp/.*");
-		return new Docket(DocumentationType.SWAGGER_2).groupName("GpApi").apiInfo(gpApiInfo()).select().paths(or).build()//
-				.genericModelSubstitutes(DeferredResult.class)//
-				.forCodeGeneration(false)//
-				.globalOperationParameters(setHeaderToken()).pathMapping("/");
+		return new Docket(DocumentationType.OAS_30).groupName("GpApi").apiInfo(gpApiInfo()).select().paths(PathSelectors.any())//
+				.apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))//
+				.build()//
+				.enable(true);
 	}
 
 	@Bean
 	public Docket daApi() {
-		@SuppressWarnings("unchecked")
 		Predicate<String> or = regex("/extend/swagger/gp/.*");
-		return new Docket(DocumentationType.SWAGGER_2).groupName("DaApiInfo").apiInfo(daApiInfo()).select().paths(or).build()//
+		return new Docket(DocumentationType.OAS_30).groupName("DaApiInfo").apiInfo(daApiInfo()).select().paths(or).build()//
 				.genericModelSubstitutes(DeferredResult.class)//
 				.forCodeGeneration(false)//
-				.globalOperationParameters(setHeaderToken()).pathMapping("/");
+				.pathMapping("/");
 	}
 
 	@Bean
 	public Docket mfApi() {
-		@SuppressWarnings("unchecked")
 		Predicate<String> or = regex("/extend/swagger/gp/.*");
-		return new Docket(DocumentationType.SWAGGER_2).groupName("MfApiInfo").apiInfo(mfApiInfo()).select().paths(or).build()//
+		return new Docket(DocumentationType.OAS_30).groupName("MfApiInfo").apiInfo(mfApiInfo()).select().paths(or).build()//
 				.genericModelSubstitutes(DeferredResult.class)//
 				.forCodeGeneration(false)//
-				.globalOperationParameters(setHeaderToken()).pathMapping("/");
+				.pathMapping("/");
 	}
 
 	@Bean
 	public Docket wpApi() {
-		@SuppressWarnings("unchecked")
 		Predicate<String> or = regex("/extend/swagger/gp/.*");
-		return new Docket(DocumentationType.SWAGGER_2).groupName("wpApiInfo").apiInfo(wpApiInfo()).select().paths(or).build()//
+		return new Docket(DocumentationType.OAS_30).groupName("wpApiInfo").apiInfo(wpApiInfo()).select().paths(or).build()//
 				.genericModelSubstitutes(DeferredResult.class)//
 				.forCodeGeneration(false)//
-				.globalOperationParameters(setHeaderToken()).pathMapping("/");
+				.pathMapping("/");
 	}
 
 	private ApiInfo gpApiInfo() {

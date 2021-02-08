@@ -35,8 +35,9 @@ import net.sf.json.JSONObject;
 @RequestMapping(value = "/extend/swagger/gp/gpCatalogInterface")
 public class GpCatalogInterfaceSwgApp extends GpCatalogInterfaceGenSwgApp {
 
-	@ApiOperation(value = "新增记录", notes = "新增单条记录")
-	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpCatalogInterface") })
+	@ApiOperation(value="新增记录",notes="新增单条记录")@ApiImplicitParams({@ApiImplicitParam(paramType="body",name="jsonData",value="json字符串",required=true,dataTypeClass=GpCatalogInterface.class)
+	})
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel add(@RequestBody GpCatalogInterface jsonData) {
 
@@ -62,6 +63,7 @@ public class GpCatalogInterfaceSwgApp extends GpCatalogInterfaceGenSwgApp {
 	}
 
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，对象列表", required = true, dataType = "String") })
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();

@@ -163,6 +163,7 @@ public class GpCatalogInterfaceGenSwgApp extends BaseSwgApp {
 	}
     
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串，查询参数", required = true,  dataTypeClass = String.class) })
 	@RequestMapping(value = "/getListByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getListByJsonData() {
 		ResultModel resultModel = new ResultModel();

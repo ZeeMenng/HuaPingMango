@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiModel;
  */
 
 @ApiModel(value = "GpCatalogInterface", description = "接口分类字典管理存放接口分类信息，支持树形分级分类，主要但不限于业务上的分类方式，支持同时对接口进行多种分类。")
-
 public class GpCatalogInterface extends GpCatalogInterfaceGenEnt {
   
 

@@ -85,3 +85,11 @@ mangoTaskSwitch:
    ecTask: false
 # mongoProperties
    wholesaleTask: false
+   
+# ===== 自定义swagger配置 ===== #
+swagger:
+  enable: true
+  application-name: mango
+  application-version: 1.0
+  application-description: 整合springfox swagger 3.0
+  try-host: http://localhost:${server.port}

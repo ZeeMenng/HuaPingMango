@@ -477,6 +477,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String oldEmail = request.getParameter("oldEmail");
 		if (StringUtils.isNotEmpty(oldEmail) && email.equals(oldEmail)) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
+			result.setData(true);
 			return result;
 		}
 
@@ -492,6 +493,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String oldUserName = request.getParameter("oldUserName");
 		if (StringUtils.isNotEmpty(oldUserName) && username.equals(oldUserName)) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
+			result.setData(true);
 			return result;
 		}
 		result = gpUserUntBll.isUniqueUserName(username);
@@ -506,6 +508,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String oldPhone = request.getParameter("oldPhone");
 		if (StringUtils.isNotEmpty(oldPhone) && phone.equals(oldPhone)) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
+			result.setData(true);
 			return result;
 		}
 
@@ -521,6 +524,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		String oldQq = request.getParameter("oldQq");
 		if (StringUtils.isNotEmpty(oldQq) && qq.equals(oldQq)) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
+			result.setData(true);
 			return result;
 		}
 		result = gpUserUntBll.isUniqueQq(qq);
@@ -622,7 +626,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		// 修改目前默认头像为非默认，再新增此默认头像
 		GprResource gprResource;
 		List<Map<String, Object>> iconList = getIconList(userId);
-		ArrayList<String> idList = new ArrayList<String>();
 		for (Map<String, Object> map2 : iconList) {
 			String id = map2.get("id").toString();
 			gprResource = new GprResource();
@@ -693,23 +696,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		Map<String, List<Map<String, Object>>> maps = new HashMap<String, List<Map<String, Object>>>();
 		StringBuffer selectBuffer = new StringBuffer();
 
-		// selectBuffer.append("select B.id userId,B.user_name
-		// userName,B.real_name realName,D.path as icon,B.address address,");
-		// selectBuffer.append("C.enterprise_name enterpriseName,D.resource_id
-		// resourceId from (select b.* from gp_user a,");
-		// selectBuffer.append("gp_organization b,gpr_user_organization c where
-		// a.id = c.user_id and b.id = c.organization_id ");
-		// selectBuffer.append("and a.id = '" + id + "') A,(SELECT
-		// a.*,b.address,b.enterprise_id FROM gp_user a ");
-		// selectBuffer.append("LEFT JOIN da_peasant_info b ON a.id = b.user_id
-		// and a.id = '" + id + "') B, ");
-		// selectBuffer.append("da_enterprise_info C,(select b.*,c.resource_id
-		// from gp_user a,gp_resource b,gpr_user_icon c where a.id = c.user_id
-		// ");
-		// selectBuffer.append("and b.id = c.resource_id and c.is_default = '0'
-		// and a.id = '" + id + "') D where A.id = C.organization_id ");
-		// selectBuffer.append("and B.enterprise_id = C.id ");
-
 		selectBuffer.append("  select A.id userId,A.user_name userName,A.real_name realName,B.address,C.path as icon,                         ");
 		selectBuffer.append("  if(E.enterprise_name,null,'') enterpriseName,C.resource_id resourceId FROM gp_user A LEFT JOIN da_peasant_info B           ");
 		selectBuffer.append("  ON A.id = B.user_id LEFT JOIN (select a.id,b.path,c.resource_id from gp_user a,gp_resource b,gpr_user_icon c   ");
@@ -720,7 +706,8 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		map.put("Sql", selectBuffer.toString());
 		resultModel = gpUserUntBll.getListBySQL(map);
-		maps.put("data", (List<Map<String, Object>>) resultModel.getData());
+		List<Map<String, Object>> data = CastObjectUtil.cast(resultModel.getData());
+		maps.put("data", data);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> basicdataMap = new HashMap<String, Object>();
@@ -753,12 +740,10 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		resultMap.put("basicinfo", basicdataMap);
 		resultModel.setData(resultMap);
-		// resultModel.setIsSuccessCode(SymbolicConstant.DCODE_BOOLEAN_T);
 
 		return resultModel;
 	}
 
-	@SuppressWarnings("unchecked")
 	@ApiOperation(value = "用户登录校验ForApp", notes = "根据用户名和密码对用户登录进行校验ForApp")
 	@RequestMapping(value = "/getLoginInfoByJsonDataForApp", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel getLoginInfoByJsonDataForApp() {
@@ -803,7 +788,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		}
 
 		// 设置limit只查一条
-		Map<String, Object> pageMap = new HashMap<String, Object>();
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("pageIndex", "1");
 		jsonObj.put("pageSize", "1");
@@ -847,35 +831,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		// redis存放用户登陆信息
 		// redisUtil.setSessionData(modelMap);
 		return token;
-	}
-
-	private Map<String, Object> getFstPage(String userName) {
-		StringBuffer selectBuffer = new StringBuffer();
-		selectBuffer.append("		SELECT DISTINCT                                                      ");
-		selectBuffer.append("			e.page_url AS pageUrl                                            ");
-		selectBuffer.append("		FROM                                                                 ");
-		selectBuffer.append("			gpr_role_module c                                                ");
-		selectBuffer.append("		INNER JOIN gp_module d ON c.module_id = d.id                         ");
-		selectBuffer.append("		INNER JOIN gp_menu e ON e.module_id = d.id                           ");
-		selectBuffer.append("		WHERE                                                                ");
-		selectBuffer.append("			c.role_id IN (                                                   ");
-		selectBuffer.append("				SELECT                                                       ");
-		selectBuffer.append("					b.role_id                                                ");
-		selectBuffer.append("				FROM                                                         ");
-		selectBuffer.append("					gp_user a                                                ");
-		selectBuffer.append("				INNER JOIN gpr_user_role b ON a.id = b.user_id               ");
-		selectBuffer.append("				WHERE                                                        ");
-		selectBuffer.append("					a.user_name = '" + userName + "'                             ");
-		selectBuffer.append("				AND a.is_admin_code = 0                                      ");
-		selectBuffer.append("			)                                                                ");
-		selectBuffer.append("		AND d.level_code = 3                                                 ");
-		selectBuffer.append("		ORDER BY                                                             ");
-		selectBuffer.append("			e.priority                                                       ");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("Sql", selectBuffer.toString());
-		ResultModel resultModel = gpMenuUntBll.getListBySQL(map);
-		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
-		return modelList.get(0);
 	}
 
 	@ApiOperation(value = "用户注册", notes = "注册一个新用户")
@@ -926,7 +881,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	 * @param toMailAddress 用户邮箱
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	@ApiOperation(value = "发送重置密码邮件", notes = "根据邮箱地址发送重置密码邮件")
 	@RequestMapping(value = "/sendResetMailByJsonData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel sendResetMailByJsonData() {
@@ -964,7 +918,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		resultModel = gpUserUntBll.getListBySQL(map);
 
 		List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
-		List<Map<String, Object>> pageInfo = new ArrayList<Map<String, Object>>();
 
 		if (resultModel.getTotalCount() == 0) {
 			resultModel.setResultMessage("您输入的邮箱未注册！");
@@ -1010,7 +963,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	 * @param toMailAddress 用户预留邮箱
 	 * @param passWord 用户要重置的新密码
 	 */
-	@SuppressWarnings("unchecked")
 	@ApiOperation(value = "设置新密码", notes = "设置新密码")
 	@RequestMapping(value = "/updatePassWord", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultModel updatePassWord() {
@@ -1074,13 +1026,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 			List<Map<String, Object>> modelList = CastObjectUtil.cast(resultModel.getData());
 			String id1 = modelList.get(0).get("id").toString();
-
-			// String sss=(String)resultModel.getReturnValue();
-			// sss=sss.substring(2, sss.length()-2);
-			// String[] objs=sss.split(",");
-			// String a=objs[1];
-			// int aa=a.indexOf("id");
-			// a=a.substring(aa+5,a.length()-1);
 
 			ResultModel result = gpUserUntBll.getModel(id1);
 			GpUser gpUser = (GpUser) result.getData();
