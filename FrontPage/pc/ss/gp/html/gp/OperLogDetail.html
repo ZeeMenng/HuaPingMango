@@ -16,9 +16,17 @@
 			formId : "formDetail"
 		};
 		var ajaxParam = {
+				async : false,
 			url : RU_GPOPERLOG_GETMODELBYPATH
 		};
-		initDetailPage(pageParam, ajaxParam);
+		var initResult = initDetailPage(pageParam, ajaxParam);
+		 var JSONViewOptions = {
+		            //为Key添加双引号
+		            toggle: true
+		        };
+		$("#labelIncomeValue").JSONView(initResult.data.incomeValue,JSONViewOptions);
+		$("#labelReturnValue").JSONView(initResult.data.returnValue,JSONViewOptions);
+		
 	});
 </script>
 </head>
