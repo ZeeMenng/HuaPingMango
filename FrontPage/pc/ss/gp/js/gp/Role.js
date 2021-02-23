@@ -154,11 +154,12 @@ function initDomainModuleTree() {
 							resultData.data[i].iconSkin = "diy02";
 						}
 						moduleTree.addNodes(value, -1, resultData.data);
-						fuzzySearch("ulDomainModuleTree", '#textDomainModuleTreeSearch', null, false); // 初始化模糊搜索方法
+						
 					}
 				};
 				universalAjax(ajaxParamter);
 			});
+			fuzzySearch("ulDomainModuleTree", '#textDomainModuleTreeSearch', null, false); // 初始化模糊搜索方法
 		}
 	};
 	universalAjax(ajaxParamter);
