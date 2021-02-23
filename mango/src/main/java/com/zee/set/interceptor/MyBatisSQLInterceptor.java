@@ -188,13 +188,12 @@ public class MyBatisSQLInterceptor implements Interceptor {
 
 			// 如果是超级用户或超级角色，禁止修改删除
 			if (statement instanceof Update || statement instanceof Delete) {
-				if (sql.contains("7ddd711beab34cf9844037ad7b919ac1")) {
-					throw new GlobalException("超级用户不可修改");
-				}
-				if (sql.contains("83c11795be9e4383a4d1cc3e5b861c58")) {
-					throw new GlobalException("超级角色不可修改");
-				}
 				/*
+				 * if (sql.contains("7ddd711beab34cf9844037ad7b919ac1")) { throw
+				 * new GlobalException("超级用户不可修改"); } if
+				 * (sql.contains("83c11795be9e4383a4d1cc3e5b861c58")) { throw
+				 * new GlobalException("超级角色不可修改"); }
+				 * 
 				 * ResultModel resultModel = new ResultModel(); List<Map<String,
 				 * Object>> configList =
 				 * CastObjectUtil.cast(resultModel.getData()); for (Map<String,

@@ -40,7 +40,7 @@ function initUlCatalogCategoryTree(catalogCategoryCode) {
 			deleteListUrl : RU_GPCATALOGINTERFACE_DELETELIST,
 			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
 			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
-			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
+			getModelUrl : RU_GPCATALOGINTERFACE_GETMODELBYPATH
 		},
 
 		data : {
@@ -54,6 +54,7 @@ function initUlCatalogCategoryTree(catalogCategoryCode) {
 			beforeRemove : beforeRemove,
 			beforeRename : beforeRename,
 			onDrop : onDrop,
+			onDrag : onDrag,
 			onRemove : onRemove,
 			onRename : onRename,
 			onClick : onClick

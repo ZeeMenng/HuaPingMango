@@ -1,6 +1,9 @@
 var selectRows = new Array();
 // 树形菜单是否实施变化
 var IS_IMMEDIATE = true;
+// 拖拽数形菜单时拖拽节点的兄弟节点
+var treeNodesDragBrotherArray = new Array();
+
 var txtActive;
 // 所有DOM元素加载之前执行登录校验
 (function () {
@@ -2404,6 +2407,12 @@ function onDrop(event, treeId, treeNodes, targetNode, moveType) {
 
 };
 
+function onDrag(event, treeId, treeNodes) {
+    updateModulesData(treeId, treeNodes, 'DRAG');
+
+};
+
+
 function beforeEditName(treeId, treeNode) {
 	
     className = (className === "dark" ? "" : "dark");
@@ -2799,8 +2808,37 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
         ajaxParamter.data = JSON.stringify(zTreeNodeJson);
         ajaxParamter.url = zTree.setting.url.updateUrl;
 
+    }   else if (action == "DRAG") {
+    	 treeNodesDragBrotherArray = new Array();
+    	  // 获取拖拽节点的兄弟节点，修改排序号
+    	 function zTreeFilterPrev(node) {
+             return (node.fartherId == treeNodesArray[0].fartherId && (node.getIndex() > treeNodesArray[0].getIndex()));
+         }
+        var treeNodesBrotherArray = zTree.getNodesByFilter(zTreeFilterPrev);
+          $.each(treeNodesBrotherArray, function (i, v) {
+        	    var zTreeNodeJson = {
+                        id: v.id,
+                        name: v.name,
+                        fartherId: v.fartherId,
+                        level:  v.level + 1,
+                        priority: v.getIndex()-1,
+                        categoryCode: v.categoryCode,
+                        categoryText: v.categoryText
+                    }
+                    
+                    // 如果为功能模块的拖拽，要特别处理
+                    if(rootNode.isDomain ){
+                    	zTreeNodeJson.level=v.level;
+                    	zTreeNodeJson.domainId=v.domainId;
+                    	if(v.level==1)
+                    		zTreeNodeJson.fartherId = null;
+                    }
+                
+              treeNodesDragBrotherArray.push(zTreeNodeJson);
+          });
+          return true;
     }
-    else if (action = "DROP") {
+    else if (action == "DROP") {
         var treeNodesBrotherArray = new Array();
         var zTreeNodeJsonArray = new Array();
 
@@ -2813,7 +2851,6 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
             // 如果拖拽成为目标节点的子级节点
             if (moveType == "inner") {
                 treeNodesBrotherArray = zTree.getNodesByParam("fartherId", targetNode.id, null);
-
             }
             else if (moveType == "prev" || moveType == "next") {
                 function zTreeFilterPrev(node) {
@@ -2827,37 +2864,49 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
         $.each(treeNodesBrotherArray, function (i, v) {
             var zTreeNodeJson = {
                 id: v.id,
-                domainId: v.domainId,
                 name: v.name,
                 fartherId: v.fartherId,
-                level: (rootNode.isDomain ? v.level : v.level + 1),
+                level:  v.level + 1,
                 priority: v.getIndex(),
                 categoryCode: v.categoryCode,
                 categoryText: v.categoryText
             }
+            
             // 如果为功能模块的拖拽，要特别处理
-            if (v.domainId != null && v.level == 1) {
-                zTreeNodeJson.fartherId = null;
+            if(rootNode.isDomain ){
+            	zTreeNodeJson.level=v.level;
+            	zTreeNodeJson.domainId=targetNode.domainId;
+            	if(v.level==1)
+            		zTreeNodeJson.fartherId = null;
             }
+           
             zTreeNodeJsonArray.push(zTreeNodeJson);
         });
         // 拖拽节点的子点级别可能发生变化
-
         var treeNodesChildArray = zTree.transformToArray(treeNodes[0].children);
         $.each(treeNodesChildArray, function (i, v) {
             var zTreeNodeJson = {
-                id: v.id,
-                domainId: v.domainId,
-                name: v.name,
-                fartherId: v.fartherId,
-                level: (rootNode.isDomain ? v.level : v.level + 1),
-                priority: v.getIndex(),
-                categoryCode: 1,
-                categoryText: '按业务分类'
+                    id: v.id,
+                    name: v.name,
+                    fartherId: v.fartherId,
+                    level:  v.level + 1,
+                    priority: v.getIndex(),
+                    categoryCode: v.categoryCode,
+                    categoryText: v.categoryText
+                }
+            // 如果为功能模块的拖拽，要特别处理
+            if(rootNode.isDomain ){
+            	zTreeNodeJson.level=v.level;
+            	zTreeNodeJson.domainId=targetNode.domainId;
+            	if(v.level==1)
+            		zTreeNodeJson.fartherId = null;
             }
             zTreeNodeJsonArray.push(zTreeNodeJson);
         });
-
+        
+        // 原有兄弟节点排序号也会发生变化，如果拖拽到不同层级中，也要修改
+        if(treeNodesDragBrotherArray.length>0&&targetNode.fartherId!=treeNodesDragBrotherArray[0].fartherId)
+        	zTreeNodeJsonArray=zTreeNodeJsonArray.concat(treeNodesDragBrotherArray);
         var submitData = {
             entityList: zTreeNodeJsonArray
         }

@@ -80,7 +80,7 @@ function initUlInterfaceCatalogTree() {
 			deleteListUrl : RU_GPCATALOGINTERFACE_DELETELIST,
 			updateListUrl : RU_GPCATALOGINTERFACE_UPDATELISTWITHDFF,
 			updateUrl : RU_GPCATALOGINTERFACE_UPDATE,
-			getModelUrl : RU_GPCATALOGINTERFACE_GETMODEL
+			getModelUrl : RU_GPCATALOGINTERFACE_GETMODELBYPATH
 		},
 
 		data : {
@@ -93,6 +93,7 @@ function initUlInterfaceCatalogTree() {
 		callback : {
 			beforeRemove : beforeRemove,
 			beforeRename : beforeRename,
+			onDrag : onDrag,
 			onDrop : onDrop,
 			onRemove : onRemove,
 			onRename : onRename,
