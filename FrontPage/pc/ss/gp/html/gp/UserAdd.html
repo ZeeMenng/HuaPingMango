@@ -16,7 +16,7 @@
 					required : true,
 					remote : {
 						type : "POST",
-						url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniqueUserName",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEUSERNAME,
 						data : {
 							userName : function() {
 								return $("#textUserName").val();
@@ -46,7 +46,7 @@
 					phone : true,
 					remote : {
 						type : "POST",
-						url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniquePhone",
+						url : INTERFACE_SERVER +RU_GPUSER_ISUNIQUEPHONE,
 						data : {
 							phone : function() {
 								return $("#textPhone").val();
@@ -62,7 +62,7 @@
 					number : true,
 					remote : {
 						type : "POST",
-						url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniqueQQ",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEQQ,
 						data : {
 							qq : function() {
 								return $("#textQq").val();
@@ -79,7 +79,7 @@
 					email : true,
 					remote : {
 						type : "POST",
-						url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniqueEmail",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEEMAIL,
 						data : {
 							email : function() {
 								return $("#textEmail").val();
@@ -122,6 +122,8 @@
 		$("#selectIsMarriageCode").val(DCODE_BOOLEAN_T);
 
 	});
+
+
 </script>
 </head>
 
@@ -283,7 +285,7 @@
 													</div>
 												</div>
 											</div>
-										
+
 											<div class="form-group">
 												<div class="element-group left">
 													<label for="textRoleName" class="control-label col-md-2"> 应用角色 </label>
@@ -319,9 +321,7 @@
 											</div>
 											<div class=" form-group">
 												<div class="element-group left">
-													<label for="fileResourceIds" class="control-label col-md-2">
-														用户头像
-													</label>
+													<label for="fileResourceIds" class="control-label col-md-2"> 用户头像 </label>
 
 													<div class="col-md-8" style="line-height: 32px">
 														<input id="fileIcons" type="file" name="fileIcons" multiple />
