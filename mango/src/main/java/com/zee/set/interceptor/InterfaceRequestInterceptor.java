@@ -81,7 +81,9 @@ public class InterfaceRequestInterceptor implements HandlerInterceptor {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		uri = uri.substring(contextPath.length(), uri.length());
-
+		//如果路径后面有uuid截取
+		if (uri.matches("/(.*)/[0-9a-f]{32}"))
+			uri = uri.substring(0, uri.length() - 32);
 		ResultModel interfaceResult = gpInterfaceSplBll.getModelByUrl(uri);
 
 		// 如果在接口白名单中直接放行
