@@ -385,7 +385,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		gpUser.setDomainIds(userDomainIds);
 		gpUser.setDomainNames(userDomainNames);
 
-		result.setData(dictionaryUtil.dictTransform(gpUser));
+		result.setData(gpUser);
 
 		return result;
 	}
