@@ -3,7 +3,11 @@ package com.zee.ent.extend.gp;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zee.ent.generate.gp.GpUserGenEnt;
+import com.zee.set.annotation.DictionaryConvertAnnotation2;
+import com.zee.set.annotation.DictionaryConvertAnnotation;
+import com.zee.set.serializer.JacksonDictionarySerializer;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,15 +28,23 @@ public class GpUser extends GpUserGenEnt {
 	private GpDomain currentDomain;
 
 	@ApiModelProperty(value = "性别", hidden = false, required = false)
+	@JsonSerialize(using = JacksonDictionarySerializer.class)
+	@DictionaryConvertAnnotation(typeId = "2275e63ff0101d36c6e93eb37ec44f31")
 	private String genderValue;
-
+	
 	@ApiModelProperty(value = "是否管理员", hidden = false, required = true)
+	@JsonSerialize(using = JacksonDictionarySerializer.class)
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
 	private String isAdminValue;
 
 	@ApiModelProperty(value = "是否禁用", hidden = false, required = true)
+	@JsonSerialize(using = JacksonDictionarySerializer.class)
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
 	private String isDisabledValue;
 
 	@ApiModelProperty(value = "是否已婚", hidden = false, required = false)
+	@JsonSerialize(using = JacksonDictionarySerializer.class)
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
 	private String isMarriageValue;
 
 	@ApiModelProperty(value = "应用领域ids", hidden = false, required = false)
@@ -90,7 +102,7 @@ public class GpUser extends GpUserGenEnt {
 	}
 
 	public String getGenderValue() {
-		return genderValue;
+		return super.getGenderCode().toString();
 	}
 
 	public void setGenderValue(String genderValue) {
@@ -98,7 +110,7 @@ public class GpUser extends GpUserGenEnt {
 	}
 
 	public String getIsAdminValue() {
-		return isAdminValue;
+		return super.getIsAdminCode().toString();
 	}
 
 	public void setIsAdminValue(String isAdminValue) {
@@ -106,7 +118,7 @@ public class GpUser extends GpUserGenEnt {
 	}
 
 	public String getIsDisabledValue() {
-		return isDisabledValue;
+		return super.getIsDisabledCode().toString();
 	}
 
 	public void setIsDisabledValue(String isDisabledValue) {
@@ -114,7 +126,7 @@ public class GpUser extends GpUserGenEnt {
 	}
 
 	public String getIsMarriageValue() {
-		return isMarriageValue;
+		return super.getIsMarriageCode().toString();
 	}
 
 	public void setIsMarriageValue(String isMarriageValue) {

@@ -1,6 +1,9 @@
 package com.zee.ent.extend.gp;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zee.ent.generate.gp.GpOperLogGenEnt;
+import com.zee.set.annotation.DictionaryConvertAnnotation;
+import com.zee.set.serializer.JacksonDictionarySerializer;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,12 +17,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "GpOperLog", description = "操作日志。")
 public class GpOperLog extends GpOperLogGenEnt {
-  
-	@ApiModelProperty(value="应用领域",hidden=false,required=false)
-    private String domainName;
-	
-	@ApiModelProperty(value="操作是否成功",hidden=false,required=false)
-    private String isSuccessValue;
+
+	@ApiModelProperty(value = "应用领域", hidden = false, required = false)
+	private String domainName;
+
+	@ApiModelProperty(value = "操作是否成功", hidden = false, required = false)
+	@JsonSerialize(using = JacksonDictionarySerializer.class)
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
+	private String isSuccessValue;
 
 	public String getDomainName() {
 		return domainName;
@@ -30,7 +35,7 @@ public class GpOperLog extends GpOperLogGenEnt {
 	}
 
 	public String getIsSuccessValue() {
-		return isSuccessValue;
+		return super.getIsSuccessCode().toString();
 	}
 
 	public void setIsSuccessValue(String isSuccessValue) {
@@ -38,10 +43,3 @@ public class GpOperLog extends GpOperLogGenEnt {
 	}
 
 }
-
-
-
-
-
-
-
