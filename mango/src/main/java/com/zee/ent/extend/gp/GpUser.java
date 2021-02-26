@@ -5,7 +5,6 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zee.ent.generate.gp.GpUserGenEnt;
-import com.zee.set.annotation.DictionaryConvertAnnotation2;
 import com.zee.set.annotation.DictionaryConvertAnnotation;
 import com.zee.set.serializer.JacksonDictionarySerializer;
 
@@ -31,7 +30,7 @@ public class GpUser extends GpUserGenEnt {
 	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "2275e63ff0101d36c6e93eb37ec44f31")
 	private String genderValue;
-	
+
 	@ApiModelProperty(value = "是否管理员", hidden = false, required = true)
 	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
@@ -44,7 +43,7 @@ public class GpUser extends GpUserGenEnt {
 
 	@ApiModelProperty(value = "是否已婚", hidden = false, required = false)
 	@JsonSerialize(using = JacksonDictionarySerializer.class)
-	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isMarriageCode")
 	private String isMarriageValue;
 
 	@ApiModelProperty(value = "应用领域ids", hidden = false, required = false)
@@ -126,7 +125,8 @@ public class GpUser extends GpUserGenEnt {
 	}
 
 	public String getIsMarriageValue() {
-		return super.getIsMarriageCode().toString();
+		//return super.getIsMarriageCode().toString();
+		return isMarriageValue;
 	}
 
 	public void setIsMarriageValue(String isMarriageValue) {

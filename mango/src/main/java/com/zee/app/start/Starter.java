@@ -31,7 +31,11 @@ import com.zee.set.config.MybatisConfig;
 
 @Configuration
 @Import({ MybatisConfig.class })
-@ComponentScan(basePackages = { "com.**.base.**", "com.**.custom.**", "com.**.gp.**", "com.**.pi.**", "com.zee.set.**", "com.zee.utl.**" }, excludeFilters = { @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { com.zee.utl.Executors.class, com.zee.utl.MongoUtil.class, com.zee.app.custom.MongodbController.class, com.zee.utl.service.DaUserContributionUtil.class }), @Filter(type = FilterType.REGEX, pattern = "com.zee.utl.crawler.*"), @Filter(type = FilterType.REGEX, pattern = "com.zee.utl.task.*") })
+@ComponentScan(basePackages = { "com.**.base.**", "com.**.custom.**", "com.**.gp.**", "com.**.pi.**", "com.zee.set.**", "com.zee.utl.**" },
+excludeFilters = { 
+		@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { com.zee.utl.Executors.class, com.zee.utl.MongoUtil.class, com.zee.app.custom.MongodbController.class, com.zee.utl.service.DaUserContributionUtil.class }), 
+		@Filter(type = FilterType.REGEX, pattern = "com.zee.utl.crawler.*"), 
+		@Filter(type = FilterType.REGEX, pattern = "com.zee.utl.task.*") })
 // 屏蔽MongoDB自动连接
 @EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class })
 @EnableScheduling

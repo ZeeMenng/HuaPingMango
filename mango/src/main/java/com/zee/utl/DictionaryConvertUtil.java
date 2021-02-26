@@ -11,23 +11,44 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.zee.set.annotation.DictionaryConvertAnnotation2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.zee.bll.extend.unity.gp.GpDictionaryUntBll;
+import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpDictionary;
+import com.zee.ent.parameter.base.BaseParameter;
+import com.zee.ent.parameter.base.BaseParameter.BaseParamGetList.Order;
+import com.zee.ent.parameter.gp.GpDictionaryParameter;
+import com.zee.set.annotation.DictionaryConvertAnnotation;
+import com.zee.set.symbolic.CustomSymbolic;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import lombok.Builder;
-import lombok.Data;
 
 /**
  * @author Zee
  * @createDate 2021年2月24日 上午11:03:01
  * @updateDate 2021年2月24日 上午11:03:01
- * @description 字典解析工具
+ * @description 手动字典解析工具类
  */
+@Component
 public class DictionaryConvertUtil {
+
+	protected static GpDictionaryUntBll gpDictionaryUntBll;
+
+	/**
+	 * @param gpDictionaryUntBll
+	 * 
+	 * @Autowired 无法注入static属性，迂回一下
+	 */
+	@Autowired
+	public void setGpDictionaryUntBll(GpDictionaryUntBll gpDictionaryUntBll) {
+		DictionaryConvertUtil.gpDictionaryUntBll = gpDictionaryUntBll;
+	}
 
 	public static <T> void convertToCode(T data) {
 		convertToCode(data, null);
@@ -129,13 +150,13 @@ public class DictionaryConvertUtil {
 		Field[] fields = data.getClass().getDeclaredFields();
 
 		// 过滤 static、 final、private static final字段
-		final List<Field> filteredFields = Stream.of(fields).filter(f -> !(f.getModifiers() == Modifier.FINAL || f.getModifiers() == Modifier.STATIC || f.getModifiers() == (Modifier.PRIVATE | Modifier.STATIC | Modifier.FINAL) || f.getAnnotation(DictionaryConvertAnnotation2.class) == null)).collect(Collectors.toList());
+		final List<Field> filteredFields = Stream.of(fields).filter(f -> !(f.getModifiers() == Modifier.FINAL || f.getModifiers() == Modifier.STATIC || f.getModifiers() == (Modifier.PRIVATE | Modifier.STATIC | Modifier.FINAL) || f.getAnnotation(DictionaryConvertAnnotation.class) == null)).collect(Collectors.toList());
 
 		// 处理
 		for (Field f : filteredFields) {
 
 			// 获取当前字段注解
-			DictionaryConvertAnnotation2 annotation = f.getAnnotation(DictionaryConvertAnnotation2.class);
+			DictionaryConvertAnnotation annotation = f.getAnnotation(DictionaryConvertAnnotation.class);
 
 			// 没有加注解的字段不处理
 			if (annotation == null) {
@@ -146,11 +167,11 @@ public class DictionaryConvertUtil {
 			Object value;
 
 			// 字典类型
-			String dictType = annotation.value();
+			String dictType = annotation.typeId();
 
 			// 如果是引用其他字段则值从其他字段取
-			if (StrUtil.isNotEmpty(annotation.refField())) {
-				value = ReflectUtil.getFieldValue(data, annotation.refField());
+			if (StrUtil.isNotEmpty(annotation.codeField())) {
+				value = ReflectUtil.getFieldValue(data, annotation.codeField());
 			}
 
 			// 否则获取当前字段值
@@ -181,7 +202,7 @@ public class DictionaryConvertUtil {
 			}
 
 			// 自定义的字典
-			final String dicts = annotation.dicts();
+			final String dicts = annotation.dictionaryList();
 
 			// 转换字典时字段字典类型未配置（字典key都不配置转个毛线）
 			if (StrUtil.isEmpty(dictType) && StrUtil.isEmpty(dicts)) {
@@ -189,17 +210,44 @@ public class DictionaryConvertUtil {
 			}
 
 			// 获取字典的对应 映射关系 （建议此处做缓存提高转换速度）
-			final List<Dict> currDictList;
+			final List<GpDictionary> dictionaryList;
 
 			if (StrUtil.isNotBlank(dicts)) {
-				final List<String> dictList = StrUtil.splitTrim(dicts, ",");
-				currDictList = Optional.ofNullable(dictList).filter(CollUtil::isNotEmpty).map(s -> s.parallelStream().map(d -> {
+				final List<String> dictionaryStringList = StrUtil.splitTrim(dicts, ",");
+				dictionaryList = Optional.ofNullable(dictionaryStringList).filter(CollUtil::isNotEmpty).map(s -> s.parallelStream().map(d -> {
 					final List<String> dTrim = StrUtil.splitTrim(d, ":");
-					return dTrim.size() == 2 ? Dict.builder().dictValue(dTrim.get(0)).dictLabel(dTrim.get(1)).build() : null;
+					if (dTrim.size() == 2) {
+						GpDictionary gpDictionary = new GpDictionary();
+						gpDictionary.setCode(Byte.valueOf(dTrim.get(0)));
+						gpDictionary.setText(dTrim.get(1));
+						return gpDictionary;
+					}
+					return null;
 				}).filter(Objects::nonNull).collect(Collectors.toList())).orElse(new ArrayList<>(0));
 
 			} else {
-				currDictList = getDictByDictType(dictType);
+				GpDictionaryParameter.GetList jsonData = new GpDictionaryParameter.GetList();
+
+				GpDictionaryParameter.GetList.EntityRelated entityRelated = new GpDictionaryParameter.GetList.EntityRelated();
+				BaseParameter.BaseParamGetList.Order order = new BaseParameter.BaseParamGetList.Order();
+				BaseParameter.BaseParamGetList.Page page = new BaseParameter.BaseParamGetList.Page();
+
+				order.setColumnName("type_id");
+				order.setIsASC(true);
+
+				page.setPageIndex(CustomSymbolic.SQLQUERY_PAGEINDEX_DEFAULTVALUE);
+				page.setPageSize(CustomSymbolic.SQLQUERY_KEYWORDS_PAGESIZE_MAX);
+
+				jsonData.setEntityRelated(entityRelated);
+				jsonData.setOrderList(new ArrayList<Order>() {
+					{
+						add(order);
+					}
+				});
+				jsonData.setPage(page);
+
+				ResultModel result = gpDictionaryUntBll.getList(jsonData);
+				dictionaryList = CastObjectUtil.cast(result.getData());
 			}
 
 			// 是否匹配到了字典中的值
@@ -219,16 +267,16 @@ public class DictionaryConvertUtil {
 			if (!isToCode) {
 				// 逗号隔开字典转换支持
 				if (CollUtil.isNotEmpty(beanValues) && beanValues.size() > 1) {
-					final Map<String, String> dictMap = currDictList.stream().collect(Collectors.toMap(Dict::getDictValue, Dict::getDictLabel));
+					final Map<Byte, String> dictMap = dictionaryList.stream().collect(Collectors.toMap(GpDictionary::getCode, GpDictionary::getText));
 					final List<String> matchesDict = beanValues.stream().filter(dictMap::containsKey).map(dm -> Objects.nonNull(dictMap.get(dm)) ? dictMap.get(dm) : "").collect(Collectors.toList());
 					if (CollUtil.isNotEmpty(matchesDict)) {
 						isMatchSuccess = true;
 						ReflectUtil.setFieldValue(data, f, CollUtil.join(matchesDict, delimiter));
 					}
 				} else {
-					for (Dict sysDictData : currDictList) {
-						if (Objects.equals(Convert.toStr(value), sysDictData.getDictValue())) {
-							ReflectUtil.setFieldValue(data, f, Objects.nonNull(sysDictData.getDictLabel()) ? sysDictData.getDictLabel() : value);
+					for (GpDictionary sysDictData : dictionaryList) {
+						if (Objects.equals(Convert.toByte(value), sysDictData.getCode())) {
+							ReflectUtil.setFieldValue(data, f, Objects.nonNull(sysDictData.getText()) ? sysDictData.getText() : value);
 							isMatchSuccess = true;
 							break;
 						}
@@ -239,16 +287,16 @@ public class DictionaryConvertUtil {
 			else {
 				// 逗号隔开字典转换支持
 				if (CollUtil.isNotEmpty(beanValues) && beanValues.size() > 1) {
-					final Map<String, String> dictMap = currDictList.stream().collect(Collectors.toMap(Dict::getDictLabel, Dict::getDictValue));
-					final List<String> matchesDict = beanValues.stream().filter(dictMap::containsKey).map(dm -> Objects.nonNull(dictMap.get(dm)) ? dictMap.get(dm) : "").collect(Collectors.toList());
+					final Map<String, Byte> dictionaryMap = dictionaryList.stream().collect(Collectors.toMap(GpDictionary::getText, GpDictionary::getCode));
+					final List<String> matchesDict = beanValues.stream().filter(dictionaryMap::containsKey).map(dm -> Objects.nonNull(dictionaryMap.get(dm)) ? dictionaryMap.get(dm).toString() : "").collect(Collectors.toList());
 					if (CollUtil.isNotEmpty(matchesDict)) {
 						isMatchSuccess = true;
 						ReflectUtil.setFieldValue(data, f, CollUtil.join(matchesDict, delimiter));
 					}
 				} else {
-					for (Dict sysDictData : currDictList) {
-						if (Objects.equals(Convert.toStr(value), sysDictData.getDictLabel())) {
-							ReflectUtil.setFieldValue(data, f, Objects.nonNull(sysDictData.getDictValue()) ? sysDictData.getDictValue() : value);
+					for (GpDictionary sysDictData : dictionaryList) {
+						if (Objects.equals(Convert.toStr(value), sysDictData.getText())) {
+							ReflectUtil.setFieldValue(data, f, Objects.nonNull(sysDictData.getCode()) ? sysDictData.getCode() : value);
 							isMatchSuccess = true;
 							break;
 						}
@@ -262,63 +310,6 @@ public class DictionaryConvertUtil {
 			}
 
 		}
-	}
-
-	/**
-	 * 根据字典类型查询所有该类型的字典信息
-	 * 可以在此处添加缓存（加快转换速度）
-	 *      eg:使用 spring cache
-	 *
-	 *      @Cacheable(value = "dictConvert",key = "#dictType")
-	 *      public static List<Dict> getDictByDictType(String dictType) {
-	 *          return dictData;
-	 *      }
-	 *
-	 * @param dictType 字典类型
-	 * @return 匹配到的字典集合
-	 */
-	private static List<Dict> getDictByDictType(String dictType) {
-		return getAllDict().parallelStream().filter(d -> dictType.equals(d.getDictType())).collect(Collectors.toList());
-	}
-
-	/**
-	 * 获取所有字典
-	 *
-	 * 字典信息 可以从数据库 查询 或者 放入缓存都可以
-	 */
-	private static List<Dict> getAllDict() {
-		List<Dict> data = new ArrayList<>();
-
-		// 性别 字典
-		data.add(Dict.builder().dictType("sex").dictLabel("女").dictValue("0").build());
-		data.add(Dict.builder().dictType("sex").dictLabel("男").dictValue("1").build());
-		data.add(Dict.builder().dictType("sex").dictLabel("未知").dictValue("2").build());
-		return data;
-
-	}
-
-	@Data
-	@Builder
-	public static class Dict {
-
-		/**
-		 * dict type
-		 *  eg: sex
-		 */
-		private String dictType;
-
-		/**
-		 * dict label
-		 *  eg: 男
-		 */
-		private String dictLabel;
-
-		/**
-		 * dict value
-		 *  eg: 1
-		 */
-		private String dictValue;
-
 	}
 
 }

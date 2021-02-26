@@ -35,5 +35,16 @@ public @interface DictionaryConvertAnnotation {
 	 * eg: 0:女,1:男,2:未知
 	 */
 	String dictionaryList() default "";
+	
+	/**
+	 * 如果转换的值不匹配是否要转换为NULL
+	 */
+	boolean ifNotMatchConvertToNull() default false;
+
+	/**
+	 * 带逗号的多字典 分隔符 默认逗号
+	 */
+	String delimiter() default ",";
+
 
 }

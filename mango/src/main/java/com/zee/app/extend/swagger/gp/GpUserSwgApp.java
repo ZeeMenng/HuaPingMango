@@ -49,7 +49,7 @@ import com.zee.set.enumer.OperResult;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.set.symbolic.SqlSymbolic;
 import com.zee.utl.CastObjectUtil;
-import com.zee.utl.DictionaryUtil;
+import com.zee.utl.DictionaryConvertUtil;
 import com.zee.utl.MailSenderUtil;
 import com.zee.utl.Tools;
 
@@ -84,9 +84,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 	@Autowired
 	@Qualifier("gprRoleDomainUntBll")
 	protected GprRoleDomainUntBll gprRoleDomainUntBll;
-
-	@Autowired
-	private DictionaryUtil dictionaryUtil;
 
 	@Autowired
 	@Qualifier("gpLoginLogUntBll")
@@ -386,6 +383,8 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		gpUser.setDomainNames(userDomainNames);
 
 		result.setData(gpUser);
+
+		DictionaryConvertUtil.convertToDictionary(gpUser);
 
 		return result;
 	}
