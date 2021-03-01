@@ -20,13 +20,21 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
+import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.zee.set.annotation.DictionaryConvertAnnotation;
 import com.zee.set.interceptor.InterfaceRequestInterceptor;
 import com.zee.set.serializer.JacksonNullSerializer;
 import com.zee.set.symbolic.CustomSymbolic;
+
+import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Zee
@@ -99,12 +107,36 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		objectMapper.setTimeZone(TimeZone.getTimeZone(timeZone));
 
 		// NULL的序列化为""，此方法放开会导致有些Controll的返回不再是JSON对象，而是外层包括了引号的JSON字符串，比如判断是否唯一用户名的方法
-		objectMapper.getSerializerProvider().setNullValueSerializer(new JacksonNullSerializer());
+		// 不直接用objectMapper.getSerializerProvider().setNullValueSerializer(new
+		// JacksonNullSerializer());是为了处理字典解析的注解
+		objectMapper.registerModule(new SimpleModule() {
+			@Override
+			public void setupModule(SetupContext context) {
+				context.addBeanSerializerModifier(new CustomBeanSerializerModifier());
+				super.setupModule(context);
+			}
+		});
 
 		// 设置格式化内容
 		converter.setObjectMapper(objectMapper);
 		return converter;
 
+	}
+
+	public class CustomBeanSerializerModifier extends BeanSerializerModifier {
+
+		@Override
+		public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
+
+			for (BeanPropertyWriter beanProperty : beanProperties) {
+				DictionaryConvertAnnotation annotation = beanProperty.getAnnotation(DictionaryConvertAnnotation.class);
+				if (annotation == null || StrUtil.isEmptyIfStr(annotation.codeField())) {
+					beanProperty.assignNullSerializer(new JacksonNullSerializer());
+				}
+			}
+
+			return beanProperties;
+		}
 	}
 
 }

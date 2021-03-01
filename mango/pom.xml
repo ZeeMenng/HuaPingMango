@@ -385,12 +385,18 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			 <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- 处理字典解析时用到了hutool的一些工具类方法、lombok简化对象封装 -->
+
+		<!-- Map和Bean的相互转换 -->
 	</dependencies>
-
-
+	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+		<version>1.9.4</version>
+	</dependency>
+	<!-- Map和Bean的相互转换 -->
 
 
 	<build>
