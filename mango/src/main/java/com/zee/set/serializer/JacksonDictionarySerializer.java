@@ -43,10 +43,6 @@ public class JacksonDictionarySerializer extends JsonSerializer<Object> {
 	@Autowired
 	protected GpDictionaryUntBll gpDictionaryUntBll;
 
-	public JacksonDictionarySerializer() {
-		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-	}
-
 	@Override
 	public void serialize(Object dictionaryValue, JsonGenerator generator, SerializerProvider provider) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -65,8 +61,6 @@ public class JacksonDictionarySerializer extends JsonSerializer<Object> {
 				return;
 			}
 
-			String coldField = dictionaryConvertAnnotation.codeField();
-			System.out.println(coldField);
 			// 如果是引用其他字段则值从其他字段取
 			if (StringUtils.isNotEmpty(dictionaryConvertAnnotation.codeField())) {
 				dictionaryValue = ReflectUtil.getFieldValue(generator.getCurrentValue(), dictionaryConvertAnnotation.codeField());

@@ -6,12 +6,15 @@ import java.util.TimeZone;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.json.SpringHandlerInstantiator;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -27,7 +30,6 @@ import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.zee.set.annotation.DictionaryConvertAnnotation;
 import com.zee.set.interceptor.InterfaceRequestInterceptor;
-import com.zee.set.serializer.JacksonDictionarySerializer;
 import com.zee.set.serializer.JacksonNullSerializer;
 import com.zee.set.symbolic.CustomSymbolic;
 
@@ -59,6 +61,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Resource(name = "interfaceRequestInterceptor")
 	InterfaceRequestInterceptor interfaceRequestInterceptor;
 
+	@Autowired
+	private ApplicationContext applicationContext;
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/WebContent/**").addResourceLocations("forward:/WEB-INF/index.html");
@@ -78,7 +83,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	MappingJackson2HttpMessageConverter customValueConverter() {
 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		// 采用这种方式初始化化MappingJackson2HttpMessageConverter，是为了注入JacksonDictionarySerializer中的属性值
+		Jackson2ObjectMapperBuilder objectMapperBuilder = new Jackson2ObjectMapperBuilder();
+		SpringHandlerInstantiator handlerInstantiator = new SpringHandlerInstantiator(applicationContext.getAutowireCapableBeanFactory());
+		objectMapperBuilder.handlerInstantiator(handlerInstantiator);
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(objectMapperBuilder.build());
 
 		// 生成JSON时,将所有Long转换成String
 		SimpleModule simpleModule = new SimpleModule();
@@ -118,14 +127,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 			for (BeanPropertyWriter beanProperty : beanProperties) {
 				DictionaryConvertAnnotation annotation = beanProperty.getAnnotation(DictionaryConvertAnnotation.class);
-				if (annotation == null) {
+				// 对于字典字段此处不做处理，此处代码可能未生效
+				if (annotation == null)
 					beanProperty.assignNullSerializer(new JacksonNullSerializer());
-				} else {
-					String coldField = annotation.codeField();
-					if (StringUtils.isNotEmpty(coldField))
-						beanProperty.assignNullSerializer(new JacksonDictionarySerializer());
-
-				}
 			}
 
 			return beanProperties;

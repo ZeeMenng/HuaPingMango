@@ -22,8 +22,8 @@ public class GpOperLog extends GpOperLogGenEnt {
 	private String domainName;
 
 	@ApiModelProperty(value = "操作是否成功", hidden = false, required = false)
-	@JsonSerialize(using = JacksonDictionarySerializer.class)
-	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isAdminCode")
+	@JsonSerialize(using = JacksonDictionarySerializer.class, nullsUsing = JacksonDictionarySerializer.class)
 	private String isSuccessValue;
 
 	public String getDomainName() {
@@ -35,7 +35,7 @@ public class GpOperLog extends GpOperLogGenEnt {
 	}
 
 	public String getIsSuccessValue() {
-		return super.getIsSuccessCode().toString();
+		return isSuccessValue;
 	}
 
 	public void setIsSuccessValue(String isSuccessValue) {

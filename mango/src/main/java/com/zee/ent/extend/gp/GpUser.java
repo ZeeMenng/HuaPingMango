@@ -27,19 +27,23 @@ public class GpUser extends GpUserGenEnt {
 	private GpDomain currentDomain;
 
 	@ApiModelProperty(value = "性别", hidden = false, required = false)
-	@DictionaryConvertAnnotation(typeId = "2275e63ff0101d36c6e93eb37ec44f31")
+	@DictionaryConvertAnnotation(typeId = "2275e63ff0101d36c6e93eb37ec44f31", codeField = "genderCode")
+	@JsonSerialize(using = JacksonDictionarySerializer.class, nullsUsing = JacksonDictionarySerializer.class)
 	private String genderValue;
 
 	@ApiModelProperty(value = "是否管理员", hidden = false, required = true)
-	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isAdminCode")
+	@JsonSerialize(using = JacksonDictionarySerializer.class, nullsUsing = JacksonDictionarySerializer.class)
 	private String isAdminValue;
 
 	@ApiModelProperty(value = "是否禁用", hidden = false, required = true)
-	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
+	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isDisabledCode")
+	@JsonSerialize(using = JacksonDictionarySerializer.class, nullsUsing = JacksonDictionarySerializer.class)
 	private String isDisabledValue;
 
 	@ApiModelProperty(value = "是否已婚", hidden = false, required = false)
 	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isMarriageCode")
+	@JsonSerialize(using = JacksonDictionarySerializer.class, nullsUsing = JacksonDictionarySerializer.class)
 	private String isMarriageValue;
 
 	@ApiModelProperty(value = "应用领域ids", hidden = false, required = false)
@@ -96,39 +100,6 @@ public class GpUser extends GpUserGenEnt {
 		this.roleNames = roleNames;
 	}
 
-	public String getGenderValue() {
-		return super.getGenderCode().toString();
-	}
-
-	public void setGenderValue(String genderValue) {
-		this.genderValue = genderValue;
-	}
-
-	public String getIsAdminValue() {
-		return super.getIsAdminCode().toString();
-	}
-
-	public void setIsAdminValue(String isAdminValue) {
-		this.isAdminValue = isAdminValue;
-	}
-
-	public String getIsDisabledValue() {
-		return super.getIsDisabledCode().toString();
-	}
-
-	public void setIsDisabledValue(String isDisabledValue) {
-		this.isDisabledValue = isDisabledValue;
-	}
-
-	public String getIsMarriageValue() {
-		//return super.getIsMarriageCode().toString();
-		return isMarriageValue;
-	}
-
-	public void setIsMarriageValue(String isMarriageValue) {
-		this.isMarriageValue = isMarriageValue;
-	}
-
 	public GpDomain getCurrentDomain() {
 		return currentDomain;
 	}
@@ -183,6 +154,38 @@ public class GpUser extends GpUserGenEnt {
 
 	public void setBirthTime(Date birthTime) {
 		this.birthTime = birthTime;
+	}
+
+	public String getGenderValue() {
+		return genderValue;
+	}
+
+	public void setGenderValue(String genderValue) {
+		this.genderValue = genderValue;
+	}
+
+	public String getIsAdminValue() {
+		return isAdminValue;
+	}
+
+	public void setIsAdminValue(String isAdminValue) {
+		this.isAdminValue = isAdminValue;
+	}
+
+	public String getIsDisabledValue() {
+		return isDisabledValue;
+	}
+
+	public void setIsDisabledValue(String isDisabledValue) {
+		this.isDisabledValue = isDisabledValue;
+	}
+
+	public String getIsMarriageValue() {
+		return isMarriageValue;
+	}
+
+	public void setIsMarriageValue(String isMarriageValue) {
+		this.isMarriageValue = isMarriageValue;
 	}
 
 }
