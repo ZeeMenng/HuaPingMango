@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * @updateDate 2021年2月12日 下午2:37:48
  * @description 获取Swagger的配置文件信息
  */
-@Component
-@ConfigurationProperties("swagger")
+//@Component
+//@ConfigurationProperties("swagger")
 public class SwaggerProperties {
 	/**
 	 * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
