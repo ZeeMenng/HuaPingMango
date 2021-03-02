@@ -5,6 +5,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -34,17 +37,14 @@ import lombok.ToString;
  *               
  * 
  */
+@Component
 public class JacksonDictionarySerializer extends JsonSerializer<Object> {
 
+	@Autowired
 	protected GpDictionaryUntBll gpDictionaryUntBll;
 
-	/**
-	 * @param gpDictionaryUntBll
-	 * 注意此处的注入方式，否则会法初始化成功gpDictionaryUntBll， 受制于的WebMvcConfig的配置
-	 * 
-	 */
-	public JacksonDictionarySerializer(GpDictionaryUntBll gpDictionaryUntBll) {
-		this.gpDictionaryUntBll = gpDictionaryUntBll;
+	public JacksonDictionarySerializer() {
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
 
 	@Override
@@ -57,22 +57,20 @@ public class JacksonDictionarySerializer extends JsonSerializer<Object> {
 		try {
 			// 获取字段
 			Field field = generator.getCurrentValue().getClass().getDeclaredField(currentName);
-			
-			
+
 			// 获取字典属性
 			DictionaryConvertAnnotation dictionaryConvertAnnotation = field.getDeclaredAnnotation(DictionaryConvertAnnotation.class);
 			if (dictionaryConvertAnnotation == null) {
 				objectMapper.writeValue(generator, dictionaryValue);
 				return;
 			}
-			
-			String coldField=dictionaryConvertAnnotation.codeField();
-			System.out.println(coldField);
-			  // 如果是引用其他字段则值从其他字段取
-          if (StringUtils.isNotEmpty(dictionaryConvertAnnotation.codeField())) {
-        	  dictionaryValue = ReflectUtil.getFieldValue(generator.getCurrentValue(), dictionaryConvertAnnotation.codeField());
-          }
 
+			String coldField = dictionaryConvertAnnotation.codeField();
+			System.out.println(coldField);
+			// 如果是引用其他字段则值从其他字段取
+			if (StringUtils.isNotEmpty(dictionaryConvertAnnotation.codeField())) {
+				dictionaryValue = ReflectUtil.getFieldValue(generator.getCurrentValue(), dictionaryConvertAnnotation.codeField());
+			}
 
 			// 获取字典type
 			String dictionaryTypeId = dictionaryConvertAnnotation.typeId();

@@ -16,8 +16,11 @@ import com.fasterxml.jackson.databind.SerializerProvider;
  *              但此配置开启后swagger无法正常使用，暂没有双全的方法。
  */
 public class JacksonNullSerializer extends JsonSerializer<Object> {
+
 	@Override
-	public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
-		jgen.writeString("");
+	public void serialize(Object dictionaryValue, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+
+		generator.writeString("");
+
 	}
 }

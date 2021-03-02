@@ -27,22 +27,18 @@ public class GpUser extends GpUserGenEnt {
 	private GpDomain currentDomain;
 
 	@ApiModelProperty(value = "性别", hidden = false, required = false)
-	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "2275e63ff0101d36c6e93eb37ec44f31")
 	private String genderValue;
 
 	@ApiModelProperty(value = "是否管理员", hidden = false, required = true)
-	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
 	private String isAdminValue;
 
 	@ApiModelProperty(value = "是否禁用", hidden = false, required = true)
-	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea")
 	private String isDisabledValue;
 
 	@ApiModelProperty(value = "是否已婚", hidden = false, required = false)
-	@JsonSerialize(using = JacksonDictionarySerializer.class)
 	@DictionaryConvertAnnotation(typeId = "dc1f9015660bcbcee7f1dfc1a5dea1ea", codeField = "isMarriageCode")
 	private String isMarriageValue;
 
