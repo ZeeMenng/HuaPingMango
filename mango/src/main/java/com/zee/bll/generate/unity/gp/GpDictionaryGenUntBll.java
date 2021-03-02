@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,13 +18,12 @@ import com.zee.ent.parameter.gp.GpDictionaryParameter;
 import com.zee.set.enumer.OperResult;
 import com.zee.set.enumer.OperType;
 import com.zee.set.exception.GlobalException;
-import com.zee.utl.DateUtils;
 import com.zee.set.symbolic.CustomSymbolic;
+import com.zee.utl.DateUtils;
 import com.zee.utl.Tools;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
 
 /**
  * @author Zee
@@ -35,7 +35,6 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 
 	@Autowired
 	protected IGpDictionaryUntDal gpDictionaryUntDal;
-
 
 	public ResultModel updateList(GpDictionaryParameter.UpdateList updateListParam) {
 		return updateList(updateListParam, isLogWrite);
@@ -51,13 +50,13 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
-            result.setIncomeCount(updateListParam.getIdList().size());
+			result.setIncomeCount(updateListParam.getIdList().size());
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.UPDATELIST.getCode());
 			result.setOperTypeText(OperType.UPDATELIST.getText());
 			result.setRemark("");
 
-			int i = baseUntDal.updateList(updateListParam.getIdList(),updateListParam.getEntity());
+			int i = baseUntDal.updateList(updateListParam.getIdList(), updateListParam.getEntity());
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -69,9 +68,9 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.UPDATE_F.getCode());
-			result.setResultMessage(OperResult.UPDATE_F.getText() );
+			result.setResultMessage(OperResult.UPDATE_F.getText());
 			result.setReturnValue(e.getMessage());
-            result.setOriginException(e);
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -97,13 +96,12 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(jsonObject.toString());
-            result.setIncomeCount(0);
+			result.setIncomeCount(0);
 			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLIST.getCode());
-            result.setOperTypeText(OperType.GETLIST.getText());
+			result.setOperTypeText(OperType.GETLIST.getText());
 			result.setRemark("");
-			
 
 			GpDictionaryParameter.GetList.EntityRelated entityRelated = getListParam.getEntityRelated();
 			GpDictionaryParameter.GetList.Page page = getListParam.getPage();
@@ -134,9 +132,9 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLIST_F.getCode());
-			result.setResultMessage(OperResult.GETLIST_F.getText() );
+			result.setResultMessage(OperResult.GETLIST_F.getText());
 			result.setReturnValue(e.getMessage());
-            result.setOriginException(e);
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -146,8 +144,8 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		}
 		return result;
 	}
- 
- 	public ResultModel deleteByTypeId(String typeId) {
+
+	public ResultModel deleteByTypeId(String typeId) {
 		return deleteByTypeId(typeId, isLogRead);
 	}
 
@@ -158,12 +156,12 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(typeId);
 			result.setIncomeCount(0);
-            result.setTableName(this.getClass().getSimpleName());
+			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETE.getCode());
 			result.setOperTypeText(OperType.DELETE.getText());
 			result.setRemark("根据外键，删除中间表数据。");
 
-			int i = gpDictionaryUntDal.deleteByTypeId( typeId);
+			int i = gpDictionaryUntDal.deleteByTypeId(typeId);
 
 			result.setReturnValue(String.valueOf(i));
 			result.setData(i);
@@ -171,13 +169,13 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setResultCode(OperResult.DELETE_S.getCode());
 			result.setResultMessage(OperResult.DELETE_S.getText());
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETE_F.getCode());
-			result.setResultMessage(OperResult.DELETE_F.getText() );
+			result.setResultMessage(OperResult.DELETE_F.getText());
 			result.setReturnValue(e.getMessage());
-            result.setOriginException(e);
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -189,8 +187,7 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		return result;
 	}
 
-
- 	public ResultModel deleteByTypeIdList(ArrayList<String> typeIdList) {
+	public ResultModel deleteByTypeIdList(ArrayList<String> typeIdList) {
 		return deleteByTypeIdList(typeIdList, isLogRead);
 	}
 
@@ -199,9 +196,9 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		try {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
-			result.setIncomeValue(JSONArray.fromObject( typeIdList).toString());
+			result.setIncomeValue(JSONArray.fromObject(typeIdList).toString());
 			result.setIncomeCount(0);
-            result.setObjectId("");
+			result.setObjectId("");
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.DELETELIST.getCode());
 			result.setOperTypeText(OperType.DELETELIST.getText());
@@ -215,13 +212,13 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setResultCode(OperResult.DELETELIST_S.getCode());
 			result.setResultMessage(OperResult.DELETELIST_S.getText());
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_T);
-			
+
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.DELETELIST_F.getCode());
-			result.setResultMessage(OperResult.DELETELIST_F.getText() );
+			result.setResultMessage(OperResult.DELETELIST_F.getText());
 			result.setReturnValue(e.getMessage());
-            result.setOriginException(e);
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -233,7 +230,7 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		return result;
 	}
 
-
+	@Cacheable(cacheNames = { "dictionaryList" }, key = "#typeId")
 	public ResultModel getListByTypeId(String typeId) {
 		return getListByTypeId(typeId, isLogRead);
 	}
@@ -244,7 +241,7 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 			result.setAddTime(DateUtils.getCurrentTime());
 			result.setId(Tools.getUUID());
 			result.setIncomeValue(typeId);
-            result.setIncomeCount(0);
+			result.setIncomeCount(0);
 			result.setTableName(this.getClass().getSimpleName());
 			result.setOperTypeCode(OperType.GETLISTBYFOREIGNKEY.getCode());
 			result.setOperTypeText(OperType.GETLISTBYFOREIGNKEY.getText());
@@ -261,9 +258,9 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		} catch (Exception e) {
 			result.setIsSuccessCode(CustomSymbolic.DCODE_BOOLEAN_F);
 			result.setResultCode(OperResult.GETLISTBYFOREIGNKEY_F.getCode());
-			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText() );
+			result.setResultMessage(OperResult.GETLISTBYFOREIGNKEY_F.getText());
 			result.setReturnValue(e.getMessage());
-            result.setOriginException(e);
+			result.setOriginException(e);
 			GlobalException globalException = new GlobalException();
 			globalException.setResultModel(result);
 			throw globalException;
@@ -275,10 +272,4 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		return result;
 	}
 
-
 }
-
-
-
-
-
