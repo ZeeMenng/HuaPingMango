@@ -10,15 +10,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.http.converter.json.SpringHandlerInstantiator;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
@@ -26,16 +23,11 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
-import com.fasterxml.jackson.databind.cfg.HandlerInstantiator;
 import com.zee.set.config.MybatisConfig;
 
 @Configuration
 @Import({ MybatisConfig.class })
-@ComponentScan(basePackages = { "com.**.base.**", "com.**.custom.**", "com.**.gp.**", "com.**.pi.**", "com.zee.set.**", "com.zee.utl.**" },
-excludeFilters = { 
-		@Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { com.zee.utl.Executors.class, com.zee.utl.MongoUtil.class, com.zee.app.custom.MongodbController.class, com.zee.utl.service.DaUserContributionUtil.class }), 
-		@Filter(type = FilterType.REGEX, pattern = "com.zee.utl.crawler.*"), 
-		@Filter(type = FilterType.REGEX, pattern = "com.zee.utl.task.*") })
+@ComponentScan(basePackages = { "com.**.base.**", "com.**.custom.**", "com.**.gp.**", "com.**.pi.**", "com.zee.set.**", "com.zee.utl.**" }, excludeFilters = { @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { com.zee.utl.Executors.class, com.zee.utl.MongoUtil.class, com.zee.app.custom.MongodbController.class, com.zee.utl.service.DaUserContributionUtil.class }), @Filter(type = FilterType.REGEX, pattern = "com.zee.utl.crawler.*"), @Filter(type = FilterType.REGEX, pattern = "com.zee.utl.task.*") })
 // 屏蔽MongoDB自动连接
 @EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class })
 @EnableScheduling
@@ -84,6 +76,5 @@ public class Starter extends SpringBootServletInitializer {
 		firewall.setAllowSemicolon(true);
 		return firewall;
 	}
-
 
 }

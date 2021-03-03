@@ -49,7 +49,6 @@ import com.zee.set.enumer.OperResult;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.set.symbolic.SqlSymbolic;
 import com.zee.utl.CastObjectUtil;
-import com.zee.utl.DictionaryConvertUtil;
 import com.zee.utl.MailSenderUtil;
 import com.zee.utl.Tools;
 
@@ -384,8 +383,6 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		result.setData(gpUser);
 
-		DictionaryConvertUtil.convertToDictionary(gpUser);
-
 		return result;
 	}
 
@@ -464,6 +461,9 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 		map.put("Sql", selectBuffer.toString());
 
 		resultModel = gpUserUntBll.getListBySQL(map);
+
+		// resultModel.setData(DictionaryConvertUtil.convertMapListToTextList(GpUser.class,
+		// resultModel.getData()));
 
 		return resultModel;
 	}

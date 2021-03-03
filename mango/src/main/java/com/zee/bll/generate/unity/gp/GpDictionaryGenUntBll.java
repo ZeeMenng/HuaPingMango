@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -230,7 +229,6 @@ public class GpDictionaryGenUntBll extends BaseUntBll<GpDictionary> {
 		return result;
 	}
 
-	@Cacheable(cacheNames = { "dictionaryList" }, key = "#typeId")
 	public ResultModel getListByTypeId(String typeId) {
 		return getListByTypeId(typeId, isLogRead);
 	}
