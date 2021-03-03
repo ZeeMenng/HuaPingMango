@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.beanutils.BeanMap;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
@@ -135,31 +134,29 @@ public class DictionaryConvertUtil {
 		});
 	}
 
-	public static Object convertMapListToTextList(Class t, Object data) {
+	public static <T> List<T> convertMapListToTextList(Class<T> t,Object data) {
 		if (Objects.isNull(data))
 			return null;
 		List<Map<String, Object>> dataList = CastObjectUtil.cast(data);
-		List<Map<String, Object>> destnationDataList = new ArrayList<Map<String, Object>>();
+		List<T> destnationDataList = new ArrayList<T>();
 		if (CollUtil.isEmpty(dataList)) {
 			return null;
 		}
-		Object instance;
+
 		try {
-			instance = t.newInstance();
-			dataList.stream().forEach(d -> {
+			for (int i = 0; i < dataList.size(); i++) {
+				T instance = t.newInstance();
 				ConvertUtils.register(new DateConverter(null), java.util.Date.class);
 				try {
-					BeanUtils.populate(instance, d);
+					BeanUtils.populate(instance, dataList.get(i));
 				} catch (IllegalAccessException | InvocationTargetException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				convert(instance, false);
-				d = new BeanMap(instance);
-				destnationDataList.add(d);
-			});
+				destnationDataList.add(instance);
+			}
+
 		} catch (InstantiationException | IllegalAccessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return destnationDataList;

@@ -49,6 +49,7 @@ import com.zee.set.enumer.OperResult;
 import com.zee.set.symbolic.CustomSymbolic;
 import com.zee.set.symbolic.SqlSymbolic;
 import com.zee.utl.CastObjectUtil;
+import com.zee.utl.DictionaryConvertUtil;
 import com.zee.utl.MailSenderUtil;
 import com.zee.utl.Tools;
 
@@ -462,6 +463,7 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 
 		resultModel = gpUserUntBll.getListBySQL(map);
 
+		// 将Map转换成实体以解析字典编码
 		// resultModel.setData(DictionaryConvertUtil.convertMapListToTextList(GpUser.class,
 		// resultModel.getData()));
 
