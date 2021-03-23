@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author Zee
  * @createDate 2021年2月12日 下午2:37:48
  * @updateDate 2021年2月12日 下午2:37:48
- * @description 获取Swagger的配置文件信息
+ * @description 获取Swagger的配置文件信息，注意这种获取配置信息的方法
  */
 //@Component
 //@ConfigurationProperties("swagger")

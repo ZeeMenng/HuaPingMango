@@ -23,11 +23,11 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @author Zee
  * @createDate 2017年4月13日 下午3:17:54
  * @updateDate 2021年2月7日 下午3:17:54
- * @description Swagger相关的配置
+ * @description Swagger相关的配置，升级为springfox swagger 3.0后配置出现问题
  */
 
-//@Configuration
-//@EnableOpenApi
+// @Configuration
+// @EnableOpenApi
 public class SwaggerConfig {
 
 	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.zee";

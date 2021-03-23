@@ -188,7 +188,7 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-
+<!-- Swagger -->
 		<!-- <dependency> <groupId>io.springfox</groupId> <artifactId>springfox-swagger2</artifactId> <version>3.0.0</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
