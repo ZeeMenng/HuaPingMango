@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ import com.zee.bll.extend.unity.gp.GprRoleDomainUntBll;
 import com.zee.bll.extend.unity.gp.GprUserOrganizationUntBll;
 import com.zee.bll.extend.unity.gp.GprUserRoleUntBll;
 import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpDictionary;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GpUser;
 import com.zee.ent.extend.gp.GprDomainUser;
 import com.zee.ent.extend.gp.GprResource;
+import com.zee.ent.extend.gp.GprRoleInterface;
 import com.zee.ent.extend.gp.GprUserOrganization;
 import com.zee.ent.extend.gp.GprUserRole;
 import com.zee.ent.parameter.gp.GpUserParameter;
@@ -182,7 +185,21 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprUserOrganizationUntBll.add(addOrgs);
 		}
 
-		// 角色列表和应用领域列表
+		String userId = result.getObjectId();
+
+		// 应用领域
+		ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
+			for (String domainId : jsonData.getDomainIds().split(",")) {
+				GprDomainUser gprDomainUser = new GprDomainUser();
+				gprDomainUser.setDomainId(domainId);
+				gprDomainUser.setUserId(userId);
+				gprDominUserList.add(gprDomainUser);
+			}
+		}
+		gprDomainUserUntBll.add(gprDominUserList);
+
+		// 用户角色
 		if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
 			ArrayList<GprUserRole> arrayList = new ArrayList<GprUserRole>();
 			if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
@@ -195,12 +212,13 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
+			// 用户角色相关应用领域
 			String sql = String.format(SqlSymbolic.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
 			List<Map<String, Object>> domainIdList = CastObjectUtil.cast(resultModel.getData());
-			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+			gprDominUserList = new ArrayList<GprDomainUser>();
 			for (Map<String, Object> domainId : domainIdList) {
 				GprDomainUser gprDomainUser = new GprDomainUser();
 				gprDomainUser.setDomainId(domainId.get("domain_id").toString());
@@ -275,9 +293,22 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			gprUserOrganizationUntBll.add(addOrgs);
 		}
 
-		// 角色列表和应用领域
+		// 应用领域
 		gprUserRoleUntBll.deleteByUserId(userId);
 		gprDomainUserUntBll.deleteByUserId(userId);
+
+		ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+		if (StringUtils.isNotBlank(jsonData.getDomainIds())) {
+			for (String domainId : jsonData.getDomainIds().split(",")) {
+				GprDomainUser gprDomainUser = new GprDomainUser();
+				gprDomainUser.setDomainId(domainId);
+				gprDomainUser.setUserId(userId);
+				gprDominUserList.add(gprDomainUser);
+			}
+		}
+		gprDomainUserUntBll.add(gprDominUserList);
+
+		// 用户角色
 		if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
 			ArrayList<GprUserRole> arrayList = new ArrayList<GprUserRole>();
 			if (StringUtils.isNotBlank(jsonData.getRoleIds())) {
@@ -290,12 +321,13 @@ public class GpUserSwgApp extends GpUserGenSwgApp {
 			}
 			gprUserRoleUntBll.add(arrayList);
 
+			// 用户角色相关应用领域
 			String sql = String.format(SqlSymbolic.SQL_SELECT_ROLE_DOMAIN_ID, "'" + jsonData.getRoleIds().replace(",", "','") + "'", result.getObjectId());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("Sql", sql);
 			ResultModel resultModel = gprRoleDomainUntBll.getListBySQL(map);
 			List<Map<String, Object>> domainIdList = CastObjectUtil.cast(resultModel.getData());
-			ArrayList<GprDomainUser> gprDominUserList = new ArrayList<GprDomainUser>();
+			gprDominUserList = new ArrayList<GprDomainUser>();
 			for (Map<String, Object> domainId : domainIdList) {
 				GprDomainUser gprDomainUser = new GprDomainUser();
 				gprDomainUser.setDomainId(domainId.get("domain_id").toString());

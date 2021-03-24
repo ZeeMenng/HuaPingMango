@@ -12,160 +12,164 @@
 <script src="../../js/gp/User.js" type="text/javascript"></script>
 <script src="../../js/co/CommonAdd.js" type="text/javascript"></script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		$("#buttonResetPassword").click(resetPassword);
+		$("#buttonDisableUser").click(disableUser);
+		var pageParam = {
+			formId : "formEdit",
+			validateRules : {
+				textUserName : {
+					required : true,
+					remote : {
+						type : "POST",
+						url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniqueUserName",
+						data : {
+							userName : function() {
+								return $("#textUserName").val();
+							},
+							oldUserName : function() {
+								return $("#hiddenOldUserName").val();
+							}
+						},
+						dataFilter : function(data) {
+							var json = JSON.parse(data);
+							return json.data;
+						}
+					}
+				},
+				textPassword : {
+					required : true
+				},
+				textConfirmPassword : {
+					required : true,
+					equalTo : "#textPassword"
+				},
+				textRealName : {
+					required : true
+				},
+				selectGenderCode : {
+					required : true
+				},
+				textPhone : {
+					required : true,
+					phone : true,
+					remote : {
+						type : "POST",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEPHONE,
+						data : {
+							phone : function() {
+								return $("#textPhone").val();
+							},
+							oldPhone : function() {
+								return $("#hiddenOldPhone").val();
+							}
+						},
+						dataFilter : function(data) {
+							var json = JSON.parse(data);
+							return json.data;
+						}
+					}
+				},
+				textQq : {
+					number : true,
+					remote : {
+						type : "POST",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEQQ,
+						data : {
+							qq : function() {
+								return $("#textQq").val();
+							},
+							oldQq : function() {
+								return $("#hiddenOldQq").val();
+							}
+						},
+						dataFilter : function(data) {
+							var json = JSON.parse(data);
+							return json.data;
+						}
+					}
+				},
+				textEmail : {
+					required : true,
+					email : true,
+					remote : {
+						type : "POST",
+						url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEEMAIL,
+						data : {
+							email : function() {
+								return $("#textEmail").val();
+							},
+							oldEmail : function() {
+								return $("#hiddenOldEmail").val();
+							}
 
-$(document).ready(function() {
-	$("#buttonResetPassword").click(resetPassword);
-	$("#buttonDisableUser").click(disableUser);
-	var pageParam = {
-		formId : "formEdit",
-		validateRules : {
-			textUserName : {
-				required : true,
-				remote : {
-					type : "POST",
-					url : INTERFACE_SERVER + "/extend/swagger/gp/gpUser/isUniqueUserName",
-					data : {
-						userName : function() {
-							return $("#textUserName").val();
 						},
-						oldUserName : function() {
-							return $("#hiddenOldUserName").val();
+						dataFilter : function(data) {
+							var json = JSON.parse(data);
+							return json.data;
 						}
-					},
-					dataFilter : function(data) {
-						var json = JSON.parse(data);
-						return json.data;
 					}
 				}
 			},
-			textPassword : {
-				required : true
-			},
-			textConfirmPassword : {
-				required : true,
-				equalTo : "#textPassword"
-			},
-			textRealName : {
-				required : true
-			},
-			selectGenderCode : {
-				required : true
-			},
-			textPhone : {
-				required : true,
-				phone : true,
-				remote : {
-					type : "POST",
-					url : INTERFACE_SERVER +RU_GPUSER_ISUNIQUEPHONE,
-					data : {
-						phone : function() {
-							return $("#textPhone").val();
-						},
-						oldPhone : function() {
-							return $("#hiddenOldPhone").val();
-						}
-					},
-					dataFilter : function(data) {
-						var json = JSON.parse(data);
-						return json.data;
-					}
-				}
-			},
-			textQq : {
-				number : true,
-				remote : {
-					type : "POST",
-					url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEQQ,
-					data : {
-						qq : function() {
-							return $("#textQq").val();
-						},
-						oldQq : function() {
-							return $("#hiddenOldQq").val();
-						}
-					},
-					dataFilter : function(data) {
-						var json = JSON.parse(data);
-						return json.data;
-					}
-				}
-			},
-			textEmail : {
-				required : true,
-				email : true,
-				remote : {
-					type : "POST",
-					url : INTERFACE_SERVER + RU_GPUSER_ISUNIQUEEMAIL,
-					data : {
-						email : function() {
-							return $("#textEmail").val();
-						},
-						oldEmail : function() {
-							return $("#hiddenOldEmail").val();
-						}
-
-					},
-					dataFilter : function(data) {
-						var json = JSON.parse(data);
-						return json.data;
-					}
+			validateMessages : {
+				textUserName : {
+					remote : "用户名已存在！"
+				},
+				textQq : {
+					remote : "QQ号已存在！"
+				},
+				textPhone : {
+					remote : "手机号已存在！"
+				},
+				textEmail : {
+					remote : "邮箱已存在！"
 				}
 			}
-		},
-		validateMessages : {
-			textUserName : {
-				remote : "用户名已存在！"
-			},
-			textQq : {
-				remote : "QQ号已存在！"
-			},
-			textPhone : {
-				remote : "手机号已存在！"
-			},
-			textEmail : {
-				remote : "邮箱已存在！"
-			}
+		};
+		var ajaxParam = {
+			getModelAsync : false,
+			url : RU_GPUSER_UPDATE,
+			updateListUrl : RU_GPUSER_UPDATELIST,
+			getModelUrl : RU_GPUSER_GETMODELBYPATH,
+			submitData : {}
+		};
+		var initResult = initEditPage(pageParam, ajaxParam);
+		if (!initResult.isSuccess) {
+			layer.alert("查询信息错误" + initResult.resultMessage, {
+				icon : 6
+			});
+			return;
 		}
-	};
-	var ajaxParam = {
-		getModelAsync : false,
-		url : RU_GPUSER_UPDATE,
-		updateListUrl : RU_GPUSER_UPDATELIST,
-		getModelUrl : RU_GPUSER_GETMODELBYPATH,
-		submitData : {}
-	};
-	var initResult = initEditPage(pageParam, ajaxParam);
-	if (!initResult.isSuccess) {
-		layer.alert("查询信息错误" + initResult.resultMessage, {
-			icon : 6
-		});
-		return;
-	}
-	if (initResult.data.iconIds != null)
-		initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 
-	$("#hiddenOldUserName").val(initResult.data.userName);
-	$("#hiddenOldPhone").val(initResult.data.phone);
-	$("#hiddenOldQq").val(initResult.data.qq);
-	$("#hiddenOldEmail").val(initResult.data.email);
+		if (initResult.data.iconIds != null)
+			initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 
-	if (initResult.data.roleIds != null) {
-		$("#selectRoleIds").selectpicker('val', initResult.data.roleIds.split(","));
-		$('#selectRoleIds').selectpicker('refresh');
-	}
-	initTreeNodes("treeContainer", false);
-	var orgnaizationZTree = $.fn.zTree.getZTreeObj("treeContainer");
-	if (initResult.data.orgIds != null && initResult.data.orgIds != "") {
-		var organizationArray = initResult.data.orgIds.split(",");
+		$("#hiddenOldUserName").val(initResult.data.userName);
+		$("#hiddenOldPhone").val(initResult.data.phone);
+		$("#hiddenOldQq").val(initResult.data.qq);
+		$("#hiddenOldEmail").val(initResult.data.email);
 
-		$.each(organizationArray, function(index, value) {
-			var node = orgnaizationZTree.getNodeByParam("id", value);
-			orgnaizationZTree.checkNode(node, true, false);
-			orgnaizationZTree.expandNode(node, true);//展开指定节点
-		});
-	}
+		if (initResult.data.domainIds != null) {
+			$("#selectDomainIds").selectpicker('val', initResult.data.domainIds.split(","));
+			$('#selectDomainIds').selectpicker('refresh');
+		}
+		if (initResult.data.roleIds != null) {
+			$("#selectRoleIds").selectpicker('val', initResult.data.roleIds.split(","));
+			$('#selectRoleIds').selectpicker('refresh');
+		}
+		initTreeNodes("treeContainer", false);
+		var orgnaizationZTree = $.fn.zTree.getZTreeObj("treeContainer");
+		if (initResult.data.orgIds != null && initResult.data.orgIds != "") {
+			var organizationArray = initResult.data.orgIds.split(",");
 
-});
+			$.each(organizationArray, function(index, value) {
+				var node = orgnaizationZTree.getNodeByParam("id", value);
+				orgnaizationZTree.checkNode(node, true, false);
+				orgnaizationZTree.expandNode(node, true);//展开指定节点
+			});
+		}
+
+	});
 </script>
 </head>
 
@@ -308,7 +312,17 @@ $(document).ready(function() {
 													</div>
 												</div>
 											</div>
+											<div class="form-group">
+												<div class="element-group left">
+													<label for="textDomainNameList" class="control-label col-md-2"> 应用领域 </label>
+													<div class="col-md-8">
+														<select autocomplete="off" data-required="1" id="selectDomainIds" class="selectpicker" multiple>
 
+														</select>
+														<input type="hidden" name="hiddenDomainIds" id="hiddenDomainIds">
+													</div>
+												</div>
+											</div>
 											<div class="form-group">
 												<div class="element-group left">
 													<label for="textRoleName" class="control-label col-md-2"> 应用角色 </label>

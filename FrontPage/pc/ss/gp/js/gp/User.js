@@ -40,6 +40,35 @@
 	}
 	initDropDownList(selectParam3, ajaxParam3);
 
+	// 初始化应用领域下拉框
+	var selectParam = {
+		selectId : "selectDomainIds",
+		textField : "name",
+		valueField : "id"
+	};
+	var domainJsonData = {
+		"entityRelated" : {
+
+		},
+		"orderList" : [ {
+			"columnName" : "name",
+			"isASC" : true
+		} ]
+	};
+	var ajaxParam = {
+		url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData=" + JSON.stringify(domainJsonData)
+	}
+	initDropDownList(selectParam, ajaxParam);
+	$('#selectDomainIds').on('changed.bs.select', function(e, clickedIndex, newValue, oldValue) {
+		var selectDomainIdsVal = $(e.currentTarget).val();
+		$("#hiddenDomainIds").val(selectDomainIdsVal);
+	});
+	$("#selectDomainIds").selectpicker({
+		noneSelectedText : '请选择，可多选……',
+		width : '100%'
+	});
+	$("#selectDomainIds").selectpicker('refresh');
+
 	// 初始化选择角色下拉框
 	var selectParam = {
 		selectId : "selectRoleIds",
