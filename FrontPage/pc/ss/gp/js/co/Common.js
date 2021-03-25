@@ -172,6 +172,7 @@ function setDomainConfig() {
  */
 function setCookies(cookieData){
 	if (window.localStorage) {
+		localStorage.removeItem(cookieData.item);
 		localStorage.setItem(cookieData.item, cookieData.data)
 	} else {
     Cookies.remove(cookieData.item);
@@ -192,7 +193,7 @@ function setCookies(cookieData){
  * @author Zee
  * @createDate 2021年3月25日 下午3:36:24
  * @updateDate 2021年3月25日 下午3:36:24
- * @description 移除Cookie信息 如果支持localStorage优先使用 
+ * @description 移除Cookie信息 如果支持localStorage优先使用
  */
 function removeCookies(cookieData){
 	if (window.localStorage) 
@@ -1370,10 +1371,22 @@ function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	layer.closeAll();
 	var statusText=XMLHttpRequest.statusText;
     if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
-        var result = JSON.parse(XMLHttpRequest.responseText)
+    	
+    	var result = JSON.parse(XMLHttpRequest.responseText)
+        // Token过期
+        if(result.resultCode=RESULT_CODE_TOKEN_EXPIRED){
+            layer.msg(result.resultMessage, {
+                time: 1500
+            });
+            removeCookies({item:"token"});
+        	location.href = '../lo/Login.html';
+        	return;
+        }
+    	
         layer.alert(result.resultMessage, {
             icon: 6
         });
+
     } else if(textStatus=="error"&&statusText.indexOf("NetworkError")>-1){
     	   layer.alert("调用后台接口时出现错误！请检查网络连接……", {
                icon: 6
