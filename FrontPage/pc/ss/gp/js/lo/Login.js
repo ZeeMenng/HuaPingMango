@@ -7,8 +7,8 @@
 
 $(document).ready(function() {
 	// 如果已经登录，跳转到首页页
-	if (getStorage("token")) {
-		var token = getStorage("token");
+	if (getCookies({item:"token"})) {
+		var token = JSON.parse(getCookies({item:"token"}));
 		$("#userName").text(token.userName);
 		if (new Date(token.adeadTime) >= new Date())
 			location.href = '../in/Index.html';
@@ -242,7 +242,13 @@ function getData(ajaxParam) {
 		"async" : true,
 		"success" : function(res) {
 			if (res.isSuccess) {
-				storeData(res.data);
+				var infoData = JSON.stringify(res.data);
+				var cookieData = {
+					item : "token",
+					data : infoData,
+					path : '/'
+				};
+				setCookies(cookieData);
 				setDomainConfig();
 				window.location.href = '../in/Index.html';
 				window.event.returnValue = false;
@@ -251,22 +257,6 @@ function getData(ajaxParam) {
 			}
 		}
 	});
-}
-
-function storeData(data) {
-	var infoData = JSON.stringify(data);
-	if (window.localStorage) {
-		localStorage.setItem("token", infoData)
-	} else {
-		// 使用Cookien无法保存，数据量太大，用localStorage代替
-		var date = new Date();
-		date.setTime(data.rDeadTime);
-		Cookies.remove("token");
-		Cookies.set("token", infoData, {
-			path : '/',
-			expires : date
-		});
-	}
 }
 
 function getResetData(ajaxParam) {
@@ -279,7 +269,15 @@ function getResetData(ajaxParam) {
 		async : false,
 		success : function(res) {
 			if (res.isSuccess) {
-				storeData(res.data);
+				var infoData = JSON.stringify(res.data);
+
+				var cookieData = {
+					item : "token",
+					data : infoData,
+					path : '/',
+					expires : date
+				};
+				setCookies(cookieData);
 				$("#hiddenCode").val(res.data[0].code);
 				$('#hiddenId').val(res.data[0].id);
 				$('#hiddenUserName').val(res.data[0].userName);
@@ -303,7 +301,14 @@ function getUpdateData(ajaxParam) {
 		async : false,
 		success : function(res) {
 			if (res.isSuccess) {
-				storeData(res.data);
+				var infoData = JSON.stringify(res.data);
+
+				var cookieData = {
+					item : "token",
+					data : infoData,
+					path : '/',
+					expires : date
+				};
 				$("#hide2").show().find("span").html(res.resultMessage)
 			} else {
 				$("#hide2").show().find("span").html(res.resultMessage)

@@ -42,14 +42,11 @@ $(document).ready(function () {
                     return false;
                 }
 
-                if (window.localStorage) {
-                    localStorage.removeItem("token");
-                } else {
-
-                    Cookies.remove("token");
-
-                }
-
+            	var cookieData={
+            			item:"token"
+            	};
+            	removeCookies(cookieData);
+              
                 location.href = '../lo/Login.html';
             }
         };
@@ -153,19 +150,70 @@ function setDomainConfig() {
         "type": "GET",
         "async": false,
         "success": function (result) {
-            // 使用Cookien无法保存，数据量太大，用localStorage代替
-            var date = new Date();
-            date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
-            Cookies.remove("userConfig");
-            Cookies.set("userConfig", result.data, {
-                path: '/',
-                expires: date
-            });
+        	var cookieData={
+        			item:"userConfig",
+        			data: result.data,
+        			path:'/'
+        	};
+        	setCookies(cookieData);
         }
     };
     universalAjax(ajaxParameter);
 
 }
+
+
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:27:14
+ * @updateDate 2021年3月25日 下午3:27:14
+ * @description 存储Cookie信息，如果支持localStorage优先使用
+ */
+function setCookies(cookieData){
+	if (window.localStorage) {
+		localStorage.setItem(cookieData.item, cookieData.data)
+	} else {
+    Cookies.remove(cookieData.item);
+    
+    if(cookieData.date==null){
+    var date = new Date();
+    date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
+    cookieData.date=date;
+    }
+    Cookies.set(cookieData.item, cookieData.data, {
+        path: cookieData.path,
+        expires: cookieData.date
+    });
+	}
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:24
+ * @updateDate 2021年3月25日 下午3:36:24
+ * @description 移除Cookie信息 如果支持localStorage优先使用 
+ */
+function removeCookies(cookieData){
+	if (window.localStorage) 
+	  localStorage.removeItem(cookieData.item);
+	  else
+	Cookies.remove(cookieData.item);
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:09
+ * @updateDate 2021年3月25日 下午3:36:09
+ * @description 获取Cookie信息 如果支持localStorage优先使用
+ */
+function getCookies(cookieData){
+	if (window.localStorage)
+		return localStorage.getItem(cookieData.item);
+	else
+	  return Cookies.get(cookieData.item);
+}
+
 
 /**
  * @author Zee
@@ -332,7 +380,7 @@ function initNavbar() {
 
 // 初始化左侧菜单
 function initLinkMenu() {
-    var userInfo = JSON.parse(localStorage.getItem("token"));
+    var userInfo = JSON.parse(getCookies({item:"token"}));
     var userName = userInfo.userName;
     var ajaxParamter = {
         "url": RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
@@ -923,11 +971,15 @@ function initTopRightButton(pageParam, ajaxParam, operationParam) {
 
         var date = new Date();
         date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-        Cookies.remove("selectRows");
-        Cookies.set("selectRows", selectRows, {
-            path: '/',
-            expires: date
-        });
+        
+      
+    	var cookieData={
+    			item:"selectRows",
+    			data: selectRows,
+    			path:'/'
+    	};
+    	setCookies(cookieData);
+       
         pageParam.editPage.selectRows = selectRows;
 
         popUpPage(pageParam.editPage);
@@ -1232,7 +1284,7 @@ function universalAjax(ajaxParameter) {
     if (ajaxParameter.error == null)
         ajaxParameter.error = ajaxErrorFunction;
     if (ajaxParameter.headers == null) {
-        var dataStr = localStorage.getItem("token");
+        var dataStr = getCookies({item:"token"});
         ajaxParameter.headers = {
             "Authorization": "Bearer " + JSON.parse(dataStr).accessToken,
             "ClientId": JSON.parse(dataStr).clientId
@@ -1551,7 +1603,7 @@ function initEditPage(pageParam, ajaxParam) {
     var formEdit = $('#' + pageParam.formId);
     var errorMessage = $('.alert-danger', formEdit);
     var successMessage = $('.alert-success', formEdit);
-    var selectRowsCookie = Cookies.get("selectRows");
+    var selectRowsCookie = getCookies({item:"selectRows"});
     var id = request(RECORD_ID);
     var isUpdateList = false;
     if (selectRowsCookie != null && id == null)
@@ -1652,7 +1704,10 @@ function initEditPage(pageParam, ajaxParam) {
 
                     if (isUpdateList) {
                         setTimeout("closeLayer();", 1100);
-                        Cookies.remove("selectRows");
+                    	var cookieData={
+                    			item:"selectRows"
+                    	};
+                        removeCookies(cookieData);
                         parent.location.reload(); // 父页面刷新
                     } else {
                         setTimeout("$('#navbarListA').click();", 1100);
@@ -1942,45 +1997,11 @@ function getCookie(name) {
     }
 }
 
-// 删除cookies
-function delCookie(name) {
-    setCookie(name, "");
-}
-
-// 读取localStorage
-function getStorage(name) {
-    var dataStr = localStorage.getItem(name);
-    var data = JSON.parse(dataStr)
-    return data
-}
-
-// 删除localStorage
-function delStorage(name) {
-    localStorage.setItem(name, '')
-}
-
-// 读取数据
-function readData(name) {
-    if (window.localStorage) {
-        getStorage(name)
-    } else {
-        getCookie(name)
-    }
-}
-
-// 删除数据
-function delData(name) {
-    if (window.localStorage) {
-        delStorage(name)
-    } else {
-        delCookie(name)
-    }
-}
 
 // 跳转首页
 function validateLogin(resultCode) {
     if (resultCode === RESULT_CODE_TOKEN_EXPIRED && window.location.pathname.indexOf("/lo/Login.html") == -1) {
-        localStorage.removeItem("token");
+        removeCookies({item:"token"});
         location.href = '../lo/Login.html';
         return fasle;
     }
@@ -1988,10 +2009,10 @@ function validateLogin(resultCode) {
         location.href = HOME_PATH + RP_ININDEX
     });
 
-    if (getStorage("token")) {
-        var token = getStorage("token");
+    if (getCookies({item:"token"})) {
+        var token = JSON.parse(getCookies({item:"token"}));
         $("#userName").text(token.userName);
-        if (token.gpUser != null && token.gpUser.icon != null)
+        if (token.gpUser != null && token.gpUser.icon != null && token.gpUser.icon!="")
             $("#userIcon").attr("src", token.gpUser.icon)
         if (new Date(token.adeadTime) >= new Date())
             return true;
@@ -2004,10 +2025,10 @@ function validateLogin(resultCode) {
 }
 
 function initMessage() {
-    if (!getStorage("token"))
+    if (!getCookies({item:"token"}))
         return false;
 
-    var token = getStorage("token");
+    var token = JSON.parse(getCookies({item:"token"}));
     var userInfo = token.gpUser;
     $("#userName").text(userInfo.userName);
 
@@ -2090,7 +2111,7 @@ function initAddFileInput() {
         showCaption: false,
         ajaxSettings: {
             headers: {
-                'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
+                'Authorization': "Bearer " + JSON.parse(getCookies({item:"token"})).accessToken
             }
         },
         uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
@@ -2535,7 +2556,7 @@ function initZTreeEditForm(pageParam, ajaxParam) {
     var formEdit = $('#' + pageParam.formId);
     var errorMessage = $('.alert-danger', formEdit);
     var successMessage = $('.alert-success', formEdit);
-    var selectRowsCookie = Cookies.get("selectRows");
+    var selectRowsCookie = getCookies({item:"selectRows"});
     var recordId = ajaxParam.recordId;
 
     // 添加重置按钮事件，重置的动作类似于重新加载
