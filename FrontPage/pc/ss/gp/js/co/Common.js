@@ -354,25 +354,28 @@ function initCheckbox() {
 }
 
 function initNavbar() {
+    var href = window.location.href;
+
+    var beginIndex = href.lastIndexOf('/') + 1;
+    var endIndex = href.indexOf('.html');
+    href = href.substring(beginIndex, endIndex);
+    var sL = href.length;
+    var lastUpperCodeIndex = 0;
+    for (var i = 0; i < sL; i++) {
+        if (href.charAt(i) === href.charAt(i).toUpperCase()) {
+            lastUpperCodeIndex = i;
+        }
+    }
+    href = href.substring(0, lastUpperCodeIndex);
+    $("#navbarListA").attr("href",href + "List.html");
+    
     $("#navbarIndexA").click(function () {
         window.location = GP_INDEX;
         return false;
     });
 
     $("#navbarListA").click(function () {
-        var href = window.location.href;
-
-        var beginIndex = href.lastIndexOf('/') + 1;
-        var endIndex = href.indexOf('.html');
-        href = href.substring(beginIndex, endIndex);
-        var sL = href.length;
-        var lastUpperCodeIndex = 0;
-        for (var i = 0; i < sL; i++) {
-            if (href.charAt(i) === href.charAt(i).toUpperCase()) {
-                lastUpperCodeIndex = i;
-            }
-        }
-        href = href.substring(0, lastUpperCodeIndex);
+    
         window.location = href + "List.html";
         return false;
     });
@@ -452,10 +455,16 @@ function initLinkMenu() {
                         $("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
                         // 菜单加焦点
                         var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];
-                
+                                       
+
                         var lastUrlindex = pageUrl.lastIndexOf("\/");
                         pageUrl = pageUrl.substring(lastUrlindex + 1, pageUrl.length);
-                        if (pageUrl != null && window.location.href.indexOf(pageUrl) >= 0) {
+                        
+                        var link=window.location.href;
+                        if($("#navbarListA").attr("href")!=null)
+                        	link=$("#navbarListA").attr("href");
+                        
+                        if (link.indexOf(pageUrl) >= 0) {
                             thirdLevelMenu.parent().parent().addClass("active open");
                             thirdLevelMenu.addClass("active");
                         }
