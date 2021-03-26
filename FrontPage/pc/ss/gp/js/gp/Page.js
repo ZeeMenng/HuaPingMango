@@ -19,7 +19,7 @@ $(document).ready(
 				url : RU_GPDOMAIN_GETLISTBYJSONDATA + "?jsonData={}"
 			}
 			initDropDownList(selectParam, ajaxParam);
-
+			
 			// 初始化是否为公共页面下拉框
 			var selectParamAdmin = {
 				selectId : "selectIsPublicCode",

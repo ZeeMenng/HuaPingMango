@@ -2,13 +2,14 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2018/1/16 4:36:54
- * @description  系统控件。 相关页面的js方法。
+ * @description 系统控件。 相关页面的js方法。
  */
 
 $(document).ready(function() {
 
-	
-	//初始化列表页主体部分，包括查询条件表单及数据表格等。
+
+
+	// 初始化列表页主体部分，包括查询条件表单及数据表格等。
 	var pageParam = {
 		formId : "queryBuilderForm",
 		tableId : "contentTable",
@@ -46,34 +47,29 @@ $(document).ready(function() {
 				"pageSize" : DEFAULT_PAGE_SIZE
 			}
 		},
-		columnInfo : [ 
-        
-			 {
-			"columnName" : "pageUrl",
-			"columnText" : "所属页面",
+		columnInfo : [ {
+			"columnName" : "name",
+			"columnText" : "控件名称",
 			"style" : "text-align:left",
 			"linkFunction" : function(event) {
 				var href = RP_GPCONTROL_DETAIL + "?" + RECORD_ID + "=" + event.id;
 				return href;
-			},
-			}, 
-			 {
-			"columnName" : "name",
-			"columnText" : "控件名称",
+			}
+		}, {
+			"columnName" : "pageUrl",
+			"columnText" : "所属页面",
+			"style" : "text-align:left"
+		}, {
+			"columnName" : "domainName",
+			"columnText" : "应用领域",
+			"style" : "text-align:left"
+		}, {
+			"columnName" : "addTime",
+			"columnText" : "添加时间",
 			"style" : "text-align:left",
-			}, 
-			 {
-			"columnName" : "serialNo",
-			"columnText" : "控件编号",
-			"style" : "text-align:left",
-			}, 
-			 {
-			"columnName" : "remark",
-			"columnText" : "备注字段",
-			"style" : "text-align:left",
-			}, 
-        
-       ]
+		}
+
+		]
 	};
 
 	var operationParam = [ {

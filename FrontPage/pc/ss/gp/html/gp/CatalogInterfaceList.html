@@ -15,29 +15,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		var itemParam = {
-			"textField" : "url",
-			"valueField" : "id",
-			"textFieldInputId" : "textPageUrl",
-			"valueFieldInputId" : "textPageId"
-		};
-		var ajaxParam = {
-			"url" : RU_GPPAGE_GETLISTBYJSONDATA,
-			"jsonData" : {
-				entityRelated : {
-					autoCompletekey : "",
-				},
-				orderList : [ {
-					"columnName" : "url",
-					"isASC" : true
-				} ],
-				"page" : {
-					"pageIndex" : 1,
-					"pageSize" : 10
-				}
-			}
-		}
-		initAutoComplete(itemParam, ajaxParam);
+
 
 		var ajaxParamBoolean = {
 			url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_CATALOG_INTERFACE
