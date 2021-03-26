@@ -452,18 +452,10 @@ function initLinkMenu() {
                         $("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
                         // 菜单加焦点
                         var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];
-                        var array = pageUrl.split("");
-                        var prefix = null;
-
-                        for (var l = 0; l < array.length; l++) {
-                            if (array[l].toLocaleString().charCodeAt(0) >= 65 && array[l].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
-                            {
-                                prefix = n["pageUrl"].substr(0, l);
-                            }
-                        }
+                
                         var lastUrlindex = pageUrl.lastIndexOf("\/");
                         pageUrl = pageUrl.substring(lastUrlindex + 1, pageUrl.length);
-                        if (prefix != null && window.location.href.indexOf(prefix) >= 0) {
+                        if (pageUrl != null && window.location.href.indexOf(pageUrl) >= 0) {
                             thirdLevelMenu.parent().parent().addClass("active open");
                             thirdLevelMenu.addClass("active");
                         }
@@ -1374,7 +1366,7 @@ function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
     	
     	var result = JSON.parse(XMLHttpRequest.responseText)
         // Token过期
-        if(result.resultCode=RESULT_CODE_TOKEN_EXPIRED){
+        if(result.resultCode==RESULT_CODE_TOKEN_EXPIRED){
             layer.msg(result.resultMessage, {
                 time: 1500
             });
