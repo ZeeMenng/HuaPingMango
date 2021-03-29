@@ -1,4 +1,4 @@
-package com.zee.ent.generate.gp;
+﻿package com.zee.ent.generate.gp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import com.zee.ent.extend.gp.GprRoleControl;
 /**
  * @author Zee
  * @createDate 2017/05/18 14:54:22
- * @updateDate 2021/2/2 18:48:46
+ * @updateDate 2021/3/29 11:34:23
  * @description 实体类GpControlGenEnt，自动生成。系统控件。
  */
 
@@ -25,6 +25,8 @@ public class GpControlGenEnt extends BaseEnt implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value="记录创建时间。",hidden=false,required=false)
     private Date addTime;
+    @ApiModelProperty(value="控件编码。",hidden=false,required=false)
+    private String code;
     @ApiModelProperty(value="应用领域。外键，引用应用领域表（domain）的主键。",hidden=false,required=false)
     private String domainId;
     @ApiModelProperty(value="主键。",hidden=false,required=true)
@@ -64,6 +66,20 @@ public class GpControlGenEnt extends BaseEnt implements Serializable {
 	 */
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
+	}
+    
+	/**
+	 * get方法。控件编码。
+	 */
+	public String getCode() {
+		return this.code;
+	}
+
+	/**
+	 * set方法。控件编码。
+	 */
+	public void setCode(String code) {
+		this.code = code;
 	}
     
 	/**

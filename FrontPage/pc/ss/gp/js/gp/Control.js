@@ -2,7 +2,7 @@
  * @author Zee
  * @createDate 2018/01/16 01:48:00
  * @updateDate 2018/1/16 4:36:54
- * @description 系统控件。 相关页面的js方法。
+ * @description 系统组件。 相关页面的js方法。
  */
 
 $(document).ready(function() {
@@ -47,14 +47,20 @@ $(document).ready(function() {
 				"pageSize" : DEFAULT_PAGE_SIZE
 			}
 		},
-		columnInfo : [ {
+		columnInfo : [
+			
+			{
+				"columnName" : "code",
+				"columnText" : "组件编码",
+				"style" : "text-align:left",
+				"linkFunction" : function(event) {
+					var href = RP_GPCONTROL_DETAIL + "?" + RECORD_ID + "=" + event.id;
+					return href;
+				}
+			},
+			{
 			"columnName" : "name",
-			"columnText" : "控件名称",
-			"style" : "text-align:left",
-			"linkFunction" : function(event) {
-				var href = RP_GPCONTROL_DETAIL + "?" + RECORD_ID + "=" + event.id;
-				return href;
-			}
+			"columnText" : "组件名称"
 		}, {
 			"columnName" : "pageUrl",
 			"columnText" : "所属页面",
@@ -106,4 +112,32 @@ $(document).ready(function() {
 	} ];
 	initQueryForm(pageParam, ajaxParam, operationParam);
 
+	
+
+	// 静态链接自动填充
+	var itemParam = {
+		"textField" : "url",
+		"valueField" : "id",
+		"textFieldInputId" : "textPageUrl",
+		"valueFieldInputId" : "textPageId"
+	};
+	var ajaxParam = {
+		"url" : RU_GPPAGE_GETLISTBYJSONDATA,
+		"jsonData" : {
+			entityRelated : {
+				autoCompletekey : "",
+			},
+			orderList : [ {
+				"columnName" : "url",
+				"isASC" : true
+			} ],
+			"page" : {
+				"pageIndex" : 1,
+				"pageSize" : 10
+			}
+		}
+	}
+	initAutoComplete(itemParam, ajaxParam);
+
+	
 });

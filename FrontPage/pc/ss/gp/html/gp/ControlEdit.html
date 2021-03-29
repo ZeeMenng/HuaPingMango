@@ -9,35 +9,18 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		// 静态链接自动填充
-		var itemParam = {
-			"textField" : "url",
-			"valueField" : "id",
-			"textFieldInputId" : "textPageUrl",
-			"valueFieldInputId" : "textPageId"
-		};
-		var ajaxParam = {
-			"url" : RU_GPPAGE_GETLISTBYJSONDATA,
-			"jsonData" : {
-				entityRelated : {
-					autoCompletekey : "",
-				},
-				orderList : [ {
-					"columnName" : "url",
-					"isASC" : true
-				} ],
-				"page" : {
-					"pageIndex" : 1,
-					"pageSize" : 10
-				}
-			}
-		}
-		initAutoComplete(itemParam, ajaxParam);
-
 		var pageParam = {
 			formId : "formEdit",
 			validateRules : {
-
+				textCode : {
+					required : true
+				},
+				textName : {
+					required : true
+				},
+				textPageId : {
+					required : true
+				}
 			}
 		};
 		var ajaxParam = {
@@ -66,10 +49,10 @@
 							<i class="fa fa-angle-right"></i>
 						</li>
 						<li>
-							<a id="navbarListA" href=""> 系统控件管理</a>
+							<a id="navbarListA" href=""> 系统组件管理</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
-						<li>修改系统控件</li>
+						<li>修改系统组件</li>
 					</ul>
 				</div>
 				<div class="portlet light bordered">
@@ -79,7 +62,7 @@
 								<div class="portlet-title">
 									<div class="caption">
 										<i class="fa fa-pencil-square-o"></i>
-										<span class="caption-subject font-white sbold uppercase">修改系统控件</span>
+										<span class="caption-subject font-white sbold uppercase">修改系统组件</span>
 									</div>
 								</div>
 								<div class="form-body portlet-body">
@@ -89,16 +72,15 @@
 											<div class="form-group">
 												<div class="element-group left">
 													<label class="control-label col-md-2" for="textCode">
-														控件编码
+														组件编码
 														<span class="required" aria-required="true"> * </span>
 													</label>
 													<div class="col-md-3">
 														<input id="textCode" name="textCode" type="text" data-required="1" class="form-control" />
-														<input id="hiddenOldCode" name="hiddenOldCode" type="hidden" class="form-control" />
 													</div>
 												</div>
 												<div class="element-group right">
-													<label class="control-label col-md-2" for="textName">控件名称 <span class="required" aria-required="true"> * </span></label>
+													<label class="control-label col-md-2" for="textName">组件名称 <span class="required" aria-required="true"> * </span></label>
 													
 													<div class="col-md-3">
 														<input id="textName" name="textName" type="text" data-required="1" class="form-control" />

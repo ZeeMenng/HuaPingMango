@@ -34,4 +34,8 @@ public class SqlSymbolic {
 	// 查询服务目录
 	public static final String SQL_SELECT_INTERFACE_CATALOG_LIST = "select A.id id,A.name name,A.serial_no serialNo,A.level level,A.farther_id fartherId,A.priority priority,A.category_code categoryCode,A.category_text categoryText,A.remark remark  from gp_catalog_interface A inner join gp_catalog_interface B on A.id=B.id where 1=1";
 
+	//查询系统组件
+	public static final String SQL_SELECT_CONTROL_LIST="select A.id id,A.domain_id domainId,A.code code,B.name domainName,A.page_id pageId,A.page_url pageUrl,A.name name,A.serial_no serialNo,A.remark remark,A.add_time addTime,A.update_time updateTime  from gp_control A left join gp_domain B on A.domain_id=B.id where 1=1 ";
+	
+	
 }
