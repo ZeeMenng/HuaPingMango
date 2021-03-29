@@ -1,12 +1,14 @@
 package com.zee.app.extend.swagger.gp;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,6 +73,22 @@ public class GpControlSwgApp extends GpControlGenSwgApp {
 		result = gpControlUntBll.update(jsonData);
 
 		return result;
+	}
+
+	@ApiOperation(value = "单条查询", notes = "根据主键查询记录详细信息,路径拼接模式")
+	@ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "String")
+	@RequestMapping(value = "/getModel/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResultModel getModelByPath(@PathVariable("id") String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String sql = String.format(SqlSymbolic.SQL_SELECT_CONTROL_UNIQUE, id);
+		map.put("Sql", sql);
+
+		ResultModel resultModel = gpControlUntBll.getListBySQL(map);
+		if (resultModel.getTotalCount() != 0) {
+			List<Map<String, Object>> controlList = CastObjectUtil.cast(resultModel.getData());
+			resultModel.setData(controlList.get(0));
+		}
+		return resultModel;
 	}
 
 	@ApiOperation(value = "模糊查询", notes = "根据查询条件模糊查询")
