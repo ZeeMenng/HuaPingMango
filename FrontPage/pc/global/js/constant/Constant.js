@@ -9,7 +9,7 @@ var NGINX_SERVER_IMG = "http://192.168.200.193:8081/res/img/";
 var INTERFACE_SERVER = "http://localhost:60011/mango";
 
 // var INTERFACE_SERVER="http://172.16.100.108:60011/mango" ;
-var HOME_PATH = 'http://localhost:8008';
+var HOME_PATH = 'http://localhost';
 // var INTERFACE_SERVER="http://127.0.0.1:60011/mango" ;
 var RESULT_CODE_TOKEN_EXPIRED = 950000;
 

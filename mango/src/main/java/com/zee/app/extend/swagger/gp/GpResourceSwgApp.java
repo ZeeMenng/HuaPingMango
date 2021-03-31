@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;import com.zee.utl.CastObjectUtil;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
@@ -29,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import com.zee.app.generate.swagger.gp.GpResourceGenSwgApp;
+import com.zee.bll.extend.split.gp.GpPageSplBll;
 import com.zee.ent.custom.ResultModel;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GpUser;
@@ -52,9 +54,14 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping(value = "/extend/swagger/gp/gpResource")
 public class GpResourceSwgApp extends GpResourceGenSwgApp {
+
 	@Value("${upload.swfPath}")
 	private String swfPath;// flvplayer.swf播放器地址
-	
+
+	@Autowired
+	@Qualifier("gpPageSplBll")
+	protected GpPageSplBll gpPageSplBll;
+
 	@ApiOperation(value = "新增记录", notes = "新增单条记录")
 	@ApiImplicitParams({ @ApiImplicitParam(paramType = "body", name = "jsonData", value = "json字符串", required = true, dataType = "GpResource") })
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -91,9 +98,17 @@ public class GpResourceSwgApp extends GpResourceGenSwgApp {
 		// if (currentUser == null)
 		// throw new GlobalException("未登录用户禁止使用文件上传功能！");
 
-		String pageUrl = multipartRequest.getParameter("pageUrl");
+		String domainId = currentUser == null ? "" : currentUser.getCurrentDomain() == null ? "" : currentUser.getCurrentDomain().getId();
+
+		String pageId = null;
+		String moduleId = multipartRequest.getParameter("moduleId");
 		String pageName = "";
+
+		String pageUrl = multipartRequest.getParameter("pageUrl");
 		if (StringUtils.isNotBlank(pageUrl)) {
+			ResultModel pageResult = gpPageSplBll.getModelByPageUrl(domainId, pageUrl);
+			pageId = pageResult.getObjectId();
+
 			pageName = pageUrl;
 			if (pageName.indexOf("/") >= 0)
 				pageName = pageName.substring(pageName.lastIndexOf('/') + 1, pageUrl.length());
@@ -140,12 +155,12 @@ public class GpResourceSwgApp extends GpResourceGenSwgApp {
 
 				GpResource gpResource = new GpResource();
 				gpResource.setId(Tools.getUUID());
-				gpResource.setDomainId(currentUser == null ? "" : currentUser.getCurrentDomain() == null ? "" : currentUser.getCurrentDomain().getId());
+				gpResource.setDomainId(domainId);
 				gpResource.setExtension(extension);
-				//gpResource.setModuleId("");
+				gpResource.setModuleId(moduleId);
 				gpResource.setNewName(newName);
 				gpResource.setOriginalName(originalName);
-				//gpResource.setPageId("");
+				gpResource.setPageId(pageId);
 				gpResource.setPath(path + newName);
 				gpResource.setPriority(priority);
 				gpResource.setSize(size);

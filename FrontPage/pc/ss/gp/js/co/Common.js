@@ -2130,6 +2130,16 @@ function initAddFileInput() {
         },
         uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
         uploadAsync: true,
+        // 传入功能模块和页面路径
+        uploadExtraData:function(previewId, index) {
+              var data = {
+                  moduleId : request("moduleId"),
+                  pageUrl: window.location.href
+              };
+              return data;
+          },
+        
+        
         browseClass: "btn btn-primary btn-lg",
         fileType: "image",
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
@@ -2169,6 +2179,24 @@ function initEditFileInput(IconIdArray, IconPathArray) {
         },
         uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
         uploadAsync: true,
+        // 传入功能模块和页面路径
+        uploadExtraData:function(previewId, index) {
+        	// 获取焦点菜单的主键
+        	var moduleId=$("ul.sub-menu .nav-item.start.active").attr("id");
+        	if(moduleId==null)
+        		moduleId="";
+        	var beginIndex=HOME_PATH.length;
+        	var endIndex=window.location.href.indexOf("?");
+        	if(endIndex==-1)
+        		endIndex=window.location.href.length;
+        	
+        	var pageUrl=window.location.href.substring(beginIndex, endIndex);
+              var data = {
+                  moduleId : moduleId,
+                  pageUrl: pageUrl
+              };
+              return data;
+          },
         browseClass: "btn btn-primary btn-lg",
         fileType: "image",
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",

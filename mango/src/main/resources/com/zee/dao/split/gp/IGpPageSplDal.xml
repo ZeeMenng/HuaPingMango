@@ -181,6 +181,15 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
+	<select id="getModelByPageUrl" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from gp_page
+		where domain_id = #{
+		domainId,jdbcType=VARCHAR} and url = #{pageUrl,jdbcType=VARCHAR}
+	</select>
+
+
 	<select id="getList" resultMap="BaseResultMap" parameterType="map">
 		select
 		<include refid="Base_Column_List" />

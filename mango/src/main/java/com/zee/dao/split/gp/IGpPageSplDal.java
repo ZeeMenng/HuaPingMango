@@ -32,6 +32,8 @@ public interface IGpPageSplDal extends IBaseSplDal {
 
 	public GpPage getModel(String id);
 
+	public GpPage getModelByPageUrl(String domainId, String pageUrl);
+
 	public List<GpPage> getList(Map<String, Object> map);
 
 	public List<Map<String, Object>> getListBySQL(String sql);
