@@ -2132,13 +2132,22 @@ function initAddFileInput() {
         uploadAsync: true,
         // 传入功能模块和页面路径
         uploadExtraData:function(previewId, index) {
+        	// 获取焦点菜单的主键
+        	var moduleId=$("ul.sub-menu .nav-item.start.active").attr("id");
+        	if(moduleId==null)
+        		moduleId="";
+        	var beginIndex=HOME_PATH.length;
+        	var endIndex=window.location.href.indexOf("?");
+        	if(endIndex==-1)
+        		endIndex=window.location.href.length;
+        	
+        	var pageUrl=window.location.href.substring(beginIndex, endIndex);
               var data = {
-                  moduleId : request("moduleId"),
-                  pageUrl: window.location.href
+                  moduleId : moduleId,
+                  pageUrl: pageUrl
               };
               return data;
           },
-        
         
         browseClass: "btn btn-primary btn-lg",
         fileType: "image",
@@ -2978,6 +2987,21 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
     }
 
     universalAjax(ajaxParamter);
+
+}
+
+// 跳转到修改页面
+function gotoEditPage(editPage){
+	if(editPage==null){
+	var index=window.location.href.indexOf("Detail");
+	if(index==-1)
+		   layer.msg('未找到修改页面……', {
+               time: 1500
+           });
+	else
+	window.location=window.location.href.replaceAll("Detail","Edit");
+	}else
+		window.location=editPage;
 
 }
 
