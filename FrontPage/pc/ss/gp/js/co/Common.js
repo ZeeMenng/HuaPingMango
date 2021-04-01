@@ -23,6 +23,15 @@ $(document).ready(function() {
 	if (userConfig)
 		DEFAULT_PAGE_SIZE = userConfig.configValue;
 
+	
+	// 是否折叠菜单
+	var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
+	if (isFoldConfig) {
+		$("body").addClass("page-sidebar-closed");
+		$("#linkMenuUl").addClass("page-sidebar-menu-closed");
+		$(".search-wrap").hide();
+	}
+	
 	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
 		return true;
 	}
@@ -494,12 +503,7 @@ function initLinkMenu() {
 			// 获取当前页面的左侧激活菜单名称 上面调用
 			txtActive = $(".nav-item.start.active .title").text();
 
-			// 是否折叠菜单
-			var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
-			if (isFoldConfig) {
-				$("#linkMenuUl .sidebar-toggler").click();
-				$(".search-wrap").hide();
-			}
+	
 
 		}
 	};
