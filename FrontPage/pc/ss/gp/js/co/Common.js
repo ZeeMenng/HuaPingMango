@@ -6,136 +6,136 @@ var treeNodesDragBrotherArray = new Array();
 
 var txtActive;
 // 所有DOM元素加载之前执行登录校验
-(function () {
-    if (!validateLogin()) {
-        return false;
-    }
+(function() {
+	if (!validateLogin()) {
+		return false;
+	}
 })(jQuery);
 // 验证插件中加入手机号校验功能
-jQuery.validator.addMethod("phone", function (value, element) {
-    var length = value.length;
-    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    return this.optional(element) || (length == 11 && mobile.test(value));
+jQuery.validator.addMethod("phone", function(value, element) {
+	var length = value.length;
+	var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+	return this.optional(element) || (length == 11 && mobile.test(value));
 }, "请填写正确的手机号码");
-$(document).ready(function () {
-    var userConfig = getUserConfigByCode("pageSize");
-    if (userConfig)
-        DEFAULT_PAGE_SIZE = userConfig.configValue;
+$(document).ready(function() {
 
-    if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
-        return true;
-    }
-    $("#batchEditButton").prop("class", "hidden");
+	var userConfig = getUserConfigByCode("pageSize");
+	if (userConfig)
+		DEFAULT_PAGE_SIZE = userConfig.configValue;
 
-    // 注销按钮
-    $("#aLogout").click(function () {
-        var ajaxParamter = {
-            "url": "/oauth/logout",
-            "data": {},
-            "type": "GET",
-            "async": true,
-            "success": function (resultData) {
-                if (!resultData["isSuccess"]) {
-                    layer.alert("退出操作出错！" + resultData["resultMessage"], {
-                        icon: 6
-                    });
-                    return false;
-                }
+	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
+		return true;
+	}
+	$("#batchEditButton").prop("class", "hidden");
 
-            	var cookieData={
-            			item:"token"
-            	};
-            	removeCookies(cookieData);
-              
-                location.href = '../lo/Login.html';
-            }
-        };
+	// 注销按钮
+	$("#aLogout").click(function() {
+		var ajaxParamter = {
+			"url" : "/oauth/logout",
+			"data" : {},
+			"type" : "GET",
+			"async" : true,
+			"success" : function(resultData) {
+				if (!resultData["isSuccess"]) {
+					layer.alert("退出操作出错！" + resultData["resultMessage"], {
+						icon : 6
+					});
+					return false;
+				}
 
-        universalAjax(ajaxParamter);
+				var cookieData = {
+					item : "token"
+				};
+				removeCookies(cookieData);
 
-    });
-    // 增加刷新后全选有否判断，非全选时父checkbox不选中
-    var checked_count = 0;
-    var num = 0;
-    num = $("#contentTable input[name='childCheckbox']").length;
-    $("#contentTable input[name='childCheckbox']").each(function (i, n) {
-        var recordId = $(this).closest("tr").attr("id");
-        if ($(this).get(0).checked == true) {
-            checked_count++;
-        }
-    });
-    if (num > checked_count) {
-        $("#contentTable input[name='headerCheckbox']").attr("checked", false);
-    } else if (num == checked_count) {
+				location.href = '../lo/Login.html';
+			}
+		};
 
-        $("#contentTable input[name='headerCheckbox']").prop('checked', true);
-    }
+		universalAjax(ajaxParamter);
 
-    if (jQuery().datepicker) {
-        $('.date-picker').datepicker({
-            language: 'zh-CN',
-            todayBtn: "linked",
-            autoclose: true,
-            rtl: App.isRTL(),
-            format: "yyyy-mm-dd",
-            fontAwesome: true,
-            orientation: "left",
-            todayHighlight: true,
-        });
+	});
+	// 增加刷新后全选有否判断，非全选时父checkbox不选中
+	var checked_count = 0;
+	var num = 0;
+	num = $("#contentTable input[name='childCheckbox']").length;
+	$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+		var recordId = $(this).closest("tr").attr("id");
+		if ($(this).get(0).checked == true) {
+			checked_count++;
+		}
+	});
+	if (num > checked_count) {
+		$("#contentTable input[name='headerCheckbox']").attr("checked", false);
+	} else if (num == checked_count) {
 
-        initMessage();
-    }
-    if (jQuery().datetimepicker) {
-        $(".form-datetime").datetimepicker({
-            language: 'zh-CN',
-            format: "yyyy-mm-dd hh:ii P"
+		$("#contentTable input[name='headerCheckbox']").prop('checked', true);
+	}
 
-        });
-    }
-    $(".form_datetime").datetimepicker({
-        language: 'zh-CN',
-        todayBtn: 1,
-        autoclose: true,
-        isRTL: App.isRTL(),
-        format: "yyyy-mm-dd hh:ii",
-        fontAwesome: true,
-        todayHighlight: true,
-        pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
-    });
+	if (jQuery().datepicker) {
+		$('.date-picker').datepicker({
+			language : 'zh-CN',
+			todayBtn : "linked",
+			autoclose : true,
+			rtl : App.isRTL(),
+			format : "yyyy-mm-dd",
+			fontAwesome : true,
+			orientation : "left",
+			todayHighlight : true,
+		});
 
-    initNavbar();
-    layui.use(['layer', 'form'], function () {
-        var layer = layui.layer, form = layui.form;
-    });
-    initPageSizeSelect();
-    initLinkMenu();
-    initCheckbox();
-    // 左侧搜索匹配激活状态
-    $("body").on("keyup", ".searchInput", function (e) {
-        var val = $(this).val();
-        var txts = $('.badge').prev('.title');
-        txts.each(function (i, v) {
-            var valAll = $(v).text();
-            var liParent = $(v).parent().parent().parent().parent();
-            var liParent2 = $(v).parent().parent();
-            if (valAll.indexOf(val) > -1 && val != '' && e.keyCode != '8' || val == '' && e.keyCode == '8' && txtActive == valAll) {
-                liParent.addClass("active open");
-                liParent.find(".sub-menu").css("display", "block");
-                liParent.find(".arrow").addClass("open");
-                liParent2.addClass("active");
-            }
-            if (val == "" && txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) <= 0 || txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) < 0) {
-                if (liParent2.hasClass("active")) {
-                    liParent.find(".sub-menu").css("display", "none");
-                    liParent.find(".arrow").removeClass("open");
-                    liParent.removeClass("active open");
-                }
-                liParent2.removeClass("active");
-            }
-        })
-    })
+		initMessage();
+	}
+	if (jQuery().datetimepicker) {
+		$(".form-datetime").datetimepicker({
+			language : 'zh-CN',
+			format : "yyyy-mm-dd hh:ii P"
+
+		});
+	}
+	$(".form_datetime").datetimepicker({
+		language : 'zh-CN',
+		todayBtn : 1,
+		autoclose : true,
+		isRTL : App.isRTL(),
+		format : "yyyy-mm-dd hh:ii",
+		fontAwesome : true,
+		todayHighlight : true,
+		pickerPosition : (App.isRTL() ? "bottom-right" : "bottom-left")
+	});
+
+	initNavbar();
+	layui.use([ 'layer', 'form' ], function() {
+		var layer = layui.layer, form = layui.form;
+	});
+	initPageSizeSelect();
+	initLinkMenu();
+	initCheckbox();
+	// 左侧搜索匹配激活状态
+	$("body").on("keyup", ".searchInput", function(e) {
+		var val = $(this).val();
+		var txts = $('.badge').prev('.title');
+		txts.each(function(i, v) {
+			var valAll = $(v).text();
+			var liParent = $(v).parent().parent().parent().parent();
+			var liParent2 = $(v).parent().parent();
+			if (valAll.indexOf(val) > -1 && val != '' && e.keyCode != '8' || val == '' && e.keyCode == '8' && txtActive == valAll) {
+				liParent.addClass("active open");
+				liParent.find(".sub-menu").css("display", "block");
+				liParent.find(".arrow").addClass("open");
+				liParent2.addClass("active");
+			}
+			if (val == "" && txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) <= 0 || txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) < 0) {
+				if (liParent2.hasClass("active")) {
+					liParent.find(".sub-menu").css("display", "none");
+					liParent.find(".arrow").removeClass("open");
+					liParent.removeClass("active open");
+				}
+				liParent2.removeClass("active");
+			}
+		})
+	})
 });
-
 
 /**
  * @author Zee
@@ -145,76 +145,23 @@ $(document).ready(function () {
  */
 function setDomainConfig() {
 
-    var ajaxParameter = {
-        "url": RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
-        "type": "GET",
-        "async": false,
-        "success": function (result) {
-        	var cookieData={
-        			item:"userConfig",
-        			data: result.data,
-        			path:'/'
-        	};
-        	setCookies(cookieData);
-        }
-    };
-    universalAjax(ajaxParameter);
+	var ajaxParameter = {
+		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
+		"type" : "GET",
+		"async" : false,
+		"success" : function(result) {
+			var infoData = JSON.stringify(result.data);
+			var cookieData = {
+				item : "userConfig",
+				data : infoData,
+				path : '/'
+			};
+			setCookies(cookieData);
+		}
+	};
+	universalAjax(ajaxParameter);
 
 }
-
-
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:27:14
- * @updateDate 2021年3月25日 下午3:27:14
- * @description 存储Cookie信息，如果支持localStorage优先使用
- */
-function setCookies(cookieData){
-	if (window.localStorage) {
-		localStorage.removeItem(cookieData.item);
-		localStorage.setItem(cookieData.item, cookieData.data)
-	} else {
-    Cookies.remove(cookieData.item);
-    
-    if(cookieData.date==null){
-    var date = new Date();
-    date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
-    cookieData.date=date;
-    }
-    Cookies.set(cookieData.item, cookieData.data, {
-        path: cookieData.path,
-        expires: cookieData.date
-    });
-	}
-}
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:36:24
- * @updateDate 2021年3月25日 下午3:36:24
- * @description 移除Cookie信息 如果支持localStorage优先使用
- */
-function removeCookies(cookieData){
-	if (window.localStorage) 
-	  localStorage.removeItem(cookieData.item);
-	  else
-	Cookies.remove(cookieData.item);
-}
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:36:09
- * @updateDate 2021年3月25日 下午3:36:09
- * @description 获取Cookie信息 如果支持localStorage优先使用
- */
-function getCookies(cookieData){
-	if (window.localStorage)
-		return localStorage.getItem(cookieData.item);
-	else
-	  return Cookies.get(cookieData.item);
-}
-
 
 /**
  * @author Zee
@@ -223,19 +170,21 @@ function getCookies(cookieData){
  * @description 根据Key获取用户配置
  */
 function getUserConfigByCode(code) {
-    var userConfigListCookie = Cookies.get('userConfig');
-    var userConfig = null;
-    if (userConfigListCookie) {
-        var userConfigList = JSON.parse(userConfigListCookie);
+	var userConfigListCookie = getCookies({
+		item : "userConfig"
+	});
+	var userConfig = null;
+	if (userConfigListCookie) {
+		var userConfigList = JSON.parse(userConfigListCookie);
 
-        $.each(userConfigList, function (i, n) {
-            if (n.code == code) {
-                userConfig = n;
-                return false;
-            }
-        });
-    }
-    return userConfig;
+		$.each(userConfigList, function(i, n) {
+			if (n.code == code) {
+				userConfig = n;
+				return false;
+			}
+		});
+	}
+	return userConfig;
 }
 
 /**
@@ -245,255 +194,320 @@ function getUserConfigByCode(code) {
  * @description 更新用户配置
  */
 function updateUserConfig(userConfig) {
-    var ajaxParamter = {
-        "url": RU_GPRCONFIGUSER_ADDORUPDATE,
-        "data": JSON.stringify({
-            configId: userConfig.configId,
-            configValue: userConfig.configValue
-        }),
-        "success": function (resultData) {
-            // 后台更新成功后，重新初始化本地Cookie
-            setDomainConfig();
-        }
-    };
+	var ajaxParamter = {
+		"url" : RU_GPRCONFIGUSER_ADDORUPDATE,
+		"data" : JSON.stringify({
+			configId : userConfig.configId,
+			configValue : userConfig.configValue
+		}),
+		"success" : function(resultData) {
+			// 后台更新成功后，重新初始化本地Cookie
+			setDomainConfig();
+		}
+	};
 
-    universalAjax(ajaxParamter);
+	universalAjax(ajaxParamter);
 }
 
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:27:14
+ * @updateDate 2021年3月25日 下午3:27:14
+ * @description 存储Cookie信息，如果支持localStorage优先使用
+ */
+function setCookies(cookieData) {
+	if (window.localStorage) {
+		localStorage.removeItem(cookieData.item);
+		localStorage.setItem(cookieData.item, cookieData.data);
+	} else {
+		Cookies.remove(cookieData.item);
 
+		if (cookieData.date == null) {
+			var date = new Date();
+			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
+			cookieData.date = date;
+		}
+		Cookies.set(cookieData.item, cookieData.data, {
+			path : cookieData.path,
+			expires : cookieData.date
+		});
+	}
+}
 
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:24
+ * @updateDate 2021年3月25日 下午3:36:24
+ * @description 移除Cookie信息 如果支持localStorage优先使用
+ */
+function removeCookies(cookieData) {
 
+	if (window.localStorage)
+		localStorage.removeItem(cookieData.item);
+	else
+		Cookies.remove(cookieData.item);
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:09
+ * @updateDate 2021年3月25日 下午3:36:09
+ * @description 获取Cookie信息 如果支持localStorage优先使用
+ */
+function getCookies(cookieData) {
+	if (window.localStorage)
+		return localStorage.getItem(cookieData.item);
+	else
+		return Cookies.get(cookieData.item);
+}
 
 function initPageSizeSelect() {
-    var selectData = [{
-        value: 5,
-        text: 5
-    }, {
-        value: 10,
-        text: 10
-    }, {
-        value: 15,
-        text: 15
-    }, {
-        value: 30,
-        text: 30
-    }, {
-        value: 50,
-        text: 50
-    },
-        // {
-        // value: 'All',
-        // text: '所有'
-        // }
-    ];
+	var selectData = [ {
+		value : 5,
+		text : 5
+	}, {
+		value : 10,
+		text : 10
+	}, {
+		value : 15,
+		text : 15
+	}, {
+		value : 30,
+		text : 30
+	}, {
+		value : 50,
+		text : 50
+	},
+	// {
+	// value: 'All',
+	// text: '所有'
+	// }
+	];
 
-    $.each(selectData, function (i, n) {
-        $("#pageSizeSelect").append("<option value='" + n["value"] + "'>" + n["text"] + "</option>");
-    });
+	$.each(selectData, function(i, n) {
+		$("#pageSizeSelect").append("<option value='" + n["value"] + "'>" + n["text"] + "</option>");
+	});
 
 }
 
 function initCheckbox() {
 
-    // 设置单条记录的checkbox单击事件
-    $("#contentTable").on("click", "input[name='childCheckbox']", function (event) {
-        var recordId = $(this).closest("tr").attr("id");
-        // 选中记录，则将记录添加到数组中
-        if ($(this).get(0).checked) {
-            if ($.inArray(recordId, selectRows) == -1)
-                selectRows.push(recordId);
-        } else {// 取消选中，则删除数组中的记录
-            if ($.inArray(recordId, selectRows) != -1)
-                selectRows.splice($.inArray(recordId, selectRows), 1);
-        }
-    });
+	// 设置单条记录的checkbox单击事件
+	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
+		var recordId = $(this).closest("tr").attr("id");
+		// 选中记录，则将记录添加到数组中
+		if ($(this).get(0).checked) {
+			if ($.inArray(recordId, selectRows) == -1)
+				selectRows.push(recordId);
+		} else {// 取消选中，则删除数组中的记录
+			if ($.inArray(recordId, selectRows) != -1)
+				selectRows.splice($.inArray(recordId, selectRows), 1);
+		}
+	});
 
-    $("#contentTable").on("click", "input[name='headerCheckbox']", function (event) {
-        if ($(this).get(0).checked) {
-            $("#contentTable input[name='childCheckbox']").each(function (i, n) {
-                var recordId = $(this).closest("tr").attr("id");
-                $(this).get(0).checked = true;
-                if ($.inArray(recordId, selectRows) == -1) {
-                    selectRows.push(recordId);
-                }
-            });
-        } else {
-            $("#contentTable input[name='childCheckbox']").each(function (i, n) {
-                var recordId = $(this).closest("tr").attr("id");
-                $(this).get(0).checked = false;
-                if ($.inArray(recordId, selectRows) != -1) {
-                    selectRows.splice($.inArray(recordId, selectRows), 1);
-                }
-            });
+	$("#contentTable").on("click", "input[name='headerCheckbox']", function(event) {
+		if ($(this).get(0).checked) {
+			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+				var recordId = $(this).closest("tr").attr("id");
+				$(this).get(0).checked = true;
+				if ($.inArray(recordId, selectRows) == -1) {
+					selectRows.push(recordId);
+				}
+			});
+		} else {
+			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+				var recordId = $(this).closest("tr").attr("id");
+				$(this).get(0).checked = false;
+				if ($.inArray(recordId, selectRows) != -1) {
+					selectRows.splice($.inArray(recordId, selectRows), 1);
+				}
+			});
 
-        }
-    });
-    // 增加非全选判断，非全选时父checkbox不选中
-    $("#contentTable").on("click", "input[name='childCheckbox']", function (event) {
+		}
+	});
+	// 增加非全选判断，非全选时父checkbox不选中
+	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
 		/*
 		 * if ($("#contentTable input[name='headerCheckbox']").is(':checked')) {
 		 * $("#contentTable
 		 * input[name='headerCheckbox']").attr("checked",false); }
 		 */
-        var checked_count = 0;
-        var num = 0;
-        num = $("#contentTable input[name='childCheckbox']").length;
-        $("#contentTable input[name='childCheckbox']").each(function (i, n) {
-            var recordId = $(this).closest("tr").attr("id");
-            if ($(this).get(0).checked == true) {
-                checked_count++;
-            }
-        });
-        if (num > checked_count) {
-            $("#contentTable input[name='headerCheckbox']").attr("checked", false);
-        } else if (num == checked_count) {
-            $("#contentTable input[name='headerCheckbox']").prop('checked', true);
-        }
-    });
+		var checked_count = 0;
+		var num = 0;
+		num = $("#contentTable input[name='childCheckbox']").length;
+		$("#contentTable input[name='childCheckbox']").each(function(i, n) {
+			var recordId = $(this).closest("tr").attr("id");
+			if ($(this).get(0).checked == true) {
+				checked_count++;
+			}
+		});
+		if (num > checked_count) {
+			$("#contentTable input[name='headerCheckbox']").attr("checked", false);
+		} else if (num == checked_count) {
+			$("#contentTable input[name='headerCheckbox']").prop('checked', true);
+		}
+	});
 
 }
 
 function initNavbar() {
-    var href = window.location.href;
+	var href = window.location.href;
 
-    var beginIndex = href.lastIndexOf('/') + 1;
-    var endIndex = href.indexOf('.html');
-    href = href.substring(beginIndex, endIndex);
-    var sL = href.length;
-    var lastUpperCodeIndex = 0;
-    for (var i = 0; i < sL; i++) {
-        if (href.charAt(i) === href.charAt(i).toUpperCase()) {
-            lastUpperCodeIndex = i;
-        }
-    }
-    href = href.substring(0, lastUpperCodeIndex);
-    $("#navbarListA").attr("href",href + "List.html");
-    
-    $("#navbarIndexA").click(function () {
-        window.location = GP_INDEX;
-        return false;
-    });
+	var beginIndex = href.lastIndexOf('/') + 1;
+	var endIndex = href.indexOf('.html');
+	href = href.substring(beginIndex, endIndex);
+	var sL = href.length;
+	var lastUpperCodeIndex = 0;
+	for (var i = 0; i < sL; i++) {
+		if (href.charAt(i) === href.charAt(i).toUpperCase()) {
+			lastUpperCodeIndex = i;
+		}
+	}
+	href = href.substring(0, lastUpperCodeIndex);
+	$("#navbarListA").attr("href", href + "List.html");
 
-    $("#navbarListA").click(function () {
-    
-        window.location = href + "List.html";
-        return false;
-    });
+	$("#navbarIndexA").click(function() {
+		window.location = GP_INDEX;
+		return false;
+	});
+
+	$("#navbarListA").click(function() {
+
+		window.location = href + "List.html";
+		return false;
+	});
 
 }
 
 // 初始化左侧菜单
 function initLinkMenu() {
-    var userInfo = JSON.parse(getCookies({item:"token"}));
-    var userName = userInfo.userName;
-    var ajaxParamter = {
-        "url": RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
-        "type": "GET",
-        "data": "jsonData=" + encodeURIComponent(JSON.stringify({
-            "domainId": DOMAIN_ID_GP
-        })),
-        "async": true,
-        "success": function (result) {
-            total = result.totalCount;
-            var data = result.data;
-            $.each(data, function (i, n) {
+	var userInfo = JSON.parse(getCookies({
+		item : "token"
+	}));
+	var userName = userInfo.userName;
+	var ajaxParamter = {
+		"url" : RU_GPMODULE_GETLINKMENU + "?userName=" + userName,
+		"type" : "GET",
+		"data" : "jsonData=" + encodeURIComponent(JSON.stringify({
+			"domainId" : DOMAIN_ID_GP
+		})),
+		"async" : true,
+		"success" : function(result) {
+			total = result.totalCount;
+			var data = result.data;
+			$.each(data, function(i, n) {
 
-                if (n["level"] == "1") {
-                    var menu = $("#firstLevelMenuLi").clone();
-                    menu.attr("id", n["id"]);
-                    menu.attr("fartherId", n["fartherId"]);
-                    menu.find("h3").html(n["name"]);
-                    $("#linkMenuUl").append(menu);
-                    console.log(n["name"]);
-                }
+				if (n["level"] == "1") {
+					var menu = $("#firstLevelMenuLi").clone();
+					menu.attr("id", n["id"]);
+					menu.attr("fartherId", n["fartherId"]);
+					menu.find("h3").html(n["name"]);
+					$("#linkMenuUl").append(menu);
+					console.log(n["name"]);
+				}
 
-            });
+			});
 
-            $.each(data, function (i, n) {
-                if (n["level"] == "2") {
-                    {
-                        var secondLevelMenu = $("#secondeLevelMenuLi").clone();
-                        secondLevelMenu.attr("id", n["id"]);
-                        secondLevelMenu.attr("fartherId", n["fartherId"]);
+			$.each(data, function(i, n) {
+				if (n["level"] == "2") {
+					{
+						var secondLevelMenu = $("#secondeLevelMenuLi").clone();
+						secondLevelMenu.attr("id", n["id"]);
+						secondLevelMenu.attr("fartherId", n["fartherId"]);
 
-                        if (n["pageUrl"] != null)
-                            secondLevelMenu.find("a.nav-toggle").attr("href", n["pageUrl"]);
-                        else
-                            secondLevelMenu.find("a.nav-toggle").attr("href", "javascript:;");
+						if (n["pageUrl"] != null)
+							secondLevelMenu.find("a.nav-toggle").attr("href", n["pageUrl"]);
+						else
+							secondLevelMenu.find("a.nav-toggle").attr("href", "javascript:;");
 
-                        secondLevelMenu.find("span.title").html(n["name"]);
-                        secondLevelMenu.find("a i").addClass(n["iconClass"]);
+						secondLevelMenu.find("span.title").html(n["name"]);
+						secondLevelMenu.find("a i").addClass(n["iconClass"]);
 
-                        var $firstLevelMenu = $("#linkMenuUl li[id='" + n["fartherId"] + "']");
-                        var $lastSecondLevelMenu = $("#linkMenuUl li[fartherId='" + n["fartherId"] + "']:last");
+						var $firstLevelMenu = $("#linkMenuUl li[id='" + n["fartherId"] + "']");
+						var $lastSecondLevelMenu = $("#linkMenuUl li[fartherId='" + n["fartherId"] + "']:last");
 
-                        if ($lastSecondLevelMenu.length != 0)
-                            $lastSecondLevelMenu.after(secondLevelMenu);
-                        else if ($firstLevelMenu.length != 0)
-                            $firstLevelMenu.after(secondLevelMenu);
-                        // 说明没有一级菜单，则二级菜单为一级菜单
-                        else
-                            $("#linkMenuUl").append(secondLevelMenu);
-                    }
-                }
-            });
+						if ($lastSecondLevelMenu.length != 0)
+							$lastSecondLevelMenu.after(secondLevelMenu);
+						else if ($firstLevelMenu.length != 0)
+							$firstLevelMenu.after(secondLevelMenu);
+						// 说明没有一级菜单，则二级菜单为一级菜单
+						else
+							$("#linkMenuUl").append(secondLevelMenu);
+					}
+				}
+			});
 
-            $.each(data, function (i, n) {
-                if (n["level"] == "3") {
-                    {
-                        var thirdLevelMenu = $("#thirdLevelMenuLi").clone();
-                        thirdLevelMenu.attr("id", n["id"]);
-                        if (n["pageUrl"] != null) {
-                            thirdLevelMenu.find("a").attr("href", n["pageUrl"]);
-                        } else
-                            thirdLevelMenu.find("a").attr("href", "javascript:;");
+			$.each(data, function(i, n) {
+				if (n["level"] == "3") {
+					{
+						var thirdLevelMenu = $("#thirdLevelMenuLi").clone();
+						thirdLevelMenu.attr("id", n["id"]);
+						if (n["pageUrl"] != null) {
+							thirdLevelMenu.find("a").attr("href", n["pageUrl"]);
+						} else
+							thirdLevelMenu.find("a").attr("href", "javascript:;");
 
-                        thirdLevelMenu.find("span.title").html(n["name"]);
+						thirdLevelMenu.find("span.title").html(n["name"]);
 
-                        thirdLevelMenu.find("span.badge").html(n["XiaoXiShuLiang"]);
-                        thirdLevelMenu.find("a i").addClass(n["iconClass"]);
-                        $("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
-                        // 菜单加焦点
-                        var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];
-                                       
+						thirdLevelMenu.find("span.badge").html(n["XiaoXiShuLiang"]);
+						thirdLevelMenu.find("a i").addClass(n["iconClass"]);
+						$("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
+						// 菜单加焦点
+						var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];
 
-                        var lastUrlindex = pageUrl.lastIndexOf("\/");
-                        pageUrl = pageUrl.substring(lastUrlindex + 1, pageUrl.length);
-                        
-                        var link=window.location.href;
-                        if($("#navbarListA").attr("href")!=null)
-                        	link=$("#navbarListA").attr("href");
-                        
-                        if (link.indexOf(pageUrl) >= 0) {
-                            thirdLevelMenu.parent().parent().addClass("active open");
-                            thirdLevelMenu.addClass("active");
-                        }
+						var lastUrlindex = pageUrl.lastIndexOf("\/");
+						pageUrl = pageUrl.substring(lastUrlindex + 1, pageUrl.length);
 
-                        /** * 左侧导航菜单隐藏事件 */
-                        $("#linkMenuUl .sidebar-toggler").click(function () {
-                            if ($("#linkMenuUl").hasClass("page-sidebar-menu-closed")) {
-                                $(".search-wrap").show();
-                            } else {
-                                $(".search-wrap").hide();
-                            }
-                        })
+						var link = window.location.href;
+						if ($("#navbarListA").attr("href") != null)
+							link = $("#navbarListA").attr("href");
 
-                    }
-                }
-            });
+						if (link.indexOf(pageUrl) >= 0) {
+							thirdLevelMenu.parent().parent().addClass("active open");
+							thirdLevelMenu.addClass("active");
+						}
 
-            // 清除模板
-            $("#firstLevelMenuLi").remove();
-            $("#secondeLevelMenuLi").remove();
-            $("li[id='thirdLevelMenuLi']").remove();
-            // 获取当前页面的左侧激活菜单名称 上面调用
-            txtActive = $(".nav-item.start.active .title").text();
-        }
-    };
+						/** * 左侧导航菜单隐藏事件 */
+						$("#linkMenuUl .sidebar-toggler").unbind("click");
+						$("#linkMenuUl .sidebar-toggler").click(function() {
+							if ($("#linkMenuUl").hasClass("page-sidebar-menu-closed")) {
+								var userConfig = getUserConfigByCode("isFold");
+								userConfig.configValue = false;
+								updateUserConfig(userConfig);
+								$(".search-wrap").show();
+							} else {
+								var userConfig = getUserConfigByCode("isFold");
+								userConfig.configValue = true;
+								updateUserConfig(userConfig);
+								$(".search-wrap").hide();
+							}
+						})
 
-    universalAjax(ajaxParamter);
+					}
+				}
+			});
+
+			// 清除模板
+			$("#firstLevelMenuLi").remove();
+			$("#secondeLevelMenuLi").remove();
+			$("li[id='thirdLevelMenuLi']").remove();
+			// 获取当前页面的左侧激活菜单名称 上面调用
+			txtActive = $(".nav-item.start.active .title").text();
+
+			// 是否折叠菜单
+			var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
+			if (isFoldConfig) {
+				$("#linkMenuUl .sidebar-toggler").click();
+				$(".search-wrap").hide();
+			}
+
+		}
+	};
+
+	universalAjax(ajaxParamter);
 
 }
+
 
 /**
  * Zee 初始化表单按钮事件，并执行一次查询操作
@@ -980,6 +994,7 @@ function initTopRightButton(pageParam, ajaxParam, operationParam) {
     			data: selectRows,
     			path:'/'
     	};
+    	
     	setCookies(cookieData);
        
         pageParam.editPage.selectRows = selectRows;
@@ -2993,13 +3008,13 @@ function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
 // 跳转到修改页面
 function gotoEditPage(editPage){
 	if(editPage==null){
-	var index=window.location.href.indexOf("Detail");
+	var index=window.location.href.indexOf("Detail.html");
 	if(index==-1)
 		   layer.msg('未找到修改页面……', {
                time: 1500
            });
 	else
-	window.location=window.location.href.replaceAll("Detail","Edit");
+	window.location=window.location.href.replaceAll("Detail.html","Edit.html");
 	}else
 		window.location=editPage;
 
