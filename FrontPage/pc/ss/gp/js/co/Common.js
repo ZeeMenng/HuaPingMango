@@ -1,29 +1,25 @@
-var selectRows = new Array();
-// 树形菜单是否实施变化
-var IS_IMMEDIATE = true;
-// 拖拽数形菜单时拖拽节点的兄弟节点
-var treeNodesDragBrotherArray = new Array();
-
 var txtActive;
+
 // 所有DOM元素加载之前执行登录校验
 (function() {
 	if (!validateLogin()) {
 		return false;
 	}
 })(jQuery);
+
 // 验证插件中加入手机号校验功能
 jQuery.validator.addMethod("phone", function(value, element) {
 	var length = value.length;
 	var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
 	return this.optional(element) || (length == 11 && mobile.test(value));
 }, "请填写正确的手机号码");
+
 $(document).ready(function() {
 
 	var userConfig = getUserConfigByCode("pageSize");
 	if (userConfig)
 		DEFAULT_PAGE_SIZE = userConfig.configValue;
 
-	
 	// 是否折叠菜单
 	var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
 	if (isFoldConfig) {
@@ -31,7 +27,7 @@ $(document).ready(function() {
 		$("#linkMenuUl").addClass("page-sidebar-menu-closed");
 		$(".search-wrap").hide();
 	}
-	
+
 	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
 		return true;
 	}
@@ -64,22 +60,6 @@ $(document).ready(function() {
 		universalAjax(ajaxParamter);
 
 	});
-	// 增加刷新后全选有否判断，非全选时父checkbox不选中
-	var checked_count = 0;
-	var num = 0;
-	num = $("#contentTable input[name='childCheckbox']").length;
-	$("#contentTable input[name='childCheckbox']").each(function(i, n) {
-		var recordId = $(this).closest("tr").attr("id");
-		if ($(this).get(0).checked == true) {
-			checked_count++;
-		}
-	});
-	if (num > checked_count) {
-		$("#contentTable input[name='headerCheckbox']").attr("checked", false);
-	} else if (num == checked_count) {
-
-		$("#contentTable input[name='headerCheckbox']").prop('checked', true);
-	}
 
 	if (jQuery().datepicker) {
 		$('.date-picker').datepicker({
@@ -117,248 +97,12 @@ $(document).ready(function() {
 	layui.use([ 'layer', 'form' ], function() {
 		var layer = layui.layer, form = layui.form;
 	});
-	initPageSizeSelect();
+
 	initLinkMenu();
-	initCheckbox();
-	// 左侧搜索匹配激活状态
-	$("body").on("keyup", ".searchInput", function(e) {
-		var val = $(this).val();
-		var txts = $('.badge').prev('.title');
-		txts.each(function(i, v) {
-			var valAll = $(v).text();
-			var liParent = $(v).parent().parent().parent().parent();
-			var liParent2 = $(v).parent().parent();
-			if (valAll.indexOf(val) > -1 && val != '' && e.keyCode != '8' || val == '' && e.keyCode == '8' && txtActive == valAll) {
-				liParent.addClass("active open");
-				liParent.find(".sub-menu").css("display", "block");
-				liParent.find(".arrow").addClass("open");
-				liParent2.addClass("active");
-			}
-			if (val == "" && txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) <= 0 || txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) < 0) {
-				if (liParent2.hasClass("active")) {
-					liParent.find(".sub-menu").css("display", "none");
-					liParent.find(".arrow").removeClass("open");
-					liParent.removeClass("active open");
-				}
-				liParent2.removeClass("active");
-			}
-		})
-	})
+
 });
 
-/**
- * @author Zee
- * @createDate 2021年1月22日 下午4:22:16
- * @updateDate 2021年1月22日 下午4:22:16
- * @description 获取并设置Cookie当前用户在当前应用领域下的配置
- */
-function setDomainConfig() {
-
-	var ajaxParameter = {
-		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
-		"type" : "GET",
-		"async" : false,
-		"success" : function(result) {
-			var infoData = JSON.stringify(result.data);
-			var cookieData = {
-				item : "userConfig",
-				data : infoData,
-				path : '/'
-			};
-			setCookies(cookieData);
-		}
-	};
-	universalAjax(ajaxParameter);
-
-}
-
-/**
- * @author Zee
- * @createDate 2021年1月22日 下午2:50:39
- * @updateDate 2021年1月22日 下午2:50:39
- * @description 根据Key获取用户配置
- */
-function getUserConfigByCode(code) {
-	var userConfigListCookie = getCookies({
-		item : "userConfig"
-	});
-	var userConfig = null;
-	if (userConfigListCookie) {
-		var userConfigList = JSON.parse(userConfigListCookie);
-
-		$.each(userConfigList, function(i, n) {
-			if (n.code == code) {
-				userConfig = n;
-				return false;
-			}
-		});
-	}
-	return userConfig;
-}
-
-/**
- * @author Zee
- * @createDate 2021年1月22日 下午3:13:09
- * @updateDate 2021年1月22日 下午3:13:09
- * @description 更新用户配置
- */
-function updateUserConfig(userConfig) {
-	var ajaxParamter = {
-		"url" : RU_GPRCONFIGUSER_ADDORUPDATE,
-		"data" : JSON.stringify({
-			configId : userConfig.configId,
-			configValue : userConfig.configValue
-		}),
-		"success" : function(resultData) {
-			// 后台更新成功后，重新初始化本地Cookie
-			setDomainConfig();
-		}
-	};
-
-	universalAjax(ajaxParamter);
-}
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:27:14
- * @updateDate 2021年3月25日 下午3:27:14
- * @description 存储Cookie信息，如果支持localStorage优先使用
- */
-function setCookies(cookieData) {
-	if (window.localStorage) {
-		localStorage.removeItem(cookieData.item);
-		localStorage.setItem(cookieData.item, cookieData.data);
-	} else {
-		Cookies.remove(cookieData.item);
-
-		if (cookieData.date == null) {
-			var date = new Date();
-			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
-			cookieData.date = date;
-		}
-		Cookies.set(cookieData.item, cookieData.data, {
-			path : cookieData.path,
-			expires : cookieData.date
-		});
-	}
-}
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:36:24
- * @updateDate 2021年3月25日 下午3:36:24
- * @description 移除Cookie信息 如果支持localStorage优先使用
- */
-function removeCookies(cookieData) {
-
-	if (window.localStorage)
-		localStorage.removeItem(cookieData.item);
-	else
-		Cookies.remove(cookieData.item);
-}
-
-/**
- * @author Zee
- * @createDate 2021年3月25日 下午3:36:09
- * @updateDate 2021年3月25日 下午3:36:09
- * @description 获取Cookie信息 如果支持localStorage优先使用
- */
-function getCookies(cookieData) {
-	if (window.localStorage)
-		return localStorage.getItem(cookieData.item);
-	else
-		return Cookies.get(cookieData.item);
-}
-
-function initPageSizeSelect() {
-	var selectData = [ {
-		value : 5,
-		text : 5
-	}, {
-		value : 10,
-		text : 10
-	}, {
-		value : 15,
-		text : 15
-	}, {
-		value : 30,
-		text : 30
-	}, {
-		value : 50,
-		text : 50
-	},
-	// {
-	// value: 'All',
-	// text: '所有'
-	// }
-	];
-
-	$.each(selectData, function(i, n) {
-		$("#pageSizeSelect").append("<option value='" + n["value"] + "'>" + n["text"] + "</option>");
-	});
-
-}
-
-function initCheckbox() {
-
-	// 设置单条记录的checkbox单击事件
-	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
-		var recordId = $(this).closest("tr").attr("id");
-		// 选中记录，则将记录添加到数组中
-		if ($(this).get(0).checked) {
-			if ($.inArray(recordId, selectRows) == -1)
-				selectRows.push(recordId);
-		} else {// 取消选中，则删除数组中的记录
-			if ($.inArray(recordId, selectRows) != -1)
-				selectRows.splice($.inArray(recordId, selectRows), 1);
-		}
-	});
-
-	$("#contentTable").on("click", "input[name='headerCheckbox']", function(event) {
-		if ($(this).get(0).checked) {
-			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
-				var recordId = $(this).closest("tr").attr("id");
-				$(this).get(0).checked = true;
-				if ($.inArray(recordId, selectRows) == -1) {
-					selectRows.push(recordId);
-				}
-			});
-		} else {
-			$("#contentTable input[name='childCheckbox']").each(function(i, n) {
-				var recordId = $(this).closest("tr").attr("id");
-				$(this).get(0).checked = false;
-				if ($.inArray(recordId, selectRows) != -1) {
-					selectRows.splice($.inArray(recordId, selectRows), 1);
-				}
-			});
-
-		}
-	});
-	// 增加非全选判断，非全选时父checkbox不选中
-	$("#contentTable").on("click", "input[name='childCheckbox']", function(event) {
-		/*
-		 * if ($("#contentTable input[name='headerCheckbox']").is(':checked')) {
-		 * $("#contentTable
-		 * input[name='headerCheckbox']").attr("checked",false); }
-		 */
-		var checked_count = 0;
-		var num = 0;
-		num = $("#contentTable input[name='childCheckbox']").length;
-		$("#contentTable input[name='childCheckbox']").each(function(i, n) {
-			var recordId = $(this).closest("tr").attr("id");
-			if ($(this).get(0).checked == true) {
-				checked_count++;
-			}
-		});
-		if (num > checked_count) {
-			$("#contentTable input[name='headerCheckbox']").attr("checked", false);
-		} else if (num == checked_count) {
-			$("#contentTable input[name='headerCheckbox']").prop('checked', true);
-		}
-	});
-
-}
-
+/** ***************************初始化化左侧菜单、头部消息******************************************* */
 function initNavbar() {
 	var href = window.location.href;
 
@@ -503,7 +247,30 @@ function initLinkMenu() {
 			// 获取当前页面的左侧激活菜单名称 上面调用
 			txtActive = $(".nav-item.start.active .title").text();
 
-	
+			// 左侧搜索匹配激活状态
+			$("body").on("keyup", ".searchInput", function(e) {
+				var val = $(this).val();
+				var txts = $('.badge').prev('.title');
+				txts.each(function(i, v) {
+					var valAll = $(v).text();
+					var liParent = $(v).parent().parent().parent().parent();
+					var liParent2 = $(v).parent().parent();
+					if (valAll.indexOf(val) > -1 && val != '' && e.keyCode != '8' || val == '' && e.keyCode == '8' && txtActive == valAll) {
+						liParent.addClass("active open");
+						liParent.find(".sub-menu").css("display", "block");
+						liParent.find(".arrow").addClass("open");
+						liParent2.addClass("active");
+					}
+					if (val == "" && txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) <= 0 || txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) < 0) {
+						if (liParent2.hasClass("active")) {
+							liParent.find(".sub-menu").css("display", "none");
+							liParent.find(".arrow").removeClass("open");
+							liParent.removeClass("active open");
+						}
+						liParent2.removeClass("active");
+					}
+				})
+			});
 
 		}
 	};
@@ -512,639 +279,314 @@ function initLinkMenu() {
 
 }
 
+/**
+ * @author Zee
+ * @createDate 2021年4月2日 下午2:21:21
+ * @updateDate 2021年4月2日 下午2:21:21
+ * @description 初始化提醒消息
+ */
+function initMessage() {
+	if (!getCookies({
+		item : "token"
+	}))
+		return false;
+
+	var token = JSON.parse(getCookies({
+		item : "token"
+	}));
+	var userInfo = token.gpUser;
+	$("#userName").text(userInfo.userName);
+
+	var ajaxParameter = {
+		"url" : "/extend/swagger/gp/gprMessageUser/getSysListByJsonData",
+		"data" : "jsonData=" + JSON.stringify({
+			"entityRelated" : {
+				"userName" : token.userName,
+				"userId" : token.userId
+			}
+		}),
+		"dataType" : "json",
+		"type" : "GET",
+		"async" : true,
+		"success" : function(res) {
+			if (!validateLogin(res.resultCode))
+				return false;
+			if (res.totalCount == 0) {
+				$("#header_notification_bar .dropdown-menu").hide();
+				$("#header_notification_bar .badge").hide();
+				return false;
+			}
+
+			var html = '';
+			$("#header_notification_bar").find("span").text(res.totalCount);
+			$("#systematic").text(res.totalCount);
+			/*
+			 * $("#systematic-time").text(res.data[0].addTime)
+			 * $("#systematic-detiles").text(res.data[0].content)
+			 */
+			for (var i = 0; i < res.data.length; i++) {
+				html += '<li>' + '<a href="/pc/ss/gp/html/gp/MessageList.html">' + '<span class="time" id="systematic-time">' + res.data[i].addTime + '</span>' + '<span class="details" style="width: 160px;display: inline-block;">' + '<span class="label label-sm label-icon label-warning">' + '<i class="fa fa-bell-o"></i>' + res.data[i].content + '</span>'
+				'</span>' + '</a>' + '</li>'
+			}
+			$("#systematic-detiles").html(html)
+		}
+	};
+	universalAjax(ajaxParameter);
+
+	ajaxParameter = {
+		"url" : "/extend/swagger/gp/gprMessageUser/getUserListByJsonData",
+		"dataType" : "json",
+		"type" : "GET",
+		"async" : false,
+		"data" : "jsonData=" + JSON.stringify({
+			"entityRelated" : {
+				"userName" : token.userName,
+				"userId" : token.userId
+			}
+		}),
+		success : function(res) {
+			if (res.totalCount == 0) {
+				$("#header_inbox_bar .dropdown-menu").hide();
+				$("#header_inbox_bar .badge").hide();
+			}
+			var html = '';
+			$("#header_inbox_bar").find("span").text(res.totalCount);
+			$("#userInfo").text(res.totalCount);
+			for (var i = 0; i < res.data.length; i++) {
+				html += '<li>' + '<a href="/pc/ss/gp/html/gp/MessageList.html">' + '<span class="photo">' + '<img src="../../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">' + '</span>' + '<span class="subject">' + '<span class="from"> ' + res.data[i].userName + '</span>' + '<span class="time">' + res.data[i].addTime + '</span>' + '</span>' + '<span class="message"> ' + res.data[i].content + '</span>' + '</a>' + '</li>'
+			}
+			$("#userInfo-detiles").html(html)
+		}
+	};
+	universalAjax(ajaxParameter);
+
+}
+/** ***************************初始化化左侧菜单、头部消息******************************************* */
+
+/** ***************************获取/修改用户/应用相关配置******************************************* */
 
 /**
- * Zee 初始化表单按钮事件，并执行一次查询操作
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- * @param operationParam
- *            动作参数
+ * @author Zee
+ * @createDate 2021年1月22日 下午4:22:16
+ * @updateDate 2021年1月22日 下午4:22:16
+ * @description 获取并设置Cookie当前用户在当前应用领域下的配置
  */
-function initQueryForm(pageParam, ajaxParam, operationParam) {
-    $("#" + pageParam.formId).unbind("submit");
-    $("#" + pageParam.formId).submit(function (e) {
-        e.preventDefault();
-        // 执行查询动作要重新初始化pageIndex和pageSize
-        ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
-        ajaxParam.submitData.pageSize = DEFAULT_PAGE_SIZE;
-        return executeQuery(pageParam, ajaxParam, operationParam);
-    });
-    $("#resetButton").click(function (e) {
-        e.preventDefault();
-        $("#" + pageParam.formId)[0].reset();
-        $("input[type='hidden']").val("");
-        $(".selectpicker").selectpicker({
-            noneSelectedText: '请选择，可多选……',
-            width: ''
-        });
-        $(".selectpicker").selectpicker("refresh");
-        selectRows = new Array();
-        // 执行查询动作要重新初始化pageIndex和pageSize
-        ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
-        ajaxParam.submitData.pageSize = DEFAULT_PAGE_SIZE;
-        return executeQuery(pageParam, ajaxParam, operationParam);
-    });
-    $("#" + pageParam.formId).submit();
-}
-
-$("#submitButton").click(function (e) {
-    initQueryForm(pageParam, ajaxParam, operationParam);
-});
-
-/**
- * Zee 执行表单查询动作
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- * @param operationParam
- *            动作参数
- */
-function executeQuery(pageParam, ajaxParam, operationParam) {
-    var formData = $("#" + pageParam.formId).serializeArray();
-    // 将查询条件和其它请求参数组装
-    if (ajaxParam.submitData != null)
-        $.each(formData, function (i, n) {
-            ajaxParam.submitData.entityRelated[formData[i].name] = formData[i].value;
-        });
-    initNewGrid(pageParam, ajaxParam, operationParam);
-}
-
-/**
- * Zee 初始化数据表格
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- * @param operationParam
- *            动作参数
- */
-function initNewGrid(pageParam, ajaxParam, operationParam) {
-    $("#pageSizeSelect").val(ajaxParam.submitData.pageSize);
-    $("#" + pageParam.tableId).empty();
-    // 初始化表头部分
-    var header = "<thead><tr>";
-    header += "<th class='table-checkbox'  style='width:50px;'>";
-    header += "<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline'>";
-    header += "<input name='headerCheckbox' type='checkbox' class='group-checkable' />";
-    header += "<span></span></label></th><th style='width:30px;'>序号</th>";
-
-    for (var i = 0; i < ajaxParam.columnInfo.length; i++) {
-        if (typeof (ajaxParam.columnInfo[i].width) != "undefined")
-            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "' width='" + ajaxParam.columnInfo[i].width + "'>" + ajaxParam.columnInfo[i].columnText + "</th>";
-        else
-            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "'>" + ajaxParam.columnInfo[i].columnText + "</th>";
-    }
-
-    if (operationParam != null)
-        operationParam.length == 0 ? header += "</tr></thead>" : header += "<th style='min-width:105px;'>操作</th></tr></thead>";
-
-    $("#" + pageParam.tableId).append(header);
-
-    var orderListArray = new Array();
-    $("#" + pageParam.tableId + " th").unbind("click");
-    // 如果没有操作按钮，所有列均可有点击排序，如果有操作按钮最后一列不能排序
-    var $sortTh= $("#" + pageParam.tableId + " th:gt(1):not(:last)");
-   if(operationParam!=null&&operationParam.length==0)
-	   $sortTh= $("#" + pageParam.tableId + " th:gt(1)");
-   $sortTh.click(function () {
-        var orderColumn = {
-            "isASC": null,
-            "columnName": $(this).attr("columnName")
-        };
-
-        if ($(this).attr("class") == "sorting") {
-            $(this).attr("class", "sorting_asc");
-            $(this).attr("sortBy", "asc")
-            orderColumn.isASC = true;
-        } else if ($(this).attr("class") == "sorting_asc") {
-            $(this).attr("class", "sorting_desc");
-            $(this).attr("sortBy", "desc")
-            orderColumn.isASC = false;
-        } else {
-            $(this).attr("class", "sorting");
-            $(this).attr("sortBy", null);
-        }
-
-        if (containsColumn(orderListArray, orderColumn) >= 0)
-            orderListArray.splice(containsColumn(orderListArray, orderColumn), 1);
-        if (orderColumn.isASC != null)
-            orderListArray = orderListArray.prepend(orderColumn);
-
-        $("#" + pageParam.tableId + " th").each(function () {
-            if ($(this).attr("sortBy") == null || $(this).attr("sortBy") == '')
-                return true;
-
-        });
-
-        ajaxParam.submitData.orderList = orderListArray;
-        ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
-        ajaxParam.submitData.pageSize = DEFAULT_PAGE_SIZE;
-        if ($("#pageSizeSelect").val()) {
-            ajaxParam.submitData.pageSize = $("#pageSizeSelect").val();
-        }
-
-        pageClick(pageParam, ajaxParam, operationParam);
-    });
-
-    pageClick(pageParam, ajaxParam, operationParam);
-    bindPageButton(pageParam, ajaxParam, operationParam);
-    initTopRightButton(pageParam, ajaxParam, operationParam);
-}
-
-/**
- * Zee 分页代码
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- * @param operationParam
- *            动作参数
- */
-function pageClick(pageParam, ajaxParam, operationParam) {
-    var pageSize = ajaxParam.submitData.pageSize;
-    var pageIndex = ajaxParam.submitData.pageIndex;
-    $("#pageSizeSelect").val(pageSize);
-    $("#pageIndexHidden").val(pageIndex);
-
-    var total = 0;
-    var pageCount = 0;
-
-    ajaxParam.submitData.page = {
-        "pageIndex": pageIndex,
-        "pageSize": pageSize
-    };
-
-    var submitDataString = JSON.stringify(ajaxParam.submitData);
-
-    // 此处应该是同步请求才精确，否则无法保证pageCountText始终有正确的值，这个稍后改
-    var ajaxParamter = {
-        "url": ajaxParam.url,
-        "type": ajaxParam.type,
-        "data": "jsonData=" + submitDataString,
-        "async": true,
-        "success": function (message) {
-            total = message.totalCount;
-            var data = message.data;
-            pageIndex = parseInt(pageIndex);
-
-            $("#" + pageParam.tableId + " tr").not($("#" + pageParam.tableId + " tr")[0]).remove();
-
-            if (total == null || total == 0) {
-                $("#contentTable input[name='headerCheckbox']").get(0).checked = false;
-                noResult();
-                return;
-            } else if (data.length == 0) {
-                if (pageIndex > 1) {
-                    ajaxParam.submitData.pageIndex--;
-                    pageClick(pageParam, ajaxParam, operationParam);
-                    return;
-                } else {
-                    noResult();
-                    return;
-                }
-            }
-            $("#" + pageParam.tableId).append("<tbody");
-            $.each(data, function (a, n) {
-
-                var row = "<tr> class='odd gradeX'";
-                row += "<td><label class='mt-checkbox mt-checkbox-single mt-checkbox-outline'>";
-                row += "<input name='childCheckbox' type='checkbox' class='checkboxes' value='1' />";
-                row += "<span></span></label></td>";
-                row += "<td>";
-
-                row += ((pageIndex - 1) * pageSize + a + 1);
-                row += "</td>";
-                var col = "";
-                var trId = ""// 单一记录主键
-
-                for (var i = 0; i < ajaxParam.columnInfo.length; i++) {
-                    col = ajaxParam.columnInfo[i].columnName;
-
-                    row += "<td";
-                    ajaxParam.columnInfo[i].class == null ? row += "" : row += " class='" + ajaxParam.columnInfo[i].class + "'";
-                    ajaxParam.columnInfo[i].style == null ? row += "" : row += " style='" + ajaxParam.columnInfo[i].style + "'";
-                    row += ">";
-                    if (n[col] == null) {
-                        row += "</td>";
-                        continue;
-                    }
-                    if (ajaxParam.columnInfo[i].linkFunction != null)
-                        row += "<a style='color:#337ab7;' href='" + ajaxParam.columnInfo[i].linkFunction(n) + "'>";
-                    if (ajaxParam.columnInfo[i].bgcolorFunction != null)
-                        row += "<span class='" + ajaxParam.columnInfo[i].bgcolorFunction(n) + "'>";
-
-                    row += n[col];
-                    if (ajaxParam.columnInfo[i].linkFunction != null)
-                        row += "</a>";
-                    if (ajaxParam.columnInfo[i].bgcolorFunction != null)
-                        row += "</span>";
-                    row += "</td>";
-                }
-
-                // 第一次遍历，插入操作按钮
-                if (operationParam != null && operationParam.length != 0) {
-                    row += "<td>&nbsp;&nbsp;"
-                    $.each(operationParam, function (b, m) {
-                        // 如果visibleFunction方法参数返回的是false，则不显示操作按钮
-                        if (m.visibleFunction != null)
-                            if (!m.visibleFunction(n))
-                                return true;
-                        row += "<button class='btn default btn-xs ";
-                        if (m.buttonClass != undefined)
-                            row += m.buttonClass;
-
-                        row += "' id='" + m.operationText + "'>";
-
-                        row += "<i class=' ";
-                        if (m.iconClass != undefined)
-                            row += m.iconClass;
-                        row += "'></i>";
-
-                        row += m.operationText;
-                        row += "</button>&nbsp;&nbsp;";
-
-                    });
-                    row += "</td></tr>";
-
-                    row = $(row);
-                    // 兼容之前的获取记录主键写法
-                    n.recordId = n["id"];
-                    // 第二次遍历，给操作按钮添加相应事件，把整条记录的所有参数返回
-                    $.each(operationParam, function (b, m) {
-                        row.find("#" + m.operationText).unbind("click");
-                        row.find("#" + m.operationText).click(n, m.clickFunction);
-                    });
-
-                }
-                row = $(row);
-                row.attr("id", n["id"]);
-                // 行头的checkbox是否选中
-                if ($.inArray(n["id"], selectRows) == -1)
-                    row.find("input[type='checkbox']").get(0).checked = false;
-                else
-                    row.find("input[type='checkbox']").get(0).checked = true;
-
-                $("#" + pageParam.tableId).append(row);
-            });
-            $("#" + pageParam.tableId).append("</tbody>");
-            if (pageSize == 0)
-                pageSize = total;
-            if (total % pageSize == 0)
-                pageCount = total / pageSize;
-            else
-                pageCount = parseInt(total / pageSize) + 1;
-            if ($("#gotoPageText").val() != pageIndex) {
-                $("#gotoPageText").val(null);
-            }
-            $("#pageCountHidden").val(pageCount);
-            $("#totalCountSpan").text(total);
-            $("#pageIndexSpan").text(pageIndex + "/" + pageCount);
-            // 判断列头的复选框是否被选择,如果当前页所有的列都被选择,则复选框处于选中状态
-            var isSelectAll = true;
-            if ($("#contentTable input[name='childCheckbox']").length == 0)// 如果一条数据都没有，也不能选中
-                isSelectAll = false;
-            else
-                $("#contentTable input[name='childCheckbox']").each(function (i, n) {
-                    var recordId = $(n).closest("tr").attr("id");
-                    if ($.inArray(recordId, selectRows) == -1) {
-                        isSelectAll = false;
-                        return false;
-                    }
-                    return true;
-                });
-            if (isSelectAll)
-                $("#contentTable input[name='headerCheckbox']").get(0).checked = true;
-            else
-                $("#contentTable input[name='headerCheckbox']").get(0).checked = false;
-
-            return false;
-        },
-
-    };
-
-    universalAjax(ajaxParamter);
-
-}
-
-function containsColumn(array, item) {
-    for (var i in array)
-        if (array[i].columnName == item.columnName)
-            return i
-
-    return -1;
-}
-
-Array.prototype.prepend = function (needle) {
-    var a = this.slice(0);
-
-    // 使用unshift方法向a开头添加item
-    a.unshift(needle);
-    return a;
-}
-
-/**
- * Zee 初始化分页按钮事件
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- * @param operationParam
- *            动作参数
- */
-function bindPageButton(pageParam, ajaxParam, operationParam) {
-
-    $("#firstA").unbind("click");
-    $("#prviousA").unbind("click");
-    $("#nextA").unbind("click");
-    $("#lastA").unbind("click");
-    $("#gotoPageA").unbind("click");
-
-    $("#gotoPageText").unbind("change");
-    $("#pageSizeSelect").unbind("change");
-
-    var pageSize = ajaxParam.submitData.pageSize;
-    var pageIndex = ajaxParam.submitData.pageIndex;
-
-    // 第一页
-    $("#firstA").click(function () {
-        if (ajaxParam.submitData.pageIndex != 1) {
-            ajaxParam.submitData.pageIndex = 1;
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    });
-
-    // 上一页
-    $("#prviousA").click(function () {
-        if (ajaxParam.submitData.pageIndex != 1) {
-            ajaxParam.submitData.pageIndex--;
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    });
-
-    // 最后一页
-    $("#lastA").click(function () {
-        var pageCount = $("#pageCountHidden").val();
-        if (ajaxParam.submitData.pageIndex != pageCount) {
-            ajaxParam.submitData.pageIndex = pageCount;
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    });
-
-    // 下一页
-    $("#nextA").click(function () {
-        var pageCount = $("#pageCountHidden").val();
-        if (ajaxParam.submitData.pageIndex != pageCount) {
-            ajaxParam.submitData.pageIndex++;
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    });
-
-    $("#pageSizeSelect").change(function () {
-
-        ajaxParam.submitData.pageSize = $("#pageSizeSelect").val();
-        ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
-
-        var userConfig = getUserConfigByCode("pageSize");
-        userConfig.configValue = ajaxParam.submitData.pageSize
-        updateUserConfig(userConfig);
-
-        pageClick(pageParam, ajaxParam, operationParam);
-    });
-
-    // 跳转到
-    $("#gotoPageText").keyup(function () {
-        // if (event.keyCode == 13)
-        gotoPage(pageParam, ajaxParam, operationParam);
-    });
-    $("#gotoPageButton").click(function () {
-        gotoPage(pageParam, ajaxParam, operationParam);
-    });
-
-    function gotoPage(pageParam, ajaxParam, operationParam) {
-        var pageCount = $("#pageCountHidden").val();
-        var gotoPage = $("#gotoPageText").val();
-
-        var r = /^[0-9]*[1-9][0-9]*$/
-
-        if (!r.test(gotoPage)) {
-            return false;
-        }
-        if (eval(gotoPage) < 1 || eval(gotoPage) > pageCount) {
-            return false;
-        }
-
-        var intGotoPage = parseInt(gotoPage);
-        ajaxParam.submitData.pageIndex = intGotoPage;
-        pageClick(pageParam, ajaxParam, operationParam);
-        return false;
-    }
-}
-
-function initTopRightButton(pageParam, ajaxParam, operationParam) {
-    // 处理表格右上角的通用按键单击事件
-    $("#addButton").unbind("click");
-    $("#addButton").click(function () {
-        window.location.href = pageParam.addPage.url;
-    });
-    $("#batchDeleteButton").unbind("click");
-    $("#batchDeleteButton").click(function () {
-        if (selectRows.length == 0) {
-            layer.alert('请选择要删除的记录！', {
-                icon: 6
-            });
-            return false;
-        }
-
-        layer.confirm('您确定要删除这' + selectRows.length + '条记录？', {
-            btn: ['确定', '取消']
-        }, function () {
-            layer.closeAll('dialog');
-            ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
-            ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
-            pageParam.deleteListInterface.type = "POST";
-            pageParam.deleteListInterface.submitData = {
-                idList: selectRows
-            };
-
-            deleteRecordList(pageParam, ajaxParam, operationParam);
-
-            return false;
-        });
-
-    });
-    $("#batchEditButton").unbind("click");
-    $("#batchEditButton").click(function () {
-        if (selectRows.length == 0) {
-            layer.alert('请选择要修改的记录！', {
-                icon: 6
-            });
-            return false;
-        }
-
-        var date = new Date();
-        date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-        
-      
-    	var cookieData={
-    			item:"selectRows",
-    			data: selectRows,
-    			path:'/'
-    	};
-    	
-    	setCookies(cookieData);
-       
-        pageParam.editPage.selectRows = selectRows;
-
-        popUpPage(pageParam.editPage);
-    });
-    $("#batchExportButton").unbind("click");
-    $("#batchExportButton").click(function () {
-
-        var excelJsonData = {
-            "columnInfo": ajaxParam.columnInfo,
-            "selectRows": selectRows
-        };
-
-        $.extend(excelJsonData, ajaxParam.submitData);
-        if (selectRows.length == 0)
-            layer.msg('未选择要导出的记录，默认导出当前页……', {
-                time: 1500
-            });
-        // 如果有选择删除分页信息，默认导出最大分页值，由后台常量控制SQLQUERY_KEYWORDS_PAGESIZE_MAX
-        else
-            delete excelJsonData.page;
-
-        location.href = INTERFACE_SERVER + pageParam.exportExcelInterface.url + "?jsonData=" + JSON.stringify(excelJsonData);
-    });
+function setDomainConfig() {
+
+	var ajaxParameter = {
+		"url" : RU_GPRCONFIGUSER_GETCURRENTUSERCONFIG,
+		"type" : "GET",
+		"async" : false,
+		"success" : function(result) {
+			var infoData = JSON.stringify(result.data);
+			var cookieData = {
+				item : "userConfig",
+				data : infoData,
+				path : '/'
+			};
+			setCookies(cookieData);
+		}
+	};
+	universalAjax(ajaxParameter);
 
 }
 
 /**
- * Zee 删除指定数据
- * 
- * @param ajaxParam
- *            ajax参数
+ * @author Zee
+ * @createDate 2021年1月22日 下午2:50:39
+ * @updateDate 2021年1月22日 下午2:50:39
+ * @description 根据Key获取用户配置
  */
-function deleteRecord(pageParam, ajaxParam, operationParam) {
+function getUserConfigByCode(code) {
+	var userConfigListCookie = getCookies({
+		item : "userConfig"
+	});
+	var userConfig = null;
+	if (userConfigListCookie) {
+		var userConfigList = JSON.parse(userConfigListCookie);
 
-    var type = pageParam.deleteInterface.type;
-    var submitData = pageParam.deleteInterface.submitData;
-    var url = pageParam.deleteInterface.url;
-    if (type == null)
-        type = "GET";
+		$.each(userConfigList, function(i, n) {
+			if (n.code == code) {
+				userConfig = n;
+				return false;
+			}
+		});
+	}
+	return userConfig;
+}
 
-    var ajaxParamter = {
-        "url": url,
-        "data": submitData,
-        "type": type,
-        "async": true,
-        "success": function (resultData) {
-            if (!resultData["isSuccess"]) {
-                layer.alert(resultData["resultMessage"], {
-                    icon: 6
-                });
-                return false;
-            }
+/**
+ * @author Zee
+ * @createDate 2021年1月22日 下午3:13:09
+ * @updateDate 2021年1月22日 下午3:13:09
+ * @description 更新用户配置
+ */
+function updateUserConfig(userConfig) {
+	var ajaxParamter = {
+		"url" : RU_GPRCONFIGUSER_ADDORUPDATE,
+		"data" : JSON.stringify({
+			configId : userConfig.configId,
+			configValue : userConfig.configValue
+		}),
+		"success" : function(resultData) {
+			// 后台更新成功后，重新初始化本地Cookie
+			setDomainConfig();
+		}
+	};
 
-            // 一旦数据删除成功，就从数组中移除相应记录的ID
-            if (pageParam.deleteInterface.submitData.id != null && $.inArray(pageParam.deleteInterface.submitData.id, selectRows) != -1)
-                selectRows.splice($.inArray(pageParam.deleteInterface.submitData.id, selectRows), 1);
-            if (pageParam.deleteInterface.submitData.idList != null) {
-                var idList = pageParam.deleteInterface.submitData.idList;
-                // 将数组中的的记录数单独存下来，如果一边遍历，一边删除，怎么也删除不干净的。专门写了处理这种情况的算法
-                var arrayLength = selectRows.length;
-                var preId;
-                var i = 0;
-                while (i < arrayLength) {
-                    preId = idList[i];
-                    if ($.inArray(preId, selectRows) != -1)
-                        selectRows.splice($.inArray(preId, selectRows), 1);
-                    arrayLength = selectRows.length;
-                    // 说明数组中已经移除相应数据了
-                    if (selectRows[i] != preId) {
-                        if (i == 0)
-                            continue;
-                        else
-                            i--;
-                    } else {
-                        i++;
-                    }
-                }
+	universalAjax(ajaxParamter);
+}
+/**
+ * ***************************获取/修改 用户/应用
+ * 相关配置*******************************************
+ */
 
-            }
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    };
+/** ***************************本地存储相关方法（Cookie和localStorage）******************************************* */
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:27:14
+ * @updateDate 2021年3月25日 下午3:27:14
+ * @description 存储Cookie信息，如果支持localStorage优先使用
+ */
+function setCookies(cookieData) {
+	if (window.localStorage) {
+		localStorage.removeItem(cookieData.item);
+		localStorage.setItem(cookieData.item, cookieData.data);
+	} else {
+		Cookies.remove(cookieData.item);
 
-    universalAjax(ajaxParamter);
+		if (cookieData.date == null) {
+			var date = new Date();
+			date.setTime("Fri, 31 Dec 9999 23:59:59 GMT");
+			cookieData.date = date;
+		}
+		Cookies.set(cookieData.item, cookieData.data, {
+			path : cookieData.path,
+			expires : cookieData.date
+		});
+	}
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:24
+ * @updateDate 2021年3月25日 下午3:36:24
+ * @description 移除Cookie信息 如果支持localStorage优先使用
+ */
+function removeCookies(cookieData) {
+
+	if (window.localStorage)
+		localStorage.removeItem(cookieData.item);
+	else
+		Cookies.remove(cookieData.item);
+}
+
+/**
+ * @author Zee
+ * @createDate 2021年3月25日 下午3:36:09
+ * @updateDate 2021年3月25日 下午3:36:09
+ * @description 获取Cookie信息 如果支持localStorage优先使用
+ */
+function getCookies(cookieData) {
+	if (window.localStorage)
+		return localStorage.getItem(cookieData.item);
+	else
+		return Cookies.get(cookieData.item);
+}
+/** ***************************本地存储相关方法（Cookie和localStorage）******************************************* */
+
+/** ***************************校验相关方法******************************************* */
+function promptElementRules(pageParam) {
+	var validateResult = true;
+	var dr = pageParam.promptElementRules;
+	if (dr != "" && dr != null && dr != undefined) {
+		var len = dr.length;
+		for (var i = 0; i < len; i++) {
+			if (!($("#" + dr[i].elementId).is(":hidden"))) {
+				validateResult = false;
+			}
+		}
+	}
+	return validateResult;
+}
+
+function getPropertyName(fieldName) {
+
+	var array = fieldName.split("");
+	var prefix = null;
+	for (var n = 0; n < array.length; n++) {
+		if (array[n].toLocaleString().charCodeAt(0) >= 65 && array[n].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
+		{
+			prefix = fieldName.substr(0, n);
+			break;
+		}
+	}
+	var tagLength = prefix == null ? 0 : prefix.length;
+	var prop = fieldName.substr(tagLength);
+	prop = prop.substr(0, 1).toLowerCase() + prop.substr(1);
+	return prop;
+}
+
+function lengthVerificationRules(pageParam) {
+	var validateResult = true;
+	var dr = pageParam.lengthVerificationRules;
+	if (dr != "" && dr != null && dr != undefined) {
+		var len = dr.length;
+		for (var i = 0; i < len; i++) {
+			$("#errorBox_" + dr[i].promptId).hide();
+			var len1 = $("#" + dr[i].elementId).val().length;
+			var len2 = parseInt(dr[i].lengthRestrict);
+			if ($("#" + dr[i].elementId).val().length >= parseInt(dr[i].lengthRestrict)) {
+				validateResult = false;
+				$("#errorBox_" + dr[i].promptId).show();
+			}
+		}
+	}
+	return validateResult;
+}
+
+function ajaxRules(pageParam) {
+	var passCheck = true;
+	var rs = pageParam.ajaxRules;
+	if (rs != "" && rs != null && rs != undefined) {
+		for (var i = 0, len = rs.length; i < len; i++) {
+			var rst = $("#errorBox_" + rs[i].eid).attr("passCheck");
+			if (rst == "false") {
+				passCheck = false;
+				break;
+			}
+		}
+	}
+	return passCheck;
 
 }
 
-function deleteRecordList(pageParam, ajaxParam, operationParam) {
-    var type = pageParam.deleteListInterface.type;
-    var submitData = pageParam.deleteListInterface.submitData;
-    var url = pageParam.deleteListInterface.url;
+function dynamicRules(pageParam) {
 
-    if (type.toUpperCase() == "POST" && submitData != null) {
-        url = pageParam.deleteListInterface.url;
-        submitData = JSON.stringify(submitData);
-    }
+	var validateResult = true;
+	var dr = pageParam.dynamicRules;
+	if (dr != "" && dr != null && dr != undefined) {
 
-    var ajaxParamter = {
-        "url": url,
-        "data": submitData,
-        "type": type,
-        "async": true,
-        "success": function (resultData) {
-            if (!resultData["isSuccess"]) {
-                layer.alert(resultData["resultMessage"], {
-                    icon: 6
-                });
-                return false;
-            }
+		var len = dr.length;
+		for (var i = 0; i < len; i++) {
 
-            // 一旦数据删除成功，就从数组中移除相应记录的ID
-            if (pageParam.deleteListInterface.submitData.id != null && $.inArray(pageParam.deleteListInterface.submitData.id, selectRows) != -1)
-                selectRows.splice($.inArray(pageParam.deleteListInterface.submitData.id, selectRows), 1);
-            if (pageParam.deleteListInterface.submitData.idList != null) {
-                var idList = pageParam.deleteListInterface.submitData.idList;
-                // 将数组中的的记录数单独存下来，如果一边遍历，一边删除，怎么也删除不干净的。专门写了处理这种情况的算法
-                var arrayLength = selectRows.length;
-                var preId;
-                var i = 0;
-                while (i < arrayLength) {
-                    preId = idList[i];
-                    if ($.inArray(preId, selectRows) != -1)
-                        selectRows.splice($.inArray(preId, selectRows), 1);
-                    arrayLength = selectRows.length;
-                    // 说明数组中已经移除相应数据了
-                    if (selectRows[i] != preId) {
-                        if (i == 0)
-                            continue;
-                        else
-                            i--;
-                    } else {
-                        i++;
-                    }
-                }
-
-            }
-            pageClick(pageParam, ajaxParam, operationParam);
-        }
-    };
-
-    universalAjax(ajaxParamter);
-
+			$("#errorBox_" + dr[i].slave).hide();
+			if ($("#" + dr[i].master).val() == dr[i].value) {
+				if ($("#" + dr[i].slave).val() == "") {
+					$("#errorBox_" + dr[i].slave).show();
+					validateResult = false;
+				}
+			}
+		}
+		if (!$("#errorBox_ImgFormVerification").is(":hidden")) {
+			$("#errorBox_hiddenImgPath").hide();
+		}
+	}
+	return validateResult;
 }
+/** ***************************校验相关方法******************************************* */
 
+/** ***************************通用初始化组件方法（下拉框、单选框、自动填充）******************************************* */
 /**
  * Zee 初始化下拉框
  * 
@@ -1155,39 +597,38 @@ function deleteRecordList(pageParam, ajaxParam, operationParam) {
  */
 function initDropDownList(selectParam, ajaxParam) {
 
-    var type = ajaxParam.type;
-    var submitData = ajaxParam.submitData;
+	var type = ajaxParam.type;
+	var submitData = ajaxParam.submitData;
 
-    if (type == null)
-        type = "GET";
-    if (type.toUpperCase() == "POST" && type != null)
-        submitData = JSON.stringify(submitData);
+	if (type == null)
+		type = "GET";
+	if (type.toUpperCase() == "POST" && type != null)
+		submitData = JSON.stringify(submitData);
 
-    var ajaxParamter = {
-        "url": ajaxParam.url,
-        "data": submitData,
-        "type": type,
-        "async": false,
-        "success": function (message) {
-            if (!message["isSuccess"]) {
-                layer.alert(resultData["resultMessage"], {
-                    icon: 6
-                });
-                return false;
-            }
-            $.each(message.data, function (i, n) {
-                $("#" + selectParam.selectId).append("<option value='" + n[selectParam.valueField] + "'>" + n[selectParam.textField] + "</option>");
-            });
+	var ajaxParamter = {
+		"url" : ajaxParam.url,
+		"data" : submitData,
+		"type" : type,
+		"async" : false,
+		"success" : function(message) {
+			if (!message["isSuccess"]) {
+				layer.alert(resultData["resultMessage"], {
+					icon : 6
+				});
+				return false;
+			}
+			$.each(message.data, function(i, n) {
+				$("#" + selectParam.selectId).append("<option value='" + n[selectParam.valueField] + "'>" + n[selectParam.textField] + "</option>");
+			});
 
-            return false;
-        },
+			return false;
+		},
 
-    };
+	};
 
-    universalAjax(ajaxParamter);
+	universalAjax(ajaxParamter);
 
 }
-
 
 /**
  * Zee 初始化单选按钮组
@@ -1199,84 +640,111 @@ function initDropDownList(selectParam, ajaxParam) {
  */
 function initRadioList(radioParam, ajaxParam) {
 
-    var type = ajaxParam.type;
-    var submitData = ajaxParam.submitData;
+	var type = ajaxParam.type;
+	var submitData = ajaxParam.submitData;
 
-    if (type == null)
-        type = "GET";
-    if (type.toUpperCase() == "POST" && type != null)
-        submitData = JSON.stringify(submitData);
+	if (type == null)
+		type = "GET";
+	if (type.toUpperCase() == "POST" && type != null)
+		submitData = JSON.stringify(submitData);
 
-    var ajaxParamter = {
-        "url": ajaxParam.url,
-        "data": submitData,
-        "type": type,
-        "async": false,
-        "success": function (message) {
-            if (!message["isSuccess"]) {
-                layer.alert(resultData["resultMessage"], {
-                    icon: 6
-                });
-                return false;
-            }
-            $.each(message.data, function (i, n) {
-                var html = "<label class='mt-radio'>";
-                html += "<input type='radio' name='";
-                html += radioParam.name;
-                html += "' value='";
-                html += n[radioParam.valueField];
-                html += "'>";
-                html += n[radioParam.textField];
-                html += "<span></span>";
-                html += "</label>";
+	var ajaxParamter = {
+		"url" : ajaxParam.url,
+		"data" : submitData,
+		"type" : type,
+		"async" : false,
+		"success" : function(message) {
+			if (!message["isSuccess"]) {
+				layer.alert(resultData["resultMessage"], {
+					icon : 6
+				});
+				return false;
+			}
+			$.each(message.data, function(i, n) {
+				var html = "<label class='mt-radio'>";
+				html += "<input type='radio' name='";
+				html += radioParam.name;
+				html += "' value='";
+				html += n[radioParam.valueField];
+				html += "'>";
+				html += n[radioParam.textField];
+				html += "<span></span>";
+				html += "</label>";
 
-                $("#" + radioParam.containerId).append(html);
-            });
+				$("#" + radioParam.containerId).append(html);
+			});
 
-            return false;
-        },
+			return false;
+		},
 
-    };
+	};
 
-    universalAjax(ajaxParamter);
+	universalAjax(ajaxParamter);
 
 }
 
+// 初始化AutoComplete输入框
+function initAutoComplete(itemParam, ajaxParam) {
+	var autoCompleteCache = {};
+	// 失去输入焦点后，如果显示值为空，则同时清空隐藏值
+	$("#" + itemParam.textFieldInputId).unbind("blur");
+	$("#" + itemParam.textFieldInputId).bind("blur", function() {
+		if ($("#" + itemParam.textFieldInputId).val() == "") {
+			$("#" + itemParam.textFieldInputId).val("");
+			$("#" + itemParam.valueFieldInputId).val("");
+		} else {
+			// 如果是已经存在缓存中的关键字，也就是输入到文本框中的文字是不能提交的，只能选择后才能提交
+			if (($("#" + itemParam.textFieldInputId).val() in autoCompleteCache) || $("#" + itemParam.textFieldInputId).val().toString().length == 1) {
+				$("#" + itemParam.textFieldInputId).val("");
+				$("#" + itemParam.valueFieldInputId).val("");
+			}
+		}
+	});
 
-function initCommonFormPage(formId, ajaxParam) {
+	$("#" + itemParam.textFieldInputId).autocomplete({
+		minLength : 2,
+		autoFocus : true,
+		source : function(request, response) {
+			var term = request.term;
+			if (term in autoCompleteCache) {
+				response($.map(autoCompleteCache[term], function(item) {
+					return {
+						value : item[itemParam.textField],
+						label : item[itemParam.textField],
+						submitValue : item[itemParam.valueField]
+					}
+				}));
+				return;
+			}
+			// 将关键字赋予模糊查询的键
+			ajaxParam.jsonData.entityRelated.autoCompleteKey = request.term;
 
-    $("#backButton").click(function () {
-        self.location = ajaxParam.backUrl;
-    });
-    var id = request(RECORD_ID);
-    var form = $("#" + formId);
-    if (id != undefined && id != null && $("#textRecordId") != undefined && $("#textRecordId") != null)
-        $("#textRecordId").val(id);
+			var ajaxParamter = {
+				"url" : ajaxParam.url + "?jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.jsonData)),
+				"async" : true,
+				"type" : "GET",
+				"success" : function(resultData) {
+					autoCompleteCache[term] = resultData.data;
+					response($.map(resultData.data, function(item) {
+						return {
+							value : item[itemParam.textField],
+							label : item[itemParam.textField],
+							submitValue : item[itemParam.valueField]
+						}
+					}));
+				}
+			};
+			universalAjax(ajaxParamter);
 
-    $("#submitButton").click(function () {
-        var formString = form.serializeArray();
-        $.ajax({
-            type: "POST",
-            dataType: "JSON",
-            data: formString,
-            url: ajaxParam.ajaxUrl,
-            success: function (message) {
-                if (!message["isSuccess"]) {
-                    layer.alert(message["resultMessage"], {
-                        icon: 6
-                    });
-                    return false;
-                }
-
-                window.location.href = ajaxParam.overTargetUrl;
-                return false;
-            },
-            error: ajaxErrorFunction
-        });
-
-    });
+		},
+		select : function(e, ui) {
+			$("#" + itemParam.valueFieldInputId).val(ui.item.submitValue);
+		}
+	});
 }
+/** ***************************通用初始化组件方法（下拉框、单选框、自动填充）******************************************* */
 
+/** ***************************通用Ajax处理方法******************************************* */
 /**
  * Zee 通用ajax处理方法
  * 
@@ -1284,100 +752,53 @@ function initCommonFormPage(formId, ajaxParam) {
  */
 function universalAjax(ajaxParameter) {
 
-    if (ajaxParameter.url == null) {
-        layer.alert("请求链接不能为空！", {
-            icon: 6
-        });
-        return;
-    }
-    if (ajaxParameter.crossDomain == null)
-        ajaxParameter.crossDomain = false;
-    if (ajaxParameter.type == null)
-        ajaxParameter.type = "POST";
-    if (ajaxParameter.contentType == null)
-        ajaxParameter.contentType = "application/json;charset=utf-8";
-    if (ajaxParameter.dataType == null)
-        ajaxParameter.dataType = "JSON";
-    if (ajaxParameter.async == null)
-        ajaxParameter.async = true;
-    if (ajaxParameter.success == null)
-        ajaxParameter.success = ajaxSuccessFunction;
-    if (ajaxParameter.error == null)
-        ajaxParameter.error = ajaxErrorFunction;
-    if (ajaxParameter.headers == null) {
-        var dataStr = getCookies({item:"token"});
-        ajaxParameter.headers = {
-            "Authorization": "Bearer " + JSON.parse(dataStr).accessToken,
-            "ClientId": JSON.parse(dataStr).clientId
-        };
-    }
+	if (ajaxParameter.url == null) {
+		layer.alert("请求链接不能为空！", {
+			icon : 6
+		});
+		return;
+	}
+	if (ajaxParameter.crossDomain == null)
+		ajaxParameter.crossDomain = false;
+	if (ajaxParameter.type == null)
+		ajaxParameter.type = "POST";
+	if (ajaxParameter.contentType == null)
+		ajaxParameter.contentType = "application/json;charset=utf-8";
+	if (ajaxParameter.dataType == null)
+		ajaxParameter.dataType = "JSON";
+	if (ajaxParameter.async == null)
+		ajaxParameter.async = true;
+	if (ajaxParameter.success == null)
+		ajaxParameter.success = ajaxSuccessFunction;
+	if (ajaxParameter.error == null)
+		ajaxParameter.error = ajaxErrorFunction;
+	if (ajaxParameter.headers == null) {
+		var dataStr = getCookies({
+			item : "token"
+		});
+		ajaxParameter.headers = {
+			"Authorization" : "Bearer " + JSON.parse(dataStr).accessToken,
+			"ClientId" : JSON.parse(dataStr).clientId
+		};
+	}
 
-    var url = ajaxParameter.url;
-    var data = ajaxParameter.data;
+	var url = ajaxParameter.url;
+	var data = ajaxParameter.data;
 
-    url = INTERFACE_SERVER + url;
+	url = INTERFACE_SERVER + url;
 
-    $.ajax({
-        url: url,
-        type: ajaxParameter.type,
-        contentType: ajaxParameter.contentType,
-        headers: ajaxParameter.headers,
-        data: data,
-        dataType: ajaxParameter.dataType,
-        async: ajaxParameter.async,
-        error: ajaxParameter.error,
-        beforeSend: ajaxParameter.beforeSend,
-        success: ajaxParameter.success
-    });
-}
-
-function convertToColumnName(property) {
-    for (i = 0; i < property.length; i++) {
-        if (/[A-Z]/.test(property.charAt(i)))
-            property = property.replace(property.charAt(i), '_' + property.charAt(i).toLowerCase());
-    }
-    return property;
-}
-
-function popUpPage(pageParam) {
-    var width = "800px";
-    var height = $(window).height() - 50 + 'px';
-    var offsetTop = '20px';
-    var offsetRight = "";
-
-    if (typeof (pageParam.width) != "undefined")
-        width = pageParam.width;
-    if (typeof (pageParam.height) != "undefined") {
-        height = pageParam.height;
-        offsetTop = ($(window).height() - pageParam.height) / 2 + 'px';
-    }
-    if (typeof (pageParam.offsetTop) != "undefined")
-        offsetTop = pageParam.offsetTop;
-    if (typeof (pageParam.offsetRight) != "undefined")
-        offsetRight = pageParam.offsetRight;
-
-    layer.open({
-        type: 2,
-        title: pageParam.title,
-        content: pageParam.url,
-        area: [width, height],
-        offset: [offsetTop, offsetRight]
-    });
-}
-
-/**
- * Zee 接受页面传递的参数
- * 
- * @param name
- *            传递参数
- * @returns 参数值
- */
-function request(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null)
-        return unescape(r[2]);
-    return null;
+	$.ajax({
+		url : url,
+		type : ajaxParameter.type,
+		contentType : ajaxParameter.contentType,
+		headers : ajaxParameter.headers,
+		data : data,
+		dataType : ajaxParameter.dataType,
+		async : ajaxParameter.async,
+		error : ajaxParameter.error,
+		beforeSend : ajaxParameter.beforeSend,
+		success : ajaxParameter.success
+	});
 }
 
 /**
@@ -1389,1657 +810,135 @@ function request(name) {
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	layer.closeAll();
-	var statusText=XMLHttpRequest.statusText;
-    if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
-    	
-    	var result = JSON.parse(XMLHttpRequest.responseText)
-        // Token过期
-        if(result.resultCode==RESULT_CODE_TOKEN_EXPIRED){
-            layer.msg(result.resultMessage, {
-                time: 1500
-            });
-            removeCookies({item:"token"});
-        	location.href = '../lo/Login.html';
-        	return;
-        }
-    	
-        layer.alert(result.resultMessage, {
-            icon: 6
-        });
+	var statusText = XMLHttpRequest.statusText;
+	if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
 
-    } else if(textStatus=="error"&&statusText.indexOf("NetworkError")>-1){
-    	   layer.alert("调用后台接口时出现错误！请检查网络连接……", {
-               icon: 6
-           });
-    	  return false;
-    }else {
-        layer.alert("调用后台接口时出现错误！" + textStatus + " " + errorThrown, {
-            icon: 6
-        });
-    }
+		var result = JSON.parse(XMLHttpRequest.responseText)
+		// Token过期
+		if (result.resultCode == RESULT_CODE_TOKEN_EXPIRED) {
+			layer.msg(result.resultMessage, {
+				time : 1500
+			});
+			removeCookies({
+				item : "token"
+			});
+			location.href = '../lo/Login.html';
+			return;
+		}
+
+		layer.alert(result.resultMessage, {
+			icon : 6
+		});
+
+	} else if (textStatus == "error" && statusText.indexOf("NetworkError") > -1) {
+		layer.alert("调用后台接口时出现错误！请检查网络连接……", {
+			icon : 6
+		});
+		return false;
+	} else {
+		layer.alert("调用后台接口时出现错误！" + textStatus + " " + errorThrown, {
+			icon : 6
+		});
+	}
 }
+/** ***************************通用Ajax处理方法******************************************* */
 
-function noResult() {
-    $("#totalCountSpan").text(0);
-    $("#pageIndexSpan").text(0 + "/" + 0);
-}
-
-function dynamicRules(pageParam) {
-
-    var validateResult = true;
-    var dr = pageParam.dynamicRules;
-    if (dr != "" && dr != null && dr != undefined) {
-
-        var len = dr.length;
-        for (var i = 0; i < len; i++) {
-
-            $("#errorBox_" + dr[i].slave).hide();
-            if ($("#" + dr[i].master).val() == dr[i].value) {
-                if ($("#" + dr[i].slave).val() == "") {
-                    $("#errorBox_" + dr[i].slave).show();
-                    validateResult = false;
-                }
-            }
-        }
-        if (!$("#errorBox_ImgFormVerification").is(":hidden")) {
-            $("#errorBox_hiddenImgPath").hide();
-        }
-    }
-    return validateResult;
-}
-
-function ajaxRules(pageParam) {
-    var passCheck = true;
-    var rs = pageParam.ajaxRules;
-    if (rs != "" && rs != null && rs != undefined) {
-        for (var i = 0, len = rs.length; i < len; i++) {
-            var rst = $("#errorBox_" + rs[i].eid).attr("passCheck");
-            if (rst == "false") {
-                passCheck = false;
-                break;
-            }
-        }
-    }
-    return passCheck;
-
-}
-
-function lengthVerificationRules(pageParam) {
-    var validateResult = true;
-    var dr = pageParam.lengthVerificationRules;
-    if (dr != "" && dr != null && dr != undefined) {
-        var len = dr.length;
-        for (var i = 0; i < len; i++) {
-            $("#errorBox_" + dr[i].promptId).hide();
-            var len1 = $("#" + dr[i].elementId).val().length;
-            var len2 = parseInt(dr[i].lengthRestrict);
-            if ($("#" + dr[i].elementId).val().length >= parseInt(dr[i].lengthRestrict)) {
-                validateResult = false;
-                $("#errorBox_" + dr[i].promptId).show();
-            }
-        }
-    }
-    return validateResult;
-}
-
-function promptElementRules(pageParam) {
-    var validateResult = true;
-    var dr = pageParam.promptElementRules;
-    if (dr != "" && dr != null && dr != undefined) {
-        var len = dr.length;
-        for (var i = 0; i < len; i++) {
-            if (!($("#" + dr[i].elementId).is(":hidden"))) {
-                validateResult = false;
-            }
-        }
-    }
-    return validateResult;
-}
-
-function initAddPage(pageParam, ajaxParam) {
-
-    var formAdd = $('#' + pageParam.formId);
-    var errorMessage = $('.alert-danger', formAdd);
-    var successMessage = $('.alert-success', formAdd);
-    var resultAjaxData;
-
-    formAdd.on("submit", function () {
-        for (var e in CKEDITOR.instances)
-            CKEDITOR.instances[e].updateElement();
-        dynamicRules(pageParam);
-        lengthVerificationRules(pageParam);
-        promptElementRules(pageParam);
-    });
-
-    formAdd.validate({
-        errorClass: "help-block",
-        rules: pageParam.validateRules,
-        messages: pageParam.validateMessages,
-        ignore: '',
-        errorPlacement: function (e, r) {
-
-            r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
-        },
-        highlight: function (element) {
-            $(element).closest('.element-group').addClass('has-error');
-        },
-
-        unhighlight: function (element) {
-            $(element).closest('.element-group').removeClass('has-error');
-        },
-
-        success: function (label) {
-            label.closest('.element-group').removeClass('has-error');
-        },
-
-        submitHandler: function (form) {
-            if (!dynamicRules(pageParam)) {
-                return;
-            }
-            if (!ajaxRules(pageParam)) {
-                return;
-            }
-            if (!lengthVerificationRules(pageParam)) {
-                return;
-            }
-            if (!promptElementRules(pageParam)) {
-                return;
-            }
-            successMessage.show();
-            errorMessage.hide();
-            var formData = formAdd.serializeArray();
-            // 将查询条件和其它请求参数组装
-            if (ajaxParam.submitData != null)
-            	if(typeof ajaxParam.submitData=="string")// 处理重复提交时反复转换的问题
-            		ajaxParam.submitData=JSON.parse(ajaxParam.submitData);
-                $.each(formData, function (i, n) {
-                    var propertyName = getPropertyName(formData[i].name)
-                    ajaxParam.submitData[propertyName] = formData[i].value;
-                });
-
-            if (ajaxParam.type == null)
-                ajaxParam.type = "POST";
-            if (ajaxParam.contentType == null)
-                ajaxParam.contentType = "application/json;charset=utf-8";
-            if (ajaxParam.contentType === "application/json;charset=utf-8")
-            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
-                ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
-            if (ajaxParam.contentType === "application/x-www-form-urlencoded")
-            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
-                ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
-            if (ajaxParam.dataType == null)
-                ajaxParam.dataType = "JSON";
-            if (ajaxParam.async == null)
-                ajaxParam.async = true;
-            if (ajaxParam.success == null)
-                ajaxParam.success = function (resultData) {
-                    resultAjaxData = resultData;
-                    if (!resultData["isSuccess"]) {
-                        alert(resultData["resultMessage"]);
-                        return false;
-                    }
-
-                    layer.msg('记录添加成功，即将跳回列表页……', {
-                        time: 1000
-                    });
-                    setTimeout("$('#navbarListA').click();", 1100);
-
-                };
-            if (ajaxParam.error == null)
-                ajaxParam.error = ajaxErrorFunction;
-
-            var ajaxParamter = {
-                "url": ajaxParam.url,
-                "data": ajaxParam.submitData,
-                "dataType": ajaxParam.dataType,
-                "contentType": ajaxParam.contentType,
-                "type": ajaxParam.type,
-                "async": ajaxParam.sync,
-                "success": ajaxParam.success,
-                "error": ajaxParam.error
-            };
-
-            universalAjax(ajaxParamter);
-        }
-
-    });
-
-    $("#buttonBack").click(function () {
-        history.back();
-        return false;
-    });
-    if (!ajaxParam.async)
-        return resultAjaxData;
-    return null;
-
-}
-
-function getPropertyName(fieldName) {
-
-    var array = fieldName.split("");
-    var prefix = null;
-    for (var n = 0; n < array.length; n++) {
-        if (array[n].toLocaleString().charCodeAt(0) >= 65 && array[n].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
-        {
-            prefix = fieldName.substr(0, n);
-            break;
-        }
-    }
-    var tagLength = prefix == null ? 0 : prefix.length;
-    var prop = fieldName.substr(tagLength);
-    prop = prop.substr(0, 1).toLowerCase() + prop.substr(1);
-    return prop;
-}
-
-function initEditPage(pageParam, ajaxParam) {
-    var resultAjaxData;
-    var formEdit = $('#' + pageParam.formId);
-    var errorMessage = $('.alert-danger', formEdit);
-    var successMessage = $('.alert-success', formEdit);
-    var selectRowsCookie = getCookies({item:"selectRows"});
-    var id = request(RECORD_ID);
-    var isUpdateList = false;
-    if (selectRowsCookie != null && id == null)
-        isUpdateList = true;
-
-    if (isUpdateList) {
-        pageParam.validateRules = {};
-    }
-
-    formEdit.on("submit", function () {
-        for (var e in CKEDITOR.instances)
-            CKEDITOR.instances[e].updateElement();
-        dynamicRules(pageParam);
-        lengthVerificationRules(pageParam);
-        promptElementRules(pageParam);
-    });
-
-    formEdit.validate({
-        errorClass: 'help-block',
-        rules: pageParam.validateRules,
-        messages: pageParam.validateMessages,
-        ignore: '',
-        errorPlacement: function (e, r) {
-
-            r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
-        },
-        highlight: function (element) {
-            $(element).closest('.element-group').addClass('has-error');
-        },
-
-        unhighlight: function (element) {
-            $(element).closest('.element-group').removeClass('has-error');
-        },
-        success: function (label) {
-            label.closest('.element-group').removeClass('has-error');
-        },
-
-        submitHandler: function (form) {
-
-            if (!dynamicRules(pageParam)) {
-                return;
-            }
-            if (!ajaxRules(pageParam)) {
-                return;
-            }
-            if (!lengthVerificationRules(pageParam)) {
-                return;
-            }
-            if (!promptElementRules(pageParam)) {
-                return;
-            }
-            successMessage.show();
-            errorMessage.hide();
-
-            var formData = formEdit.serializeArray();
-            // 将查询条件和其它请求参数组装
-            if (ajaxParam.submitData != null)
-            	if(typeof ajaxParam.submitData=="string")// 处理重复提交时反复转换的问题
-            		ajaxParam.submitData=JSON.parse(ajaxParam.submitData);
-                $.each(formData, function (i, n) {
-                    var propertyName = getPropertyName(formData[i].name);
-                    ajaxParam.submitData[propertyName] = formData[i].value;
-                });
-
-            if (ajaxParam.type == null)
-                ajaxParam.type = "POST";
-            if (ajaxParam.contentType == null)
-                ajaxParam.contentType = "application/json;charset=utf-8";
-
-            if (isUpdateList) {
-                ajaxParam.submitData = {
-                    "entity": ajaxParam.submitData,
-                    "idList": JSON.parse(selectRowsCookie)
-                };
-                ajaxParam.url = ajaxParam.updateListUrl;
-            }
-            if (ajaxParam.contentType === "application/json;charset=utf-8")
-            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
-            		ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
-            // 提交富文本数据，如果包含特殊符号"&"，到后台的数据会被截断，所以用encodeURIComponent。
-            if (ajaxParam.contentType === "application/x-www-form-urlencoded")
-            	if(typeof ajaxParam.submitData=="object")// 处理重复提交时反复转换的问题
-                ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
-            if (ajaxParam.dataType == null)
-                ajaxParam.dataType = "JSON";
-            if (ajaxParam.async == null)
-                ajaxParam.async = true;
-            if (ajaxParam.success == null)
-                ajaxParam.success = function (resultData) {
-                    if (!resultData["isSuccess"]) {
-                        alert(resultData["resultMessage"]);
-                        return false;
-                    }
-
-                    layer.msg('记录修改成功，即将跳回列表页……', {
-                        time: 1000
-                    });
-
-                    if (isUpdateList) {
-                        setTimeout("closeLayer();", 1100);
-                    	var cookieData={
-                    			item:"selectRows"
-                    	};
-                        removeCookies(cookieData);
-                        parent.location.reload(); // 父页面刷新
-                    } else {
-                        setTimeout("$('#navbarListA').click();", 1100);
-                    }
-                };
-            if (ajaxParam.error == null)
-                ajaxParam.error = ajaxErrorFunction;
-
-            var ajaxParamter = {
-                "url": ajaxParam.url,
-                "data": ajaxParam.submitData,
-                "dataType": ajaxParam.dataType,
-                "contentType": ajaxParam.contentType,
-                "type": ajaxParam.type,
-                "async": ajaxParam.async,
-                "success": ajaxParam.success,
-                "error": ajaxParam.error
-            };
-            universalAjax(ajaxParamter);
-        }
-    });
-
-    $("#buttonBack").click(function () {
-        history.back();
-        return false;
-    });
-
-    if (isUpdateList) {
-        $("span.required").remove();
-        $(".page-sidebar-wrapper").remove();
-        $(".page-header").remove();
-        $(".page-bar").remove();
-        $(".page-footer").remove();
-        $("#buttonBack").click(function () {
-
-            closeLayer();
-
-            return false;
-        });
-        return null;
-    }
-
-    // 初始化页面标签
-    var ajaxParamter = {
-        "url": ajaxParam.getModelUrl +id,
-        "type": "GET",
-        "async": true,
-        "success": function (resultData) {
-            resultAjaxData = resultData;
-            if (!resultData["isSuccess"]) {
-                alert(resultData["resultMessage"]);
-                return false;
-            }
-            var ajaxData = resultData.data;
-
-            if (ajaxData.imgPath != null) {
-                $("#imgPath").attr("src", ajaxData.imgPath);
-                $("#new").hide();
-                $("#exists").show();
-                $("#move").show();
-            }
-            var form = document.forms[pageParam.formId];
-            // 遍历指定form表单所有元素
-            for (var i = 0; i < form.length; i++) {
-                var fieldName = form[i].name;
-                var array = fieldName.split("");
-                var prefix = null;
-                for (var n = 0; n < array.length; n++) {
-                    if (array[n].toLocaleString().charCodeAt(0) >= 65 && array[n].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
-                    {
-                        prefix = fieldName.substr(0, n);
-                        break;
-                    }
-                }
-
-                var tagLength = prefix == null ? 0 : prefix.length;
-                var prop = fieldName.substr(tagLength);
-                prop = prop.substr(0, 1).toLowerCase() + prop.substr(1);
-
-                var value = ajaxData[prop];
-
-                switch (prefix) {
-                    case "hidden":
-                        $("[name='" + fieldName + "']").val(value);
-                        break;
-                    case "text":
-                        $("[name='" + fieldName + "']").val(value);
-                        break;
-                    case "select":
-                        $("select[name='" + fieldName + "']").val(value);
-                        break;
-                    case "radio":
-                        if (value != null)
-                            $("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-                        break;
-                    case "textarea":
-                        $("textarea[name='" + fieldName + "']").val(value);
-                        break;
-                    case "checkbox":
-                        $("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    };
-    if (ajaxParam.getModelAsync != null)
-        ajaxParamter.async = ajaxParam.getModelAsync;
-    universalAjax(ajaxParamter);
-
-    if (!ajaxParam.getModelAsync)
-        return resultAjaxData;
-    return null;
-
+/**
+ * Zee 接受页面传递的参数
+ * 
+ * @param name
+ *            传递参数
+ * @returns 参数值
+ */
+function request(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null)
+		return unescape(r[2]);
+	return null;
 }
 
 function closeLayer() {
-    try {
-        var index = parent.layer.getFrameIndex(window.name);
-        parent.layer.close(index);
-    } catch (e) {
-        return undefined;
-    }
-}
-
-/**
- * Zee 初始化详细信息页面
- * 
- * @param pageParam
- *            页面标签参数
- * @param ajaxParam
- *            ajax参数
- */
-function initDetailPage(pageParam, ajaxParamter) {
-    $("#buttonBack").click(function () {
-        history.back();
-        return false;
-    });
-    var id = request("id");
-    var resultAjaxData;
-    if (id == null) {
-        layer.alert("未能获取到主键信息……", {
-            icon: 6
-        });
-        return;
-    }
-    if (ajaxParamter.url == null) {
-        layer.alert("请求的链接地址不能为空……", {
-            icon: 6
-        });
-        return;
-    }
-    ajaxParamter.url = ajaxParamter.url +  id;
-    if (ajaxParamter.type == null)
-        ajaxParamter.type = "GET";
-    if (ajaxParamter.dataType == null)
-        ajaxParamter.dataType = "JSON";
-    if (ajaxParamter.async == null)
-        ajaxParamter.async = true;
-    if (ajaxParamter.success == null)
-        ajaxParamter.success = function (resultData) {
-            if (!resultData["isSuccess"]) {
-                layer.alert(resultData["resultMessage"], {
-                    icon: 6
-                });
-                return;
-            }
-
-            $("#" + pageParam.formId + " label").each(function (i, n) {
-                // 遍历指定form表单中的所有label标签
-                var fieldId = $(n).attr("id");
-                var prefix = fieldId.substr(5);
-                prefix = prefix.substr(0, 1).toLowerCase() + prefix.substr(1);
-                $(n).html(resultData.data[prefix]);
-            });
-            $("#" + pageParam.formId + " img").each(function (i, n) {
-                // 遍历指定form表单中的所有图像标签
-                var fieldId = $(n).attr("id");
-                var prefix = fieldId.substr(3);
-                prefix = prefix.substr(0, 1).toLowerCase() + prefix.substr(1);
-                if (resultData.data[prefix] != null)
-                    // $(n).attr("src", siteName + resultData.data[prefix]);
-                    $(n).attr("src", resultData.data[prefix]);
-            });
-
-            resultAjaxData = resultData;
-
-        };
-    if (ajaxParamter.error == null)
-        ajaxParamter.error = ajaxErrorFunction;
-
-    universalAjax(ajaxParamter);
-    // 只有同步请求才能将获取的值返回
-    if (!ajaxParamter.async)
-        return resultAjaxData;
-    return null;
+	try {
+		var index = parent.layer.getFrameIndex(window.name);
+		parent.layer.close(index);
+	} catch (e) {
+		return undefined;
+	}
 }
 
 function historyBack() {
-    history.back();
-    return false;
+	history.back();
+	return false;
 }
 
-
-// 初始化AutoComplete输入框
-function initAutoComplete(itemParam, ajaxParam) {
-    var autoCompleteCache = {};
-    // 失去输入焦点后，如果显示值为空，则同时清空隐藏值
-    $("#" + itemParam.textFieldInputId).unbind("blur");
-    $("#" + itemParam.textFieldInputId).bind("blur", function () {
-        if ($("#" + itemParam.textFieldInputId).val() == "") {
-            $("#" + itemParam.textFieldInputId).val("");
-            $("#" + itemParam.valueFieldInputId).val("");
-        } else {
-            // 如果是已经存在缓存中的关键字，也就是输入到文本框中的文字是不能提交的，只能选择后才能提交
-            if (($("#" + itemParam.textFieldInputId).val() in autoCompleteCache) || $("#" + itemParam.textFieldInputId).val().toString().length == 1) {
-                $("#" + itemParam.textFieldInputId).val("");
-                $("#" + itemParam.valueFieldInputId).val("");
-            }
-        }
-    });
-
-    $("#" + itemParam.textFieldInputId).autocomplete({
-        minLength: 2,
-        autoFocus: true,
-        source: function (request, response) {
-            var term = request.term;
-            if (term in autoCompleteCache) {
-                response($.map(autoCompleteCache[term], function (item) {
-                    return {
-                        value: item[itemParam.textField],
-                        label: item[itemParam.textField],
-                        submitValue: item[itemParam.valueField]
-                    }
-                }));
-                return;
-            }
-            // 将关键字赋予模糊查询的键
-            ajaxParam.jsonData.entityRelated.autoCompleteKey = request.term;
-
-            var ajaxParamter = {
-                "url": ajaxParam.url + "?jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.jsonData)),
-                "async": true,
-                "type": "GET",
-                "success": function (resultData) {
-                    autoCompleteCache[term] = resultData.data;
-                    response($.map(resultData.data, function (item) {
-                        return {
-                            value: item[itemParam.textField],
-                            label: item[itemParam.textField],
-                            submitValue: item[itemParam.valueField]
-                        }
-                    }));
-                }
-            };
-            universalAjax(ajaxParamter);
-
-        },
-        select: function (e, ui) {
-            $("#" + itemParam.valueFieldInputId).val(ui.item.submitValue);
-        }
-    });
-}
-
-function printPage() {
-    bdhtml = window.document.body.innerHTML;// 获取当前页的html代码
-    sprnstr = "<!--startprint-->";// 设置打印开始区域
-    eprnstr = "<!--endprint-->";// 设置打印结束区域
-    prnhtml = bdhtml.substring(bdhtml.indexOf(sprnstr) + 18); // 从开始代码向后取html
-
-    prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));// 从结束代码向前取html
-    window.document.body.innerHTML = prnhtml;
-    window.print();
-    window.document.body.innerHTML = bdhtml;
-}
-
-// 读取cookies
-function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-    if (arr = document.cookie.match(reg)) {
-
-        return unescape(arr[2]);
-    } else {
-        return null;
-    }
-}
-
-
-// 跳转首页
+/**
+ * @author Zee
+ * @createDate 2021年4月2日 下午2:20:45
+ * @updateDate 2021年4月2日 下午2:20:45
+ * @description 登录验证，不成功则跳转到登录页
+ */
 function validateLogin(resultCode) {
-    if (resultCode === RESULT_CODE_TOKEN_EXPIRED && window.location.pathname.indexOf("/lo/Login.html") == -1) {
-        removeCookies({item:"token"});
-        location.href = '../lo/Login.html';
-        return fasle;
-    }
-    $("#goHome").click(function () {
-        location.href = HOME_PATH + RP_ININDEX
-    });
-
-    if (getCookies({item:"token"})) {
-        var token = JSON.parse(getCookies({item:"token"}));
-        $("#userName").text(token.userName);
-        if (token.gpUser != null && token.gpUser.icon != null && token.gpUser.icon!="")
-            $("#userIcon").attr("src", token.gpUser.icon)
-        if (new Date(token.adeadTime) >= new Date())
-            return true;
-    }
-    if (window.location.pathname.indexOf("/lo/Login.html") == -1) {
-        location.href = '../lo/Login.html';
-    }
-
-    return false;
-}
-
-function initMessage() {
-    if (!getCookies({item:"token"}))
-        return false;
-
-    var token = JSON.parse(getCookies({item:"token"}));
-    var userInfo = token.gpUser;
-    $("#userName").text(userInfo.userName);
-
-    var ajaxParameter = {
-        "url": "/extend/swagger/gp/gprMessageUser/getSysListByJsonData",
-        "data": "jsonData=" + JSON.stringify({
-            "entityRelated": {
-                "userName": token.userName,
-                "userId": token.userId
-            }
-        }),
-        "dataType": "json",
-        "type": "GET",
-        "async": true,
-        "success": function (res) {
-            if (!validateLogin(res.resultCode))
-                return false;
-            if (res.totalCount == 0) {
-                $("#header_notification_bar .dropdown-menu").hide();
-                $("#header_notification_bar .badge").hide();
-                return false;
-            }
-
-            var html = '';
-            $("#header_notification_bar").find("span").text(res.totalCount);
-            $("#systematic").text(res.totalCount);
-			/*
-			 * $("#systematic-time").text(res.data[0].addTime)
-			 * $("#systematic-detiles").text(res.data[0].content)
-			 */
-            for (var i = 0; i < res.data.length; i++) {
-                html += '<li>' + '<a href="/pc/ss/gp/html/gp/MessageList.html">' + '<span class="time" id="systematic-time">' + res.data[i].addTime + '</span>' + '<span class="details" style="width: 160px;display: inline-block;">' + '<span class="label label-sm label-icon label-warning">' + '<i class="fa fa-bell-o"></i>' + res.data[i].content + '</span>'
-                '</span>' + '</a>' + '</li>'
-            }
-            $("#systematic-detiles").html(html)
-        }
-    };
-    universalAjax(ajaxParameter);
-
-    ajaxParameter = {
-        "url": "/extend/swagger/gp/gprMessageUser/getUserListByJsonData",
-        "dataType": "json",
-        "type": "GET",
-        "async": false,
-        "data": "jsonData=" + JSON.stringify({
-            "entityRelated": {
-                "userName": token.userName,
-                "userId": token.userId
-            }
-        }),
-        success: function (res) {
-            if (res.totalCount == 0) {
-                $("#header_inbox_bar .dropdown-menu").hide();
-                $("#header_inbox_bar .badge").hide();
-            }
-            var html = '';
-            $("#header_inbox_bar").find("span").text(res.totalCount);
-            $("#userInfo").text(res.totalCount);
-            for (var i = 0; i < res.data.length; i++) {
-                html += '<li>' + '<a href="/pc/ss/gp/html/gp/MessageList.html">' + '<span class="photo">' + '<img src="../../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="">' + '</span>' + '<span class="subject">' + '<span class="from"> ' + res.data[i].userName + '</span>' + '<span class="time">' + res.data[i].addTime + '</span>' + '</span>' + '<span class="message"> ' + res.data[i].content + '</span>' + '</a>' + '</li>'
-            }
-            $("#userInfo-detiles").html(html)
-        }
-    };
-    universalAjax(ajaxParameter);
-
-}
-
-/** *******************************************文件上传相关方法******************************************* */
-// 多文件上传控件 接受后台数据后 初始化
-function initAddFileInput() {
-    // 初始化上传控件的样式
-    var $Control = $("#fileIcons").fileinput({
-        language: 'zh',
-        theme: 'fa',
-        showRemove: false,
-        showZoom: false,
-        showDrag: false,
-        showUpload: false,
-        showCaption: false,
-        ajaxSettings: {
-            headers: {
-                'Authorization': "Bearer " + JSON.parse(getCookies({item:"token"})).accessToken
-            }
-        },
-        uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-        uploadAsync: true,
-        // 传入功能模块和页面路径
-        uploadExtraData:function(previewId, index) {
-        	// 获取焦点菜单的主键
-        	var moduleId=$("ul.sub-menu .nav-item.start.active").attr("id");
-        	if(moduleId==null)
-        		moduleId="";
-        	var beginIndex=HOME_PATH.length;
-        	var endIndex=window.location.href.indexOf("?");
-        	if(endIndex==-1)
-        		endIndex=window.location.href.length;
-        	
-        	var pageUrl=window.location.href.substring(beginIndex, endIndex);
-              var data = {
-                  moduleId : moduleId,
-                  pageUrl: pageUrl
-              };
-              return data;
-          },
-        
-        browseClass: "btn btn-primary btn-lg",
-        fileType: "image",
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        overwriteInitial: false,
-        initialPreviewAsData: true
-
-    });
-    initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
-}
-
-function initEditFileInput(IconIdArray, IconPathArray) {
-    var initialPreviewConfigArray = [];
-    if (IconIdArray != null & IconPathArray != null) {
-        for (var i = 0; i < IconIdArray.length; i++) {
-            initialPreviewConfigArray[i] = {
-                url: INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
-            };
-        }
-    }
-    // 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
-    $("#fileIcons").fileinput('destroy');
-    $("#fileIcons").unbind('on');
-
-
-    var $Control = $("#fileIcons").fileinput({
-        language: 'zh',
-        theme: 'fa',
-        showRemove: false,
-        showZoom: false,
-        showDrag: false,
-        showUpload: false,
-        showCaption: false,
-        ajaxSettings: {
-            headers: {
-                'Authorization': "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
-            }
-        },
-        uploadUrl: INTERFACE_SERVER + "/extend/swagger/gp/gpResource/saveUploadFile",
-        uploadAsync: true,
-        // 传入功能模块和页面路径
-        uploadExtraData:function(previewId, index) {
-        	// 获取焦点菜单的主键
-        	var moduleId=$("ul.sub-menu .nav-item.start.active").attr("id");
-        	if(moduleId==null)
-        		moduleId="";
-        	var beginIndex=HOME_PATH.length;
-        	var endIndex=window.location.href.indexOf("?");
-        	if(endIndex==-1)
-        		endIndex=window.location.href.length;
-        	
-        	var pageUrl=window.location.href.substring(beginIndex, endIndex);
-              var data = {
-                  moduleId : moduleId,
-                  pageUrl: pageUrl
-              };
-              return data;
-          },
-        browseClass: "btn btn-primary btn-lg",
-        fileType: "image",
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        overwriteInitial: false,
-        initialPreviewAsData: true,
-        initialPreview: IconPathArray,
-        initialPreviewConfig: initialPreviewConfigArray
-    });
-    initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
-}
-
-// 多文件上传控制 刚进入新增页面 初始化
-function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePathsControl) {
-    $(fileControl).on('filepreupload', function (event, data, previewId, index) {
-        for (var i = 0; i < data.files.length; i++) {
-            var file = data.files[i];
-            if (file.name.length > 100) {
-                layer.alert("文件名不能超过100个字符！" + data.result.resultMessage, {
-                    icon: 6
-                });
-                return false;
-            }
-            if (file.name.indexOf(',') != -1) {
-                layer.alert("文件名中不能包含字符“,”" + data.result.resultMessage, {
-                    icon: 6
-                });
-                return false;
-            }
-        }
-    }).on('filebatchselected', function (event, data, id, index) {
-        $(this).fileinput("upload");
-    }).on("fileuploaded", function (event, data, previewId, index) {
-
-        // 清除元素
-        $("#fileTitleImage-error").remove();
-        // 图片格式校验
-        var gpResource = data.response.data;
-        if (!data.response.isSuccess) {
-            layer.alert("上传标题图片出错！" + data.response.resultMessage, {
-                icon: 6
-            });
-            return false;
-        }
-
-        $("#" + previewId).attr("resourceId", gpResource[0].id);
-        $("#" + previewId).attr("resourcePath", gpResource[0].path);
-
-        var resourceIdList = $("#" + hiddenResourceIdsControl).val();
-        if (resourceIdList.endsWith(","))
-            resourceIdList += gpResource[0].id + ",";
-        else
-            resourceIdList += "," + gpResource[0].id + ",";
-        var resourcePathList = $("#" + hiddenResourcePathsControl).val();
-        if (resourcePathList.endsWith(","))
-            resourcePathList += gpResource[0].path + ",";
-        else
-            resourcePathList += "," + gpResource[0].path + ",";
-
-        $("#" + hiddenResourceIdsControl).val(resourceIdList);
-        $("#" + hiddenResourcePathsControl).val(resourcePathList);
-        return true;
-    }).on('filebatchuploadcomplete', function (event, files, extra) {
-        var resourceIdList = $("#" + hiddenResourceIdsControl).val();
-        var resourcePathList = $("#" + hiddenResourcePathsControl).val();
-        if (resourceIdList.endsWith(","))
-            resourceIdList = resourceIdList.substr(0, resourceIdList.length - 1);
-        if (resourceIdList.startsWith(","))
-            resourceIdList = resourceIdList.substr(1, resourceIdList.length);
-        if (resourcePathList.startsWith(","))
-            resourcePathList = resourcePathList.substr(1, resourcePathList.length);
-        if (resourcePathList.endsWith(","))
-            resourcePathList = resourcePathList.substr(0, resourcePathList.length - 1);
-
-        $("#" + hiddenResourceIdsControl).val(resourceIdList);
-        $("#" + hiddenResourcePathsControl).val(resourcePathList);
-    }).on("filesuccessremove", function (event, id, index) {
-
-        var resourceIdList = $("#" + hiddenResourceIdsControl).val();
-        var resourceId = $("#" + id).attr("resourceId");
-        var resourceIdShu = $("#" + id).attr("resourceId") + ",";
-        if (resourceIdList.indexOf(resourceIdShu) != -1)
-            resourceIdList = resourceIdList.replace(resourceIdShu, "");
-        if (resourceIdList.indexOf(resourceId) != -1)
-            resourceIdList = resourceIdList.replace(resourceId, "");
-
-        $("#" + hiddenResourceIdsControl).val(resourceIdList);
-
-        var resourcePathList = $("#" + hiddenResourcePathsControl).val();
-        var resourcePath = $("#" + id).attr("resourcePath");
-        var resourcePathShu = $("#" + id).attr("resourcePath") + ",";
-        if (resourcePathList.indexOf(resourcePathShu) != -1)
-            resourcePathList = resourcePathList.replace(resourcePathShu, "");
-        if (resourcePathList.indexOf(resourcePath) != -1)
-            resourcePathList = resourcePathList.replace(resourcePath, "");
-
-        $("#" + hiddenResourcePathsControl).val(resourcePathList);
-    }).on('fileremoved', function (event, id, index) {
-
-    }).on('filedeleted', function (event, key, jqXHR, data) {
-        var result = jqXHR.responseJSON;
-        if (!result.isSuccess) {
-            layer.alert("删除图片出错！" + result.resultMessage, {
-                icon: 6
-            });
-            return false;
-        }
-        var resourceId = result.data.id;
-        var resourceIdShu = resourceId + ",";
-        var resourceIdList = $("#" + hiddenResourceIdsControl).val();
-        if (resourceIdList.indexOf(resourceIdShu) != -1)
-            resourceIdList = resourceIdList.replace(resourceIdShu, "");
-        if (resourceIdList.indexOf(resourceId) != -1)
-            resourceIdList = resourceIdList.replace(resourceId, "");
-        $("#" + hiddenResourceIdsControl).val(resourceIdList);
-
-        var resourcePath = result.data.path;
-        var resourcePathList = $("#" + hiddenResourcePathsControl).val();
-        var resourcePathShu = resourcePath + ",";
-        if (resourcePathList.indexOf(resourcePathShu) != -1)
-            resourcePathList = resourcePathList.replace(resourcePathShu, "");
-        if (resourcePathList.indexOf(resourcePath) != -1)
-            resourcePathList = resourcePathList.replace(resourcePath, "");
-        $("#" + hiddenResourcePathsControl).val(resourcePathList);
-
-    });
-
-}
-
-
-/** *******************************************文件上传相关方法******************************************* */
-
-
-
-
-/** *******************************************树形菜单相关方法******************************************* */
-
-
-// 初始化详情页中的zTree插件
-function initDetailTree(treeParam) {
-
-    // 组织机构树形结构begin
-    var setting = {
-        check: {
-            enable: false
-        },
-        view: {
-            showIcon: false,
-            showLine: true,
-            selectedMulti: false
-        },
-
-        data: {
-            simpleData: {
-                enable: true,
-                idKey: "id",
-                pIdKey: "fartherId"
-            }
-        }
-    };
-
-
-    var treeNodes = [];
-    if (treeParam.initNodes)
-        treeNodes = treeParam.initNodes;
-    var ajaxParamter = {
-        "url": treeParam.url,
-        "type": "GET",
-        "async": true,
-        "success": function (resultData) {
-            treeNodes = treeNodes.concat(resultData.data);
-
-            // 将一级功能模块的fartherId都变为应用领域的ID，级别变为0，否则功能模块无法依附应用领域
-            $.each(treeNodes, function (index, value) {
-                if (value.fartherId == null) {
-                    value.level = 0;
-                    value.fartherId = value.domainId;
-                    treeNodes[index] = value;
-                }
-            });
-            var orgnaizationTree = $.fn.zTree.init($("#" + treeParam.container), setting, treeNodes);
-
-            $.each(treeNodes, function (index, value) {
-
-                if (treeParam.expandNodeLevel == null || value.level < treeParam.expandNodeLevel) {
-                    var node = orgnaizationTree.getNodeByParam("id", value.id);
-                    orgnaizationTree.expandNode(node, true);// 展开指定节点
-                }
-            });
-        }
-    };
-
-    universalAjax(ajaxParamter);
-}
-
-
-
-var className = "dark";
-var newCount = 1;
-function addHoverDom(treeId, treeNode) {
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var sObj = $("#" + treeNode.tId + "_span");
-    if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
-        return;
-    var addStr = "<span class='button add' id='addBtn_" + treeNode.tId + "' title='add node' onfocus='this.blur();'></span>";
-    sObj.after(addStr);
-    var btn = $("#addBtn_" + treeNode.tId);
-    if (btn)
-        btn.bind("click", function () {
-        	
-     	 
-     		if(treeNode.level>5)
-     			{
-     			 layer.msg('树形菜单不能超过5级……', {
-     	             time: 1500
-     	         });
-     			 return false;
-     			}
-
-        	
-            var newNode = {
-                id: (100 + newCount),
-                fartherId: treeNode.id,
-                name: "new node" + (newCount++)
-            };
-            zTree.addNodes(treeNode, newNode);
-            var treeNodes = new Array();
-            treeNodes.push(zTree.getNodeByParam("name", newNode.name, treeNode));
-            updateModulesData(treeId, treeNodes, 'ADD');
-            return false;
-        });
-
-};
-function removeHoverDom(treeId, treeNode) {
-    var sObj = $("#" + treeNode.tId + "_span");
-    $("#addBtn_" + treeNode.tId).unbind().remove();
-};
-function showRemoveBtn(treeId, treeNode) {
-    return treeNode.level != 0;
-}
-function showRenameBtn(treeId, treeNode) {
-    return treeNode.level != 0;
-}
-function beforeDrag(treeId, treeNodes) {
-    for (var i = 0, l = treeNodes.length; i < l; i++) {
-        var pid = treeNodes[i].fartherId;
-        var level = treeNodes[i].level;
-        if ((pid == "root" || pid == null || pid == "null") & level == 0) {
-            layer.msg('根节点不能移动……', {
-                time: 1000
-            });
-            return false;
-        }
-    }
-    return true;
-}
-function beforeDrop(treeId, treeNodes, targetNode, moveType) {
-
-    if (targetNode.level == 0) {
-        layer.msg('根节点为应用领域，不能移动到根节点……', {
-            time: 1000
-        });
-        return false;
-    }
-    return true;
-};
-
-
-function onDrop(event, treeId, treeNodes, targetNode, moveType) {
-
-    updateModulesData(treeId, treeNodes, 'DROP', targetNode, moveType);
-
-};
-
-function onDrag(event, treeId, treeNodes) {
-    updateModulesData(treeId, treeNodes, 'DRAG');
-
-};
-
-
-function beforeEditName(treeId, treeNode) {
-	
-    className = (className === "dark" ? "" : "dark");
-    var treeNodes = new Array();
-    treeNodes.push(treeNode);
-    updateModulesData(treeId, treeNodes, 'UPDATE');
-    var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
-    zTree.selectNode(treeNode);
-    zTree.editName(treeNode);
-    return false;
-}
-function beforeRemove(treeId, treeNode) {
-    className = (className === "dark" ? "" : "dark");
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    zTree.selectNode(treeNode);
-    layer.confirm('您确定要删除节点  ' + treeNode.name + ' 吗？', {
-        btn: ['确定', '取消']
-    }, function (index) {
-        // 手动处理删除逻辑
-        layer.close(index);
-        zTree.removeNode(treeNode);
-        onRemove(null, treeId, treeNode);
-    });
-    // 不再自动去发onRemove事件
-    return false;
-}
-function onRemove(e, treeId, treeNode) {
-    var treeNodes = new Array();
-    treeNodes.push(treeNode);
-    updateModulesData(treeId, treeNodes, 'DELETE');
-}
-function beforeRename(treeId, treeNode, newName, isCancel) {
-	   className = (className === "dark" ? "" : "dark");
-    if (newName.length == 0) {
-        setTimeout(function () {
-            var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
-            zTree.cancelEditName();
-            layer.alert("节点名称不能为空。", {
-                icon: 6
-            });
-        }, 0);
-        return false;
-    }
-    
-	var nodeNameLength=newName.length;   
-	var blen = 0;   
-	for(i=0; i<nodeNameLength; i++) {   
-	if ((newName.charCodeAt(i) & 0xff00) != 0) {   
-	blen ++;   
-	}   
-	blen ++;   
-	}  
-	
-	if(blen>100)
-	{
-	 layer.msg('节点名称不能超过50个汉字……', {      time: 1500
-     });
-	 return false;
+	if (resultCode === RESULT_CODE_TOKEN_EXPIRED && window.location.pathname.indexOf("/lo/Login.html") == -1) {
+		removeCookies({
+			item : "token"
+		});
+		location.href = '../lo/Login.html';
+		return fasle;
 	}
-    
-    return true;
-}
-function onRename(e, treeId, treeNode, isCancel) {
-    var treeNodes = new Array();
-    treeNodes.push(treeNode);
-    updateModulesData(treeId, treeNodes, 'UPDATE');
-}
-function beforeClick(treeId, treeNode, clickFlag) {
+	$("#goHome").click(function() {
+		location.href = HOME_PATH + RP_ININDEX
+	});
 
-    if (treeNode.level == 0) {
-        layer.msg('根节点为应用领域，不能修改……', {
-            time: 1000
-        });
-        return false;
-    }
-    return true;
-}
-function onClick(e, treeId, treeNode) {
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var pageParam = {
-        treeId: treeId,
-        formId: "formEdit",
-        validateRules: {
-            textDomainId: {
-                required: true
-            },
-            textName: {
-                required: true
-            },
-            selectLevelCode: {
-                required: true
-            },
-            textPriority: {
-                digits: true
-            }
-        }
-    };
-    var ajaxParam = {
-        recordId: treeNode.id,
-        getModelAsync: false,
-        url: zTree.setting.url.updateUrl,
-        getModelUrl: zTree.setting.url.getModelUrl,
-        submitData: {}
-    };
+	if (getCookies({
+		item : "token"
+	})) {
+		var token = JSON.parse(getCookies({
+			item : "token"
+		}));
+		$("#userName").text(token.userName);
+		if (token.gpUser != null && token.gpUser.icon != null && token.gpUser.icon != "")
+			$("#userIcon").attr("src", token.gpUser.icon)
+		if (new Date(token.adeadTime) >= new Date())
+			return true;
+	}
+	if (window.location.pathname.indexOf("/lo/Login.html") == -1) {
+		location.href = '../lo/Login.html';
+	}
 
-    var initResult = initZTreeEditForm(pageParam, ajaxParam);
-    if (!initResult.isSuccess) {
-        layer.alert("查询信息错误" + initResult.resultMessage, {
-            icon: 6
-        });
-        return;
-    }
-    if (initResult.data.iconIds != null) {
-        initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
-    }
+	return false;
 }
 
-function initZTreeEditForm(pageParam, ajaxParam) {
-    var resultAjaxData;
-    var formEdit = $('#' + pageParam.formId);
-    var errorMessage = $('.alert-danger', formEdit);
-    var successMessage = $('.alert-success', formEdit);
-    var selectRowsCookie = getCookies({item:"selectRows"});
-    var recordId = ajaxParam.recordId;
-
-    // 添加重置按钮事件，重置的动作类似于重新加载
-    $("#buttonReset").unbind('click');
-    $("#buttonReset").click(function () {
-        var zTree = $.fn.zTree.getZTreeObj(pageParam.treeId);
-        var selectNodes = zTree.getSelectedNodes();
-        if (selectNodes != null && selectNodes.length != 0)
-            $('#' + selectNodes[0].tId + '_a').trigger('click');
-
-        layer.msg('表单已重置……', {
-            time: 1000
-        });
-    });
-    
-    formEdit.on("submit", function () {
-        for (var e in CKEDITOR.instances)
-            CKEDITOR.instances[e].updateElement();
-    });
-    
-    formEdit.validate({
-        errorClass: 'help-block',
-        rules: pageParam.validateRules,
-        messages: pageParam.validateMessages,
-        ignore: '',
-        errorPlacement: function (e, r) {
-            r.attr("data-error-container") ? e.appendTo(r.attr("data-error-container")) : e.insertAfter(r)
-        },
-        highlight: function (element) {
-            $(element).closest('.element-group').addClass('has-error');
-        },
-
-        unhighlight: function (element) {
-            $(element).closest('.element-group').removeClass('has-error');
-        },
-        success: function (label) {
-            label.closest('.element-group').removeClass('has-error');
-        },
-
-        submitHandler: function (form) {
-
-            var formData = formEdit.serializeArray();
-            // 将查询条件和其它请求参数组装
-            if (ajaxParam.submitData != null)
-                $.each(formData, function (i, n) {
-                    var propertyName = getPropertyName(formData[i].name);
-                    ajaxParam.submitData[propertyName] = formData[i].value;
-                });
-
-            if (ajaxParam.type == null)
-                ajaxParam.type = "POST";
-            if (ajaxParam.contentType == null)
-                ajaxParam.contentType = "application/json;charset=utf-8";
-            if (ajaxParam.contentType === "application/json;charset=utf-8")
-                ajaxParam.submitData = JSON.stringify(ajaxParam.submitData);
-            // 提交富文本数据，如果包含特殊符号"&"，到后台的数据会被截断，所以用encodeURIComponent。
-            if (ajaxParam.contentType === "application/x-www-form-urlencoded")
-                ajaxParam.submitData = "jsonData=" + encodeURIComponent(JSON.stringify(ajaxParam.submitData));
-            if (ajaxParam.dataType == null)
-                ajaxParam.dataType = "JSON";
-            if (ajaxParam.async == null)
-                ajaxParam.async = true;
-            if (ajaxParam.success == null)
-                ajaxParam.success = function (resultData) {
-                    if (!resultData["isSuccess"]) {
-                        alert(resultData["resultMessage"]);
-                        return false;
-                    }
-
-                    // 更新当前节点，注意这里如果直接获取ajaxParam.id做为getNodeByParam参数是只能获取第一次点击时的值
-                    var zTree = $.fn.zTree.getZTreeObj(pageParam.treeId);
-                    var node = zTree.getNodeByParam("id", $("#hiddenId").val());
-                    node.name = $("#textName").val();
-                    zTree.updateNode(node);
-
-                    layer.msg('记录修改成功……', {
-                        time: 1000
-                    });
-
-                    // 修改成功后要清空submitData函数，否则再次修改会出错
-                    ajaxParam.submitData = {};
-                };
-            if (ajaxParam.error == null)
-                ajaxParam.error = ajaxErrorFunction;
-
-            var ajaxParamter = {
-                "url": ajaxParam.url,
-                "data": ajaxParam.submitData,
-                "dataType": ajaxParam.dataType,
-                "contentType": ajaxParam.contentType,
-                "type": ajaxParam.type,
-                "async": ajaxParam.async,
-                "success": ajaxParam.success,
-                "error": ajaxParam.error
-            };
-            universalAjax(ajaxParamter);
-        }
-    });
-
-    $("#buttonBack").click(function () {
-        history.back();
-        return false;
-    });
-
-    // 初始化页面标签
-    var ajaxParamter = {
-        "url": ajaxParam.getModelUrl + recordId,
-        "type": "GET",
-        "async": true,
-        "success": function (resultData) {
-            resultAjaxData = resultData;
-            if (!resultData["isSuccess"]) {
-                alert(resultData["resultMessage"]);
-                return false;
-            }
-            var ajaxData = resultData.data;
-
-            if (ajaxData.imgPath != null) {
-                $("#imgPath").attr("src", ajaxData.imgPath);
-                $("#new").hide();
-                $("#exists").show();
-                $("#move").show();
-            }
-            var form = document.forms[pageParam.formId];
-            // 遍历指定form表单所有元素
-            for (var i = 0; i < form.length; i++) {
-                var fieldName = form[i].name;
-                var array = fieldName.split("");
-                var prefix = null;
-                for (var n = 0; n < array.length; n++) {
-                    if (array[n].toLocaleString().charCodeAt(0) >= 65 && array[n].toLocaleString().charCodeAt(0) <= 90)// 第一个大写字母
-                    {
-                        prefix = fieldName.substr(0, n);
-                        break;
-                    }
-                }
-
-                var tagLength = prefix == null ? 0 : prefix.length;
-                var prop = fieldName.substr(tagLength);
-                prop = prop.substr(0, 1).toLowerCase() + prop.substr(1);
-
-                var value = ajaxData[prop];
-
-                switch (prefix) {
-                    case "hidden":
-                        $("[name='" + fieldName + "']").val(value);
-                        break;
-                    case "text":
-                        $("[name='" + fieldName + "']").val(value);
-                        break;
-                    case "select":
-                        $("select[name='" + fieldName + "']").val(value);
-                        break;
-                    case "radio":
-                        if (value != null)
-                            $("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-                        break;
-                    case "textarea":
-                        $("textarea[name='" + fieldName + "']").val(value);
-                        break;
-                    case "checkbox":
-                        $("[name='" + fieldName + "'][value='" + value + "']").get(0).checked = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    };
-    if (ajaxParam.getModelAsync != null)
-        ajaxParamter.async = ajaxParam.getModelAsync;
-    universalAjax(ajaxParamter);
-
-    if (!ajaxParam.getModelAsync)
-        return resultAjaxData;
-    return null;
-
+function convertToColumnName(property) {
+	for (i = 0; i < property.length; i++) {
+		if (/[A-Z]/.test(property.charAt(i)))
+			property = property.replace(property.charAt(i), '_' + property.charAt(i).toLowerCase());
+	}
+	return property;
 }
 
-function updateModulesData(treeId, treeNodes, action, targetNode, moveType) {
-    if (IS_IMMEDIATE) {
-        immediateUpdate(treeId, treeNodes, action, targetNode, moveType);
-        return;
-    }
+function popUpPage(pageParam) {
+	var width = "800px";
+	var height = $(window).height() - 50 + 'px';
+	var offsetTop = '20px';
+	var offsetRight = "";
 
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var zTreeNodes = zTree.getNodes();
-    var zTreeNodesJsonArray = zTree.transformToArray(zTreeNodes);
-    // 修改数组长度为1，以达到删除其它节点只保留根目录节点的目的，因为根目录中已经用嵌套方式包含所有节点。
-    zTreeNodesJsonArray.length = 1;
-    var infoData = JSON.stringify(zTreeNodesJsonArray);
-    $("#hiddenModules").val(infoData);
+	if (typeof (pageParam.width) != "undefined")
+		width = pageParam.width;
+	if (typeof (pageParam.height) != "undefined") {
+		height = pageParam.height;
+		offsetTop = ($(window).height() - pageParam.height) / 2 + 'px';
+	}
+	if (typeof (pageParam.offsetTop) != "undefined")
+		offsetTop = pageParam.offsetTop;
+	if (typeof (pageParam.offsetRight) != "undefined")
+		offsetRight = pageParam.offsetRight;
+
+	layer.open({
+		type : 2,
+		title : pageParam.title,
+		content : pageParam.url,
+		area : [ width, height ],
+		offset : [ offsetTop, offsetRight ]
+	});
 }
-
-function immediateUpdate(treeId, treeNodes, action, targetNode, moveType) {
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    var treeNodesArray = zTree.transformToArray(treeNodes);
-
-    var ajaxParamter = {
-        "async": true,
-        "type": "POST",
-        "success": function (resultData) {
-            // 添加成功更新当前系统ID
-            if (action == "ADD") {
-                treeNodes[0].id = resultData.objectId;
-                zTree.updateNode(treeNodes[0])
-            }
-
-            // 更新成功右侧名称同步更改
-            if (action == "UPDATE") {
-                $("#textName").val(treeNodes[0].name);
-            }
-
-            layer.msg('数据已实时更新……', {
-                time: 1500
-            });
-        }
-    };
-    var cascade = $("input[name='cascadeTypeCodeRadio']:checked").val();
-    var rootNode = getCurrentRootNode(treeNodesArray[0]);
-    if (action == "ADD") {
-
-        var zTreeNodeJson = {
-            id: null,
-            cascadeTypeCode: cascade,
-            name: treeNodesArray[0].name,
-            fartherId: treeNodesArray[0].fartherId,
-            level: (rootNode.isDomain ? treeNodesArray[0].level : treeNodesArray[0].level + 1),
-            priority: treeNodesArray[0].getIndex(),
-            categoryCode: rootNode.categoryCode,
-            categoryText: rootNode.categoryText
-        }
-
-        // 如果根节点是应用领域
-        if (rootNode.isDomain != null && rootNode.isDomain) {
-            zTreeNodeJson.domainId = rootNode.id;
-            zTreeNodeJson.domainName = rootNode.name;
-            
-            if(treeNodesArray[0].level==1)
-            zTreeNodeJson.fartherId = null;
-        }
-
-        ajaxParamter.data = JSON.stringify(zTreeNodeJson);
-        ajaxParamter.url = zTree.setting.url.addUrl;
-    }
-
-    else if (action == "DELETE") {
-
-        var idArray = new Array();
-
-        $.each(treeNodesArray, function (i, v) {
-            idArray.push(v.id)
-        });
-        var submitData = {
-            idList: idArray
-        };
-        ajaxParamter.type = 'POST';
-        ajaxParamter.data = JSON.stringify(submitData);
-        ajaxParamter.url = zTree.setting.url.deleteListUrl;
-    } else if (action == "UPDATE") {
-        var zTreeNodeJsonArray = new Array();
-
-        var zTreeNodeJson = {
-            id: treeNodesArray[0].id,
-            name: treeNodesArray[0].name,
-            fartherId: treeNodesArray[0].fartherId,
-            level: (rootNode.isDomain ? treeNodesArray[0].level : treeNodesArray[0].level + 1),
-            priority: treeNodesArray[0].getIndex()
-        }
-        ajaxParamter.data = JSON.stringify(zTreeNodeJson);
-        ajaxParamter.url = zTree.setting.url.updateUrl;
-
-    }   else if (action == "DRAG") {
-    	 treeNodesDragBrotherArray = new Array();
-    	  // 获取拖拽节点的兄弟节点，修改排序号
-    	 function zTreeFilterPrev(node) {
-             return (node.fartherId == treeNodesArray[0].fartherId && (node.getIndex() > treeNodesArray[0].getIndex()));
-         }
-        var treeNodesBrotherArray = zTree.getNodesByFilter(zTreeFilterPrev);
-          $.each(treeNodesBrotherArray, function (i, v) {
-        	    var zTreeNodeJson = {
-                        id: v.id,
-                        name: v.name,
-                        fartherId: v.fartherId,
-                        level:  v.level + 1,
-                        priority: v.getIndex()-1,
-                        categoryCode: v.categoryCode,
-                        categoryText: v.categoryText
-                    }
-                    
-                    // 如果为功能模块的拖拽，要特别处理
-                    if(rootNode.isDomain ){
-                    	zTreeNodeJson.level=v.level;
-                    	zTreeNodeJson.domainId=v.domainId;
-                    	if(v.level==1)
-                    		zTreeNodeJson.fartherId = null;
-                    }
-                
-              treeNodesDragBrotherArray.push(zTreeNodeJson);
-          });
-          return true;
-    }
-    else if (action == "DROP") {
-        var treeNodesBrotherArray = new Array();
-        var zTreeNodeJsonArray = new Array();
-
-        // 如果是拖拽动作，而且拖拽到根节点
-        if (targetNode == null || treeNodes[0].level == 0) {
-            var treeNodesBrotherArray = zTree.getNodesByParam("fartherId", null, null);
-        }
-        // 如果是拖拽动作，而且没有拖拽到根节点，有更简单的逻辑可以实现这个功能，就是取自己节点的父节点后再取所有子节点，但这样在数量大的时候可能会影响效率
-        else {
-            // 如果拖拽成为目标节点的子级节点
-            if (moveType == "inner") {
-                treeNodesBrotherArray = zTree.getNodesByParam("fartherId", targetNode.id, null);
-            }
-            else if (moveType == "prev" || moveType == "next") {
-                function zTreeFilterPrev(node) {
-                    return (node.fartherId == targetNode.fartherId && (node.getIndex() >= (targetNode.getIndex() < 2 ? 0 : targetNode.getIndex() - 1)));
-                }
-
-                treeNodesBrotherArray = zTree.getNodesByFilter(zTreeFilterPrev);
-            }
-        }
-
-        $.each(treeNodesBrotherArray, function (i, v) {
-            var zTreeNodeJson = {
-                id: v.id,
-                name: v.name,
-                fartherId: v.fartherId,
-                level:  v.level + 1,
-                priority: v.getIndex(),
-                categoryCode: v.categoryCode,
-                categoryText: v.categoryText
-            }
-            
-            // 如果为功能模块的拖拽，要特别处理
-            if(rootNode.isDomain ){
-            	zTreeNodeJson.level=v.level;
-            	zTreeNodeJson.domainId=targetNode.domainId;
-            	if(v.level==1)
-            		zTreeNodeJson.fartherId = null;
-            }
-           
-            zTreeNodeJsonArray.push(zTreeNodeJson);
-        });
-        // 拖拽节点的子点级别可能发生变化
-        var treeNodesChildArray = zTree.transformToArray(treeNodes[0].children);
-        $.each(treeNodesChildArray, function (i, v) {
-            var zTreeNodeJson = {
-                    id: v.id,
-                    name: v.name,
-                    fartherId: v.fartherId,
-                    level:  v.level + 1,
-                    priority: v.getIndex(),
-                    categoryCode: v.categoryCode,
-                    categoryText: v.categoryText
-                }
-            // 如果为功能模块的拖拽，要特别处理
-            if(rootNode.isDomain ){
-            	zTreeNodeJson.level=v.level;
-            	zTreeNodeJson.domainId=targetNode.domainId;
-            	if(v.level==1)
-            		zTreeNodeJson.fartherId = null;
-            }
-            zTreeNodeJsonArray.push(zTreeNodeJson);
-        });
-        
-        // 原有兄弟节点排序号也会发生变化，如果拖拽到不同层级中，也要修改
-        if(treeNodesDragBrotherArray.length>0&&targetNode.fartherId!=treeNodesDragBrotherArray[0].fartherId)
-        	zTreeNodeJsonArray=zTreeNodeJsonArray.concat(treeNodesDragBrotherArray);
-        var submitData = {
-            entityList: zTreeNodeJsonArray
-        }
-        ajaxParamter.data = JSON.stringify(submitData);
-        ajaxParamter.url = zTree.setting.url.updateListUrl;
-    }
-
-    universalAjax(ajaxParamter);
-
-}
-
-// 跳转到修改页面
-function gotoEditPage(editPage){
-	if(editPage==null){
-	var index=window.location.href.indexOf("Detail.html");
-	if(index==-1)
-		   layer.msg('未找到修改页面……', {
-               time: 1500
-           });
-	else
-	window.location=window.location.href.replaceAll("Detail.html","Edit.html");
-	}else
-		window.location=editPage;
-
-}
-
-function selectAll() {
-    var zTree = $.fn.zTree.getZTreeObj("ulModuleTree");
-    zTree.setting.edit.editNameSelectAll = $("#selectAll").attr("checked");
-}
-
-// 获取当前节点的根节点(treeNode为当前节点)
-function getCurrentRootNode(treeNode) {
-    if (treeNode.getParentNode() != null) {
-        var parentNode = treeNode.getParentNode();
-        return getCurrentRootNode(parentNode);
-    } else {
-        return treeNode;
-    }
-}
-
-/** *******************************************树形菜单相关方法******************************************* */
-
-
-
