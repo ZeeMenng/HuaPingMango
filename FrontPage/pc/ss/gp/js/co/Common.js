@@ -255,21 +255,23 @@ function initLinkMenu() {
 					var valAll = $(v).text();
 					var liParent = $(v).parent().parent().parent().parent();
 					var liParent2 = $(v).parent().parent();
-					if (valAll.indexOf(val) > -1 && val != '' && e.keyCode != '8' || val == '' && e.keyCode == '8' && txtActive == valAll) {
-						liParent.addClass("active open");
-						liParent.find(".sub-menu").css("display", "block");
-						liParent.find(".arrow").addClass("open");
-						liParent2.addClass("active");
+					
+					if (liParent2.hasClass("active")) {
+						liParent.find(".sub-menu").css("display", "none");
+						liParent.find(".arrow").removeClass("open");
+						liParent.removeClass("active open");
 					}
-					if (val == "" && txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) <= 0 || txtActive != valAll && e.keyCode == '8' && valAll.indexOf(val) < 0) {
-						if (liParent2.hasClass("active")) {
-							liParent.find(".sub-menu").css("display", "none");
-							liParent.find(".arrow").removeClass("open");
-							liParent.removeClass("active open");
+					liParent2.removeClass("active");
+					
+					if (val != '')
+						if (valAll.indexOf(val) > -1) {
+							liParent.addClass("active open");
+							liParent.find(".sub-menu").css("display", "block");
+							liParent.find(".arrow").addClass("open");
+							liParent2.addClass("active");
 						}
-						liParent2.removeClass("active");
-					}
-				})
+
+				});
 			});
 
 		}
