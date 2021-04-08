@@ -227,12 +227,10 @@ function initLinkMenu() {
 								var userConfig = getUserConfigByCode("isFold");
 								userConfig.configValue = false;
 								updateUserConfig(userConfig);
-								$(".search-wrap").show();
 							} else {
 								var userConfig = getUserConfigByCode("isFold");
 								userConfig.configValue = true;
 								updateUserConfig(userConfig);
-								$(".search-wrap").hide();
 							}
 						})
 
@@ -279,7 +277,6 @@ function initLinkMenu() {
 					$("#" + activeMenuId).addClass("active");
 					$("#" + activeMenuId).parent().css("display", "block");
 					$("#" + activeMenuId).parent().parent().addClass("active open");
-					console.log($("#" + activeMenuId).attr("id"));
 				}
 
 			});
