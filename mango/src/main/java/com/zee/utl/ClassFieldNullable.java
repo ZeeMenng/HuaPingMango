@@ -20,7 +20,7 @@ public class ClassFieldNullable {
 			try {
 				Field field;
 
-				field = t.getClass().getSuperclass().getField(fieldName);
+				field = t.getClass().getSuperclass().getDeclaredField(fieldName);
 
 				field.setAccessible(true);
 				Object fieldValue = field.get(t);
