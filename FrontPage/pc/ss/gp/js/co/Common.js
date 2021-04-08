@@ -244,27 +244,29 @@ function initLinkMenu() {
 			$("#firstLevelMenuLi").remove();
 			$("#secondeLevelMenuLi").remove();
 			$("li[id='thirdLevelMenuLi']").remove();
-			// 获取当前页面的左侧激活菜单名称 上面调用
-			txtActive = $(".nav-item.start.active .title").text();
-
+			// 获取当前页面的左侧激活菜单ID
+			var activeMenuId = $(".nav-item.start.active").attr("id");
+			// 是否命中
+			var isHist = false;
 			// 左侧搜索匹配激活状态
-			$("body").on("keyup", ".searchInput", function(e) {
-				var val = $(this).val();
+			$("body").on("keyup mouseup", ".searchInput", function(e) {
+				var keyword = $(this).val();
 				var txts = $('.badge').prev('.title');
+
 				txts.each(function(i, v) {
-					var valAll = $(v).text();
+					var menuText = $(v).text();
 					var liParent = $(v).parent().parent().parent().parent();
 					var liParent2 = $(v).parent().parent();
-					
+
 					if (liParent2.hasClass("active")) {
 						liParent.find(".sub-menu").css("display", "none");
 						liParent.find(".arrow").removeClass("open");
 						liParent.removeClass("active open");
 					}
 					liParent2.removeClass("active");
-					
-					if (val != '')
-						if (valAll.indexOf(val) > -1) {
+					if (keyword != '')
+						if (menuText.indexOf(keyword) > -1) {
+							isHist = true;
 							liParent.addClass("active open");
 							liParent.find(".sub-menu").css("display", "block");
 							liParent.find(".arrow").addClass("open");
@@ -272,6 +274,14 @@ function initLinkMenu() {
 						}
 
 				});
+				// 没有命中或者输入框为空的话恢复之前的状态
+				if (!isHist || keyword == '') {
+					$("#" + activeMenuId).addClass("active");
+					$("#" + activeMenuId).parent().css("display", "block");
+					$("#" + activeMenuId).parent().parent().addClass("active open");
+					console.log($("#" + activeMenuId).attr("id"));
+				}
+
 			});
 
 		}
