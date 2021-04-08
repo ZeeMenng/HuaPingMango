@@ -26,6 +26,7 @@ import com.zee.bll.extend.unity.gp.GpDomainUntBll;
 import com.zee.bll.extend.unity.gp.GpMenuUntBll;
 import com.zee.bll.extend.unity.gp.GprResourceUntBll;
 import com.zee.ent.custom.ResultModel;
+import com.zee.ent.extend.gp.GpCatalogInterface;
 import com.zee.ent.extend.gp.GpModule;
 import com.zee.ent.extend.gp.GpResource;
 import com.zee.ent.extend.gp.GprResource;
@@ -113,13 +114,22 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 			String[] resourcePathArray = jsonData.getIconPaths().split(",");
 			if (resourcePathArray.length != 0)
 				jsonData.setIconResource(resourcePathArray[0]);
+			else
+				jsonData.setIconResource(null);
 		}
 
 		jsonData.setUpdateTime(new Date());
 		if (StringUtils.isBlank(jsonData.getFartherId())) {
 			jsonData.setFartherId(null);
 		}
-		ResultModel result = gpModuleUntBll.update(jsonData);
+		GpModule gpModule = ClassFieldNullable.convertNull(jsonData, new ArrayList<String>() {
+			{
+				add("style");
+				add("iconResource");
+			}
+		});
+
+		ResultModel result = gpModuleUntBll.update(gpModule);
 
 		// 头像列表
 		gprResourceSplBll.deleteByBusinessId(result.getObjectId());
@@ -424,6 +434,7 @@ public class GpModuleSwgApp extends GpModuleGenSwgApp {
 		selectBuffer.append("		A.style AS iconClass,                                        ");
 		selectBuffer.append("		A.farther_id AS fartherId,                                  ");
 		selectBuffer.append("		A.level AS level,                                      ");
+		selectBuffer.append("		CONCAT('" + this.linkPath + "',A.icon_resource) AS iconResource,  ");
 		selectBuffer.append("		A.page_url AS pageUrl,                                             ");
 		selectBuffer.append("		A.priority AS priority                                             ");
 		selectBuffer.append("	FROM                                                                  ");
