@@ -175,7 +175,9 @@ function initLinkMenu() {
 
 						secondLevelMenu.find("span.title").html(n["name"]);
 						secondLevelMenu.find("a i").addClass(n["iconClass"]);
-
+						// 如果有自定义的菜单图标，则显示
+						if (n["iconResource"] != null && n["iconResource"] != '')
+							thirdLevelMenu.find("img").show().attr("src", n["iconResource"]);
 						var $firstLevelMenu = $("#linkMenuUl li[id='" + n["fartherId"] + "']");
 						var $lastSecondLevelMenu = $("#linkMenuUl li[fartherId='" + n["fartherId"] + "']:last");
 
@@ -204,6 +206,9 @@ function initLinkMenu() {
 
 						thirdLevelMenu.find("span.badge").html(n["XiaoXiShuLiang"]);
 						thirdLevelMenu.find("a i").addClass(n["iconClass"]);
+						// 如果有自定义的菜单图标，则显示
+						if (n["iconResource"] != null && n["iconResource"] != '')
+							thirdLevelMenu.find("img").show().attr("src", n["iconResource"]);
 						$("#linkMenuUl li[id='" + n["fartherId"] + "'] ul").append(thirdLevelMenu);
 						// 菜单加焦点
 						var pageUrl = n["pageUrl"] == null ? "" : n["pageUrl"];

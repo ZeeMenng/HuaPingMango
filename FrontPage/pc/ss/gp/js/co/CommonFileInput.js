@@ -1,6 +1,12 @@
 /** *******************************************文件上传相关方法******************************************* */
 // 多文件上传控件 接受后台数据后 初始化
 function initAddFileInput() {
+	
+	// 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
+	$("#fileIcons").fileinput('clear');
+	$("#fileIcons").fileinput('reset');
+	$("#fileIcons").fileinput('refresh');
+	$("#fileIcons").fileinput('destroy');
 	// 初始化上传控件的样式
 	var $Control = $("#fileIcons").fileinput({
 		language : 'zh',
@@ -58,9 +64,10 @@ function initEditFileInput(IconIdArray, IconPathArray) {
 		}
 	}
 	// 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
+	$("#fileIcons").fileinput('clear');
+	$("#fileIcons").fileinput('reset');
+	$("#fileIcons").fileinput('refresh');
 	$("#fileIcons").fileinput('destroy');
-	$("#fileIcons").unbind('on');
-
 	var $Control = $("#fileIcons").fileinput({
 		language : 'zh',
 		theme : 'fa',
@@ -107,6 +114,15 @@ function initEditFileInput(IconIdArray, IconPathArray) {
 
 // 多文件上传控制 刚进入新增页面 初始化
 function initFileInput(fileControl, hiddenResourceIdsControl, hiddenResourcePathsControl) {
+	// 初始化前先销毁上一个初始化，否则点击左侧功能模块，控制无法显示图片。同时取消绑定on事件，否则上传时会重复执行on事件。
+	$(fileControl).unbind('filepreupload');
+	$(fileControl).unbind('filebatchselected');
+	$(fileControl).unbind('fileuploaded');
+	$(fileControl).unbind('filebatchuploadcomplete');
+	$(fileControl).unbind('filesuccessremove');
+	$(fileControl).unbind('fileremoved');
+	$(fileControl).unbind('filedeleted');
+	
 	$(fileControl).on('filepreupload', function(event, data, previewId, index) {
 		for (var i = 0; i < data.files.length; i++) {
 			var file = data.files[i];

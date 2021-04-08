@@ -331,6 +331,12 @@ embed {
 	content: "\f0ac";
 }
 
+.menu-img {
+	display: none; width : 20px;
+	height: 20px;
+	width: 20px;
+}
+
 /** 登录页后添加样式  ***/
 .login {
 	background: url(../img/loginBg.png) no-repeat center center;
