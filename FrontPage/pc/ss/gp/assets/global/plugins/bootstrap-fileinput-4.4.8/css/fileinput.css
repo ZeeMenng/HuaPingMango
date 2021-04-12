@@ -57,7 +57,8 @@
 }
 
 .krajee-default .file-thumb-progress .progress, .krajee-default .file-thumb-progress .progress-bar {
-    height: 11px;
+	/****Zee修改，影响单个图片上传进度条显示高度*****/
+    height: 20px;
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 9px;
 }
@@ -68,7 +69,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 160px;
-    height: 15px;
+    /****Zee修改，影响单个图片上传标题、分辨率信息显示高度*****/
+    height: 24px;
     margin: auto;
 }
 
@@ -242,6 +244,8 @@
 }
 
 .krajee-default .file-footer-buttons {
+	/****Zee添加，影响单个图片上传后的操作按钮显示*****/
+    margin-top:10px;
     float: right;
 }
 
@@ -261,7 +265,8 @@
 
 .krajee-default .file-thumb-progress {
     height: 11px;
-    top: 37px;
+    /****Zee修改，影响单个图片上传进度条显示高度*****/
+    top: 55px;
     left: 0;
     right: 0;
 }

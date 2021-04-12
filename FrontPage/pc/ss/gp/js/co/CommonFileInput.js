@@ -15,7 +15,13 @@ function initAddFileInput() {
 		showZoom : false,
 		showDrag : false,
 		showUpload : false,
-		showCaption : false,
+		showClose:false,
+		//是否显示标题,就是那个文本框
+		showCaption : true,
+		//显示上传图片的大小信息
+		showPreview:true,
+		//是否显示拖拽区域，默认不写为true，但是会占用很大区域
+		dropZoneEnabled : false,
 		ajaxSettings : {
 			headers : {
 				'Authorization' : "Bearer " + JSON.parse(getCookies({
@@ -43,20 +49,27 @@ function initAddFileInput() {
 			};
 			return data;
 		},
-
-		browseClass : "btn btn-primary btn-lg",
+		browseClass : "btn btn-primary",
 		fileType : "image",
 		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
 		overwriteInitial : false,
 		initialPreviewAsData : true
 
 	});
+	  
 	initFileInput($Control, "hiddenIconIds", "hiddenIconPaths");
+
 }
 
 function initEditFileInput(IconIdArray, IconPathArray) {
+	isDropZoneEnabled=true;
+	if((IconPathArray.length==1&&IconPathArray[0]=="")){
+		IconIdArray=null;
+		IconPathArray=[];
+		isDropZoneEnabled=false;
+	}
 	var initialPreviewConfigArray = [];
-	if (IconIdArray != null & IconPathArray != null) {
+	if (IconIdArray != null && IconPathArray != null) {
 		for (var i = 0; i < IconIdArray.length; i++) {
 			initialPreviewConfigArray[i] = {
 				url : INTERFACE_SERVER + RU_GPRESOURCE_GETMODELBYPATH + IconIdArray[i]
@@ -76,6 +89,12 @@ function initEditFileInput(IconIdArray, IconPathArray) {
 		showDrag : false,
 		showUpload : false,
 		showCaption : false,
+		showPreview:true,
+		showClose:false,
+		//是否显示标题,就是那个文本框
+		showCaption : true,
+		//是否显示拖拽区域，默认不写为true，但是会占用很大区域
+		dropZoneEnabled : isDropZoneEnabled,
 		ajaxSettings : {
 			headers : {
 				'Authorization' : "Bearer " + JSON.parse(localStorage.getItem("token")).accessToken
@@ -101,7 +120,7 @@ function initEditFileInput(IconIdArray, IconPathArray) {
 			};
 			return data;
 		},
-		browseClass : "btn btn-primary btn-lg",
+		browseClass : "btn btn-primary",
 		fileType : "image",
 		previewFileIcon : "<i class='glyphicon glyphicon-king'></i>",
 		overwriteInitial : false,
