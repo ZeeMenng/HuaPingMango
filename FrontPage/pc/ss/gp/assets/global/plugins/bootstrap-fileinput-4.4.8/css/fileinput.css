@@ -181,8 +181,8 @@
 }
 
 .file-preview .fileinput-remove {
-    top: 1px;
-    right: 1px;
+    top: 5px;
+    right: 5px;
     line-height: 10px;
 }
 
