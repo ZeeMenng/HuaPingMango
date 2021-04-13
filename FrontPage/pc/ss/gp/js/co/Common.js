@@ -759,6 +759,17 @@ function initAutoComplete(itemParam, ajaxParam) {
 /** ***************************通用初始化组件方法（下拉框、单选框、自动填充）******************************************* */
 
 /** ***************************通用Ajax处理方法******************************************* */
+
+// 利用Ajax-hook插件，拦截Ajax的error方法，如果出现错误（比如网络中断等）不再执行后续操作，但是两个异步Ajax之间无法互相拦截
+ah.proxy({
+	 onError :(error, handler) => {
+	        console.log(error.error.type);
+	        console.log(error.config.url);
+	    },
+});
+
+
+
 /**
  * Zee 通用ajax处理方法
  * 
