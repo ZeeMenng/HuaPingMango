@@ -834,6 +834,9 @@ function universalAjax(ajaxParameter) {
  * @param errorThrown
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
+	//如果已经有提示框直接返回，不再重复提示
+	if($(".layui-layer.layui-layer-dialog").length!=0)
+		return;
 	layer.closeAll();
 	var statusText = XMLHttpRequest.statusText;
 	if (XMLHttpRequest.responseText != null && XMLHttpRequest.responseText != "") {
