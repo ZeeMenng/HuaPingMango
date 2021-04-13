@@ -51,7 +51,7 @@
     "raf": "3.4.0",
     "react": "^16.3.2",
     "react-bmap": "^1.0.71",
-    "react-dev-utils": "^5.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.3.2",
     "react-iframe": "^1.1.0",
     "react-redux": "^5.0.7",
