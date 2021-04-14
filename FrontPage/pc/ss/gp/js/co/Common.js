@@ -1,11 +1,6 @@
 var txtActive;
 
-// 所有DOM元素加载之前执行登录校验
-(function() {
-	if (!validateLogin()) {
-		return false;
-	}
-})(jQuery);
+
 
 // 验证插件中加入手机号校验功能
 jQuery.validator.addMethod("phone", function(value, element) {
@@ -15,7 +10,9 @@ jQuery.validator.addMethod("phone", function(value, element) {
 }, "请填写正确的手机号码");
 
 $(document).ready(function() {
-
+	if (!validateLogin()) {
+		return false;
+	}
 	var userConfig = getUserConfigByCode("pageSize");
 	if (userConfig)
 		DEFAULT_PAGE_SIZE = userConfig.configValue;
@@ -760,13 +757,6 @@ function initAutoComplete(itemParam, ajaxParam) {
 
 /** ***************************通用Ajax处理方法******************************************* */
 
-// 利用Ajax-hook插件，拦截Ajax的error方法，如果出现错误（比如网络中断等）不再执行后续操作，但是两个异步Ajax之间无法互相拦截
-ah.proxy({
-	 onError :(error, handler) => {
-	        console.log(error.error.type);
-	        console.log(error.config.url);
-	    },
-});
 
 
 
@@ -834,7 +824,7 @@ function universalAjax(ajaxParameter) {
  * @param errorThrown
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
-	//如果已经有提示框直接返回，不再重复提示
+	// 如果已经有提示框直接返回，不再重复提示
 	if($(".layui-layer.layui-layer-dialog").length!=0)
 		return;
 	layer.closeAll();
@@ -869,6 +859,15 @@ function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 		});
 	}
 }
+
+//利用Ajax-hook插件，拦截Ajax的error方法，如果出现错误（比如网络中断等）不再执行后续操作，但是两个异步Ajax之间无法互相拦截
+/*ah.proxy({
+	 onError :(error, handler) => {
+	        console.log(error.error.type);
+	        console.log(error.config.url);
+	    },
+});*/
+
 /** ***************************通用Ajax处理方法******************************************* */
 
 /**

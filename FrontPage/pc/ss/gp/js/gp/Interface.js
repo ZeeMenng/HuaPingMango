@@ -129,11 +129,11 @@ function initUlInterfaceCatalogTree() {
 				return false
 			var moduleTree = $.fn.zTree.getZTreeObj("ulInterfaceCatalogTree");
 			zNodes = resultData.data;
-			// 
+			/*
 			for (i = 0; i < zNodes.length; i++) {
 				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 				zNodes[i].iconSkin = "diy02";
-			}
+			}*/
 			$.fn.zTree.init($("#ulInterfaceCatalogTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
@@ -270,11 +270,11 @@ function initUlEditInterfaceCatalogTree() {
 				return false
 			var moduleTree = $.fn.zTree.getZTreeObj("ulEditInterfaceCatalogTree");
 			zNodes = resultData.data;
-			// 
-			for (i = 0; i < zNodes.length; i++) {
+			
+			/* for (i = 0; i < zNodes.length; i++) {
 				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 				zNodes[i].iconSkin = "diy02";
-			}
+			}*/
 			$.fn.zTree.init($("#ulEditInterfaceCatalogTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")

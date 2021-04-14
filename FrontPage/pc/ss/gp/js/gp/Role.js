@@ -128,8 +128,8 @@ function initDomainModuleTree() {
 
 				// 更改应用领域图标展示
 				for (i = 0; i < zNodes.length; i++) {
-					zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
-					zNodes[i].iconSkin = "diy01";
+					//zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
+					//zNodes[i].iconSkin = "diy01";
 					zNodes[i].isDomain = true;
 				}
 			}
@@ -149,10 +149,10 @@ function initDomainModuleTree() {
 						if (!resultData.isSuccess)
 							return true;
 						// 更改功能模块图标展示
-						for (i = 0; i < resultData.data.length; i++) {
+						/*for (i = 0; i < resultData.data.length; i++) {
 							resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 							resultData.data[i].iconSkin = "diy02";
-						}
+						}*/
 						moduleTree.addNodes(value, -1, resultData.data);
 						
 					}

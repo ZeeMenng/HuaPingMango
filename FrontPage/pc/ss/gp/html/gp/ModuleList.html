@@ -97,8 +97,8 @@
 
 					//更改应用领域图标展示
 					for (i = 0; i < zNodes.length; i++) {
-						zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
-						zNodes[i].iconSkin = "diy01";
+						//zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/5.png";
+						//zNodes[i].iconSkin = "diy01";
 						zNodes[i].isDomain = true;
 					}
 
@@ -128,10 +128,10 @@
 							if (resultData.totalCount != 0) {
 
 								//更改功能模块图标展示
-								for (i = 0; i < resultData.data.length; i++) {
-									resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
-									resultData.data[i].iconSkin = "diy02";
-								}
+								/*for (i = 0; i < resultData.data.length; i++) {
+								 resultData.data[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+								 resultData.data[i].iconSkin = "diy02";
+								 } */
 								moduleTree.addNodes(value, -1, resultData.data);
 
 							}
@@ -275,13 +275,11 @@ ul.ztree {
 													</div>
 												</div>
 
-											
+
 											</div>
 											<div class="form-group">
 												<div class="element-group left">
-													<label class="col-sm-2 control-label">
-														链接页面
-													</label>
+													<label class="col-sm-2 control-label"> 链接页面 </label>
 													<div class="col-sm-8">
 														<div class="input-group" style="width: 100%;">
 															<input type="text" id="textPageUrl" name="textPageUrl" class="form-control" />
@@ -292,12 +290,10 @@ ul.ztree {
 											</div>
 											<div class=" form-group">
 												<div class="element-group left">
-													<label for="fileResourceIds" class="control-label col-md-2">
-														菜单图标
-													</label>
+													<label for="fileResourceIds" class="control-label col-md-2"> 菜单图标 </label>
 
 													<div class="col-md-8" style="line-height: 32px;">
-														<input id="fileIcons" type="file" name="fileIcons" multiple style="height: 30px"   />
+														<input id="fileIcons" type="file" name="fileIcons" multiple style="height: 30px" />
 														<input type="hidden" id="hiddenIconIds" name="hiddenIconIds" />
 														<input type="hidden" id="hiddenIconPaths" name="hiddenIconPaths" />
 													</div>
