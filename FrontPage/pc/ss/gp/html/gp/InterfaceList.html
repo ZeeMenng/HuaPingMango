@@ -61,7 +61,6 @@ Metronic风格时这部分注释掉
 	background-position: -143px -1px;
 	vertical-align: top;
 } */
-
 .ztree li span.node_name {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -76,7 +75,7 @@ Metronic风格时这部分注释掉
 	height: 18px;
 }
 
-.ztree li a>span:not (.button ){
+.ztree li a>span:not(.button){
 	max-width: 100 px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -104,23 +103,7 @@ a:hover {
 }
 
 
-/****列表页单元格超长出现横向滚动条，除了下面的，注意页面中多加了个table-scrollable样式***/
 
-
-#contentTable {
-	table-layout: initial;
-}
-
-#contentTable thead tr th span {
-	white-space: nowrap;
-	display: inline-block;
-	vertical-align: middle; /*设置垂直居中*/
-}
-
-#contentTable tbody tr td span, #contentTable tbody tr td a {
-	white-space: nowrap;
-	vertical-align: middle; /*设置垂直居中*/
-}
 
 </style>
 </head>
@@ -264,16 +247,17 @@ a:hover {
 
 								<div class="portlet-body">
 
-									<div class="dataTables_wrapper no-footer table-scrollable">
-										<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column dataTable" id="contentTable">
-											<thead>
+									<div class="dataTables_wrapper no-footer ">
+										<div class="table-scrollable">
+											<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column " id="contentTable">
+												<thead>
 
-											</thead>
-											<tbody>
+												</thead>
+												<tbody>
 
-											</tbody>
-										</table>
-
+												</tbody>
+											</table>
+										</div>
 										<div class="row">
 											<div class="col-md-10 dataTables_info" role="status" aria-live="polite">
 
@@ -327,6 +311,7 @@ a:hover {
 										</div>
 
 									</div>
+
 
 									<input type=hidden id="pageCountHidden" />
 									<input type=hidden id="pageIndexHidden" />

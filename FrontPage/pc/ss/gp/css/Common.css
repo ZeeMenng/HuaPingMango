@@ -173,8 +173,7 @@ table.table-bordered.dataTable tbody td:last-child {
 	border-radius: 5px !important;
 }
 
-/*
-分页样式*/
+/*分页样式*/
 #pageSizeSelect {
 	display: inline-block !important;
 }
@@ -285,9 +284,12 @@ embed {
 	list-style: none;
 }
 
-/****列表页超过行宽加省略号***/
+
+
+/****此处配置为fixed或initial可控制列表页超过行宽加省略号，或横向滚动条***/
 #contentTable {
 	table-layout: fixed;
+	/*table-layout: initial;*/
 }
 
 #contentTable thead tr th span {
