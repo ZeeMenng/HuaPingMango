@@ -290,10 +290,13 @@ embed {
 	table-layout: fixed;
 }
 
-#contentTable tbody tr td, #contentTable tbody tr td a {
+#contentTable tbody tr td span, #contentTable tbody tr td a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	display: inline-block;
+	max-width: 100%; /*设置最大宽度，结合JS判断是否超长*/
+	vertical-align: middle; /*设置垂直居中*/
 }
 
 /** 左侧导航栏搜索框 **/
@@ -332,7 +335,8 @@ embed {
 }
 
 .menu-img {
-	display: none; width : 20px;
+	display: none;
+	width: 20px;
 	height: 20px;
 	width: 20px;
 }

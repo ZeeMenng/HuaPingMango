@@ -246,9 +246,10 @@ function pageClick(pageParam, ajaxParam, operationParam) {
                     row += "<td";
                     ajaxParam.columnInfo[i].class == null ? row += "" : row += " class='" + ajaxParam.columnInfo[i].class + "'";
                     ajaxParam.columnInfo[i].style == null ? row += "" : row += " style='" + ajaxParam.columnInfo[i].style + "'";
-                    row += ">";
+                    
+                    row += "><span>";
                     if (n[col] == null) {
-                        row += "</td>";
+                        row += "</span></td>";
                         continue;
                     }
                     if (ajaxParam.columnInfo[i].linkFunction != null)
@@ -266,7 +267,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 
                 // 第一次遍历，插入操作按钮
                 if (operationParam != null && operationParam.length != 0) {
-                    row += "<td>&nbsp;&nbsp;"
+                    row += "<td><span>&nbsp;&nbsp;"
                     $.each(operationParam, function (b, m) {
                         // 如果visibleFunction方法参数返回的是false，则不显示操作按钮
                         if (m.visibleFunction != null)
@@ -287,7 +288,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
                         row += "</button>&nbsp;&nbsp;";
 
                     });
-                    row += "</td></tr>";
+                    row += "</span></td></tr>";
 
                     row = $(row);
                     // 兼容之前的获取记录主键写法
@@ -340,6 +341,15 @@ function pageClick(pageParam, ajaxParam, operationParam) {
             else
                 $("#contentTable input[name='headerCheckbox']").get(0).checked = false;
 
+
+            $('#contentTable tbody tr td span').each(function (i,n) {
+            	var tdWidth=window.getComputedStyle(n).width;
+            	var tdParentWidth=window.getComputedStyle(n.parentElement).width;
+            	  if (parseFloat(tdWidth) === parseFloat(tdParentWidth)) {
+            		  $(n).attr('title', n.textContent);
+            	  }
+            	});
+            
             return false;
         },
 
