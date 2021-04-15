@@ -111,9 +111,9 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
 
     for (var i = 0; i < ajaxParam.columnInfo.length; i++) {
         if (typeof (ajaxParam.columnInfo[i].width) != "undefined")
-            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "' width='" + ajaxParam.columnInfo[i].width + "'>" + ajaxParam.columnInfo[i].columnText + "</th>";
+            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "' width='" + ajaxParam.columnInfo[i].width + "'><span>" + ajaxParam.columnInfo[i].columnText + "</span></th>";
         else
-            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "'>" + ajaxParam.columnInfo[i].columnText + "</th>";
+            header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "'><span>" + ajaxParam.columnInfo[i].columnText + "</span></th>";
     }
 
     if (operationParam != null)
@@ -170,6 +170,16 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
     pageClick(pageParam, ajaxParam, operationParam);
     bindPageButton(pageParam, ajaxParam, operationParam);
     initTopRightButton(pageParam, ajaxParam, operationParam);
+    
+ // 只有单元格超长时才显示title信息
+    $('#contentTable thead tr th span').each(function (i,n) {
+    	var tdWidth=window.getComputedStyle(n).width;
+    	var tdParentWidth=window.getComputedStyle(n.parentElement).width;
+    	  if (parseFloat(tdWidth) === parseFloat(tdParentWidth)) {
+    		  $(n).attr('title', n.textContent);
+    	  }
+    	});
+    
 }
 
 
@@ -341,7 +351,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
             else
                 $("#contentTable input[name='headerCheckbox']").get(0).checked = false;
 
-
+// 只有单元格超长时才显示title信息
             $('#contentTable tbody tr td span').each(function (i,n) {
             	var tdWidth=window.getComputedStyle(n).width;
             	var tdParentWidth=window.getComputedStyle(n.parentElement).width;

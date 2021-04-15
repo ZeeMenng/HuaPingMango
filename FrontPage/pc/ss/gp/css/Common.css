@@ -290,6 +290,15 @@ embed {
 	table-layout: fixed;
 }
 
+#contentTable thead tr th span{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+		display: inline-block;
+	max-width: 100%; /*设置最大宽度，结合JS判断是否超长*/
+	vertical-align: middle; /*设置垂直居中*/
+}
+
 #contentTable tbody tr td span, #contentTable tbody tr td a {
 	overflow: hidden;
 	text-overflow: ellipsis;
