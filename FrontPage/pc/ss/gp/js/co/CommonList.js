@@ -217,6 +217,8 @@ function pageClick(pageParam, ajaxParam, operationParam) {
         "async": true,
         "success": function (message) {
             total = message.totalCount;
+
+            
             var data = message.data;
             pageIndex = parseInt(pageIndex);
 
@@ -224,7 +226,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
 
             if (total == null || total == 0) {
                 $("#contentTable input[name='headerCheckbox']").get(0).checked = false;
-                noResult();
+                noResult(pageParam,ajaxParam);
                 return;
             } else if (data.length == 0) {
                 if (pageIndex > 1) {
@@ -232,7 +234,7 @@ function pageClick(pageParam, ajaxParam, operationParam) {
                     pageClick(pageParam, ajaxParam, operationParam);
                     return;
                 } else {
-                    noResult();
+                    noResult(pageParam,ajaxParam);
                     return;
                 }
             }
@@ -766,7 +768,13 @@ function initPageSizeSelect() {
 }
 
 
-function noResult() {
+function noResult(pageParam,ajaxParam) {
 	$("#totalCountSpan").text(0);
 	$("#pageIndexSpan").text(0 + "/" + 0);
+	
+
+	var noResultRow="<tr class='odd'><td valign='top' colspan='"+(ajaxParam.columnInfo.length+3)+"' class='dataTables_empty'>没有合适的数据……</td></tr>";
+	$("#"+pageParam.tableId).append(noResultRow);
+    
+	
 }
