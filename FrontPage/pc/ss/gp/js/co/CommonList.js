@@ -38,7 +38,9 @@ $(document).ready(function() {
  * @param operationParam
  *            动作参数
  */
+var DEFAULT_ORDER_LIST;
 function initQueryForm(pageParam, ajaxParam, operationParam) {
+	DEFAULT_ORDER_LIST=ajaxParam.submitData.orderList;
     $("#" + pageParam.formId).unbind("submit");
     $("#" + pageParam.formId).submit(function (e) {
         e.preventDefault();
@@ -60,6 +62,7 @@ function initQueryForm(pageParam, ajaxParam, operationParam) {
         // 执行查询动作要重新初始化pageIndex和pageSize
         ajaxParam.submitData.pageIndex = DEFAULT_PAGE_INDEX;
         ajaxParam.submitData.pageSize = DEFAULT_PAGE_SIZE;
+        ajaxParam.submitData.orderList=DEFAULT_ORDER_LIST;
         return executeQuery(pageParam, ajaxParam, operationParam);
     });
     $("#" + pageParam.formId).submit();
@@ -116,9 +119,27 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
             header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "'><span>" + ajaxParam.columnInfo[i].columnText + "</span></th>";
     }
 
+
     if (operationParam != null)
         operationParam.length == 0 ? header += "</tr></thead>" : header += "<th style='min-width:105px;'>操作</th></tr></thead>";
 
+    if(ajaxParam.submitData.orderList!=null&&ajaxParam.submitData.orderList.length!=0)
+    	for (var i = 0; i < ajaxParam.submitData.orderList.length; i++) {
+    		var sortby;
+    		var thClass;
+    		if(ajaxParam.submitData.orderList[i].isASC){
+				thClass="sorting_asc";
+    			 sortby="asc";
+    		}
+    			else{
+    				thClass="sorting_desc";
+    				sorby="desc";
+    			}
+    		header=$(header);
+    		header.find("th[columnName='"+ajaxParam.submitData.orderList[i].columnName+"']").attr("class",thClass);
+    		header.find("th[columnName='"+ajaxParam.submitData.orderList[i].columnName+"']" ).attr("sortby",sorby);
+    	}
+    
     $("#" + pageParam.tableId).append(header);
 
     var orderListArray = new Array();
