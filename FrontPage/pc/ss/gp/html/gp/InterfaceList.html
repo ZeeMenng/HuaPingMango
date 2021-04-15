@@ -102,6 +102,26 @@ a:hover {
 	text-decoration: none;
 	background-color: #f1f4f7;
 }
+
+
+/****列表页单元格超长出现横向滚动条，除了下面的，注意页面中多加了个table-scrollable样式***/
+
+
+#contentTable {
+	table-layout: initial;
+}
+
+#contentTable thead tr th span {
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: middle; /*设置垂直居中*/
+}
+
+#contentTable tbody tr td span, #contentTable tbody tr td a {
+	white-space: nowrap;
+	vertical-align: middle; /*设置垂直居中*/
+}
+
 </style>
 </head>
 
@@ -118,7 +138,7 @@ a:hover {
 							<a id="navbarIndexA" href="">主页</a>
 							<i class="fa fa-angle-right"></i>
 						</li>
-						<li>后台接口管理</li>
+						<li>服务接口管理</li>
 					</ul>
 				</div>
 
@@ -189,7 +209,7 @@ a:hover {
 								<div class="portlet-title">
 									<div class="caption">
 										<i class="icon-layers"></i>
-										<li>系统接口管理
+										<li>服务接口管理
 									</div>
 									<div class="actions">
 
@@ -244,8 +264,8 @@ a:hover {
 
 								<div class="portlet-body">
 
-									<div class="dataTables_wrapper no-footer">
-										<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column" id="contentTable">
+									<div class="dataTables_wrapper no-footer table-scrollable">
+										<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column dataTable" id="contentTable">
 											<thead>
 
 											</thead>

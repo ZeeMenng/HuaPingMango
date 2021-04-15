@@ -285,16 +285,16 @@ embed {
 	list-style: none;
 }
 
-/****列表页超过行宽加省略号**/
+/****列表页超过行宽加省略号***/
 #contentTable {
 	table-layout: fixed;
 }
 
-#contentTable thead tr th span{
+#contentTable thead tr th span {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-		display: inline-block;
+	display: inline-block;
 	max-width: 100%; /*设置最大宽度，结合JS判断是否超长*/
 	vertical-align: middle; /*设置垂直居中*/
 }
