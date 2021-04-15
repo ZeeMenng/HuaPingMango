@@ -7,100 +7,100 @@
 <script src="../../js/gp/Token.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	    // 初始化列表页主体部分，包括查询条件表单及数据表格等。
-	    var pageParam = {
-	        formId: "queryBuilderForm",
-	        tableId: "contentTable",
-	        editPage: {
-	            title: "批量修改表单",
-	            url: RP_GPTOKEN_EDIT
-	        },
-	        detailPage: {
-	            url: RP_GPTOKEN_DETAIL
-	        },
-	        addPage: {
-	            url: RP_GPTOKEN_ADD
-	        },
-	        deleteInterface: {
-	            url: RU_GPTOKEN_DELETE
-	        },
-	        deleteListInterface: {
-	            url: RU_GPTOKEN_DELETELIST
-	        }
+		// 初始化列表页主体部分，包括查询条件表单及数据表格等。
+		var pageParam = {
+			formId : "queryBuilderForm",
+			tableId : "contentTable",
+			editPage : {
+				title : "批量修改表单",
+				url : RP_GPTOKEN_EDIT
+			},
+			detailPage : {
+				url : RP_GPTOKEN_DETAIL
+			},
+			addPage : {
+				url : RP_GPTOKEN_ADD
+			},
+			deleteInterface : {
+				url : RU_GPTOKEN_DELETE
+			},
+			deleteListInterface : {
+				url : RU_GPTOKEN_DELETELIST
+			}
 
-	    };
-	    var ajaxParam = {
-	        url: RU_GPTOKEN_GETLISTBYJSONDATA,
-	        type: "GET",
-	        submitData: {
-	            "entityRelated": {},
-	            "orderList": [{
-	                "columnName": "updateTime",
-	                "isASC": false
-	            }],
-	            "page": {
-	                "pageIndex": DEFAULT_PAGE_INDEX,
-	                "pageSize": DEFAULT_PAGE_SIZE
-	            }
-	        },
-	        columnInfo: [
+		};
+		var ajaxParam = {
+			url : RU_GPTOKEN_GETLISTBYJSONDATA,
+			type : "GET",
+			submitData : {
+				"entityRelated" : {},
+				"orderList" : [ {
+					"columnName" : "updateTime",
+					"isASC" : false
+				} ],
+				"page" : {
+					"pageIndex" : DEFAULT_PAGE_INDEX,
+					"pageSize" : DEFAULT_PAGE_SIZE
+				}
+			},
+			columnInfo : [
 
-	            {
-	                "columnName": "accessToken",
-	                "columnText": "access_token",
-	                "style": "text-align:left",
-	                "width": "100px",
-	                "linkFunction": function (event) {
-	                    var href = RP_GPTOKEN_DETAIL + "?" + RECORD_ID + "=" + event.id;
-	                    return href;
-	                }
-	            }, {
-	                "columnName": "userName",
-	                "columnText": "所属用户 ",
-	                "style": "text-align:left"
-	            }, {
-	                "columnName" : "domainName",
-	                "columnText" : "应用领域",
-	                "style" : "text-align:left",
-	            },{
-	                "columnName": "addTime",
-	                "columnText": "登录时间",
-	                "style" : "text-align:center",
-	            }, {
-	                "columnName": "updateTime",
-	                "columnText": "更新时间",
-	                "style" : "text-align:center",
-	            },
+			{
+				"columnName" : "accessToken",
+				"columnText" : "access_token",
+				"style" : "text-align:left",
+				"width" : "100px",
+				"linkFunction" : function(event) {
+					var href = RP_GPTOKEN_DETAIL + "?" + RECORD_ID + "=" + event.id;
+					return href;
+				}
+			}, {
+				"columnName" : "userName",
+				"columnText" : "所属用户 ",
+				"style" : "text-align:left"
+			}, {
+				"columnName" : "domainName",
+				"columnText" : "应用领域",
+				"style" : "text-align:left",
+			}, {
+				"columnName" : "addTime",
+				"columnText" : "登录时间",
+				"style" : "text-align:center",
+			}, {
+				"columnName" : "updateTime",
+				"columnText" : "更新时间",
+				"style" : "text-align:center",
+			},
 
-	        ]
-	    };
+			]
+		};
 
-	    var operationParam = [{
-	        "operationText": "删除",
-	        "buttonClass": "red",
-	        "iconClass": "fa fa-trash-o",
-	        "clickFunction": function (event) {
-	            layer.confirm('您确定要删除当前记录？', {
-	                btn: ['确定', '取消']
-	            }, function () {
-	                layer.closeAll('dialog');
-	                ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
-	                ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
-	                pageParam.deleteInterface.url = RU_GPTOKEN_DELETE;
-	                pageParam.deleteInterface.type = "GET";
-	                pageParam.deleteInterface.submitData = {
-	                    "id": event.data.id,
-	                };
-	                deleteRecord(pageParam, ajaxParam, operationParam);
-	            });
-	        },
-	        "visibleFunction": function (recordData) {
-	            if (recordData.status == "1")
-	                return false;
-	            return true;
-	        }
-	    }];
-	    initQueryForm(pageParam, ajaxParam, operationParam);
+		var operationParam = [ {
+			"operationText" : "删除",
+			"buttonClass" : "red",
+			"iconClass" : "fa fa-trash-o",
+			"clickFunction" : function(event) {
+				layer.confirm('您确定要删除当前记录？', {
+					btn : [ '确定', '取消' ]
+				}, function() {
+					layer.closeAll('dialog');
+					ajaxParam.submitData.page.pageSize = $("#pageSizeText").val();
+					ajaxParam.submitData.page.pageIndex = $("#pageIndexHidden").val();
+					pageParam.deleteInterface.url = RU_GPTOKEN_DELETE;
+					pageParam.deleteInterface.type = "GET";
+					pageParam.deleteInterface.submitData = {
+						"id" : event.data.id,
+					};
+					deleteRecord(pageParam, ajaxParam, operationParam);
+				});
+			},
+			"visibleFunction" : function(recordData) {
+				if (recordData.status == "1")
+					return false;
+				return true;
+			}
+		} ];
+		initQueryForm(pageParam, ajaxParam, operationParam);
 
 	});
 </script>
@@ -161,17 +161,17 @@
 						</div>
 						<div class="portlet-body">
 							<div class="dataTables_wrapper no-footer">
-							<div class="table-scrollable">
-								<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column" id="contentTable">
-									<thead>
+								<div class="table-scrollable">
+									<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column" id="contentTable">
+										<thead>
 
-									</thead>
-									<tbody>
+										</thead>
+										<tbody>
 
-									</tbody>
-								</table>
-</div>
-								<div class="row">
+										</tbody>
+									</table>
+								</div>
+								<div >
 									<div class="col-md-5 col-sm-5 dataTables_info" role="status" aria-live="polite">
 										共有
 										<span id="totalCountSpan">0 </span>
@@ -185,7 +185,7 @@
 										页
 									</div>
 
-									<div class="col-md-7 col-sm-5">
+									<div class="col-md-5 col-sm-5">
 										<div class="dataTables_paginate paging_bootstrap_full_number">
 											<ul class="pagination">
 												<li class="prev ">
