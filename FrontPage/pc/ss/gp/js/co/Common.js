@@ -1,7 +1,5 @@
 var txtActive;
 
-
-
 // 验证插件中加入手机号校验功能
 jQuery.validator.addMethod("phone", function(value, element) {
 	var length = value.length;
@@ -18,11 +16,13 @@ $(document).ready(function() {
 		DEFAULT_PAGE_SIZE = userConfig.configValue;
 
 	// 是否折叠菜单
-	var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
-	if (isFoldConfig) {
-		$("body").addClass("page-sidebar-closed");
-		$("#linkMenuUl").addClass("page-sidebar-menu-closed");
-		$(".search-wrap").hide();
+	if (getUserConfigByCode("tableLayout") != null) {
+		var isFoldConfig = (getUserConfigByCode("isFold").configValue === 'true');
+		if (isFoldConfig) {
+			$("body").addClass("page-sidebar-closed");
+			$("#linkMenuUl").addClass("page-sidebar-menu-closed");
+			$(".search-wrap").hide();
+		}
 	}
 
 	if (window.location.pathname.indexOf("/lo/Login.html") != -1) {
@@ -757,9 +757,6 @@ function initAutoComplete(itemParam, ajaxParam) {
 
 /** ***************************通用Ajax处理方法******************************************* */
 
-
-
-
 /**
  * Zee 通用ajax处理方法
  * 
@@ -825,7 +822,7 @@ function universalAjax(ajaxParameter) {
  */
 function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	// 如果已经有提示框直接返回，不再重复提示
-	if($(".layui-layer.layui-layer-dialog").length!=0)
+	if ($(".layui-layer.layui-layer-dialog").length != 0)
 		return;
 	layer.closeAll();
 	var statusText = XMLHttpRequest.statusText;
@@ -860,13 +857,11 @@ function ajaxErrorFunction(XMLHttpRequest, textStatus, errorThrown) {
 	}
 }
 
-//利用Ajax-hook插件，拦截Ajax的error方法，如果出现错误（比如网络中断等）不再执行后续操作，但是两个异步Ajax之间无法互相拦截
-/*ah.proxy({
-	 onError :(error, handler) => {
-	        console.log(error.error.type);
-	        console.log(error.config.url);
-	    },
-});*/
+// 利用Ajax-hook插件，拦截Ajax的error方法，如果出现错误（比如网络中断等）不再执行后续操作，但是两个异步Ajax之间无法互相拦截
+/*
+ * ah.proxy({ onError :(error, handler) => { console.log(error.error.type);
+ * console.log(error.config.url); }, });
+ */
 
 /** ***************************通用Ajax处理方法******************************************* */
 

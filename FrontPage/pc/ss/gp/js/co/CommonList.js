@@ -7,6 +7,16 @@ Array.prototype.prepend = function(needle) {
 }
 
 $(document).ready(function() {
+	
+
+	// 列表页表格样式
+	if (getUserConfigByCode("tableLayout") != null) {
+		var tableLayout =getUserConfigByCode("tableLayout").configValue;
+		if (tableLayout) {
+			$("#contentTable").css("table-layout", tableLayout)
+		}
+	}
+	
 	// 增加刷新后全选有否判断，非全选时父checkbox不选中
 	var checked_count = 0;
 	var num = 0;
@@ -133,11 +143,11 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
     		}
     			else{
     				thClass="sorting_desc";
-    				sorby="desc";
+    				sortby="desc";
     			}
     		header=$(header);
     		header.find("th[columnName='"+ajaxParam.submitData.orderList[i].columnName+"']").attr("class",thClass);
-    		header.find("th[columnName='"+ajaxParam.submitData.orderList[i].columnName+"']" ).attr("sortby",sorby);
+    		header.find("th[columnName='"+ajaxParam.submitData.orderList[i].columnName+"']" ).attr("sortby",sortby);
     	}
     
     $("#" + pageParam.tableId).append(header);
