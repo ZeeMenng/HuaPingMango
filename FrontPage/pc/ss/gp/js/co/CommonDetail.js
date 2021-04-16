@@ -85,3 +85,19 @@ function printPage() {
 	window.print();
 	window.document.body.innerHTML = bdhtml;
 }
+
+
+//跳转到修改页面
+function gotoEditPage(editPage) {
+	if (editPage == null) {
+		var index = window.location.href.indexOf("Detail.html");
+		if (index == -1)
+			layer.msg('未找到修改页面……', {
+				time : 1500
+			});
+		else
+			window.location = window.location.href.replaceAll("Detail.html", "Edit.html");
+	} else
+		window.location = editPage;
+
+}

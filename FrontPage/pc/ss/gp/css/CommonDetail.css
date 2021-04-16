@@ -1,3 +1,5 @@
+
+
 td ul img {
 	width: 100px;
 	height: 100px;
@@ -27,6 +29,17 @@ a:hover {
 	height: 150px;
 }
 
+/****详情页超过行宽自动换行**/
+#tableDetail {
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+/*调整详情页表格显示*/
+#tableDetail .left-td strong {
+	font-weight: bolder;
+	margin-left: 25px;
+}
+
 #tableDetail .right-td label{
-	font-weight:400
+	font-weight:normal;
 }

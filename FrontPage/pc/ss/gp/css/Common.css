@@ -94,16 +94,7 @@ table.table-bordered.dataTable tbody td:last-child {
 	border-top: 0.3px solid #ed7d84;
 }
 
-/****详情页超过行宽自动换行**/
-#tableDetail {
-	table-layout: fixed;
-	word-wrap: break-word;
-}
-/*调整详情页表格显示*/
-#tableDetail strong {
-	font-weight: bolder;
-	margin-left: 25px;
-}
+
 
 .portlet.box.red .form-body .element-group label {
 	

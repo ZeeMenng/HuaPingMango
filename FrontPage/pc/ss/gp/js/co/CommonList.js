@@ -7,8 +7,6 @@ Array.prototype.prepend = function(needle) {
 }
 
 $(document).ready(function() {
-	
-
 	// 列表页表格样式，默认超出为省略号，不出现横向滚动条
 	$(".table-scrollable").removeClass("table-scrollable");
 	if (getUserConfigByCode("tableLayout") != null) {
