@@ -82,11 +82,11 @@ function initUlCatalogCategoryTree(catalogCategoryCode) {
 				return false
 			var moduleTree = $.fn.zTree.getZTreeObj("ulCatalogCategoryTree");
 			zNodes = resultData.data;
-			// 
+			/* 
 			for (i = 0; i < zNodes.length; i++) {
 				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
 				zNodes[i].iconSkin = "diy02";
-			}
+			}*/
 			$.fn.zTree.init($("#ulCatalogCategoryTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
