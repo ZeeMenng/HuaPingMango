@@ -9,11 +9,13 @@ Array.prototype.prepend = function(needle) {
 $(document).ready(function() {
 	
 
-	// 列表页表格样式
+	// 列表页表格样式，默认超出为省略号，不出现横向滚动条
+	$(".table-scrollable").removeClass("table-scrollable");
 	if (getUserConfigByCode("tableLayout") != null) {
 		var tableLayout =getUserConfigByCode("tableLayout").configValue;
 		if (tableLayout) {
 			$("#contentTable").css("table-layout", tableLayout)
+			$("#contentTable").addClass("table-scrollable");
 		}
 	}
 	
