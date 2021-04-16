@@ -73,7 +73,7 @@ function addHoverDom(treeId, treeNode) {
 	if (btn)
 		btn.bind("click", function() {
 
-			if (treeNode.level > 5) {
+			if (treeNode.level > 4) {
 				layer.msg('树形菜单不能超过5级……', {
 					time : 1500
 				});
@@ -254,6 +254,30 @@ function onClick(e, treeId, treeNode) {
 		initEditFileInput(initResult.data.iconIds.split(","), initResult.data.iconPaths.split(","));
 	}
 }
+
+/**
+ * @author Zee
+ * @createDate 2021年4月16日 下午2:17:41
+ * @updateDate 2021年4月16日 下午2:17:41
+ * @description  为了防止看不到悬到节点浮的增删改按钮，折叠时宽度减少
+ */
+function onCollapse(event, treeId, treeNode) {
+	$("#" + treeNode.tId).width(function(n, c) {
+		return c - 21;
+	});
+};
+
+/**
+ * @author Zee
+ * @createDate 2021年4月16日 下午2:18:13
+ * @updateDate 2021年4月16日 下午2:18:13
+ * @description 为了防止看不到悬到节点浮的增删改按钮，展开时宽度增加
+ */
+function onExpand(event, treeId, treeNode) {
+	$("#" + treeNode.tId).width(function(n, c) {
+		return c + 21;
+	});
+};
 
 function initZTreeEditForm(pageParam, ajaxParam) {
 	var resultAjaxData;

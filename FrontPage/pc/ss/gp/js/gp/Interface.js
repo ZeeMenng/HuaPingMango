@@ -30,7 +30,7 @@ function initSelect(async) {
 		valueField : "code"
 	};
 	var ajaxParam2 = {
-		url : RU_GPDICTIONARY_GETLISTBYTYPEID  + DI_BOOLEAN,
+		url : RU_GPDICTIONARY_GETLISTBYTYPEID + DI_BOOLEAN,
 		async : async
 	}
 	initDropDownList(selectParam2, ajaxParam2);
@@ -97,6 +97,8 @@ function initUlInterfaceCatalogTree() {
 			onDrop : onDrop,
 			onRemove : onRemove,
 			onRename : onRename,
+			onCollapse : onCollapse,
+			onExpand : onExpand,
 			onCheck : function onCheck(event, treeId, treeNode) {
 				var treeObj = $.fn.zTree.getZTreeObj(treeId);
 				var nodes = treeObj.getCheckedNodes(true);
@@ -130,10 +132,10 @@ function initUlInterfaceCatalogTree() {
 			var moduleTree = $.fn.zTree.getZTreeObj("ulInterfaceCatalogTree");
 			zNodes = resultData.data;
 			/*
-			for (i = 0; i < zNodes.length; i++) {
-				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
-				zNodes[i].iconSkin = "diy02";
-			}*/
+			 * for (i = 0; i < zNodes.length; i++) { zNodes[i].icon =
+			 * "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+			 * zNodes[i].iconSkin = "diy02"; }
+			 */
 			$.fn.zTree.init($("#ulInterfaceCatalogTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
@@ -270,11 +272,12 @@ function initUlEditInterfaceCatalogTree() {
 				return false
 			var moduleTree = $.fn.zTree.getZTreeObj("ulEditInterfaceCatalogTree");
 			zNodes = resultData.data;
-			
-			/* for (i = 0; i < zNodes.length; i++) {
-				zNodes[i].icon = "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
-				zNodes[i].iconSkin = "diy02";
-			}*/
+
+			/*
+			 * for (i = 0; i < zNodes.length; i++) { zNodes[i].icon =
+			 * "/pc/global/plugins/zTree_v3/css/zTreeStyle/img/diy/3.png";
+			 * zNodes[i].iconSkin = "diy02"; }
+			 */
 			$.fn.zTree.init($("#ulEditInterfaceCatalogTree"), setting, zNodes);
 
 			$(".ztree .level0 a").attr("style", "cursor:default")
@@ -413,8 +416,8 @@ function initInterfaceTable(diplayOpeationButton) {
 	$("#updateInterfaceConstantsButton").click(function() {
 		// 获取配置的路径
 		var interfaceSymbolicJsConfig = getUserConfigByCode("interfaceSymbolicJs");
-		if(interfaceSymbolicJsConfig)
-			interfaceSymbolicJs=interfaceSymbolicJsConfig.configValue;
+		if (interfaceSymbolicJsConfig)
+			interfaceSymbolicJs = interfaceSymbolicJsConfig.configValue;
 		layer.open({
 			area : [ '800px', '230px' ],
 			type : 1,
