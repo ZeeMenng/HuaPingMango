@@ -1,4 +1,5 @@
 var selectRows = new Array();
+var tableLayout;
 Array.prototype.prepend = function(needle) {
 	var a = this.slice(0);
 	// 使用unshift方法向a开头添加item
@@ -8,12 +9,14 @@ Array.prototype.prepend = function(needle) {
 
 $(document).ready(function() {
 	// 列表页表格样式，默认超出为省略号，不出现横向滚动条
-	$(".table-scrollable").removeClass("table-scrollable");
+	
 	if (getUserConfigByCode("tableLayout") != null) {
 		var tableLayout =getUserConfigByCode("tableLayout").configValue;
 		if (tableLayout) {
-			$("#contentTable").css("table-layout", tableLayout)
-			$("#contentTable").addClass("table-scrollable");
+			if(tableLayout==="fixed")
+				$(".table-scrollable").removeClass("table-scrollable");
+			else
+				$("#contentTable").css("table-layout", tableLayout)
 		}
 	}
 	
@@ -123,7 +126,7 @@ function initNewGrid(pageParam, ajaxParam, operationParam) {
     header += "<span></span></label></th><th style='width:30px;'>序号</th>";
 
     for (var i = 0; i < ajaxParam.columnInfo.length; i++) {
-        if (typeof (ajaxParam.columnInfo[i].width) != "undefined")
+        if (typeof (ajaxParam.columnInfo[i].width) != "undefined"&&(tableLayout==="fixed"))
             header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "' width='" + ajaxParam.columnInfo[i].width + "'><span>" + ajaxParam.columnInfo[i].columnText + "</span></th>";
         else
             header += "<th class='sorting' sortBy='' columnName='" + ajaxParam.columnInfo[i].columnName + "'><span>" + ajaxParam.columnInfo[i].columnText + "</span></th>";
