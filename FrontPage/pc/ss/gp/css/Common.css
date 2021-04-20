@@ -26,9 +26,7 @@ textarea {
 	width: 200px;
 }
 
-.form-control {
-	margin-right: 20px;
-}
+
 
 a {
 	text-decoration: none;
@@ -44,9 +42,7 @@ select {
 	cursor: pointer;
 }
 
-.col-md-2 label {
-	margin-top: 8px;
-}
+
 
 /*不显示列表前面的点*/
 li {

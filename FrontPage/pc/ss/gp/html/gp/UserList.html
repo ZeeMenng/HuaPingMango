@@ -82,8 +82,7 @@
 				"columnText" : "用户邮箱",
 				"style" : "text-align:left",
 				"width" : "120px"
-			},
-			{
+			}, {
 				"columnName" : "addTime",
 				"columnText" : "注册时间",
 				"style" : "text-align:center",
@@ -128,6 +127,8 @@
 		initQueryForm(pageParam, ajaxParam, operationParam);
 	});
 </script>
+<style type="text/css">
+</style>
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-wrapper">
 	<!--#include file="/pc/ss/gp/html/cl/Top.html"-->
@@ -149,9 +150,9 @@
 
 				<div class="col-md-12 portlet light bordered">
 					<form class="portlet-body form form-inline form-body" role="form" id="queryBuilderForm">
-							<label class="control-label">关键词：</label>
+						<label class="control-label">关键词：</label>
 						<input class="form-control " id="textKeywords" name="kewwords" size="35" type="text" placeholder="可输入 /账号/姓名/电话/邮箱 ……" />
-		
+
 						<label class="control-label">组织机构：</label>
 						<input class="form-control " id="textOrganizationName" name="organizationName" size="10" type="text" />
 
@@ -201,31 +202,33 @@
 						</div>
 						<div class="portlet-body">
 							<div class="dataTables_wrapper no-footer">
-							<div class="table-scrollable">
-								<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column" id="contentTable">
-									<thead>
+								<div class="table-scrollable">
+									<table class="table dataTable table-striped table-bordered table-hover table-checkable order-column" id="contentTable">
+										<thead>
 
-									</thead>
-									<tbody>
+										</thead>
+										<tbody>
 
-									</tbody>
-								</table>
-</div>
+										</tbody>
+									</table>
+								</div>
 								<div class="row">
-									<div class="col-md-5 col-sm-5 dataTables_info" role="status" aria-live="polite">
-										共有
-										<span id="totalCountSpan">0 </span>
-										条记录，每页
+									<div class="col-lg-5 col-sm-12">
+										<div class="dataTables_info" role="status" aria-live="polite">
+											共有
+											<span id="totalCountSpan">0 </span>
+											条记录，每页
 
-										<select id="pageSizeSelect" class="form-control input-xsmall input-inline">
+											<select id="pageSizeSelect" class="form-control input-sm input-xsmall input-inline">
 
-										</select>
-										条，当前第
-										<span id="pageIndexSpan">0/0</span>
-										页
+											</select>
+											条，当前第
+											<span id="pageIndexSpan">0/0</span>
+											页
+										</div>
 									</div>
 
-									<div class="col-md-5 col-sm-5">
+									<div class="col-lg-5 col-sm-12">
 										<div class="dataTables_paginate paging_bootstrap_full_number">
 											<ul class="pagination">
 												<li class="prev ">
@@ -253,21 +256,21 @@
 													</a>
 												</li>
 											</ul>
-											<div class="form-inline nowrap col-md-2 col-sm-2" style="float: right; padding-left: 25px;">
-												<div class="form-group ">
-													<label class="form-label">转到第</label>
-													<input class="form-control" id="gotoPageText" size="3" type="text">
-													<label class="form-label">页</label>
-												</div>
-											</div>
-											<input type=hidden id="pageCountHidden" />
-											<input type=hidden id="pageIndexHidden" />
-
 										</div>
 									</div>
+									<div class="col-lg-2 col-sm-12">
+										<div class="dataTables_filter dataTables_paginate ">
+											<label>
+												转到第
+												<input class="form-control input-sm input-xsmall input-inline" id="gotoPageText" size="3" type="text">
+												页
+											</label>
+										</div>
+									</div>
+									<input type=hidden id="pageCountHidden" />
+									<input type=hidden id="pageIndexHidden" />
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
